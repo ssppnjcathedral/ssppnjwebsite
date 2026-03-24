@@ -70,6 +70,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 .footer-copy,.footer-addr{font-family:var(--f-ui);font-size:.64rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.22)}
 @media(max-width:768px){.nav-links{display:none}.page-hero-inner{padding:4rem 1.5rem 3rem}.main-wrap{padding:3rem 1.5rem}.chapter-bar{padding:.65rem 1.5rem}.staff-grid{grid-template-columns:1fr}.staff-card{border-right:none}.council-list{grid-template-columns:1fr}.council-member{border-right:none}}
 </style>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
 <nav class="nav">
@@ -395,6 +396,17 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 
 })();
 
+</script>
+<script>
+if (window.netlifyIdentity) {
+  window.netlifyIdentity.on("init", user => {
+    if (!user) {
+      window.netlifyIdentity.on("login", () => {
+        document.location.href = "/admin/";
+      });
+    }
+  });
+}
 </script>
 </body>
 </html>

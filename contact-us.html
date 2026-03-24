@@ -91,6 +91,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 @media(max-width:1024px){.contact-body{grid-template-columns:1fr;gap:3rem}.info-strip-inner{grid-template-columns:1fr 1fr}}
 @media(max-width:768px){.nav-links{display:none}.page-hero-inner{padding:4rem 1.5rem 3rem}.contact-body{padding:3rem 1.5rem}.chapter-bar{padding:.65rem 1.5rem}.info-strip-inner{grid-template-columns:1fr}.info-block{border-right:none;border-bottom:var(--rule-faint)}}
 </style>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
 <nav class="nav">
@@ -474,6 +475,17 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 
 })();
 
+</script>
+<script>
+if (window.netlifyIdentity) {
+  window.netlifyIdentity.on("init", user => {
+    if (!user) {
+      window.netlifyIdentity.on("login", () => {
+        document.location.href = "/admin/";
+      });
+    }
+  });
+}
 </script>
 </body>
 </html>

@@ -285,6 +285,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   .giving-section{padding:6rem 1.5rem}
 }
 </style>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
 
@@ -937,5 +938,16 @@ document.querySelector('a[href="#this-sunday"]')?.addEventListener('click',e=>{e
 
 </script>
 
+<script>
+if (window.netlifyIdentity) {
+  window.netlifyIdentity.on("init", user => {
+    if (!user) {
+      window.netlifyIdentity.on("login", () => {
+        document.location.href = "/admin/";
+      });
+    }
+  });
+}
+</script>
 </body>
 </html>

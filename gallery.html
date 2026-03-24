@@ -205,7 +205,9 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 @media(max-width:768px){.nav-links{display:none}.hero{min-height:420px}.hero-content,.featured-wrap,.archive-wrap,.archive-divider,.submit-cta{padding-left:1.5rem;padding-right:1.5rem}.season-strip{padding:.6rem 1.5rem}.fr-main,.fr-trio,.fr-asym{grid-template-columns:1fr}.fr-quad{grid-template-columns:1fr 1fr}.masonry-grid{columns:2}.submit-inner{grid-template-columns:1fr}.submit-right{align-items:flex-start}.footer-cols{grid-template-columns:1fr;gap:2.5rem}footer{padding:4rem 1.5rem 2rem}.footer-bottom{flex-direction:column;gap:.75rem;text-align:center}.lb-prev{left:6px}.lb-next{right:6px}.lb-body{padding:0 44px}}
 @media(max-width:480px){.masonry-grid{columns:1}.fr-quad{grid-template-columns:1fr}}
 </style>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
+</head>
 <body>
 
 <nav class="nav">
@@ -897,6 +899,17 @@ document.addEventListener('keydown',e=>{
 
 })();
 
+</script>
+<script>
+if (window.netlifyIdentity) {
+  window.netlifyIdentity.on("init", user => {
+    if (!user) {
+      window.netlifyIdentity.on("login", () => {
+        document.location.href = "/admin/";
+      });
+    }
+  });
+}
 </script>
 </body>
 
