@@ -649,17 +649,77 @@ const CACHE={};
 ═══════════════════════════════════════ */
 function dateKey(d){return`${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`;}
 
+/* ── LOCAL CALENDAR CACHE ── */
+let LOCAL_CAL = null;
+const CURRENT_YEAR = new Date().getFullYear();
+
+async function loadLocalCal(year) {
+  if (LOCAL_CAL && LOCAL_CAL.year === year) return LOCAL_CAL;
+  try {
+    const r = await fetch(`/_data/calendar-${year}.json`);
+    if (!r.ok) throw new Error('not found');
+    LOCAL_CAL = await r.json();
+    return LOCAL_CAL;
+  } catch(e) {
+    LOCAL_CAL = null;
+    return null;
+  }
+}
+
+const PROXIES=['https://corsproxy.io/?','https://api.allorigins.win/raw?url='];
+
+async function fetchWithTimeout(url,ms=8000){
+  const ctrl=new AbortController();
+  const t=setTimeout(()=>ctrl.abort(),ms);
+  try{const r=await fetch(url,{signal:ctrl.signal});clearTimeout(t);if(!r.ok)throw new Error('HTTP '+r.status);return r.json();}
+  catch(e){clearTimeout(t);throw e;}
+}
+
 async function fetchDay(date){
   const k=dateKey(date);
   if(CACHE[k]) return CACHE[k];
-  try{
-    const url=`https://corsproxy.io/?https://orthocal.info/api/gregorian/${date.getFullYear()}/${date.getMonth()+1}/${date.getDate()}/`;
-    const resp=await fetch(url);
-    if(!resp.ok) return null;
-    const data=await resp.json();
+
+  /* Try local cache first */
+  const year = date.getFullYear();
+  const cal = await loadLocalCal(year);
+  const dk = `${year}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`;
+  if(cal && cal.days && cal.days[dk]){
+    const day = cal.days[dk];
+    const data = {
+      summary_title: day.feast, titles: day.titles, feasts: day.feasts,
+      saints: day.saints, fast_level_desc: day.fast,
+      fast_exception_desc: day.fastException, tone: day.tone,
+      feast_level: day.feastLevel, feast_level_description: day.feastDesc,
+      readings: day.readings, stories: []
+    };
     CACHE[k]=data;
     return data;
-  }catch{return null;}
+  }
+
+  /* API fallback */
+  const base=`https://orthocal.info/api/gregorian/${date.getFullYear()}/${date.getMonth()+1}/${date.getDate()}/`;
+  for(const proxy of PROXIES){
+    try{
+      const data=await fetchWithTimeout(proxy+encodeURIComponent(base));
+      CACHE[k]=data;
+      return data;
+    }catch(e){console.warn('Proxy failed:',e.message);}
+  }
+  return null;
+}
+
+async function fetchDay(date){
+  const k=dateKey(date);
+  if(CACHE[k]) return CACHE[k];
+  const base=`https://orthocal.info/api/gregorian/${date.getFullYear()}/${date.getMonth()+1}/${date.getDate()}/`;
+  for(const proxy of PROXIES){
+    try{
+      const data=await fetchWithTimeout(proxy+encodeURIComponent(base));
+      CACHE[k]=data;
+      return data;
+    }catch(e){console.warn('Proxy failed:',e.message);}
+  }
+  return null;
 }
 
 async function fetchMonth(year,month){
