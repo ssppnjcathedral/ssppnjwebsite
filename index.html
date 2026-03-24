@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Saints Peter & Paul Orthodox Cathedral · Jersey City</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+:root {
+  --vellum:      #F6F1E8;
+  --vellum-mid:  #EDE7DC;
+  --vellum-alt:  #E8E0D0;
+  --text:        #1E1510;
+  --ink:         #2C1F16;
+  --maroon:      #7B1D2A;
+  --maroon-deep: #5C1520;
+  --gold:        #B88328;
+  --gold-lt:     #E8C97A;
+  --verdigris:   #3D6B5E;
+  --stone:       #7A6648;
+  --stone-lt:    #A89070;
+  --apse:        #3B0F18;
+  --f-display: 'Cormorant Garamond', Georgia, serif;
+  --f-body:    'EB Garamond', Georgia, serif;
+  --f-ui:      'Cinzel', Georgia, serif;
+  --rule:       1px solid var(--maroon);
+  --rule-faint: 1px solid rgba(123,29,42,0.14);
+  --rule-hair:  1px solid rgba(123,29,42,0.07);
+  --rule-gold:  1px solid rgba(184,131,40,0.30);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--vellum);color:var(--text);font-family:var(--f-body);font-size:19px;line-height:1.75;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+
+/* === SERVICE BOOK PRIMITIVES === */
+.rubric{display:block;font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.20em;text-transform:uppercase;color:var(--stone);margin-bottom:.5rem}
+.rubric.light{color:rgba(246,241,232,.55)}
+.rubric-rule{display:block;height:1px;background:var(--maroon);margin-bottom:1rem;width:48px}
+.rubric-rule.wide{width:80px}
+.rubric-rule.centered{margin:0 auto 1rem}
+.rubric-rule.gold{background:var(--gold)}
+.rubric-voice{display:block;font-family:var(--f-display);font-style:italic;font-weight:400;font-size:1.15rem;color:var(--maroon);margin-top:.4rem;line-height:1.4}
+.rubric-voice.light{color:rgba(232,201,122,.75)}
+.chapter-bar{background:var(--maroon);padding:.65rem 4rem;display:flex;align-items:center;justify-content:space-between}
+.cbar-text{font-family:var(--f-ui);font-size:.70rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:rgba(246,241,232,.60)}
+.cbar-text.bright{color:rgba(246,241,232,.90)}
+.cbar-text.gold-text{color:var(--gold-lt)}
+.dbl-rule{border:none;border-top:2px solid var(--maroon)}
+.single-rule{border:none;border-top:var(--rule)}
+.gold-rule{border:none;border-top:var(--rule-gold)}
+.faint-rule{border:none;border-top:var(--rule-faint)}
+.hair-rule{border:none;border-top:var(--rule-hair)}
+.btn{display:inline-block;font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;padding:.85rem 2.2rem;border:1px solid currentColor;cursor:pointer;transition:all .22s;white-space:nowrap}
+.btn-maroon{color:var(--vellum);background:var(--maroon);border-color:var(--maroon)}
+.btn-maroon:hover{background:var(--maroon-deep);border-color:var(--maroon-deep)}
+.btn-outline{color:var(--maroon);border-color:var(--maroon)}
+.btn-outline:hover{background:var(--maroon);color:var(--vellum)}
+.btn-white{color:rgba(255,255,255,.85);border-color:rgba(255,255,255,.45)}
+.btn-white:hover{color:#fff;border-color:#fff;background:rgba(255,255,255,.08)}
+.btn-gold{background:var(--gold);color:#fff;border-color:var(--gold)}
+.btn-gold:hover{background:#9a6d20}
+.sb-link{font-family:var(--f-ui);font-size:.70rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);border-bottom:1px solid rgba(123,29,42,.28);padding-bottom:.1rem;transition:border-color .2s}
+.sb-link:hover{border-color:var(--maroon)}
+.sb-link.light{color:var(--gold-lt);border-color:rgba(232,201,122,.35)}
+.sb-link.light:hover{border-color:var(--gold-lt)}
+
+/* === NAV === */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(246,241,232,.97);backdrop-filter:blur(10px);border-bottom:var(--rule-faint)}
+.nav-inner{max-width:1380px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px;padding:0 3rem}
+.nav-logo-name{font-family:var(--f-display);font-weight:500;font-size:1.25rem;color:var(--text);display:block}
+.nav-logo-sub{font-family:var(--f-ui);font-size:.60rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);display:block}
+.nav-links{display:flex;align-items:center;list-style:none}
+.nav-links>li{position:relative}
+.nav-links>li>a{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);padding:1.1rem .85rem;display:block;transition:color .18s}
+.nav-links>li:hover>a{color:var(--maroon)}
+.nav-drop{position:absolute;top:100%;left:0;background:var(--vellum);border-top:2px solid var(--maroon);border-bottom:var(--rule-faint);border-left:var(--rule-faint);border-right:var(--rule-faint);min-width:200px;padding:.5rem 0;opacity:0;pointer-events:none;transform:translateY(-4px);transition:all .16s;box-shadow:0 8px 28px rgba(28,20,16,.10)}
+.nav-links>li:hover .nav-drop{opacity:1;pointer-events:all;transform:none}
+.nav-drop a{display:block;font-family:var(--f-ui);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);padding:.5rem 1.4rem;transition:color .14s}
+.nav-drop a:hover{color:var(--maroon)}
+.nav-give{font-family:var(--f-ui);font-size:.70rem;letter-spacing:.14em;text-transform:uppercase;color:var(--vellum);background:var(--maroon);padding:.5rem 1.1rem;transition:background .2s}
+.nav-give:hover{background:var(--maroon-deep)}
+
+/* === HERO === */
+.hero{position:relative;height:100vh;min-height:640px;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(21,10,5,.50) 0%,rgba(21,10,5,.18) 45%,rgba(21,10,5,.70) 100%),url('https://images.unsplash.com/photo-1548625361-58a9d86b2573?w=1800&q=80') center/cover no-repeat}
+.hero-fallback{position:absolute;inset:0;background:linear-gradient(150deg,#2E0D14 0%,#7B1D2A 45%,#B88328 100%);z-index:-1}
+.hero-frame{position:absolute;inset:2.5rem;border:1px solid rgba(184,131,40,.20);pointer-events:none;z-index:2}
+.hfc{position:absolute;width:14px;height:14px;border-style:solid;border-color:rgba(184,131,40,.50)}
+.hfc.tl{top:-1px;left:-1px;border-width:2px 0 0 2px}
+.hfc.tr{top:-1px;right:-1px;border-width:2px 2px 0 0}
+.hfc.bl{bottom:-1px;left:-1px;border-width:0 0 2px 2px}
+.hfc.br{bottom:-1px;right:-1px;border-width:0 2px 2px 0}
+.hero-content{position:relative;z-index:3;padding:2rem;max-width:920px}
+.hero-eyebrow{font-family:var(--f-ui);font-size:.70rem;font-weight:500;letter-spacing:.20em;text-transform:uppercase;color:rgba(232,201,122,.70);margin-bottom:2rem;animation:fu 1s .20s both}
+.hero-title{font-family:var(--f-display);font-weight:300;font-size:clamp(4rem,10vw,8.5rem);line-height:.88;color:#fff;letter-spacing:.01em;animation:fu 1s .35s both}
+.hero-title em{font-style:italic}
+.hero-divider{display:flex;align-items:center;justify-content:center;gap:1.4rem;margin:2rem auto;animation:fu 1s .52s both}
+.hero-divider::before,.hero-divider::after{content:'';display:block;width:70px;height:1px;background:rgba(184,131,40,.50)}
+.hero-divider-inner{color:var(--gold-lt);font-size:.75rem;letter-spacing:.30em}
+.hero-loc{font-family:var(--f-ui);font-size:.54rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(255,255,255,.58);margin-bottom:.5rem;animation:fu 1s .65s both}
+.hero-tag{font-family:var(--f-display);font-style:italic;font-weight:300;font-size:clamp(1rem,2vw,1.45rem);color:rgba(255,255,255,.60);margin-bottom:2.5rem;animation:fu 1s .72s both}
+.hero-cta{animation:fu 1s .88s both}
+.hero-scroll{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);z-index:3;display:flex;flex-direction:column;align-items:center;gap:.6rem;color:rgba(255,255,255,.28);font-family:var(--f-ui);font-size:.64rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase}
+.hero-scroll-line{width:1px;height:44px;background:linear-gradient(to bottom,rgba(184,131,40,.50),transparent);animation:drop 2.2s ease-in-out infinite}
+@keyframes drop{0%,100%{opacity:0;transform:scaleY(0);transform-origin:top}40%{opacity:1;transform:scaleY(1);transform-origin:top}80%{opacity:0;transform:scaleY(1);transform-origin:bottom}}
+@keyframes fu{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+/* === THIS SUNDAY === */
+.this-sunday{background:var(--vellum);position:relative;overflow:hidden}
+.ts-rosette{position:absolute;width:620px;height:620px;left:-150px;top:50%;transform:translateY(-50%);opacity:.055;pointer-events:none;z-index:0}
+.ts-body{display:grid;grid-template-columns:1fr 340px;max-width:1380px;margin:0 auto;padding:5rem 3rem 5.5rem 4.5rem;gap:5rem;position:relative;z-index:1}
+.ts-opening{border-left:4px solid var(--gold);padding-left:1.75rem;margin-bottom:2.5rem;transition:border-color .5s}
+.ts-opening.lv0{border-color:var(--stone-lt)}
+.ts-opening.lv2,.ts-opening.lv4,.ts-opening.lv6{border-color:var(--gold)}
+.ts-opening.lv5{border-color:#1B3A5C}
+.ts-opening.lv7{border-color:var(--maroon)}
+.ts-feast{font-family:var(--f-display);font-weight:300;font-size:clamp(2rem,4vw,3.2rem);line-height:1.05;color:var(--text);margin:.5rem 0 .3rem}
+.ts-saint{font-family:var(--f-display);font-style:italic;font-size:1.1rem;color:var(--maroon);font-weight:400;display:block}
+.ts-tone{display:inline-block;margin-top:.75rem;font-family:var(--f-ui);font-size:.68rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;border:1px solid var(--maroon);color:var(--maroon);padding:.28rem .8rem}
+.ts-strip{display:flex;gap:0;border:var(--rule-faint);margin:2rem 0}
+.ts-strip-item{flex:1;padding:.9rem 1.4rem;border-right:var(--rule-faint);text-align:center}
+.ts-strip-item:last-child{border-right:none}
+.ts-strip-day{font-family:var(--f-ui);font-size:.68rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.2rem}
+.ts-strip-name{font-family:var(--f-display);font-size:1.05rem;color:var(--text);display:block}
+.ts-strip-time{font-family:var(--f-ui);font-size:.70rem;font-weight:600;letter-spacing:.10em;text-transform:uppercase;color:var(--maroon);display:block;margin-top:.1rem}
+.ts-readings{border-top:2px solid var(--maroon);border-bottom:var(--rule-faint);padding:1.5rem 0;margin:2rem 0}
+.ts-readings-head{font-family:var(--f-ui);font-size:.52rem;letter-spacing:.26em;text-transform:uppercase;color:var(--maroon);margin-bottom:1.2rem}
+.ts-reading-row{display:grid;grid-template-columns:90px 1fr;gap:.75rem;align-items:baseline;padding-bottom:.75rem;margin-bottom:.75rem;border-bottom:var(--rule-hair)}
+.ts-reading-row:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.ts-reading-src{font-family:var(--f-ui);font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--maroon)}
+.ts-reading-ref{font-family:var(--f-display);font-style:italic;font-size:1.05rem;color:var(--text);line-height:1.35}
+.ts-fast{font-family:var(--f-body);font-style:italic;font-size:.94rem;color:var(--stone);padding-top:.75rem;margin-top:.5rem;border-top:var(--rule-hair)}
+.ts-fast::before{content:'✦ ';color:var(--gold);font-style:normal;font-size:.7rem}
+.ts-ctas{display:flex;gap:1.5rem;align-items:center;margin-top:2rem;padding-top:1.5rem;border-top:var(--rule-faint)}
+.ts-loading{font-family:var(--f-display);font-style:italic;color:var(--stone);font-size:1rem;padding:2rem 0}
+.ts-right{border-left:var(--rule-faint);padding-left:2.5rem}
+.annot-label{font-family:var(--f-ui);font-size:.68rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.5rem}
+.week-entry{padding:.8rem 0;border-bottom:var(--rule-hair)}
+.week-entry:last-child{border-bottom:none}
+.week-day-lbl{font-family:var(--f-ui);font-size:.66rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.15rem}
+.week-day-title{font-family:var(--f-display);font-size:.95rem;color:var(--text);line-height:1.3}
+.week-day-title.major{color:var(--maroon)}
+.feast-dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--gold);vertical-align:middle;margin-left:.3rem;margin-bottom:1px}
+.annot-nav{margin-top:2rem;padding-top:1.5rem;border-top:var(--rule-faint)}
+.annot-nav-link{display:flex;align-items:center;justify-content:space-between;font-family:var(--f-ui);font-size:.70rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--text);padding:.6rem 0;border-bottom:var(--rule-hair);transition:color .18s}
+.annot-nav-link:last-child{border-bottom:none}
+.annot-nav-link:hover{color:var(--maroon)}
+.annot-nav-link::after{content:'→';color:var(--maroon);margin-left:.5rem}
+
+/* === WELCOME === */
+.welcome-section{background:var(--vellum-mid);border-top:var(--rule-faint);border-bottom:var(--rule-faint)}
+.welcome-inner{max-width:1380px;margin:0 auto;display:grid;grid-template-columns:5fr 4fr;min-height:580px}
+.welcome-text{padding:6rem 5rem 6rem 4.5rem;border-right:var(--rule-faint)}
+.drop-cap::first-letter{font-family:var(--f-display);font-style:italic;font-weight:300;font-size:4.5em;line-height:.78;float:left;margin-right:.07em;margin-top:.07em;color:var(--maroon)}
+.welcome-headline{font-family:var(--f-display);font-weight:300;font-style:italic;font-size:clamp(2rem,3.5vw,2.8rem);line-height:1.18;color:var(--text);margin:.75rem 0 2rem;max-width:22ch}
+.welcome-headline strong{font-style:normal;font-weight:500;color:var(--maroon)}
+.welcome-body{font-family:var(--f-body);font-size:1rem;line-height:1.82;color:var(--ink);text-align:justify;hyphens:auto;max-width:52ch;margin-bottom:1.2em}
+.welcome-btns{display:flex;gap:1rem;margin-top:2.5rem;flex-wrap:wrap}
+.welcome-photos{display:grid;grid-template-rows:3fr 2fr}
+.wp-top,.wp-btm{position:relative;overflow:hidden}
+.wp-top-bg{position:absolute;inset:0;background:linear-gradient(160deg,#7B1D2A 0%,#3B0F18 50%,#B88328 100%);transition:transform .5s}
+.wp-btm-bg{position:absolute;inset:0;background:linear-gradient(160deg,#1E3D35 0%,#3D6B5E 60%,#7A6648 100%);transition:transform .5s}
+.wp-top:hover .wp-top-bg,.wp-btm:hover .wp-btm-bg{transform:scale(1.03)}
+.wp-overlay{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(21,12,8,.72));padding:2.5rem 1.75rem 1.4rem}
+.wp-caption{font-family:var(--f-display);font-style:italic;font-size:.95rem;color:rgba(255,255,255,.88);line-height:1.4}
+.wp-divider{border:none;border-top:var(--rule-faint)}
+
+/* === WORSHIP === */
+.worship-section{background:var(--vellum);padding-top:0}
+.worship-header{max-width:1380px;margin:0 auto;padding:5rem 4.5rem 3.5rem;border-bottom:2px solid var(--maroon);text-align:center}
+.worship-headline{font-family:var(--f-display);font-weight:300;font-size:clamp(1.9rem,3.5vw,2.8rem);color:var(--text);margin:.5rem 0}
+.worship-grid{max-width:1380px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);border-bottom:var(--rule-faint)}
+.worship-office{padding:4rem 3.5rem 3.5rem;border-right:var(--rule-faint);position:relative}
+.worship-office:last-child{border-right:none}
+.worship-office::before{content:'';display:block;position:absolute;top:4rem;left:0;width:3px;height:36px}
+.office-a::before{background:var(--maroon)}
+.office-b::before{background:var(--gold)}
+.office-c::before{background:var(--verdigris)}
+.office-numeral{font-family:var(--f-display);font-style:italic;font-size:5rem;line-height:1;color:rgba(123,29,42,.07);margin-bottom:-.75rem}
+.office-title{font-family:var(--f-display);font-weight:400;font-size:1.9rem;color:var(--text);margin:.3rem 0 .2rem}
+.office-time{font-family:var(--f-ui);font-size:.70rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);display:block;margin-bottom:1.25rem}
+.office-body{font-family:var(--f-body);font-size:.96rem;line-height:1.78;color:var(--ink);text-align:justify;hyphens:auto;margin-bottom:2rem}
+hr.office-rule{border:none;border-top:var(--rule-faint);margin-bottom:1.25rem}
+
+/* === GALLERY === */
+.gallery-section{background:var(--apse);padding:5rem 0 4rem;overflow:hidden;border-top:2px solid rgba(184,131,40,.18)}
+.gallery-header{max-width:1380px;margin:0 auto 2.5rem;padding:0 4.5rem;display:flex;align-items:flex-end;justify-content:space-between}
+.gallery-headline{font-family:var(--f-display);font-weight:300;font-size:clamp(1.8rem,3vw,2.4rem);color:rgba(246,241,232,.92);margin:.4rem 0}
+.gallery-drag{font-family:var(--f-ui);font-size:.50rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(246,241,232,.28);align-self:flex-end}
+.gallery-track{display:flex;gap:0;padding:0;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;cursor:grab}
+.gallery-track::-webkit-scrollbar{display:none}
+.gallery-track:active{cursor:grabbing}
+.gallery-slide{flex:0 0 400px;scroll-snap-align:start;position:relative;height:540px;border-right:1px solid rgba(246,241,232,.05);overflow:hidden}
+.gallery-slide-bg{position:absolute;inset:0;transition:transform .5s ease}
+.gallery-slide:hover .gallery-slide-bg{transform:scale(1.04)}
+.gallery-slide-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(21,12,8,.90) 100%)}
+.gallery-slide-content{position:absolute;bottom:0;left:0;right:0;padding:2.5rem 1.75rem 1.75rem}
+.gallery-caption{font-family:var(--f-display);font-style:italic;font-size:1.05rem;color:rgba(255,255,255,.90);line-height:1.4;margin-bottom:.3rem}
+.gallery-sub{font-family:var(--f-ui);font-size:.64rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(184,131,40,.75)}
+
+/* === BULLETIN === */
+.bulletin-section{background:var(--vellum)}
+.bulletin-grid{max-width:1380px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);border-top:var(--rule-faint)}
+.bulletin-entry{padding:3.5rem 3.5rem 3rem;border-right:var(--rule-faint);transition:background .2s}
+.bulletin-entry:last-child{border-right:none}
+.bulletin-entry:hover{background:var(--vellum-mid)}
+.bulletin-folio{font-family:var(--f-ui);font-size:.66rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.6rem}
+.bulletin-title{font-family:var(--f-display);font-weight:400;font-size:1.35rem;line-height:1.25;color:var(--text);margin-bottom:.75rem}
+.bulletin-lede{font-family:var(--f-body);font-size:.94rem;line-height:1.78;color:var(--ink);text-align:justify;hyphens:auto;margin-bottom:1.5rem;opacity:.82}
+
+/* === GIVING === */
+.giving-section{background:var(--apse);padding:8rem 2rem;text-align:center;position:relative;overflow:hidden}
+.giving-cross-bg{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:50rem;line-height:1;color:rgba(184,131,40,.025);pointer-events:none;z-index:0;font-family:serif}
+.giving-inner{max-width:620px;margin:0 auto;position:relative;z-index:1}
+.giving-title{font-family:var(--f-display);font-weight:300;font-size:clamp(2rem,4vw,3rem);line-height:1.15;color:rgba(246,241,232,.94);margin:.75rem 0}
+.giving-title em{font-style:italic;color:var(--gold-lt)}
+.giving-body{font-family:var(--f-body);font-size:.97rem;line-height:1.82;color:rgba(246,241,232,.60);text-align:justify;hyphens:auto;margin-bottom:3rem}
+.giving-divider{width:60px;height:1px;background:rgba(184,131,40,.35);margin:1.75rem auto}
+
+/* === FOOTER === */
+footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:4.5rem 4.5rem 2.5rem}
+.footer-cross{display:block;text-align:center;font-size:1.1rem;color:rgba(184,131,40,.45);letter-spacing:.8em;padding-left:.8em;margin-bottom:4rem}
+.footer-cols{max-width:1380px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:5rem;margin-bottom:3.5rem}
+.footer-col-head{font-family:var(--f-ui);font-size:.66rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(246,241,232,.28);display:block;margin-bottom:1.2rem;padding-bottom:.5rem;border-bottom:1px solid rgba(246,241,232,.06)}
+.footer-name{font-family:var(--f-display);font-weight:400;font-size:1.2rem;color:rgba(246,241,232,.88);line-height:1.3;margin-bottom:.75rem}
+.footer-meta{font-family:var(--f-ui);font-size:.64rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.30);line-height:2.3}
+.footer-meta a{color:rgba(184,131,40,.60);transition:color .2s}
+.footer-meta a:hover{color:var(--gold)}
+.footer-socials{display:flex;gap:1.5rem;margin-top:1.5rem}
+.footer-socials a{font-family:var(--f-ui);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,241,232,.35);transition:color .2s}
+.footer-socials a:hover{color:var(--gold)}
+.footer-nav{list-style:none;display:flex;flex-direction:column}
+.footer-nav li{padding:.38rem 0;border-bottom:1px solid rgba(246,241,232,.04)}
+.footer-nav li:last-child{border-bottom:none}
+.footer-nav a{font-family:var(--f-ui);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,232,.45);transition:color .2s}
+.footer-nav a:hover{color:rgba(246,241,232,.85)}
+.footer-blurb{font-family:var(--f-display);font-style:italic;font-size:.95rem;color:rgba(246,241,232,.42);line-height:1.65;margin-bottom:1.5rem}
+.footer-email{display:flex}
+.footer-email input{flex:1;background:rgba(255,255,255,.04);border:1px solid rgba(246,241,232,.12);border-right:none;color:rgba(246,241,232,.80);font-family:var(--f-ui);font-size:.50rem;letter-spacing:.10em;padding:.75rem 1rem;outline:none}
+.footer-email input::placeholder{color:rgba(246,241,232,.22)}
+.footer-email button{background:var(--maroon);border:1px solid var(--maroon);color:rgba(246,241,232,.88);font-family:var(--f-ui);font-size:.50rem;letter-spacing:.18em;text-transform:uppercase;padding:.75rem 1rem;cursor:pointer;transition:background .2s}
+.footer-email button:hover{background:var(--maroon-deep)}
+.footer-bottom{max-width:1380px;margin:2.5rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(246,241,232,.06);display:flex;justify-content:space-between;align-items:center}
+.footer-copy,.footer-addr{font-family:var(--f-ui);font-size:.64rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.22)}
+.footer-addr{text-align:right}
+
+/* === RESPONSIVE === */
+@media(max-width:1100px){
+  .ts-body{grid-template-columns:1fr;gap:0;padding:4rem 2.5rem}
+  .ts-right{border-left:none;border-top:var(--rule-faint);padding-left:0;padding-top:2.5rem;margin-top:2.5rem}
+  .welcome-inner{grid-template-columns:1fr}
+  .welcome-photos{min-height:380px;grid-template-rows:1fr;grid-template-columns:1fr 1fr}
+  .wp-divider{display:none}
+  .worship-grid{grid-template-columns:1fr}
+  .worship-office{border-right:none;border-bottom:var(--rule-faint)}
+  .bulletin-grid{grid-template-columns:1fr}
+  .bulletin-entry{border-right:none;border-bottom:var(--rule-faint)}
+  .footer-cols{grid-template-columns:1fr 1fr;gap:3rem}
+}
+@media(max-width:768px){
+  .nav-links{display:none}
+  .hero-title{font-size:3.5rem}
+  .hero-frame{inset:1.25rem}
+  .chapter-bar{padding:.65rem 1.5rem}
+  .ts-body{padding:3rem 1.5rem}
+  .ts-strip{flex-direction:column}
+  .ts-strip-item{border-right:none;border-bottom:var(--rule-faint)}
+  .ts-strip-item:last-child{border-bottom:none}
+  .welcome-text{padding:4rem 1.5rem}
+  .welcome-photos{grid-template-columns:1fr;grid-template-rows:260px 180px}
+  .wp-divider{display:block}
+  .worship-header{padding:4rem 1.5rem 2.5rem}
+  .worship-office{padding:3rem 1.5rem}
+  .gallery-slide{flex:0 0 300px;height:420px}
+  .gallery-header{padding:0 1.5rem}
+  .bulletin-entry{padding:2.5rem 1.5rem}
+  .footer-cols{grid-template-columns:1fr;gap:2.5rem}
+  footer{padding:4rem 1.5rem 2rem}
+  .footer-bottom{flex-direction:column;gap:.75rem;text-align:center}
+  .footer-addr{text-align:center}
+  .giving-section{padding:6rem 1.5rem}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" style="line-height:1.2">
+      <span class="nav-logo-name">Sts. Peter &amp; Paul</span>
+      <span class="nav-logo-sub">Orthodox Cathedral · Jersey City</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#">About Us ▾</a>
+        <div class="nav-drop">
+          <a href="/about-our-church">About Our Church</a>
+          <a href="/our-beliefs">Our Beliefs</a>
+          <a href="/administration">Administration</a>
+          <a href="/gallery">Gallery</a>
+        </div>
+      </li>
+      <li><a href="#">Inquirers ▾</a>
+        <div class="nav-drop">
+          <a href="/about-orthodoxy">About Orthodoxy</a>
+          <a href="/our-beliefs">Our Beliefs</a>
+          <a href="/videos">Videos</a>
+        </div>
+      </li>
+      <li><a href="/schedule">Calendar</a></li>
+      <li><a href="#">Bulletins ▾</a>
+        <div class="nav-drop">
+          <a href="/news">News</a>
+          <a href="/bulletins">Bulletins</a>
+        </div>
+      </li>
+      <li><a href="#">Resources ▾</a>
+        <div class="nav-drop">
+          <a href="/readings">Readings</a>
+          <a href="/videos">Videos</a>
+          <a href="/cemeteries">Cemeteries</a>
+        </div>
+      </li>
+      <li><a href="/contact-us">Contact</a></li>
+    </ul>
+    <a href="https://tithe.ly/give?c=5004259" target="_blank" class="nav-give">Give</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-fallback"></div>
+  <div class="hero-bg"></div>
+  <div class="hero-frame">
+    <div class="hfc tl"></div><div class="hfc tr"></div>
+    <div class="hfc bl"></div><div class="hfc br"></div>
+  </div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Diocese of New York &amp; New Jersey · Orthodox Church in America</p>
+    <h1 class="hero-title">Saints<br><em>Peter</em> &amp; <em>Paul</em></h1>
+    <div class="hero-divider"><span class="hero-divider-inner">✦</span></div>
+    <p class="hero-loc">Orthodox Cathedral &nbsp;·&nbsp; Jersey City, NJ &nbsp;·&nbsp; Est. 1907</p>
+    <p class="hero-tag">Monumental from the outside. Warm and alive within.</p>
+    <div class="hero-cta"><a href="#this-sunday" class="btn btn-white">Enter</a></div>
+  </div>
+  <div class="hero-scroll">Scroll<div class="hero-scroll-line"></div></div>
+</section>
+
+<!-- THIS SUNDAY -->
+<section class="this-sunday" id="this-sunday">
+  <div class="chapter-bar">
+    <span class="cbar-text bright">The Liturgical Calendar</span>
+    <span class="cbar-text" id="cbar-date">Loading…</span>
+  </div>
+  <!-- Rosette watermark -->
+  <svg class="ts-rosette" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <circle cx="100" cy="100" r="95" fill="none" stroke="#7B1D2A" stroke-width=".6"/>
+    <circle cx="100" cy="100" r="78" fill="none" stroke="#7B1D2A" stroke-width=".4"/>
+    <circle cx="100" cy="100" r="60" fill="none" stroke="#7B1D2A" stroke-width=".4"/>
+    <circle cx="100" cy="100" r="42" fill="none" stroke="#7B1D2A" stroke-width=".4"/>
+    <circle cx="100" cy="100" r="24" fill="none" stroke="#7B1D2A" stroke-width=".5"/>
+    <circle cx="100" cy="100" r="8"  fill="none" stroke="#7B1D2A" stroke-width=".6"/>
+    <g stroke="#7B1D2A" stroke-width=".4" fill="none">
+      <line x1="100" y1="5" x2="100" y2="195"/>
+      <line x1="5" y1="100" x2="195" y2="100"/>
+      <line x1="33" y1="33" x2="167" y2="167"/>
+      <line x1="167" y1="33" x2="33" y2="167"/>
+      <line x1="5" y1="58" x2="195" y2="58"/>
+      <line x1="5" y1="142" x2="195" y2="142"/>
+      <line x1="58" y1="5" x2="58" y2="195"/>
+      <line x1="142" y1="5" x2="142" y2="195"/>
+    </g>
+    <g fill="#7B1D2A">
+      <circle cx="100" cy="5" r="2.5"/><circle cx="100" cy="195" r="2.5"/>
+      <circle cx="5" cy="100" r="2.5"/><circle cx="195" cy="100" r="2.5"/>
+      <circle cx="33" cy="33" r="2"/><circle cx="167" cy="33" r="2"/>
+      <circle cx="33" cy="167" r="2"/><circle cx="167" cy="167" r="2"/>
+    </g>
+  </svg>
+  <div class="ts-body">
+    <!-- LEFT -->
+    <div class="ts-left">
+      <span class="rubric">This Sunday</span>
+      <div class="rubric-rule"></div>
+      <div id="sunday-panel"><p class="ts-loading">Loading liturgical data…</p></div>
+      <div class="ts-strip" style="margin-top:2rem">
+        <div class="ts-strip-item">
+          <span class="ts-strip-day">Saturday</span>
+          <span class="ts-strip-name">Vespers</span>
+          <span class="ts-strip-time">5:00 PM</span>
+        </div>
+        <div class="ts-strip-item">
+          <span class="ts-strip-day">Sunday</span>
+          <span class="ts-strip-name">Divine Liturgy</span>
+          <span class="ts-strip-time">9:30 AM</span>
+        </div>
+        <div class="ts-strip-item">
+          <span class="ts-strip-day">Mon–Fri</span>
+          <span class="ts-strip-name">Parish Office</span>
+          <span class="ts-strip-time">9:00 AM – 5:00 PM</span>
+        </div>
+      </div>
+    </div>
+    <!-- RIGHT: annotation margin -->
+    <div class="ts-right">
+      <span class="annot-label">The Week Ahead</span>
+      <span class="rubric-voice" style="margin-bottom:1.5rem">Seven days of the Church calendar</span>
+      <div id="week-strip"><p class="ts-loading" style="font-size:.9rem">Loading calendar…</p></div>
+      <div class="annot-nav">
+        <a href="/readings" class="annot-nav-link">Daily Readings</a>
+        <a href="/saint-of-the-day" class="annot-nav-link">Saint of the Day</a>
+        <a href="/schedule" class="annot-nav-link">Full Calendar</a>
+        <a href="/bulletins" class="annot-nav-link">Parish Bulletins</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WELCOME -->
+<section class="welcome-section">
+  <div class="welcome-inner">
+    <div class="welcome-text">
+      <span class="rubric">Welcome</span>
+      <div class="rubric-rule"></div>
+      <h2 class="welcome-headline">A living community,<br><strong>one hundred and fifteen</strong><br>years on Grand Street.</h2>
+      <p class="welcome-body drop-cap">Founded in 1907 by immigrants from the Austro-Hungarian and Russian Empires, Saints Peter &amp; Paul has been a place of worship, refuge, and fellowship in Jersey City for over a century. Elevated to a Cathedral in 2020, we remain what we have always been: a parish — one that gathers every Sunday, feeds one another at the table, and keeps the ancient Faith alive in a changing city.</p>
+      <p class="welcome-body">Whether you are exploring Orthodoxy for the first time, seeking a parish home in Jersey City, or returning to the Faith of your fathers — you are welcome here. Come as you are.</p>
+      <div class="welcome-btns">
+        <a href="/contact-us" class="btn btn-maroon">Register with the Parish</a>
+        <a href="/about-orthodoxy" class="btn btn-outline">Explore Orthodoxy</a>
+      </div>
+    </div>
+    <div class="welcome-photos">
+      <div class="wp-top">
+        <div class="wp-top-bg"></div>
+        <div class="wp-overlay"><p class="wp-caption">The nave on a Sunday morning — 111 Grand Street</p></div>
+      </div>
+      <hr class="wp-divider"/>
+      <div class="wp-btm">
+        <div class="wp-btm-bg"></div>
+        <div class="wp-overlay"><p class="wp-caption">Coffee hour after the Divine Liturgy</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORSHIP -->
+<section class="worship-section">
+  <div class="worship-header">
+    <span class="rubric" style="text-align:center">Worship</span>
+    <div class="rubric-rule centered"></div>
+    <h2 class="worship-headline">Join Us for Worship</h2>
+    <span class="rubric-voice" style="text-align:center;display:block">All are welcome — come as you are</span>
+  </div>
+  <div class="worship-grid">
+    <div class="worship-office office-a">
+      <div class="office-numeral">I</div>
+      <h3 class="office-title">Vespers</h3>
+      <span class="office-time">Saturdays · 5:00 PM</span>
+      <hr class="office-rule"/>
+      <p class="office-body">The ancient evening prayer of the Church, welcoming the Lord's Day as it begins at sundown. A contemplative, candlelit service of psalmody and hymnody. No preparation needed — simply arrive, and be still.</p>
+      <a href="/schedule" class="sb-link">Full Schedule</a>
+    </div>
+    <div class="worship-office office-b">
+      <div class="office-numeral">II</div>
+      <h3 class="office-title">Divine Liturgy</h3>
+      <span class="office-time">Sundays · 9:30 AM</span>
+      <hr class="office-rule"/>
+      <p class="office-body">The central act of Orthodox Christian worship — the Divine Liturgy of St. John Chrysostom. Scripture, prayer, and the Holy Eucharist offered together as they have been since the first century of the Church.</p>
+      <a href="/readings" class="sb-link">This Sunday's Readings</a>
+    </div>
+    <div class="worship-office office-c">
+      <div class="office-numeral">III</div>
+      <h3 class="office-title">New to Orthodoxy?</h3>
+      <span class="office-time">Inquirers Welcome</span>
+      <hr class="office-rule"/>
+      <p class="office-body">You do not need to be Orthodox to attend our services. Many find their way to the Church through curiosity — through a question, a book, a hunger for something older and deeper. Begin here, with us.</p>
+      <a href="/about-orthodoxy" class="sb-link">Learn About Our Faith</a>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery-section">
+  <div class="gallery-header">
+    <div>
+      <span class="rubric light">Parish Life</span>
+      <h2 class="gallery-headline">The Community in Worship &amp; Fellowship</h2>
+      <span class="rubric-voice light">Real faces, real moments, one hundred years of life together</span>
+    </div>
+    <span class="gallery-drag">← Drag to Explore →</span>
+  </div>
+  <div class="gallery-track" id="galleryTrack">
+    <div class="gallery-slide">
+      <div class="gallery-slide-bg" style="background:linear-gradient(160deg,#1A0508,#7B1D2A 55%,#B88328)"></div>
+      <div class="gallery-slide-overlay"></div>
+      <div class="gallery-slide-content">
+        <p class="gallery-caption">Pascha — the feast of feasts</p>
+        <p class="gallery-sub">Holy Saturday · 2025</p>
+      </div>
+    </div>
+    <div class="gallery-slide">
+      <div class="gallery-slide-bg" style="background:linear-gradient(160deg,#0D1F1B,#3D6B5E 60%,#7A6648)"></div>
+      <div class="gallery-slide-overlay"></div>
+      <div class="gallery-slide-content">
+        <p class="gallery-caption">The choir lifts its voice at the Divine Liturgy</p>
+        <p class="gallery-sub">Gleb Ivanov, Interim Music Director</p>
+      </div>
+    </div>
+    <div class="gallery-slide">
+      <div class="gallery-slide-bg" style="background:linear-gradient(160deg,#2E0D14,#1A0508 50%,#7B1D2A)"></div>
+      <div class="gallery-slide-overlay"></div>
+      <div class="gallery-slide-content">
+        <p class="gallery-caption">Procession on Theophany — the Blessing of Waters</p>
+        <p class="gallery-sub">January 2026</p>
+      </div>
+    </div>
+    <div class="gallery-slide">
+      <div class="gallery-slide-bg" style="background:linear-gradient(160deg,#1C1005,#B88328 60%,#7A6648)"></div>
+      <div class="gallery-slide-overlay"></div>
+      <div class="gallery-slide-content">
+        <p class="gallery-caption">Coffee hour — the liturgy continues around the table</p>
+        <p class="gallery-sub">After the Divine Liturgy, every Sunday</p>
+      </div>
+    </div>
+    <div class="gallery-slide">
+      <div class="gallery-slide-bg" style="background:linear-gradient(160deg,#0A1A2E,#1A0508 50%,#3D6B5E)"></div>
+      <div class="gallery-slide-overlay"></div>
+      <div class="gallery-slide-content">
+        <p class="gallery-caption">The copper domes over Grand Street — a century of witness</p>
+        <p class="gallery-sub">111–113 Grand Street, Jersey City</p>
+      </div>
+    </div>
+    <div class="gallery-slide">
+      <div class="gallery-slide-bg" style="background:linear-gradient(160deg,#7B1D2A,#1A0508 55%,#B88328)"></div>
+      <div class="gallery-slide-overlay"></div>
+      <div class="gallery-slide-content">
+        <p class="gallery-caption">Children carrying candles on Palm Sunday</p>
+        <p class="gallery-sub">Entry of the Lord into Jerusalem · 2025</p>
+      </div>
+    </div>
+    <div class="gallery-slide">
+      <div class="gallery-slide-bg" style="background:linear-gradient(160deg,#1E1005,#7A6648 50%,#3B0F18)"></div>
+      <div class="gallery-slide-overlay"></div>
+      <div class="gallery-slide-content">
+        <p class="gallery-caption">Unction — the Mystery of Holy Oil</p>
+        <p class="gallery-sub">Great Lent · 2025</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BULLETIN -->
+<section class="bulletin-section">
+  <div class="chapter-bar">
+    <span class="cbar-text bright">From the Parish Bulletin</span>
+    <a href="/bulletins" class="sb-link light">All Bulletins →</a>
+  </div>
+  <div class="bulletin-grid">
+    <div class="bulletin-entry">
+      <span class="bulletin-folio">January 4, 2026</span>
+      <div class="rubric-rule" style="margin-bottom:.75rem"></div>
+      <h3 class="bulletin-title">Sunday Before Theophany 2026</h3>
+      <p class="bulletin-lede">As we prepare to celebrate the Baptism of our Lord in the Jordan, the Church calls us to the water — not merely to remember, but to enter again into the mystery of our own baptism and the renewal it promises.</p>
+      <a href="/bulletins" class="sb-link">Read More</a>
+    </div>
+    <div class="bulletin-entry">
+      <span class="bulletin-folio">December 24, 2025</span>
+      <div class="rubric-rule" style="margin-bottom:.75rem"></div>
+      <h3 class="bulletin-title">Christmas Services 2025</h3>
+      <p class="bulletin-lede">Christmas Eve Vigil at 6:30 PM and Christmas Day Divine Liturgy at 9:30 AM. The Word became flesh and dwelt among us — and we beheld His glory, glory as of the only Son from the Father.</p>
+      <a href="/bulletins" class="sb-link">Read More</a>
+    </div>
+    <div class="bulletin-entry">
+      <span class="bulletin-folio">December 21, 2025</span>
+      <div class="rubric-rule" style="margin-bottom:.75rem"></div>
+      <h3 class="bulletin-title">Sunday Before Christmas</h3>
+      <p class="bulletin-lede">The genealogy of Christ is read aloud — every name a thread, a life, a generation carrying the promise forward to the manger. We are, in our own way, part of that genealogy now.</p>
+      <a href="/bulletins" class="sb-link">Read More</a>
+    </div>
+  </div>
+</section>
+
+<!-- GIVING -->
+<section class="giving-section">
+  <div class="giving-cross-bg">✝</div>
+  <div class="giving-inner">
+    <span class="rubric light" style="text-align:center;display:block">Stewardship</span>
+    <div class="rubric-rule gold centered"></div>
+    <h2 class="giving-title">Sustaining the work of<br><em>one hundred and fifteen years</em></h2>
+    <div class="giving-divider"></div>
+    <p class="giving-body">This parish has kept its doors open through two world wars, a century of change in Jersey City, and a Cathedral designation — not through endowments, but through the faithfulness of ordinary people. Your gift, large or small, keeps the lights on, the choir singing, and the doors unlocked for the next person who needs to find us.</p>
+    <a href="https://tithe.ly/give?c=5004259" target="_blank" rel="noopener" class="btn btn-gold">Give to the Cathedral</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-cross">✦ ✝ ✦</span>
+  <div class="footer-cols">
+    <div>
+      <span class="footer-col-head">Saints Peter &amp; Paul Orthodox Cathedral</span>
+      <p class="footer-name">Sts. Peter &amp; Paul<br>Orthodox Cathedral</p>
+      <p class="footer-meta">
+        Diocese of New York &amp; New Jersey<br>
+        <a href="https://nynjoca.org" target="_blank">nynjoca.org</a><br>
+        Orthodox Church in America<br>
+        <a href="https://oca.org" target="_blank">oca.org</a>
+      </p>
+      <div class="footer-socials">
+        <a href="#" target="_blank">Facebook</a>
+        <a href="#" target="_blank">Instagram</a>
+      </div>
+    </div>
+    <div>
+      <span class="footer-col-head">Navigate</span>
+      <ul class="footer-nav">
+        <li><a href="/about-our-church">About Our Church</a></li>
+        <li><a href="/administration">Administration</a></li>
+        <li><a href="/schedule">Liturgical Calendar</a></li>
+        <li><a href="/gallery">Gallery</a></li>
+        <li><a href="/about-orthodoxy">About Orthodoxy</a></li>
+        <li><a href="/our-beliefs">Our Beliefs</a></li>
+        <li><a href="/videos">Videos</a></li>
+        <li><a href="/readings">Daily Readings</a></li>
+        <li><a href="/saint-of-the-day">Saint of the Day</a></li>
+        <li><a href="/bulletins">Bulletins</a></li>
+        <li><a href="/cemeteries">Cemeteries</a></li>
+        <li><a href="/contact-us">Contact Us</a></li>
+      </ul>
+    </div>
+    <div>
+      <span class="footer-col-head">Join Our Community</span>
+      <p class="footer-blurb">We'd love to hear from you — whether you're visiting for the first time or looking to become part of our parish family.</p>
+      <a href="/contact-us" class="btn btn-outline" style="margin-bottom:2rem;display:inline-block">Register with the Parish</a>
+      <span class="footer-col-head" style="margin-top:.5rem">Newsletter</span>
+      <div class="footer-email">
+        <input type="email" placeholder="Your email address"/>
+        <button type="button">Subscribe</button>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© Saints Peter &amp; Paul Orthodox Cathedral. All Rights Reserved.</p>
+    <p class="footer-addr">109 Grand Street · Jersey City, NJ 07302<br>(201) 434-1986 · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b1c2c2c1c1dfdbf1d6dcd0d8dd9fd2dedc">[email&#160;protected]</a></p>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+const DAYS_SHORT = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+const MONTHS_S   = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const ROMAN = {1:'I',2:'II',3:'III',4:'IV',5:'V',6:'VI',7:'VII',8:'VIII'};
+
+function toRoman(n){ return ROMAN[n]||String(n); }
+function datePath(d){ return `${d.getFullYear()}/${d.getMonth()+1}/${d.getDate()}`; }
+function displayDate(d){ return `${DAYS_SHORT[d.getDay()]} ${MONTHS_S[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`; }
+function addDays(d,n){ const r=new Date(d); r.setDate(r.getDate()+n); return r; }
+function getNextSunday(){ const t=new Date(); const dow=t.getDay(); const s=new Date(t); s.setDate(t.getDate()+(dow===0?7:7-dow)); return s; }
+async function fetchDay(d){ const r=await fetch(`https://orthocal.info/api/oca/${datePath(d)}/`); if(!r.ok) throw new Error('OrthoCal '+r.status); return r.json(); }
+function feastClass(lv){ if(lv>=7)return'lv7'; if(lv>=5)return'lv5'; if(lv>=4)return'lv4'; if(lv>=2)return'lv2'; return'lv0'; }
+
+function renderSunday(data, d){
+  const feast = data.titles?.[0]||data.summary_title||'Sunday';
+  const saints = (data.saints||[]).slice(0,2).map(s=>s.name).join('; ');
+  const tone = data.tone ? `Tone ${toRoman(data.tone)}` : '';
+  const fastDesc = [data.fast_level_description, data.fast_exception_desc].filter(Boolean).join(' — ');
+  let readHTML = '';
+  if(data.readings?.length){
+    const ep = data.readings.find(r=>/epistle|apostle/i.test(r.source));
+    const go = data.readings.find(r=>/gospel/i.test(r.source));
+    const rows = [ep||data.readings[0], go||data.readings[1]].filter(Boolean).map(r=>`
+      <div class="ts-reading-row">
+        <span class="ts-reading-src">${r.source_short||r.source||''}</span>
+        <span class="ts-reading-ref">${r.display||''}</span>
+      </div>`).join('');
+    if(rows) readHTML = `<div class="ts-readings"><p class="ts-readings-head">Scripture Readings</p>${rows}</div>`;
+  }
+  document.getElementById('sunday-panel').innerHTML = `
+    <div class="ts-opening ${feastClass(data.feast_level||0)}">
+      <span class="rubric">This Sunday</span>
+      <h2 class="ts-feast">${feast}</h2>
+      ${saints?`<span class="ts-saint">${saints}</span>`:''}
+      ${tone?`<span class="ts-tone">${tone}</span>`:''}
+    </div>
+    ${readHTML}
+    ${fastDesc?`<p class="ts-fast">${fastDesc}</p>`:''}
+    <div class="ts-ctas">
+      <a href="/readings" class="btn btn-maroon">Read the Readings</a>
+      <a href="/schedule" class="btn btn-outline">Full Calendar</a>
+    </div>
+    <p style="font-family:var(--f-ui);font-size:.48rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);margin-top:1.5rem">${displayDate(d)} · Via OrthoCal API</p>`;
+}
+
+function renderWeek(entries){
+  document.getElementById('week-strip').innerHTML = entries.map(({date,data})=>{
+    const title = data.titles?.[0]||data.summary_title||'';
+    const lv = data.feast_level||0;
+    const dot = lv>=2?'<span class="feast-dot"></span>':'';
+    const short = title.length>50?title.slice(0,50)+'…':title;
+    return `<div class="week-entry">
+      <span class="week-day-lbl">${DAYS_SHORT[date.getDay()]} · ${MONTHS_S[date.getMonth()]} ${date.getDate()}</span>
+      <span class="week-day-title ${lv>=4?'major':''}">${short}${dot}</span>
+    </div>`;
+  }).join('');
+}
+
+async function init(){
+  const today = new Date();
+  const sunday = getNextSunday();
+  document.getElementById('cbar-date').textContent = displayDate(today);
+  try{ const d=await fetchDay(sunday); renderSunday(d,sunday); }
+  catch(e){ document.getElementById('sunday-panel').innerHTML=`<p class="ts-loading">Liturgical data temporarily unavailable. Visit <a href="https://orthocal.info" style="color:var(--maroon)">orthocal.info</a></p>`; console.error(e); }
+  try{ const dates=Array.from({length:7},(_,i)=>addDays(today,i)); const entries=await Promise.all(dates.map(d=>fetchDay(d).then(data=>({date:d,data})))); renderWeek(entries); }
+  catch(e){ document.getElementById('week-strip').innerHTML=`<p class="ts-loading" style="font-size:.85rem">Calendar temporarily unavailable.</p>`; console.error(e); }
+}
+init();
+
+(function(){
+  const t=document.getElementById('galleryTrack');
+  if(!t)return;
+  let down=false,startX,scrollL;
+  t.addEventListener('mousedown',e=>{down=true;startX=e.pageX-t.offsetLeft;scrollL=t.scrollLeft});
+  t.addEventListener('mouseleave',()=>down=false);
+  t.addEventListener('mouseup',()=>down=false);
+  t.addEventListener('mousemove',e=>{if(!down)return;e.preventDefault();t.scrollLeft=scrollL-(e.pageX-t.offsetLeft-startX)*1.4});
+})();
+
+document.querySelector('a[href="#this-sunday"]')?.addEventListener('click',e=>{e.preventDefault();document.ge
+<!-- Hero Image Rotator -->
+<script>
+/* ═══════════════════════════════════════════════════════
+   SSPP HERO IMAGE ROTATOR
+   Curated Wikimedia Commons Orthodox imagery
+   Public domain / CC-licensed — free to use
+   Picks one random image per page load, crossfades on a timer
+═══════════════════════════════════════════════════════ */
+
+(function() {
+
+  /* ── CURATED IMAGE POOL ──────────────────────────────
+     All from Wikimedia Commons. Each has:
+     - url:   Direct image URL (1280px preview — fast load, sharp enough for hero)
+     - label: What it depicts
+     - pos:   CSS background-position for best crop
+  ─────────────────────────────────────────────────────── */
+  var IMAGES = [
+
+    /* CHURCH INTERIORS — NAVES & ICONOSTASES */
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Interior_of_Greek_Orthodox_church_18th_century_section.JPG/1280px-Interior_of_Greek_Orthodox_church_18th_century_section.JPG',
+      label: 'Greek Orthodox church interior, 18th century',
+      pos: 'center center'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Romanian_Orthodox_Monastery_%2849074404227%29.jpg/1280px-Romanian_Orthodox_Monastery_%2849074404227%29.jpg',
+      label: 'Romanian Orthodox Monastery interior',
+      pos: 'center center'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Saint_Nicholas_Orthodox_church_in_Bangkok_%2810%29.jpg/1280px-Saint_Nicholas_Orthodox_church_in_Bangkok_%2810%29.jpg',
+      label: 'Saint Nicholas Orthodox Church, Bangkok',
+      pos: 'center center'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Saint_Nicholas_Orthodox_church_in_Bangkok_%287%29.jpg/1280px-Saint_Nicholas_Orthodox_church_in_Bangkok_%287%29.jpg',
+      label: 'Saint Nicholas Orthodox Church interior, Bangkok',
+      pos: 'center 40%'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/St._Michael_the_Archangel_Russian_Orthodox_Church%2C_Kuala_Lumpur_%281%29.jpg/1280px-St._Michael_the_Archangel_Russian_Orthodox_Church%2C_Kuala_Lumpur_%281%29.jpg',
+      label: 'St Michael the Archangel Russian Orthodox Church, Kuala Lumpur',
+      pos: 'center center'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/St._Michael_the_Archangel_Russian_Orthodox_Church%2C_Kuala_Lumpur_%282%29.jpg/1280px-St._Michael_the_Archangel_Russian_Orthodox_Church%2C_Kuala_Lumpur_%282%29.jpg',
+      label: 'St Michael the Archangel Orthodox Church interior',
+      pos: 'center center'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/St._Michael_the_Archangel_Russian_Orthodox_Church%2C_Kuala_Lumpur_%283%29.jpg/1280px-St._Michael_the_Archangel_Russian_Orthodox_Church%2C_Kuala_Lumpur_%283%29.jpg',
+      label: 'Russian Orthodox Church interior, Kuala Lumpur',
+      pos: 'center center'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/St._Michael_the_Archangel_Russian_Orthodox_Church%2C_Kuala_Lumpur_%285%29.jpg/1280px-St._Michael_the_Archangel_Russian_Orthodox_Church%2C_Kuala_Lumpur_%285%29.jpg',
+      label: 'Russian Orthodox Church nave, Kuala Lumpur',
+      pos: 'center 30%'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Turku_Orthodox_Church%2C_interior.JPG/1280px-Turku_Orthodox_Church%2C_interior.JPG',
+      label: 'Turku Orthodox Church interior, Finland',
+      pos: 'center center'
+    },
+
+    /* ICONOSTASES */
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Church_of_the_Dormition_of_the_Theotokos_iconostasis.jpg/1280px-Church_of_the_Dormition_of_the_Theotokos_iconostasis.jpg',
+      label: 'Church of the Dormition of the Theotokos iconostasis',
+      pos: 'center center'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Russian_Orthodox_iconostasis_Deventer.jpg/1280px-Russian_Orthodox_iconostasis_Deventer.jpg',
+      label: 'Russian Orthodox iconostasis, Deventer',
+      pos: 'center center'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Iconostasis%2C_crypt_of_Church_of_Saint_Sava%2C_Belgrade.jpg/1280px-Iconostasis%2C_crypt_of_Church_of_Saint_Sava%2C_Belgrade.jpg',
+      label: 'Iconostasis, crypt of Church of Saint Sava, Belgrade',
+      pos: 'center center'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/St_Michael_The_Archangel_Russian_Orthodox_Church_Malaysia_15_May_2022.jpg/1280px-St_Michael_The_Archangel_Russian_Orthodox_Church_Malaysia_15_May_2022.jpg',
+      label: 'Russian Orthodox Church interior, Malaysia',
+      pos: 'center center'
+    },
+
+    /* CATHEDRAL EXTERIORS & DOMES */
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Hagia_Sophia_Mars_2013.jpg/1280px-Hagia_Sophia_Mars_2013.jpg',
+      label: 'Hagia Sophia, Constantinople',
+      pos: 'center 60%'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Saint_Basil%27s_Cathedral_in_Moscow_%28pixinn.net%29.jpg/1280px-Saint_Basil%27s_Cathedral_in_Moscow_%28pixinn.net%29.jpg',
+      label: "Saint Basil's Cathedral, Moscow",
+      pos: 'center 40%'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Cathedral_of_the_Annunciation_in_Moscow_Kremlin_-_5481.jpg/1280px-Cathedral_of_the_Annunciation_in_Moscow_Kremlin_-_5481.jpg',
+      label: 'Cathedral of the Annunciation, Moscow Kremlin',
+      pos: 'center center'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/20100px-Meteora_kloster_Varlaam.jpg/1280px-20100px-Meteora_kloster_Varlaam.jpg',
+      label: 'Varlaam Monastery, Meteora',
+      pos: 'center 40%'
+    },
+
+    /* BYZANTINE MOSAICS & FRESCOES */
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Hagia_Sophia_Interior_Wikimedia_Commons.jpg/1280px-Hagia_Sophia_Interior_Wikimedia_Commons.jpg',
+      label: 'Hagia Sophia interior',
+      pos: 'center center'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Hagia_Sophia_altar.jpg/1280px-Hagia_Sophia_altar.jpg',
+      label: 'Hagia Sophia altar and apse',
+      pos: 'center center'
+    },
+
+    /* ICONS */
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Icon_of_Christ_Pantocrator%2C_Sinai%2C_6th_century.jpg/800px-Icon_of_Christ_Pantocrator%2C_Sinai%2C_6th_century.jpg',
+      label: 'Christ Pantocrator, 6th century, Sinai',
+      pos: 'center 30%'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Kizhi_church_1.jpg/1280px-Kizhi_church_1.jpg',
+      label: 'Church of the Transfiguration, Kizhi island',
+      pos: 'center 40%'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Iglesia_de_la_Natividad%2C_Bet_Sahour%2C_Palestina%2C_2013-09-12%2C_DD_04.jpg/1280px-Iglesia_de_la_Natividad%2C_Bet_Sahour%2C_Palestina%2C_2013-09-12%2C_DD_04.jpg',
+      label: 'Church of the Nativity interior, Bethlehem',
+      pos: 'center center'
+    },
+
+    /* MONASTERIES */
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Monastery_of_Saint_Naum_02.jpg/1280px-Monastery_of_Saint_Naum_02.jpg',
+      label: 'Monastery of Saint Naum, North Macedonia',
+      pos: 'center center'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Rila_Monastery_Bulgaria.jpg/1280px-Rila_Monastery_Bulgaria.jpg',
+      label: 'Rila Monastery, Bulgaria',
+      pos: 'center 40%'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Mystras_view.jpg/1280px-Mystras_view.jpg',
+      label: 'Byzantine churches, Mystras',
+      pos: 'center center'
+    },
+  ];
+
+  /* ── GRADIENT SCRIM ────────────────────────────────── */
+  var SCRIM = 'linear-gradient(to right, rgba(21,8,4,.88) 0%, rgba(21,8,4,.65) 55%, rgba(21,8,4,.38) 100%)';
+
+  /* ── FIND HERO ELEMENT ─────────────────────────────── */
+  var hero = document.querySelector('.page-hero') || document.querySelector('.giving-hero') || document.querySelector('.hero');
+  if (!hero) return;
+
+  /* ── PICK RANDOM START IMAGE ───────────────────────── */
+  function pick(exclude) {
+    var pool = IMAGES.filter(function(img, i) { return i !== exclude; });
+    return pool[Math.floor(Math.random() * pool.length)];
+  }
+
+  var currentIdx = Math.floor(Math.random() * IMAGES.length);
+  var current = IMAGES[currentIdx];
+
+  /* ── APPLY IMAGE ───────────────────────────────────── */
+  function applyImage(img) {
+    hero.style.backgroundImage = SCRIM + ', url("' + img.url + '")';
+    hero.style.backgroundSize = 'cover';
+    hero.style.backgroundPosition = img.pos || 'center center';
+    hero.style.backgroundRepeat = 'no-repeat';
+    hero.style.transition = 'background-image 1.2s ease-in-out';
+  }
+
+  /* ── CROSSFADE TO NEXT ─────────────────────────────── */
+  function advance() {
+    var nextIdx = Math.floor(Math.random() * IMAGES.length);
+    if (nextIdx === currentIdx) nextIdx = (nextIdx + 1) % IMAGES.length;
+    currentIdx = nextIdx;
+    applyImage(IMAGES[currentIdx]);
+  }
+
+  /* ── PRELOAD THEN SHOW ─────────────────────────────── */
+  var img = new Image();
+  img.onload = function() {
+    applyImage(current);
+    setInterval(advance, 8000); /* rotate every 8 seconds */
+  };
+  img.onerror = function() {
+    /* First image failed — try next */
+    currentIdx = (currentIdx + 1) % IMAGES.length;
+    img.src = IMAGES[currentIdx].url;
+  };
+  img.src = current.url;
+
+})();
+
+</script>
+
+</body>
+</html>

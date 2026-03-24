@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>About Our Church · Saints Peter & Paul Orthodox Cathedral</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{--vellum:#F6F1E8;--vellum-mid:#EDE7DC;--vellum-alt:#E8E0D0;--text:#1E1510;--ink:#2C1F16;--maroon:#7B1D2A;--maroon-deep:#5C1520;--gold:#B88328;--gold-lt:#E8C97A;--verdigris:#3D6B5E;--stone:#7A6648;--stone-lt:#A89070;--apse:#3B0F18;--f-display:'Cormorant Garamond',Georgia,serif;--f-body:'EB Garamond',Georgia,serif;--f-ui:'Cinzel',Georgia,serif;--rule:1px solid var(--maroon);--rule-faint:1px solid rgba(123,29,42,0.14);--rule-hair:1px solid rgba(123,29,42,0.07)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--vellum);color:var(--text);font-family:var(--f-body);font-size:19px;line-height:1.75;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.rubric{display:block;font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.20em;text-transform:uppercase;color:var(--stone);margin-bottom:.5rem}
+.rubric.light{color:rgba(246,241,232,.55)}
+.rubric-rule{display:block;height:1px;background:var(--maroon);margin-bottom:1rem;width:48px}
+.rubric-rule.centered{margin:0 auto 1rem}
+.rubric-voice{display:block;font-family:var(--f-display);font-style:italic;font-weight:400;font-size:1.15rem;color:var(--maroon);margin-top:.4rem;line-height:1.4}
+.chapter-bar{background:var(--maroon);padding:.65rem 4rem;display:flex;align-items:center;justify-content:space-between}
+.cbar-text{font-family:var(--f-ui);font-size:.70rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:rgba(246,241,232,.60)}
+.cbar-text.bright{color:rgba(246,241,232,.90)}
+.btn{display:inline-block;font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;padding:.85rem 2.2rem;border:1px solid currentColor;cursor:pointer;transition:all .22s;white-space:nowrap}
+.btn-maroon{color:var(--vellum);background:var(--maroon);border-color:var(--maroon)}
+.btn-maroon:hover{background:var(--maroon-deep)}
+.btn-outline{color:var(--maroon);border-color:var(--maroon)}
+.btn-outline:hover{background:var(--maroon);color:var(--vellum)}
+.sb-link{font-family:var(--f-ui);font-size:.70rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);border-bottom:1px solid rgba(123,29,42,.28);padding-bottom:.1rem;transition:border-color .2s}
+.sb-link:hover{border-color:var(--maroon)}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(246,241,232,.97);backdrop-filter:blur(10px);border-bottom:var(--rule-faint)}
+.nav-inner{max-width:1380px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px;padding:0 3rem}
+.nav-logo-name{font-family:var(--f-display);font-weight:500;font-size:1.25rem;color:var(--text);display:block}
+.nav-logo-sub{font-family:var(--f-ui);font-size:.60rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);display:block}
+.nav-links{display:flex;align-items:center;list-style:none}
+.nav-links>li{position:relative}
+.nav-links>li>a{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);padding:1.1rem .85rem;display:block;transition:color .18s}
+.nav-links>li:hover>a{color:var(--maroon)}
+.nav-drop{position:absolute;top:100%;left:0;background:var(--vellum);border-top:2px solid var(--maroon);border-bottom:var(--rule-faint);border-left:var(--rule-faint);border-right:var(--rule-faint);min-width:200px;padding:.5rem 0;opacity:0;pointer-events:none;transform:translateY(-4px);transition:all .16s;box-shadow:0 8px 28px rgba(28,20,16,.10)}
+.nav-links>li:hover .nav-drop{opacity:1;pointer-events:all;transform:none}
+.nav-drop a{display:block;font-family:var(--f-ui);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);padding:.5rem 1.4rem;transition:color .14s}
+.nav-drop a:hover{color:var(--maroon)}
+.nav-give{font-family:var(--f-ui);font-size:.70rem;letter-spacing:.14em;text-transform:uppercase;color:var(--vellum);background:var(--maroon);padding:.5rem 1.1rem;transition:background .2s}
+.nav-give:hover{background:var(--maroon-deep)}
+
+/* PAGE HERO */
+.page-hero{padding-top:60px;background:linear-gradient(to right,rgba(59,15,24,.88) 0%,rgba(59,15,24,.62) 55%,rgba(59,15,24,.38) 100%),url('/images/heroes/about-our-church.webp') center/cover no-repeat;position:relative;overflow:hidden}
+.page-hero-inner{max-width:1380px;margin:0 auto;padding:5rem 4.5rem 4rem}
+.page-hero-rosette{position:absolute;right:-120px;top:50%;transform:translateY(-50%);width:480px;height:480px;opacity:.06;pointer-events:none}
+.page-title{font-family:var(--f-display);font-weight:300;font-size:clamp(2.5rem,5vw,4.5rem);line-height:.95;color:#fff;margin:.5rem 0 .75rem}
+.page-title em{font-style:italic}
+.page-subtitle{font-family:var(--f-display);font-style:italic;font-size:1.1rem;color:rgba(255,255,255,.65);margin-top:.5rem}
+.breadcrumb{font-family:var(--f-ui);font-size:.66rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:1.5rem}
+.breadcrumb a{color:rgba(232,201,122,.70)}
+.breadcrumb a:hover{color:var(--gold-lt)}
+
+/* MAIN CONTENT */
+.page-body{max-width:1380px;margin:0 auto;padding:5rem 4.5rem;display:grid;grid-template-columns:1fr 300px;gap:5rem}
+.main-col{}
+.side-col{border-left:var(--rule-faint);padding-left:2.5rem}
+.prose{font-family:var(--f-body);font-size:1rem;line-height:1.82;color:var(--ink);text-align:justify;hyphens:auto;max-width:60ch}
+.prose p{margin-bottom:1.2em}
+.prose p::first-line{font-style:italic}
+.section-head{font-family:var(--f-display);font-weight:400;font-size:clamp(1.6rem,2.5vw,2.2rem);color:var(--text);margin:3rem 0 .5rem;line-height:1.15}
+.drop-cap::first-letter{font-family:var(--f-display);font-style:italic;font-weight:300;font-size:4.5em;line-height:.78;float:left;margin-right:.07em;margin-top:.07em;color:var(--maroon)}
+
+/* TIMELINE */
+.timeline{margin:3rem 0;position:relative}
+.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--maroon);opacity:.2}
+.tl-entry{padding:0 0 2.5rem 2.5rem;position:relative}
+.tl-entry::before{content:'';position:absolute;left:-5px;top:.35rem;width:12px;height:12px;border-radius:50%;background:var(--vellum);border:2px solid var(--maroon)}
+.tl-entry.major::before{background:var(--maroon);width:14px;height:14px;left:-6px}
+.tl-year{font-family:var(--f-ui);font-size:.72rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--maroon);display:block;margin-bottom:.3rem}
+.tl-title{font-family:var(--f-display);font-weight:500;font-size:1.2rem;color:var(--text);margin-bottom:.4rem}
+.tl-body{font-family:var(--f-body);font-size:.94rem;line-height:1.75;color:var(--ink);opacity:.85}
+
+/* STATS ROW */
+.stats-row{display:flex;gap:0;border:var(--rule-faint);margin:2.5rem 0}
+.stat-box{flex:1;padding:1.5rem;text-align:center;border-right:var(--rule-faint)}
+.stat-box:last-child{border-right:none}
+.stat-num{font-family:var(--f-display);font-weight:300;font-size:3rem;line-height:1;color:var(--maroon);display:block}
+.stat-label{font-family:var(--f-ui);font-size:.68rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);display:block;margin-top:.4rem}
+
+/* SIDEBAR */
+.side-section{margin-bottom:2.5rem;padding-bottom:2.5rem;border-bottom:var(--rule-faint)}
+.side-section:last-child{border-bottom:none}
+.side-head{font-family:var(--f-ui);font-size:.68rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.75rem}
+.side-list{list-style:none}
+.side-list li{font-family:var(--f-body);font-size:.94rem;color:var(--ink);padding:.4rem 0;border-bottom:var(--rule-hair)}
+.side-list li:last-child{border-bottom:none}
+.side-list strong{font-family:var(--f-ui);font-size:.50rem;letter-spacing:.12em;text-transform:uppercase;color:var(--maroon);display:block}
+.annot-nav-link{display:flex;align-items:center;justify-content:space-between;font-family:var(--f-ui);font-size:.70rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--text);padding:.6rem 0;border-bottom:var(--rule-hair);transition:color .18s}
+.annot-nav-link:last-child{border-bottom:none}
+.annot-nav-link:hover{color:var(--maroon)}
+.annot-nav-link::after{content:'→';color:var(--maroon)}
+
+/* FOOTER */
+footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:3rem 4.5rem 2rem}
+.footer-cross{display:block;text-align:center;font-size:1.1rem;color:rgba(184,131,40,.45);letter-spacing:.8em;padding-left:.8em;margin-bottom:2.5rem}
+.footer-cols{max-width:1380px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:4rem;margin-bottom:2.5rem}
+.footer-col-head{font-family:var(--f-ui);font-size:.66rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(246,241,232,.28);display:block;margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid rgba(246,241,232,.06)}
+.footer-name{font-family:var(--f-display);font-weight:400;font-size:1.1rem;color:rgba(246,241,232,.88);line-height:1.3;margin-bottom:.75rem}
+.footer-meta{font-family:var(--f-ui);font-size:.64rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.30);line-height:2.3}
+.footer-meta a{color:rgba(184,131,40,.60);transition:color .2s}
+.footer-meta a:hover{color:var(--gold)}
+.footer-nav{list-style:none;display:flex;flex-direction:column}
+.footer-nav li{padding:.35rem 0;border-bottom:1px solid rgba(246,241,232,.04)}
+.footer-nav li:last-child{border-bottom:none}
+.footer-nav a{font-family:var(--f-ui);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,232,.45);transition:color .2s}
+.footer-nav a:hover{color:rgba(246,241,232,.85)}
+.footer-bottom{max-width:1380px;margin:2rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(246,241,232,.06);display:flex;justify-content:space-between;align-items:center}
+.footer-copy,.footer-addr{font-family:var(--f-ui);font-size:.64rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.22)}
+.footer-addr{text-align:right}
+@media(max-width:1024px){.page-body{grid-template-columns:1fr;gap:0}.side-col{border-left:none;border-top:var(--rule-faint);padding-left:0;padding-top:2.5rem;margin-top:2.5rem}.footer-cols{grid-template-columns:1fr 1fr;gap:2.5rem}}
+@media(max-width:768px){.nav-links{display:none}.page-hero-inner{padding:4rem 1.5rem 3rem}.page-body{padding:3rem 1.5rem}.chapter-bar{padding:.65rem 1.5rem}.stats-row{flex-direction:column}.stat-box{border-right:none;border-bottom:var(--rule-faint)}.footer-cols{grid-template-columns:1fr;gap:2rem}footer{padding:3rem 1.5rem 1.5rem}.footer-bottom{flex-direction:column;gap:.75rem;text-align:center}.footer-addr{text-align:center}}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" style="line-height:1.2"><span class="nav-logo-name">Sts. Peter &amp; Paul</span><span class="nav-logo-sub">Orthodox Cathedral · Jersey City</span></a>
+    <ul class="nav-links">
+      <li><a href="#">About Us ▾</a><div class="nav-drop"><a href="/about-our-church">About Our Church</a><a href="/our-beliefs">Our Beliefs</a><a href="/administration">Administration</a><a href="/gallery">Gallery</a></div></li>
+      <li><a href="#">Inquirers ▾</a><div class="nav-drop"><a href="/about-orthodoxy">About Orthodoxy</a><a href="/our-beliefs">Our Beliefs</a><a href="/videos">Videos</a></div></li>
+      <li><a href="/schedule">Calendar</a></li>
+      <li><a href="#">Bulletins ▾</a><div class="nav-drop"><a href="/news">News</a><a href="/bulletins">Bulletins</a></div></li>
+      <li><a href="#">Resources ▾</a><div class="nav-drop"><a href="/readings">Readings</a><a href="/videos">Videos</a><a href="/cemeteries">Cemeteries</a></div></li>
+      <li><a href="/contact-us">Contact</a></li>
+    </ul>
+    <a href="https://tithe.ly/give?c=5004259" target="_blank" class="nav-give">Give</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <svg class="page-hero-rosette" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <circle cx="100" cy="100" r="95" fill="none" stroke="#fff" stroke-width=".6"/><circle cx="100" cy="100" r="78" fill="none" stroke="#fff" stroke-width=".4"/><circle cx="100" cy="100" r="60" fill="none" stroke="#fff" stroke-width=".4"/><circle cx="100" cy="100" r="42" fill="none" stroke="#fff" stroke-width=".4"/><circle cx="100" cy="100" r="24" fill="none" stroke="#fff" stroke-width=".5"/>
+    <g stroke="#fff" stroke-width=".4" fill="none"><line x1="100" y1="5" x2="100" y2="195"/><line x1="5" y1="100" x2="195" y2="100"/><line x1="33" y1="33" x2="167" y2="167"/><line x1="167" y1="33" x2="33" y2="167"/></g>
+  </svg>
+  <div class="page-hero-inner">
+    <p class="breadcrumb"><a href="/">Home</a> · About Our Church</p>
+    <span class="rubric light">About Our Church</span>
+    <div class="rubric-rule" style="background:rgba(232,201,122,.6)"></div>
+    <h1 class="page-title">A Parish<br><em>One Hundred &amp; Fifteen Years</em><br>in the Making</h1>
+    <p class="page-subtitle">Founded 1907 · Elevated to Cathedral 2020 · Jersey City, New Jersey</p>
+  </div>
+</div>
+
+<div class="chapter-bar">
+  <span class="cbar-text bright">Parish History</span>
+  <span class="cbar-text">111–113 Grand Street · Est. 1907</span>
+</div>
+
+<div class="page-body">
+  <main class="main-col">
+
+    <div class="stats-row">
+      <div class="stat-box"><span class="stat-num">1907</span><span class="stat-label">Parish Founded</span></div>
+      <div class="stat-box"><span class="stat-num">115</span><span class="stat-label">Years in Jersey City</span></div>
+      <div class="stat-box"><span class="stat-num">2020</span><span class="stat-label">Became a Cathedral</span></div>
+    </div>
+
+    <span class="rubric">Our Story</span>
+    <div class="rubric-rule"></div>
+    <h2 class="section-head">From immigrant chapel to Cathedral</h2>
+    <span class="rubric-voice">A community shaped by faith, migration, and the permanence of liturgical life</span>
+
+    <div class="prose" style="margin-top:2rem">
+      <p class="drop-cap">Saints Peter and Paul Orthodox Cathedral began as so many parishes do — not with a building, but with a gathering. In 1907, immigrants arriving in Jersey City from the Austro-Hungarian and Russian Empires found one another in the way immigrants always have: through language, through memory, and through the shared instinct to pray together in the way they had always prayed.</p>
+      <p>These were people who carried Orthodoxy not as a belief system but as a way of life — a calendar that structured every season, a liturgical rhythm that marked every week, saints whose names they bore and whose stories they knew. When they built their parish, they were not creating something new. They were transplanting something ancient into new soil.</p>
+    </div>
+
+    <h2 class="section-head" style="margin-top:3.5rem">Parish History</h2>
+    <div class="rubric-rule"></div>
+
+    <div class="timeline">
+      <div class="tl-entry major">
+        <span class="tl-year">1907</span>
+        <div class="tl-title">Parish Established</div>
+        <div class="tl-body">Immigrants from the Austro-Hungarian and Russian Empires form a parish community in Jersey City, New Jersey. The parish gathers under the care of the Orthodox Church in America.</div>
+      </div>
+      <div class="tl-entry">
+        <span class="tl-year">1909</span>
+        <div class="tl-title">A Permanent Home</div>
+        <div class="tl-body">The parish purchases the former First Reformed Church of Jersey City at 111–113 Grand Street for $35,000. The building — with its distinctive architecture and copper-domed towers — becomes the parish's permanent home.</div>
+      </div>
+      <div class="tl-entry">
+        <span class="tl-year">1920</span>
+        <div class="tl-title">The Bells</div>
+        <div class="tl-body">Three bells are purchased from Meneely &amp; Company for $1,705. Their voices have called the faithful to worship for over a century, and continue to ring today over the streets of Jersey City.</div>
+      </div>
+      <div class="tl-entry">
+        <span class="tl-year">1960</span>
+        <div class="tl-title">Graceland Memorial Park</div>
+        <div class="tl-body">The parish acquires Graceland Memorial Park, providing a place of Christian burial for parishioners and their families — a ministry the Church has offered since its earliest centuries.</div>
+      </div>
+      <div class="tl-entry major">
+        <span class="tl-year">2020</span>
+        <div class="tl-title">Elevation to Cathedral</div>
+        <div class="tl-body">Saints Peter and Paul is elevated to the rank of Cathedral — the seat of the Diocese of New York and New Jersey of the Orthodox Church in America. A century of parish life becomes the foundation of something still larger.</div>
+      </div>
+      <div class="tl-entry">
+        <span class="tl-year">Today</span>
+        <div class="tl-title">115 Years and Still Gathering</div>
+        <div class="tl-body">Under the pastoral leadership of Rev. Solomon Longo, the Cathedral continues its ministry — welcoming inquirers, forming parishioners, and offering the ancient liturgy every Saturday evening and Sunday morning to a Jersey City that keeps changing around it.</div>
+      </div>
+    </div>
+
+    <h2 class="section-head" style="margin-top:2rem">The Building</h2>
+    <div class="rubric-rule"></div>
+    <div class="prose">
+      <p>The church at 111–113 Grand Street is one of Jersey City's most distinctive ecclesiastical buildings. Its copper domes — now a deep verdigris from more than a century of weathering — are visible from several blocks away, a quiet landmark in a neighborhood that has seen waves of change.</p>
+      <p>The building was originally the First Reformed Church of Jersey City. When the Orthodox community purchased it in 1909, they inherited its solid bones and transformed its interior into the world they had brought with them: iconostasis, candlelight, incense, and the great golden dome of Orthodox sacred space.</p>
+      <p>To walk through those doors is to experience what the Orthodox tradition has always intended: architecture that orients the body toward heaven, space that makes silence feel inhabited, and light that filters through in a way that makes the ordinary feel sacramental.</p>
+    </div>
+
+    <div style="margin-top:3rem;padding-top:2rem;border-top:2px solid var(--maroon)">
+      <a href="/contact-us" class="btn btn-maroon" style="margin-right:1rem">Visit Us</a>
+      <a href="/schedule" class="btn btn-outline">This Sunday's Schedule</a>
+    </div>
+  </main>
+
+  <aside class="side-col">
+    <div class="side-section">
+      <span class="side-head">Parish Leadership</span>
+      <ul class="side-list">
+        <li><strong>Acting Rector</strong>Rev. Solomon Longo</li>
+        <li><strong>Council President</strong>Marius Anghel</li>
+        <li><strong>Music Director (Interim)</strong>Gleb Ivanov</li>
+      </ul>
+    </div>
+    <div class="side-section">
+      <span class="side-head">Diocese &amp; Church</span>
+      <ul class="side-list">
+        <li><strong>Metropolitan</strong>His Beatitude Tikhon, Archbishop of Washington</li>
+        <li><strong>Archbishop</strong>His Eminence Michael, Archbishop of New York &amp; NJ</li>
+        <li><strong>Diocese</strong><a href="https://nynjoca.org" target="_blank" class="sb-link">nynjoca.org</a></li>
+        <li><strong>Church</strong><a href="https://oca.org" target="_blank" class="sb-link">oca.org</a></li>
+      </ul>
+    </div>
+    <div class="side-section">
+      <span class="side-head">Contact</span>
+      <ul class="side-list">
+        <li><strong>Address</strong>109 Grand Street<br>Jersey City, NJ 07302</li>
+        <li><strong>Phone</strong>(201) 434-1986</li>
+        <li><strong>Email</strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2a59595a5a44406a4d474b434604494547">[email&#160;protected]</a></li>
+      </ul>
+    </div>
+    <div class="side-section">
+      <span class="side-head">More from About Us</span>
+      <a href="/our-beliefs" class="annot-nav-link">Our Beliefs</a>
+      <a href="/administration" class="annot-nav-link">Administration</a>
+      <a href="/gallery" class="annot-nav-link">Gallery</a>
+      <a href="/cemeteries" class="annot-nav-link">Cemeteries</a>
+    </div>
+  </aside>
+</div>
+
+<footer>
+  <span class="footer-cross">✦ ✝ ✦</span>
+  <div class="footer-cols">
+    <div><span class="footer-col-head">Saints Peter &amp; Paul Orthodox Cathedral</span><p class="footer-name">Sts. Peter &amp; Paul<br>Orthodox Cathedral</p><p class="footer-meta">Diocese of New York &amp; New Jersey<br><a href="https://nynjoca.org" target="_blank">nynjoca.org</a><br>Orthodox Church in America<br><a href="https://oca.org" target="_blank">oca.org</a></p></div>
+    <div><span class="footer-col-head">Navigate</span><ul class="footer-nav"><li><a href="/about-our-church">About Our Church</a></li><li><a href="/our-beliefs">Our Beliefs</a></li><li><a href="/administration">Administration</a></li><li><a href="/schedule">Calendar</a></li><li><a href="/readings">Daily Readings</a></li><li><a href="/bulletins">Bulletins</a></li><li><a href="/contact-us">Contact Us</a></li></ul></div>
+    <div><span class="footer-col-head">Visit Us</span><p style="font-family:var(--f-display);font-style:italic;font-size:.95rem;color:rgba(246,241,232,.42);line-height:1.65">109 Grand Street<br>Jersey City, NJ 07302<br><br>Vespers: Saturdays 5:00 PM<br>Divine Liturgy: Sundays 9:30 AM</p></div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© Saints Peter &amp; Paul Orthodox Cathedral. All Rights Reserved.</p>
+    <p class="footer-addr">
+<!-- Hero Image Rotator -->
+<script>
+/* ═══════════════════════════════════════════════════════
+   SSPP HERO IMAGE ROTATOR
+   Curated Wikimedia Commons Orthodox imagery
+   Public domain / CC-licensed — free to use
+   Picks one random image per page load, crossfades on a timer
+═══════════════════════════════════════════════════════ */
+
+(function() {
+
+  /* ── CURATED IMAGE POOL ──────────────────────────────
+     All from Wikimedia Commons. Each has:
+     - url:   Direct image URL (1280px preview — fast load, sharp enough for hero)
+     - label: What it depicts
+     - pos:   CSS background-position for best crop
+  ─────────────────────────────────────────────────────── */
+  var IMAGES = [
+
+    /* CHURCH INTERIORS — NAVES & ICONOSTASES */
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Interior_of_Greek_Orthodox_church_18th_century_section.JPG/1280px-Interior_of_Greek_Orthodox_church_18th_century_section.JPG',
+      label: 'Greek Orthodox church interior, 18th century',
+      pos: 'center center'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Romanian_Orthodox_Monastery_%2849074404227%29.jpg/1280px-Romanian_Orthodox_Monastery_%2849074404227%29.jpg',
+      label: 'Romanian Orthodox Monastery interior',
+      pos: 'center center'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Saint_Nicholas_Orthodox_church_in_Bangkok_%2810%29.jpg/1280px-Saint_Nicholas_Orthodox_church_in_Bangkok_%2810%29.jpg',
+      label: 'Saint Nicholas Orthodox Church, Bangkok',
+      pos: 'center center'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Saint_Nicholas_Orthodox_church_in_Bangkok_%287%29.jpg/1280px-Saint_Nicholas_Orthodox_church_in_Bangkok_%287%29.jpg',
+      label: 'Saint Nicholas Orthodox Church interior, Bangkok',
+      pos: 'center 40%'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/St._Michael_the_Archangel_Russian_Orthodox_Church%2C_Kuala_Lumpur_%281%29.jpg/1280px-St._Michael_the_Archangel_Russian_Orthodox_Church%2C_Kuala_Lumpur_%281%29.jpg',
+      label: 'St Michael the Archangel Russian Orthodox Church, Kuala Lumpur',
+      pos: 'center center'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/St._Michael_the_Archangel_Russian_Orthodox_Church%2C_Kuala_Lumpur_%282%29.jpg/1280px-St._Michael_the_Archangel_Russian_Orthodox_Church%2C_Kuala_Lumpur_%282%29.jpg',
+      label: 'St Michael the Archangel Orthodox Church interior',
+      pos: 'center center'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/St._Michael_the_Archangel_Russian_Orthodox_Church%2C_Kuala_Lumpur_%283%29.jpg/1280px-St._Michael_the_Archangel_Russian_Orthodox_Church%2C_Kuala_Lumpur_%283%29.jpg',
+      label: 'Russian Orthodox Church interior, Kuala Lumpur',
+      pos: 'center center'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/St._Michael_the_Archangel_Russian_Orthodox_Church%2C_Kuala_Lumpur_%285%29.jpg/1280px-St._Michael_the_Archangel_Russian_Orthodox_Church%2C_Kuala_Lumpur_%285%29.jpg',
+      label: 'Russian Orthodox Church nave, Kuala Lumpur',
+      pos: 'center 30%'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Turku_Orthodox_Church%2C_interior.JPG/1280px-Turku_Orthodox_Church%2C_interior.JPG',
+      label: 'Turku Orthodox Church interior, Finland',
+      pos: 'center center'
+    },
+
+    /* ICONOSTASES */
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Church_of_the_Dormition_of_the_Theotokos_iconostasis.jpg/1280px-Church_of_the_Dormition_of_the_Theotokos_iconostasis.jpg',
+      label: 'Church of the Dormition of the Theotokos iconostasis',
+      pos: 'center center'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Russian_Orthodox_iconostasis_Deventer.jpg/1280px-Russian_Orthodox_iconostasis_Deventer.jpg',
+      label: 'Russian Orthodox iconostasis, Deventer',
+      pos: 'center center'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Iconostasis%2C_crypt_of_Church_of_Saint_Sava%2C_Belgrade.jpg/1280px-Iconostasis%2C_crypt_of_Church_of_Saint_Sava%2C_Belgrade.jpg',
+      label: 'Iconostasis, crypt of Church of Saint Sava, Belgrade',
+      pos: 'center center'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/St_Michael_The_Archangel_Russian_Orthodox_Church_Malaysia_15_May_2022.jpg/1280px-St_Michael_The_Archangel_Russian_Orthodox_Church_Malaysia_15_May_2022.jpg',
+      label: 'Russian Orthodox Church interior, Malaysia',
+      pos: 'center center'
+    },
+
+    /* CATHEDRAL EXTERIORS & DOMES */
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Hagia_Sophia_Mars_2013.jpg/1280px-Hagia_Sophia_Mars_2013.jpg',
+      label: 'Hagia Sophia, Constantinople',
+      pos: 'center 60%'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Saint_Basil%27s_Cathedral_in_Moscow_%28pixinn.net%29.jpg/1280px-Saint_Basil%27s_Cathedral_in_Moscow_%28pixinn.net%29.jpg',
+      label: "Saint Basil's Cathedral, Moscow",
+      pos: 'center 40%'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Cathedral_of_the_Annunciation_in_Moscow_Kremlin_-_5481.jpg/1280px-Cathedral_of_the_Annunciation_in_Moscow_Kremlin_-_5481.jpg',
+      label: 'Cathedral of the Annunciation, Moscow Kremlin',
+      pos: 'center center'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/20100px-Meteora_kloster_Varlaam.jpg/1280px-20100px-Meteora_kloster_Varlaam.jpg',
+      label: 'Varlaam Monastery, Meteora',
+      pos: 'center 40%'
+    },
+
+    /* BYZANTINE MOSAICS & FRESCOES */
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Hagia_Sophia_Interior_Wikimedia_Commons.jpg/1280px-Hagia_Sophia_Interior_Wikimedia_Commons.jpg',
+      label: 'Hagia Sophia interior',
+      pos: 'center center'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Hagia_Sophia_altar.jpg/1280px-Hagia_Sophia_altar.jpg',
+      label: 'Hagia Sophia altar and apse',
+      pos: 'center center'
+    },
+
+    /* ICONS */
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Icon_of_Christ_Pantocrator%2C_Sinai%2C_6th_century.jpg/800px-Icon_of_Christ_Pantocrator%2C_Sinai%2C_6th_century.jpg',
+      label: 'Christ Pantocrator, 6th century, Sinai',
+      pos: 'center 30%'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Kizhi_church_1.jpg/1280px-Kizhi_church_1.jpg',
+      label: 'Church of the Transfiguration, Kizhi island',
+      pos: 'center 40%'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Iglesia_de_la_Natividad%2C_Bet_Sahour%2C_Palestina%2C_2013-09-12%2C_DD_04.jpg/1280px-Iglesia_de_la_Natividad%2C_Bet_Sahour%2C_Palestina%2C_2013-09-12%2C_DD_04.jpg',
+      label: 'Church of the Nativity interior, Bethlehem',
+      pos: 'center center'
+    },
+
+    /* MONASTERIES */
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Monastery_of_Saint_Naum_02.jpg/1280px-Monastery_of_Saint_Naum_02.jpg',
+      label: 'Monastery of Saint Naum, North Macedonia',
+      pos: 'center center'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Rila_Monastery_Bulgaria.jpg/1280px-Rila_Monastery_Bulgaria.jpg',
+      label: 'Rila Monastery, Bulgaria',
+      pos: 'center 40%'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Mystras_view.jpg/1280px-Mystras_view.jpg',
+      label: 'Byzantine churches, Mystras',
+      pos: 'center center'
+    },
+  ];
+
+  /* ── GRADIENT SCRIM ────────────────────────────────── */
+  var SCRIM = 'linear-gradient(to right, rgba(21,8,4,.88) 0%, rgba(21,8,4,.65) 55%, rgba(21,8,4,.38) 100%)';
+
+  /* ── FIND HERO ELEMENT ─────────────────────────────── */
+  var hero = document.querySelector('.page-hero') || document.querySelector('.giving-hero') || document.querySelector('.hero');
+  if (!hero) return;
+
+  /* ── PICK RANDOM START IMAGE ───────────────────────── */
+  function pick(exclude) {
+    var pool = IMAGES.filter(function(img, i) { return i !== exclude; });
+    return pool[Math.floor(Math.random() * pool.length)];
+  }
+
+  var currentIdx = Math.floor(Math.random() * IMAGES.length);
+  var current = IMAGES[currentIdx];
+
+  /* ── APPLY IMAGE ───────────────────────────────────── */
+  function applyImage(img) {
+    hero.style.backgroundImage = SCRIM + ', url("' + img.url + '")';
+    hero.style.backgroundSize = 'cover';
+    hero.style.backgroundPosition = img.pos || 'center center';
+    hero.style.backgroundRepeat = 'no-repeat';
+    hero.style.transition = 'background-image 1.2s ease-in-out';
+  }
+
+  /* ── CROSSFADE TO NEXT ─────────────────────────────── */
+  function advance() {
+    var nextIdx = Math.floor(Math.random() * IMAGES.length);
+    if (nextIdx === currentIdx) nextIdx = (nextIdx + 1) % IMAGES.length;
+    currentIdx = nextIdx;
+    applyImage(IMAGES[currentIdx]);
+  }
+
+  /* ── PRELOAD THEN SHOW ─────────────────────────────── */
+  var img = new Image();
+  img.onload = function() {
+    applyImage(current);
+    setInterval(advance, 8000); /* rotate every 8 seconds */
+  };
+  img.onerror = function() {
+    /* First image failed — try next */
+    currentIdx = (currentIdx + 1) % IMAGES.length;
+    img.src = IMAGES[currentIdx].url;
+  };
+  img.src = current.url;
+
+})();
+
+</script>
+</body>
+</html>

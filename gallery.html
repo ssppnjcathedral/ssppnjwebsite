@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Gallery · Saints Peter &amp; Paul Orthodox Cathedral</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{--vellum:#F6F1E8;--vellum-mid:#EDE7DC;--vellum-dark:#E4DDD0;--text:#1E1510;--ink:#2C1F16;--maroon:#7B1D2A;--maroon-deep:#5C1520;--gold:#B88328;--gold-lt:#E8C97A;--stone:#7A6648;--stone-lt:#A89070;--apse:#3B0F18;--verdigris:#3D6B5E;--f-display:'Cormorant Garamond',Georgia,serif;--f-body:'EB Garamond',Georgia,serif;--f-ui:'Cinzel',Georgia,serif;--rule:1px solid var(--maroon);--rule-faint:1px solid rgba(123,29,42,0.14);--rule-hair:1px solid rgba(123,29,42,0.07)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--vellum);color:var(--text);font-family:var(--f-body);font-size:19px;line-height:1.75;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:300;background:rgba(246,241,232,.97);backdrop-filter:blur(10px);border-bottom:var(--rule-faint)}
+.nav-inner{max-width:1380px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px;padding:0 3rem}
+.nav-logo-name{font-family:var(--f-display);font-weight:500;font-size:1.25rem;color:var(--text);display:block}
+.nav-logo-sub{font-family:var(--f-ui);font-size:.60rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);display:block}
+.nav-links{display:flex;align-items:center;list-style:none}
+.nav-links>li{position:relative}
+.nav-links>li>a{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text);padding:1.1rem .85rem;display:block;transition:color .18s}
+.nav-links>li>a.active,.nav-links>li:hover>a{color:var(--maroon)}
+.nav-drop{position:absolute;top:100%;left:0;background:var(--vellum);border-top:2px solid var(--maroon);border-bottom:var(--rule-faint);border-left:var(--rule-faint);border-right:var(--rule-faint);min-width:200px;padding:.5rem 0;opacity:0;pointer-events:none;transform:translateY(-4px);transition:all .16s;box-shadow:0 8px 28px rgba(28,20,16,.10)}
+.nav-links>li:hover .nav-drop{opacity:1;pointer-events:all;transform:none}
+.nav-drop a{display:block;font-family:var(--f-ui);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text);padding:.5rem 1.4rem;transition:color .14s}
+.nav-drop a:hover{color:var(--maroon)}
+.nav-give{font-family:var(--f-ui);font-size:.70rem;letter-spacing:.14em;text-transform:uppercase;color:var(--vellum);background:var(--maroon);padding:.5rem 1.1rem;transition:background .2s}
+.nav-give:hover{background:var(--maroon-deep)}
+
+/* HERO */
+.hero{padding-top:60px;position:relative;overflow:hidden;min-height:500px;display:flex;flex-direction:column;justify-content:flex-end}
+.hero-bg{position:absolute;inset:0;transition:background 1s ease}
+.hero-scrim{position:absolute;inset:0;transition:background .8s ease}
+.hero-frame{position:absolute;inset:2.5rem;border:1px solid rgba(184,131,40,.18);pointer-events:none;z-index:2}
+.hfc{position:absolute;width:14px;height:14px;border-style:solid;border-color:rgba(184,131,40,.45)}
+.hfc.tl{top:-1px;left:-1px;border-width:2px 0 0 2px}
+.hfc.tr{top:-1px;right:-1px;border-width:2px 2px 0 0}
+.hfc.bl{bottom:-1px;left:-1px;border-width:0 0 2px 2px}
+.hfc.br{bottom:-1px;right:-1px;border-width:0 2px 2px 0}
+.hero-dots{position:absolute;right:3rem;top:50%;transform:translateY(-50%);z-index:4;display:flex;flex-direction:column;gap:8px}
+.hero-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.28);cursor:pointer;transition:all .22s}
+.hero-dot.on{background:#fff;border-color:#fff;transform:scale(1.4)}
+.hero-content{position:relative;z-index:3;max-width:1380px;margin:0 auto;width:100%;padding:4rem 4.5rem 3.5rem;transition:opacity .38s ease}
+.hero-content.fading{opacity:0}
+.hero-badge{display:inline-flex;align-items:center;gap:.55rem;margin-bottom:.85rem}
+.hb-pip{width:7px;height:7px;border-radius:50%;flex-shrink:0;transition:background .6s}
+.hb-label{font-family:var(--f-ui);font-size:.60rem;letter-spacing:.22em;text-transform:uppercase;transition:color .6s}
+.hero-eyebrow{font-family:var(--f-ui);font-size:.60rem;letter-spacing:.20em;text-transform:uppercase;margin-bottom:.55rem;transition:color .5s}
+.hero-hed{font-family:var(--f-display);font-weight:300;font-size:clamp(2.5rem,5vw,5rem);line-height:.90;margin-bottom:.7rem;transition:color .5s}
+.hero-hed em{font-style:italic}
+.hero-dek{font-family:var(--f-body);font-size:1rem;line-height:1.72;max-width:48ch;margin-bottom:1.75rem;transition:color .5s}
+.hero-foot{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap}
+.hero-date{font-family:var(--f-ui);font-size:.60rem;letter-spacing:.16em;text-transform:uppercase;transition:color .5s}
+.hero-sep{width:1px;height:14px;opacity:.3}
+.hero-btn{font-family:var(--f-ui);font-size:.60rem;letter-spacing:.16em;text-transform:uppercase;padding:.5rem 1.2rem;border:1px solid currentColor;cursor:pointer;background:transparent;transition:opacity .2s}
+.hero-btn:hover{opacity:.6}
+
+/* SEASON STRIP */
+.season-strip{background:var(--vellum-dark);border-bottom:var(--rule-faint);padding:.6rem 4.5rem;display:flex;align-items:center;gap:0;overflow-x:auto}
+.ss-label{font-family:var(--f-ui);font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--stone-lt);margin-right:1.25rem;flex-shrink:0}
+.ss-btn{font-family:var(--f-ui);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);padding:.45rem .95rem;border:none;border-bottom:2px solid transparent;background:transparent;cursor:pointer;transition:all .18s;white-space:nowrap;flex-shrink:0}
+.ss-btn:hover{color:var(--maroon)}
+.ss-btn.on{color:var(--maroon);border-bottom-color:var(--maroon)}
+.ss-div{width:1px;height:14px;background:rgba(123,29,42,.12);margin:0 .25rem;flex-shrink:0}
+.ss-right{margin-left:auto;font-family:var(--f-ui);font-size:.58rem;letter-spacing:.13em;text-transform:uppercase;color:var(--stone-lt);flex-shrink:0;white-space:nowrap}
+.ss-right strong{color:var(--maroon)}
+
+/* FEATURED */
+.featured-wrap{max-width:1380px;margin:0 auto;padding:3rem 4.5rem 0}
+.section-label{display:flex;align-items:center;gap:1rem;margin-bottom:1.75rem}
+.sl-rule{flex:1;height:1px;background:rgba(123,29,42,.12)}
+.sl-txt{font-family:var(--f-ui);font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--stone-lt)}
+.sl-g{color:var(--gold);font-size:.70rem;letter-spacing:.3em}
+.feat-row{display:grid;gap:12px;margin-bottom:12px}
+.fr-main{grid-template-columns:2fr 1fr}
+.fr-trio{grid-template-columns:1fr 1fr 1fr}
+.fr-asym{grid-template-columns:1fr 2fr}
+.fr-quad{grid-template-columns:repeat(4,1fr)}
+.fc-stack{display:flex;flex-direction:column;gap:12px}
+.fc{position:relative;overflow:hidden;cursor:pointer;background:var(--apse)}
+.fc.tall{min-height:300px}
+.fc.med{min-height:190px}
+.fc.short{min-height:130px}
+.fc-bg{position:absolute;inset:0;transition:transform .5s ease}
+.fc:hover .fc-bg{transform:scale(1.04)}
+.fc-scrim{position:absolute;inset:0;background:linear-gradient(to top,rgba(21,8,4,.88) 0%,rgba(21,8,4,.12) 55%,transparent 100%)}
+.fc-new{position:absolute;top:10px;right:10px;font-family:var(--f-ui);font-size:.46rem;letter-spacing:.18em;text-transform:uppercase;padding:3px 8px;background:var(--gold);color:#fff;z-index:2}
+.fc-cap{position:absolute;bottom:0;left:0;right:0;padding:1.25rem 1.25rem 1rem;transform:translateY(4px);opacity:.92;transition:all .28s;z-index:2}
+.fc:hover .fc-cap{transform:none;opacity:1}
+.fc-cat{font-family:var(--f-ui);font-size:.48rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-lt);display:block;margin-bottom:4px}
+.fc-title{font-family:var(--f-display);font-weight:400;font-size:1.1rem;color:#fff;line-height:1.15}
+.fc-title em{font-style:italic}
+.fc-date{font-family:var(--f-ui);font-size:.46rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.35);display:block;margin-top:4px}
+
+/* ARCHIVE DIVIDER */
+.archive-divider{max-width:1380px;margin:3.5rem auto 0;padding:0 4.5rem}
+.adiv{display:flex;align-items:center;gap:1.5rem}
+.adiv-rule{flex:1;height:1px;background:rgba(123,29,42,.12)}
+.adiv-center{text-align:center;flex-shrink:0}
+.adiv-title{font-family:var(--f-display);font-weight:300;font-size:1.9rem;color:var(--text);line-height:1;display:block}
+.adiv-title em{font-style:italic;color:var(--maroon)}
+.adiv-sub{font-family:var(--f-body);font-style:italic;font-size:.88rem;color:var(--stone-lt);display:block;margin-top:.2rem}
+.adiv-glyph{color:var(--gold);font-size:.75rem;letter-spacing:.4em;display:block;margin-top:.6rem}
+
+/* ARCHIVE */
+.archive-wrap{max-width:1380px;margin:0 auto;padding:2.5rem 4.5rem 3rem}
+.filter-bar{display:flex;align-items:center;gap:.6rem;margin-bottom:1.75rem;padding-bottom:1.25rem;border-bottom:var(--rule-faint);flex-wrap:wrap}
+.chip{font-family:var(--f-ui);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;padding:.38rem 1rem;border:1px solid rgba(123,29,42,.18);color:var(--stone);cursor:pointer;transition:all .18s;background:transparent}
+.chip:hover{border-color:var(--maroon);color:var(--maroon)}
+.chip.on{background:var(--maroon);border-color:var(--maroon);color:var(--vellum)}
+.filter-sep{width:1px;height:20px;background:rgba(123,29,42,.12)}
+.filter-right{margin-left:auto;display:flex;align-items:center;gap:.75rem}
+.count-lbl{font-family:var(--f-ui);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone-lt)}
+.count-lbl strong{color:var(--maroon)}
+.view-tog{display:flex;border:1px solid rgba(123,29,42,.18);overflow:hidden}
+.vt{font-family:var(--f-ui);font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;padding:.38rem .85rem;cursor:pointer;color:var(--stone);background:transparent;transition:all .15s;border:none}
+.vt.on{background:var(--maroon);color:var(--vellum)}
+
+/* MASONRY */
+.masonry-grid{columns:3;gap:14px}
+.mi{break-inside:avoid;margin-bottom:14px;position:relative;overflow:hidden;cursor:pointer;background:var(--apse)}
+.mi.hidden{display:none}
+.mi-inner{position:absolute;inset:0;transition:transform .45s ease}
+.mi:hover .mi-inner{transform:scale(1.04)}
+.mi-h{width:100%;display:block;visibility:hidden}
+.mi-scrim{position:absolute;inset:0;background:linear-gradient(to top,rgba(21,8,4,.88) 0%,rgba(21,8,4,.08) 55%,transparent 100%)}
+.mi-cap{position:absolute;bottom:0;left:0;right:0;padding:.95rem 1rem .85rem;transform:translateY(5px);opacity:0;transition:all .28s}
+.mi:hover .mi-cap{transform:none;opacity:1}
+.mi-cat{font-family:var(--f-ui);font-size:.46rem;letter-spacing:.17em;text-transform:uppercase;color:var(--gold-lt);display:block;margin-bottom:3px}
+.mi-title{font-family:var(--f-display);font-size:.95rem;color:#fff;line-height:1.2}
+.mi-title em{font-style:italic}
+.mi-expand{position:absolute;top:8px;right:8px;width:28px;height:28px;background:rgba(21,8,4,.58);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .22s;z-index:2}
+.mi:hover .mi-expand{opacity:1}
+.mi-expand span{color:rgba(255,255,255,.80);font-size:.55rem;font-family:var(--f-ui);letter-spacing:.05em}
+
+/* LIST VIEW */
+.list-view{display:none;flex-direction:column}
+.lr{display:grid;grid-template-columns:100px 1fr auto;gap:1.25rem;align-items:center;padding:1rem 0;border-bottom:var(--rule-hair);cursor:pointer;transition:background .15s}
+.lr:hover{background:var(--vellum-mid);padding-left:.75rem;padding-right:.75rem;margin:0 -.75rem}
+.lr.hidden{display:none}
+.lr-thumb{width:100px;height:66px;position:relative;overflow:hidden;flex-shrink:0}
+.lr-bg{position:absolute;inset:0}
+.lr-title{font-family:var(--f-display);font-size:1.05rem;color:var(--text);margin-bottom:2px;line-height:1.25}
+.lr-title em{font-style:italic;color:var(--maroon)}
+.lr-sub{font-family:var(--f-body);font-style:italic;font-size:.84rem;color:var(--stone-lt)}
+.lr-cat{font-family:var(--f-ui);font-size:.48rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone-lt);background:var(--vellum-dark);padding:3px 8px;white-space:nowrap;align-self:center}
+
+/* SUBMIT CTA */
+.submit-cta{max-width:1380px;margin:0 auto 4rem;padding:0 4.5rem}
+.submit-inner{background:var(--vellum-mid);border-left:3px solid var(--gold);border:1px solid rgba(123,29,42,.10);border-left:3px solid var(--gold);padding:2rem 2.5rem;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center}
+.submit-over{font-family:var(--f-ui);font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:.4rem}
+.submit-title{font-family:var(--f-display);font-weight:300;font-size:1.7rem;color:var(--text);line-height:1.1;margin-bottom:.35rem}
+.submit-title em{font-style:italic;color:var(--maroon)}
+.submit-body{font-family:var(--f-body);font-style:italic;font-size:.90rem;color:var(--stone-lt);line-height:1.65;max-width:54ch}
+.submit-right{display:flex;flex-direction:column;align-items:flex-end;gap:.6rem}
+.submit-btn{font-family:var(--f-ui);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;padding:.75rem 1.75rem;background:var(--maroon);color:var(--vellum);cursor:pointer;border:1px solid var(--maroon);transition:background .2s;white-space:nowrap;display:inline-block}
+.submit-btn:hover{background:var(--maroon-deep)}
+.submit-note{font-family:var(--f-body);font-style:italic;font-size:.78rem;color:var(--stone-lt);text-align:right}
+
+/* LIGHTBOX */
+.lightbox{position:fixed;inset:0;z-index:500;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .28s}
+.lightbox.open{opacity:1;pointer-events:all}
+.lb-backdrop{position:absolute;inset:0;background:rgba(21,8,4,.92);cursor:pointer}
+.lb-body{position:relative;z-index:1;width:min(90vw,900px + 120px);max-width:1040px;padding:0 56px}
+.lb-close{position:absolute;top:-2.75rem;right:0;font-family:var(--f-ui);font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.70);background:none;border:none;cursor:pointer;padding:.4rem;transition:color .2s}
+.lb-close:hover{color:#fff}
+.lb-nav{position:absolute;top:31%;transform:translateY(-50%);width:44px;height:44px;background:rgba(21,8,4,.75);border:1px solid rgba(255,255,255,.25);color:#fff;cursor:pointer;font-size:1.2rem;display:flex;align-items:center;justify-content:center;transition:all .2s;z-index:10}
+.lb-nav:hover{background:rgba(21,8,4,.90)}
+.lb-prev{left:6px}
+.lb-next{right:6px}
+.lb-img{width:100%;padding-bottom:62%;position:relative;overflow:hidden}
+.lb-img-inner{position:absolute;inset:0}
+.lb-cap{margin-top:1.25rem;text-align:center}
+.lb-cap-title{font-family:var(--f-display);font-size:1.3rem;color:#fff;display:block;margin-bottom:.2rem}
+.lb-cap-sub{font-family:var(--f-ui);font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(232,201,122,.65)}
+.lb-counter{font-family:var(--f-ui);font-size:.50rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.60);text-align:center;margin-top:.65rem}
+
+/* FOOTER */
+footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:4.5rem 4.5rem 2.5rem}
+.footer-cross{display:block;text-align:center;font-size:1.1rem;color:rgba(184,131,40,.45);letter-spacing:.8em;padding-left:.8em;margin-bottom:4rem}
+.footer-cols{max-width:1380px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:5rem;margin-bottom:3.5rem}
+.footer-col-head{font-family:var(--f-ui);font-size:.62rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(246,241,232,.28);display:block;margin-bottom:1.2rem;padding-bottom:.5rem;border-bottom:1px solid rgba(246,241,232,.06)}
+.footer-name{font-family:var(--f-display);font-weight:400;font-size:1.2rem;color:rgba(246,241,232,.88);line-height:1.3;margin-bottom:.75rem}
+.footer-meta{font-family:var(--f-ui);font-size:.60rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.30);line-height:2.4}
+.footer-meta a{color:rgba(184,131,40,.60);transition:color .2s}
+.footer-meta a:hover{color:var(--gold)}
+.footer-socials{display:flex;gap:1.5rem;margin-top:1.5rem}
+.footer-socials a{font-family:var(--f-ui);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,241,232,.35);transition:color .2s}
+.footer-socials a:hover{color:var(--gold)}
+.footer-nav{list-style:none;display:flex;flex-direction:column}
+.footer-nav li{padding:.38rem 0;border-bottom:1px solid rgba(246,241,232,.04)}
+.footer-nav li:last-child{border-bottom:none}
+.footer-nav a{font-family:var(--f-ui);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,232,.45);transition:color .2s}
+.footer-nav a:hover{color:rgba(246,241,232,.85)}
+.footer-blurb{font-family:var(--f-display);font-style:italic;font-size:.92rem;color:rgba(246,241,232,.42);line-height:1.65;margin-bottom:1.25rem}
+.footer-submit-btn{display:inline-block;font-family:var(--f-ui);font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;padding:.65rem 1.4rem;background:transparent;border:1px solid rgba(184,131,40,.35);color:rgba(184,131,40,.65);cursor:pointer;transition:all .2s;margin-bottom:1.5rem}
+.footer-submit-btn:hover{border-color:var(--gold);color:var(--gold)}
+.footer-bottom{max-width:1380px;margin:2.5rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(246,241,232,.06);display:flex;justify-content:space-between;align-items:center}
+.footer-copy,.footer-addr{font-family:var(--f-ui);font-size:.60rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.22)}
+
+@media(max-width:1100px){.fr-trio{grid-template-columns:1fr 1fr}.fr-quad{grid-template-columns:1fr 1fr}.footer-cols{grid-template-columns:1fr 1fr;gap:3rem}.masonry-grid{columns:2}}
+@media(max-width:768px){.nav-links{display:none}.hero{min-height:420px}.hero-content,.featured-wrap,.archive-wrap,.archive-divider,.submit-cta{padding-left:1.5rem;padding-right:1.5rem}.season-strip{padding:.6rem 1.5rem}.fr-main,.fr-trio,.fr-asym{grid-template-columns:1fr}.fr-quad{grid-template-columns:1fr 1fr}.masonry-grid{columns:2}.submit-inner{grid-template-columns:1fr}.submit-right{align-items:flex-start}.footer-cols{grid-template-columns:1fr;gap:2.5rem}footer{padding:4rem 1.5rem 2rem}.footer-bottom{flex-direction:column;gap:.75rem;text-align:center}.lb-prev{left:6px}.lb-next{right:6px}.lb-body{padding:0 44px}}
+@media(max-width:480px){.masonry-grid{columns:1}.fr-quad{grid-template-columns:1fr}}
+</style>
+
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" style="line-height:1.2">
+      <span class="nav-logo-name">Sts. Peter &amp; Paul</span>
+      <span class="nav-logo-sub">Orthodox Cathedral · Jersey City</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#">About Us ▾</a><div class="nav-drop"><a href="/about-our-church">About Our Church</a><a href="/our-beliefs">Our Beliefs</a><a href="/administration">Administration</a><a href="/gallery">Gallery</a></div></li>
+      <li><a href="#">Inquirers ▾</a><div class="nav-drop"><a href="/about-orthodoxy">About Orthodoxy</a><a href="/our-beliefs">Our Beliefs</a><a href="/videos">Videos</a></div></li>
+      <li><a href="/schedule">Calendar</a></li>
+      <li><a href="#">Bulletins ▾</a><div class="nav-drop"><a href="/news">News</a><a href="/bulletins">Bulletins</a></div></li>
+      <li><a href="#">Resources ▾</a><div class="nav-drop"><a href="/readings">Readings</a><a href="/videos">Videos</a><a href="/cemeteries">Cemeteries</a></div></li>
+      <li><a href="/contact-us">Contact</a></li>
+    </ul>
+    <a href="https://tithe.ly/give?c=5004259" target="_blank" rel="noopener" class="nav-give">Give</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero" id="hero">
+  <div class="hero-bg" id="hero-bg"></div>
+  <div class="hero-scrim" id="hero-scrim"></div>
+  <div class="hero-frame"><div class="hfc tl"></div><div class="hfc tr"></div><div class="hfc bl"></div><div class="hfc br"></div></div>
+  <div class="hero-dots" id="hero-dots"></div>
+  <div class="hero-content" id="hero-content">
+    <div class="hero-badge"><div class="hb-pip" id="hb-pip"></div><span class="hb-label" id="hb-label"></span></div>
+    <div class="hero-eyebrow" id="hero-eyebrow"></div>
+    <div class="hero-hed" id="hero-hed"></div>
+    <div class="hero-dek" id="hero-dek"></div>
+    <div class="hero-foot">
+      <span class="hero-date" id="hero-date"></span>
+      <div class="hero-sep" id="hero-sep" style="background:currentColor"></div>
+      <div class="hero-btn" id="hero-btn" onclick="document.getElementById('archive').scrollIntoView({behavior:'smooth'})">Browse all photos</div>
+    </div>
+  </div>
+</div>
+
+<!-- SEASON STRIP -->
+<div class="season-strip">
+  <span class="ss-label">Season</span>
+  <button class="ss-btn" data-s="lent"      onclick="setSeason('lent',this)">Great Lent</button><div class="ss-div"></div>
+  <button class="ss-btn" data-s="pascha"    onclick="setSeason('pascha',this)">Pascha</button><div class="ss-div"></div>
+  <button class="ss-btn" data-s="summer"    onclick="setSeason('summer',this)">Pentecost</button><div class="ss-div"></div>
+  <button class="ss-btn" data-s="advent"    onclick="setSeason('advent',this)">Nativity Fast</button><div class="ss-div"></div>
+  <button class="ss-btn" data-s="theophany" onclick="setSeason('theophany',this)">Theophany</button><div class="ss-div"></div>
+  <button class="ss-btn" data-s="latest"    onclick="setSeason('latest',this)">Latest Added</button>
+  <span class="ss-right">Updated <strong>March 2026</strong></span>
+</div>
+
+<!-- FEATURED SPREADS -->
+<div class="featured-wrap">
+  <div class="section-label"><div class="sl-rule"></div><span class="sl-g">✦</span><span class="sl-txt">Featured Photographs</span><span class="sl-g">✦</span><div class="sl-rule"></div></div>
+
+  <div class="feat-row fr-main">
+    <div class="fc tall" data-cat="community" onclick="openLbFc(this)"><div class="fc-bg" style="background:linear-gradient(155deg,#1A0508,#7B1D2A,#B88328)"></div><div class="fc-scrim"></div><div class="fc-new">New</div><div class="fc-cap"><span class="fc-cat">Community · Holy Week</span><div class="fc-title">Pascha — <em>Christ is Risen!</em></div><span class="fc-date">Holy Saturday · April 2025</span></div></div>
+    <div class="fc-stack">
+      <div class="fc med" data-cat="community" onclick="openLbFc(this)"><div class="fc-bg" style="background:linear-gradient(160deg,#0A1A2E,#1A0508,#3D6B5E)"></div><div class="fc-scrim"></div><div class="fc-new">New</div><div class="fc-cap"><span class="fc-cat">Community · Theophany</span><div class="fc-title">Blessing of <em>Waters</em></div><span class="fc-date">January 2026</span></div></div>
+      <div class="fc med" data-cat="community" onclick="openLbFc(this)"><div class="fc-bg" style="background:linear-gradient(160deg,#0A1A2E,#1A0508,#3D6B5E)"></div><div class="fc-scrim"></div><div class="fc-cap"><span class="fc-cat">Community · Music</span><div class="fc-title">The choir in <em>full voice</em></div></div></div>
+    </div>
+  </div>
+
+  <div class="feat-row fr-trio">
+    <div class="fc tall" data-cat="cathedral" onclick="openLbFc(this)"><div class="fc-bg" style="background:linear-gradient(160deg,#3B0F18,#7B1D2A,#1A0508)"></div><div class="fc-scrim"></div><div class="fc-cap"><span class="fc-cat">Cathedral · Exterior</span><div class="fc-title">The copper domes of <em>Grand Street</em></div></div></div>
+    <div class="fc tall" data-cat="cathedral" onclick="openLbFc(this)"><div class="fc-bg" style="background:linear-gradient(160deg,#1C1005,#B88328,#3B0F18)"></div><div class="fc-scrim"></div><div class="fc-cap"><span class="fc-cat">Cathedral · Interior</span><div class="fc-title">The iconostasis</div></div></div>
+    <div class="fc tall" data-cat="community" onclick="openLbFc(this)"><div class="fc-bg" style="background:linear-gradient(160deg,#7B1D2A,#1A0508,#B88328)"></div><div class="fc-scrim"></div><div class="fc-cap"><span class="fc-cat">Community · Palm Sunday</span><div class="fc-title">Children with candles on <em>Palm Sunday</em></div><span class="fc-date">2025</span></div></div>
+  </div>
+
+  <div class="feat-row fr-asym">
+    <div class="fc med" data-cat="community" onclick="openLbFc(this)"><div class="fc-bg" style="background:linear-gradient(160deg,#7B1D2A,#3B0F18,#B88328)"></div><div class="fc-scrim"></div><div class="fc-cap"><span class="fc-cat">Community · Every Sunday</span><div class="fc-title">Coffee hour after the <em>Divine Liturgy</em></div></div></div>
+    <div class="fc med" data-cat="events" onclick="openLbFc(this)"><div class="fc-bg" style="background:linear-gradient(160deg,#2E0D14,#B88328,#3B0F18)"></div><div class="fc-scrim"></div><div class="fc-cap"><span class="fc-cat">Events · 2020</span><div class="fc-title">Cathedral elevation — <em>a century in the making</em></div></div></div>
+  </div>
+
+  <div class="feat-row fr-quad">
+    <div class="fc short" data-cat="community" onclick="openLbFc(this)"><div class="fc-bg" style="background:linear-gradient(160deg,#1E1005,#7A6648,#B88328)"></div><div class="fc-scrim"></div><div class="fc-cap"><span class="fc-cat">Community</span><div class="fc-title">Christmas Day Liturgy</div></div></div>
+    <div class="fc short" data-cat="community" onclick="openLbFc(this)"><div class="fc-bg" style="background:linear-gradient(160deg,#1C1005,#B88328,#7A6648)"></div><div class="fc-scrim"></div><div class="fc-cap"><span class="fc-cat">Community · Great Lent</span><div class="fc-title">Holy Unction</div></div></div>
+    <div class="fc short" data-cat="community" onclick="openLbFc(this)"><div class="fc-bg" style="background:linear-gradient(160deg,#1E1005,#7A6648,#3B0F18)"></div><div class="fc-scrim"></div><div class="fc-cap"><span class="fc-cat">Community</span><div class="fc-title">Parish picnic, 2024</div></div></div>
+    <div class="fc short" data-cat="community" onclick="openLbFc(this)"><div class="fc-bg" style="background:linear-gradient(160deg,#1A0508,#4A1019,#7A6648)"></div><div class="fc-scrim"></div><div class="fc-cap"><span class="fc-cat">Community · Archive</span><div class="fc-title">Founders' Day, 1932</div></div></div>
+  </div>
+</div>
+
+<!-- ARCHIVE DIVIDER -->
+<div class="archive-divider" id="archive">
+  <div class="adiv">
+    <div class="adiv-rule"></div>
+    <div class="adiv-center">
+      <span class="adiv-title">The Complete <em>Archive</em></span>
+      <span class="adiv-sub">115 years of parish life — browse, filter, discover</span>
+      <span class="adiv-glyph">✦ ✝ ✦</span>
+    </div>
+    <div class="adiv-rule"></div>
+  </div>
+</div>
+
+<!-- ARCHIVE -->
+<div class="archive-wrap">
+  <div class="filter-bar">
+    <div class="chip on" onclick="setFilter('all',this,'cat')">All</div>
+    <div class="chip"    onclick="setFilter('community',this,'cat')">Community</div>
+    <div class="chip"    onclick="setFilter('cathedral',this,'cat')">Cathedral</div>
+    <div class="chip"    onclick="setFilter('events',this,'cat')">Events</div>
+    <div class="filter-sep"></div>
+    <div class="chip"    onclick="setFilter('2026',this,'year')">2026</div>
+    <div class="chip"    onclick="setFilter('2025',this,'year')">2025</div>
+    <div class="chip"    onclick="setFilter('2024',this,'year')">2024</div>
+    <div class="chip"    onclick="setFilter('pre2023',this,'year')">Pre-2023</div>
+    <div class="filter-right">
+      <span class="count-lbl"><strong id="vis-count">24</strong> photos</span>
+      <div class="view-tog">
+        <button class="vt on" onclick="setView('masonry',this)">Masonry</button>
+        <button class="vt"    onclick="setView('list',this)">List</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MASONRY GRID -->
+  <!-- ══════════════════════════════════════════════════
+       PHOTO LIBRARY — ADD YOUR PHOTOS HERE
+       
+       Each photo needs 6 fields:
+         src:   path to your image file e.g. '/images/gallery/palm-sunday.jpg'
+                (use a gradient string as placeholder until you have real photos)
+         cat:   'community' | 'cathedral' | 'events'
+         year:  '2026' | '2025' | '2024' | 'pre2023'
+         label: small category text shown on the card
+         title: main title (can use <em>italic</em>)
+         h:     card height in pixels (130–220, vary for masonry effect)
+  ══════════════════════════════════════════════════ -->
+  <script>
+  var PHOTOS = [
+    { src:'linear-gradient(160deg,#1A0508,#7B1D2A,#B88328)', cat:'community', year:'2025', label:'Community · Holy Week', title:'Pascha — <em>Christ is Risen!</em>', h:210 },
+    { src:'linear-gradient(160deg,#3B0F18,#7B1D2A)', cat:'cathedral', year:'pre2023', label:'Cathedral · Exterior', title:'The copper domes of <em>Grand Street</em>', h:148 },
+    { src:'linear-gradient(160deg,#7B1D2A,#3B0F18,#B88328)', cat:'community', year:'2025', label:'Community · Every Sunday', title:'Coffee hour after the <em>Divine Liturgy</em>', h:162 },
+    { src:'linear-gradient(160deg,#0A1A2E,#1A0508,#3D6B5E)', cat:'community', year:'2026', label:'Community · Theophany', title:'Blessing of <em>Waters</em>, 2026', h:182 },
+    { src:'linear-gradient(160deg,#1C1005,#B88328,#3B0F18)', cat:'cathedral', year:'pre2023', label:'Cathedral · Interior', title:'The iconostasis', h:198 },
+    { src:'linear-gradient(160deg,#0A1A2E,#1A0508,#3D6B5E)', cat:'community', year:'2025', label:'Community · Music', title:'The choir in <em>full voice</em>', h:136 },
+    { src:'linear-gradient(160deg,#1A0508,#7A6648,#3B0F18)', cat:'community', year:'pre2023', label:'Community · Archive', title:'Founders' Day celebration', h:152 },
+    { src:'linear-gradient(160deg,#7B1D2A,#1A0508,#B88328)', cat:'community', year:'2025', label:'Community · Palm Sunday', title:'Children with candles on <em>Palm Sunday</em>', h:172 },
+    { src:'linear-gradient(160deg,#0D1F1B,#1A0508,#3D6B5E)', cat:'cathedral', year:'pre2023', label:'Cathedral · Evening', title:'The nave in <em>candlelight</em>', h:128 },
+    { src:'linear-gradient(160deg,#2E0D14,#B88328,#7A6648)', cat:'events', year:'pre2023', label:'Events · 2020', title:'Cathedral elevation', h:156 },
+    { src:'linear-gradient(160deg,#1C1005,#B88328,#7A6648)', cat:'community', year:'2025', label:'Community · Great Lent', title:'Holy Unction', h:192 },
+    { src:'linear-gradient(160deg,#1E1005,#7A6648,#3B0F18)', cat:'community', year:'2024', label:'Community · Summer', title:'Parish picnic, 2024', h:142 },
+    { src:'linear-gradient(160deg,#1A0508,#4A1019,#7A6648)', cat:'community', year:'pre2023', label:'Community · Archive', title:'First congregation on <em>Grand Street</em>', h:165 },
+    { src:'linear-gradient(160deg,#1E1005,#7A6648,#B88328)', cat:'community', year:'2025', label:'Community · December', title:'Christmas Day Liturgy, 2025', h:138 },
+    { src:'linear-gradient(160deg,#1C1005,#7A6648,#3B0F18)', cat:'events', year:'2025', label:'Events · Annual', title:'Annual parish meeting, 2025', h:148 },
+    { src:'linear-gradient(160deg,#2E0D14,#B88328,#7A6648)', cat:'community', year:'pre2023', label:'Community · Archive', title:'The Meneely bells installed', h:128 },
+    { src:'linear-gradient(160deg,#2E0D14,#3D6B5E,#1A0508)', cat:'community', year:'2025', label:'Community · June', title:'Feast of Sts. Peter &amp; Paul', h:176 },
+    { src:'linear-gradient(160deg,#1A0508,#7B1D2A,#B88328)', cat:'cathedral', year:'pre2023', label:'Cathedral · Interior', title:'The altar, <em>prepared for Liturgy</em>', h:134 },
+    { src:'linear-gradient(160deg,#1C1005,#B88328,#7A6648)', cat:'community', year:'2025', label:'Community · Parish Families', title:'Children at the feast', h:158 },
+    { src:'linear-gradient(160deg,#0D1F1B,#3D6B5E,#1A0508)', cat:'events', year:'2024', label:'Events · Outreach', title:'Community outreach, Jersey City', h:146 },
+    { src:'linear-gradient(160deg,#0A1A2E,#3D6B5E,#1A0508)', cat:'community', year:'2026', label:'Community · Great Lent', title:'Great Lent begins, <em>Clean Monday</em>', h:200 },
+    { src:'linear-gradient(160deg,#2A0A10,#7B1D2A,#3B2010)', cat:'community', year:'pre2023', label:'Community · Archive', title:'Cornerstone of the <em>new nave</em>', h:140 },
+    { src:'linear-gradient(160deg,#0A1A2E,#1A0508,#3D6B5E)', cat:'community', year:'2024', label:'Community · 2024', title:'Fellowship after Saturday Vespers', h:162 },
+    { src:'linear-gradient(160deg,#1A0508,#3D6B5E,#7A6648)', cat:'cathedral', year:'pre2023', label:'Cathedral · Icons', title:'An icon of Sts. Peter &amp; Paul', h:144 },
+  ];
+
+  /* ── RENDER GALLERY FROM PHOTOS ARRAY ──
+     This runs automatically — you never need to edit below this line.
+     Just add/edit entries in the PHOTOS array above.           */
+  function buildGallery(){
+    var masonry = document.getElementById('masonry-grid');
+    var listView = document.getElementById('list-view');
+    masonry.innerHTML = '';
+    listView.innerHTML = '';
+
+    PHOTOS.forEach(function(p, i){
+      var isSrc = p.src.startsWith('/') || p.src.startsWith('http');
+      var bg = isSrc
+        ? 'url("'+p.src+'") center/cover no-repeat'
+        : p.src; /* gradient placeholder */
+
+      /* MASONRY CARD */
+      var mi = document.createElement('div');
+      mi.className = 'mi';
+      mi.dataset.cat = p.cat;
+      mi.dataset.year = p.year;
+      mi.dataset.idx = i;
+      mi.setAttribute('onclick','openLb(this)');
+      mi.innerHTML =
+        '<div class="mi-inner" style="background:'+bg+'"></div>'+
+        '<div class="mi-h" style="height:'+p.h+'px"></div>'+
+        '<div class="mi-scrim"></div>'+
+        '<div class="mi-expand"><span>✦</span></div>'+
+        '<div class="mi-cap">'+
+          '<span class="mi-cat">'+p.label+'</span>'+
+          '<div class="mi-title">'+p.title+'</div>'+
+        '</div>';
+      masonry.appendChild(mi);
+
+      /* LIST ROW */
+      var lr = document.createElement('div');
+      lr.className = 'lr';
+      lr.dataset.cat = p.cat;
+      lr.dataset.year = p.year;
+      lr.setAttribute('onclick','openLbList(this)');
+      lr.innerHTML =
+        '<div class="lr-thumb"><div class="lr-bg" style="background:'+bg+'"></div></div>'+
+        '<div><div class="lr-title">'+p.title+'</div><div class="lr-sub">'+p.label+'</div></div>'+
+        '<span class="lr-cat">'+p.cat.charAt(0).toUpperCase()+p.cat.slice(1)+'</span>';
+      listView.appendChild(lr);
+    });
+
+    /* update count */
+    document.getElementById('vis-count').textContent = PHOTOS.length;
+  }
+  /* buildGallery() is called by the init block at the bottom of the page */
+  </script>
+
+  <div class="masonry-grid" id="masonry-grid"></div>
+
+  <!-- LIST VIEW -->
+  <div class="list-view" id="list-view"></div>
+</div>
+
+<!-- SUBMIT CTA -->
+<div class="submit-cta">
+  <div class="submit-inner">
+    <div>
+      <span class="submit-over">Parish Archive</span>
+      <div class="submit-title">Have a photo that <em>belongs here?</em></div>
+      <p class="submit-body">We are actively building the parish archive — from the founding era through today. If you have photographs of feast days, parish life, or historical images of the cathedral and its community, we would be honored to preserve them here for generations to come.</p>
+    </div>
+    <div class="submit-right">
+      <a href="/cdn-cgi/l/email-protection#295a5a59594743694e44484045074a4644165a5c4b434c4a5d147941465d460c1b197a5c4b44405a5a4046470c1b194f465b0c1b1979485b405a410c1b196e4845454c5b50" class="submit-btn">Submit a Photo</a>
+      <span class="submit-note">By email · By mail · Drop off at the office</span>
+    </div>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <div class="lb-backdrop" onclick="closeLb()"></div>
+  <div class="lb-body">
+    <button class="lb-close" onclick="closeLb()">✕ &nbsp;Close</button>
+    <button class="lb-nav lb-prev" onclick="navLb(-1)">‹</button><div class="lb-img"><div class="lb-img-inner" id="lb-inner"></div></div><button class="lb-nav lb-next" onclick="navLb(1)">›</button>
+    <div class="lb-cap">
+      <span class="lb-cap-title" id="lb-title"></span>
+      <span class="lb-cap-sub"   id="lb-sub"></span>
+    </div>
+    <div class="lb-counter" id="lb-count"></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-cross">✦ ✝ ✦</span>
+  <div class="footer-cols">
+    <div>
+      <span class="footer-col-head">Saints Peter &amp; Paul Orthodox Cathedral</span>
+      <p class="footer-name">Sts. Peter &amp; Paul<br>Orthodox Cathedral</p>
+      <p class="footer-meta">Diocese of New York &amp; New Jersey<br><a href="https://nynjoca.org" target="_blank">nynjoca.org</a><br>Orthodox Church in America<br><a href="https://oca.org" target="_blank">oca.org</a></p>
+      <div class="footer-socials"><a href="#" target="_blank">Facebook</a><a href="#" target="_blank">Instagram</a></div>
+    </div>
+    <div>
+      <span class="footer-col-head">Navigate</span>
+      <ul class="footer-nav">
+        <li><a href="/about-our-church">About Our Church</a></li>
+        <li><a href="/administration">Administration</a></li>
+        <li><a href="/schedule">Liturgical Calendar</a></li>
+        <li><a href="/gallery">Gallery</a></li>
+        <li><a href="/about-orthodoxy">About Orthodoxy</a></li>
+        <li><a href="/our-beliefs">Our Beliefs</a></li>
+        <li><a href="/videos">Videos</a></li>
+        <li><a href="/readings">Daily Readings</a></li>
+        <li><a href="/saint-of-the-day">Saint of the Day</a></li>
+        <li><a href="/bulletins">Bulletins</a></li>
+        <li><a href="/cemeteries">Cemeteries</a></li>
+        <li><a href="/contact-us">Contact Us</a></li>
+      </ul>
+    </div>
+    <div>
+      <span class="footer-col-head">Submit a Photo</span>
+      <p class="footer-blurb">Have a photograph from parish life that belongs in this archive? We'd love to preserve it for the community.</p>
+      <a href="/cdn-cgi/l/email-protection#bac9c9cacad4d0faddd7dbd3d694d9d5d785c9cfd8d0dfd9ce87ead2d5ced59f888ae9cfd8d7d3c9c9d3d5d4" class="footer-submit-btn">Submit a Photo →</a>
+      <span class="footer-col-head" style="margin-top:.5rem">Contact</span>
+      <p class="footer-meta" style="line-height:2.4">111–113 Grand Street<br>Jersey City, NJ 07302<br><a href="tel:+12014341986">(201) 434-1986</a><br><a href="/cdn-cgi/l/email-protection#8ffcfcffffe1e5cfe8e2eee6e3a1ece0e2"><span class="__cf_email__" data-cfemail="99eaeae9e9f7f3d9fef4f8f0f5b7faf6f4">[email&#160;protected]</span></a></p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© Saints Peter &amp; Paul Orthodox Cathedral. All Rights Reserved.</p>
+    <p class="footer-addr">109 Grand Street · Jersey City, NJ 07302 · (201) 434-1986</p>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+/* SEASON DATA */
+const S={
+  lent:{bg:'linear-gradient(155deg,#1A0508 0%,#4A1019 45%,#7A6648 100%)',sc:'linear-gradient(to top,rgba(26,5,8,.82) 0%,rgba(26,5,8,.55) 45%,rgba(26,5,8,.28) 100%)',pip:'#7B1D2A',pl:'Great Lent · 2026',plc:'rgba(200,155,135,.75)',ey:'Now in season',eyc:'rgba(200,155,135,.55)',hc:'#F2EDE0',dc:'rgba(242,237,224,.55)',dtc:'rgba(242,237,224,.38)',ctac:'rgba(242,237,224,.65)',ctab:'rgba(242,237,224,.28)',
+    slides:[{h:'<em>Forty days</em> of fasting<br>and prayer',d:'The Church enters the arena of the Fast — forty days that mirror forty years in the wilderness and forty days on the mountain. The doors are open each evening for prayer.',dt:'Now through Holy Week · 2026'},{h:'Holy Unction —<br><em>anointing the faithful</em>',d:'Seven priests, seven epistles, seven prayers of anointing. One of the most ancient rites of the Church, given for the healing of soul and body.',dt:'Great Lent · 2025'},{h:'Canon of<br><em>St. Andrew of Crete</em>',d:'The longest service of the Orthodox year — sung each evening of the first week of Great Lent. Come and hear it.',dt:'First Week of Great Lent'}]},
+  pascha:{bg:'linear-gradient(145deg,#1A0508 0%,#7B1D2A 45%,#B88328 100%)',sc:'linear-gradient(to top,rgba(26,5,8,.75) 0%,rgba(26,5,8,.38) 50%,transparent 100%)',pip:'#E8C97A',pl:'Holy Week &amp; Pascha',plc:'rgba(232,201,122,.90)',ey:'Featured photographs',eyc:'rgba(232,201,122,.58)',hc:'#FFF9F0',dc:'rgba(255,249,240,.52)',dtc:'rgba(255,249,240,.36)',ctac:'rgba(232,201,122,.75)',ctab:'rgba(232,201,122,.38)',
+    slides:[{h:'<em>Christ is Risen!</em><br>Indeed He is Risen.',d:'115 years of this same fire, passed hand to hand in the same nave, on the same street, in the same ancient joy.',dt:'Holy Saturday · April 2025'},{h:'The Paschal<br><em>procession</em>',d:'At midnight the faithful circle the cathedral three times with their candles before the doors open and the feast begins.',dt:'Holy Saturday Night'},{h:'Bright Week —<br><em>fifty days of feast</em>',d:'The fast is broken. No knee-bending. No fasting. Only the long, unbroken joy of the resurrection extending into summer.',dt:'Bright Monday through Pentecost'}]},
+  summer:{bg:'linear-gradient(160deg,#0A1A12 0%,#1A3A2E 42%,#3D6B5E 100%)',sc:'linear-gradient(to top,rgba(10,26,18,.80) 0%,rgba(10,26,18,.35) 55%,transparent 100%)',pip:'#5D9B8E',pl:'Season of Pentecost',plc:'rgba(140,205,188,.75)',ey:'Parish life in summer',eyc:'rgba(140,205,188,.52)',hc:'#EEF7F4',dc:'rgba(238,247,244,.50)',dtc:'rgba(238,247,244,.34)',ctac:'rgba(140,205,188,.70)',ctab:'rgba(140,205,188,.28)',
+    slides:[{h:'Fifty days of<br><em>holy rejoicing</em>',d:'The long exhale of resurrection life extending into the warm months. No fasting, no prostrations — only the radiance of Pentecost.',dt:'Pentecost Season · 2025'},{h:'Parish picnic<br><em>in summer</em>',d:'The liturgy of the everyday — children running between tables, the sound of a dozen languages, the smell of food under the open sky.',dt:'Summer 2024'},{h:'Feast of Sts.<br><em>Peter &amp; Paul</em>',d:'The patronal feast of the Cathedral, celebrated every June 29th since the parish was founded by Carpatho-Russian immigrants in 1907.',dt:'June 29 · Patronal Feast'}]},
+  advent:{bg:'linear-gradient(155deg,#080E18 0%,#1B3A5C 50%,#4A1019 100%)',sc:'linear-gradient(to top,rgba(8,14,24,.84) 0%,rgba(8,14,24,.42) 55%,transparent 100%)',pip:'#4A7AAC',pl:'Nativity Fast · 40 Days',plc:'rgba(140,180,220,.75)',ey:'The season of waiting',eyc:'rgba(140,180,220,.48)',hc:'#EDF2F8',dc:'rgba(237,242,248,.48)',dtc:'rgba(237,242,248,.33)',ctac:'rgba(140,180,220,.65)',ctab:'rgba(140,180,220,.26)',
+    slides:[{h:'Waiting in<br><em>holy expectation</em>',d:'The world rushes toward Christmas; the Church slows to meet it with forty days of quiet prayer and fasting.',dt:'November 15 – December 24'},{h:'Christmas Day<br><em>Divine Liturgy</em>',d:'God becomes what we are, that we might become what He is. The Nativity of our Lord, celebrated at Grand Street since 1907.',dt:'December 25 · 2025'},{h:'The nave<br><em>in candlelight</em>',d:'In the dark of December, the Cathedral glows with candles and the ancient voices of the choir filling the cold air.',dt:'Advent Season · 2025'}]},
+  theophany:{bg:'linear-gradient(160deg,#080E18 0%,#0A1A2E 42%,#3D6B5E 100%)',sc:'linear-gradient(to top,rgba(8,14,24,.80) 0%,rgba(8,14,24,.35) 55%,transparent 100%)',pip:'#6ABBE8',pl:'Holy Theophany · January 19',plc:'rgba(106,187,232,.88)',ey:'Featured event · 2026',eyc:'rgba(106,187,232,.52)',hc:'#EDF5FC',dc:'rgba(237,245,252,.50)',dtc:'rgba(237,245,252,.33)',ctac:'rgba(106,187,232,.68)',ctab:'rgba(106,187,232,.26)',
+    slides:[{h:'The blessing of<br><em>all the waters</em>',d:'At Theophany the priest plunges the cross three times into the water — and all the waters of the world are made holy again.',dt:'January 19 · 2026'},{h:'Theophany —<br><em>God made manifest</em>',d:'The Baptism of Christ in the Jordan. The Father speaks, the Spirit descends, the Son is revealed. The Holy Trinity, present all at once.',dt:'Holy Theophany · January 2026'},{h:'New photographs<br><em>just added</em>',d:'Browse the newest images from Theophany 2026 in the archive below — added to the parish gallery this March.',dt:'Added March 2026'}]},
+  latest:{bg:'linear-gradient(155deg,#1A0508 0%,#3B0F18 38%,#7A6648 100%)',sc:'linear-gradient(to top,rgba(26,5,8,.80) 0%,rgba(26,5,8,.40) 50%,transparent 100%)',pip:'#B88328',pl:'Recently Added · March 2026',plc:'rgba(212,168,75,.82)',ey:'Latest from the parish',eyc:'rgba(212,168,75,.55)',hc:'#F6F1E8',dc:'rgba(246,241,232,.50)',dtc:'rgba(246,241,232,.34)',ctac:'rgba(212,168,75,.72)',ctab:'rgba(212,168,75,.30)',
+    slides:[{h:'New photos from<br><em>Theophany 2026</em>',d:'Photographs from the Blessing of Waters at Theophany, January 19th — just added to the archive.',dt:'Added March 2026'},{h:'Christmas Day<br><em>Liturgy 2025</em>',d:'New images from the Christmas Day Divine Liturgy, added this month to the Feast Days collection.',dt:'December 2025'},{h:'Parish annual<br><em>meeting 2025</em>',d:'Photos from the 2025 annual meeting — now in the Events category of the archive.',dt:'2025'}]}
+};
+
+let curSeason='lent', curSlide=0, timer=null;
+let activeCat='all', activeYear='all', curView='masonry';
+let lbItems=[], lbIdx=0;
+
+function detectSeason(){
+  const m=new Date().getMonth()+1,d=new Date().getDate();
+  if((m===11&&d>=15)||(m===12&&d<=24)) return'advent';
+  if((m===12&&d>=25)||(m===1&&d<=5))  return'advent';
+  if(m===1&&d>=6&&d<=19)              return'theophany';
+  if(m===2||(m===3&&d<=15))           return'lent';
+  if((m===3&&d>=16)||m===4)           return'pascha';
+  if(m===5||(m===6&&d<=19))           return'summer';
+  return'latest';
+}
+
+function buildDots(key){
+  const c=document.getElementById('hero-dots');
+  c.innerHTML='';
+  S[key].slides.forEach((_,i)=>{
+    const d=document.createElement('div');
+    d.className='hero-dot'+(i===0?' on':'');
+    d.onclick=()=>{curSlide=i;renderHero();resetTimer();};
+    c.appendChild(d);
+  });
+}
+
+function renderHero(){
+  const s=S[curSeason], sl=s.slides[curSlide];
+  const content=document.getElementById('hero-content');
+  content.classList.add('fading');
+  setTimeout(()=>{
+    document.getElementById('hero-bg').style.background=s.bg;
+    document.getElementById('hero-scrim').style.background=s.sc;
+    const pip=document.getElementById('hb-pip'); pip.style.background=s.pip;
+    const lbl=document.getElementById('hb-label'); lbl.style.color=s.plc; lbl.innerHTML=s.pl;
+    const ey=document.getElementById('hero-eyebrow'); ey.style.color=s.eyc; ey.textContent=s.ey;
+    const hed=document.getElementById('hero-hed'); hed.style.color=s.hc; hed.innerHTML=sl.h;
+    const dek=document.getElementById('hero-dek'); dek.style.color=s.dc; dek.textContent=sl.d;
+    const dt=document.getElementById('hero-date'); dt.style.color=s.dtc; dt.textContent=sl.dt;
+    document.getElementById('hero-sep').style.color=s.dtc;
+    const btn=document.getElementById('hero-btn'); btn.style.color=s.ctac; btn.style.borderColor=s.ctab;
+    document.querySelectorAll('.hero-dot').forEach((d,i)=>d.classList.toggle('on',i===curSlide));
+    content.classList.remove('fading');
+  },350);
+}
+
+function resetTimer(){
+  clearInterval(timer);
+  timer=setInterval(()=>{curSlide=(curSlide+1)%S[curSeason].slides.length;renderHero();},5500);
+}
+
+function setSeason(key,el){
+  curSeason=key; curSlide=0;
+  document.querySelectorAll('.ss-btn').forEach(b=>b.classList.remove('on'));
+  el.classList.add('on');
+  buildDots(key); renderHero(); resetTimer();
+}
+
+/* FILTER — cat + year independently */
+const CAT_VALS=['all','community','cathedral','events'];
+const YR_VALS=['2026','2025','2024','pre2023'];
+
+function setFilter(val,el,type){
+  if(type==='cat'){
+    activeCat=val;
+    document.querySelectorAll('.chip').forEach(c=>{
+      if(CAT_VALS.includes(c.textContent.trim().toLowerCase())) c.classList.remove('on');
+    });
+    el.classList.add('on');
+  } else {
+    activeYear = (activeYear===val) ? 'all' : val;
+    document.querySelectorAll('.chip').forEach(c=>{
+      if(YR_VALS.includes(c.textContent.trim().replace('Pre-','pre').replace('-','').toLowerCase())) c.classList.remove('on');
+    });
+    if(activeYear!=='all') el.classList.add('on');
+  }
+  applyFilter();
+}
+
+function applyFilter(){
+  let n=0;
+  document.querySelectorAll('.mi').forEach(item=>{
+    const ok=(activeCat==='all'||item.dataset.cat===activeCat)&&(activeYear==='all'||item.dataset.year===activeYear);
+    item.classList.toggle('hidden',!ok);
+    if(ok) n++;
+  });
+  document.querySelectorAll('.lr').forEach(r=>{
+    r.classList.toggle('hidden',!((activeCat==='all'||r.dataset.cat===activeCat)&&(activeYear==='all'||r.dataset.year===activeYear)));
+  });
+  document.getElementById('vis-count').textContent=n;
+}
+
+function setView(mode,el){
+  curView=mode;
+  document.querySelectorAll('.vt').forEach(v=>v.classList.remove('on'));
+  el.classList.add('on');
+  document.getElementById('masonry-grid').style.display=mode==='masonry'?'':'none';
+  document.getElementById('list-view').style.display=mode==='list'?'flex':'none';
+}
+
+/* LIGHTBOX */
+function visItems(){return Array.from(document.querySelectorAll('.mi:not(.hidden)'));}
+
+function renderLb(){
+  const item=lbItems[lbIdx]; if(!item) return;
+  /* Support both .mi (archive) and .fc (featured) card structures */
+  const isFc=item.classList.contains('fc');
+  const bgEl=isFc?item.querySelector('.fc-bg'):item.querySelector('.mi-inner');
+  const catEl=isFc?item.querySelector('.fc-cat'):item.querySelector('.mi-cat');
+  const titleEl=isFc?item.querySelector('.fc-title'):item.querySelector('.mi-title');
+  const dateEl=isFc?item.querySelector('.fc-date'):null;
+  const bg=bgEl?bgEl.style.background:'linear-gradient(160deg,#1A0508,#3B0F18)';
+  const cat=catEl?catEl.textContent:'';
+  const title=titleEl?titleEl.innerHTML:'';
+  const date=dateEl?dateEl.textContent:'';
+  document.getElementById('lb-inner').style.background=bg;
+  document.getElementById('lb-title').innerHTML=title;
+  document.getElementById('lb-sub').textContent=date?cat+' · '+date:cat;
+  document.getElementById('lb-count').textContent=(lbIdx+1)+' of '+lbItems.length;
+  document.querySelector('.lb-prev').disabled=lbIdx===0;
+  document.querySelector('.lb-next').disabled=lbIdx===lbItems.length-1;
+}
+
+function openLb(el){
+  lbItems=visItems(); lbIdx=lbItems.indexOf(el);
+  renderLb();
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+/* Open lightbox from a featured card (.fc) */
+function openLbFc(el){
+  /* Build pool: all fc cards first, then visible mi cards */
+  const fcItems=Array.from(document.querySelectorAll('.fc'));
+  const miItems=visItems();
+  lbItems=[...fcItems,...miItems];
+  lbIdx=lbItems.indexOf(el);
+  renderLb();
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function openLbList(row){
+  const rows=Array.from(document.querySelectorAll('.lr:not(.hidden)'));
+  lbItems=visItems(); lbIdx=Math.min(rows.indexOf(row),lbItems.length-1);
+  renderLb();
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function navLb(dir){const n=lbIdx+dir; if(n>=0&&n<lbItems.length){lbIdx=n;renderLb();}}
+
+function closeLb(){
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+document.addEventListener('keydown',e=>{
+  if(!document.getElementById('lightbox').classList.contains('open')) return;
+  if(e.key==='ArrowLeft') navLb(-1);
+  if(e.key==='ArrowRight') navLb(1);
+  if(e.key==='Escape') closeLb();
+});
+
+/* ── INIT ── */
+(function(){
+  buildGallery();
+  const season = detectSeason();
+  const btn = document.querySelector('.ss-btn[data-s="'+season+'"]') || document.querySelector('.ss-btn');
+  curSeason = season;
+  buildDots(season);
+  renderHero();
+  resetTimer();
+  if(btn) {
+    document.querySelectorAll('.ss-btn').forEach(b=>b.classList.remove('on'));
+    btn.classList.add('on');
+  }
+})();
+
+</script>
+
+<!-- Hero Image Rotator -->
+<script>
+/* ═══════════════════════════════════════════════════════
+   SSPP HERO IMAGE ROTATOR
+   Curated Wikimedia Commons Orthodox imagery
+   Public domain / CC-licensed — free to use
+   Picks one random image per page load, crossfades on a timer
+═══════════════════════════════════════════════════════ */
+
+(function() {
+
+  /* Gallery has its own seasonal hero — skip rotator */
+  if (document.querySelector('.hero-bg')) return;
+
+  /* ── CURATED IMAGE POOL ──────────────────────────────
+     All from Wikimedia Commons. Each has:
+     - url:   Direct image URL (1280px preview — fast load, sharp enough for hero)
+     - label: What it depicts
+     - pos:   CSS background-position for best crop
+  ─────────────────────────────────────────────────────── */
+  var IMAGES = [
+
+    /* CHURCH INTERIORS — NAVES & ICONOSTASES */
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Interior_of_Greek_Orthodox_church_18th_century_section.JPG/1280px-Interior_of_Greek_Orthodox_church_18th_century_section.JPG',
+      label: 'Greek Orthodox church interior, 18th century',
+      pos: 'center center'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Romanian_Orthodox_Monastery_%2849074404227%29.jpg/1280px-Romanian_Orthodox_Monastery_%2849074404227%29.jpg',
+      label: 'Romanian Orthodox Monastery interior',
+      pos: 'center center'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Saint_Nicholas_Orthodox_church_in_Bangkok_%2810%29.jpg/1280px-Saint_Nicholas_Orthodox_church_in_Bangkok_%2810%29.jpg',
+      label: 'Saint Nicholas Orthodox Church, Bangkok',
+      pos: 'center center'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Saint_Nicholas_Orthodox_church_in_Bangkok_%287%29.jpg/1280px-Saint_Nicholas_Orthodox_church_in_Bangkok_%287%29.jpg',
+      label: 'Saint Nicholas Orthodox Church interior, Bangkok',
+      pos: 'center 40%'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/St._Michael_the_Archangel_Russian_Orthodox_Church%2C_Kuala_Lumpur_%281%29.jpg/1280px-St._Michael_the_Archangel_Russian_Orthodox_Church%2C_Kuala_Lumpur_%281%29.jpg',
+      label: 'St Michael the Archangel Russian Orthodox Church, Kuala Lumpur',
+      pos: 'center center'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/St._Michael_the_Archangel_Russian_Orthodox_Church%2C_Kuala_Lumpur_%282%29.jpg/1280px-St._Michael_the_Archangel_Russian_Orthodox_Church%2C_Kuala_Lumpur_%282%29.jpg',
+      label: 'St Michael the Archangel Orthodox Church interior',
+      pos: 'center center'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/St._Michael_the_Archangel_Russian_Orthodox_Church%2C_Kuala_Lumpur_%283%29.jpg/1280px-St._Michael_the_Archangel_Russian_Orthodox_Church%2C_Kuala_Lumpur_%283%29.jpg',
+      label: 'Russian Orthodox Church interior, Kuala Lumpur',
+      pos: 'center center'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/St._Michael_the_Archangel_Russian_Orthodox_Church%2C_Kuala_Lumpur_%285%29.jpg/1280px-St._Michael_the_Archangel_Russian_Orthodox_Church%2C_Kuala_Lumpur_%285%29.jpg',
+      label: 'Russian Orthodox Church nave, Kuala Lumpur',
+      pos: 'center 30%'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Turku_Orthodox_Church%2C_interior.JPG/1280px-Turku_Orthodox_Church%2C_interior.JPG',
+      label: 'Turku Orthodox Church interior, Finland',
+      pos: 'center center'
+    },
+
+    /* ICONOSTASES */
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Church_of_the_Dormition_of_the_Theotokos_iconostasis.jpg/1280px-Church_of_the_Dormition_of_the_Theotokos_iconostasis.jpg',
+      label: 'Church of the Dormition of the Theotokos iconostasis',
+      pos: 'center center'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Russian_Orthodox_iconostasis_Deventer.jpg/1280px-Russian_Orthodox_iconostasis_Deventer.jpg',
+      label: 'Russian Orthodox iconostasis, Deventer',
+      pos: 'center center'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Iconostasis%2C_crypt_of_Church_of_Saint_Sava%2C_Belgrade.jpg/1280px-Iconostasis%2C_crypt_of_Church_of_Saint_Sava%2C_Belgrade.jpg',
+      label: 'Iconostasis, crypt of Church of Saint Sava, Belgrade',
+      pos: 'center center'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/St_Michael_The_Archangel_Russian_Orthodox_Church_Malaysia_15_May_2022.jpg/1280px-St_Michael_The_Archangel_Russian_Orthodox_Church_Malaysia_15_May_2022.jpg',
+      label: 'Russian Orthodox Church interior, Malaysia',
+      pos: 'center center'
+    },
+
+    /* CATHEDRAL EXTERIORS & DOMES */
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Hagia_Sophia_Mars_2013.jpg/1280px-Hagia_Sophia_Mars_2013.jpg',
+      label: 'Hagia Sophia, Constantinople',
+      pos: 'center 60%'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Saint_Basil%27s_Cathedral_in_Moscow_%28pixinn.net%29.jpg/1280px-Saint_Basil%27s_Cathedral_in_Moscow_%28pixinn.net%29.jpg',
+      label: "Saint Basil's Cathedral, Moscow",
+      pos: 'center 40%'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Cathedral_of_the_Annunciation_in_Moscow_Kremlin_-_5481.jpg/1280px-Cathedral_of_the_Annunciation_in_Moscow_Kremlin_-_5481.jpg',
+      label: 'Cathedral of the Annunciation, Moscow Kremlin',
+      pos: 'center center'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/20100px-Meteora_kloster_Varlaam.jpg/1280px-20100px-Meteora_kloster_Varlaam.jpg',
+      label: 'Varlaam Monastery, Meteora',
+      pos: 'center 40%'
+    },
+
+    /* BYZANTINE MOSAICS & FRESCOES */
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Hagia_Sophia_Interior_Wikimedia_Commons.jpg/1280px-Hagia_Sophia_Interior_Wikimedia_Commons.jpg',
+      label: 'Hagia Sophia interior',
+      pos: 'center center'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Hagia_Sophia_altar.jpg/1280px-Hagia_Sophia_altar.jpg',
+      label: 'Hagia Sophia altar and apse',
+      pos: 'center center'
+    },
+
+    /* ICONS */
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Icon_of_Christ_Pantocrator%2C_Sinai%2C_6th_century.jpg/800px-Icon_of_Christ_Pantocrator%2C_Sinai%2C_6th_century.jpg',
+      label: 'Christ Pantocrator, 6th century, Sinai',
+      pos: 'center 30%'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Kizhi_church_1.jpg/1280px-Kizhi_church_1.jpg',
+      label: 'Church of the Transfiguration, Kizhi island',
+      pos: 'center 40%'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Iglesia_de_la_Natividad%2C_Bet_Sahour%2C_Palestina%2C_2013-09-12%2C_DD_04.jpg/1280px-Iglesia_de_la_Natividad%2C_Bet_Sahour%2C_Palestina%2C_2013-09-12%2C_DD_04.jpg',
+      label: 'Church of the Nativity interior, Bethlehem',
+      pos: 'center center'
+    },
+
+    /* MONASTERIES */
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Monastery_of_Saint_Naum_02.jpg/1280px-Monastery_of_Saint_Naum_02.jpg',
+      label: 'Monastery of Saint Naum, North Macedonia',
+      pos: 'center center'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Rila_Monastery_Bulgaria.jpg/1280px-Rila_Monastery_Bulgaria.jpg',
+      label: 'Rila Monastery, Bulgaria',
+      pos: 'center 40%'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Mystras_view.jpg/1280px-Mystras_view.jpg',
+      label: 'Byzantine churches, Mystras',
+      pos: 'center center'
+    },
+  ];
+
+  /* ── GRADIENT SCRIM ────────────────────────────────── */
+  var SCRIM = 'linear-gradient(to right, rgba(21,8,4,.88) 0%, rgba(21,8,4,.65) 55%, rgba(21,8,4,.38) 100%)';
+
+  /* ── FIND HERO ELEMENT ─────────────────────────────── */
+  var hero = document.querySelector('.page-hero') || document.querySelector('.giving-hero') || document.querySelector('.hero');
+  if (!hero) return;
+
+  /* ── PICK RANDOM START IMAGE ───────────────────────── */
+  function pick(exclude) {
+    var pool = IMAGES.filter(function(img, i) { return i !== exclude; });
+    return pool[Math.floor(Math.random() * pool.length)];
+  }
+
+  var currentIdx = Math.floor(Math.random() * IMAGES.length);
+  var current = IMAGES[currentIdx];
+
+  /* ── APPLY IMAGE ───────────────────────────────────── */
+  function applyImage(img) {
+    hero.style.backgroundImage = SCRIM + ', url("' + img.url + '")';
+    hero.style.backgroundSize = 'cover';
+    hero.style.backgroundPosition = img.pos || 'center center';
+    hero.style.backgroundRepeat = 'no-repeat';
+    hero.style.transition = 'background-image 1.2s ease-in-out';
+  }
+
+  /* ── CROSSFADE TO NEXT ─────────────────────────────── */
+  function advance() {
+    var nextIdx = Math.floor(Math.random() * IMAGES.length);
+    if (nextIdx === currentIdx) nextIdx = (nextIdx + 1) % IMAGES.length;
+    currentIdx = nextIdx;
+    applyImage(IMAGES[currentIdx]);
+  }
+
+  /* ── PRELOAD THEN SHOW ─────────────────────────────── */
+  var img = new Image();
+  img.onload = function() {
+    applyImage(current);
+    setInterval(advance, 8000); /* rotate every 8 seconds */
+  };
+  img.onerror = function() {
+    /* First image failed — try next */
+    currentIdx = (currentIdx + 1) % IMAGES.length;
+    img.src = IMAGES[currentIdx].url;
+  };
+  img.src = current.url;
+
+})();
+
+</script>
+</body>
+
+</html>

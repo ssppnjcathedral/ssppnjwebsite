@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Liturgical Calendar · Saints Peter &amp; Paul Orthodox Cathedral</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --vellum:#F6F1E8;--vellum-mid:#EDE7DC;--vellum-dark:#E4DDD0;
+  --text:#1E1510;--ink:#2C1F16;
+  --maroon:#7B1D2A;--maroon-deep:#5C1520;
+  --gold:#B88328;--gold-lt:#E8C97A;
+  --stone:#7A6648;--stone-lt:#A89070;
+  --apse:#3B0F18;--verdigris:#3D6B5E;
+  --f-display:'Cormorant Garamond',Georgia,serif;
+  --f-body:'EB Garamond',Georgia,serif;
+  --f-ui:'Cinzel',Georgia,serif;
+  --rule:1px solid var(--maroon);
+  --rule-faint:1px solid rgba(123,29,42,0.14);
+  --rule-hair:1px solid rgba(123,29,42,0.07);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--vellum);color:var(--text);font-family:var(--f-body);font-size:19px;line-height:1.75;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+
+/* ── NAV ── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:300;background:rgba(246,241,232,.97);backdrop-filter:blur(10px);border-bottom:var(--rule-faint)}
+.nav-inner{max-width:1380px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px;padding:0 3rem}
+.nav-logo-name{font-family:var(--f-display);font-weight:500;font-size:1.25rem;color:var(--text);display:block}
+.nav-logo-sub{font-family:var(--f-ui);font-size:.60rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);display:block}
+.nav-links{display:flex;align-items:center;list-style:none}
+.nav-links>li{position:relative}
+.nav-links>li>a{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text);padding:1.1rem .85rem;display:block;transition:color .18s}
+.nav-links>li>a.active,.nav-links>li:hover>a{color:var(--maroon)}
+.nav-drop{position:absolute;top:100%;left:0;background:var(--vellum);border-top:2px solid var(--maroon);border-bottom:var(--rule-faint);border-left:var(--rule-faint);border-right:var(--rule-faint);min-width:200px;padding:.5rem 0;opacity:0;pointer-events:none;transform:translateY(-4px);transition:all .16s;box-shadow:0 8px 28px rgba(28,20,16,.10)}
+.nav-links>li:hover .nav-drop{opacity:1;pointer-events:all;transform:none}
+.nav-drop a{display:block;font-family:var(--f-ui);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text);padding:.5rem 1.4rem;transition:color .14s}
+.nav-drop a:hover{color:var(--maroon)}
+.nav-give{font-family:var(--f-ui);font-size:.70rem;letter-spacing:.14em;text-transform:uppercase;color:var(--vellum);background:var(--maroon);padding:.5rem 1.1rem;transition:background .2s}
+.nav-give:hover{background:var(--maroon-deep)}
+
+/* ── PAGE HERO ── */
+.page-hero{padding-top:60px;background:linear-gradient(to right,rgba(21,8,4,.90) 0%,rgba(21,8,4,.68) 55%,rgba(21,8,4,.42) 100%),url('/images/heroes/schedule.webp') center/cover no-repeat;position:relative;overflow:hidden}
+.page-hero-inner{max-width:1380px;margin:0 auto;padding:4rem 4.5rem 3.5rem;position:relative;z-index:1}
+.page-hero-rosette{position:absolute;right:-120px;top:50%;transform:translateY(-50%);width:480px;height:480px;opacity:.06;pointer-events:none}
+.page-title{font-family:var(--f-display);font-weight:300;font-size:clamp(2.5rem,5vw,4.5rem);line-height:.95;color:#fff;margin:.5rem 0 .75rem}
+.page-title em{font-style:italic}
+.breadcrumb{font-family:var(--f-ui);font-size:.66rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.70);margin-bottom:1.5rem}
+.breadcrumb a{color:rgba(232,201,122,.70)}
+.hero-sub{font-family:var(--f-display);font-style:italic;font-size:1.1rem;color:rgba(255,255,255,.58);margin-top:.5rem}
+
+/* ── CALENDAR CHROME ── */
+.cal-chrome{max-width:1380px;margin:0 auto}
+
+/* SERVICE STRIP */
+.svc-strip{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:var(--rule-faint)}
+.svc-item{padding:1rem 1.5rem;border-right:var(--rule-faint);text-align:center}
+.svc-item:last-child{border-right:none}
+.si-day{font-family:var(--f-ui);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone-lt);display:block;margin-bottom:2px}
+.si-name{font-family:var(--f-display);font-size:1.20rem;color:var(--text);display:block}
+.si-time{font-family:var(--f-ui);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--maroon);display:block;margin-top:2px}
+
+/* SWITCHER BAR */
+.switcher-bar{background:var(--apse);padding:.85rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.view-btns{display:flex;gap:.5rem}
+.vbtn{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--f-ui);font-size:.76rem;letter-spacing:.13em;text-transform:uppercase;padding:.55rem 1.1rem;border:1px solid rgba(255,255,255,.14);color:rgba(246,241,232,.45);background:transparent;cursor:pointer;transition:all .2s}
+.vbtn:hover{border-color:rgba(255,255,255,.28);color:rgba(246,241,232,.75)}
+.vbtn.on{background:rgba(184,131,40,.18);border-color:rgba(184,131,40,.45);color:var(--gold-lt)}
+.vbtn-icon{font-size:13px;line-height:1}
+.sb-nav{display:flex;align-items:center;gap:.5rem}
+.sb-nav-btn{width:28px;height:28px;background:transparent;border:1px solid rgba(255,255,255,.14);color:rgba(255,255,255,.70);cursor:pointer;font-size:.9rem;display:flex;align-items:center;justify-content:center;transition:all .18s}
+.sb-nav-btn:hover{background:rgba(255,255,255,.08);color:#fff}
+.sb-month{font-family:var(--f-ui);font-size:.80rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.62);min-width:130px;text-align:center}
+.sb-today{font-family:var(--f-ui);font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;padding:.32rem .75rem;border:1px solid rgba(255,255,255,.14);color:rgba(255,255,255,.38);background:transparent;cursor:pointer;transition:all .18s}
+.sb-today:hover{border-color:rgba(184,131,40,.45);color:var(--gold-lt)}
+
+/* VIEW CONTAINERS */
+.view{display:none}
+.view.active{display:block}
+
+/* ════════════════════════════
+   VIEW F — SPLIT PANEL
+════════════════════════════ */
+.split{display:grid;grid-template-columns:280px 1fr;min-height:600px;border-bottom:var(--rule-faint)}
+.sp-left{background:var(--apse);display:flex;flex-direction:column;border-right:1px solid rgba(255,255,255,.08)}
+.mini-grid-wrap{padding:.85rem 1.1rem .5rem;flex:1}
+.mg-head{display:grid;grid-template-columns:repeat(7,1fr);margin-bottom:.35rem}
+.mg-dh{font-family:var(--f-ui);font-size:.62rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(255,255,255,.55);text-align:center;padding:.2rem 0}
+.mg-cells{display:grid;grid-template-columns:repeat(7,1fr);gap:2px}
+.mg-cell{aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;border-radius:2px;transition:background .15s}
+.mg-cell.other{pointer-events:none}
+.mg-cell.other .mg-num{color:rgba(255,255,255,.22)}
+.mg-cell.today{background:rgba(184,131,40,.16)}
+.mg-cell.today .mg-num{color:var(--gold-lt)}
+.mg-cell.selected{background:rgba(246,241,232,.18)}
+.mg-cell.selected .mg-num{color:#fff;font-weight:400}
+.mg-cell.sunday .mg-num{color:rgba(212,168,75,.60)}
+.mg-cell:hover:not(.other) .mg-num{color:#fff}
+.mg-num{font-family:var(--f-display);font-weight:300;font-size:1.15rem;line-height:1;color:rgba(255,255,255,.65);transition:color .15s}
+.mg-dot{width:4px;height:4px;border-radius:50%;margin-top:1px}
+.dot-great{background:#E8C97A}
+.dot-major{background:rgba(184,131,40,.60)}
+.dot-theotokos{background:#4A7AAC}
+.dot-fast{background:rgba(61,107,94,.75)}
+.dot-none{opacity:0}
+.mg-svc-pip{width:3px;height:3px;border-radius:50%;background:rgba(184,131,40,.40);margin-top:1px}
+.sp-today-btn{margin:.35rem 1.1rem .75rem;font-family:var(--f-ui);font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;padding:.42rem;border:1px solid rgba(255,255,255,.28);color:rgba(255,255,255,.55);background:transparent;cursor:pointer;transition:all .18s;width:calc(100% - 2.2rem)}
+.sp-today-btn:hover{border-color:rgba(184,131,40,.40);color:var(--gold-lt)}
+.sp-upcoming{border-top:1px solid rgba(255,255,255,.12);padding:.75rem 1.1rem .9rem}
+.sp-up-label{font-family:var(--f-ui);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.55);display:block;margin-bottom:.5rem}
+.sp-up-item{display:flex;align-items:center;gap:.5rem;padding:.35rem 0;border-bottom:1px solid rgba(255,255,255,.10);cursor:pointer}
+.sp-up-item:last-child{border-bottom:none}
+.sp-up-date{font-family:var(--f-ui);font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(212,168,75,.65);width:38px;flex-shrink:0}
+.sp-up-feast{font-family:var(--f-display);font-size:1.10rem;color:rgba(246,241,232,.65);line-height:1.2;flex:1;transition:color .15s}
+.sp-up-feast.great{color:rgba(212,168,75,.82)}
+.sp-up-item:hover .sp-up-feast{color:var(--gold-lt)}
+
+/* DETAIL PANE */
+.sp-right{display:flex;flex-direction:column;background:var(--vellum)}
+.detail-empty-f{display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1;gap:.65rem;min-height:240px;opacity:.45}
+.de-cross{font-size:2rem;color:var(--maroon)}
+.de-txt{font-family:var(--f-display);font-style:italic;font-size:.92rem;color:var(--stone-lt)}
+.dh{padding:1.75rem 2.25rem 1.4rem;border-bottom:var(--rule-faint)}
+.dh-top{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:.9rem}
+.dh-dayname{font-family:var(--f-ui);font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--stone-lt);display:block;margin-bottom:.2rem}
+.dh-date{font-family:var(--f-display);font-weight:300;font-size:3rem;line-height:1;color:var(--text)}
+.dh-date-sub{color:var(--stone-lt);font-size:1.45rem}
+.dh-lvl{font-family:var(--f-ui);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;padding:.30rem .8rem;border:1px solid currentColor;align-self:flex-start;margin-top:.35rem}
+.lv-great{color:var(--maroon);border-color:var(--maroon)}
+.lv-major{color:var(--gold);border-color:rgba(184,131,40,.40)}
+.lv-plain{color:var(--stone-lt);border-color:rgba(122,100,72,.22)}
+.svc-badges{display:flex;gap:.5rem;flex-wrap:wrap}
+.svc-bdg{font-family:var(--f-ui);font-size:.70rem;letter-spacing:.12em;text-transform:uppercase;padding:.35rem .9rem;background:var(--maroon);color:rgba(246,241,232,.90)}
+.svc-bdg.alt{background:var(--vellum-dark);color:var(--stone)}
+.db{padding:1.75rem 2.25rem;display:flex;flex-direction:column;gap:1.75rem}
+.ds-label{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--stone-lt);display:block;margin-bottom:.5rem;padding-bottom:.4rem;border-bottom:var(--rule-hair)}
+.ds-feast{font-family:var(--f-display);font-weight:300;font-size:clamp(1.9rem,3vw,2.6rem);line-height:1.05;color:var(--text)}
+.ds-feast em{font-style:italic;color:var(--maroon)}
+.ds-desc{font-family:var(--f-body);font-style:italic;font-size:1.10rem;color:var(--stone-lt);line-height:1.65;margin-top:.4rem}
+.saints-list{list-style:none;display:flex;flex-direction:column;gap:.35rem}
+.saint-item{display:flex;align-items:baseline;gap:.5rem;font-family:var(--f-display);font-size:1.15rem;color:var(--ink);line-height:1.3}
+.saint-item::before{content:'✦';font-size:.60rem;color:var(--gold);flex-shrink:0}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+.ic{background:var(--vellum-mid);padding:.8rem 1rem;border-left:2px solid rgba(123,29,42,.12)}
+.ic.gold-b{border-left-color:var(--gold)}
+.ic.green-b{border-left-color:var(--verdigris)}
+.ic-lbl{font-family:var(--f-ui);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone-lt);display:block;margin-bottom:.3rem}
+.ic-val{font-family:var(--f-display);font-size:1.15rem;color:var(--text)}
+.rdg-bar{background:var(--vellum-dark);padding:.95rem 1.25rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.rdg-lbl{font-family:var(--f-ui);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone-lt);display:block;margin-bottom:.28rem}
+.rdg-refs{font-family:var(--f-display);font-style:italic;font-size:1.15rem;color:var(--ink);line-height:1.65}
+.rdg-link{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--maroon);border-bottom:1px solid rgba(123,29,42,.22);padding-bottom:.06rem;cursor:pointer;white-space:nowrap;flex-shrink:0}
+.rdg-link:hover{border-color:var(--maroon)}
+
+/* Loading / error */
+.cal-loading{font-family:var(--f-display);font-style:italic;color:var(--stone);padding:.6rem 0;font-size:1.05rem;display:flex;align-items:center;gap:.5rem}
+.cal-loading::before{content:'';display:inline-block;width:10px;height:10px;border:1px solid rgba(123,29,42,.25);border-top-color:var(--maroon);border-radius:50%;animation:spin .8s linear infinite;flex-shrink:0}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ════════════════════════════
+   VIEW G — BY SEASON
+════════════════════════════ */
+.seasons-view{min-height:600px;display:flex;flex-direction:column}
+.season-ribbon{display:flex;overflow-x:auto;border-bottom:2px solid rgba(123,29,42,.12);background:var(--vellum-mid)}
+.season-ribbon::-webkit-scrollbar{height:3px}
+.season-ribbon::-webkit-scrollbar-thumb{background:rgba(123,29,42,.18)}
+.srb{font-family:var(--f-ui);font-size:.74rem;letter-spacing:.11em;text-transform:uppercase;padding:.8rem 1.25rem;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;white-space:nowrap;transition:all .2s;display:flex;flex-direction:column;align-items:center;gap:3px;color:var(--stone-lt);background:none;border-top:none;border-left:none;border-right:none}
+.srb:hover{color:var(--ink)}
+.srb.on{color:var(--maroon);border-bottom-color:var(--maroon)}
+.srb-icon{font-size:12px;line-height:1}
+.srb-dates{font-family:var(--f-ui);font-size:.60rem;letter-spacing:.08em;text-transform:uppercase;color:var(--stone-lt);margin-top:1px}
+.srb.on .srb-dates{color:var(--maroon)}
+.season-body{display:grid;grid-template-columns:1fr 340px;flex:1;border-top:none}
+.season-list{border-right:var(--rule-faint);overflow-y:auto;max-height:550px}
+.season-list::-webkit-scrollbar{width:3px}
+.season-list::-webkit-scrollbar-thumb{background:rgba(123,29,42,.14)}
+.sl-head{padding:.9rem 1.75rem .7rem;background:var(--vellum);border-bottom:var(--rule-faint);position:sticky;top:0;z-index:2}
+.sl-season-name{font-family:var(--f-display);font-weight:300;font-size:1.75rem;color:var(--text);line-height:1}
+.sl-season-name em{font-style:italic;color:var(--maroon)}
+.sl-season-desc{font-family:var(--f-body);font-style:italic;font-size:1.00rem;color:var(--stone-lt);margin-top:.2rem;line-height:1.55}
+.sl-row{display:grid;grid-template-columns:78px 1fr;border-bottom:var(--rule-hair);cursor:pointer;transition:background .14s}
+.sl-row:hover{background:var(--vellum-mid)}
+.sl-row.today-row{background:rgba(123,29,42,.04);border-left:3px solid var(--maroon)}
+.sl-row.sel-row{background:rgba(123,29,42,.05)}
+.sl-row.sun-row{background:rgba(184,131,40,.025)}
+.sl-date{padding:.8rem .9rem;border-right:var(--rule-hair);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.sl-dn{font-family:var(--f-display);font-weight:300;font-size:1.75rem;line-height:1;color:var(--text);display:block}
+.sl-dn.today-n{color:var(--maroon)}
+.sl-dl{font-family:var(--f-ui);font-size:.64rem;letter-spacing:.10em;text-transform:uppercase;color:var(--stone-lt);display:block;margin-top:2px}
+.sl-content{padding:.8rem 1.1rem}
+.sl-feast{font-family:var(--f-display);font-size:1.15rem;color:var(--text);line-height:1.25;margin-bottom:.2rem;display:flex;align-items:center;gap:.38rem}
+.sl-feast.major{color:var(--maroon)}
+.sl-saints{font-family:var(--f-display);font-style:italic;font-size:1.02rem;color:var(--stone-lt);line-height:1.3;margin-bottom:.25rem}
+.sl-pills{display:flex;gap:.35rem;flex-wrap:wrap}
+.sl-pill{font-family:var(--f-ui);font-size:.62rem;letter-spacing:.09em;text-transform:uppercase;padding:3px 8px;background:rgba(123,29,42,.08);color:var(--maroon)}
+.sl-pill.fast{background:rgba(61,107,94,.09);color:var(--verdigris)}
+.sl-pill.tone{background:transparent;color:var(--stone-lt);padding-left:0}
+.season-detail{padding:1.5rem 1.75rem;background:var(--vellum-mid);overflow-y:auto;max-height:550px}
+.sd-empty{font-family:var(--f-display);font-style:italic;color:var(--stone-lt);font-size:.90rem;text-align:center;padding:2.5rem .5rem;opacity:.7}
+.gdot{width:5px;height:5px;border-radius:50%;flex-shrink:0;display:inline-block}
+
+/* ════════════════════════════
+   VIEW C — CLASSIC MONTH/LIST
+════════════════════════════ */
+.classic-view{}
+.cv-ctrl{display:flex;align-items:center;justify-content:space-between;padding:.85rem 2rem;border-bottom:var(--rule-faint);flex-wrap:wrap;gap:.6rem;background:var(--vellum)}
+.cv-month-label{font-family:var(--f-ui);font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;color:var(--text);display:flex;align-items:center;gap:.6rem}
+.cv-nav{width:28px;height:28px;border:var(--rule-faint);background:transparent;color:var(--maroon);cursor:pointer;font-size:.9rem;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.cv-nav:hover{background:var(--maroon);color:var(--vellum);border-color:var(--maroon)}
+.cv-toggle{display:flex;border:var(--rule-faint);overflow:hidden}
+.cvt{font-family:var(--f-ui);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;padding:.42rem 1rem;cursor:pointer;color:var(--stone);background:transparent;border:none;transition:all .15s}
+.cvt.on{background:var(--maroon);color:var(--vellum)}
+
+/* MONTH GRID */
+.cv-month{padding:1.25rem 2rem 1.5rem}
+.cg-head{display:grid;grid-template-columns:repeat(7,1fr);margin-bottom:.4rem}
+.cg-dh{font-family:var(--f-ui);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone-lt);text-align:center;padding:.3rem 0}
+.cg-grid{display:grid;grid-template-columns:repeat(7,1fr);border-top:var(--rule-faint);border-left:var(--rule-faint)}
+.cg-cell{border-right:var(--rule-faint);border-bottom:var(--rule-faint);min-height:86px;padding:.5rem .55rem .45rem;cursor:pointer;transition:background .14s;position:relative}
+.cg-cell:hover{background:var(--vellum-mid)}
+.cg-cell.other-m{opacity:.28;pointer-events:none}
+.cg-cell.today-c{background:rgba(123,29,42,.04)}
+.cg-cell.today-c::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--maroon)}
+.cg-cell.sun-c .cg-num{color:var(--maroon)}
+.cg-num{font-family:var(--f-display);font-weight:300;font-size:1.5rem;line-height:1;color:var(--text);display:block;margin-bottom:.25rem}
+.cg-num.today-n{color:var(--maroon);font-weight:400}
+.cg-feast-txt{font-family:var(--f-ui);font-size:.62rem;letter-spacing:.07em;text-transform:uppercase;color:var(--ink);line-height:1.3;display:block;margin-bottom:2px}
+.cg-feast-txt.cg-major{color:var(--maroon)}
+.cg-svc-lbl{font-family:var(--f-ui);font-size:.60rem;letter-spacing:.08em;text-transform:uppercase;color:var(--maroon);display:block;margin-top:1px}
+.cg-fast-lbl{font-family:var(--f-ui);font-size:.64rem;letter-spacing:.06em;text-transform:uppercase;color:var(--verdigris)}
+
+/* LIST */
+.cv-list{padding:0 2rem 1.5rem;display:none}
+.lv-week{font-family:var(--f-ui);font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--stone-lt);padding:.8rem 0 .45rem;border-bottom:2px solid var(--maroon);margin-bottom:0}
+.lv-row{display:grid;grid-template-columns:88px 1fr;border-bottom:var(--rule-hair);cursor:pointer;transition:background .14s}
+.lv-row:hover{background:var(--vellum-mid)}
+.lv-row.lv-today{background:rgba(123,29,42,.04);border-left:3px solid var(--maroon)}
+.lv-row.lv-sun{background:rgba(184,131,40,.025)}
+.lv-date-col{padding:.85rem .9rem;border-right:var(--rule-hair)}
+.lv-dn{font-family:var(--f-display);font-weight:300;font-size:1.8rem;line-height:1;display:block;color:var(--text)}
+.lv-dn.today-n{color:var(--maroon)}
+.lv-dl{font-family:var(--f-ui);font-size:.66rem;letter-spacing:.10em;text-transform:uppercase;color:var(--stone-lt);display:block;margin-top:2px}
+.lv-content{padding:.85rem 1.1rem}
+.lv-feast{font-family:var(--f-display);font-size:1.22rem;color:var(--text);line-height:1.25;margin-bottom:.2rem;display:flex;align-items:center;gap:.42rem}
+.lv-feast.lv-major{color:var(--maroon)}
+.lv-saints{font-family:var(--f-display);font-style:italic;font-size:1.08rem;color:var(--stone-lt);margin-bottom:.25rem}
+.lv-meta{display:flex;gap:.42rem;flex-wrap:wrap;align-items:center}
+.lv-svc{font-family:var(--f-ui);font-size:.66rem;letter-spacing:.10em;text-transform:uppercase;padding:3px 8px;background:rgba(123,29,42,.09);color:var(--maroon)}
+.lv-fast{font-family:var(--f-ui);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--verdigris)}
+.lv-tone{font-family:var(--f-ui);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--stone-lt)}
+
+/* ── LEGEND ── */
+.legend-bar{background:var(--vellum-mid);border-top:var(--rule-faint);border-bottom:var(--rule-faint);padding:.65rem 2rem;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap}
+.leg-item{display:flex;align-items:center;gap:.4rem;font-family:var(--f-ui);font-size:.72rem;letter-spacing:.09em;text-transform:uppercase;color:var(--stone-lt)}
+.ldot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+
+/* ── FOOTER ── */
+footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:4.5rem 4.5rem 2.5rem}
+.footer-cross{display:block;text-align:center;font-size:1.1rem;color:rgba(184,131,40,.45);letter-spacing:.8em;padding-left:.8em;margin-bottom:4rem}
+.footer-cols{max-width:1380px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:5rem;margin-bottom:3.5rem}
+.footer-col-head{font-family:var(--f-ui);font-size:.62rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(246,241,232,.28);display:block;margin-bottom:1.2rem;padding-bottom:.5rem;border-bottom:1px solid rgba(246,241,232,.06)}
+.footer-name{font-family:var(--f-display);font-weight:400;font-size:1.2rem;color:rgba(246,241,232,.88);line-height:1.3;margin-bottom:.75rem}
+.footer-meta{font-family:var(--f-ui);font-size:.60rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.30);line-height:2.4}
+.footer-meta a{color:rgba(184,131,40,.60);transition:color .2s}
+.footer-meta a:hover{color:var(--gold)}
+.footer-socials{display:flex;gap:1.5rem;margin-top:1.5rem}
+.footer-socials a{font-family:var(--f-ui);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,241,232,.35);transition:color .2s}
+.footer-socials a:hover{color:var(--gold)}
+.footer-nav{list-style:none;display:flex;flex-direction:column}
+.footer-nav li{padding:.38rem 0;border-bottom:1px solid rgba(246,241,232,.04)}
+.footer-nav li:last-child{border-bottom:none}
+.footer-nav a{font-family:var(--f-ui);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,232,.45);transition:color .2s}
+.footer-nav a:hover{color:rgba(246,241,232,.85)}
+.footer-blurb{font-family:var(--f-display);font-style:italic;font-size:.92rem;color:rgba(246,241,232,.42);line-height:1.65;margin-bottom:1.25rem}
+.btn{display:inline-block;font-family:var(--f-ui);font-size:.68rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;padding:.85rem 2.2rem;border:1px solid currentColor;cursor:pointer;transition:all .22s;white-space:nowrap}
+.btn-outline{color:rgba(246,241,232,.70);border-color:rgba(246,241,232,.35)}
+.btn-outline:hover{color:#fff;border-color:#fff}
+.footer-bottom{max-width:1380px;margin:2.5rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(246,241,232,.06);display:flex;justify-content:space-between;align-items:center}
+.footer-copy,.footer-addr{font-family:var(--f-ui);font-size:.60rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.22)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1100px){
+  .split{grid-template-columns:240px 1fr}
+  .season-body{grid-template-columns:1fr 280px}
+  .footer-cols{grid-template-columns:1fr 1fr;gap:3rem}
+}
+@media(max-width:768px){
+  .nav-links{display:none}
+  .page-hero-inner{padding:4rem 1.5rem 3rem}
+  .cal-chrome{padding:0}
+  .svc-strip{grid-template-columns:1fr}
+  .svc-item{border-right:none;border-bottom:var(--rule-faint)}
+  .svc-item:last-child{border-bottom:none}
+  .switcher-bar{padding:.75rem 1.25rem;flex-direction:column;align-items:flex-start;gap:.65rem}
+  .split{grid-template-columns:1fr;min-height:auto}
+  .sp-left{border-right:none;border-bottom:1px solid rgba(255,255,255,.06)}
+  .season-body{grid-template-columns:1fr}
+  .season-detail{display:none}
+  .cv-month{padding:1rem 1.25rem}
+  .cv-list{padding:0 1.25rem 1rem}
+  .cv-ctrl{padding:.75rem 1.25rem}
+  .legend-bar{padding:.6rem 1.25rem}
+  .footer-cols{grid-template-columns:1fr;gap:2.5rem}
+  footer{padding:4rem 1.5rem 2rem}
+  .footer-bottom{flex-direction:column;gap:.75rem;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" style="line-height:1.2">
+      <span class="nav-logo-name">Sts. Peter &amp; Paul</span>
+      <span class="nav-logo-sub">Orthodox Cathedral · Jersey City</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#">About Us ▾</a><div class="nav-drop"><a href="/about-our-church">About Our Church</a><a href="/our-beliefs">Our Beliefs</a><a href="/administration">Administration</a><a href="/gallery">Gallery</a></div></li>
+      <li><a href="#">Inquirers ▾</a><div class="nav-drop"><a href="/about-orthodoxy">About Orthodoxy</a><a href="/our-beliefs">Our Beliefs</a><a href="/videos">Videos</a></div></li>
+      <li><a href="/schedule" class="active">Calendar</a></li>
+      <li><a href="#">Bulletins ▾</a><div class="nav-drop"><a href="/news">News</a><a href="/bulletins">Bulletins</a></div></li>
+      <li><a href="#">Resources ▾</a><div class="nav-drop"><a href="/readings">Readings</a><a href="/videos">Videos</a><a href="/cemeteries">Cemeteries</a></div></li>
+      <li><a href="/contact-us">Contact</a></li>
+    </ul>
+    <a href="https://tithe.ly/give?c=5004259" target="_blank" rel="noopener" class="nav-give">Give</a>
+  </div>
+</nav>
+
+<!-- ── PAGE HERO ── -->
+<div class="page-hero">
+  <svg class="page-hero-rosette" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <circle cx="100" cy="100" r="95" fill="none" stroke="#fff" stroke-width=".6"/>
+    <circle cx="100" cy="100" r="60" fill="none" stroke="#fff" stroke-width=".4"/>
+    <g stroke="#fff" stroke-width=".4" fill="none">
+      <line x1="100" y1="5" x2="100" y2="195"/><line x1="5" y1="100" x2="195" y2="100"/>
+      <line x1="33" y1="33" x2="167" y2="167"/><line x1="167" y1="33" x2="33" y2="167"/>
+    </g>
+  </svg>
+  <div class="page-hero-inner">
+    <p class="breadcrumb"><a href="/">Home</a> · Liturgical Calendar</p>
+    <span style="display:block;font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.20em;text-transform:uppercase;color:rgba(232,201,122,.65);margin-bottom:.5rem">The Liturgical Calendar</span>
+    <div style="display:block;height:1px;background:rgba(232,201,122,.45);margin-bottom:1rem;width:48px"></div>
+    <h1 class="page-title">Services &amp;<br><em>Calendar</em></h1>
+    <p class="hero-sub">OCA Liturgical Calendar · <span id="hero-date-sub">Loading…</span></p>
+  </div>
+</div>
+
+<!-- ── CALENDAR CHROME ── -->
+<div class="cal-chrome">
+
+  <!-- SERVICE STRIP -->
+  <div class="svc-strip">
+    <div class="svc-item"><span class="si-day">Saturday</span><span class="si-name">Vespers</span><span class="si-time">5:00 PM</span></div>
+    <div class="svc-item"><span class="si-day">Sunday</span><span class="si-name">Divine Liturgy</span><span class="si-time">9:30 AM</span></div>
+    <div class="svc-item"><span class="si-day">Mon – Fri</span><span class="si-name">Parish Office</span><span class="si-time">9:00 AM – 5:00 PM</span></div>
+  </div>
+
+  <!-- VIEW SWITCHER -->
+  <div class="switcher-bar">
+    <div class="view-btns">
+      <button class="vbtn on" id="vbtn-f" onclick="setView('f')">
+        <span class="vbtn-icon">⊡</span>Split Panel
+      </button>
+      <button class="vbtn" id="vbtn-g" onclick="setView('g')">
+        <span class="vbtn-icon">✦</span>By Season
+      </button>
+      <button class="vbtn" id="vbtn-c" onclick="setView('c')">
+        <span class="vbtn-icon">▦</span>Month / List
+      </button>
+    </div>
+    <div class="sb-nav">
+      <button class="sb-nav-btn" onclick="navAll(-1)">‹</button>
+      <span class="sb-month" id="sb-month">Loading…</span>
+      <button class="sb-nav-btn" onclick="navAll(1)">›</button>
+      <button class="sb-today" onclick="gotoToday()">Today</button>
+    </div>
+  </div>
+
+  <!-- ══ VIEW F: SPLIT PANEL ══ -->
+  <div class="view active" id="view-f">
+    <div class="split">
+      <div class="sp-left">
+        <div class="mini-grid-wrap">
+          <div class="mg-head">
+            <div class="mg-dh">S</div><div class="mg-dh">M</div><div class="mg-dh">T</div>
+            <div class="mg-dh">W</div><div class="mg-dh">T</div><div class="mg-dh">F</div>
+            <div class="mg-dh">S</div>
+          </div>
+          <div class="mg-cells" id="mg-cells"></div>
+        </div>
+        <button class="sp-today-btn" onclick="gotoToday()">Return to Today</button>
+        <div class="sp-upcoming">
+          <span class="sp-up-label">Upcoming Feasts</span>
+          <div id="sp-upcoming"><span class="cal-loading">Loading…</span></div>
+        </div>
+      </div>
+      <div class="sp-right" id="sp-right">
+        <div class="detail-empty-f">
+          <span class="de-cross">✝</span>
+          <span class="de-txt">Select a date to view the liturgical details</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ VIEW G: BY SEASON ══ -->
+  <div class="view" id="view-g">
+    <div class="seasons-view">
+      <div class="season-ribbon" id="season-ribbon"></div>
+      <div class="season-body">
+        <div class="season-list" id="season-list">
+          <div style="padding:1.5rem;font-family:var(--f-display);font-style:italic;color:var(--stone)">Loading season data…</div>
+        </div>
+        <div class="season-detail" id="season-detail">
+          <div class="sd-empty">Select a day from the list to view its details</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ VIEW C: CLASSIC MONTH/LIST ══ -->
+  <div class="view" id="view-c">
+    <div class="classic-view">
+      <div class="cv-ctrl">
+        <div class="cv-month-label">
+          <button class="cv-nav" onclick="navAll(-1)">‹</button>
+          <span id="cv-month-lbl">Loading…</span>
+          <button class="cv-nav" onclick="navAll(1)">›</button>
+        </div>
+        <div class="cv-toggle">
+          <button class="cvt on" id="cvt-month" onclick="setCvView('month')">Month</button>
+          <button class="cvt" id="cvt-list" onclick="setCvView('14-Day List')">14-Day List</button>
+        </div>
+      </div>
+      <div class="cv-month" id="cv-month"></div>
+      <div class="cv-list" id="cv-list"></div>
+    </div>
+  </div>
+
+  <!-- LEGEND -->
+  <div class="legend-bar">
+    <div class="leg-item"><div class="ldot" style="background:var(--maroon)"></div>Great Feast / Pascha</div>
+    <div class="leg-item"><div class="ldot" style="background:#4A7AAC"></div>Theotokos Feast</div>
+    <div class="leg-item"><div class="ldot" style="background:var(--gold)"></div>Major Saint / Polyeleos</div>
+    <div class="leg-item"><div class="ldot" style="background:var(--verdigris)"></div>Strict Fast</div>
+    <div class="leg-item"><div class="ldot" style="background:rgba(184,131,40,.45)"></div>Service today</div>
+  </div>
+
+</div><!-- end cal-chrome -->
+
+<!-- ── FOOTER ── -->
+<footer>
+  <span class="footer-cross">✦ ✝ ✦</span>
+  <div class="footer-cols">
+    <div>
+      <span class="footer-col-head">Saints Peter &amp; Paul Orthodox Cathedral</span>
+      <p class="footer-name">Sts. Peter &amp; Paul<br>Orthodox Cathedral</p>
+      <p class="footer-meta">
+        Diocese of New York &amp; New Jersey<br>
+        <a href="https://nynjoca.org" target="_blank">nynjoca.org</a><br>
+        Orthodox Church in America<br>
+        <a href="https://oca.org" target="_blank">oca.org</a>
+      </p>
+      <div class="footer-socials">
+        <a href="#" target="_blank">Facebook</a>
+        <a href="#" target="_blank">Instagram</a>
+      </div>
+    </div>
+    <div>
+      <span class="footer-col-head">Navigate</span>
+      <ul class="footer-nav">
+        <li><a href="/about-our-church">About Our Church</a></li>
+        <li><a href="/administration">Administration</a></li>
+        <li><a href="/schedule">Liturgical Calendar</a></li>
+        <li><a href="/gallery">Gallery</a></li>
+        <li><a href="/about-orthodoxy">About Orthodoxy</a></li>
+        <li><a href="/our-beliefs">Our Beliefs</a></li>
+        <li><a href="/videos">Videos</a></li>
+        <li><a href="/readings">Daily Readings</a></li>
+        <li><a href="/saint-of-the-day">Saint of the Day</a></li>
+        <li><a href="/bulletins">Bulletins</a></li>
+        <li><a href="/cemeteries">Cemeteries</a></li>
+        <li><a href="/contact-us">Contact Us</a></li>
+      </ul>
+    </div>
+    <div>
+      <span class="footer-col-head">Visit Us</span>
+      <p class="footer-blurb">Whether you're visiting for the first time or looking to become part of our parish family — you are welcome here.</p>
+      <a href="/contact-us" class="btn btn-outline" style="margin-bottom:2rem;display:inline-block">Contact the Parish</a>
+      <span class="footer-col-head" style="margin-top:.25rem">Service Times</span>
+      <p class="footer-meta" style="line-height:2.4">
+        Vespers · Saturdays 5:00 PM<br>
+        Divine Liturgy · Sundays 9:30 AM<br>
+        Office · Mon–Fri 9:00 AM–5:00 PM
+      </p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© Saints Peter &amp; Paul Orthodox Cathedral. All Rights Reserved.</p>
+    <p class="footer-addr">109 Grand Street · Jersey City, NJ 07302 · (201) 434-1986</p>
+  </div>
+</footer>
+
+<script>
+/* ═══════════════════════════════════════
+   CONSTANTS
+═══════════════════════════════════════ */
+const MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
+const MONTHS_S=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const DAYS_L=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+const DAYS_S=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+const ROMAN={1:'I',2:'II',3:'III',4:'IV',5:'V',6:'VI',7:'VII',8:'VIII'};
+
+const today=new Date();
+let cur=new Date(today.getFullYear(),today.getMonth(),1);
+let selectedDate=null;
+let currentView='f';
+let cvSubView='month';
+let activeSeason=null;
+let activeSeasDate=null;
+
+/* Cache: key → OrthoCal data object */
+const CACHE={};
+
+/* ═══════════════════════════════════════
+   ORTHOCAL API
+═══════════════════════════════════════ */
+function dateKey(d){return`${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`;}
+
+async function fetchDay(date){
+  const k=dateKey(date);
+  if(CACHE[k]) return CACHE[k];
+  try{
+    const url=`https://orthocal.info/api/oca/${date.getFullYear()}/${date.getMonth()+1}/${date.getDate()}/`;
+    const resp=await fetch(url);
+    if(!resp.ok) return null;
+    const data=await resp.json();
+    CACHE[k]=data;
+    return data;
+  }catch{return null;}
+}
+
+async function fetchMonth(year,month){
+  const first=new Date(year,month,1);
+  const last=new Date(year,month+1,0);
+  const promises=[];
+  for(let d=1;d<=last.getDate();d++){
+    promises.push(fetchDay(new Date(year,month,d)));
+  }
+  return Promise.all(promises);
+}
+
+/* ═══════════════════════════════════════
+   DATA HELPERS
+═══════════════════════════════════════ */
+function isToday(d){return d.toDateString()===today.toDateString();}
+function isSun(d){return d.getDay()===0;}
+function isSat(d){return d.getDay()===6;}
+function isWedFri(d){return d.getDay()===3||d.getDay()===5;}
+
+function dotClass(data){
+  if(!data) return isWedFri(new Date())?'dot-fast':'dot-none';
+  const lv=data.feast_level||0;
+  if(data.is_theotokos_feast||lv>=7) return lv>=7?'dot-great':'dot-theotokos';
+  if(lv>=5) return'dot-great';
+  if(lv>=3) return'dot-major';
+  const fl=data.fast_level||0;
+  if(fl>=2) return'dot-fast';
+  return'dot-none';
+}
+
+function dotClassForDate(date,data){
+  if(!data){
+    if(isWedFri(date)) return'dot-fast';
+    return'dot-none';
+  }
+  return dotClass(data);
+}
+
+function levelLabel(data){
+  if(!data) return{cls:'lv-plain',txt:'Weekday'};
+  const lv=data.feast_level||0;
+  if(lv>=8) return{cls:'lv-great',txt:'Feast of Feasts'};
+  if(lv>=7) return{cls:'lv-great',txt:'Great Feast'};
+  if(lv>=6) return{cls:'lv-great',txt:'Polyeleos'};
+  if(lv>=5) return{cls:'lv-major',txt:'Major Feast'};
+  if(lv>=3) return{cls:'lv-major',txt:'Feast Day'};
+  if(lv>=2) return{cls:'lv-plain',txt:'Minor Feast'};
+  return{cls:'lv-plain',txt:'Weekday'};
+}
+
+function getFeast(data){
+  if(!data) return null;
+  return data.summary_title||(data.titles&&data.titles[0])||null;
+}
+
+function getSaints(data){
+  if(!data||!data.saints) return[];
+  return data.saints.slice(0,4).map(s=>s.name||s).filter(Boolean);
+}
+
+function getTone(data){
+  if(!data||!data.tone) return null;
+  return`Tone ${ROMAN[data.tone]||data.tone}`;
+}
+
+function getFast(data,date){
+  if(!data){
+    if(isWedFri(date)) return'Strict Fast (Wednesday/Friday)';
+    return null;
+  }
+  const parts=[data.fast_level_desc,data.fast_exception_desc].filter(Boolean);
+  return parts.join(' — ')||null;
+}
+
+function getReadings(data){
+  if(!data||!data.readings||!data.readings.length) return[];
+  return data.readings.slice(0,4).map(r=>r.display).filter(Boolean);
+}
+
+/* ═══════════════════════════════════════
+   HEADER / MONTH LABEL
+═══════════════════════════════════════ */
+function updateHeaders(){
+  const lbl=`${MONTHS[cur.getMonth()]} ${cur.getFullYear()}`;
+  document.getElementById('sb-month').textContent=lbl;
+  const cvl=document.getElementById('cv-month-lbl');
+  if(cvl) cvl.textContent=lbl;
+  const heroSub=document.getElementById('hero-date-sub');
+  if(heroSub){
+    const d=today;
+    heroSub.textContent=`${DAYS_L[d.getDay()]}, ${MONTHS[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
+  }
+}
+
+/* ═══════════════════════════════════════
+   VIEW SWITCHER
+═══════════════════════════════════════ */
+function setView(v){
+  currentView=v;
+  ['f','g','c'].forEach(x=>{
+    document.getElementById('view-'+x).classList.toggle('active',x===v);
+    document.getElementById('vbtn-'+x).classList.toggle('on',x===v);
+  });
+  if(v==='f') renderViewF();
+  if(v==='g') renderViewG();
+  if(v==='c') renderViewC();
+}
+
+function navAll(dir){
+  cur.setMonth(cur.getMonth()+dir);
+  updateHeaders();
+  if(currentView==='f') buildMiniGrid();
+  if(currentView==='g') buildSeasonList(activeSeason);
+  if(currentView==='c') buildClassic();
+}
+
+function gotoToday(){
+  cur=new Date(today.getFullYear(),today.getMonth(),1);
+  updateHeaders();
+  if(currentView==='f'){buildMiniGrid();selectDateF(new Date(today));}
+  if(currentView==='g') buildSeasons();
+  if(currentView==='c') buildClassic();
+}
+
+/* ═══════════════════════════════════════
+   VIEW F — SPLIT PANEL
+═══════════════════════════════════════ */
+function renderViewF(){
+  buildMiniGrid();
+  if(selectedDate) renderDetailF(selectedDate);
+}
+
+async function buildMiniGrid(){
+  const y=cur.getFullYear(),m=cur.getMonth();
+  const first=new Date(y,m,1);
+  const last=new Date(y,m+1,0);
+  const pad=first.getDay();
+  const cells=document.getElementById('mg-cells');
+  cells.innerHTML='';
+
+  /* Previous month padding */
+  for(let i=0;i<pad;i++){
+    const pd=new Date(y,m,1-pad+i);
+    const c=document.createElement('div');
+    c.className='mg-cell other';
+    c.innerHTML=`<span class="mg-num">${pd.getDate()}</span>`;
+    cells.appendChild(c);
+  }
+
+  /* Current month cells — render immediately, update dots async */
+  const dayEls=[];
+  for(let d=1;d<=last.getDate();d++){
+    const date=new Date(y,m,d);
+    let cls='mg-cell';
+    if(isToday(date)) cls+=' today';
+    if(isSun(date)) cls+=' sunday';
+    if(selectedDate&&date.toDateString()===selectedDate.toDateString()) cls+=' selected';
+    const c=document.createElement('div');
+    c.className=cls;
+    c.dataset.d=d;
+    c.innerHTML=`<span class="mg-num">${d}</span><span class="mg-dot dot-none" id="mgd-${y}-${m}-${d}"></span>${isSun(date)||isSat(date)?'<span class="mg-svc-pip"></span>':''}`;
+    c.onclick=(()=>{const dt=new Date(date);return()=>selectDateF(dt);})();
+    cells.appendChild(c);
+    dayEls.push({date,el:c});
+  }
+
+  /* Trailing padding */
+  const rem=(7-((pad+last.getDate())%7))%7;
+  for(let i=1;i<=rem;i++){
+    const c=document.createElement('div');
+    c.className='mg-cell other';
+    c.innerHTML=`<span class="mg-num">${i}</span>`;
+    cells.appendChild(c);
+  }
+
+  /* Fetch month data async and update dots */
+  fetchMonth(y,m).then(results=>{
+    results.forEach((data,i)=>{
+      const d=i+1;
+      const dotEl=document.getElementById(`mgd-${y}-${m}-${d}`);
+      if(!dotEl) return;
+      const date=new Date(y,m,d);
+      const cls=dotClassForDate(date,data);
+      dotEl.className=`mg-dot ${cls}`;
+    });
+  });
+
+  buildUpcomingFeasts();
+}
+
+async function buildUpcomingFeasts(){
+  const ul=document.getElementById('sp-upcoming');
+  ul.innerHTML='<span class="cal-loading">Loading…</span>';
+  const items=[];
+  const t=new Date(today);
+  for(let i=0;i<=120;i++){
+    const d=new Date(t);d.setDate(d.getDate()+i);
+    const data=await fetchDay(d);
+    if(data&&(data.feast_level||0)>=5){
+      items.push({date:d,data});
+      if(items.length>=5) break;
+    }
+  }
+  ul.innerHTML='';
+  items.forEach(({date,data})=>{
+    const feast=getFeast(data)||'Feast';
+    const isGreat=(data.feast_level||0)>=6;
+    const div=document.createElement('div');
+    div.className='sp-up-item';
+    div.innerHTML=`<span class="sp-up-date">${MONTHS_S[date.getMonth()]} ${date.getDate()}</span><span class="sp-up-feast${isGreat?' great':''}">${feast.split('—')[0].trim()}</span>`;
+    div.onclick=()=>{
+      cur=new Date(date.getFullYear(),date.getMonth(),1);
+      updateHeaders();
+      buildMiniGrid();
+      selectDateF(new Date(date));
+    };
+    ul.appendChild(div);
+  });
+  if(!items.length) ul.innerHTML='<span style="font-family:var(--f-display);font-style:italic;font-size:.82rem;color:rgba(255,255,255,.55)">No upcoming feasts found</span>';
+}
+
+function selectDateF(date){
+  selectedDate=date;
+  buildMiniGrid();
+  renderDetailF(date);
+}
+
+async function renderDetailF(date){
+  document.getElementById('sp-right').innerHTML=`<div class="db" style="padding-top:2rem"><span class="cal-loading">Loading liturgical data…</span></div>`;
+  const data=await fetchDay(date);
+  const sun=isSun(date);const sat=isSat(date);
+  const lvl=levelLabel(data);
+  const feast=getFeast(data)||'Weekday';
+  const feastHtml=feast.includes('—')?feast.replace('—','</em> —<br><em>'):`<em>${feast}</em>`;
+  const saints=getSaints(data);
+  const tone=getTone(data);
+  const fast=getFast(data,date);
+  const readings=getReadings(data);
+  const desc=data&&data.description?data.description:'';
+
+  let svcBadges='';
+  if(sun) svcBadges+=`<span class="svc-bdg">Divine Liturgy · 9:30 AM</span>`;
+  if(sat) svcBadges+=`<span class="svc-bdg">Vespers · 5:00 PM</span>`;
+  if(!sun&&!sat&&data&&feast.toLowerCase().includes('presanctified')) svcBadges+=`<span class="svc-bdg">Presanctified Liturgy · Evening</span>`;
+  if(!svcBadges) svcBadges=`<span class="svc-bdg alt">No parish service today</span>`;
+
+  const saintsHtml=saints.length
+    ?saints.map(s=>`<li class="saint-item">${s}</li>`).join('')
+    :`<li class="saint-item" style="color:var(--stone-lt);font-style:italic;font-family:var(--f-body)">Saints data loads from the OCA Calendar when the site is hosted.</li>`;
+
+  const toneHtml=tone?`<div class="ic gold-b"><span class="ic-lbl">Liturgical Tone</span><div class="ic-val">${tone}</div></div>`:'';
+  const fastHtml=`<div class="ic${fast&&fast.toLowerCase().includes('strict')?' green-b':''}"><span class="ic-lbl">Fasting Rule</span><div class="ic-val" style="font-size:.88rem">${fast||'No fast'}</div></div>`;
+
+  const readingsHtml=readings.length
+    ?`<div class="rdg-bar"><div><span class="rdg-lbl">Appointed Readings</span><div class="rdg-refs">${readings.join('<br>')}</div></div><a href="/readings" class="rdg-link">Read Today →</a></div>`
+    :`<div class="rdg-bar"><div><span class="rdg-lbl">Appointed Readings</span><div class="rdg-refs" style="color:var(--stone-lt);font-style:italic;font-family:var(--f-body)">Available on the <a href="https://www.oca.org/readings" target="_blank" style="color:var(--maroon)">OCA Calendar</a></div></div></div>`;
+
+  document.getElementById('sp-right').innerHTML=`
+    <div class="dh">
+      <div class="dh-top">
+        <div>
+          <span class="dh-dayname">${DAYS_L[date.getDay()]}</span>
+          <div class="dh-date">${MONTHS[date.getMonth()]} ${date.getDate()}<span class="dh-date-sub">, ${date.getFullYear()}</span></div>
+        </div>
+        <span class="dh-lvl ${lvl.cls}">${lvl.txt}</span>
+      </div>
+      <div class="svc-badges">${svcBadges}</div>
+    </div>
+    <div class="db">
+      <div>
+        <span class="ds-label">Feast of the Day</span>
+        <div class="ds-feast">${feastHtml}</div>
+        ${desc?`<p class="ds-desc">${desc}</p>`:''}
+      </div>
+      <div>
+        <span class="ds-label">Commemorations</span>
+        <ul class="saints-list">${saintsHtml}</ul>
+      </div>
+      <div class="info-grid">${toneHtml}${fastHtml}</div>
+      ${readingsHtml}
+    </div>`;
+}
+
+/* ═══════════════════════════════════════
+   VIEW G — BY SEASON
+═══════════════════════════════════════ */
+const SEASONS=[
+  {id:'pre-lent',name:'Pre-Lenten',icon:'☽',dates:'Feb – Mar 15',color:'#7A6648',desc:'The preparatory Sundays before Great Lent — Publican & Pharisee, Prodigal Son, Meatfare, and Cheesefare.',start:new Date(today.getFullYear(),1,1),end:new Date(today.getFullYear(),2,15)},
+  {id:'lent',name:'Great Lent',icon:'✝',dates:'Mar – Apr',color:'#7B1D2A',desc:'Forty days of fasting, prayer, and preparation, culminating in Lazarus Saturday and Palm Sunday.',start:new Date(today.getFullYear(),2,16),end:new Date(today.getFullYear(),3,25)},
+  {id:'holyweek',name:'Holy Week',icon:'✦',dates:'Late Apr',color:'#4A1019',desc:'The most solemn week of the year — from Palm Sunday through the midnight Paschal service.',start:new Date(today.getFullYear(),3,26),end:new Date(today.getFullYear(),4,3)},
+  {id:'pascha',name:'Pascha',icon:'☀',dates:'May – Jun',color:'#B88328',desc:'Fifty days of Paschal joy from the Resurrection through Pentecost. No fasting, no prostrations.',start:new Date(today.getFullYear(),4,4),end:new Date(today.getFullYear(),5,22)},
+  {id:'pentecost',name:'Pentecost',icon:'❋',dates:'Jun – Nov',color:'#3D6B5E',desc:'The long season of Pentecost, including the Apostles Fast, Transfiguration, Dormition, and the feasts of summer and autumn.',start:new Date(today.getFullYear(),5,23),end:new Date(today.getFullYear(),10,14)},
+  {id:'nativity',name:'Nativity Fast',icon:'★',dates:'Nov 15 – Dec 24',color:'#1B3A5C',desc:'Forty days of fasting in preparation for the Nativity of our Lord, God and Saviour Jesus Christ.',start:new Date(today.getFullYear(),10,15),end:new Date(today.getFullYear(),11,24)},
+];
+
+function renderViewG(){
+  buildSeasons();
+}
+
+function buildSeasons(){
+  const ribbon=document.getElementById('season-ribbon');
+  ribbon.innerHTML='';
+  let auto=SEASONS[1];
+  SEASONS.forEach(s=>{if(today>=s.start&&today<=s.end)auto=s;});
+  SEASONS.forEach(s=>{
+    const btn=document.createElement('button');
+    btn.className='srb'+(activeSeason&&activeSeason.id===s.id?' on':'');
+    btn.innerHTML=`<span class="srb-icon">${s.icon}</span><span>${s.name}</span><span class="srb-dates">${s.dates}</span>`;
+    btn.onclick=()=>selectSeason(s);
+    ribbon.appendChild(btn);
+  });
+  if(!activeSeason) selectSeason(auto);
+  else selectSeason(activeSeason);
+}
+
+async function buildSeasonList(season){
+  if(!season) return;
+  const list=document.getElementById('season-list');
+  list.innerHTML=`<div class="sl-head"><div class="sl-season-name"><em>${season.name}</em></div><div class="sl-season-desc">${season.desc}</div></div><div style="padding:1rem 1.75rem;font-family:var(--f-display);font-style:italic;color:var(--stone)"><span class="cal-loading">Loading season data…</span></div>`;
+
+  const start=new Date(season.start);
+  const end=new Date(season.end);
+  const dates=[];
+  for(let d=new Date(start);d<=end;d.setDate(d.getDate()+1)) dates.push(new Date(d));
+
+  /* Fetch all days — throttle to avoid hammering the API */
+  const results=[];
+  for(let i=0;i<dates.length;i++){
+    results.push(await fetchDay(dates[i]));
+    if(i%7===6) await new Promise(r=>setTimeout(r,50));
+  }
+
+  list.innerHTML=`<div class="sl-head" style="position:sticky;top:0;z-index:2;background:var(--vellum)"><div class="sl-season-name"><em>${season.name}</em></div><div class="sl-season-desc">${season.desc}</div></div>`;
+
+  dates.forEach((date,i)=>{
+    const data=results[i];
+    const feast=getFeast(data)||(isSun(date)?'Sunday':(isSat(date)?'Saturday':'Weekday'));
+    const saints=getSaints(data).slice(0,2);
+    const tone=getTone(data);
+    const fast=getFast(data,date);
+    const isMajor=data&&(data.feast_level||0)>=5;
+    const dot=dotClassForDate(date,data);
+    const dotColor=dot==='dot-great'?'var(--gold)':dot==='dot-theotokos'?'#4A7AAC':dot==='dot-major'?'rgba(184,131,40,.55)':dot==='dot-fast'?'var(--verdigris)':'transparent';
+    const dotEl=dot!=='dot-none'?`<span class="gdot" style="background:${dotColor};width:5px;height:5px;border-radius:50%;display:inline-block;flex-shrink:0"></span>`:'';
+
+    const pillsHtml=[
+      isSun(date)?'<span class="sl-pill">Liturgy 9:30</span>':'',
+      isSat(date)?'<span class="sl-pill">Vespers 5:00</span>':'',
+      fast&&fast.toLowerCase().includes('strict')?'<span class="sl-pill fast">Strict Fast</span>':'',
+      tone?`<span class="sl-pill tone">${tone}</span>`:'',
+    ].filter(Boolean).join('');
+
+    let rowCls='sl-row';
+    if(isToday(date)) rowCls+=' today-row';
+    if(isSun(date)) rowCls+=' sun-row';
+    if(activeSeasDate&&date.toDateString()===activeSeasDate.toDateString()) rowCls+=' sel-row';
+
+    const row=document.createElement('div');
+    row.className=rowCls;
+    row.id=`sl-${dateKey(date)}`;
+    row.innerHTML=`
+      <div class="sl-date">
+        <span class="sl-dn${isToday(date)?' today-n':''}">${date.getDate()}</span>
+        <span class="sl-dl">${DAYS_S[date.getDay()]} ${MONTHS_S[date.getMonth()]}</span>
+      </div>
+      <div class="sl-content">
+        <div class="sl-feast${isMajor?' major':''}">${dotEl}${feast}</div>
+        ${saints.length?`<div class="sl-saints">${saints.join(', ')}</div>`:''}
+        <div class="sl-pills">${pillsHtml}</div>
+      </div>`;
+    row.onclick=(()=>{const dt=new Date(date);const d=data;const r=row;return()=>selectSeasDate(dt,d,r);})();
+    list.appendChild(row);
+  });
+
+  /* Scroll today into view */
+  const todayRow=list.querySelector('.today-row');
+  if(todayRow) setTimeout(()=>todayRow.scrollIntoView({block:'nearest'}),100);
+}
+
+function selectSeason(season){
+  activeSeason=season;
+  activeSeasDate=null;
+  document.querySelectorAll('.srb').forEach((b,i)=>b.classList.toggle('on',SEASONS[i]&&SEASONS[i].id===season.id));
+  document.getElementById('season-detail').innerHTML='<div class="sd-empty">Select a day from the list to view its details</div>';
+  buildSeasonList(season);
+}
+
+function selectSeasDate(date,data,rowEl){
+  activeSeasDate=date;
+  document.querySelectorAll('.sl-row').forEach(r=>r.classList.remove('sel-row'));
+  if(rowEl) rowEl.classList.add('sel-row');
+
+  const feast=getFeast(data)||(isSun(date)?'Sunday Liturgy':(isSat(date)?'Saturday Vespers':'Weekday'));
+  const feastHtml=feast.includes('—')?feast.replace('—','</em> —<br><em>'):`<em>${feast}</em>`;
+  const saints=getSaints(data);
+  const tone=getTone(data);
+  const fast=getFast(data,date);
+  const readings=getReadings(data);
+  const sun=isSun(date);const sat=isSat(date);
+
+  let svc='';
+  if(sun) svc+=`<span class="svc-bdg" style="font-size:.68rem;padding:.30rem .8rem">Liturgy · 9:30 AM</span>`;
+  if(sat) svc+=`<span class="svc-bdg" style="font-size:.68rem;padding:.30rem .8rem">Vespers · 5:00 PM</span>`;
+
+  document.getElementById('season-detail').innerHTML=`
+    <span style="font-family:var(--f-ui);font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--stone-lt);display:block;margin-bottom:.5rem">${DAYS_L[date.getDay()]}, ${MONTHS[date.getMonth()]} ${date.getDate()}</span>
+    <div style="font-family:var(--f-display);font-weight:300;font-size:1.6rem;line-height:1.08;color:var(--text);margin-bottom:.6rem">${feastHtml}</div>
+    ${svc?`<div style="display:flex;gap:.4rem;margin-bottom:.75rem;flex-wrap:wrap">${svc}</div>`:''}
+    ${saints.length?`<div style="margin-bottom:.85rem"><span style="font-family:var(--f-ui);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone-lt);display:block;margin-bottom:.35rem;padding-bottom:.3rem;border-bottom:var(--rule-hair)">Commemorations</span><ul style="list-style:none">${saints.map(s=>`<li style="font-family:var(--f-display);font-size:1.15rem;color:var(--ink);padding:.2rem 0;display:flex;align-items:baseline;gap:.4rem"><span style="color:var(--gold);font-size:.60rem">✦</span>${s}</li>`).join('')}</ul></div>`:''}
+    <div style="background:var(--vellum);padding:.75rem .9rem;border-left:2px solid ${fast&&fast.toLowerCase().includes('strict')?'var(--verdigris)':'rgba(123,29,42,.15)'};margin-bottom:.75rem">
+      <span style="font-family:var(--f-ui);font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;color:var(--stone-lt);display:block;margin-bottom:.2rem">Fasting Rule</span>
+      <span style="font-family:var(--f-display);font-size:.90rem;color:var(--ink)">${fast||'No fast'}</span>
+    </div>
+    ${tone?`<div style="font-family:var(--f-ui);font-size:.60rem;letter-spacing:.13em;text-transform:uppercase;color:var(--stone-lt);margin-bottom:.75rem">${tone}</div>`:''}
+    ${readings.length?`<div style="border-top:var(--rule-hair);padding-top:.75rem"><span style="font-family:var(--f-ui);font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;color:var(--stone-lt);display:block;margin-bottom:.3rem">Appointed Readings</span><div style="font-family:var(--f-display);font-style:italic;font-size:1.10rem;color:var(--ink);line-height:1.7">${readings.join('<br>')}</div><a href="/readings" style="font-family:var(--f-ui);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--maroon);border-bottom:1px solid rgba(123,29,42,.22);margin-top:.5rem;display:inline-block">Read Today →</a></div>`:''}
+  `;
+}
+
+/* ═══════════════════════════════════════
+   VIEW C — CLASSIC MONTH / 14-DAY LIST
+═══════════════════════════════════════ */
+function renderViewC(){buildClassic();}
+
+function setCvView(v){
+  cvSubView=v;
+  document.getElementById('cvt-month').classList.toggle('on',v==='month');
+  document.getElementById('cvt-list').classList.toggle('on',v!=='month');
+  document.getElementById('cv-month').style.display=v==='month'?'block':'none';
+  document.getElementById('cv-list').style.display=v!=='month'?'block':'none';
+  buildClassic();
+}
+
+function buildClassic(){
+  updateHeaders();
+  if(cvSubView==='month') buildClassicMonth();
+  else buildClassicList();
+}
+
+async function buildClassicMonth(){
+  const y=cur.getFullYear(),m=cur.getMonth();
+  const first=new Date(y,m,1);
+  const last=new Date(y,m+1,0);
+  const pad=first.getDay();
+
+  let html='<div class="cg-head">';
+  ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].forEach(d=>html+=`<div class="cg-dh">${d}</div>`);
+  html+='</div><div class="cg-grid">';
+  for(let i=0;i<pad;i++){
+    const pd=new Date(y,m,1-pad+i);
+    html+=`<div class="cg-cell other-m"><span class="cg-num">${pd.getDate()}</span></div>`;
+  }
+  for(let d=1;d<=last.getDate();d++){
+    const date=new Date(y,m,d);
+    const k=dateKey(date);
+    const data=CACHE[k]||null;
+    const sun=isSun(date);const sat=isSat(date);
+    const feast=data?getFeast(data):'';
+    const short=feast&&feast.length>28?feast.substring(0,26)+'…':feast;
+    const isMajor=data&&(data.feast_level||0)>=5;
+    const isStrict=data&&(data.fast_level||0)>=3;
+    html+=`<div class="cg-cell${isToday(date)?' today-c':''}${sun?' sun-c':''}">
+      <span class="cg-num${isToday(date)?' today-n':''}">${d}</span>
+      ${short?`<span class="cg-feast-txt${isMajor?' cg-major':''}">${short}</span>`:''}
+      ${sun?`<span class="cg-svc-lbl">Liturgy 9:30</span>`:''}
+      ${sat&&!sun?`<span class="cg-svc-lbl">Vespers 5:00</span>`:''}
+      ${isStrict?`<span class="cg-fast-lbl">✦ strict fast</span>`:''}
+    </div>`;
+  }
+  const rem=(7-((pad+last.getDate())%7))%7;
+  for(let i=1;i<=rem;i++) html+=`<div class="cg-cell other-m"><span class="cg-num">${i}</span></div>`;
+  html+='</div>';
+  document.getElementById('cv-month').innerHTML=html;
+
+  /* Async update feast text as data arrives */
+  fetchMonth(y,m).then(results=>{
+    buildClassicMonth();
+  });
+}
+
+async function buildClassicList(){
+  const listEl=document.getElementById('cv-list');
+  listEl.innerHTML=`<div style="padding:1.5rem;font-family:var(--f-display);font-style:italic;color:var(--stone)"><span class="cal-loading">Loading 14-day view…</span></div>`;
+
+  const t=new Date(today);
+  const dates=Array.from({length:14},(_,i)=>{const d=new Date(t);d.setDate(d.getDate()+i);return d;});
+  const results=await Promise.all(dates.map(d=>fetchDay(d)));
+
+  let html='';
+  let lastWeek=-1;
+  dates.forEach((date,i)=>{
+    const data=results[i];
+    const weekNum=Math.floor(i/7);
+    if(weekNum!==lastWeek){
+      html+=`<div class="lv-week">Week of ${MONTHS[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}</div>`;
+      lastWeek=weekNum;
+    }
+    const feast=getFeast(data)||(isSun(date)?'Sunday':(isSat(date)?'Saturday':'Weekday'));
+    const saints=getSaints(data).slice(0,2);
+    const tone=getTone(data);
+    const fast=getFast(data,date);
+    const sun=isSun(date);const sat=isSat(date);
+    const isMajor=data&&(data.feast_level||0)>=5;
+    const dot=dotClassForDate(date,data);
+    const dotColor=dot==='dot-great'?'var(--gold)':dot==='dot-theotokos'?'#4A7AAC':dot==='dot-major'?'rgba(184,131,40,.50)':dot==='dot-fast'?'var(--verdigris)':'transparent';
+    const dotEl=dot!=='dot-none'?`<span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:${dotColor};flex-shrink:0"></span>`:'';
+
+    html+=`<div class="lv-row${isToday(date)?' lv-today':''}${sun?' lv-sun':''}">
+      <div class="lv-date-col">
+        <span class="lv-dn${isToday(date)?' today-n':''}">${date.getDate()}</span>
+        <span class="lv-dl">${DAYS_L[date.getDay()]}</span>
+      </div>
+      <div class="lv-content">
+        <div class="lv-feast${isMajor?' lv-major':''}">${dotEl}${feast}</div>
+        ${saints.length?`<div class="lv-saints">${saints.join(', ')}</div>`:''}
+        <div class="lv-meta">
+          ${sun?'<span class="lv-svc">Liturgy 9:30 AM</span>':''}
+          ${sat?'<span class="lv-svc">Vespers 5:00 PM</span>':''}
+          ${fast?`<span class="lv-fast">✦ ${fast}</span>`:''}
+          ${tone?`<span class="lv-tone">${tone}</span>`:''}
+        </div>
+      </div>
+    </div>`;
+  });
+  listEl.innerHTML=html;
+}
+
+/* ═══════════════════════════════════════
+   BOOT
+═══════════════════════════════════════ */
+(function init(){
+  updateHeaders();
+  buildMiniGrid();
+  selectDateF(new Date(today));
+  buildSeasons();
+  buildClassicMonth();
+})();
+</script>
+<!-- Hero Image Rotator -->
+<script>
+/* ═══════════════════════════════════════════════════════
+   SSPP HERO IMAGE ROTATOR
+   Curated Wikimedia Commons Orthodox imagery
+   Public domain / CC-licensed — free to use
+   Picks one random image per page load, crossfades on a timer
+═══════════════════════════════════════════════════════ */
+
+(function() {
+
+  /* ── CURATED IMAGE POOL ──────────────────────────────
+     All from Wikimedia Commons. Each has:
+     - url:   Direct image URL (1280px preview — fast load, sharp enough for hero)
+     - label: What it depicts
+     - pos:   CSS background-position for best crop
+  ─────────────────────────────────────────────────────── */
+  var IMAGES = [
+
+    /* CHURCH INTERIORS — NAVES & ICONOSTASES */
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Interior_of_Greek_Orthodox_church_18th_century_section.JPG/1280px-Interior_of_Greek_Orthodox_church_18th_century_section.JPG',
+      label: 'Greek Orthodox church interior, 18th century',
+      pos: 'center center'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Romanian_Orthodox_Monastery_%2849074404227%29.jpg/1280px-Romanian_Orthodox_Monastery_%2849074404227%29.jpg',
+      label: 'Romanian Orthodox Monastery interior',
+      pos: 'center center'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Saint_Nicholas_Orthodox_church_in_Bangkok_%2810%29.jpg/1280px-Saint_Nicholas_Orthodox_church_in_Bangkok_%2810%29.jpg',
+      label: 'Saint Nicholas Orthodox Church, Bangkok',
+      pos: 'center center'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Saint_Nicholas_Orthodox_church_in_Bangkok_%287%29.jpg/1280px-Saint_Nicholas_Orthodox_church_in_Bangkok_%287%29.jpg',
+      label: 'Saint Nicholas Orthodox Church interior, Bangkok',
+      pos: 'center 40%'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/St._Michael_the_Archangel_Russian_Orthodox_Church%2C_Kuala_Lumpur_%281%29.jpg/1280px-St._Michael_the_Archangel_Russian_Orthodox_Church%2C_Kuala_Lumpur_%281%29.jpg',
+      label: 'St Michael the Archangel Russian Orthodox Church, Kuala Lumpur',
+      pos: 'center center'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/St._Michael_the_Archangel_Russian_Orthodox_Church%2C_Kuala_Lumpur_%282%29.jpg/1280px-St._Michael_the_Archangel_Russian_Orthodox_Church%2C_Kuala_Lumpur_%282%29.jpg',
+      label: 'St Michael the Archangel Orthodox Church interior',
+      pos: 'center center'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/St._Michael_the_Archangel_Russian_Orthodox_Church%2C_Kuala_Lumpur_%283%29.jpg/1280px-St._Michael_the_Archangel_Russian_Orthodox_Church%2C_Kuala_Lumpur_%283%29.jpg',
+      label: 'Russian Orthodox Church interior, Kuala Lumpur',
+      pos: 'center center'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/St._Michael_the_Archangel_Russian_Orthodox_Church%2C_Kuala_Lumpur_%285%29.jpg/1280px-St._Michael_the_Archangel_Russian_Orthodox_Church%2C_Kuala_Lumpur_%285%29.jpg',
+      label: 'Russian Orthodox Church nave, Kuala Lumpur',
+      pos: 'center 30%'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Turku_Orthodox_Church%2C_interior.JPG/1280px-Turku_Orthodox_Church%2C_interior.JPG',
+      label: 'Turku Orthodox Church interior, Finland',
+      pos: 'center center'
+    },
+
+    /* ICONOSTASES */
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Church_of_the_Dormition_of_the_Theotokos_iconostasis.jpg/1280px-Church_of_the_Dormition_of_the_Theotokos_iconostasis.jpg',
+      label: 'Church of the Dormition of the Theotokos iconostasis',
+      pos: 'center center'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Russian_Orthodox_iconostasis_Deventer.jpg/1280px-Russian_Orthodox_iconostasis_Deventer.jpg',
+      label: 'Russian Orthodox iconostasis, Deventer',
+      pos: 'center center'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Iconostasis%2C_crypt_of_Church_of_Saint_Sava%2C_Belgrade.jpg/1280px-Iconostasis%2C_crypt_of_Church_of_Saint_Sava%2C_Belgrade.jpg',
+      label: 'Iconostasis, crypt of Church of Saint Sava, Belgrade',
+      pos: 'center center'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/St_Michael_The_Archangel_Russian_Orthodox_Church_Malaysia_15_May_2022.jpg/1280px-St_Michael_The_Archangel_Russian_Orthodox_Church_Malaysia_15_May_2022.jpg',
+      label: 'Russian Orthodox Church interior, Malaysia',
+      pos: 'center center'
+    },
+
+    /* CATHEDRAL EXTERIORS & DOMES */
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Hagia_Sophia_Mars_2013.jpg/1280px-Hagia_Sophia_Mars_2013.jpg',
+      label: 'Hagia Sophia, Constantinople',
+      pos: 'center 60%'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Saint_Basil%27s_Cathedral_in_Moscow_%28pixinn.net%29.jpg/1280px-Saint_Basil%27s_Cathedral_in_Moscow_%28pixinn.net%29.jpg',
+      label: "Saint Basil's Cathedral, Moscow",
+      pos: 'center 40%'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Cathedral_of_the_Annunciation_in_Moscow_Kremlin_-_5481.jpg/1280px-Cathedral_of_the_Annunciation_in_Moscow_Kremlin_-_5481.jpg',
+      label: 'Cathedral of the Annunciation, Moscow Kremlin',
+      pos: 'center center'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/20100px-Meteora_kloster_Varlaam.jpg/1280px-20100px-Meteora_kloster_Varlaam.jpg',
+      label: 'Varlaam Monastery, Meteora',
+      pos: 'center 40%'
+    },
+
+    /* BYZANTINE MOSAICS & FRESCOES */
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Hagia_Sophia_Interior_Wikimedia_Commons.jpg/1280px-Hagia_Sophia_Interior_Wikimedia_Commons.jpg',
+      label: 'Hagia Sophia interior',
+      pos: 'center center'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Hagia_Sophia_altar.jpg/1280px-Hagia_Sophia_altar.jpg',
+      label: 'Hagia Sophia altar and apse',
+      pos: 'center center'
+    },
+
+    /* ICONS */
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Icon_of_Christ_Pantocrator%2C_Sinai%2C_6th_century.jpg/800px-Icon_of_Christ_Pantocrator%2C_Sinai%2C_6th_century.jpg',
+      label: 'Christ Pantocrator, 6th century, Sinai',
+      pos: 'center 30%'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Kizhi_church_1.jpg/1280px-Kizhi_church_1.jpg',
+      label: 'Church of the Transfiguration, Kizhi island',
+      pos: 'center 40%'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Iglesia_de_la_Natividad%2C_Bet_Sahour%2C_Palestina%2C_2013-09-12%2C_DD_04.jpg/1280px-Iglesia_de_la_Natividad%2C_Bet_Sahour%2C_Palestina%2C_2013-09-12%2C_DD_04.jpg',
+      label: 'Church of the Nativity interior, Bethlehem',
+      pos: 'center center'
+    },
+
+    /* MONASTERIES */
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Monastery_of_Saint_Naum_02.jpg/1280px-Monastery_of_Saint_Naum_02.jpg',
+      label: 'Monastery of Saint Naum, North Macedonia',
+      pos: 'center center'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Rila_Monastery_Bulgaria.jpg/1280px-Rila_Monastery_Bulgaria.jpg',
+      label: 'Rila Monastery, Bulgaria',
+      pos: 'center 40%'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Mystras_view.jpg/1280px-Mystras_view.jpg',
+      label: 'Byzantine churches, Mystras',
+      pos: 'center center'
+    },
+  ];
+
+  /* ── GRADIENT SCRIM ────────────────────────────────── */
+  var SCRIM = 'linear-gradient(to right, rgba(21,8,4,.88) 0%, rgba(21,8,4,.65) 55%, rgba(21,8,4,.38) 100%)';
+
+  /* ── FIND HERO ELEMENT ─────────────────────────────── */
+  var hero = document.querySelector('.page-hero') || document.querySelector('.giving-hero') || document.querySelector('.hero');
+  if (!hero) return;
+
+  /* ── PICK RANDOM START IMAGE ───────────────────────── */
+  function pick(exclude) {
+    var pool = IMAGES.filter(function(img, i) { return i !== exclude; });
+    return pool[Math.floor(Math.random() * pool.length)];
+  }
+
+  var currentIdx = Math.floor(Math.random() * IMAGES.length);
+  var current = IMAGES[currentIdx];
+
+  /* ── APPLY IMAGE ───────────────────────────────────── */
+  function applyImage(img) {
+    hero.style.backgroundImage = SCRIM + ', url("' + img.url + '")';
+    hero.style.backgroundSize = 'cover';
+    hero.style.backgroundPosition = img.pos || 'center center';
+    hero.style.backgroundRepeat = 'no-repeat';
+    hero.style.transition = 'background-image 1.2s ease-in-out';
+  }
+
+  /* ── CROSSFADE TO NEXT ─────────────────────────────── */
+  function advance() {
+    var nextIdx = Math.floor(Math.random() * IMAGES.length);
+    if (nextIdx === currentIdx) nextIdx = (nextIdx + 1) % IMAGES.length;
+    currentIdx = nextIdx;
+    applyImage(IMAGES[currentIdx]);
+  }
+
+  /* ── PRELOAD THEN SHOW ─────────────────────────────── */
+  var img = new Image();
+  img.onload = function() {
+    applyImage(current);
+    setInterval(advance, 8000); /* rotate every 8 seconds */
+  };
+  img.onerror = function() {
+    /* First image failed — try next */
+    currentIdx = (currentIdx + 1) % IMAGES.length;
+    img.src = IMAGES[currentIdx].url;
+  };
+  img.src = current.url;
+
+})();
+
+</script>
+</body>
+</html>

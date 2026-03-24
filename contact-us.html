@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Contact Us · Saints Peter & Paul Orthodox Cathedral</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{--vellum:#F6F1E8;--vellum-mid:#EDE7DC;--text:#1E1510;--ink:#2C1F16;--maroon:#7B1D2A;--maroon-deep:#5C1520;--gold:#B88328;--gold-lt:#E8C97A;--verdigris:#3D6B5E;--stone:#7A6648;--apse:#3B0F18;--f-display:'Cormorant Garamond',Georgia,serif;--f-body:'EB Garamond',Georgia,serif;--f-ui:'Cinzel',Georgia,serif;--rule:1px solid var(--maroon);--rule-faint:1px solid rgba(123,29,42,0.14);--rule-hair:1px solid rgba(123,29,42,0.07)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{background:var(--vellum);color:var(--text);font-family:var(--f-body);font-size:19px;line-height:1.75;overflow-x:hidden;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}
+.rubric{display:block;font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.20em;text-transform:uppercase;color:var(--stone);margin-bottom:.5rem}
+.rubric.light{color:rgba(246,241,232,.55)}
+.rubric-rule{display:block;height:1px;background:var(--maroon);margin-bottom:1rem;width:48px}
+.rubric-voice{display:block;font-family:var(--f-display);font-style:italic;font-size:1.15rem;color:var(--maroon);margin-top:.4rem;line-height:1.4}
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(246,241,232,.97);backdrop-filter:blur(10px);border-bottom:var(--rule-faint)}
+.nav-inner{max-width:1380px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px;padding:0 3rem}
+.nav-logo-name{font-family:var(--f-display);font-weight:500;font-size:1.25rem;color:var(--text);display:block}
+.nav-logo-sub{font-family:var(--f-ui);font-size:.60rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);display:block}
+.nav-links{display:flex;align-items:center;list-style:none}
+.nav-links>li{position:relative}
+.nav-links>li>a{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text);padding:1.1rem .85rem;display:block;transition:color .18s}
+.nav-links>li:hover>a{color:var(--maroon)}
+.nav-drop{position:absolute;top:100%;left:0;background:var(--vellum);border-top:2px solid var(--maroon);border-bottom:var(--rule-faint);border-left:var(--rule-faint);border-right:var(--rule-faint);min-width:200px;padding:.5rem 0;opacity:0;pointer-events:none;transform:translateY(-4px);transition:all .16s;box-shadow:0 8px 28px rgba(28,20,16,.10)}
+.nav-links>li:hover .nav-drop{opacity:1;pointer-events:all;transform:none}
+.nav-drop a{display:block;font-family:var(--f-ui);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text);padding:.5rem 1.4rem;transition:color .14s}
+.nav-drop a:hover{color:var(--maroon)}
+.nav-give{font-family:var(--f-ui);font-size:.70rem;letter-spacing:.14em;text-transform:uppercase;color:var(--vellum);background:var(--maroon);padding:.5rem 1.1rem;transition:background .2s}
+.nav-give:hover{background:var(--maroon-deep)}
+.page-hero{padding-top:60px;background:linear-gradient(to right,rgba(59,15,24,.88) 0%,rgba(59,15,24,.62) 55%,rgba(59,15,24,.38) 100%),url('/images/heroes/contact-us.webp') center/cover no-repeat;position:relative;overflow:hidden}
+.page-hero-inner{max-width:1380px;margin:0 auto;padding:4rem 4.5rem 3.5rem}
+.page-hero-rosette{position:absolute;right:-120px;top:50%;transform:translateY(-50%);width:480px;height:480px;opacity:.06;pointer-events:none}
+.page-title{font-family:var(--f-display);font-weight:300;font-size:clamp(2.5rem,5vw,4.5rem);line-height:.95;color:#fff;margin:.5rem 0 .75rem}
+.page-title em{font-style:italic}
+.breadcrumb{font-family:var(--f-ui);font-size:.66rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:1.5rem}
+.breadcrumb a{color:rgba(232,201,122,.70)}
+.chapter-bar{background:var(--maroon);padding:.65rem 4rem;display:flex;align-items:center;justify-content:space-between}
+.cbar-text{font-family:var(--f-ui);font-size:.70rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:rgba(246,241,232,.60)}
+.cbar-text.bright{color:rgba(246,241,232,.90)}
+
+/* INFO STRIP */
+.info-strip{background:var(--vellum-mid);border-bottom:var(--rule-faint)}
+.info-strip-inner{max-width:1380px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);border-top:var(--rule-faint)}
+.info-block{padding:2rem 2.5rem;border-right:var(--rule-faint)}
+.info-block:last-child{border-right:none}
+.info-label{font-family:var(--f-ui);font-size:.68rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--maroon);display:block;margin-bottom:.4rem}
+.info-value{font-family:var(--f-display);font-size:1rem;color:var(--text);line-height:1.5}
+.info-value a{color:var(--maroon)}
+
+/* MAIN GRID */
+.contact-body{max-width:1380px;margin:0 auto;padding:5rem 4.5rem;display:grid;grid-template-columns:1fr 1fr;gap:6rem}
+
+/* CONTACT FORM */
+.contact-form-section{}
+.form-group{margin-bottom:1.5rem}
+.form-label{font-family:var(--f-ui);font-size:.68rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.5rem}
+.form-input,.form-select,.form-textarea{width:100%;background:transparent;border:1px solid rgba(123,29,42,.25);color:var(--text);font-family:var(--f-body);font-size:1rem;padding:.75rem 1rem;outline:none;transition:border-color .2s;border-radius:0}
+.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--maroon)}
+.form-input::placeholder,.form-textarea::placeholder{color:rgba(30,21,16,.35)}
+.form-textarea{min-height:140px;resize:vertical;line-height:1.7}
+.form-select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237B1D2A' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center}
+.form-submit{font-family:var(--f-ui);font-size:.74rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--vellum);background:var(--maroon);border:1px solid var(--maroon);padding:.9rem 2.5rem;cursor:pointer;transition:background .2s;width:100%}
+.form-submit:hover{background:var(--maroon-deep)}
+.form-note{font-family:var(--f-body);font-style:italic;font-size:.88rem;color:var(--stone);margin-top:.75rem;line-height:1.6}
+
+/* MAP + INFO */
+.contact-info-section{}
+.map-frame{width:100%;height:300px;border:var(--rule-faint);margin-bottom:2.5rem;overflow:hidden}
+.map-frame iframe{width:100%;height:100%;border:none}
+.map-placeholder{width:100%;height:300px;background:linear-gradient(135deg,#EDE7DC,#E8E0D0);border:var(--rule-faint);display:flex;align-items:center;justify-content:center;margin-bottom:2.5rem;cursor:pointer;transition:opacity .2s}
+.map-placeholder:hover{opacity:.85}
+.map-placeholder-inner{text-align:center}
+.map-icon{font-size:2rem;color:var(--maroon);display:block;margin-bottom:.5rem}
+.map-link{font-family:var(--f-ui);font-size:.70rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon)}
+.info-detail-row{display:flex;gap:1.25rem;padding:1rem 0;border-bottom:var(--rule-hair);align-items:flex-start}
+.info-detail-row:last-child{border-bottom:none}
+.info-icon{font-size:1.1rem;color:var(--maroon);flex-shrink:0;width:24px;margin-top:.1rem}
+.info-detail-label{font-family:var(--f-ui);font-size:.50rem;letter-spacing:.16em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.2rem}
+.info-detail-value{font-family:var(--f-display);font-size:1rem;color:var(--text);line-height:1.5}
+
+/* SERVICE SCHEDULE */
+.schedule-block{background:var(--vellum-mid);border:var(--rule-faint);border-top:2px solid var(--maroon);padding:2rem;margin-top:2rem}
+.schedule-row{display:flex;justify-content:space-between;align-items:baseline;padding:.6rem 0;border-bottom:var(--rule-hair)}
+.schedule-row:last-child{border-bottom:none}
+.sched-day{font-family:var(--f-display);font-size:1.05rem;color:var(--text)}
+.sched-time{font-family:var(--f-ui);font-size:.52rem;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon)}
+
+footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:3rem 4.5rem 2rem}
+.footer-cross{display:block;text-align:center;font-size:1.1rem;color:rgba(184,131,40,.45);letter-spacing:.8em;padding-left:.8em;margin-bottom:2.5rem}
+.footer-bottom{max-width:1380px;margin:2rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(246,241,232,.06);display:flex;justify-content:space-between}
+.footer-copy,.footer-addr{font-family:var(--f-ui);font-size:.64rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.22)}
+@media(max-width:1024px){.contact-body{grid-template-columns:1fr;gap:3rem}.info-strip-inner{grid-template-columns:1fr 1fr}}
+@media(max-width:768px){.nav-links{display:none}.page-hero-inner{padding:4rem 1.5rem 3rem}.contact-body{padding:3rem 1.5rem}.chapter-bar{padding:.65rem 1.5rem}.info-strip-inner{grid-template-columns:1fr}.info-block{border-right:none;border-bottom:var(--rule-faint)}}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" style="line-height:1.2"><span class="nav-logo-name">Sts. Peter &amp; Paul</span><span class="nav-logo-sub">Orthodox Cathedral · Jersey City</span></a>
+    <ul class="nav-links">
+      <li><a href="#">About Us ▾</a><div class="nav-drop"><a href="/about-our-church">About Our Church</a><a href="/our-beliefs">Our Beliefs</a><a href="/administration">Administration</a><a href="/gallery">Gallery</a></div></li>
+      <li><a href="#">Inquirers ▾</a><div class="nav-drop"><a href="/about-orthodoxy">About Orthodoxy</a><a href="/our-beliefs">Our Beliefs</a><a href="/videos">Videos</a></div></li>
+      <li><a href="/schedule">Calendar</a></li>
+      <li><a href="#">Bulletins ▾</a><div class="nav-drop"><a href="/news">News</a><a href="/bulletins">Bulletins</a></div></li>
+      <li><a href="#">Resources ▾</a><div class="nav-drop"><a href="/readings">Readings</a><a href="/videos">Videos</a><a href="/cemeteries">Cemeteries</a></div></li>
+      <li><a href="/contact-us">Contact</a></li>
+    </ul>
+    <a href="https://tithe.ly/give?c=5004259" target="_blank" class="nav-give">Give</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <svg class="page-hero-rosette" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="100" cy="100" r="95" fill="none" stroke="#fff" stroke-width=".6"/><circle cx="100" cy="100" r="60" fill="none" stroke="#fff" stroke-width=".4"/><g stroke="#fff" stroke-width=".4" fill="none"><line x1="100" y1="5" x2="100" y2="195"/><line x1="5" y1="100" x2="195" y2="100"/><line x1="33" y1="33" x2="167" y2="167"/><line x1="167" y1="33" x2="33" y2="167"/></g></svg>
+  <div class="page-hero-inner">
+    <p class="breadcrumb"><a href="/">Home</a> · Contact Us</p>
+    <span class="rubric light">Get in Touch</span>
+    <div class="rubric-rule" style="background:rgba(232,201,122,.6)"></div>
+    <h1 class="page-title">Contact<br><em>the Cathedral</em></h1>
+    <p style="font-family:var(--f-display);font-style:italic;font-size:1.1rem;color:rgba(255,255,255,.65);margin-top:.5rem">We'd love to hear from you — whether you're visiting for the first time or becoming part of the family</p>
+  </div>
+</div>
+<div class="chapter-bar"><span class="cbar-text bright">Contact &amp; Location</span><span class="cbar-text">109 Grand Street · Jersey City, NJ 07302</span></div>
+
+<div class="info-strip">
+  <div class="info-strip-inner">
+    <div class="info-block">
+      <span class="info-label">Address</span>
+      <div class="info-value">109 Grand Street<br>Jersey City, NJ 07302</div>
+    </div>
+    <div class="info-block">
+      <span class="info-label">Phone</span>
+      <div class="info-value"><a href="tel:2014341986">(201) 434-1986</a></div>
+    </div>
+    <div class="info-block">
+      <span class="info-label">Email</span>
+      <div class="info-value"><a href="/cdn-cgi/l/email-protection#9be8e8ebebf5f1dbfcf6faf2f7b5f8f4f6"><span class="__cf_email__" data-cfemail="c7b4b4b7b7a9ad87a0aaa6aeabe9a4a8aa">[email&#160;protected]</span></a></div>
+    </div>
+    <div class="info-block">
+      <span class="info-label">Office Hours</span>
+      <div class="info-value">Monday–Friday<br>9:00 AM – 5:00 PM</div>
+    </div>
+  </div>
+</div>
+
+<div class="contact-body">
+  <!-- FORM -->
+  <div class="contact-form-section">
+    <span class="rubric">Send a Message</span>
+    <div class="rubric-rule"></div>
+    <h2 style="font-family:var(--f-display);font-weight:400;font-size:2rem;color:var(--text);margin:.5rem 0 .5rem">How can we help you?</h2>
+    <span class="rubric-voice" style="margin-bottom:2rem">Fr. Solomon and the parish staff will respond within one to two business days</span>
+
+    <!-- Netlify form -->
+    <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/contact-success">
+      <input type="hidden" name="form-name" value="contact"/>
+      <p style="display:none"><input name="bot-field"/></p>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+        <div class="form-group">
+          <label class="form-label" for="first-name">First Name</label>
+          <input class="form-input" type="text" id="first-name" name="first-name" placeholder="Given name" required/>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="last-name">Last Name</label>
+          <input class="form-input" type="text" id="last-name" name="last-name" placeholder="Family name" required/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="email">Email Address</label>
+        <input class="form-input" type="email" id="email" name="email" placeholder="your@email.com" required/>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="phone">Phone Number (optional)</label>
+        <input class="form-input" type="tel" id="phone" name="phone" placeholder="(201) 000-0000"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="subject">Subject</label>
+        <select class="form-select form-input" id="subject" name="subject">
+          <option value="">Select a topic…</option>
+          <option value="general">General Inquiry</option>
+          <option value="visiting">Planning to Visit</option>
+          <option value="inquirer">Inquiring About Orthodoxy</option>
+          <option value="baptism">Baptism / Chrismation</option>
+          <option value="marriage">Marriage</option>
+          <option value="memorial">Memorial Service / Funeral</option>
+          <option value="confession">Confession / Pastoral Meeting</option>
+          <option value="register">Register with the Parish</option>
+          <option value="bulletin">Bulletin / Newsletter</option>
+          <option value="cemetery">Cemetery Inquiry</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="message">Message</label>
+        <textarea class="form-textarea" id="message" name="message" placeholder="How can we help you? Feel free to share as much or as little as you'd like." required></textarea>
+      </div>
+      <button type="submit" class="form-submit">Send Message</button>
+      <p class="form-note">Your information is held in confidence and will not be shared with third parties. We look forward to connecting with you.</p>
+    </form>
+  </div>
+
+  <!-- INFO + MAP -->
+  <div class="contact-info-section">
+    <span class="rubric">Find Us</span>
+    <div class="rubric-rule"></div>
+    <h2 style="font-family:var(--f-display);font-weight:400;font-size:2rem;color:var(--text);margin:.5rem 0 1.5rem">111–113 Grand Street</h2>
+
+    <!-- Google Maps embed -->
+    <div class="map-frame">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.8!2d-74.0478!3d40.7178!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c250a0b1d5f6b7%3A0x0!2s111+Grand+St%2C+Jersey+City%2C+NJ+07302!5e0!3m2!1sen!2sus!4v1234567890"
+        width="100%" height="300" style="border:0" allowfullscreen loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Saints Peter and Paul Orthodox Cathedral map">
+      </iframe>
+    </div>
+
+    <div style="border-top:2px solid var(--maroon);padding-top:1.5rem">
+      <div class="info-detail-row">
+        <span class="info-icon">📍</span>
+        <div>
+          <span class="info-detail-label">Parish &amp; Office Address</span>
+          <div class="info-detail-value">109 Grand Street<br>Jersey City, NJ 07302</div>
+        </div>
+      </div>
+      <div class="info-detail-row">
+        <span class="info-icon">📞</span>
+        <div>
+          <span class="info-detail-label">Phone</span>
+          <div class="info-detail-value"><a href="tel:2014341986" style="color:var(--maroon)">(201) 434-1986</a></div>
+        </div>
+      </div>
+      <div class="info-detail-row">
+        <span class="info-icon">✉</span>
+        <div>
+          <span class="info-detail-label">Email</span>
+          <div class="info-detail-value"><a href="/cdn-cgi/l/email-protection#93e0e0e3e3fdf9d3f4fef2faffbdf0fcfe" style="color:var(--maroon)"><span class="__cf_email__" data-cfemail="22515152524c4862454f434b4e0c414d4f">[email&#160;protected]</span></a></div>
+        </div>
+      </div>
+      <div class="info-detail-row">
+        <span class="info-icon">⛪</span>
+        <div>
+          <span class="info-detail-label">Acting Rector</span>
+          <div class="info-detail-value">Rev. Solomon Longo</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="schedule-block">
+      <span class="rubric" style="margin-bottom:.75rem">Service Schedule</span>
+      <div class="schedule-row">
+        <span class="sched-day">Vespers</span>
+        <span class="sched-time">Saturdays · 5:00 PM</span>
+      </div>
+      <div class="schedule-row">
+        <span class="sched-day">Divine Liturgy</span>
+        <span class="sched-time">Sundays · 9:30 AM</span>
+      </div>
+      <div class="schedule-row">
+        <span class="sched-day">Parish Office</span>
+        <span class="sched-time">Mon–Fri · 9:00 AM – 5:00 PM</span>
+      </div>
+      <div class="schedule-row">
+        <span class="sched-day">Feast Day Services</span>
+        <span class="sched-time">Announced in Bulletin</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <span class="footer-cross">✦ ✝ ✦</spa
+<!-- Hero Image Rotator -->
+<script>
+/* ═══════════════════════════════════════════════════════
+   SSPP HERO IMAGE ROTATOR
+   Curated Wikimedia Commons Orthodox imagery
+   Public domain / CC-licensed — free to use
+   Picks one random image per page load, crossfades on a timer
+═══════════════════════════════════════════════════════ */
+
+(function() {
+
+  /* ── CURATED IMAGE POOL ──────────────────────────────
+     All from Wikimedia Commons. Each has:
+     - url:   Direct image URL (1280px preview — fast load, sharp enough for hero)
+     - label: What it depicts
+     - pos:   CSS background-position for best crop
+  ─────────────────────────────────────────────────────── */
+  var IMAGES = [
+
+    /* CHURCH INTERIORS — NAVES & ICONOSTASES */
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Interior_of_Greek_Orthodox_church_18th_century_section.JPG/1280px-Interior_of_Greek_Orthodox_church_18th_century_section.JPG',
+      label: 'Greek Orthodox church interior, 18th century',
+      pos: 'center center'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Romanian_Orthodox_Monastery_%2849074404227%29.jpg/1280px-Romanian_Orthodox_Monastery_%2849074404227%29.jpg',
+      label: 'Romanian Orthodox Monastery interior',
+      pos: 'center center'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Saint_Nicholas_Orthodox_church_in_Bangkok_%2810%29.jpg/1280px-Saint_Nicholas_Orthodox_church_in_Bangkok_%2810%29.jpg',
+      label: 'Saint Nicholas Orthodox Church, Bangkok',
+      pos: 'center center'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Saint_Nicholas_Orthodox_church_in_Bangkok_%287%29.jpg/1280px-Saint_Nicholas_Orthodox_church_in_Bangkok_%287%29.jpg',
+      label: 'Saint Nicholas Orthodox Church interior, Bangkok',
+      pos: 'center 40%'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/St._Michael_the_Archangel_Russian_Orthodox_Church%2C_Kuala_Lumpur_%281%29.jpg/1280px-St._Michael_the_Archangel_Russian_Orthodox_Church%2C_Kuala_Lumpur_%281%29.jpg',
+      label: 'St Michael the Archangel Russian Orthodox Church, Kuala Lumpur',
+      pos: 'center center'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/St._Michael_the_Archangel_Russian_Orthodox_Church%2C_Kuala_Lumpur_%282%29.jpg/1280px-St._Michael_the_Archangel_Russian_Orthodox_Church%2C_Kuala_Lumpur_%282%29.jpg',
+      label: 'St Michael the Archangel Orthodox Church interior',
+      pos: 'center center'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/St._Michael_the_Archangel_Russian_Orthodox_Church%2C_Kuala_Lumpur_%283%29.jpg/1280px-St._Michael_the_Archangel_Russian_Orthodox_Church%2C_Kuala_Lumpur_%283%29.jpg',
+      label: 'Russian Orthodox Church interior, Kuala Lumpur',
+      pos: 'center center'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/St._Michael_the_Archangel_Russian_Orthodox_Church%2C_Kuala_Lumpur_%285%29.jpg/1280px-St._Michael_the_Archangel_Russian_Orthodox_Church%2C_Kuala_Lumpur_%285%29.jpg',
+      label: 'Russian Orthodox Church nave, Kuala Lumpur',
+      pos: 'center 30%'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Turku_Orthodox_Church%2C_interior.JPG/1280px-Turku_Orthodox_Church%2C_interior.JPG',
+      label: 'Turku Orthodox Church interior, Finland',
+      pos: 'center center'
+    },
+
+    /* ICONOSTASES */
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Church_of_the_Dormition_of_the_Theotokos_iconostasis.jpg/1280px-Church_of_the_Dormition_of_the_Theotokos_iconostasis.jpg',
+      label: 'Church of the Dormition of the Theotokos iconostasis',
+      pos: 'center center'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Russian_Orthodox_iconostasis_Deventer.jpg/1280px-Russian_Orthodox_iconostasis_Deventer.jpg',
+      label: 'Russian Orthodox iconostasis, Deventer',
+      pos: 'center center'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Iconostasis%2C_crypt_of_Church_of_Saint_Sava%2C_Belgrade.jpg/1280px-Iconostasis%2C_crypt_of_Church_of_Saint_Sava%2C_Belgrade.jpg',
+      label: 'Iconostasis, crypt of Church of Saint Sava, Belgrade',
+      pos: 'center center'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/St_Michael_The_Archangel_Russian_Orthodox_Church_Malaysia_15_May_2022.jpg/1280px-St_Michael_The_Archangel_Russian_Orthodox_Church_Malaysia_15_May_2022.jpg',
+      label: 'Russian Orthodox Church interior, Malaysia',
+      pos: 'center center'
+    },
+
+    /* CATHEDRAL EXTERIORS & DOMES */
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Hagia_Sophia_Mars_2013.jpg/1280px-Hagia_Sophia_Mars_2013.jpg',
+      label: 'Hagia Sophia, Constantinople',
+      pos: 'center 60%'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Saint_Basil%27s_Cathedral_in_Moscow_%28pixinn.net%29.jpg/1280px-Saint_Basil%27s_Cathedral_in_Moscow_%28pixinn.net%29.jpg',
+      label: "Saint Basil's Cathedral, Moscow",
+      pos: 'center 40%'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Cathedral_of_the_Annunciation_in_Moscow_Kremlin_-_5481.jpg/1280px-Cathedral_of_the_Annunciation_in_Moscow_Kremlin_-_5481.jpg',
+      label: 'Cathedral of the Annunciation, Moscow Kremlin',
+      pos: 'center center'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/20100px-Meteora_kloster_Varlaam.jpg/1280px-20100px-Meteora_kloster_Varlaam.jpg',
+      label: 'Varlaam Monastery, Meteora',
+      pos: 'center 40%'
+    },
+
+    /* BYZANTINE MOSAICS & FRESCOES */
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Hagia_Sophia_Interior_Wikimedia_Commons.jpg/1280px-Hagia_Sophia_Interior_Wikimedia_Commons.jpg',
+      label: 'Hagia Sophia interior',
+      pos: 'center center'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Hagia_Sophia_altar.jpg/1280px-Hagia_Sophia_altar.jpg',
+      label: 'Hagia Sophia altar and apse',
+      pos: 'center center'
+    },
+
+    /* ICONS */
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Icon_of_Christ_Pantocrator%2C_Sinai%2C_6th_century.jpg/800px-Icon_of_Christ_Pantocrator%2C_Sinai%2C_6th_century.jpg',
+      label: 'Christ Pantocrator, 6th century, Sinai',
+      pos: 'center 30%'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Kizhi_church_1.jpg/1280px-Kizhi_church_1.jpg',
+      label: 'Church of the Transfiguration, Kizhi island',
+      pos: 'center 40%'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Iglesia_de_la_Natividad%2C_Bet_Sahour%2C_Palestina%2C_2013-09-12%2C_DD_04.jpg/1280px-Iglesia_de_la_Natividad%2C_Bet_Sahour%2C_Palestina%2C_2013-09-12%2C_DD_04.jpg',
+      label: 'Church of the Nativity interior, Bethlehem',
+      pos: 'center center'
+    },
+
+    /* MONASTERIES */
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Monastery_of_Saint_Naum_02.jpg/1280px-Monastery_of_Saint_Naum_02.jpg',
+      label: 'Monastery of Saint Naum, North Macedonia',
+      pos: 'center center'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Rila_Monastery_Bulgaria.jpg/1280px-Rila_Monastery_Bulgaria.jpg',
+      label: 'Rila Monastery, Bulgaria',
+      pos: 'center 40%'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Mystras_view.jpg/1280px-Mystras_view.jpg',
+      label: 'Byzantine churches, Mystras',
+      pos: 'center center'
+    },
+  ];
+
+  /* ── GRADIENT SCRIM ────────────────────────────────── */
+  var SCRIM = 'linear-gradient(to right, rgba(21,8,4,.88) 0%, rgba(21,8,4,.65) 55%, rgba(21,8,4,.38) 100%)';
+
+  /* ── FIND HERO ELEMENT ─────────────────────────────── */
+  var hero = document.querySelector('.page-hero') || document.querySelector('.giving-hero') || document.querySelector('.hero');
+  if (!hero) return;
+
+  /* ── PICK RANDOM START IMAGE ───────────────────────── */
+  function pick(exclude) {
+    var pool = IMAGES.filter(function(img, i) { return i !== exclude; });
+    return pool[Math.floor(Math.random() * pool.length)];
+  }
+
+  var currentIdx = Math.floor(Math.random() * IMAGES.length);
+  var current = IMAGES[currentIdx];
+
+  /* ── APPLY IMAGE ───────────────────────────────────── */
+  function applyImage(img) {
+    hero.style.backgroundImage = SCRIM + ', url("' + img.url + '")';
+    hero.style.backgroundSize = 'cover';
+    hero.style.backgroundPosition = img.pos || 'center center';
+    hero.style.backgroundRepeat = 'no-repeat';
+    hero.style.transition = 'background-image 1.2s ease-in-out';
+  }
+
+  /* ── CROSSFADE TO NEXT ─────────────────────────────── */
+  function advance() {
+    var nextIdx = Math.floor(Math.random() * IMAGES.length);
+    if (nextIdx === currentIdx) nextIdx = (nextIdx + 1) % IMAGES.length;
+    currentIdx = nextIdx;
+    applyImage(IMAGES[currentIdx]);
+  }
+
+  /* ── PRELOAD THEN SHOW ─────────────────────────────── */
+  var img = new Image();
+  img.onload = function() {
+    applyImage(current);
+    setInterval(advance, 8000); /* rotate every 8 seconds */
+  };
+  img.onerror = function() {
+    /* First image failed — try next */
+    currentIdx = (currentIdx + 1) % IMAGES.length;
+    img.src = IMAGES[currentIdx].url;
+  };
+  img.src = current.url;
+
+})();
+
+</script>
+</body>
+</html>
