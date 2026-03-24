@@ -311,21 +311,57 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   .footer-cols{grid-template-columns:1fr 1fr;gap:3rem}
 }
 @media(max-width:768px){
+  /* ── NAV ── */
   .nav-links{display:none}.nav-hamburger{display:flex}
-  .page-hero-inner{padding:4rem 1.5rem 3rem}
+
+  /* ── HERO ── */
+  .page-hero-inner{padding:3rem 1.5rem 2.5rem}
+
+  /* ── SERVICE STRIP ── */
   .cal-chrome{padding:0}
   .svc-strip{grid-template-columns:1fr}
   .svc-item{border-right:none;border-bottom:var(--rule-faint)}
   .svc-item:last-child{border-bottom:none}
-  .switcher-bar{padding:.75rem 1.25rem;flex-direction:column;align-items:flex-start;gap:.65rem}
+
+  /* ── SWITCHER BAR ── 
+     On mobile: hide Split Panel and By Season buttons.
+     Force to List view only — most readable on phone. */
+  .switcher-bar{padding:.75rem 1.25rem;justify-content:space-between}
+  #vbtn-f{display:none}
+  #vbtn-g{display:none}
+  #vbtn-c{font-size:.70rem;padding:.55rem 1rem;pointer-events:none;opacity:.7;border-color:rgba(184,131,40,.45);color:var(--gold-lt);background:rgba(184,131,40,.18)}
+  .sb-nav{gap:.4rem}
+  .sb-month{font-size:.60rem;min-width:100px}
+
+  /* ── SPLIT PANEL — stack vertically, simplified ── */
   .split{grid-template-columns:1fr;min-height:auto}
-  .sp-left{border-right:none;border-bottom:1px solid rgba(255,255,255,.06)}
+  .sp-left{display:none}
+  .sp-right{min-height:auto}
+
+  /* ── BY SEASON — hide detail panel, full-width list ── */
+  .seasons-view{min-height:auto}
   .season-body{grid-template-columns:1fr}
   .season-detail{display:none}
-  .cv-month{padding:1rem 1.25rem}
-  .cv-list{padding:0 1.25rem 1rem}
-  .cv-ctrl{padding:.75rem 1.25rem}
-  .legend-bar{padding:.6rem 1.25rem}
+  .season-list{max-height:none;overflow-y:visible}
+  .season-ribbon{padding:0}
+  .srb{padding:.65rem .85rem;font-size:.58rem}
+
+  /* ── CLASSIC MONTH/LIST ── */
+  .cv-ctrl{padding:.75rem 1.25rem;flex-direction:column;align-items:flex-start;gap:.6rem}
+  .cv-month-label{font-size:.66rem}
+  .cv-month{padding:.75rem 1rem}
+  .cg-cell{min-height:60px;padding:.35rem .3rem}
+  .cg-num{font-size:1rem}
+  .cg-feast-txt{font-size:.38rem;letter-spacing:.04em}
+  .cg-svc-lbl{font-size:.34rem}
+  .cv-list{padding:0 1rem 1rem}
+  .lv-row{grid-template-columns:70px 1fr}
+  .lv-dn{font-size:1.5rem}
+
+  /* ── LEGEND ── */
+  .legend-bar{padding:.6rem 1.25rem;gap:.85rem}
+
+  /* ── FOOTER ── */
   .footer-cols{grid-template-columns:1fr;gap:2.5rem}
   footer{padding:4rem 1.5rem 2rem}
   .footer-bottom{flex-direction:column;gap:.75rem;text-align:center}
@@ -1131,10 +1167,22 @@ async function buildClassicList(){
 ═══════════════════════════════════════ */
 (function init(){
   updateHeaders();
-  buildMiniGrid();
-  selectDateF(new Date(today));
-  buildSeasons();
-  buildClassicMonth();
+  if(window.MOBILE_FORCE_VIEW){
+    currentView = window.MOBILE_FORCE_VIEW;
+    cvSubView = window.MOBILE_FORCE_SUBVIEW || 'list';
+    ['f','g','c'].forEach(x=>{
+      document.getElementById('view-'+x).classList.toggle('active', x===currentView);
+      document.getElementById('vbtn-'+x).classList.toggle('on', x===currentView);
+    });
+    document.getElementById('cv-month').style.display='none';
+    document.getElementById('cv-list').style.display='block';
+    buildClassicList();
+  } else {
+    buildMiniGrid();
+    selectDateF(new Date(today));
+    buildSeasons();
+    buildClassicMonth();
+  }
 })();
 </script>
 <!-- Hero Image Rotator -->
