@@ -284,6 +284,29 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   .footer-addr{text-align:center}
   .giving-section{padding:6rem 1.5rem}
 }
+
+/* ── MOBILE NAV DRAWER ── */
+.nav-hamburger{display:none;flex-direction:column;justify-content:space-between;width:28px;height:20px;cursor:pointer;padding:0;background:none;border:none;z-index:400}
+.nav-hamburger span{display:block;width:100%;height:2px;background:var(--maroon);transition:all .28s ease;transform-origin:center}
+.nav-hamburger.open span:nth-child(1){transform:translateY(9px) rotate(45deg)}
+.nav-hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-9px) rotate(-45deg)}
+.nav-drawer{position:fixed;top:0;right:0;width:300px;max-width:85vw;height:100vh;background:var(--apse);z-index:350;transform:translateX(100%);transition:transform .32s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;overflow-y:auto}
+.nav-drawer.open{transform:translateX(0)}
+.nav-drawer-overlay{position:fixed;inset:0;background:rgba(21,8,4,.65);z-index:340;opacity:0;pointer-events:none;transition:opacity .32s}
+.nav-drawer-overlay.open{opacity:1;pointer-events:all}
+.nav-drawer-head{padding:1.5rem 1.75rem 1rem;border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:space-between}
+.nav-drawer-logo{font-family:var(--f-display);font-weight:500;font-size:1.1rem;color:#fff}
+.nav-drawer-logo span{font-family:var(--f-ui);font-size:.52rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);display:block;margin-top:2px}
+.nav-drawer-close{width:32px;height:32px;background:rgba(255,255,255,.08);border:none;color:rgba(255,255,255,.65);cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.nav-drawer-close:hover{background:rgba(255,255,255,.15)}
+.nav-drawer-links{padding:1rem 0;flex:1}
+.nav-drawer-links a{display:block;font-family:var(--f-ui);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,232,.70);padding:.9rem 1.75rem;border-bottom:1px solid rgba(255,255,255,.05);transition:all .18s}
+.nav-drawer-links a:hover{color:#fff;background:rgba(255,255,255,.05)}
+.nav-drawer-links .drawer-section{font-family:var(--f-ui);font-size:.48rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(184,131,40,.55);padding:.85rem 1.75rem .35rem;display:block}
+.nav-drawer-give{margin:1.25rem 1.75rem;display:block;text-align:center;font-family:var(--f-ui);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;padding:.85rem;background:var(--maroon);color:var(--vellum);transition:background .2s}
+.nav-drawer-give:hover{background:var(--maroon-deep)}
+@media(max-width:768px){.nav-hamburger{display:flex}}
 </style>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
@@ -329,6 +352,9 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
       <li><a href="/contact-us">Contact</a></li>
     </ul>
     <a href="https://tithe.ly/give?c=5004259" target="_blank" class="nav-give">Give</a>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" onclick="openDrawer()">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
 
@@ -948,6 +974,22 @@ if (window.netlifyIdentity) {
     }
   });
 }
+</script>
+
+<script>
+function openDrawer(){
+  document.getElementById('nav-drawer').classList.add('open');
+  document.getElementById('nav-overlay').classList.add('open');
+  document.getElementById('nav-hamburger').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeDrawer(){
+  document.getElementById('nav-drawer').classList.remove('open');
+  document.getElementById('nav-overlay').classList.remove('open');
+  document.getElementById('nav-hamburger').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeDrawer();});
 </script>
 </body>
 </html>
