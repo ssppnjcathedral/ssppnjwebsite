@@ -338,81 +338,102 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
          h:     card height in pixels (130–220, vary for masonry effect)
   ══════════════════════════════════════════════════ -->
   <script>
-  var PHOTOS = [
+  /* ══════════════════════════════════════════════════
+       PHOTO LIBRARY — managed via /admin CMS
+       
+       To add photos: go to yoursite.com/admin
+       → Gallery Photos → Add Photo
+       
+       The gallery loads automatically from _data/gallery/*.json
+       No code editing needed.
+  ══════════════════════════════════════════════════ */
+
+  /* Fallback placeholder photos shown before CMS photos load */
+  var FALLBACK_PHOTOS = [
     { src:'linear-gradient(160deg,#1A0508,#7B1D2A,#B88328)', cat:'community', year:'2025', label:'Community · Holy Week', title:'Pascha — <em>Christ is Risen!</em>', h:210 },
     { src:'linear-gradient(160deg,#3B0F18,#7B1D2A)', cat:'cathedral', year:'pre2023', label:'Cathedral · Exterior', title:'The copper domes of <em>Grand Street</em>', h:148 },
     { src:'linear-gradient(160deg,#7B1D2A,#3B0F18,#B88328)', cat:'community', year:'2025', label:'Community · Every Sunday', title:'Coffee hour after the <em>Divine Liturgy</em>', h:162 },
-    { src:'linear-gradient(160deg,#0A1A2E,#1A0508,#3D6B5E)', cat:'community', year:'2026', label:'Community · Theophany', title:'Blessing of <em>Waters</em>, 2026', h:182 },
     { src:'linear-gradient(160deg,#1C1005,#B88328,#3B0F18)', cat:'cathedral', year:'pre2023', label:'Cathedral · Interior', title:'The iconostasis', h:198 },
-    { src:'linear-gradient(160deg,#0A1A2E,#1A0508,#3D6B5E)', cat:'community', year:'2025', label:'Community · Music', title:'The choir in <em>full voice</em>', h:136 },
-    { src:'linear-gradient(160deg,#1A0508,#7A6648,#3B0F18)', cat:'community', year:'pre2023', label:'Community · Archive', title:'Founders' Day celebration', h:152 },
+    { src:'linear-gradient(160deg,#0A1A2E,#1A0508,#3D6B5E)', cat:'community', year:'2026', label:'Community · Theophany', title:'Blessing of <em>Waters</em>, 2026', h:182 },
     { src:'linear-gradient(160deg,#7B1D2A,#1A0508,#B88328)', cat:'community', year:'2025', label:'Community · Palm Sunday', title:'Children with candles on <em>Palm Sunday</em>', h:172 },
-    { src:'linear-gradient(160deg,#0D1F1B,#1A0508,#3D6B5E)', cat:'cathedral', year:'pre2023', label:'Cathedral · Evening', title:'The nave in <em>candlelight</em>', h:128 },
     { src:'linear-gradient(160deg,#2E0D14,#B88328,#7A6648)', cat:'events', year:'pre2023', label:'Events · 2020', title:'Cathedral elevation', h:156 },
-    { src:'linear-gradient(160deg,#1C1005,#B88328,#7A6648)', cat:'community', year:'2025', label:'Community · Great Lent', title:'Holy Unction', h:192 },
-    { src:'linear-gradient(160deg,#1E1005,#7A6648,#3B0F18)', cat:'community', year:'2024', label:'Community · Summer', title:'Parish picnic, 2024', h:142 },
-    { src:'linear-gradient(160deg,#1A0508,#4A1019,#7A6648)', cat:'community', year:'pre2023', label:'Community · Archive', title:'First congregation on <em>Grand Street</em>', h:165 },
-    { src:'linear-gradient(160deg,#1E1005,#7A6648,#B88328)', cat:'community', year:'2025', label:'Community · December', title:'Christmas Day Liturgy, 2025', h:138 },
     { src:'linear-gradient(160deg,#1C1005,#7A6648,#3B0F18)', cat:'events', year:'2025', label:'Events · Annual', title:'Annual parish meeting, 2025', h:148 },
-    { src:'linear-gradient(160deg,#2E0D14,#B88328,#7A6648)', cat:'community', year:'pre2023', label:'Community · Archive', title:'The Meneely bells installed', h:128 },
-    { src:'linear-gradient(160deg,#2E0D14,#3D6B5E,#1A0508)', cat:'community', year:'2025', label:'Community · June', title:'Feast of Sts. Peter &amp; Paul', h:176 },
-    { src:'linear-gradient(160deg,#1A0508,#7B1D2A,#B88328)', cat:'cathedral', year:'pre2023', label:'Cathedral · Interior', title:'The altar, <em>prepared for Liturgy</em>', h:134 },
-    { src:'linear-gradient(160deg,#1C1005,#B88328,#7A6648)', cat:'community', year:'2025', label:'Community · Parish Families', title:'Children at the feast', h:158 },
-    { src:'linear-gradient(160deg,#0D1F1B,#3D6B5E,#1A0508)', cat:'events', year:'2024', label:'Events · Outreach', title:'Community outreach, Jersey City', h:146 },
-    { src:'linear-gradient(160deg,#0A1A2E,#3D6B5E,#1A0508)', cat:'community', year:'2026', label:'Community · Great Lent', title:'Great Lent begins, <em>Clean Monday</em>', h:200 },
-    { src:'linear-gradient(160deg,#2A0A10,#7B1D2A,#3B2010)', cat:'community', year:'pre2023', label:'Community · Archive', title:'Cornerstone of the <em>new nave</em>', h:140 },
-    { src:'linear-gradient(160deg,#0A1A2E,#1A0508,#3D6B5E)', cat:'community', year:'2024', label:'Community · 2024', title:'Fellowship after Saturday Vespers', h:162 },
-    { src:'linear-gradient(160deg,#1A0508,#3D6B5E,#7A6648)', cat:'cathedral', year:'pre2023', label:'Cathedral · Icons', title:'An icon of Sts. Peter &amp; Paul', h:144 },
   ];
 
-  /* ── RENDER GALLERY FROM PHOTOS ARRAY ──
-     This runs automatically — you never need to edit below this line.
-     Just add/edit entries in the PHOTOS array above.           */
-  function buildGallery(){
+  function buildGallery(photos){
     var masonry = document.getElementById('masonry-grid');
     var listView = document.getElementById('list-view');
     masonry.innerHTML = '';
     listView.innerHTML = '';
 
-    PHOTOS.forEach(function(p, i){
-      var isSrc = p.src.startsWith('/') || p.src.startsWith('http');
+    photos.forEach(function(p, i){
+      var isSrc = p.src && (p.src.startsWith('/') || p.src.startsWith('http'));
       var bg = isSrc
         ? 'url("'+p.src+'") center/cover no-repeat'
-        : p.src; /* gradient placeholder */
+        : (p.src || 'linear-gradient(160deg,#1A0508,#3B0F18)');
 
       /* MASONRY CARD */
       var mi = document.createElement('div');
       mi.className = 'mi';
-      mi.dataset.cat = p.cat;
-      mi.dataset.year = p.year;
-      mi.dataset.idx = i;
+      mi.dataset.cat = p.cat || 'community';
+      mi.dataset.year = p.year || '2025';
       mi.setAttribute('onclick','openLb(this)');
       mi.innerHTML =
         '<div class="mi-inner" style="background:'+bg+'"></div>'+
-        '<div class="mi-h" style="height:'+p.h+'px"></div>'+
+        '<div class="mi-h" style="height:'+(p.h||160)+'px"></div>'+
         '<div class="mi-scrim"></div>'+
         '<div class="mi-expand"><span>✦</span></div>'+
         '<div class="mi-cap">'+
-          '<span class="mi-cat">'+p.label+'</span>'+
-          '<div class="mi-title">'+p.title+'</div>'+
+          '<span class="mi-cat">'+(p.label||p.cat||'Community')+'</span>'+
+          '<div class="mi-title">'+(p.title||'')+'</div>'+
         '</div>';
       masonry.appendChild(mi);
 
       /* LIST ROW */
       var lr = document.createElement('div');
       lr.className = 'lr';
-      lr.dataset.cat = p.cat;
-      lr.dataset.year = p.year;
+      lr.dataset.cat = p.cat || 'community';
+      lr.dataset.year = p.year || '2025';
       lr.setAttribute('onclick','openLbList(this)');
+      var catLabel = (p.cat||'community');
+      catLabel = catLabel.charAt(0).toUpperCase()+catLabel.slice(1);
       lr.innerHTML =
         '<div class="lr-thumb"><div class="lr-bg" style="background:'+bg+'"></div></div>'+
-        '<div><div class="lr-title">'+p.title+'</div><div class="lr-sub">'+p.label+'</div></div>'+
-        '<span class="lr-cat">'+p.cat.charAt(0).toUpperCase()+p.cat.slice(1)+'</span>';
+        '<div><div class="lr-title">'+(p.title||'')+'</div><div class="lr-sub">'+(p.label||'')+'</div></div>'+
+        '<span class="lr-cat">'+catLabel+'</span>';
       listView.appendChild(lr);
     });
 
-    /* update count */
-    document.getElementById('vis-count').textContent = PHOTOS.length;
+    document.getElementById('vis-count').textContent = photos.length;
+  }
+
+  /* Fetch all JSON files from _data/gallery/ via GitHub API */
+  async function loadCMSPhotos(){
+    try {
+      /* GitHub raw API to list _data/gallery contents */
+      var apiUrl = 'https://api.github.com/repos/ssppnjcathedral/ssppnjwebsite/contents/_data/gallery';
+      var resp = await fetch(apiUrl);
+      if(!resp.ok) throw new Error('API error');
+      var files = await resp.json();
+      
+      /* Fetch each JSON file */
+      var photos = await Promise.all(
+        files
+          .filter(function(f){ return f.name.endsWith('.json'); })
+          .map(function(f){
+            return fetch(f.download_url).then(function(r){ return r.json(); });
+          })
+      );
+      
+      if(photos.length > 0){
+        buildGallery(photos);
+      } else {
+        buildGallery(FALLBACK_PHOTOS);
+      }
+    } catch(e) {
+      console.log('CMS load failed, using fallback:', e);
+      buildGallery(FALLBACK_PHOTOS);
+    }
   }
   /* buildGallery() is called by the init block at the bottom of the page */
   </script>
@@ -676,7 +697,7 @@ document.addEventListener('keydown',e=>{
 
 /* ── INIT ── */
 (function(){
-  buildGallery();
+  loadCMSPhotos();
   const season = detectSeason();
   const btn = document.querySelector('.ss-btn[data-s="'+season+'"]') || document.querySelector('.ss-btn');
   curSeason = season;
