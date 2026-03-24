@@ -365,6 +365,31 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   .footer-cols{grid-template-columns:1fr;gap:2.5rem}
   footer{padding:4rem 1.5rem 2rem}
   .footer-bottom{flex-direction:column;gap:.75rem;text-align:center}
+
+  /* ── MOBILE FONT BUMPS ── */
+  /* page-specific mobile font fixes */
+  .vbtn{font-size:.68rem}
+  .lv-feast{font-size:.92rem}
+  .lv-saints{font-size:.78rem}
+  .lv-date-num{font-size:1.6rem}
+  .lv-date-day{font-size:.58rem}
+  .cg-feast-txt{font-size:.44rem}
+
+  body{font-size:17px;line-height:1.8}
+  /* UI labels — Cinzel uppercase small caps */
+  [class*="-over"],[class*="-cat"],[class*="-sub"],[class*="-label"],
+  [class*="-tag"],[class*="-kicker"],[class*="-lbl"],[class*="-badge"],
+  [class*="-date"],[class*="-meta"]{font-size:.68rem!important;letter-spacing:.12em}
+  /* Section headings */
+  [class*="-title"]{line-height:1.2}
+  /* Hero display text */
+  [class*="hero-title"],[class*="page-title"]{line-height:1.1}
+  /* Card titles */
+  [class*="-name"],[class*="-head"]{line-height:1.25}
+  /* Footer small text */
+  .footer-copy,.footer-legal,.footer-bottom{font-size:.72rem}
+  /* Nav items in drawer */
+  .nav-drawer-links a{font-size:.72rem;padding:1rem 1.75rem}
 }
 </style>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
@@ -628,7 +653,7 @@ async function fetchDay(date){
   const k=dateKey(date);
   if(CACHE[k]) return CACHE[k];
   try{
-    const url=`https://corsproxy.io/?https://orthocal.info/api/oca/${date.getFullYear()}/${date.getMonth()+1}/${date.getDate()}/`;
+    const url=`https://corsproxy.io/?https://orthocal.info/api/gregorian/${date.getFullYear()}/${date.getMonth()+1}/${date.getDate()}/`;
     const resp=await fetch(url);
     if(!resp.ok) return null;
     const data=await resp.json();

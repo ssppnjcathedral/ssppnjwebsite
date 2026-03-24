@@ -241,7 +241,7 @@ async function loadSaints(){
   const today=new Date();
   const dateStr=`${DS[today.getDay()]}, ${MS[today.getMonth()]} ${today.getDate()}, ${today.getFullYear()}`;
   document.getElementById('sotd-date').textContent=dateStr;
-  const url=`https://orthocal.info/api/oca/${today.getFullYear()}/${today.getMonth()+1}/${today.getDate()}/`;
+  const url=`https://corsproxy.io/?https://orthocal.info/api/gregorian/${today.getFullYear()}/${today.getMonth()+1}/${today.getDate()}/`;
   try{
     const data=await(await fetch(url)).json();
     const feast=data.titles?.[0]||data.summary_title||'';
@@ -471,6 +471,23 @@ async function loadSaints(){
   };
   img.src = current.url;
 
+
+  /* ── MOBILE FONT BUMPS ── */
+  body{font-size:17px;line-height:1.8}
+  /* UI labels — Cinzel uppercase small caps */
+  [class*="-over"],[class*="-cat"],[class*="-sub"],[class*="-label"],
+  [class*="-tag"],[class*="-kicker"],[class*="-lbl"],[class*="-badge"],
+  [class*="-date"],[class*="-meta"]{font-size:.68rem!important;letter-spacing:.12em}
+  /* Section headings */
+  [class*="-title"]{line-height:1.2}
+  /* Hero display text */
+  [class*="hero-title"],[class*="page-title"]{line-height:1.1}
+  /* Card titles */
+  [class*="-name"],[class*="-head"]{line-height:1.25}
+  /* Footer small text */
+  .footer-copy,.footer-legal,.footer-bottom{font-size:.72rem}
+  /* Nav items in drawer */
+  .nav-drawer-links a{font-size:.72rem;padding:1rem 1.75rem}
 })();
 
 </script>
