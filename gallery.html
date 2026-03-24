@@ -201,12 +201,13 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 .footer-bottom{max-width:1380px;margin:2.5rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(246,241,232,.06);display:flex;justify-content:space-between;align-items:center}
 .footer-copy,.footer-addr{font-family:var(--f-ui);font-size:.60rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.22)}
 
+.nav-hamburger{display:none;flex-direction:column;justify-content:space-between;width:28px;height:20px;cursor:pointer;padding:0;background:none;border:none;z-index:400}
 @media(max-width:1100px){.fr-trio{grid-template-columns:1fr 1fr}.fr-quad{grid-template-columns:1fr 1fr}.footer-cols{grid-template-columns:1fr 1fr;gap:3rem}.masonry-grid{columns:2}}
-@media(max-width:768px){.nav-links{display:none}.nav-hamburger{display:flex}.hero{min-height:420px}.hero-content,.featured-wrap,.archive-wrap,.archive-divider,.submit-cta{padding-left:1.5rem;padding-right:1.5rem}.season-strip{padding:.6rem 1.5rem}.fr-main,.fr-trio,.fr-asym{grid-template-columns:1fr}.fr-quad{grid-template-columns:1fr 1fr}.masonry-grid{columns:2}.submit-inner{grid-template-columns:1fr}.submit-right{align-items:flex-start}.footer-cols{grid-template-columns:1fr;gap:2.5rem}footer{padding:4rem 1.5rem 2rem}.footer-bottom{flex-direction:column;gap:.75rem;text-align:center}.lb-prev{left:6px}.lb-next{right:6px}.lb-body{padding:0 44px}}
+@media(max-width:768px){.nav-links{display:none}.nav-hamburger{display:flex}.nav-hamburger{display:flex}.hero{min-height:420px}.hero-content,.featured-wrap,.archive-wrap,.archive-divider,.submit-cta{padding-left:1.5rem;padding-right:1.5rem}.season-strip{padding:.6rem 1.5rem}.fr-main,.fr-trio,.fr-asym{grid-template-columns:1fr}.fr-quad{grid-template-columns:1fr 1fr}.masonry-grid{columns:2}.submit-inner{grid-template-columns:1fr}.submit-right{align-items:flex-start}.footer-cols{grid-template-columns:1fr;gap:2.5rem}footer{padding:4rem 1.5rem 2rem}.footer-bottom{flex-direction:column;gap:.75rem;text-align:center}.lb-prev{left:6px}.lb-next{right:6px}.lb-body{padding:0 44px}}
 @media(max-width:480px){.masonry-grid{columns:1}.fr-quad{grid-template-columns:1fr}}
 
 /* ── MOBILE NAV DRAWER ── */
-.nav-hamburger{display:none;flex-direction:column;justify-content:space-between;width:28px;height:20px;cursor:pointer;padding:0;background:none;border:none;z-index:400}
+
 .nav-hamburger span{display:block;width:100%;height:2px;background:var(--maroon);transition:all .28s ease;transform-origin:center}
 .nav-hamburger.open span:nth-child(1){transform:translateY(9px) rotate(45deg)}
 .nav-hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}

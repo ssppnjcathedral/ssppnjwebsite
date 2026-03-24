@@ -86,6 +86,7 @@
 .btn{display:inline-block;font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;padding:.85rem 2.2rem;border:1px solid currentColor;cursor:pointer;transition:all .22s;white-space:nowrap}
 .btn-outline{color:rgba(246,241,232,.70);border-color:rgba(246,241,232,.35)}
 .btn-outline:hover{color:#fff;border-color:#fff}
+.nav-hamburger{display:none;flex-direction:column;justify-content:space-between;width:28px;height:20px;cursor:pointer;padding:0;background:none;border:none;z-index:400}
 @media(max-width:1024px){.footer-cols{grid-template-columns:1fr 1fr;gap:2.5rem}}
 @media(max-width:768px){.footer-cols{grid-template-columns:1fr;gap:2rem}.footer-bottom{flex-direction:column;gap:.75rem;text-align:center}.footer-addr{text-align:center}}
 footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:3rem 4.5rem 2rem}
@@ -93,10 +94,10 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 .footer-bottom{max-width:1380px;margin:2rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(246,241,232,.06);display:flex;justify-content:space-between}
 .footer-copy,.footer-addr{font-family:var(--f-ui);font-size:.64rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.22)}
 @media(max-width:1024px){.news-wrap{grid-template-columns:1fr}.side-col{border-left:none;border-top:var(--rule-faint);padding-left:0;padding-top:2.5rem;margin-top:2.5rem}.featured-post{grid-template-columns:1fr}}
-@media(max-width:768px){.nav-links{display:none}.nav-hamburger{display:flex}.page-hero-inner{padding:4rem 1.5rem 3rem}.news-wrap{padding:3rem 1.5rem}.chapter-bar{padding:.65rem 1.5rem}.post-grid{grid-template-columns:1fr}}
+@media(max-width:768px){.nav-links{display:none}.nav-hamburger{display:flex}.nav-hamburger{display:flex}.page-hero-inner{padding:4rem 1.5rem 3rem}.news-wrap{padding:3rem 1.5rem}.chapter-bar{padding:.65rem 1.5rem}.post-grid{grid-template-columns:1fr}}
 
 /* ── MOBILE NAV DRAWER ── */
-.nav-hamburger{display:none;flex-direction:column;justify-content:space-between;width:28px;height:20px;cursor:pointer;padding:0;background:none;border:none;z-index:400}
+
 .nav-hamburger span{display:block;width:100%;height:2px;background:var(--maroon);transition:all .28s ease;transform-origin:center}
 .nav-hamburger.open span:nth-child(1){transform:translateY(9px) rotate(45deg)}
 .nav-hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
