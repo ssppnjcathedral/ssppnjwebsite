@@ -72,7 +72,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 .footer-bottom{max-width:1380px;margin:2rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(246,241,232,.06);display:flex;justify-content:space-between}
 .footer-copy,.footer-addr{font-family:var(--f-ui);font-size:.64rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.22)}
 @media(max-width:1024px){.page-body{grid-template-columns:1fr}.side-col{border-left:none;border-top:var(--rule-faint);padding-left:0;padding-top:2.5rem;margin-top:2.5rem}}
-@media(max-width:768px){.nav-links{display:none}.page-hero-inner{padding:4rem 1.5rem 3rem}.page-body{padding:3rem 1.5rem}.chapter-bar{padding:.65rem 1.5rem}}
+@media(max-width:768px){.nav-links{display:none}.nav-hamburger{display:flex}.page-hero-inner{padding:4rem 1.5rem 3rem}.page-body{padding:3rem 1.5rem}.chapter-bar{padding:.65rem 1.5rem}}
 
 .footer-cols{max-width:1380px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:5rem;margin-bottom:3.5rem}
 .footer-col-head{font-family:var(--f-ui);font-size:.66rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(246,241,232,.28);display:block;margin-bottom:1.2rem;padding-bottom:.5rem;border-bottom:1px solid rgba(246,241,232,.06)}
@@ -117,7 +117,6 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 .nav-drawer-links .drawer-section{font-family:var(--f-ui);font-size:.48rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(184,131,40,.55);padding:.85rem 1.75rem .35rem;display:block}
 .nav-drawer-give{margin:1.25rem 1.75rem;display:block;text-align:center;font-family:var(--f-ui);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;padding:.85rem;background:var(--maroon);color:var(--vellum);transition:background .2s}
 .nav-drawer-give:hover{background:var(--maroon-deep)}
-@media(max-width:768px){.nav-hamburger{display:flex}}
 </style>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
@@ -139,6 +138,36 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
     </button>
   </div>
 </nav>
+
+<!-- MOBILE NAV DRAWER -->
+<div class="nav-drawer-overlay" id="nav-overlay" onclick="closeDrawer()"></div>
+<div class="nav-drawer" id="nav-drawer">
+  <div class="nav-drawer-head">
+    <div class="nav-drawer-logo">Sts. Peter &amp; Paul<span>Orthodox Cathedral · Jersey City</span></div>
+    <button class="nav-drawer-close" onclick="closeDrawer()">✕</button>
+  </div>
+  <div class="nav-drawer-links">
+    <span class="drawer-section">About</span>
+    <a href="/about-our-church">About Our Church</a>
+    <a href="/our-beliefs">Our Beliefs</a>
+    <a href="/administration">Administration</a>
+    <a href="/about-orthodoxy">About Orthodoxy</a>
+    <span class="drawer-section">Visit &amp; Worship</span>
+    <a href="/schedule">Liturgical Calendar</a>
+    <a href="/readings">Daily Readings</a>
+    <a href="/saint-of-the-day">Saint of the Day</a>
+    <a href="/videos">Videos</a>
+    <span class="drawer-section">Parish Life</span>
+    <a href="/gallery">Gallery</a>
+    <a href="/bulletins">Bulletins</a>
+    <a href="/news">News &amp; Announcements</a>
+    <a href="/cemeteries">Cemeteries</a>
+    <a href="/donate">Give Online</a>
+    <span class="drawer-section">Contact</span>
+    <a href="/contact-us">Contact Us</a>
+  </div>
+  <a href="https://tithe.ly/give?c=5004259" target="_blank" class="nav-drawer-give">Give Online</a>
+</div>
 
 <div class="page-hero">
   <svg class="page-hero-rosette" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="100" cy="100" r="95" fill="none" stroke="#fff" stroke-width=".6"/><circle cx="100" cy="100" r="60" fill="none" stroke="#fff" stroke-width=".4"/><g stroke="#fff" stroke-width=".4" fill="none"><line x1="100" y1="5" x2="100" y2="195"/><line x1="5" y1="100" x2="195" y2="100"/><line x1="33" y1="33" x2="167" y2="167"/><line x1="167" y1="33" x2="33" y2="167"/></g></svg>

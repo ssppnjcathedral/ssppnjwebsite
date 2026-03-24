@@ -202,7 +202,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 .footer-copy,.footer-addr{font-family:var(--f-ui);font-size:.60rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.22)}
 
 @media(max-width:1100px){.fr-trio{grid-template-columns:1fr 1fr}.fr-quad{grid-template-columns:1fr 1fr}.footer-cols{grid-template-columns:1fr 1fr;gap:3rem}.masonry-grid{columns:2}}
-@media(max-width:768px){.nav-links{display:none}.hero{min-height:420px}.hero-content,.featured-wrap,.archive-wrap,.archive-divider,.submit-cta{padding-left:1.5rem;padding-right:1.5rem}.season-strip{padding:.6rem 1.5rem}.fr-main,.fr-trio,.fr-asym{grid-template-columns:1fr}.fr-quad{grid-template-columns:1fr 1fr}.masonry-grid{columns:2}.submit-inner{grid-template-columns:1fr}.submit-right{align-items:flex-start}.footer-cols{grid-template-columns:1fr;gap:2.5rem}footer{padding:4rem 1.5rem 2rem}.footer-bottom{flex-direction:column;gap:.75rem;text-align:center}.lb-prev{left:6px}.lb-next{right:6px}.lb-body{padding:0 44px}}
+@media(max-width:768px){.nav-links{display:none}.nav-hamburger{display:flex}.hero{min-height:420px}.hero-content,.featured-wrap,.archive-wrap,.archive-divider,.submit-cta{padding-left:1.5rem;padding-right:1.5rem}.season-strip{padding:.6rem 1.5rem}.fr-main,.fr-trio,.fr-asym{grid-template-columns:1fr}.fr-quad{grid-template-columns:1fr 1fr}.masonry-grid{columns:2}.submit-inner{grid-template-columns:1fr}.submit-right{align-items:flex-start}.footer-cols{grid-template-columns:1fr;gap:2.5rem}footer{padding:4rem 1.5rem 2rem}.footer-bottom{flex-direction:column;gap:.75rem;text-align:center}.lb-prev{left:6px}.lb-next{right:6px}.lb-body{padding:0 44px}}
 @media(max-width:480px){.masonry-grid{columns:1}.fr-quad{grid-template-columns:1fr}}
 
 /* ── MOBILE NAV DRAWER ── */
@@ -226,7 +226,6 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 .nav-drawer-links .drawer-section{font-family:var(--f-ui);font-size:.48rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(184,131,40,.55);padding:.85rem 1.75rem .35rem;display:block}
 .nav-drawer-give{margin:1.25rem 1.75rem;display:block;text-align:center;font-family:var(--f-ui);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;padding:.85rem;background:var(--maroon);color:var(--vellum);transition:background .2s}
 .nav-drawer-give:hover{background:var(--maroon-deep)}
-@media(max-width:768px){.nav-hamburger{display:flex}}
 </style>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
@@ -253,6 +252,36 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
     </button>
   </div>
 </nav>
+
+<!-- MOBILE NAV DRAWER -->
+<div class="nav-drawer-overlay" id="nav-overlay" onclick="closeDrawer()"></div>
+<div class="nav-drawer" id="nav-drawer">
+  <div class="nav-drawer-head">
+    <div class="nav-drawer-logo">Sts. Peter &amp; Paul<span>Orthodox Cathedral · Jersey City</span></div>
+    <button class="nav-drawer-close" onclick="closeDrawer()">✕</button>
+  </div>
+  <div class="nav-drawer-links">
+    <span class="drawer-section">About</span>
+    <a href="/about-our-church">About Our Church</a>
+    <a href="/our-beliefs">Our Beliefs</a>
+    <a href="/administration">Administration</a>
+    <a href="/about-orthodoxy">About Orthodoxy</a>
+    <span class="drawer-section">Visit &amp; Worship</span>
+    <a href="/schedule">Liturgical Calendar</a>
+    <a href="/readings">Daily Readings</a>
+    <a href="/saint-of-the-day">Saint of the Day</a>
+    <a href="/videos">Videos</a>
+    <span class="drawer-section">Parish Life</span>
+    <a href="/gallery">Gallery</a>
+    <a href="/bulletins">Bulletins</a>
+    <a href="/news">News &amp; Announcements</a>
+    <a href="/cemeteries">Cemeteries</a>
+    <a href="/donate">Give Online</a>
+    <span class="drawer-section">Contact</span>
+    <a href="/contact-us">Contact Us</a>
+  </div>
+  <a href="https://tithe.ly/give?c=5004259" target="_blank" class="nav-drawer-give">Give Online</a>
+</div>
 
 <!-- HERO -->
 <div class="hero" id="hero">
