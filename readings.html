@@ -525,8 +525,8 @@ async function loadReadings() {
     if (day) {
       /* Map local JSON fields → render-expected shape */
       const readings = (day.readings || []).map((rd, i) => ({
-        source:  rd.src  || '',
-        display: rd.ref  || '',
+        source:  rd.source || '',
+        display: rd.display || '',
         short:   rd.short || '',
         passage: []   /* local JSON has refs only, not full passage text */
       }));

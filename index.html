@@ -1156,47 +1156,49 @@ function getNextSunday(){ const t=new Date(); const dow=t.getDay(); const s=new 
 function feastClass(lv){ if(lv>=7)return'lv7'; if(lv>=5)return'lv5'; if(lv>=4)return'lv4'; if(lv>=2)return'lv2'; return'lv0'; }
 
 function renderSunday(data, d){
-  const feast = data.titles?.[0]||data.summary_title||'Sunday';
-  const saints = (data.saints||[]).slice(0,2).map(s=>s.name).join('; ');
-  const tone = data.tone ? `Tone ${toRoman(data.tone)}` : '';
-  const fastDesc = [data.fast_level_description, data.fast_exception_desc].filter(Boolean).join(' — ');
-  let readHTML = '';
-  if(data.readings?.length){
-    const ep = data.readings.find(r=>/epistle|apostle/i.test(r.source));
-    const go = data.readings.find(r=>/gospel/i.test(r.source));
-    const rows = [ep||data.readings[0], go||data.readings[1]].filter(Boolean).map(r=>`
-      <div class="ts-reading-row">
-        <span class="ts-reading-src">${r.source_short||r.source||''}</span>
-        <span class="ts-reading-ref">${r.display||''}</span>
-      </div>`).join('');
-    if(rows) readHTML = `<div class="ts-readings"><p class="ts-readings-head">Scripture Readings</p>${rows}</div>`;
-  }
-  document.getElementById('sunday-panel').innerHTML = `
-    <div class="ts-opening ${feastClass(data.feast_level||0)}">
-      <span class="rubric">This Sunday</span>
-      <h2 class="ts-feast">${feast}</h2>
-      ${saints?`<span class="ts-saint">${saints}</span>`:''}
-      ${tone?`<span class="ts-tone">${tone}</span>`:''}
-    </div>
-    ${readHTML}
-    ${fastDesc?`<p class="ts-fast">${fastDesc}</p>`:''}
-    <div class="ts-ctas">
-      <a href="/readings" class="btn btn-maroon">Read the Readings</a>
-      <a href="/schedule" class="btn btn-outline">Full Calendar</a>
-    </div>
-    <p style="font-family:var(--f-ui);font-size:.48rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);margin-top:1.5rem">${displayDate(d)} · Via OrthoCal API</p>`;
+  var feast = (data.titles&&data.titles[0])||data.summary_title||'Sunday';
+  var saints = (data.saints||[]).slice(0,2).map(function(s){return typeof s==='string'?s:(s&&s.name?s.name:String(s));}).filter(Boolean).join('; ');
+  var toneNum = data.tone||0;
+  var tone = toneNum ? ('Tone '+toRoman(toneNum)) : '';
+  var fast1 = data.fast_level_description||'';
+  var fast2 = data.fast_exception_desc||'';
+  var fastDesc = [fast1,fast2].filter(Boolean).join(' — ');
+  var readings = data.readings||[];
+  var readRows = readings.slice(0,3).map(function(r){
+    return '<div class="ts-reading-row">'
+      +'<span class="ts-reading-src">'+(r.source||'')+'</span>'
+      +'<span class="ts-reading-ref">'+(r.display||r.ref||'')+'</span>'
+      +'</div>';
+  }).join('');
+  var readHTML = readRows ? '<div class="ts-readings"><p class="ts-readings-head">Scripture Readings</p>'+readRows+'</div>' : '';
+  var lvl = data.feast_level||0;
+  var html = '<div class="ts-opening '+feastClass(lvl)+'">'
+    +'<span class="rubric">This Sunday</span>'
+    +'<h2 class="ts-feast">'+feast+'</h2>'
+    +(saints?'<span class="ts-saint">'+saints+'</span>':'')
+    +(tone?'<span class="ts-tone">'+tone+'</span>':'')
+    +'</div>'
+    +readHTML
+    +(fastDesc?'<p class="ts-fast">'+fastDesc+'</p>':'')
+    +'<div class="ts-ctas">'
+    +'<a href="/readings" class="btn btn-maroon">Read the Readings</a>'
+    +'<a href="/schedule" class="btn btn-outline">Full Calendar</a>'
+    +'</div>'
+    +'<p style="font-family:var(--f-ui);font-size:.48rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);margin-top:1.5rem">'+displayDate(d)+'</p>';
+  document.getElementById('sunday-panel').innerHTML = html;
 }
 
 function renderWeek(entries){
-  document.getElementById('week-strip').innerHTML = entries.map(({date,data})=>{
-    const title = data.titles?.[0]||data.summary_title||'';
-    const lv = data.feast_level||0;
-    const dot = lv>=2?'<span class="feast-dot"></span>':'';
-    const short = title.length>50?title.slice(0,50)+'…':title;
-    return `<div class="week-entry">
-      <span class="week-day-lbl">${DAYS_SHORT[date.getDay()]} · ${MONTHS_S[date.getMonth()]} ${date.getDate()}</span>
-      <span class="week-day-title ${lv>=4?'major':''}">${short}${dot}</span>
-    </div>`;
+  document.getElementById('week-strip').innerHTML = entries.map(function(item){
+    var date=item.date, data=item.data;
+    var title = (data.titles&&data.titles[0])||data.summary_title||'';
+    var lv = data.feast_level||0;
+    var dot = lv>=2?'<span class="feast-dot"></span>':'';
+    var short = title.length>50?title.slice(0,50)+'…':title;
+    return '<div class="week-entry">'
+      +'<span class="week-day-lbl">'+DAYS_SHORT[date.getDay()]+' · '+MONTHS_S[date.getMonth()]+' '+date.getDate()+'</span>'
+      +'<span class="week-day-title '+(lv>=4?'major':'')+'">'+short+dot+'</span>'
+      +'</div>';
   }).join('');
 }
 
@@ -1220,22 +1222,18 @@ async function loadFromLocalCal(date){
   const cal=await getCalendar(y);
   if(!cal||!cal.days||!cal.days[key]) return null;
   const day=cal.days[key];
-  /* Saints in JSON are strings, not objects — normalize */
-  const saints=(day.saints||[]).map(function(s){
-    return typeof s==='string'?{name:s}:(s&&s.name?s:{name:String(s)});
-  });
   return {
     titles:[day.feast],
     summary_title:day.feast,
-    saints:saints,
+    saints:(day.saints||[]),
     fast_level_description:day.fast||'',
     fast_exception_desc:day.fastException||'',
     tone:day.tone||0,
     feast_level:day.feastLevel||0,
     readings:(day.readings||[]).map(function(r){return{
-      source:r.src||'',
-      source_short:r.src||'',
-      display:r.ref||r.short||''
+      source:r.source||'',
+      source_short:r.source||'',
+      display:r.display||r.short||''
     };})
   };
 }
@@ -1636,17 +1634,15 @@ async function initLiveCalendar(){
 
   let data = null;
   try{
-    const r = await fetch('/_data/calendar-'+y+'.json');
-    if(!r.ok) throw new Error('HTTP '+r.status);
-    const cal = await r.json();
+    const cal = await getCalendar(y);
     const day = cal && cal.days && cal.days[dateKey];
     if(day){
       data = {
         feast:    day.feast || '',
         fast:     day.fast  || '',
-        fastEx:   day.fastException || '',
+        fastException: day.fastException || '',
         tone:     day.tone  || 0,
-        lvl:      day.feastLevel   || 0,
+        feastLevel: day.feastLevel || 0,
         saints:   day.saints || [],
       };
     }
@@ -1749,7 +1745,7 @@ async function initLiveCalendar(){
   });
 
   /* ── N: FEAST DAY THEMING ── */
-  const lvl = data.lvl || 0;
+  const lvl = data.feastLevel || 0;
   if(lvl >= 7) document.body.classList.add('feast-level-great');
   if(data.fast && data.fast.toLowerCase().includes('strict')) document.body.classList.add('feast-level-fast');
 }
