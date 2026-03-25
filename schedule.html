@@ -730,12 +730,13 @@ async function buildMiniGrid(){
 async function buildUpcomingFeasts(){
   const ul=document.getElementById('sp-upcoming');
   ul.innerHTML='<span class="cal-loading">Loading…</span>';
+  const dates=[];
+  for(let i=0;i<=120;i++){const d=new Date(today);d.setDate(d.getDate()+i);dates.push(d);}
+  const results=await Promise.all(dates.map(function(d){return fetchDay(d);}));
   const items=[];
-  for(let i=0;i<=120;i++){
-    const d=new Date(today);d.setDate(d.getDate()+i);
-    const data=await fetchDay(d);
-    if(data&&(data.feast_level||0)>=5){items.push({date:d,data});if(items.length>=5) break;}
-  }
+  results.forEach(function(data,i){
+    if(data&&(data.feast_level||0)>=5&&items.length<5) items.push({date:dates[i],data});
+  });
   ul.innerHTML='';
   items.forEach(function(item){
     const feast=getFeast(item.data)||'Feast';
@@ -808,11 +809,7 @@ async function buildSeasonList(season){
   list.innerHTML='<div class="sl-head"><div class="sl-season-name"><em>'+season.name+'</em></div><div class="sl-season-desc">'+season.desc+'</div></div><div style="padding:1rem 1.75rem;font-family:var(--f-display);font-style:italic;color:var(--stone)"><span class="cal-loading">Loading season data…</span></div>';
   const dates=[];
   for(var d=new Date(season.start);d<=season.end;d.setDate(d.getDate()+1)) dates.push(new Date(d));
-  const results=[];
-  for(let i=0;i<dates.length;i++){
-    results.push(await fetchDay(dates[i]));
-    if(i%7===6) await new Promise(function(r){setTimeout(r,10);});
-  }
+  const results=await Promise.all(dates.map(function(d){return fetchDay(d);}));
   list.innerHTML='<div class="sl-head" style="position:sticky;top:0;z-index:2;background:var(--vellum)"><div class="sl-season-name"><em>'+season.name+'</em></div><div class="sl-season-desc">'+season.desc+'</div></div>';
   dates.forEach(function(date,i){
     const data=results[i];
