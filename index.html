@@ -1229,9 +1229,9 @@ async function loadFromLocalCal(date){
     summary_title:day.feast,
     saints:saints,
     fast_level_description:day.fast||'',
-    fast_exception_desc:day.fastEx||'',
+    fast_exception_desc:day.fastException||'',
     tone:day.tone||0,
-    feast_level:day.lvl||0,
+    feast_level:day.feastLevel||0,
     readings:(day.readings||[]).map(function(r){return{
       source:r.src||'',
       source_short:r.src||'',
@@ -1644,9 +1644,9 @@ async function initLiveCalendar(){
       data = {
         feast:    day.feast || '',
         fast:     day.fast  || '',
-        fastEx:   day.fastEx || '',
+        fastEx:   day.fastException || '',
         tone:     day.tone  || 0,
-        lvl:      day.lvl   || 0,
+        lvl:      day.feastLevel   || 0,
         saints:   day.saints || [],
       };
     }

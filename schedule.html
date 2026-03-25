@@ -599,9 +599,9 @@ async function fetchDay(date){
       titles:        day.titles||[],
       saints:        day.saints||[],
       fast_level_desc:     day.fast||'',
-      fast_exception_desc: day.fastEx||'',
+      fast_exception_desc: day.fastException||'',
       tone:          day.tone||0,
-      feast_level:   day.lvl||0,
+      feast_level:   day.feastLevel||0,
       readings:      day.readings||[]
     };
     CACHE[k]=data;
