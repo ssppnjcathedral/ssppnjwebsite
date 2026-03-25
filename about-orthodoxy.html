@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet"/>
 <style>
 :root{--vellum:#F6F1E8;--vellum-mid:#EDE7DC;--text:#1E1510;--ink:#2C1F16;--maroon:#7B1D2A;--maroon-deep:#5C1520;--gold:#B88328;--gold-lt:#E8C97A;--verdigris:#3D6B5E;--stone:#7A6648;--apse:#3B0F18;--f-display:'Cormorant Garamond',Georgia,serif;--f-body:'EB Garamond',Georgia,serif;--f-ui:'Cinzel',Georgia,serif;--rule:1px solid var(--maroon);--rule-faint:1px solid rgba(123,29,42,0.14);--rule-hair:1px solid rgba(123,29,42,0.07)}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{background:var(--vellum);color:var(--text);font-family:var(--f-body);font-size:19px;line-height:1.75;overflow-x:hidden;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{background:var(--vellum);color:var(--text);font-family:var(--f-body);font-size:21px;line-height:1.75;overflow-x:hidden;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}
 .rubric{display:block;font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.20em;text-transform:uppercase;color:var(--stone);margin-bottom:.5rem}
 .rubric.light{color:rgba(246,241,232,.55)}
 .rubric-rule{display:block;height:1px;background:var(--maroon);margin-bottom:1rem;width:48px}
@@ -15,16 +15,16 @@
 .nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(246,241,232,.97);backdrop-filter:blur(10px);border-bottom:var(--rule-faint)}
 .nav-inner{max-width:1380px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px;padding:0 3rem}
 .nav-logo-name{font-family:var(--f-display);font-weight:500;font-size:1.25rem;color:var(--text);display:block}
-.nav-logo-sub{font-family:var(--f-ui);font-size:.60rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);display:block}
+.nav-logo-sub{font-family:var(--f-ui);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);display:block}
 .nav-links{display:flex;align-items:center;list-style:none}
 .nav-links>li{position:relative}
-.nav-links>li>a{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text);padding:1.1rem .85rem;display:block;transition:color .18s}
+.nav-links>li>a{font-family:var(--f-ui);font-size:.78rem;letter-spacing:.10em;text-transform:uppercase;color:var(--text);padding:1.1rem .85rem;display:block;transition:color .18s}
 .nav-links>li:hover>a{color:var(--maroon)}
 .nav-drop{position:absolute;top:100%;left:0;background:var(--vellum);border-top:2px solid var(--maroon);border-bottom:var(--rule-faint);border-left:var(--rule-faint);border-right:var(--rule-faint);min-width:200px;padding:.5rem 0;opacity:0;pointer-events:none;transform:translateY(-4px);transition:all .16s;box-shadow:0 8px 28px rgba(28,20,16,.10)}
 .nav-links>li:hover .nav-drop{opacity:1;pointer-events:all;transform:none}
-.nav-drop a{display:block;font-family:var(--f-ui);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text);padding:.5rem 1.4rem;transition:color .14s}
+.nav-drop a{display:block;font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text);padding:.5rem 1.4rem;transition:color .14s}
 .nav-drop a:hover{color:var(--maroon)}
-.nav-give{font-family:var(--f-ui);font-size:.70rem;letter-spacing:.14em;text-transform:uppercase;color:var(--vellum);background:var(--maroon);padding:.5rem 1.1rem;transition:background .2s}
+.nav-give{font-family:var(--f-ui);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--vellum);background:var(--maroon);padding:.5rem 1.1rem;transition:background .2s}
 .nav-give:hover{background:var(--maroon-deep)}
 .page-hero{padding-top:60px;background:linear-gradient(to right,rgba(59,15,24,.88) 0%,rgba(59,15,24,.65) 55%,rgba(59,15,24,.40) 100%),url('/images/heroes/about-orthodoxy.webp') center/cover no-repeat;position:relative;overflow:hidden}
 .page-hero-inner{max-width:1380px;margin:0 auto;padding:5rem 4.5rem 4rem}
@@ -113,11 +113,44 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 .nav-drawer-close{width:32px;height:32px;background:rgba(255,255,255,.08);border:none;color:rgba(255,255,255,.65);cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:background .2s}
 .nav-drawer-close:hover{background:rgba(255,255,255,.15)}
 .nav-drawer-links{padding:1rem 0;flex:1}
-.nav-drawer-links a{display:block;font-family:var(--f-ui);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,232,.70);padding:.9rem 1.75rem;border-bottom:1px solid rgba(255,255,255,.05);transition:all .18s}
+.nav-drawer-links a{display:block;font-family:var(--f-ui);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,232,.70);padding:.9rem 1.75rem;border-bottom:1px solid rgba(255,255,255,.05);transition:all .18s}
 .nav-drawer-links a:hover{color:#fff;background:rgba(255,255,255,.05)}
 .nav-drawer-links .drawer-section{font-family:var(--f-ui);font-size:.48rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(184,131,40,.55);padding:.85rem 1.75rem .35rem;display:block}
 .nav-drawer-give{margin:1.25rem 1.75rem;display:block;text-align:center;font-family:var(--f-ui);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;padding:.85rem;background:var(--maroon);color:var(--vellum);transition:background .2s}
 .nav-drawer-give:hover{background:var(--maroon-deep)}
+
+/* ── QUOTE INTERSTITIAL ───────────────────────────── */
+.quote-break{
+  background:var(--apse);
+  padding:5rem 4.5rem;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+  margin:0;
+}
+.quote-break::before{
+  content:'';
+  position:absolute;
+  top:0;left:50%;transform:translateX(-50%);
+  width:1px;height:40px;
+  background:rgba(184,131,40,.35);
+}
+.quote-break::after{
+  content:'';
+  position:absolute;
+  bottom:0;left:50%;transform:translateX(-50%);
+  width:1px;height:40px;
+  background:rgba(184,131,40,.35);
+}
+.qb-inner{max-width:780px;margin:0 auto;position:relative;z-index:1}
+.qb-cross{display:block;font-size:.85rem;color:rgba(184,131,40,.40);letter-spacing:.6em;padding-left:.6em;margin-bottom:1.75rem}
+.qb-rule{width:48px;height:1px;background:rgba(184,131,40,.40);margin:0 auto 1.75rem}
+.qb-text{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-weight:300;font-size:clamp(1.6rem,3.5vw,2.5rem);line-height:1.35;color:rgba(246,241,232,.88);margin-bottom:1.5rem}
+.qb-attr{font-family:'Cinzel',Georgia,serif;font-size:.62rem;letter-spacing:.20em;text-transform:uppercase;color:rgba(184,131,40,.65)}
+@media(max-width:768px){
+  .quote-break{padding:3.5rem 1.5rem}
+  .qb-text{font-size:1.45rem}
+}
 </style>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
@@ -194,7 +227,15 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
       <p>Whatever brought you here, you are welcome. Orthodox Christianity has been welcoming seekers since the day of Pentecost. This page is an introduction — a map, not the territory.</p>
     </div>
 
-    <div class="pullquote">
+    <div class="quote-break reveal">
+  <div class="qb-inner">
+    <span class="qb-cross">✦ ✝ ✦</span>
+    <div class="qb-rule"></div>
+    <p class="qb-text">God became man so that man might become God.</p>
+    <span class="qb-attr">St. Athanasius the Great</span>
+  </div>
+</div>
+<div class="pullquote">
       <p>"Come and see."</p>
       <cite>— St. Philip to Nathanael · John 1:46 · The oldest invitation in Christianity</cite>
     </div>
@@ -566,5 +607,7 @@ function closeDrawer(){
 }
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeDrawer();});
 </script>
+
+<script src="/enhancements.js"></script>
 </body>
 </html>
