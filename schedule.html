@@ -651,6 +651,20 @@ function updateHeaders(){
 }
 
 /* ═══════════════════════════════════════
+   SAFE BATCH FETCH — max 7 concurrent, yields between chunks
+═══════════════════════════════════════ */
+async function fetchBatch(dates){
+  const results=[];
+  for(let i=0;i<dates.length;i+=7){
+    const chunk=dates.slice(i,i+7);
+    const cr=await Promise.all(chunk.map(function(d){return fetchDay(d);}));
+    cr.forEach(function(r){results.push(r);});
+    await new Promise(function(r){setTimeout(r,0);});
+  }
+  return results;
+}
+
+/* ═══════════════════════════════════════
    VIEW SWITCHER
 ═══════════════════════════════════════ */
 function setView(v){
@@ -682,6 +696,9 @@ function gotoToday(){
 
 /* ═══════════════════════════════════════
    VIEW F — SPLIT PANEL
+   Rules: grid renders immediately, dots update in bg,
+   selectDateF only updates CSS — never re-fetches,
+   upcoming feasts batched 7 at a time
 ═══════════════════════════════════════ */
 function renderViewF(){buildMiniGrid();if(selectedDate) renderDetailF(selectedDate);}
 
@@ -707,6 +724,7 @@ async function buildMiniGrid(){
     if(selectedDate&&date.toDateString()===selectedDate.toDateString()) cls+=' selected';
     const c=document.createElement('div');
     c.className=cls;
+    c.id='mgc-'+y+'-'+m+'-'+d;
     c.innerHTML='<span class="mg-num">'+d+'</span><span class="mg-dot dot-none" id="mgd-'+y+'-'+m+'-'+d+'"></span>'+(isSun(date)||isSat(date)?'<span class="mg-svc-pip"></span>':'');
     c.onclick=(function(dt){return function(){selectDateF(dt);};})(new Date(date));
     cells.appendChild(c);
@@ -718,7 +736,10 @@ async function buildMiniGrid(){
     c.innerHTML='<span class="mg-num">'+i+'</span>';
     cells.appendChild(c);
   }
-  fetchMonth(y,m).then(function(results){
+  /* Fetch dots in background — batched, non-blocking */
+  const dates=[];
+  for(let d=1;d<=last.getDate();d++) dates.push(new Date(y,m,d));
+  fetchBatch(dates).then(function(results){
     results.forEach(function(data,i){
       const dotEl=document.getElementById('mgd-'+y+'-'+m+'-'+(i+1));
       if(dotEl) dotEl.className='mg-dot '+dotClassForDate(new Date(y,m,i+1),data);
@@ -727,12 +748,24 @@ async function buildMiniGrid(){
   buildUpcomingFeasts();
 }
 
+/* Only updates CSS classes — no fetch */
+function updateMiniGridSelection(){
+  const y=cur.getFullYear(),m=cur.getMonth();
+  const last=new Date(y,m+1,0).getDate();
+  for(let d=1;d<=last;d++){
+    const el=document.getElementById('mgc-'+y+'-'+m+'-'+d);
+    if(!el) continue;
+    const date=new Date(y,m,d);
+    el.classList.toggle('selected',!!(selectedDate&&date.toDateString()===selectedDate.toDateString()));
+  }
+}
+
 async function buildUpcomingFeasts(){
   const ul=document.getElementById('sp-upcoming');
-  ul.innerHTML='<span class="cal-loading">Loading…</span>';
+  ul.innerHTML='<span class="cal-loading">Loading\u2026</span>';
   const dates=[];
   for(let i=0;i<=120;i++){const d=new Date(today);d.setDate(d.getDate()+i);dates.push(d);}
-  const results=await Promise.all(dates.map(function(d){return fetchDay(d);}));
+  const results=await fetchBatch(dates);
   const items=[];
   results.forEach(function(data,i){
     if(data&&(data.feast_level||0)>=5&&items.length<5) items.push({date:dates[i],data});
@@ -743,47 +776,54 @@ async function buildUpcomingFeasts(){
     const isGreat=(item.data.feast_level||0)>=6;
     const div=document.createElement('div');
     div.className='sp-up-item';
-    div.innerHTML='<span class="sp-up-date">'+MONTHS_S[item.date.getMonth()]+' '+item.date.getDate()+'</span><span class="sp-up-feast'+(isGreat?' great':'')+'">'+feast.split('—')[0].trim()+'</span>';
+    div.innerHTML='<span class="sp-up-date">'+MONTHS_S[item.date.getMonth()]+' '+item.date.getDate()+'</span><span class="sp-up-feast'+(isGreat?' great':'')+'">'+feast.split('\u2014')[0].trim()+'</span>';
     div.onclick=(function(dt){return function(){cur=new Date(dt.getFullYear(),dt.getMonth(),1);updateHeaders();buildMiniGrid();selectDateF(new Date(dt));};})(item.date);
     ul.appendChild(div);
   });
   if(!items.length) ul.innerHTML='<span style="font-family:var(--f-display);font-style:italic;font-size:.82rem;color:rgba(255,255,255,.55)">No upcoming feasts found</span>';
 }
 
-function selectDateF(date){selectedDate=date;buildMiniGrid();renderDetailF(date);}
+/* selectDateF — CSS only, no fetch */
+function selectDateF(date){
+  selectedDate=date;
+  updateMiniGridSelection();
+  renderDetailF(date);
+}
 
 async function renderDetailF(date){
-  document.getElementById('sp-right').innerHTML='<div class="db" style="padding-top:2rem"><span class="cal-loading">Loading liturgical data…</span></div>';
+  document.getElementById('sp-right').innerHTML='<div class="db" style="padding-top:2rem"><span class="cal-loading">Loading liturgical data\u2026</span></div>';
   const data=await fetchDay(date);
   const sun=isSun(date),sat=isSat(date);
   const lvl=levelLabel(data);
   const feast=getFeast(data)||'Weekday';
-  const feastHtml=feast.includes('—')?feast.replace('—','</em> —<br><em>'):'<em>'+feast+'</em>';
+  const feastHtml=feast.includes('\u2014')?feast.replace('\u2014','</em> \u2014<br><em>'):'<em>'+feast+'</em>';
   const saints=getSaints(data);
   const tone=getTone(data);
   const fast=getFast(data,date);
   const readings=getReadings(data);
   let svcBadges='';
-  if(sun) svcBadges+='<span class="svc-bdg">Divine Liturgy · 9:30 AM</span>';
-  if(sat) svcBadges+='<span class="svc-bdg">Vespers · 5:00 PM</span>';
+  if(sun) svcBadges+='<span class="svc-bdg">Divine Liturgy \u00b7 9:30 AM</span>';
+  if(sat) svcBadges+='<span class="svc-bdg">Vespers \u00b7 5:00 PM</span>';
   if(!svcBadges) svcBadges='<span class="svc-bdg alt">No parish service today</span>';
   const saintsHtml=saints.length?saints.map(function(s){return '<li class="saint-item">'+s+'</li>';}).join(''):'<li class="saint-item" style="color:var(--stone-lt);font-style:italic;font-family:var(--f-body)">No commemorations listed</li>';
   const toneHtml=tone?'<div class="ic gold-b"><span class="ic-lbl">Liturgical Tone</span><div class="ic-val">'+tone+'</div></div>':'';
   const fastHtml='<div class="ic'+(fast&&fast.toLowerCase().includes('strict')?' green-b':'')+'"><span class="ic-lbl">Fasting Rule</span><div class="ic-val" style="font-size:.88rem">'+(fast||'No fast')+'</div></div>';
-  const readingsHtml=readings.length?'<div class="rdg-bar"><div><span class="rdg-lbl">Appointed Readings</span><div class="rdg-refs">'+readings.join('<br>')+'</div></div><a href="/readings" class="rdg-link">Read Today →</a></div>':'<div class="rdg-bar"><div><span class="rdg-lbl">Appointed Readings</span><div class="rdg-refs" style="color:var(--stone-lt);font-style:italic;font-family:var(--f-body)">See <a href="https://www.oca.org/readings" target="_blank" style="color:var(--maroon)">OCA Calendar</a></div></div></div>';
+  const readingsHtml=readings.length?'<div class="rdg-bar"><div><span class="rdg-lbl">Appointed Readings</span><div class="rdg-refs">'+readings.join('<br>')+'</div></div><a href="/readings" class="rdg-link">Read Today \u2192</a></div>':'<div class="rdg-bar"><div><span class="rdg-lbl">Appointed Readings</span><div class="rdg-refs" style="color:var(--stone-lt);font-style:italic;font-family:var(--f-body)">See <a href="https://www.oca.org/readings" target="_blank" style="color:var(--maroon)">OCA Calendar</a></div></div></div>';
   document.getElementById('sp-right').innerHTML='<div class="dh"><div class="dh-top"><div><span class="dh-dayname">'+DAYS_L[date.getDay()]+'</span><div class="dh-date">'+MONTHS[date.getMonth()]+' '+date.getDate()+'<span class="dh-date-sub">, '+date.getFullYear()+'</span></div></div><span class="dh-lvl '+lvl.cls+'">'+lvl.txt+'</span></div><div class="svc-badges">'+svcBadges+'</div></div><div class="db"><div><span class="ds-label">Feast of the Day</span><div class="ds-feast">'+feastHtml+'</div></div><div><span class="ds-label">Commemorations</span><ul class="saints-list">'+saintsHtml+'</ul></div><div class="info-grid">'+toneHtml+fastHtml+'</div>'+readingsHtml+'</div>';
 }
 
 /* ═══════════════════════════════════════
    VIEW G — BY SEASON
+   Renders progressively week by week — never more than 7 concurrent fetches,
+   yields to browser between each week so UI stays responsive
 ═══════════════════════════════════════ */
 const SEASONS=[
-  {id:'pre-lent',name:'Pre-Lenten',icon:'☽',dates:'Feb – Mar 15',desc:'The preparatory Sundays before Great Lent — Publican & Pharisee, Prodigal Son, Meatfare, and Cheesefare.',start:new Date(today.getFullYear(),1,1),end:new Date(today.getFullYear(),2,15)},
-  {id:'lent',name:'Great Lent',icon:'✝',dates:'Mar – Apr',desc:'Forty days of fasting, prayer, and preparation, culminating in Lazarus Saturday and Palm Sunday.',start:new Date(today.getFullYear(),2,16),end:new Date(today.getFullYear(),3,25)},
-  {id:'holyweek',name:'Holy Week',icon:'✦',dates:'Late Apr',desc:'The most solemn week of the year — from Palm Sunday through the midnight Paschal service.',start:new Date(today.getFullYear(),3,26),end:new Date(today.getFullYear(),4,3)},
-  {id:'pascha',name:'Pascha',icon:'☀',dates:'May – Jun',desc:'Fifty days of Paschal joy from the Resurrection through Pentecost. No fasting, no prostrations.',start:new Date(today.getFullYear(),4,4),end:new Date(today.getFullYear(),5,22)},
-  {id:'pentecost',name:'Pentecost',icon:'❋',dates:'Jun – Nov',desc:'The long season of Pentecost, including the Apostles Fast, Transfiguration, Dormition, and the feasts of summer and autumn.',start:new Date(today.getFullYear(),5,23),end:new Date(today.getFullYear(),10,14)},
-  {id:'nativity',name:'Nativity Fast',icon:'★',dates:'Nov 15 – Dec 24',desc:'Forty days of fasting in preparation for the Nativity of our Lord, God and Saviour Jesus Christ.',start:new Date(today.getFullYear(),10,15),end:new Date(today.getFullYear(),11,24)},
+  {id:'pre-lent',name:'Pre-Lenten',icon:'\u263d',dates:'Feb \u2013 Mar 15',desc:'The preparatory Sundays before Great Lent \u2014 Publican & Pharisee, Prodigal Son, Meatfare, and Cheesefare.',start:new Date(today.getFullYear(),1,1),end:new Date(today.getFullYear(),2,15)},
+  {id:'lent',name:'Great Lent',icon:'\u271d',dates:'Mar \u2013 Apr',desc:'Forty days of fasting, prayer, and preparation, culminating in Lazarus Saturday and Palm Sunday.',start:new Date(today.getFullYear(),2,16),end:new Date(today.getFullYear(),3,25)},
+  {id:'holyweek',name:'Holy Week',icon:'\u2726',dates:'Late Apr',desc:'The most solemn week of the year \u2014 from Palm Sunday through the midnight Paschal service.',start:new Date(today.getFullYear(),3,26),end:new Date(today.getFullYear(),4,3)},
+  {id:'pascha',name:'Pascha',icon:'\u2600',dates:'May \u2013 Jun',desc:'Fifty days of Paschal joy from the Resurrection through Pentecost. No fasting, no prostrations.',start:new Date(today.getFullYear(),4,4),end:new Date(today.getFullYear(),5,22)},
+  {id:'pentecost',name:'Pentecost',icon:'\u274b',dates:'Jun \u2013 Nov',desc:'The long season of Pentecost, including the Apostles Fast, Transfiguration, Dormition, and the feasts of summer and autumn.',start:new Date(today.getFullYear(),5,23),end:new Date(today.getFullYear(),10,14)},
+  {id:'nativity',name:'Nativity Fast',icon:'\u2605',dates:'Nov 15 \u2013 Dec 24',desc:'Forty days of fasting in preparation for the Nativity of our Lord, God and Saviour Jesus Christ.',start:new Date(today.getFullYear(),10,15),end:new Date(today.getFullYear(),11,24)},
 ];
 
 function renderViewG(){buildSeasons();}
@@ -806,37 +846,43 @@ function buildSeasons(){
 async function buildSeasonList(season){
   if(!season) return;
   const list=document.getElementById('season-list');
-  list.innerHTML='<div class="sl-head"><div class="sl-season-name"><em>'+season.name+'</em></div><div class="sl-season-desc">'+season.desc+'</div></div><div style="padding:1rem 1.75rem;font-family:var(--f-display);font-style:italic;color:var(--stone)"><span class="cal-loading">Loading season data…</span></div>';
+  const head='<div class="sl-head" style="position:sticky;top:0;z-index:2;background:var(--vellum)"><div class="sl-season-name"><em>'+season.name+'</em></div><div class="sl-season-desc">'+season.desc+'</div></div>';
+  list.innerHTML=head+'<div style="padding:1rem 1.75rem;font-family:var(--f-display);font-style:italic;color:var(--stone)"><span class="cal-loading">Loading season data\u2026</span></div>';
   const dates=[];
   for(var d=new Date(season.start);d<=season.end;d.setDate(d.getDate()+1)) dates.push(new Date(d));
-  const results=await Promise.all(dates.map(function(d){return fetchDay(d);}));
-  list.innerHTML='<div class="sl-head" style="position:sticky;top:0;z-index:2;background:var(--vellum)"><div class="sl-season-name"><em>'+season.name+'</em></div><div class="sl-season-desc">'+season.desc+'</div></div>';
-  dates.forEach(function(date,i){
-    const data=results[i];
-    const feast=getFeast(data)||(isSun(date)?'Sunday':(isSat(date)?'Saturday':'Weekday'));
-    const saints=getSaints(data).slice(0,2);
-    const tone=getTone(data);
-    const fast=getFast(data,date);
-    const isMajor=data&&(data.feast_level||0)>=5;
-    const dot=dotClassForDate(date,data);
-    const dotColor=dot==='dot-great'?'var(--gold)':dot==='dot-major'?'rgba(184,131,40,.55)':dot==='dot-fast'?'var(--verdigris)':'transparent';
-    const dotEl=dot!=='dot-none'?'<span class="gdot" style="background:'+dotColor+'"></span>':'';
-    const pillsHtml=[
-      isSun(date)?'<span class="sl-pill">Liturgy 9:30</span>':'',
-      isSat(date)?'<span class="sl-pill">Vespers 5:00</span>':'',
-      fast&&fast.toLowerCase().includes('strict')?'<span class="sl-pill fast">Strict Fast</span>':'',
-      tone?'<span class="sl-pill tone">'+tone+'</span>':'',
-    ].filter(Boolean).join('');
-    let rowCls='sl-row';
-    if(isToday(date)) rowCls+=' today-row';
-    if(isSun(date)) rowCls+=' sun-row';
-    if(activeSeasDate&&date.toDateString()===activeSeasDate.toDateString()) rowCls+=' sel-row';
-    const row=document.createElement('div');
-    row.className=rowCls;
-    row.innerHTML='<div class="sl-date"><span class="sl-dn'+(isToday(date)?' today-n':'')+'">'+date.getDate()+'</span><span class="sl-dl">'+DAYS_S[date.getDay()]+' '+MONTHS_S[date.getMonth()]+'</span></div><div class="sl-content"><div class="sl-feast'+(isMajor?' major':'')+'">'+dotEl+feast+'</div>'+(saints.length?'<div class="sl-saints">'+saints.join(', ')+'</div>':'')+'<div class="sl-pills">'+pillsHtml+'</div></div>';
-    row.onclick=(function(dt,da,r){return function(){selectSeasDate(dt,da,r);};})(new Date(date),data,row);
-    list.appendChild(row);
-  });
+  list.innerHTML=head;
+  /* Render week by week — progressive, browser stays responsive */
+  for(let i=0;i<dates.length;i+=7){
+    const chunk=dates.slice(i,i+7);
+    const results=await Promise.all(chunk.map(function(d){return fetchDay(d);}));
+    chunk.forEach(function(date,j){
+      const data=results[j];
+      const feast=getFeast(data)||(isSun(date)?'Sunday':(isSat(date)?'Saturday':'Weekday'));
+      const saints=getSaints(data).slice(0,2);
+      const tone=getTone(data);
+      const fast=getFast(data,date);
+      const isMajor=data&&(data.feast_level||0)>=5;
+      const dot=dotClassForDate(date,data);
+      const dotColor=dot==='dot-great'?'var(--gold)':dot==='dot-major'?'rgba(184,131,40,.55)':dot==='dot-fast'?'var(--verdigris)':'transparent';
+      const dotEl=dot!=='dot-none'?'<span class="gdot" style="background:'+dotColor+'"></span>':'';
+      const pillsHtml=[
+        isSun(date)?'<span class="sl-pill">Liturgy 9:30</span>':'',
+        isSat(date)?'<span class="sl-pill">Vespers 5:00</span>':'',
+        fast&&fast.toLowerCase().includes('strict')?'<span class="sl-pill fast">Strict Fast</span>':'',
+        tone?'<span class="sl-pill tone">'+tone+'</span>':'',
+      ].filter(Boolean).join('');
+      let rowCls='sl-row';
+      if(isToday(date)) rowCls+=' today-row';
+      if(isSun(date)) rowCls+=' sun-row';
+      if(activeSeasDate&&date.toDateString()===activeSeasDate.toDateString()) rowCls+=' sel-row';
+      const row=document.createElement('div');
+      row.className=rowCls;
+      row.innerHTML='<div class="sl-date"><span class="sl-dn'+(isToday(date)?' today-n':'')+'">'+date.getDate()+'</span><span class="sl-dl">'+DAYS_S[date.getDay()]+' '+MONTHS_S[date.getMonth()]+'</span></div><div class="sl-content"><div class="sl-feast'+(isMajor?' major':'')+'">'+dotEl+feast+'</div>'+(saints.length?'<div class="sl-saints">'+saints.join(', ')+'</div>':'')+'<div class="sl-pills">'+pillsHtml+'</div></div>';
+      row.onclick=(function(dt,da,r){return function(){selectSeasDate(dt,da,r);};})(new Date(date),data,row);
+      list.appendChild(row);
+    });
+    await new Promise(function(r){setTimeout(r,0);});
+  }
   const todayRow=list.querySelector('.today-row');
   if(todayRow) setTimeout(function(){todayRow.scrollIntoView({block:'nearest'});},100);
 }
@@ -853,20 +899,23 @@ function selectSeasDate(date,data,rowEl){
   document.querySelectorAll('.sl-row').forEach(function(r){r.classList.remove('sel-row');});
   if(rowEl) rowEl.classList.add('sel-row');
   const feast=getFeast(data)||(isSun(date)?'Sunday Liturgy':(isSat(date)?'Saturday Vespers':'Weekday'));
-  const feastHtml=feast.includes('—')?feast.replace('—','</em> —<br><em>'):'<em>'+feast+'</em>';
+  const feastHtml=feast.includes('\u2014')?feast.replace('\u2014','</em> \u2014<br><em>'):'<em>'+feast+'</em>';
   const saints=getSaints(data);
   const tone=getTone(data);
   const fast=getFast(data,date);
   const readings=getReadings(data);
   const sun=isSun(date),sat=isSat(date);
   let svc='';
-  if(sun) svc+='<span class="svc-bdg" style="font-size:.68rem;padding:.30rem .8rem">Liturgy · 9:30 AM</span>';
-  if(sat) svc+='<span class="svc-bdg" style="font-size:.68rem;padding:.30rem .8rem">Vespers · 5:00 PM</span>';
-  document.getElementById('season-detail').innerHTML='<span style="font-family:var(--f-ui);font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--stone-lt);display:block;margin-bottom:.5rem">'+DAYS_L[date.getDay()]+', '+MONTHS[date.getMonth()]+' '+date.getDate()+'</span><div style="font-family:var(--f-display);font-weight:300;font-size:1.6rem;line-height:1.08;color:var(--text);margin-bottom:.6rem">'+feastHtml+'</div>'+(svc?'<div style="display:flex;gap:.4rem;margin-bottom:.75rem;flex-wrap:wrap">'+svc+'</div>':'')+(saints.length?'<div style="margin-bottom:.85rem"><span style="font-family:var(--f-ui);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone-lt);display:block;margin-bottom:.35rem;padding-bottom:.3rem;border-bottom:var(--rule-hair)">Commemorations</span><ul style="list-style:none">'+saints.map(function(s){return '<li style="font-family:var(--f-display);font-size:1.15rem;color:var(--ink);padding:.2rem 0;display:flex;align-items:baseline;gap:.4rem"><span style="color:var(--gold);font-size:.60rem">✦</span>'+s+'</li>';}).join('')+'</ul></div>':'')+'<div style="background:var(--vellum);padding:.75rem .9rem;border-left:2px solid '+(fast&&fast.toLowerCase().includes('strict')?'var(--verdigris)':'rgba(123,29,42,.15)')+';margin-bottom:.75rem"><span style="font-family:var(--f-ui);font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;color:var(--stone-lt);display:block;margin-bottom:.2rem">Fasting Rule</span><span style="font-family:var(--f-display);font-size:.90rem;color:var(--ink)">'+(fast||'No fast')+'</span></div>'+(tone?'<div style="font-family:var(--f-ui);font-size:.60rem;letter-spacing:.13em;text-transform:uppercase;color:var(--stone-lt);margin-bottom:.75rem">'+tone+'</div>':'')+(readings.length?'<div style="border-top:var(--rule-hair);padding-top:.75rem"><span style="font-family:var(--f-ui);font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;color:var(--stone-lt);display:block;margin-bottom:.3rem">Appointed Readings</span><div style="font-family:var(--f-display);font-style:italic;font-size:1.10rem;color:var(--ink);line-height:1.7">'+readings.join('<br>')+'</div><a href="/readings" style="font-family:var(--f-ui);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--maroon);border-bottom:1px solid rgba(123,29,42,.22);margin-top:.5rem;display:inline-block">Read Today →</a></div>':'');
+  if(sun) svc+='<span class="svc-bdg" style="font-size:.68rem;padding:.30rem .8rem">Liturgy \u00b7 9:30 AM</span>';
+  if(sat) svc+='<span class="svc-bdg" style="font-size:.68rem;padding:.30rem .8rem">Vespers \u00b7 5:00 PM</span>';
+  document.getElementById('season-detail').innerHTML='<span style="font-family:var(--f-ui);font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--stone-lt);display:block;margin-bottom:.5rem">'+DAYS_L[date.getDay()]+', '+MONTHS[date.getMonth()]+' '+date.getDate()+'</span><div style="font-family:var(--f-display);font-weight:300;font-size:1.6rem;line-height:1.08;color:var(--text);margin-bottom:.6rem">'+feastHtml+'</div>'+(svc?'<div style="display:flex;gap:.4rem;margin-bottom:.75rem;flex-wrap:wrap">'+svc+'</div>':'')+(saints.length?'<div style="margin-bottom:.85rem"><span style="font-family:var(--f-ui);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone-lt);display:block;margin-bottom:.35rem;padding-bottom:.3rem;border-bottom:var(--rule-hair)">Commemorations</span><ul style="list-style:none">'+saints.map(function(s){return '<li style="font-family:var(--f-display);font-size:1.15rem;color:var(--ink);padding:.2rem 0;display:flex;align-items:baseline;gap:.4rem"><span style="color:var(--gold);font-size:.60rem">\u2726</span>'+s+'</li>';}).join('')+'</ul></div>':'')+'<div style="background:var(--vellum);padding:.75rem .9rem;border-left:2px solid '+(fast&&fast.toLowerCase().includes('strict')?'var(--verdigris)':'rgba(123,29,42,.15)')+';margin-bottom:.75rem"><span style="font-family:var(--f-ui);font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;color:var(--stone-lt);display:block;margin-bottom:.2rem">Fasting Rule</span><span style="font-family:var(--f-display);font-size:.90rem;color:var(--ink)">'+(fast||'No fast')+'</span></div>'+(tone?'<div style="font-family:var(--f-ui);font-size:.60rem;letter-spacing:.13em;text-transform:uppercase;color:var(--stone-lt);margin-bottom:.75rem">'+tone+'</div>':'')+(readings.length?'<div style="border-top:var(--rule-hair);padding-top:.75rem"><span style="font-family:var(--f-ui);font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;color:var(--stone-lt);display:block;margin-bottom:.3rem">Appointed Readings</span><div style="font-family:var(--f-display);font-style:italic;font-size:1.10rem;color:var(--ink);line-height:1.7">'+readings.join('<br>')+'</div><a href="/readings" style="font-family:var(--f-ui);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--maroon);border-bottom:1px solid rgba(123,29,42,.22);margin-top:.5rem;display:inline-block">Read Today \u2192</a></div>':'');
 }
 
 /* ═══════════════════════════════════════
-   VIEW C — CLASSIC
+   VIEW C — CLASSIC MONTH / 14-DAY LIST
+   buildClassicMonth: renders from cache immediately, fetches in bg once only
+   buildClassicList: 14 days via fetchBatch — small, safe
+   No recursive self-calls anywhere
 ═══════════════════════════════════════ */
 function renderViewC(){buildClassic();}
 
@@ -885,7 +934,7 @@ function buildClassic(){
   else buildClassicList();
 }
 
-async function buildClassicMonth(){
+function buildClassicMonth(){
   const y=cur.getFullYear(),m=cur.getMonth();
   const first=new Date(y,m,1);
   const last=new Date(y,m+1,0);
@@ -900,26 +949,31 @@ async function buildClassicMonth(){
     const data=CACHE[k]||null;
     const sun=isSun(date),sat=isSat(date);
     const feast=data?getFeast(data):'';
-    const short=feast&&feast.length>28?feast.substring(0,26)+'…':feast;
+    const short=feast&&feast.length>28?feast.substring(0,26)+'\u2026':feast;
     const isMajor=data&&(data.feast_level||0)>=5;
     const isStrict=data&&(data.fast_level_desc||'').toLowerCase().includes('strict');
-    html+='<div class="cg-cell'+(isToday(date)?' today-c':'')+(sun?' sun-c':'')+'"><span class="cg-num'+(isToday(date)?' today-n':'')+'">'+d+'</span>'+(short?'<span class="cg-feast-txt'+(isMajor?' cg-major':'')+'">'+short+'</span>':'')+(sun?'<span class="cg-svc-lbl">Liturgy 9:30</span>':'')+(sat&&!sun?'<span class="cg-svc-lbl">Vespers 5:00</span>':'')+(isStrict?'<span class="cg-fast-lbl">✦ strict fast</span>':'')+'</div>';
+    html+='<div class="cg-cell'+(isToday(date)?' today-c':'')+(sun?' sun-c':'')+'"><span class="cg-num'+(isToday(date)?' today-n':'')+'">'+d+'</span>'+(short?'<span class="cg-feast-txt'+(isMajor?' cg-major':'')+'">'+short+'</span>':'')+(sun?'<span class="cg-svc-lbl">Liturgy 9:30</span>':'')+(sat&&!sun?'<span class="cg-svc-lbl">Vespers 5:00</span>':'')+(isStrict?'<span class="cg-fast-lbl">\u2726 strict fast</span>':'')+'</div>';
   }
   const rem=(7-((pad+last.getDate())%7))%7;
   for(let i=1;i<=rem;i++) html+='<div class="cg-cell other-m"><span class="cg-num">'+i+'</span></div>';
   html+='</div>';
   document.getElementById('cv-month').innerHTML=html;
-  fetchMonth(y,m).then(function(){buildClassicMonth();});
+  /* Fetch in background only if month not fully cached — re-render once when done */
+  const dates=[];
+  for(let d=1;d<=last.getDate();d++) dates.push(new Date(y,m,d));
+  const allCached=dates.every(function(d){return !!CACHE[dateKey(d)];});
+  if(!allCached){
+    fetchBatch(dates).then(function(){buildClassicMonth();});
+  }
 }
 
 async function buildClassicList(){
   const listEl=document.getElementById('cv-list');
-  listEl.innerHTML='<div style="padding:1.5rem;font-family:var(--f-display);font-style:italic;color:var(--stone)"><span class="cal-loading">Loading 14-day view…</span></div>';
+  listEl.innerHTML='<div style="padding:1.5rem;font-family:var(--f-display);font-style:italic;color:var(--stone)"><span class="cal-loading">Loading 14-day view\u2026</span></div>';
   const dates=[];
   for(let i=0;i<14;i++){const d=new Date(today);d.setDate(d.getDate()+i);dates.push(d);}
-  const results=await Promise.all(dates.map(function(d){return fetchDay(d);}));
-  let html='';
-  let lastWeek=-1;
+  const results=await fetchBatch(dates);
+  let html='';let lastWeek=-1;
   dates.forEach(function(date,i){
     const data=results[i];
     const weekNum=Math.floor(i/7);
@@ -933,20 +987,20 @@ async function buildClassicList(){
     const dot=dotClassForDate(date,data);
     const dotColor=dot==='dot-great'?'var(--gold)':dot==='dot-major'?'rgba(184,131,40,.50)':dot==='dot-fast'?'var(--verdigris)':'transparent';
     const dotEl=dot!=='dot-none'?'<span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:'+dotColor+';flex-shrink:0"></span>':'';
-    html+='<div class="lv-row'+(isToday(date)?' lv-today':'')+(sun?' lv-sun':'')+'"><div class="lv-date-col"><span class="lv-dn'+(isToday(date)?' today-n':'')+'">'+date.getDate()+'</span><span class="lv-dl">'+DAYS_L[date.getDay()]+'</span></div><div class="lv-content"><div class="lv-feast'+(isMajor?' lv-major':'')+'">'+dotEl+feast+'</div>'+(saints.length?'<div class="lv-saints">'+saints.join(', ')+'</div>':'')+'<div class="lv-meta">'+(sun?'<span class="lv-svc">Liturgy 9:30 AM</span>':'')+(sat?'<span class="lv-svc">Vespers 5:00 PM</span>':'')+(fast?'<span class="lv-fast">✦ '+fast+'</span>':'')+(tone?'<span class="lv-tone">'+tone+'</span>':'')+'</div></div></div>';
+    html+='<div class="lv-row'+(isToday(date)?' lv-today':'')+(sun?' lv-sun':'')+'"><div class="lv-date-col"><span class="lv-dn'+(isToday(date)?' today-n':'')+'">'+date.getDate()+'</span><span class="lv-dl">'+DAYS_L[date.getDay()]+'</span></div><div class="lv-content"><div class="lv-feast'+(isMajor?' lv-major':'')+'">'+dotEl+feast+'</div>'+(saints.length?'<div class="lv-saints">'+saints.join(', ')+'</div>':'')+'<div class="lv-meta">'+(sun?'<span class="lv-svc">Liturgy 9:30 AM</span>':'')+(sat?'<span class="lv-svc">Vespers 5:00 PM</span>':'')+(fast?'<span class="lv-fast">\u2726 '+fast+'</span>':'')+(tone?'<span class="lv-tone">'+tone+'</span>':'')+'</div></div></div>';
   });
   listEl.innerHTML=html;
 }
 
 /* ═══════════════════════════════════════
-   BOOT
+   BOOT — staggered startup
+   Only Split Panel loads on boot.
+   By Season and Classic only load when tabs are clicked.
 ═══════════════════════════════════════ */
 (function(){
   updateHeaders();
   buildMiniGrid();
-  selectDateF(new Date(today));
-  buildSeasons();
-  buildClassicMonth();
+  setTimeout(function(){selectDateF(new Date(today));},300);
 })();
 </script>
 
