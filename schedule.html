@@ -647,7 +647,7 @@ const CACHE={};
 /* ═══════════════════════════════════════
    ORTHOCAL API
 ═══════════════════════════════════════ */
-function dateKey(d){return`${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`;}
+function dateKey(d){return`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;}
 
 /* ── LOCAL CALENDAR CACHE ── */
 let LOCAL_CAL = null;
@@ -681,7 +681,7 @@ async function fetchDay(date){
       feasts: day.feasts,
       saints: day.saints,
       fast_level_desc: day.fast,
-      fast_exception_desc: day.fastException,
+      fast_exception_desc: day.fastEx,
       tone: day.tone,
       feast_level: day.lvl,
       feast_level_description: day.lvlDesc,
