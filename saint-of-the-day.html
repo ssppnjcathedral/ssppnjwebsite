@@ -234,54 +234,93 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
     <p class="footer-addr">109 Grand Street · Jersey City, NJ 07302<br>(201) 434-1986 · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6714141717090d27000a060e0b4904080a">[email&#160;protected]</a></p>
   </div>
 </footer>
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 const MS=['January','February','March','April','May','June','July','August','September','October','November','December'];
 const DS=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+
 async function loadSaints(){
   const today=new Date();
-  const dateStr=`${DS[today.getDay()]}, ${MS[today.getMonth()]} ${today.getDate()}, ${today.getFullYear()}`;
+  const y=today.getFullYear();
+  const m=String(today.getMonth()+1).padStart(2,'0');
+  const d=String(today.getDate()).padStart(2,'0');
+  const dateKey=y+'-'+m+'-'+d;
+  const dateStr=DS[today.getDay()]+', '+MS[today.getMonth()]+' '+today.getDate()+', '+y;
+
   document.getElementById('sotd-date').textContent=dateStr;
-  const PROXIES=['https://corsproxy.io/?','https://api.allorigins.win/raw?url='];
-  const BASE=`https://orthocal.info/api/gregorian/${today.getFullYear()}/${today.getMonth()+1}/${today.getDate()}/`;
-  
-  async function tryFetch(url,ms=8000){
-    const ctrl=new AbortController();
-    const t=setTimeout(()=>ctrl.abort(),ms);
-    try{const r=await fetch(url,{signal:ctrl.signal});clearTimeout(t);if(!r.ok)throw new Error();return r.json();}
-    catch(e){clearTimeout(t);throw e;}
+
+  /* Load from local JSON */
+  let data=null;
+  try{
+    const r=await fetch('/_data/calendar-'+y+'.json');
+    if(!r.ok) throw new Error('HTTP '+r.status);
+    const cal=await r.json();
+    const day=cal&&cal.days&&cal.days[dateKey];
+    if(day){
+      data={
+        summary_title: day.feast||'',
+        titles:        day.titles||[],
+        saints:        day.saints||[],
+        fast_level_desc:     day.fast||'',
+        fast_exception_desc: day.fastEx||'',
+        tone:          day.tone||0,
+        feast_level:   day.lvl||0,
+        readings:      day.readings||[]
+      };
+    }
+  }catch(e){
+    console.warn('Local calendar fetch failed:',e.message);
   }
 
-  let data=null;
-  for(const proxy of PROXIES){
-    try{data=await tryFetch(proxy+encodeURIComponent(BASE));break;}
-    catch(e){console.warn('Proxy failed:',e.message);}
+  if(!data){
+    document.getElementById('saints-container').innerHTML='<p class="loading-state">Could not load today's liturgical data. Please visit <a href="https://www.oca.org/saints" target="_blank" style="color:var(--maroon)">oca.org/saints</a> for today's commemorations.</p>';
+    return;
   }
-  try{
-    if(!data) throw new Error('All proxies failed');
-    const feast=data.titles?.[0]||data.summary_title||'';
-    document.getElementById('side-feast').innerHTML=`<strong style="font-family:var(--f-ui);font-size:.48rem;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);display:block;margin-bottom:.3rem">Today</strong>${feast}`;
-    const saints=data.saints||[];
-    if(!saints.length){document.getElementById('saints-container').innerHTML='<p class="loading-state">No saint entries available for today.</p>';return}
-    const html=saints.map((s,i)=>{
-      const story=s.story||'';
-      let storyHtml='';
-      if(story){
-        // Story comes as HTML from the API — wrap paragraphs
-        const paras=story.replace(/<[^>]+>/g,'').split(/\n\n+/).filter(p=>p.trim());
-        storyHtml=paras.map((p,pi)=>`<p${pi===0?' style="clear:both"':''}>${p.trim()}</p>`).join('');
-      }else{
-        storyHtml=`<p>Life details for ${s.name} are not available in the digital synaxarion. Please consult the printed lives of the saints for a full account of this holy one's life.</p>`;
-      }
-      return`<div class="saint-entry">
-        <span class="rubric">${i===0?'Primary Commemoration':'Also Commemorated'}</span>
-        <div class="rubric-rule"></div>
-        <span class="feast-date-badge">${MS[today.getMonth()]} ${today.getDate()}</span>
-        <h2 class="saint-name">${s.name||'Holy Saint'}</h2>
-        ${s.feast_name&&s.feast_name!==s.name?`<span class="saint-type">${s.feast_name}</span>`:''}
-        <div class="saint-story">${storyHtml}</div>
-      </div>`;
-    }).join('');
-    document.getElementById('saints-container').innerHTML=html+`<p style="font-family:var(--f-ui);font-size:.48rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);margin-top:1rem">Via <a href="https://orthocal.info" target="_blank" style="color:var(--maroon)">ortho
+
+  /* Sidebar feast */
+  const feast=data.summary_title||(data.titles&&data.titles[0])||'';
+  if(feast){
+    document.getElementById('side-feast').innerHTML='<strong style="font-family:var(--f-ui);font-size:.48rem;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);display:block;margin-bottom:.3rem">Today</strong>'+feast;
+  }
+
+  /* Saints list */
+  const saints=data.saints||[];
+  if(!saints.length){
+    document.getElementById('saints-container').innerHTML='<p class="loading-state">No saint entries available for today.</p>';
+    return;
+  }
+
+  const ROMAN={1:'I',2:'II',3:'III',4:'IV',5:'V',6:'VI',7:'VII',8:'VIII'};
+  const tone=data.tone?'Tone '+(ROMAN[data.tone]||data.tone):'';
+  const fast=[data.fast_level_desc,data.fast_exception_desc].filter(Boolean).join(' — ');
+
+  const html=saints.map(function(s,i){
+    const name=s.name||s||'Holy Saint';
+    /* Local JSON has saint names only — no story text */
+    const storyHtml='<p>The full life of '+name+' is available in the printed lives of the saints and on the <a href="https://www.oca.org/saints/lives/'+y+'/'+today.getMonth()+'/'+today.getDate()+'" target="_blank" rel="noopener" style="color:var(--maroon)">OCA website</a>.</p>';
+    return '<div class="saint-entry">'
+      +'<span class="rubric">'+(i===0?'Primary Commemoration':'Also Commemorated')+'</span>'
+      +'<div class="rubric-rule"></div>'
+      +'<span class="feast-date-badge">'+MS[today.getMonth()]+' '+today.getDate()+'</span>'
+      +'<h2 class="saint-name">'+name+'</h2>'
+      +'<div class="saint-story">'+storyHtml+'</div>'
+      +'</div>';
+  }).join('');
+
+  /* Info bar — tone and fast */
+  let infoBar='';
+  if(tone||fast){
+    infoBar='<div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.5rem;padding-top:1.5rem;border-top:var(--rule-faint)">';
+    if(tone) infoBar+='<span style="font-family:var(--f-ui);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone)">'+tone+'</span>';
+    if(fast) infoBar+='<span style="font-family:var(--f-ui);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--verdigris)">✦ '+fast+'</span>';
+    infoBar+='</div>';
+  }
+
+  document.getElementById('saints-container').innerHTML=html+infoBar;
+}
+
+loadSaints();
+</script>
+
 <!-- Hero Image Rotator -->
 <script>
 /* ═══════════════════════════════════════════════════════
@@ -291,7 +330,7 @@ async function loadSaints(){
    Picks one random image per page load, crossfades on a timer
 ═══════════════════════════════════════════════════════ */
 
-(function() {
+window.addEventListener('load', function() {
 
   /* ── CURATED IMAGE POOL ──────────────────────────────
      All from Wikimedia Commons. Each has:
