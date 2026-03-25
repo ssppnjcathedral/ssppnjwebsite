@@ -1200,32 +1200,44 @@ function renderWeek(entries){
   }).join('');
 }
 
+/* Cache the full JSON — fetched once, reused for all 7 days */
+var _calCache = null;
+async function getCalendar(y){
+  if(_calCache && _calCache.year === y) return _calCache;
+  try{
+    const r=await fetch('/_data/calendar-'+y+'.json');
+    if(!r.ok) throw new Error('HTTP '+r.status);
+    _calCache=await r.json();
+    return _calCache;
+  }catch(e){console.warn('Calendar fetch failed:',e.message);return null;}
+}
+
 async function loadFromLocalCal(date){
   const y=date.getFullYear();
   const m=String(date.getMonth()+1).padStart(2,'0');
   const d=String(date.getDate()).padStart(2,'0');
   const key=y+'-'+m+'-'+d;
-  try{
-    const r=await fetch('/_data/calendar-'+y+'.json');
-    if(!r.ok) throw new Error('HTTP '+r.status);
-    const cal=await r.json();
-    const day=cal&&cal.days&&cal.days[key];
-    if(!day) return null;
-    return {
-      titles:[day.feast],
-      summary_title:day.feast,
-      saints:(day.saints||[]),
-      fast_level_description:day.fast||'',
-      fast_exception_desc:day.fastEx||'',
-      tone:day.tone||0,
-      feast_level:day.lvl||0,
-      readings:(day.readings||[]).map(function(r){return{
-        source:r.src||'',
-        source_short:r.src||'',
-        display:r.ref||r.short||''
-      };})
-    };
-  }catch(e){return null;}
+  const cal=await getCalendar(y);
+  if(!cal||!cal.days||!cal.days[key]) return null;
+  const day=cal.days[key];
+  /* Saints in JSON are strings, not objects — normalize */
+  const saints=(day.saints||[]).map(function(s){
+    return typeof s==='string'?{name:s}:(s&&s.name?s:{name:String(s)});
+  });
+  return {
+    titles:[day.feast],
+    summary_title:day.feast,
+    saints:saints,
+    fast_level_description:day.fast||'',
+    fast_exception_desc:day.fastEx||'',
+    tone:day.tone||0,
+    feast_level:day.lvl||0,
+    readings:(day.readings||[]).map(function(r){return{
+      source:r.src||'',
+      source_short:r.src||'',
+      display:r.ref||r.short||''
+    };})
+  };
 }
 
 async function init(){
