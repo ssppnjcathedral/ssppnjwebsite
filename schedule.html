@@ -954,7 +954,8 @@ async function buildClassicList(){
 </script>
 
 <script>
-(function(){
+/* Hero rotator — non-blocking, loads after page is interactive */
+window.addEventListener('load', function(){
   var IMAGES=[
     {url:'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Interior_of_Greek_Orthodox_church_18th_century_section.JPG/1280px-Interior_of_Greek_Orthodox_church_18th_century_section.JPG',pos:'center center'},
     {url:'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Church_of_the_Dormition_of_the_Theotokos_iconostasis.jpg/1280px-Church_of_the_Dormition_of_the_Theotokos_iconostasis.jpg',pos:'center center'},
@@ -969,13 +970,20 @@ async function buildClassicList(){
   var hero=document.querySelector('.page-hero');
   if(!hero) return;
   var idx=Math.floor(Math.random()*IMAGES.length);
-  function apply(img){hero.style.backgroundImage=SCRIM+',url("'+img.url+'")';hero.style.backgroundSize='cover';hero.style.backgroundPosition=img.pos||'center center';hero.style.backgroundRepeat='no-repeat';}
-  function advance(){idx=(idx+1)%IMAGES.length;apply(IMAGES[idx]);}
-  var img=new Image();
-  img.onload=function(){apply(IMAGES[idx]);setInterval(advance,8000);};
-  img.onerror=function(){idx=(idx+1)%IMAGES.length;img.src=IMAGES[idx].url;};
-  img.src=IMAGES[idx].url;
-})();
+  function apply(img){
+    hero.style.backgroundImage=SCRIM+',url("'+img.url+'")';
+    hero.style.backgroundSize='cover';
+    hero.style.backgroundPosition=img.pos||'center center';
+    hero.style.backgroundRepeat='no-repeat';
+  }
+  function tryLoad(i){
+    var img=new Image();
+    img.onload=function(){apply(IMAGES[i]);setInterval(function(){i=(i+1)%IMAGES.length;apply(IMAGES[i]);},8000);};
+    img.onerror=function(){tryLoad((i+1)%IMAGES.length);};
+    setTimeout(function(){img.src=IMAGES[i].url;},100);
+  }
+  tryLoad(idx);
+});
 </script>
 
 <script>
