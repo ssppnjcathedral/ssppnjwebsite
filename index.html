@@ -32,7 +32,7 @@
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{background:var(--vellum);color:var(--text);font-family:var(--f-body);font-size:21px;line-height:1.75;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body{background:var(--vellum);color:var(--text);font-family:var(--f-body);font-size:19px;line-height:1.75;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
 img{display:block;max-width:100%}
 
@@ -72,16 +72,16 @@ img{display:block;max-width:100%}
 .nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(246,241,232,.97);backdrop-filter:blur(10px);border-bottom:var(--rule-faint)}
 .nav-inner{max-width:1380px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px;padding:0 3rem}
 .nav-logo-name{font-family:var(--f-display);font-weight:500;font-size:1.25rem;color:var(--text);display:block}
-.nav-logo-sub{font-family:var(--f-ui);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);display:block}
+.nav-logo-sub{font-family:var(--f-ui);font-size:.60rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);display:block}
 .nav-links{display:flex;align-items:center;list-style:none}
 .nav-links>li{position:relative}
-.nav-links>li>a{font-family:var(--f-ui);font-size:.78rem;letter-spacing:.10em;text-transform:uppercase;color:var(--ink);padding:1.1rem .85rem;display:block;transition:color .18s}
+.nav-links>li>a{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);padding:1.1rem .85rem;display:block;transition:color .18s}
 .nav-links>li:hover>a{color:var(--maroon)}
 .nav-drop{position:absolute;top:100%;left:0;background:var(--vellum);border-top:2px solid var(--maroon);border-bottom:var(--rule-faint);border-left:var(--rule-faint);border-right:var(--rule-faint);min-width:200px;padding:.5rem 0;opacity:0;pointer-events:none;transform:translateY(-4px);transition:all .16s;box-shadow:0 8px 28px rgba(28,20,16,.10)}
 .nav-links>li:hover .nav-drop{opacity:1;pointer-events:all;transform:none}
-.nav-drop a{display:block;font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);padding:.5rem 1.4rem;transition:color .14s}
+.nav-drop a{display:block;font-family:var(--f-ui);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);padding:.5rem 1.4rem;transition:color .14s}
 .nav-drop a:hover{color:var(--maroon)}
-.nav-give{font-family:var(--f-ui);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--vellum);background:var(--maroon);padding:.5rem 1.1rem;transition:background .2s}
+.nav-give{font-family:var(--f-ui);font-size:.70rem;letter-spacing:.14em;text-transform:uppercase;color:var(--vellum);background:var(--maroon);padding:.5rem 1.1rem;transition:background .2s}
 .nav-give:hover{background:var(--maroon-deep)}
 
 /* === HERO === */
@@ -265,7 +265,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 .nav-drawer-close{width:32px;height:32px;background:rgba(255,255,255,.08);border:none;color:rgba(255,255,255,.65);cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:background .2s}
 .nav-drawer-close:hover{background:rgba(255,255,255,.15)}
 .nav-drawer-links{padding:1rem 0;flex:1}
-.nav-drawer-links a{display:block;font-family:var(--f-ui);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,232,.70);padding:.9rem 1.75rem;border-bottom:1px solid rgba(255,255,255,.05);transition:all .18s}
+.nav-drawer-links a{display:block;font-family:var(--f-ui);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,232,.70);padding:.9rem 1.75rem;border-bottom:1px solid rgba(255,255,255,.05);transition:all .18s}
 .nav-drawer-links a:hover{color:#fff;background:rgba(255,255,255,.05)}
 .nav-drawer-links .drawer-section{font-family:var(--f-ui);font-size:.48rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(184,131,40,.55);padding:.85rem 1.75rem .35rem;display:block}
 .nav-drawer-give{margin:1.25rem 1.75rem;display:block;text-align:center;font-family:var(--f-ui);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;padding:.85rem;background:var(--maroon);color:var(--vellum);transition:background .2s}
@@ -307,178 +307,67 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   .giving-section{padding:6rem 1.5rem}
 }
 
-/* ── QUOTE INTERSTITIAL ───────────────────────────── */
-.quote-break{
-  background:var(--apse);
-  padding:5rem 4.5rem;
-  text-align:center;
-  position:relative;
-  overflow:hidden;
-  margin:0;
-}
-.quote-break::before{
-  content:'';
-  position:absolute;
-  top:0;left:50%;transform:translateX(-50%);
-  width:1px;height:40px;
-  background:rgba(184,131,40,.35);
-}
-.quote-break::after{
-  content:'';
-  position:absolute;
-  bottom:0;left:50%;transform:translateX(-50%);
-  width:1px;height:40px;
-  background:rgba(184,131,40,.35);
-}
-.qb-inner{max-width:780px;margin:0 auto;position:relative;z-index:1}
-.qb-cross{display:block;font-size:.85rem;color:rgba(184,131,40,.40);letter-spacing:.6em;padding-left:.6em;margin-bottom:1.75rem}
-.qb-rule{width:48px;height:1px;background:rgba(184,131,40,.40);margin:0 auto 1.75rem}
-.qb-text{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-weight:300;font-size:clamp(1.6rem,3.5vw,2.5rem);line-height:1.35;color:rgba(246,241,232,.88);margin-bottom:1.5rem}
-.qb-attr{font-family:'Cinzel',Georgia,serif;font-size:.62rem;letter-spacing:.20em;text-transform:uppercase;color:rgba(184,131,40,.65)}
-@media(max-width:768px){
-  .quote-break{padding:3.5rem 1.5rem}
-  .qb-text{font-size:1.45rem}
-}
-
 /* ── F: LIVE LITURGICAL BANNER ── */
-.lit-banner{
-  position:fixed;top:60px;left:0;right:0;z-index:190;
-  background:var(--apse);
-  border-bottom:1px solid rgba(184,131,40,.20);
-  padding:0 3rem;
-  height:36px;
-  display:flex;align-items:center;justify-content:space-between;
-  font-family:var(--f-ui);font-size:.60rem;letter-spacing:.14em;text-transform:uppercase;
-  transform:translateY(-100%);transition:transform .4s ease;
-}
+.lit-banner{position:fixed;top:60px;left:0;right:0;z-index:190;background:var(--apse);border-bottom:1px solid rgba(184,131,40,.20);padding:0 3rem;height:36px;display:flex;align-items:center;justify-content:space-between;font-family:var(--f-ui);font-size:.60rem;letter-spacing:.14em;text-transform:uppercase;transform:translateY(-100%);transition:transform .4s ease}
 .lit-banner.visible{transform:translateY(0)}
 .lb-left{display:flex;align-items:center;gap:1.5rem;color:rgba(246,241,232,.55)}
 .lb-feast{color:rgba(246,241,232,.88);font-size:.64rem}
 .lb-fast{color:var(--verdigris)}
 .lb-tone{color:rgba(184,131,40,.70)}
 .lb-right{display:flex;align-items:center;gap:.5rem;color:rgba(246,241,232,.45)}
-.lb-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0;
-  animation:pulse-dot 2s ease-in-out infinite}
-.lb-dot.live{background:#4CAF50;animation:pulse-dot 1s ease-in-out infinite}
-.lb-dot.soon{background:var(--gold-lt);animation:pulse-dot 1.5s ease-in-out infinite}
+.lb-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0;animation:pulse-dot 2s ease-in-out infinite}
+.lb-dot.live{background:#4CAF50}
+.lb-dot.soon{background:var(--gold-lt)}
 @keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
 .lb-next{color:rgba(246,241,232,.75);font-weight:500}
-@media(max-width:768px){
-  .lit-banner{padding:0 1rem;height:32px}
-  .lb-tone,.lb-fast{display:none}
-}
+@media(max-width:768px){.lit-banner{padding:0 1rem;height:32px}.lb-tone,.lb-fast{display:none}}
 
-/* ── K: SERVICE TIME PULSE ── */
-.ts-strip-item{transition:background .4s ease,border-color .4s ease}
-.ts-strip-item.svc-live{
-  background:rgba(123,29,42,.08);
-  border-left:3px solid var(--maroon);
-  animation:svc-glow 2s ease-in-out infinite;
-}
-.ts-strip-item.svc-soon{
-  background:rgba(184,131,40,.06);
-  border-left:3px solid var(--gold);
-  animation:svc-glow-gold 2.5s ease-in-out infinite;
-}
+/* ── K: SERVICE PULSE ── */
+.ts-strip-item{transition:background .4s ease}
+.ts-strip-item.svc-live{background:rgba(123,29,42,.08);border-left:3px solid var(--maroon);animation:svc-glow 2s ease-in-out infinite}
+.ts-strip-item.svc-soon{background:rgba(184,131,40,.06);border-left:3px solid var(--gold)}
 @keyframes svc-glow{0%,100%{box-shadow:inset 0 0 0 rgba(123,29,42,0)}50%{box-shadow:inset 0 0 20px rgba(123,29,42,.08)}}
-@keyframes svc-glow-gold{0%,100%{box-shadow:inset 0 0 0 rgba(184,131,40,0)}50%{box-shadow:inset 0 0 20px rgba(184,131,40,.08)}}
-.svc-live-badge,.svc-soon-badge{
-  display:inline-block;font-family:var(--f-ui);font-size:.48rem;letter-spacing:.14em;
-  text-transform:uppercase;padding:.15rem .5rem;margin-top:.3rem;
-}
+.svc-live-badge,.svc-soon-badge{display:inline-block;font-family:var(--f-ui);font-size:.48rem;letter-spacing:.14em;text-transform:uppercase;padding:.15rem .5rem;margin-top:.3rem}
 .svc-live-badge{background:var(--maroon);color:var(--vellum)}
 .svc-soon-badge{background:rgba(184,131,40,.15);color:var(--gold)}
 
-/* ── N: FEAST DAY THEMING ── */
-.feast-level-great .ts-opening{border-color:var(--maroon)!important}
-.feast-level-great .hero-divider-inner{color:#FFE08A}
-.feast-level-fast .lit-banner{background:#1A2E28}
-
-/* ── BODY OFFSET for banner ── */
-body.banner-visible .hero{padding-top:36px}
+/* ── E: BYZANTINE HERO SVG ── */
+.hero-byzantine{position:absolute;inset:0;z-index:1;display:flex;align-items:center;justify-content:center;pointer-events:none;overflow:hidden}
+.byz-svg{width:min(90vw,900px);height:min(90vw,900px);opacity:.10}
+.byz-draw{stroke-dasharray:2000;stroke-dashoffset:2000;fill:none}
+.byz-draw-1{animation:draw-in 3s cubic-bezier(.4,0,.2,1) .8s forwards}
+.byz-draw-2{animation:draw-in 2.5s cubic-bezier(.4,0,.2,1) 1.4s forwards}
+.byz-draw-3{animation:draw-in 2s cubic-bezier(.4,0,.2,1) 2s forwards}
+@keyframes draw-in{to{stroke-dashoffset:0}}
 
 /* ── I: WELCOME OVERLAY ── */
-.welcome-overlay{
-  position:fixed;inset:0;z-index:9000;
-  background:rgba(21,8,4,.97);
-  display:flex;align-items:center;justify-content:center;
-  opacity:0;pointer-events:none;
-  transition:opacity .6s ease;
-}
+.welcome-overlay{position:fixed;inset:0;z-index:9000;background:rgba(21,8,4,.97);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .6s ease}
 .welcome-overlay.active{opacity:1;pointer-events:all}
-.wo-inner{
-  max-width:560px;padding:4rem 3rem;text-align:center;position:relative;
-}
-.wo-cross{
-  font-size:2.5rem;color:rgba(184,131,40,.40);
-  letter-spacing:.8em;padding-left:.8em;
-  display:block;margin-bottom:2rem;
-  animation:wo-rise 1s .3s both;
-}
-.wo-title{
-  font-family:var(--f-display);font-style:italic;font-weight:300;
-  font-size:clamp(2.2rem,5vw,3.2rem);line-height:1.15;
-  color:rgba(246,241,232,.95);margin-bottom:.75rem;
-  animation:wo-rise 1s .5s both;
-}
-.wo-sub{
-  font-family:var(--f-display);font-style:italic;font-size:1.1rem;
-  color:rgba(246,241,232,.45);margin-bottom:2.5rem;
-  animation:wo-rise 1s .7s both;
-}
-.wo-rule{width:48px;height:1px;background:rgba(184,131,40,.40);margin:0 auto 2.5rem;
-  animation:wo-rise 1s .6s both;}
-.wo-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;
-  animation:wo-rise 1s .9s both;}
-.wo-btn{
-  font-family:var(--f-ui);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
-  padding:.85rem 1.75rem;cursor:pointer;transition:all .2s;border:1px solid;
-}
+.wo-inner{max-width:560px;padding:4rem 3rem;text-align:center;position:relative}
+.wo-cross{font-size:2.5rem;color:rgba(184,131,40,.40);letter-spacing:.8em;padding-left:.8em;display:block;margin-bottom:2rem;animation:wo-rise 1s .3s both}
+.wo-title{font-family:var(--f-display);font-style:italic;font-weight:300;font-size:clamp(2.2rem,5vw,3.2rem);line-height:1.15;color:rgba(246,241,232,.95);margin-bottom:.75rem;animation:wo-rise 1s .5s both}
+.wo-sub{font-family:var(--f-display);font-style:italic;font-size:1.1rem;color:rgba(246,241,232,.45);margin-bottom:2.5rem;animation:wo-rise 1s .7s both}
+.wo-rule{width:48px;height:1px;background:rgba(184,131,40,.40);margin:0 auto 2.5rem;animation:wo-rise 1s .6s both}
+.wo-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;animation:wo-rise 1s .9s both}
+.wo-btn{font-family:var(--f-ui);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;padding:.85rem 1.75rem;cursor:pointer;transition:all .2s;border:1px solid}
 .wo-btn-primary{background:var(--maroon);color:var(--vellum);border-color:var(--maroon)}
 .wo-btn-primary:hover{background:var(--maroon-deep)}
 .wo-btn-secondary{background:transparent;color:rgba(246,241,232,.65);border-color:rgba(246,241,232,.20)}
 .wo-btn-secondary:hover{border-color:rgba(246,241,232,.45);color:rgba(246,241,232,.90)}
-.wo-dismiss{
-  display:block;margin-top:1.75rem;font-family:var(--f-ui);font-size:.52rem;
-  letter-spacing:.14em;text-transform:uppercase;color:rgba(246,241,232,.22);
-  cursor:pointer;transition:color .2s;animation:wo-rise 1s 1.1s both;
-}
+.wo-dismiss{display:block;margin-top:1.75rem;font-family:var(--f-ui);font-size:.52rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,241,232,.22);cursor:pointer;transition:color .2s;animation:wo-rise 1s 1.1s both}
 .wo-dismiss:hover{color:rgba(246,241,232,.50)}
-.wo-frame{
-  position:absolute;inset:1.5rem;
-  border:1px solid rgba(184,131,40,.15);pointer-events:none;
-}
+.wo-frame{position:absolute;inset:1.5rem;border:1px solid rgba(184,131,40,.15);pointer-events:none}
 .wo-fc{position:absolute;width:12px;height:12px;border-style:solid;border-color:rgba(184,131,40,.40)}
-.wo-fc.tl{top:-1px;left:-1px;border-width:2px 0 0 2px}
-.wo-fc.tr{top:-1px;right:-1px;border-width:2px 2px 0 0}
-.wo-fc.bl{bottom:-1px;left:-1px;border-width:0 0 2px 2px}
-.wo-fc.br{bottom:-1px;right:-1px;border-width:0 2px 2px 0}
+.wo-fc.tl{top:-1px;left:-1px;border-width:2px 0 0 2px}.wo-fc.tr{top:-1px;right:-1px;border-width:2px 2px 0 0}
+.wo-fc.bl{bottom:-1px;left:-1px;border-width:0 0 2px 2px}.wo-fc.br{bottom:-1px;right:-1px;border-width:0 2px 2px 0}
 @keyframes wo-rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 @media(max-width:768px){.wo-inner{padding:3rem 1.5rem}.wo-btns{flex-direction:column}}
 
-/* ── O: FLOATING HELP BUTTON ── */
-.float-help{
-  position:fixed;bottom:2rem;right:2rem;z-index:500;
-  display:flex;align-items:center;gap:.65rem;
-  background:var(--maroon);color:var(--vellum);
-  font-family:var(--f-ui);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;
-  padding:.7rem 1.2rem .7rem .9rem;
-  cursor:pointer;border:none;
-  box-shadow:0 4px 24px rgba(21,8,4,.35);
-  transform:translateY(100px);opacity:0;
-  transition:transform .4s cubic-bezier(.22,1,.36,1),opacity .4s ease,background .2s;
-}
+/* ── O: FLOATING HELP ── */
+.float-help{position:fixed;bottom:2rem;right:2rem;z-index:500;display:flex;align-items:center;gap:.65rem;background:var(--maroon);color:var(--vellum);font-family:var(--f-ui);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;padding:.7rem 1.2rem .7rem .9rem;cursor:pointer;border:none;box-shadow:0 4px 24px rgba(21,8,4,.35);transform:translateY(100px);opacity:0;transition:transform .4s cubic-bezier(.22,1,.36,1),opacity .4s ease,background .2s}
 .float-help.visible{transform:translateY(0);opacity:1}
 .float-help:hover{background:var(--maroon-deep)}
-.fh-icon{font-size:1rem;line-height:1}
-.float-panel{
-  position:fixed;bottom:5.5rem;right:2rem;z-index:500;
-  width:300px;background:var(--vellum);
-  border-top:2px solid var(--maroon);
-  box-shadow:0 8px 40px rgba(21,8,4,.25);
-  transform:translateY(20px) scale(.96);opacity:0;pointer-events:none;
-  transition:all .3s cubic-bezier(.22,1,.36,1);
-}
+.float-panel{position:fixed;bottom:5.5rem;right:2rem;z-index:500;width:300px;background:var(--vellum);border-top:2px solid var(--maroon);box-shadow:0 8px 40px rgba(21,8,4,.25);transform:translateY(20px) scale(.96);opacity:0;pointer-events:none;transition:all .3s cubic-bezier(.22,1,.36,1)}
 .float-panel.open{transform:translateY(0) scale(1);opacity:1;pointer-events:all}
 .fp-head{padding:1.25rem 1.5rem;border-bottom:var(--rule-faint)}
 .fp-title{font-family:var(--f-display);font-size:1.25rem;color:var(--text);display:block}
@@ -492,66 +381,21 @@ body.banner-visible .hero{padding-top:36px}
 .fp-link:hover{background:var(--maroon-deep)}
 @media(max-width:768px){.float-help,.float-panel{right:1rem}.float-panel{width:calc(100vw - 2rem)}}
 
-/* ── E: ANIMATED BYZANTINE HERO SVG ── */
-.hero-byzantine{
-  position:absolute;inset:0;z-index:1;
-  display:flex;align-items:center;justify-content:center;
-  pointer-events:none;overflow:hidden;
-}
-.byz-svg{
-  width:min(90vw,900px);height:min(90vw,900px);
-  opacity:.12;
-}
-.byz-arch{
-  stroke:var(--gold-lt);fill:none;
-  stroke-dasharray:2000;stroke-dashoffset:2000;
-  animation:draw-arch 3s cubic-bezier(.4,0,.2,1) .8s forwards;
-}
-.byz-arch-2{
-  stroke:rgba(184,131,40,.6);fill:none;
-  stroke-dasharray:1500;stroke-dashoffset:1500;
-  animation:draw-arch 2.5s cubic-bezier(.4,0,.2,1) 1.4s forwards;
-}
-.byz-cross{
-  stroke:var(--gold-lt);fill:none;
-  stroke-dasharray:800;stroke-dashoffset:800;
-  animation:draw-arch 2s cubic-bezier(.4,0,.2,1) 2s forwards;
-}
-.byz-circle{
-  stroke:rgba(184,131,40,.4);fill:none;
-  stroke-dasharray:1200;stroke-dashoffset:1200;
-  animation:draw-arch 3s cubic-bezier(.4,0,.2,1) .4s forwards;
-}
-@keyframes draw-arch{to{stroke-dashoffset:0}}
+/* ── M: BYZANTINE BAND ── */
+.byz-band{background:var(--apse);padding:3.5rem 0;overflow:hidden;position:relative;border-top:1px solid rgba(184,131,40,.12);border-bottom:1px solid rgba(184,131,40,.12)}
+.byz-band-inner{display:flex;justify-content:center;opacity:.15}
+.byz-tile{width:72px;height:72px;flex-shrink:0}
+.byz-band-text{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--f-display);font-style:italic;font-weight:300;font-size:clamp(1.1rem,2.5vw,1.7rem);color:rgba(246,241,232,.55);text-align:center;padding:0 4rem;z-index:1}
+@media(max-width:768px){.byz-band-text{font-size:1rem;padding:0 1.5rem}}
 
-/* ── M: BYZANTINE PATTERN BAND ── */
-.byz-band{
-  background:var(--apse);
-  padding:4rem 0;
-  overflow:hidden;
-  position:relative;
-  border-top:1px solid rgba(184,131,40,.12);
-  border-bottom:1px solid rgba(184,131,40,.12);
-}
-.byz-band-inner{
-  display:flex;justify-content:center;align-items:center;
-  gap:0;
-  opacity:.18;
-}
-.byz-tile{
-  width:80px;height:80px;flex-shrink:0;
-}
-.byz-band-text{
-  position:absolute;inset:0;
-  display:flex;align-items:center;justify-content:center;
-  font-family:var(--f-display);font-style:italic;font-weight:300;
-  font-size:clamp(1.2rem,2.5vw,1.8rem);
-  color:rgba(246,241,232,.55);
-  text-align:center;
-  letter-spacing:.02em;
-  padding:0 4rem;
-  z-index:1;
-}
+/* ── QUOTE BREAK ── */
+.quote-break{background:var(--apse);padding:5rem 4.5rem;text-align:center;position:relative;overflow:hidden;margin:0}
+.qb-inner{max-width:780px;margin:0 auto;position:relative;z-index:1}
+.qb-cross{display:block;font-size:.85rem;color:rgba(184,131,40,.40);letter-spacing:.6em;padding-left:.6em;margin-bottom:1.75rem}
+.qb-rule{width:48px;height:1px;background:rgba(184,131,40,.40);margin:0 auto 1.75rem}
+.qb-text{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-weight:300;font-size:clamp(1.6rem,3.5vw,2.5rem);line-height:1.35;color:rgba(246,241,232,.88);margin-bottom:1.5rem}
+.qb-attr{font-family:'Cinzel',Georgia,serif;font-size:.62rem;letter-spacing:.20em;text-transform:uppercase;color:rgba(184,131,40,.65)}
+@media(max-width:768px){.quote-break{padding:3.5rem 1.5rem}.qb-text{font-size:1.45rem}}
 
 </style>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
@@ -605,17 +449,15 @@ body.banner-visible .hero{padding-top:36px}
 </nav>
 
 
-<!-- F: Live Liturgical Banner -->
+<!-- F: Live Banner -->
 <div class="lit-banner" id="lit-banner">
   <div class="lb-left">
     <span class="lb-dot" id="lb-dot"></span>
-    <span class="lb-feast" id="lb-feast">Loading liturgical data…</span>
-    <span class="lb-fast" id="lb-fast"></span>
-    <span class="lb-tone" id="lb-tone"></span>
+    <span class="lb-feast" id="lb-feast">Loading…</span>
+    <span class="lb-fast"  id="lb-fast"></span>
+    <span class="lb-tone"  id="lb-tone"></span>
   </div>
-  <div class="lb-right">
-    <span id="lb-next"></span>
-  </div>
+  <div class="lb-right"><span id="lb-next"></span></div>
 </div>
 
 <!-- MOBILE NAV DRAWER -->
@@ -652,32 +494,22 @@ body.banner-visible .hero{padding-top:36px}
 <section class="hero" id="top">
   <div class="hero-fallback"></div>
   <div class="hero-bg"></div>
-  <!-- E: Animated Byzantine Element -->
-  <div class="hero-byzantine">
+  <!-- Byzantine animated element -->
+  <div class="hero-byzantine" aria-hidden="true">
     <svg class="byz-svg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
-      <!-- Outer circles -->
-      <circle class="byz-circle" cx="250" cy="250" r="240" stroke-width=".8"/>
-      <circle class="byz-circle" cx="250" cy="250" r="200" stroke-width=".5"/>
-      <circle class="byz-circle" cx="250" cy="250" r="160" stroke-width=".5"/>
-      <circle class="byz-circle" cx="250" cy="250" r="90" stroke-width=".6"/>
-      <!-- Byzantine arches -->
-      <path class="byz-arch" stroke-width="1.2"
-        d="M130,350 L130,220 Q130,150 250,150 Q370,150 370,220 L370,350"/>
-      <path class="byz-arch-2" stroke-width=".8"
-        d="M160,350 L160,230 Q160,180 250,180 Q340,180 340,230 L340,350"/>
-      <!-- Central cross -->
-      <g class="byz-cross" stroke-width="1.5">
+      <circle class="byz-draw byz-draw-1" cx="250" cy="250" r="240" stroke="rgba(232,201,122,.8)" stroke-width=".8"/>
+      <circle class="byz-draw byz-draw-1" cx="250" cy="250" r="190" stroke="rgba(184,131,40,.5)" stroke-width=".5"/>
+      <circle class="byz-draw byz-draw-2" cx="250" cy="250" r="140" stroke="rgba(232,201,122,.6)" stroke-width=".5"/>
+      <circle class="byz-draw byz-draw-2" cx="250" cy="250" r="80"  stroke="rgba(184,131,40,.5)" stroke-width=".6"/>
+      <path class="byz-draw byz-draw-1" stroke="rgba(232,201,122,.7)" stroke-width="1.2"
+        d="M130,360 L130,210 Q130,140 250,140 Q370,140 370,210 L370,360"/>
+      <path class="byz-draw byz-draw-2" stroke="rgba(184,131,40,.5)" stroke-width=".8"
+        d="M165,360 L165,225 Q165,178 250,178 Q335,178 335,225 L335,360"/>
+      <g class="byz-draw byz-draw-3" stroke="rgba(232,201,122,.6)" stroke-width="1">
         <line x1="250" y1="10" x2="250" y2="490"/>
-        <line x1="10" y1="250" x2="490" y2="250"/>
-        <line x1="80" y1="80" x2="420" y2="420"/>
-        <line x1="420" y1="80" x2="80" y2="420"/>
-      </g>
-      <!-- Corner ornaments -->
-      <g class="byz-arch" stroke-width=".6">
-        <path d="M10,10 L10,60 Q10,10 60,10 Z"/>
-        <path d="M490,10 L440,10 Q490,10 490,60 Z"/>
-        <path d="M10,490 L10,440 Q10,490 60,490 Z"/>
-        <path d="M490,490 L440,490 Q490,490 490,440 Z"/>
+        <line x1="10"  y1="250" x2="490" y2="250"/>
+        <line x1="75"  y1="75"  x2="425" y2="425"/>
+        <line x1="425" y1="75"  x2="75"  y2="425"/>
       </g>
     </svg>
   </div>
@@ -902,142 +734,11 @@ body.banner-visible .hero{padding-top:36px}
 </section>
 
 
-<!-- M: Byzantine Pattern Band -->
+<!-- M: Byzantine band -->
 <div class="byz-band reveal">
-  <div class="byz-band-inner" aria-hidden="true">
-    <svg class="byz-tile" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-      <rect x="1" y="1" width="78" height="78" fill="none" stroke="rgba(184,131,40,.8)" stroke-width=".6"/>
-      <line x1="40" y1="1" x2="40" y2="79" stroke="rgba(184,131,40,.5)" stroke-width=".4"/>
-      <line x1="1" y1="40" x2="79" y2="40" stroke="rgba(184,131,40,.5)" stroke-width=".4"/>
-      <circle cx="40" cy="40" r="18" fill="none" stroke="rgba(184,131,40,.7)" stroke-width=".5"/>
-      <circle cx="40" cy="40" r="6" fill="rgba(184,131,40,.4)"/>
-      <path d="M22,22 L58,58 M58,22 L22,58" stroke="rgba(184,131,40,.3)" stroke-width=".4"/>
-    </svg><svg class="byz-tile" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-      <rect x="1" y="1" width="78" height="78" fill="none" stroke="rgba(184,131,40,.8)" stroke-width=".6"/>
-      <line x1="40" y1="1" x2="40" y2="79" stroke="rgba(184,131,40,.5)" stroke-width=".4"/>
-      <line x1="1" y1="40" x2="79" y2="40" stroke="rgba(184,131,40,.5)" stroke-width=".4"/>
-      <circle cx="40" cy="40" r="18" fill="none" stroke="rgba(184,131,40,.7)" stroke-width=".5"/>
-      <circle cx="40" cy="40" r="6" fill="rgba(184,131,40,.4)"/>
-      <path d="M22,22 L58,58 M58,22 L22,58" stroke="rgba(184,131,40,.3)" stroke-width=".4"/>
-    </svg><svg class="byz-tile" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-      <rect x="1" y="1" width="78" height="78" fill="none" stroke="rgba(184,131,40,.8)" stroke-width=".6"/>
-      <line x1="40" y1="1" x2="40" y2="79" stroke="rgba(184,131,40,.5)" stroke-width=".4"/>
-      <line x1="1" y1="40" x2="79" y2="40" stroke="rgba(184,131,40,.5)" stroke-width=".4"/>
-      <circle cx="40" cy="40" r="18" fill="none" stroke="rgba(184,131,40,.7)" stroke-width=".5"/>
-      <circle cx="40" cy="40" r="6" fill="rgba(184,131,40,.4)"/>
-      <path d="M22,22 L58,58 M58,22 L22,58" stroke="rgba(184,131,40,.3)" stroke-width=".4"/>
-    </svg><svg class="byz-tile" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-      <rect x="1" y="1" width="78" height="78" fill="none" stroke="rgba(184,131,40,.8)" stroke-width=".6"/>
-      <line x1="40" y1="1" x2="40" y2="79" stroke="rgba(184,131,40,.5)" stroke-width=".4"/>
-      <line x1="1" y1="40" x2="79" y2="40" stroke="rgba(184,131,40,.5)" stroke-width=".4"/>
-      <circle cx="40" cy="40" r="18" fill="none" stroke="rgba(184,131,40,.7)" stroke-width=".5"/>
-      <circle cx="40" cy="40" r="6" fill="rgba(184,131,40,.4)"/>
-      <path d="M22,22 L58,58 M58,22 L22,58" stroke="rgba(184,131,40,.3)" stroke-width=".4"/>
-    </svg><svg class="byz-tile" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-      <rect x="1" y="1" width="78" height="78" fill="none" stroke="rgba(184,131,40,.8)" stroke-width=".6"/>
-      <line x1="40" y1="1" x2="40" y2="79" stroke="rgba(184,131,40,.5)" stroke-width=".4"/>
-      <line x1="1" y1="40" x2="79" y2="40" stroke="rgba(184,131,40,.5)" stroke-width=".4"/>
-      <circle cx="40" cy="40" r="18" fill="none" stroke="rgba(184,131,40,.7)" stroke-width=".5"/>
-      <circle cx="40" cy="40" r="6" fill="rgba(184,131,40,.4)"/>
-      <path d="M22,22 L58,58 M58,22 L22,58" stroke="rgba(184,131,40,.3)" stroke-width=".4"/>
-    </svg><svg class="byz-tile" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-      <rect x="1" y="1" width="78" height="78" fill="none" stroke="rgba(184,131,40,.8)" stroke-width=".6"/>
-      <line x1="40" y1="1" x2="40" y2="79" stroke="rgba(184,131,40,.5)" stroke-width=".4"/>
-      <line x1="1" y1="40" x2="79" y2="40" stroke="rgba(184,131,40,.5)" stroke-width=".4"/>
-      <circle cx="40" cy="40" r="18" fill="none" stroke="rgba(184,131,40,.7)" stroke-width=".5"/>
-      <circle cx="40" cy="40" r="6" fill="rgba(184,131,40,.4)"/>
-      <path d="M22,22 L58,58 M58,22 L22,58" stroke="rgba(184,131,40,.3)" stroke-width=".4"/>
-    </svg><svg class="byz-tile" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-      <rect x="1" y="1" width="78" height="78" fill="none" stroke="rgba(184,131,40,.8)" stroke-width=".6"/>
-      <line x1="40" y1="1" x2="40" y2="79" stroke="rgba(184,131,40,.5)" stroke-width=".4"/>
-      <line x1="1" y1="40" x2="79" y2="40" stroke="rgba(184,131,40,.5)" stroke-width=".4"/>
-      <circle cx="40" cy="40" r="18" fill="none" stroke="rgba(184,131,40,.7)" stroke-width=".5"/>
-      <circle cx="40" cy="40" r="6" fill="rgba(184,131,40,.4)"/>
-      <path d="M22,22 L58,58 M58,22 L22,58" stroke="rgba(184,131,40,.3)" stroke-width=".4"/>
-    </svg><svg class="byz-tile" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-      <rect x="1" y="1" width="78" height="78" fill="none" stroke="rgba(184,131,40,.8)" stroke-width=".6"/>
-      <line x1="40" y1="1" x2="40" y2="79" stroke="rgba(184,131,40,.5)" stroke-width=".4"/>
-      <line x1="1" y1="40" x2="79" y2="40" stroke="rgba(184,131,40,.5)" stroke-width=".4"/>
-      <circle cx="40" cy="40" r="18" fill="none" stroke="rgba(184,131,40,.7)" stroke-width=".5"/>
-      <circle cx="40" cy="40" r="6" fill="rgba(184,131,40,.4)"/>
-      <path d="M22,22 L58,58 M58,22 L22,58" stroke="rgba(184,131,40,.3)" stroke-width=".4"/>
-    </svg><svg class="byz-tile" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-      <rect x="1" y="1" width="78" height="78" fill="none" stroke="rgba(184,131,40,.8)" stroke-width=".6"/>
-      <line x1="40" y1="1" x2="40" y2="79" stroke="rgba(184,131,40,.5)" stroke-width=".4"/>
-      <line x1="1" y1="40" x2="79" y2="40" stroke="rgba(184,131,40,.5)" stroke-width=".4"/>
-      <circle cx="40" cy="40" r="18" fill="none" stroke="rgba(184,131,40,.7)" stroke-width=".5"/>
-      <circle cx="40" cy="40" r="6" fill="rgba(184,131,40,.4)"/>
-      <path d="M22,22 L58,58 M58,22 L22,58" stroke="rgba(184,131,40,.3)" stroke-width=".4"/>
-    </svg><svg class="byz-tile" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-      <rect x="1" y="1" width="78" height="78" fill="none" stroke="rgba(184,131,40,.8)" stroke-width=".6"/>
-      <line x1="40" y1="1" x2="40" y2="79" stroke="rgba(184,131,40,.5)" stroke-width=".4"/>
-      <line x1="1" y1="40" x2="79" y2="40" stroke="rgba(184,131,40,.5)" stroke-width=".4"/>
-      <circle cx="40" cy="40" r="18" fill="none" stroke="rgba(184,131,40,.7)" stroke-width=".5"/>
-      <circle cx="40" cy="40" r="6" fill="rgba(184,131,40,.4)"/>
-      <path d="M22,22 L58,58 M58,22 L22,58" stroke="rgba(184,131,40,.3)" stroke-width=".4"/>
-    </svg><svg class="byz-tile" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-      <rect x="1" y="1" width="78" height="78" fill="none" stroke="rgba(184,131,40,.8)" stroke-width=".6"/>
-      <line x1="40" y1="1" x2="40" y2="79" stroke="rgba(184,131,40,.5)" stroke-width=".4"/>
-      <line x1="1" y1="40" x2="79" y2="40" stroke="rgba(184,131,40,.5)" stroke-width=".4"/>
-      <circle cx="40" cy="40" r="18" fill="none" stroke="rgba(184,131,40,.7)" stroke-width=".5"/>
-      <circle cx="40" cy="40" r="6" fill="rgba(184,131,40,.4)"/>
-      <path d="M22,22 L58,58 M58,22 L22,58" stroke="rgba(184,131,40,.3)" stroke-width=".4"/>
-    </svg><svg class="byz-tile" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-      <rect x="1" y="1" width="78" height="78" fill="none" stroke="rgba(184,131,40,.8)" stroke-width=".6"/>
-      <line x1="40" y1="1" x2="40" y2="79" stroke="rgba(184,131,40,.5)" stroke-width=".4"/>
-      <line x1="1" y1="40" x2="79" y2="40" stroke="rgba(184,131,40,.5)" stroke-width=".4"/>
-      <circle cx="40" cy="40" r="18" fill="none" stroke="rgba(184,131,40,.7)" stroke-width=".5"/>
-      <circle cx="40" cy="40" r="6" fill="rgba(184,131,40,.4)"/>
-      <path d="M22,22 L58,58 M58,22 L22,58" stroke="rgba(184,131,40,.3)" stroke-width=".4"/>
-    </svg><svg class="byz-tile" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-      <rect x="1" y="1" width="78" height="78" fill="none" stroke="rgba(184,131,40,.8)" stroke-width=".6"/>
-      <line x1="40" y1="1" x2="40" y2="79" stroke="rgba(184,131,40,.5)" stroke-width=".4"/>
-      <line x1="1" y1="40" x2="79" y2="40" stroke="rgba(184,131,40,.5)" stroke-width=".4"/>
-      <circle cx="40" cy="40" r="18" fill="none" stroke="rgba(184,131,40,.7)" stroke-width=".5"/>
-      <circle cx="40" cy="40" r="6" fill="rgba(184,131,40,.4)"/>
-      <path d="M22,22 L58,58 M58,22 L22,58" stroke="rgba(184,131,40,.3)" stroke-width=".4"/>
-    </svg><svg class="byz-tile" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-      <rect x="1" y="1" width="78" height="78" fill="none" stroke="rgba(184,131,40,.8)" stroke-width=".6"/>
-      <line x1="40" y1="1" x2="40" y2="79" stroke="rgba(184,131,40,.5)" stroke-width=".4"/>
-      <line x1="1" y1="40" x2="79" y2="40" stroke="rgba(184,131,40,.5)" stroke-width=".4"/>
-      <circle cx="40" cy="40" r="18" fill="none" stroke="rgba(184,131,40,.7)" stroke-width=".5"/>
-      <circle cx="40" cy="40" r="6" fill="rgba(184,131,40,.4)"/>
-      <path d="M22,22 L58,58 M58,22 L22,58" stroke="rgba(184,131,40,.3)" stroke-width=".4"/>
-    </svg><svg class="byz-tile" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-      <rect x="1" y="1" width="78" height="78" fill="none" stroke="rgba(184,131,40,.8)" stroke-width=".6"/>
-      <line x1="40" y1="1" x2="40" y2="79" stroke="rgba(184,131,40,.5)" stroke-width=".4"/>
-      <line x1="1" y1="40" x2="79" y2="40" stroke="rgba(184,131,40,.5)" stroke-width=".4"/>
-      <circle cx="40" cy="40" r="18" fill="none" stroke="rgba(184,131,40,.7)" stroke-width=".5"/>
-      <circle cx="40" cy="40" r="6" fill="rgba(184,131,40,.4)"/>
-      <path d="M22,22 L58,58 M58,22 L22,58" stroke="rgba(184,131,40,.3)" stroke-width=".4"/>
-    </svg><svg class="byz-tile" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-      <rect x="1" y="1" width="78" height="78" fill="none" stroke="rgba(184,131,40,.8)" stroke-width=".6"/>
-      <line x1="40" y1="1" x2="40" y2="79" stroke="rgba(184,131,40,.5)" stroke-width=".4"/>
-      <line x1="1" y1="40" x2="79" y2="40" stroke="rgba(184,131,40,.5)" stroke-width=".4"/>
-      <circle cx="40" cy="40" r="18" fill="none" stroke="rgba(184,131,40,.7)" stroke-width=".5"/>
-      <circle cx="40" cy="40" r="6" fill="rgba(184,131,40,.4)"/>
-      <path d="M22,22 L58,58 M58,22 L22,58" stroke="rgba(184,131,40,.3)" stroke-width=".4"/>
-    </svg><svg class="byz-tile" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-      <rect x="1" y="1" width="78" height="78" fill="none" stroke="rgba(184,131,40,.8)" stroke-width=".6"/>
-      <line x1="40" y1="1" x2="40" y2="79" stroke="rgba(184,131,40,.5)" stroke-width=".4"/>
-      <line x1="1" y1="40" x2="79" y2="40" stroke="rgba(184,131,40,.5)" stroke-width=".4"/>
-      <circle cx="40" cy="40" r="18" fill="none" stroke="rgba(184,131,40,.7)" stroke-width=".5"/>
-      <circle cx="40" cy="40" r="6" fill="rgba(184,131,40,.4)"/>
-      <path d="M22,22 L58,58 M58,22 L22,58" stroke="rgba(184,131,40,.3)" stroke-width=".4"/>
-    </svg><svg class="byz-tile" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-      <rect x="1" y="1" width="78" height="78" fill="none" stroke="rgba(184,131,40,.8)" stroke-width=".6"/>
-      <line x1="40" y1="1" x2="40" y2="79" stroke="rgba(184,131,40,.5)" stroke-width=".4"/>
-      <line x1="1" y1="40" x2="79" y2="40" stroke="rgba(184,131,40,.5)" stroke-width=".4"/>
-      <circle cx="40" cy="40" r="18" fill="none" stroke="rgba(184,131,40,.7)" stroke-width=".5"/>
-      <circle cx="40" cy="40" r="6" fill="rgba(184,131,40,.4)"/>
-      <path d="M22,22 L58,58 M58,22 L22,58" stroke="rgba(184,131,40,.3)" stroke-width=".4"/>
-    </svg>
-  </div>
-  <div class="byz-band-text">
-    <em>"Holy, Holy, Holy, Lord of Hosts — the whole earth is full of His glory."</em>
-  </div>
+  <div class="byz-band-inner" aria-hidden="true"><svg class="byz-tile" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="70" height="70" fill="none" stroke="rgba(184,131,40,.9)" stroke-width=".6"/><circle cx="36" cy="36" r="16" fill="none" stroke="rgba(184,131,40,.7)" stroke-width=".5"/><line x1="36" y1="1" x2="36" y2="71" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><line x1="1" y1="36" x2="71" y2="36" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><circle cx="36" cy="36" r="4" fill="rgba(184,131,40,.5)"/></svg><svg class="byz-tile" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="70" height="70" fill="none" stroke="rgba(184,131,40,.9)" stroke-width=".6"/><circle cx="36" cy="36" r="16" fill="none" stroke="rgba(184,131,40,.7)" stroke-width=".5"/><line x1="36" y1="1" x2="36" y2="71" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><line x1="1" y1="36" x2="71" y2="36" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><circle cx="36" cy="36" r="4" fill="rgba(184,131,40,.5)"/></svg><svg class="byz-tile" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="70" height="70" fill="none" stroke="rgba(184,131,40,.9)" stroke-width=".6"/><circle cx="36" cy="36" r="16" fill="none" stroke="rgba(184,131,40,.7)" stroke-width=".5"/><line x1="36" y1="1" x2="36" y2="71" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><line x1="1" y1="36" x2="71" y2="36" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><circle cx="36" cy="36" r="4" fill="rgba(184,131,40,.5)"/></svg><svg class="byz-tile" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="70" height="70" fill="none" stroke="rgba(184,131,40,.9)" stroke-width=".6"/><circle cx="36" cy="36" r="16" fill="none" stroke="rgba(184,131,40,.7)" stroke-width=".5"/><line x1="36" y1="1" x2="36" y2="71" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><line x1="1" y1="36" x2="71" y2="36" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><circle cx="36" cy="36" r="4" fill="rgba(184,131,40,.5)"/></svg><svg class="byz-tile" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="70" height="70" fill="none" stroke="rgba(184,131,40,.9)" stroke-width=".6"/><circle cx="36" cy="36" r="16" fill="none" stroke="rgba(184,131,40,.7)" stroke-width=".5"/><line x1="36" y1="1" x2="36" y2="71" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><line x1="1" y1="36" x2="71" y2="36" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><circle cx="36" cy="36" r="4" fill="rgba(184,131,40,.5)"/></svg><svg class="byz-tile" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="70" height="70" fill="none" stroke="rgba(184,131,40,.9)" stroke-width=".6"/><circle cx="36" cy="36" r="16" fill="none" stroke="rgba(184,131,40,.7)" stroke-width=".5"/><line x1="36" y1="1" x2="36" y2="71" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><line x1="1" y1="36" x2="71" y2="36" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><circle cx="36" cy="36" r="4" fill="rgba(184,131,40,.5)"/></svg><svg class="byz-tile" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="70" height="70" fill="none" stroke="rgba(184,131,40,.9)" stroke-width=".6"/><circle cx="36" cy="36" r="16" fill="none" stroke="rgba(184,131,40,.7)" stroke-width=".5"/><line x1="36" y1="1" x2="36" y2="71" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><line x1="1" y1="36" x2="71" y2="36" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><circle cx="36" cy="36" r="4" fill="rgba(184,131,40,.5)"/></svg><svg class="byz-tile" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="70" height="70" fill="none" stroke="rgba(184,131,40,.9)" stroke-width=".6"/><circle cx="36" cy="36" r="16" fill="none" stroke="rgba(184,131,40,.7)" stroke-width=".5"/><line x1="36" y1="1" x2="36" y2="71" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><line x1="1" y1="36" x2="71" y2="36" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><circle cx="36" cy="36" r="4" fill="rgba(184,131,40,.5)"/></svg><svg class="byz-tile" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="70" height="70" fill="none" stroke="rgba(184,131,40,.9)" stroke-width=".6"/><circle cx="36" cy="36" r="16" fill="none" stroke="rgba(184,131,40,.7)" stroke-width=".5"/><line x1="36" y1="1" x2="36" y2="71" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><line x1="1" y1="36" x2="71" y2="36" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><circle cx="36" cy="36" r="4" fill="rgba(184,131,40,.5)"/></svg><svg class="byz-tile" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="70" height="70" fill="none" stroke="rgba(184,131,40,.9)" stroke-width=".6"/><circle cx="36" cy="36" r="16" fill="none" stroke="rgba(184,131,40,.7)" stroke-width=".5"/><line x1="36" y1="1" x2="36" y2="71" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><line x1="1" y1="36" x2="71" y2="36" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><circle cx="36" cy="36" r="4" fill="rgba(184,131,40,.5)"/></svg><svg class="byz-tile" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="70" height="70" fill="none" stroke="rgba(184,131,40,.9)" stroke-width=".6"/><circle cx="36" cy="36" r="16" fill="none" stroke="rgba(184,131,40,.7)" stroke-width=".5"/><line x1="36" y1="1" x2="36" y2="71" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><line x1="1" y1="36" x2="71" y2="36" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><circle cx="36" cy="36" r="4" fill="rgba(184,131,40,.5)"/></svg><svg class="byz-tile" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="70" height="70" fill="none" stroke="rgba(184,131,40,.9)" stroke-width=".6"/><circle cx="36" cy="36" r="16" fill="none" stroke="rgba(184,131,40,.7)" stroke-width=".5"/><line x1="36" y1="1" x2="36" y2="71" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><line x1="1" y1="36" x2="71" y2="36" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><circle cx="36" cy="36" r="4" fill="rgba(184,131,40,.5)"/></svg><svg class="byz-tile" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="70" height="70" fill="none" stroke="rgba(184,131,40,.9)" stroke-width=".6"/><circle cx="36" cy="36" r="16" fill="none" stroke="rgba(184,131,40,.7)" stroke-width=".5"/><line x1="36" y1="1" x2="36" y2="71" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><line x1="1" y1="36" x2="71" y2="36" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><circle cx="36" cy="36" r="4" fill="rgba(184,131,40,.5)"/></svg><svg class="byz-tile" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="70" height="70" fill="none" stroke="rgba(184,131,40,.9)" stroke-width=".6"/><circle cx="36" cy="36" r="16" fill="none" stroke="rgba(184,131,40,.7)" stroke-width=".5"/><line x1="36" y1="1" x2="36" y2="71" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><line x1="1" y1="36" x2="71" y2="36" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><circle cx="36" cy="36" r="4" fill="rgba(184,131,40,.5)"/></svg><svg class="byz-tile" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="70" height="70" fill="none" stroke="rgba(184,131,40,.9)" stroke-width=".6"/><circle cx="36" cy="36" r="16" fill="none" stroke="rgba(184,131,40,.7)" stroke-width=".5"/><line x1="36" y1="1" x2="36" y2="71" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><line x1="1" y1="36" x2="71" y2="36" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><circle cx="36" cy="36" r="4" fill="rgba(184,131,40,.5)"/></svg><svg class="byz-tile" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="70" height="70" fill="none" stroke="rgba(184,131,40,.9)" stroke-width=".6"/><circle cx="36" cy="36" r="16" fill="none" stroke="rgba(184,131,40,.7)" stroke-width=".5"/><line x1="36" y1="1" x2="36" y2="71" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><line x1="1" y1="36" x2="71" y2="36" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><circle cx="36" cy="36" r="4" fill="rgba(184,131,40,.5)"/></svg><svg class="byz-tile" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="70" height="70" fill="none" stroke="rgba(184,131,40,.9)" stroke-width=".6"/><circle cx="36" cy="36" r="16" fill="none" stroke="rgba(184,131,40,.7)" stroke-width=".5"/><line x1="36" y1="1" x2="36" y2="71" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><line x1="1" y1="36" x2="71" y2="36" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><circle cx="36" cy="36" r="4" fill="rgba(184,131,40,.5)"/></svg><svg class="byz-tile" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="70" height="70" fill="none" stroke="rgba(184,131,40,.9)" stroke-width=".6"/><circle cx="36" cy="36" r="16" fill="none" stroke="rgba(184,131,40,.7)" stroke-width=".5"/><line x1="36" y1="1" x2="36" y2="71" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><line x1="1" y1="36" x2="71" y2="36" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><circle cx="36" cy="36" r="4" fill="rgba(184,131,40,.5)"/></svg><svg class="byz-tile" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="70" height="70" fill="none" stroke="rgba(184,131,40,.9)" stroke-width=".6"/><circle cx="36" cy="36" r="16" fill="none" stroke="rgba(184,131,40,.7)" stroke-width=".5"/><line x1="36" y1="1" x2="36" y2="71" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><line x1="1" y1="36" x2="71" y2="36" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><circle cx="36" cy="36" r="4" fill="rgba(184,131,40,.5)"/></svg><svg class="byz-tile" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="70" height="70" fill="none" stroke="rgba(184,131,40,.9)" stroke-width=".6"/><circle cx="36" cy="36" r="16" fill="none" stroke="rgba(184,131,40,.7)" stroke-width=".5"/><line x1="36" y1="1" x2="36" y2="71" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><line x1="1" y1="36" x2="71" y2="36" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><circle cx="36" cy="36" r="4" fill="rgba(184,131,40,.5)"/></svg></div>
+  <div class="byz-band-text"><em>&ldquo;Holy, Holy, Holy, Lord of Hosts &mdash; the whole earth is full of His glory.&rdquo;</em></div>
 </div>
-
 <!-- BULLETIN -->
 <section class="bulletin-section">
   <div class="chapter-bar">
@@ -1085,7 +786,7 @@ body.banner-visible .hero{padding-top:36px}
 <!-- FOOTER -->
 <div class="quote-break reveal">
   <div class="qb-inner">
-    <span class="qb-cross">✦ ✝ ✦</span>
+    <span class="qb-cross">&#10022; &#10013; &#10022;</span>
     <div class="qb-rule"></div>
     <p class="qb-text">Come, let us worship and bow down; let us kneel before the Lord our Maker.</p>
     <span class="qb-attr">Psalm 95:6</span>
@@ -1142,337 +843,6 @@ body.banner-visible .hero{padding-top:36px}
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-const DAYS_SHORT = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-const MONTHS_S   = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-const ROMAN = {1:'I',2:'II',3:'III',4:'IV',5:'V',6:'VI',7:'VII',8:'VIII'};
-
-function toRoman(n){ return ROMAN[n]||String(n); }
-function datePath(d){ return `${d.getFullYear()}/${d.getMonth()+1}/${d.getDate()}`; }
-function displayDate(d){ return `${DAYS_SHORT[d.getDay()]} ${MONTHS_S[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`; }
-function addDays(d,n){ const r=new Date(d); r.setDate(r.getDate()+n); return r; }
-function getNextSunday(){ const t=new Date(); const dow=t.getDay(); const s=new Date(t); s.setDate(t.getDate()+(dow===0?7:7-dow)); return s; }
-/* fetchDay replaced by loadFromLocalCal — see below */
-function feastClass(lv){ if(lv>=7)return'lv7'; if(lv>=5)return'lv5'; if(lv>=4)return'lv4'; if(lv>=2)return'lv2'; return'lv0'; }
-
-function renderSunday(data, d){
-  var feast = (data.titles&&data.titles[0])||data.summary_title||'Sunday';
-  var saints = (data.saints||[]).slice(0,2).map(function(s){return typeof s==='string'?s:(s&&s.name?s.name:String(s));}).filter(Boolean).join('; ');
-  var toneNum = data.tone||0;
-  var tone = toneNum ? ('Tone '+toRoman(toneNum)) : '';
-  var fast1 = data.fast_level_description||'';
-  var fast2 = data.fast_exception_desc||'';
-  var fastDesc = [fast1,fast2].filter(Boolean).join(' — ');
-  var readings = data.readings||[];
-  var readRows = readings.slice(0,3).map(function(r){
-    return '<div class="ts-reading-row">'
-      +'<span class="ts-reading-src">'+(r.source||'')+'</span>'
-      +'<span class="ts-reading-ref">'+(r.display||r.ref||'')+'</span>'
-      +'</div>';
-  }).join('');
-  var readHTML = readRows ? '<div class="ts-readings"><p class="ts-readings-head">Scripture Readings</p>'+readRows+'</div>' : '';
-  var lvl = data.feast_level||0;
-  var html = '<div class="ts-opening '+feastClass(lvl)+'">'
-    +'<span class="rubric">This Sunday</span>'
-    +'<h2 class="ts-feast">'+feast+'</h2>'
-    +(saints?'<span class="ts-saint">'+saints+'</span>':'')
-    +(tone?'<span class="ts-tone">'+tone+'</span>':'')
-    +'</div>'
-    +readHTML
-    +(fastDesc?'<p class="ts-fast">'+fastDesc+'</p>':'')
-    +'<div class="ts-ctas">'
-    +'<a href="/readings" class="btn btn-maroon">Read the Readings</a>'
-    +'<a href="/schedule" class="btn btn-outline">Full Calendar</a>'
-    +'</div>'
-    +'<p style="font-family:var(--f-ui);font-size:.48rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);margin-top:1.5rem">'+displayDate(d)+'</p>';
-  document.getElementById('sunday-panel').innerHTML = html;
-}
-
-function renderWeek(entries){
-  document.getElementById('week-strip').innerHTML = entries.map(function(item){
-    var date=item.date, data=item.data;
-    var title = (data.titles&&data.titles[0])||data.summary_title||'';
-    var lv = data.feast_level||0;
-    var dot = lv>=2?'<span class="feast-dot"></span>':'';
-    var short = title.length>50?title.slice(0,50)+'…':title;
-    return '<div class="week-entry">'
-      +'<span class="week-day-lbl">'+DAYS_SHORT[date.getDay()]+' · '+MONTHS_S[date.getMonth()]+' '+date.getDate()+'</span>'
-      +'<span class="week-day-title '+(lv>=4?'major':'')+'">'+short+dot+'</span>'
-      +'</div>';
-  }).join('');
-}
-
-/* Cache the full JSON — fetched once, reused for all 7 days */
-var _calCache = null;
-async function getCalendar(y){
-  if(_calCache && _calCache.year === y) return _calCache;
-  try{
-    const r=await fetch('/_data/calendar-'+y+'.json');
-    if(!r.ok) throw new Error('HTTP '+r.status);
-    _calCache=await r.json();
-    return _calCache;
-  }catch(e){console.warn('Calendar fetch failed:',e.message);return null;}
-}
-
-async function loadFromLocalCal(date){
-  const y=date.getFullYear();
-  const m=String(date.getMonth()+1).padStart(2,'0');
-  const d=String(date.getDate()).padStart(2,'0');
-  const key=y+'-'+m+'-'+d;
-  const cal=await getCalendar(y);
-  if(!cal||!cal.days||!cal.days[key]) return null;
-  const day=cal.days[key];
-  return {
-    titles:[day.feast],
-    summary_title:day.feast,
-    saints:(day.saints||[]),
-    fast_level_description:day.fast||'',
-    fast_exception_desc:day.fastException||'',
-    tone:day.tone||0,
-    feast_level:day.feastLevel||0,
-    readings:(day.readings||[]).map(function(r){return{
-      source:r.source||'',
-      source_short:r.source||'',
-      display:r.display||r.short||''
-    };})
-  };
-}
-
-async function init(){
-  const today = new Date();
-  const sunday = getNextSunday();
-  document.getElementById('cbar-date').textContent = displayDate(today);
-  const sundayData = await loadFromLocalCal(sunday);
-  if(sundayData){ renderSunday(sundayData, sunday); }
-  else{ document.getElementById('sunday-panel').innerHTML='<p class="ts-loading">Liturgical data temporarily unavailable.</p>'; }
-  const dates=Array.from({length:7},function(_,i){return addDays(today,i);});
-  const entries=[];
-  for(let i=0;i<dates.length;i++){
-    const d=await loadFromLocalCal(dates[i]);
-    if(d) entries.push({date:dates[i],data:d});
-  }
-  if(entries.length) renderWeek(entries);
-  else document.getElementById('week-strip').innerHTML='<p class="ts-loading" style="font-size:.85rem">Calendar temporarily unavailable.</p>';
-}
-init();
-
-(function(){
-  const t=document.getElementById('galleryTrack');
-  if(!t)return;
-  let down=false,startX,scrollL;
-  t.addEventListener('mousedown',e=>{down=true;startX=e.pageX-t.offsetLeft;scrollL=t.scrollLeft});
-  t.addEventListener('mouseleave',()=>down=false);
-  t.addEventListener('mouseup',()=>down=false);
-  t.addEventListener('mousemove',e=>{if(!down)return;e.preventDefault();t.scrollLeft=scrollL-(e.pageX-t.offsetLeft-startX)*1.4});
-})();
-
-document.querySelector('a[href="#this-sunday"]')?.addEventListener('click',e=>{e.preventDefault();document.ge
-<!-- Hero Image Rotator -->
-<script>
-/* ═══════════════════════════════════════════════════════
-   SSPP HERO IMAGE ROTATOR
-   Curated Wikimedia Commons Orthodox imagery
-   Public domain / CC-licensed — free to use
-   Picks one random image per page load, crossfades on a timer
-═══════════════════════════════════════════════════════ */
-
-(function() {
-
-  /* ── CURATED IMAGE POOL ──────────────────────────────
-     All from Wikimedia Commons. Each has:
-     - url:   Direct image URL (1280px preview — fast load, sharp enough for hero)
-     - label: What it depicts
-     - pos:   CSS background-position for best crop
-  ─────────────────────────────────────────────────────── */
-  var IMAGES = [
-
-    /* CHURCH INTERIORS — NAVES & ICONOSTASES */
-    {
-      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Interior_of_Greek_Orthodox_church_18th_century_section.JPG/1280px-Interior_of_Greek_Orthodox_church_18th_century_section.JPG',
-      label: 'Greek Orthodox church interior, 18th century',
-      pos: 'center center'
-    },
-    {
-      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Romanian_Orthodox_Monastery_%2849074404227%29.jpg/1280px-Romanian_Orthodox_Monastery_%2849074404227%29.jpg',
-      label: 'Romanian Orthodox Monastery interior',
-      pos: 'center center'
-    },
-    {
-      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Saint_Nicholas_Orthodox_church_in_Bangkok_%2810%29.jpg/1280px-Saint_Nicholas_Orthodox_church_in_Bangkok_%2810%29.jpg',
-      label: 'Saint Nicholas Orthodox Church, Bangkok',
-      pos: 'center center'
-    },
-    {
-      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Saint_Nicholas_Orthodox_church_in_Bangkok_%287%29.jpg/1280px-Saint_Nicholas_Orthodox_church_in_Bangkok_%287%29.jpg',
-      label: 'Saint Nicholas Orthodox Church interior, Bangkok',
-      pos: 'center 40%'
-    },
-    {
-      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/St._Michael_the_Archangel_Russian_Orthodox_Church%2C_Kuala_Lumpur_%281%29.jpg/1280px-St._Michael_the_Archangel_Russian_Orthodox_Church%2C_Kuala_Lumpur_%281%29.jpg',
-      label: 'St Michael the Archangel Russian Orthodox Church, Kuala Lumpur',
-      pos: 'center center'
-    },
-    {
-      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/St._Michael_the_Archangel_Russian_Orthodox_Church%2C_Kuala_Lumpur_%282%29.jpg/1280px-St._Michael_the_Archangel_Russian_Orthodox_Church%2C_Kuala_Lumpur_%282%29.jpg',
-      label: 'St Michael the Archangel Orthodox Church interior',
-      pos: 'center center'
-    },
-    {
-      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/St._Michael_the_Archangel_Russian_Orthodox_Church%2C_Kuala_Lumpur_%283%29.jpg/1280px-St._Michael_the_Archangel_Russian_Orthodox_Church%2C_Kuala_Lumpur_%283%29.jpg',
-      label: 'Russian Orthodox Church interior, Kuala Lumpur',
-      pos: 'center center'
-    },
-    {
-      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/St._Michael_the_Archangel_Russian_Orthodox_Church%2C_Kuala_Lumpur_%285%29.jpg/1280px-St._Michael_the_Archangel_Russian_Orthodox_Church%2C_Kuala_Lumpur_%285%29.jpg',
-      label: 'Russian Orthodox Church nave, Kuala Lumpur',
-      pos: 'center 30%'
-    },
-    {
-      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Turku_Orthodox_Church%2C_interior.JPG/1280px-Turku_Orthodox_Church%2C_interior.JPG',
-      label: 'Turku Orthodox Church interior, Finland',
-      pos: 'center center'
-    },
-
-    /* ICONOSTASES */
-    {
-      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Church_of_the_Dormition_of_the_Theotokos_iconostasis.jpg/1280px-Church_of_the_Dormition_of_the_Theotokos_iconostasis.jpg',
-      label: 'Church of the Dormition of the Theotokos iconostasis',
-      pos: 'center center'
-    },
-    {
-      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Russian_Orthodox_iconostasis_Deventer.jpg/1280px-Russian_Orthodox_iconostasis_Deventer.jpg',
-      label: 'Russian Orthodox iconostasis, Deventer',
-      pos: 'center center'
-    },
-    {
-      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Iconostasis%2C_crypt_of_Church_of_Saint_Sava%2C_Belgrade.jpg/1280px-Iconostasis%2C_crypt_of_Church_of_Saint_Sava%2C_Belgrade.jpg',
-      label: 'Iconostasis, crypt of Church of Saint Sava, Belgrade',
-      pos: 'center center'
-    },
-    {
-      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/St_Michael_The_Archangel_Russian_Orthodox_Church_Malaysia_15_May_2022.jpg/1280px-St_Michael_The_Archangel_Russian_Orthodox_Church_Malaysia_15_May_2022.jpg',
-      label: 'Russian Orthodox Church interior, Malaysia',
-      pos: 'center center'
-    },
-
-    /* CATHEDRAL EXTERIORS & DOMES */
-    {
-      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Hagia_Sophia_Mars_2013.jpg/1280px-Hagia_Sophia_Mars_2013.jpg',
-      label: 'Hagia Sophia, Constantinople',
-      pos: 'center 60%'
-    },
-    {
-      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Saint_Basil%27s_Cathedral_in_Moscow_%28pixinn.net%29.jpg/1280px-Saint_Basil%27s_Cathedral_in_Moscow_%28pixinn.net%29.jpg',
-      label: "Saint Basil's Cathedral, Moscow",
-      pos: 'center 40%'
-    },
-    {
-      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Cathedral_of_the_Annunciation_in_Moscow_Kremlin_-_5481.jpg/1280px-Cathedral_of_the_Annunciation_in_Moscow_Kremlin_-_5481.jpg',
-      label: 'Cathedral of the Annunciation, Moscow Kremlin',
-      pos: 'center center'
-    },
-    {
-      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/20100px-Meteora_kloster_Varlaam.jpg/1280px-20100px-Meteora_kloster_Varlaam.jpg',
-      label: 'Varlaam Monastery, Meteora',
-      pos: 'center 40%'
-    },
-
-    /* BYZANTINE MOSAICS & FRESCOES */
-    {
-      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Hagia_Sophia_Interior_Wikimedia_Commons.jpg/1280px-Hagia_Sophia_Interior_Wikimedia_Commons.jpg',
-      label: 'Hagia Sophia interior',
-      pos: 'center center'
-    },
-    {
-      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Hagia_Sophia_altar.jpg/1280px-Hagia_Sophia_altar.jpg',
-      label: 'Hagia Sophia altar and apse',
-      pos: 'center center'
-    },
-
-    /* ICONS */
-    {
-      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Icon_of_Christ_Pantocrator%2C_Sinai%2C_6th_century.jpg/800px-Icon_of_Christ_Pantocrator%2C_Sinai%2C_6th_century.jpg',
-      label: 'Christ Pantocrator, 6th century, Sinai',
-      pos: 'center 30%'
-    },
-    {
-      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Kizhi_church_1.jpg/1280px-Kizhi_church_1.jpg',
-      label: 'Church of the Transfiguration, Kizhi island',
-      pos: 'center 40%'
-    },
-    {
-      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Iglesia_de_la_Natividad%2C_Bet_Sahour%2C_Palestina%2C_2013-09-12%2C_DD_04.jpg/1280px-Iglesia_de_la_Natividad%2C_Bet_Sahour%2C_Palestina%2C_2013-09-12%2C_DD_04.jpg',
-      label: 'Church of the Nativity interior, Bethlehem',
-      pos: 'center center'
-    },
-
-    /* MONASTERIES */
-    {
-      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Monastery_of_Saint_Naum_02.jpg/1280px-Monastery_of_Saint_Naum_02.jpg',
-      label: 'Monastery of Saint Naum, North Macedonia',
-      pos: 'center center'
-    },
-    {
-      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Rila_Monastery_Bulgaria.jpg/1280px-Rila_Monastery_Bulgaria.jpg',
-      label: 'Rila Monastery, Bulgaria',
-      pos: 'center 40%'
-    },
-    {
-      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Mystras_view.jpg/1280px-Mystras_view.jpg',
-      label: 'Byzantine churches, Mystras',
-      pos: 'center center'
-    },
-  ];
-
-  /* ── GRADIENT SCRIM ────────────────────────────────── */
-  var SCRIM = 'linear-gradient(to right, rgba(21,8,4,.88) 0%, rgba(21,8,4,.65) 55%, rgba(21,8,4,.38) 100%)';
-
-  /* ── FIND HERO ELEMENT ─────────────────────────────── */
-  var hero = document.querySelector('.page-hero') || document.querySelector('.giving-hero') || document.querySelector('.hero');
-  if (!hero) return;
-
-  /* ── PICK RANDOM START IMAGE ───────────────────────── */
-  function pick(exclude) {
-    var pool = IMAGES.filter(function(img, i) { return i !== exclude; });
-    return pool[Math.floor(Math.random() * pool.length)];
-  }
-
-  var currentIdx = Math.floor(Math.random() * IMAGES.length);
-  var current = IMAGES[currentIdx];
-
-  /* ── APPLY IMAGE ───────────────────────────────────── */
-  function applyImage(img) {
-    hero.style.backgroundImage = SCRIM + ', url("' + img.url + '")';
-    hero.style.backgroundSize = 'cover';
-    hero.style.backgroundPosition = img.pos || 'center center';
-    hero.style.backgroundRepeat = 'no-repeat';
-    hero.style.transition = 'background-image 1.2s ease-in-out';
-  }
-
-  /* ── CROSSFADE TO NEXT ─────────────────────────────── */
-  function advance() {
-    var nextIdx = Math.floor(Math.random() * IMAGES.length);
-    if (nextIdx === currentIdx) nextIdx = (nextIdx + 1) % IMAGES.length;
-    currentIdx = nextIdx;
-    applyImage(IMAGES[currentIdx]);
-  }
-
-  /* ── PRELOAD THEN SHOW ─────────────────────────────── */
-  var img = new Image();
-  img.onload = function() {
-    applyImage(current);
-    setInterval(advance, 8000); /* rotate every 8 seconds */
-  };
-  img.onerror = function() {
-    /* First image failed — try next */
-    currentIdx = (currentIdx + 1) % IMAGES.length;
-    img.src = IMAGES[currentIdx].url;
-  };
-  img.src = current.url;
-
-})();
-
-</script>
 
 <script>
 if (window.netlifyIdentity) {
@@ -1502,259 +872,143 @@ function closeDrawer(){
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeDrawer();});
 </script>
 
-<script src="/enhancements.js"></script>
-
 <!-- I: Welcome Overlay -->
 <div class="welcome-overlay" id="welcome-overlay">
   <div class="wo-inner">
-    <div class="wo-frame">
-      <div class="wo-fc tl"></div><div class="wo-fc tr"></div>
-      <div class="wo-fc bl"></div><div class="wo-fc br"></div>
-    </div>
-    <span class="wo-cross">✦ ✝ ✦</span>
+    <div class="wo-frame"><div class="wo-fc tl"></div><div class="wo-fc tr"></div><div class="wo-fc bl"></div><div class="wo-fc br"></div></div>
+    <span class="wo-cross">&#10022; &#10013; &#10022;</span>
     <h2 class="wo-title">You are welcome here.</h2>
     <div class="wo-rule"></div>
-    <p class="wo-sub">Saints Peter &amp; Paul Orthodox Cathedral · Jersey City, NJ</p>
+    <p class="wo-sub">Saints Peter &amp; Paul Orthodox Cathedral &middot; Jersey City, NJ</p>
     <div class="wo-btns">
-      <button class="wo-btn wo-btn-primary" onclick="overlayRoute('new')">I'm visiting for the first time</button>
-      <button class="wo-btn wo-btn-secondary" onclick="overlayRoute('parish')">I'm a parishioner</button>
+      <button class="wo-btn wo-btn-primary" onclick="overlayRoute('new')">I&rsquo;m visiting for the first time</button>
+      <button class="wo-btn wo-btn-secondary" onclick="overlayRoute('parish')">I&rsquo;m a parishioner</button>
     </div>
-    <span class="wo-dismiss" onclick="dismissOverlay()">Continue to the site →</span>
+    <span class="wo-dismiss" onclick="dismissOverlay()">Continue to the site &rarr;</span>
   </div>
 </div>
 
-<!-- O: Floating Help Button -->
+<!-- O: Floating help -->
 <button class="float-help" id="float-help" onclick="toggleFloatPanel()">
-  <span class="fh-icon">✝</span>
+  <span style="font-size:1rem">&#10013;</span>
   <span>First time here?</span>
 </button>
 <div class="float-panel" id="float-panel">
-  <div class="fp-head">
-    <span class="fp-title">Plan Your Visit</span>
-    <span class="fp-sub">Everything you need to know</span>
-  </div>
+  <div class="fp-head"><span class="fp-title">Plan Your Visit</span><span class="fp-sub">Everything you need to know</span></div>
   <div class="fp-body">
-    <div class="fp-item"><span class="fp-label">Vespers</span><span class="fp-val">Saturdays · 5:00 PM</span></div>
-    <div class="fp-item"><span class="fp-label">Liturgy</span><span class="fp-val">Sundays · 9:30 AM</span></div>
+    <div class="fp-item"><span class="fp-label">Vespers</span><span class="fp-val">Saturdays &middot; 5:00 PM</span></div>
+    <div class="fp-item"><span class="fp-label">Liturgy</span><span class="fp-val">Sundays &middot; 9:30 AM</span></div>
     <div class="fp-item"><span class="fp-label">Address</span><span class="fp-val">111 Grand St, Jersey City</span></div>
     <div class="fp-item"><span class="fp-label">Dress</span><span class="fp-val">Modest, respectful attire</span></div>
     <div class="fp-item"><span class="fp-label">Welcome</span><span class="fp-val">All are welcome to attend</span></div>
   </div>
-  <a href="/about-orthodoxy" class="fp-link">Learn About Our Faith →</a>
+  <a href="/about-orthodoxy" class="fp-link">Learn About Our Faith &rarr;</a>
 </div>
 
-
 <script>
-/* ═══════════════════════════════════════════════════
-   HOMEPAGE ENHANCEMENTS
-   F — Live Liturgical Banner
-   I — Welcome Overlay
-   K — Service Time Pulse
-   N — Feast Day Theming
-   O — Floating Help Panel
-═══════════════════════════════════════════════════ */
-
-const MONTHS_FULL = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-const ROMAN_MAP = {1:'I',2:'II',3:'III',4:'IV',5:'V',6:'VI',7:'VII',8:'VIII'};
-
-/* ── FEATURE I: WELCOME OVERLAY ────────────────── */
-(function initOverlay(){
-  /* Show only once — remembered for 30 days */
-  const key = 'sspp_visited';
-  const last = localStorage.getItem(key);
-  const now  = Date.now();
-  if(last && now - parseInt(last) < 30 * 24 * 60 * 60 * 1000) return;
-
-  setTimeout(function(){
-    const overlay = document.getElementById('welcome-overlay');
-    if(overlay) overlay.classList.add('active');
-  }, 2200);
+/* ── I+O: OVERLAY + FLOAT ── */
+(function(){
+  var key='sspp_visited', last=localStorage.getItem(key), now=Date.now();
+  if(!last || now-parseInt(last) > 30*24*60*60*1000){
+    setTimeout(function(){
+      var o=document.getElementById('welcome-overlay');
+      if(o) o.classList.add('active');
+    }, 2200);
+  }
 })();
 
 function dismissOverlay(){
-  const overlay = document.getElementById('welcome-overlay');
-  if(overlay){ overlay.style.opacity='0'; setTimeout(()=>overlay.remove(), 600); }
+  var o=document.getElementById('welcome-overlay');
+  if(o){o.style.opacity='0';setTimeout(function(){o.remove();},600);}
   localStorage.setItem('sspp_visited', Date.now().toString());
-  /* Show floating button after overlay dismissed */
   setTimeout(showFloatHelp, 1200);
 }
-
 function overlayRoute(type){
   dismissOverlay();
-  if(type === 'new'){
-    setTimeout(function(){
-      window.location.href = '/about-orthodoxy';
-    }, 800);
-  }
+  if(type==='new') setTimeout(function(){window.location.href='/about-orthodoxy';}, 800);
 }
-
-/* ── FEATURE O: FLOATING HELP ──────────────────── */
-var floatVisible = false;
-var panelOpen = false;
-
+var _floatVisible=false, _panelOpen=false;
 function showFloatHelp(){
-  const btn = document.getElementById('float-help');
-  if(btn){ btn.classList.add('visible'); floatVisible = true; }
+  var b=document.getElementById('float-help');
+  if(b){b.classList.add('visible');_floatVisible=true;}
 }
-
 function toggleFloatPanel(){
-  panelOpen = !panelOpen;
-  const panel = document.getElementById('float-panel');
-  if(panel) panel.classList.toggle('open', panelOpen);
+  _panelOpen=!_panelOpen;
+  var p=document.getElementById('float-panel');
+  if(p) p.classList.toggle('open',_panelOpen);
 }
-
-/* Show float button on scroll if overlay already dismissed */
-window.addEventListener('scroll', function(){
-  if(!floatVisible && !document.getElementById('welcome-overlay')?.classList.contains('active')){
-    if(window.scrollY > 400) showFloatHelp();
-  }
-  /* Close panel on scroll */
-  if(panelOpen && window.scrollY > 200){
-    panelOpen = false;
-    const panel = document.getElementById('float-panel');
-    if(panel) panel.classList.remove('open');
-  }
-}, {passive:true});
-
-/* Close panel on outside click */
-document.addEventListener('click', function(e){
-  if(panelOpen && !e.target.closest('#float-panel') && !e.target.closest('#float-help')){
-    panelOpen = false;
-    document.getElementById('float-panel')?.classList.remove('open');
+window.addEventListener('scroll',function(){
+  if(!_floatVisible && window.scrollY>400) showFloatHelp();
+},{passive:true});
+document.addEventListener('click',function(e){
+  if(_panelOpen&&!e.target.closest('#float-panel')&&!e.target.closest('#float-help')){
+    _panelOpen=false;
+    var p=document.getElementById('float-panel');
+    if(p) p.classList.remove('open');
   }
 });
 
-/* ── FEATURES F + K + N: CALENDAR-DRIVEN LIVE UI ── */
+/* ── F+K+N: LIVE BANNER + SERVICE PULSE ── */
 async function initLiveCalendar(){
-  const today = new Date();
-  const y = today.getFullYear();
-  const m = String(today.getMonth()+1).padStart(2,'0');
-  const d = String(today.getDate()).padStart(2,'0');
-  const dateKey = y+'-'+m+'-'+d;
-
-  let data = null;
-  try{
-    const cal = await getCalendar(y);
-    const day = cal && cal.days && cal.days[dateKey];
-    if(day){
-      data = {
-        feast:    day.feast || '',
-        fast:     day.fast  || '',
-        fastException: day.fastException || '',
-        tone:     day.tone  || 0,
-        feastLevel: day.feastLevel || 0,
-        saints:   day.saints || [],
-      };
-    }
-  }catch(e){
-    console.warn('Calendar fetch failed:', e.message);
+  var today=new Date();
+  var y=today.getFullYear();
+  var m=String(today.getMonth()+1).padStart(2,'0');
+  var d=String(today.getDate()).padStart(2,'0');
+  var dateKey=y+'-'+m+'-'+d;
+  var ROMAN_MAP={1:'I',2:'II',3:'III',4:'IV',5:'V',6:'VI',7:'VII',8:'VIII'};
+  var cal=await getCalendar(y);
+  if(!cal||!cal.days||!cal.days[dateKey]) return;
+  var day=cal.days[dateKey];
+  var data={
+    feast:      day.feast||'',
+    fast:       day.fast||'',
+    fastException: day.fastException||'',
+    tone:       day.tone||0,
+    feastLevel: day.feastLevel||0
+  };
+  var feastEl=document.getElementById('lb-feast');
+  var fastEl =document.getElementById('lb-fast');
+  var toneEl =document.getElementById('lb-tone');
+  var dotEl  =document.getElementById('lb-dot');
+  var nextEl =document.getElementById('lb-next');
+  var banner =document.getElementById('lit-banner');
+  if(feastEl) feastEl.textContent=data.feast||'Ordinary Day';
+  if(fastEl && data.fast) fastEl.textContent='✦ '+data.fast;
+  if(toneEl && data.tone) toneEl.textContent='Tone '+(ROMAN_MAP[data.tone]||data.tone);
+  var now=new Date(), dow=now.getDay(), h=now.getHours(), min=now.getMinutes(), tot=h*60+min;
+  var svcLabel='', dotState='normal';
+  if(dow===6){
+    if(tot>=17*60&&tot<18*60){svcLabel='Vespers · Happening Now';dotState='live';}
+    else if(tot>=16*60&&tot<17*60){svcLabel='Vespers starting soon';dotState='soon';}
+    else if(tot<17*60){var mins=17*60-tot;svcLabel='Vespers in '+(mins>59?Math.floor(mins/60)+'h '+(mins%60)+'m':mins+'m');}
+    else svcLabel='Liturgy · Sunday 9:30 AM';
+  } else if(dow===0){
+    if(tot>=9*60+30&&tot<11*60){svcLabel='Divine Liturgy · Happening Now';dotState='live';}
+    else if(tot>=9*60&&tot<9*60+30){svcLabel='Liturgy beginning soon';dotState='soon';}
+    else if(tot<9*60+30){var mins2=(9*60+30)-tot;svcLabel='Liturgy in '+(mins2>59?Math.floor(mins2/60)+'h '+(mins2%60)+'m':mins2+'m');}
+    else svcLabel='Next Vespers · Saturday 5:00 PM';
+  } else {
+    var dts=6-dow; svcLabel='Next: Vespers '+(dts===1?'tomorrow':'in '+dts+' days')+' · 5:00 PM';
   }
-
-  if(!data) return;
-
-  /* ── F: LIVE BANNER ── */
-  const banner  = document.getElementById('lit-banner');
-  const feastEl = document.getElementById('lb-feast');
-  const fastEl  = document.getElementById('lb-fast');
-  const toneEl  = document.getElementById('lb-tone');
-  const dotEl   = document.getElementById('lb-dot');
-  const nextEl  = document.getElementById('lb-next');
-
-  if(feastEl) feastEl.textContent = data.feast || 'Ordinary Day';
-  if(fastEl && data.fast) fastEl.textContent = '✦ ' + data.fast;
-  if(toneEl && data.tone) toneEl.textContent = 'Tone ' + (ROMAN_MAP[data.tone] || data.tone);
-
-  /* Service countdown logic */
-  const now     = new Date();
-  const dayOfWk = now.getDay(); /* 0=Sun, 6=Sat */
-  const hour    = now.getHours();
-  const min     = now.getMinutes();
-  const totalMin = hour * 60 + min;
-
-  /* Service windows: Sat Vespers 5pm (17:00), Sun Liturgy 9:30am */
-  var svcStatus = '';
-  var svcLabel  = '';
-  var dotState  = 'normal'; /* normal | soon | live */
-
-  if(dayOfWk === 6){ /* Saturday */
-    if(totalMin >= 17*60 && totalMin < 18*60){
-      svcStatus = 'live'; svcLabel = 'Vespers · Live Now'; dotState = 'live';
-    } else if(totalMin >= 16*60 && totalMin < 17*60){
-      const mins = 17*60 - totalMin;
-      svcStatus = 'soon'; svcLabel = 'Vespers in '+mins+'m'; dotState = 'soon';
-    } else if(totalMin < 17*60){
-      const hrs = Math.floor((17*60 - totalMin)/60);
-      const mn  = (17*60 - totalMin) % 60;
-      svcLabel = 'Vespers today ' + (hrs > 0 ? 'in '+hrs+'h '+(mn>0?mn+'m':'') : 'in '+mn+'m');
-    } else {
-      svcLabel = 'Liturgy · Sunday 9:30 AM';
-    }
-  } else if(dayOfWk === 0){ /* Sunday */
-    if(totalMin >= 9*60+30 && totalMin < 11*60+30){
-      svcStatus = 'live'; svcLabel = 'Divine Liturgy · Live Now'; dotState = 'live';
-    } else if(totalMin >= 9*60 && totalMin < 9*60+30){
-      svcLabel = 'Liturgy beginning soon'; dotState = 'soon';
-    } else if(totalMin < 9*60+30){
-      const mins = (9*60+30) - totalMin;
-      const hrs  = Math.floor(mins/60);
-      const mn   = mins % 60;
-      svcLabel = 'Liturgy in ' + (hrs > 0 ? hrs+'h '+(mn>0?mn+'m':'') : mn+'m');
-    } else {
-      svcLabel = 'Next Vespers · Saturday 5:00 PM';
-    }
-  } else { /* Weekday */
-    const daysToSat = 6 - dayOfWk;
-    svcLabel = 'Next: Vespers ' + (daysToSat === 1 ? 'tomorrow' : 'in '+daysToSat+' days') + ' · 5:00 PM';
-  }
-
-  if(nextEl) nextEl.textContent = svcLabel;
-  if(dotEl){
-    dotEl.classList.remove('live','soon');
-    if(dotState === 'live') dotEl.classList.add('live');
-    if(dotState === 'soon') dotEl.classList.add('soon');
-  }
-
-  /* Show banner */
-  if(banner) setTimeout(()=>banner.classList.add('visible'), 1000);
-
-  /* ── K: SERVICE TIME PULSE ── */
-  const strips = document.querySelectorAll('.ts-strip-item');
-  strips.forEach(function(strip){
-    const dayLbl = strip.querySelector('.ts-strip-day');
-    if(!dayLbl) return;
-    const txt = dayLbl.textContent.toLowerCase();
-
-    if(txt.includes('saturday') && dayOfWk === 6){
-      if(totalMin >= 17*60 && totalMin < 18*60){
-        strip.classList.add('svc-live');
-        strip.insertAdjacentHTML('beforeend','<span class="svc-live-badge">Happening Now</span>');
-      } else if(totalMin >= 16*60 && totalMin < 17*60){
-        strip.classList.add('svc-soon');
-        strip.insertAdjacentHTML('beforeend','<span class="svc-soon-badge">Starting Soon</span>');
-      }
-    }
-    if(txt.includes('sunday') && dayOfWk === 0){
-      if(totalMin >= 9*60+30 && totalMin < 11*60+30){
-        strip.classList.add('svc-live');
-        strip.insertAdjacentHTML('beforeend','<span class="svc-live-badge">Happening Now</span>');
-      } else if(totalMin >= 9*60 && totalMin < 9*60+30){
-        strip.classList.add('svc-soon');
-        strip.insertAdjacentHTML('beforeend','<span class="svc-soon-badge">Starting Soon</span>');
-      }
-    }
+  if(nextEl) nextEl.textContent=svcLabel;
+  if(dotEl){dotEl.classList.remove('live','soon');if(dotState==='live')dotEl.classList.add('live');if(dotState==='soon')dotEl.classList.add('soon');}
+  if(banner) setTimeout(function(){banner.classList.add('visible');},1000);
+  /* K: pulse service strip */
+  document.querySelectorAll('.ts-strip-item').forEach(function(strip){
+    var lbl=strip.querySelector('.ts-strip-day');
+    if(!lbl) return;
+    var txt=lbl.textContent.toLowerCase();
+    if(txt.includes('saturday')&&dow===6&&tot>=17*60&&tot<18*60){strip.classList.add('svc-live');strip.insertAdjacentHTML('beforeend','<span class="svc-live-badge">Happening Now</span>');}
+    if(txt.includes('sunday')&&dow===0&&tot>=9*60+30&&tot<11*60){strip.classList.add('svc-live');strip.insertAdjacentHTML('beforeend','<span class="svc-live-badge">Happening Now</span>');}
   });
-
-  /* ── N: FEAST DAY THEMING ── */
-  const lvl = data.feastLevel || 0;
-  if(lvl >= 7) document.body.classList.add('feast-level-great');
-  if(data.fast && data.fast.toLowerCase().includes('strict')) document.body.classList.add('feast-level-fast');
+  /* N: feast theming */
+  if((data.feastLevel||0)>=7) document.body.classList.add('feast-level-great');
 }
 
-/* ── BOOT ── */
-document.addEventListener('DOMContentLoaded', function(){
-  initLiveCalendar();
-});
+document.addEventListener('DOMContentLoaded', function(){ initLiveCalendar(); });
 </script>
 
+<script src="/index-scripts.js"></script>
+<script src="/enhancements.js"></script>
 </body>
 </html>
