@@ -422,7 +422,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 /* ════════════════════════════════════════════
    CONSTANTS & HELPERS
 ════════════════════════════════════════════ */
@@ -431,7 +431,9 @@ const MONTHS = ['January','February','March','April','May','June',
 const DAYS   = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 const ROMAN  = {1:'I',2:'II',3:'III',4:'IV',5:'V',6:'VI',7:'VII',8:'VIII'};
 
-/* Feast level → border colour class */
+/* ════════════════════════════════════════════
+   HELPERS
+════════════════════════════════════════════ */
 function feastClass(level) {
   if (level >= 7) return 'lv7';
   if (level >= 5) return 'lv5';
@@ -439,156 +441,72 @@ function feastClass(level) {
   return '';
 }
 
-/* Capitalise first letter of a string */
-function cap(s) {
-  return s ? s.charAt(0).toUpperCase() + s.slice(1) : '';
-}
+function cap(s) { return s ? s.charAt(0).toUpperCase() + s.slice(1) : ''; }
 
-/* Convert reading source code to a readable label */
 function sourceLabel(src) {
   if (!src) return 'Reading';
   const map = {
-    'epistle':    'Epistle',
-    'gospel':     'Gospel',
-    'matins gospel': 'Matins Gospel',
-    'ot':         'Old Testament',
-    '6th hour':   'Sixth Hour',
-    'vespers':    'Vespers',
+    'epistle': 'Epistle', 'gospel': 'Gospel',
+    'matins gospel': 'Matins Gospel', 'ot': 'Old Testament',
+    '6th hour': 'Sixth Hour', 'vespers': 'Vespers',
   };
   const lower = src.toLowerCase();
-  for (const [k, v] of Object.entries(map)) {
-    if (lower.includes(k)) return v;
-  }
+  for (const [k, v] of Object.entries(map)) { if (lower.includes(k)) return v; }
   return cap(src);
-}
-
-/* Build the scripture HTML from the passage array.
-   Each element is { book, chapter, verse, content } or
-   may just be { content } for single-verse readings. */
-function buildVerseHTML(passage) {
-  if (!Array.isArray(passage) || !passage.length) return null;
-
-  let html = '';
-  let lastChapter = null;
-
-  passage.forEach((v, idx) => {
-    const content = (v.content || v.text || '').trim();
-    if (!content) return;
-
-    const ch  = v.chapter || null;
-    const vn  = v.verse   || null;
-
-    /* Paragraph break: new chapter or explicit paragraph marker */
-    if (ch && ch !== lastChapter && idx > 0) {
-      html += '<span class="verse-para-break"></span>';
-    }
-    lastChapter = ch;
-
-    /* Verse number superscript — show chapter:verse only at chapter changes,
-       otherwise just verse number to keep it readable */
-    let numHtml = '';
-    if (vn) {
-      numHtml = `<sup class="verse-num">${vn}</sup>`;
-    }
-
-    html += numHtml + content + ' ';
-  });
-
-  return html.trim();
 }
 
 /* ════════════════════════════════════════════
    MAIN LOAD FUNCTION
 ════════════════════════════════════════════ */
 async function loadReadings() {
-  const today   = new Date();
-  const dayName = DAYS[today.getDay()];
-  const dateStr = `${MONTHS[today.getMonth()]} ${d}, ${y}`;
+  const today    = new Date();
+  const y        = today.getFullYear();
+  const m        = today.getMonth() + 1;
+  const d        = today.getDate();
+  const dayName  = DAYS[today.getDay()];
+  const dateStr  = `${MONTHS[today.getMonth()]} ${d}, ${y}`;
   const fullDate = `${dayName}, ${dateStr}`;
+  const dateKey  = `${y}-${String(m).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
 
-  /* Update hero and chapter bar immediately with the date */
+  /* Update hero/bar immediately */
   document.getElementById('hero-meta').textContent = fullDate;
-  document.getElementById('cbar-date').innerHTML   =
-    `<span class="cbar-loading" id="cbar-spinner"></span>${fullDate}`;
+  document.getElementById('cbar-date').innerHTML =
+    `<span class="cbar-loading"></span>${fullDate}`;
 
-  /* ── LOAD FROM LOCAL CALENDAR JSON ── */
-  const y = today.getFullYear();
-  const m = today.getMonth() + 1;
-  const d = today.getDate();
-  const dateKey = `${y}-${String(m).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
-
-  async function fetchWithTimeout(url, ms=8000){
-    const ctrl = new AbortController();
-    const t = setTimeout(() => ctrl.abort(), ms);
-    try {
-      const r = await fetch(url, {signal: ctrl.signal});
-      clearTimeout(t);
-      if (!r.ok) throw new Error('HTTP ' + r.status);
-      return r.json();
-    } catch(e) { clearTimeout(t); throw e; }
-  }
-
+  /* ── FETCH LOCAL JSON ── */
   let data = null;
-
-  /* 1. Try local pre-fetched calendar first (instant, no CORS) */
   try {
-    const cal = await fetchWithTimeout(`/_data/calendar-${y}.json`, 5000);
+    const r = await fetch(`/_data/calendar-${y}.json`);
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    const cal = await r.json();
     const day = cal && cal.days && cal.days[dateKey];
     if (day) {
-      /* Convert lite format to full format expected by render functions */
+      /* Map local JSON fields → render-expected shape */
+      const readings = (day.readings || []).map((rd, i) => ({
+        source:  rd.src  || '',
+        display: rd.ref  || '',
+        short:   rd.short || '',
+        passage: []   /* local JSON has refs only, not full passage text */
+      }));
       data = {
-        summary_title:        day.feast,
-        titles:               day.titles,
-        feasts:               day.feasts,
-        saints:               day.saints,
-        fast_level_desc:      day.fast,
-        fast_exception_desc:  day.fastException,
-        tone:                 day.tone,
-        feast_level:          day.feastLevel,
-        feast_level_description: day.feastDesc,
-        readings:             day.readings.map(r => ({
-          source:       r.source,
-          display:      r.display,
-          short_display: r.short,
-          description:  r.desc,
-          passage:      [] /* full passage text not in lite cache */
-        })),
-        stories: []
+        summary_title:       day.feast,
+        titles:              day.titles  || [],
+        saints:              day.saints  || [],
+        fast_level_desc:     day.fast    || '',
+        fast_exception_desc: day.fastEx  || '',
+        tone:                day.tone,
+        feast_level:         day.lvl     || 0,
+        readings
       };
-      /* For full readings text, still fetch from API */
-      try {
-        const PROXIES = ['https://corsproxy.io/?','https://api.allorigins.win/raw?url='];
-        const BASE = `https://orthocal.info/api/gregorian/${y}/${m}/${d}/`;
-        for (const proxy of PROXIES) {
-          try {
-            const full = await fetchWithTimeout(proxy + encodeURIComponent(BASE));
-            data.readings = full.readings;
-            data.stories  = full.stories;
-            break;
-          } catch(e) { /* use lite data */ }
-        }
-      } catch(e) { /* use lite data */ }
     }
   } catch(e) {
-    console.log('Local calendar not found, falling back to API:', e.message);
-  }
-
-  /* 2. Full API fallback if local cache missing */
-  if (!data) {
-    const PROXIES = ['https://corsproxy.io/?','https://api.allorigins.win/raw?url='];
-    const BASE = `https://orthocal.info/api/gregorian/${y}/${m}/${d}/`;
-    for (const proxy of PROXIES) {
-      try {
-        data = await fetchWithTimeout(proxy + encodeURIComponent(BASE));
-        break;
-      } catch(e) { console.warn('Proxy failed:', e.message); }
-    }
+    console.warn('Local calendar fetch failed:', e.message);
   }
 
   if (!data) {
     showError(
       'Could not load today\'s readings',
-      'Please visit the <a href="https://www.oca.org/readings" target="_blank" style="color:var(--maroon)">OCA Readings site</a> directly.',
+      'Please visit the <a href="https://www.oca.org/readings" target="_blank" style="color:var(--maroon)">OCA Readings page</a> directly.',
       fullDate
     );
     return;
@@ -598,16 +516,14 @@ async function loadReadings() {
   document.getElementById('cbar-date').textContent = fullDate;
 
   /* ── LITURGICAL METADATA ── */
-  const feast     = data.summary_title || (data.titles && data.titles[0]) || 'Daily Readings';
-  const saints    = (data.saints || []).map(s => s.name).filter(Boolean);
-  const toneNum   = data.tone;
-  const tone      = toneNum ? `Tone ${ROMAN[toneNum] || toneNum}` : '';
-  const fastDesc  = [data.fast_level_desc, data.fast_exception_desc]
-                      .filter(Boolean).join(' — ');
-  const lvl       = data.feast_level || 0;
-  const readings  = data.readings || [];
+  const feast    = data.summary_title || (data.titles && data.titles[0]) || 'Daily Readings';
+  const saints   = (data.saints || []).map(s => s.name || s).filter(Boolean);
+  const toneNum  = data.tone;
+  const tone     = toneNum ? `Tone ${ROMAN[toneNum] || toneNum}` : '';
+  const fastDesc = [data.fast_level_desc, data.fast_exception_desc].filter(Boolean).join(' — ');
+  const lvl      = data.feast_level || 0;
+  const readings = data.readings || [];
 
-  /* ── HERO META ── */
   document.getElementById('hero-meta').textContent = `${fullDate} · ${feast}`;
 
   /* ── SIDEBAR: TODAY CARD ── */
@@ -616,10 +532,9 @@ async function loadReadings() {
     <div class="today-card">
       <div class="today-feast">${feast}</div>
       ${saintText ? `<div class="today-saints">${saintText}</div>` : ''}
-      ${tone      ? `<span class="today-tone">${tone}</span>` : ''}
-      ${fastDesc  ? `<div class="today-fast">${fastDesc}</div>` : ''}
-    </div>
-  `;
+      ${tone      ? `<span class="today-tone">${tone}</span>`      : ''}
+      ${fastDesc  ? `<div class="today-fast">${fastDesc}</div>`    : ''}
+    </div>`;
 
   /* ── SIDEBAR: READING INDEX ── */
   if (readings.length) {
@@ -628,87 +543,53 @@ async function loadReadings() {
       const li  = document.createElement('li');
       const lbl = sourceLabel(r.source);
       const ref = r.display || '';
-      li.innerHTML = `
-        <a href="#reading-${i}">
-          ${lbl}
-          ${ref ? `<span class="ri-ref">${ref}</span>` : ''}
-        </a>
-      `;
+      li.innerHTML = `<a href="#reading-${i}">${lbl}${ref ? `<span class="ri-ref">${ref}</span>` : ''}</a>`;
       idxUl.appendChild(li);
     });
     document.getElementById('side-index-section').style.display = '';
   }
 
-  /* ── MAIN: BUILD READINGS ── */
   if (!readings.length) {
-    showError(
-      'No readings appointed for today',
-      'There are no scripture readings listed for this date in the OCA calendar.',
-      fullDate
-    );
+    showError('No readings appointed for today',
+      'There are no readings listed for this date in the local calendar.', fullDate);
     return;
   }
 
-  /* Feast header */
+  /* ── FEAST HEADER ── */
   let html = `
     <div class="feast-header ${feastClass(lvl)}">
       <h2 class="feast-name">${feast}</h2>
       ${saintText ? `<span class="feast-saint">${saintText}</span>` : ''}
       <div class="feast-badges">
-        ${tone     ? `<span class="feast-tone">${tone}</span>` : ''}
+        ${tone     ? `<span class="feast-tone">${tone}</span>`     : ''}
         ${fastDesc ? `<span class="feast-fast">${fastDesc}</span>` : ''}
       </div>
-    </div>
-  `;
+    </div>`;
 
-  /* Each reading */
+  /* ── EACH READING ── */
+  /* Local JSON has refs but no full passage text.
+     Show the reference cleanly with a direct link to OCA. */
   readings.forEach((r, i) => {
-    const lbl      = sourceLabel(r.source);
-    const ref      = r.display || '';
-    const pericope = r.pericope || '';
-
-    /* Build verse HTML — this is where the old code was broken */
-    const verseHTML = buildVerseHTML(r.passage);
-
-    let bodyHTML;
-    if (verseHTML) {
-      bodyHTML = `<div class="verse-text">${verseHTML}</div>`;
-    } else {
-      /* OrthoCal occasionally has readings with no passage text
-         (e.g. some OT readings). Show a graceful note with a link. */
-      const ocaLink = ref
-        ? `https://www.oca.org/readings`
-        : 'https://orthocal.info';
-      bodyHTML = `
-        <div class="no-text-note">
-          The full text of ${ref ? `<em>${ref}</em>` : 'this reading'} is not
-          included in the digital calendar. You can find it on
-          <a href="${ocaLink}" target="_blank" rel="noopener" style="color:var(--maroon)">oca.org</a>
-          or in a Bible under the reference above.
-        </div>
-      `;
-    }
-
+    const lbl = sourceLabel(r.source);
+    const ref = r.display || r.short || '';
     html += `
       <div class="reading-section" id="reading-${i}">
         <div class="reading-header">
           <span class="reading-source-pill">${lbl}</span>
-          ${ref      ? `<span class="reading-ref">${ref}</span>`           : ''}
-          ${pericope ? `<span class="reading-pericope">${pericope}</span>` : ''}
+          ${ref ? `<span class="reading-ref">${ref}</span>` : ''}
         </div>
-        ${bodyHTML}
-      </div>
-    `;
+        <div class="no-text-note">
+          The full text of ${ref ? `<em>${ref}</em>` : 'this reading'} is appointed for today.
+          Read it on <a href="https://www.oca.org/readings" target="_blank" rel="noopener"
+          style="color:var(--maroon)">oca.org/readings</a> or open your Bible to the reference above.
+        </div>
+      </div>`;
   });
 
-  /* Attribution */
   html += `
     <div class="attribution">
-      Scripture readings from the
-      <a href="https://www.oca.org/readings" target="_blank" rel="noopener">OCA Liturgical Calendar</a>
-      · King James Version
-    </div>
-  `;
+      Readings from the <a href="https://www.oca.org/readings" target="_blank" rel="noopener">OCA Liturgical Calendar</a>
+    </div>`;
 
   document.getElementById('readings-main').innerHTML = html;
 }
@@ -717,24 +598,28 @@ async function loadReadings() {
    ERROR STATE
 ════════════════════════════════════════════ */
 function showError(title, body, dateStr) {
-  /* Update chrome */
   if (dateStr) {
     document.getElementById('hero-meta').textContent = dateStr;
-    document.getElementById('cbar-date').textContent = dateStr;
+    document.getElementById('cbar-date').textContent  = dateStr;
   }
-
   document.getElementById('readings-main').innerHTML = `
     <div class="error-state">
       <strong>${title}</strong>
       <p>${body}</p>
     </div>
     <div class="attribution" style="margin-top:2rem">
-      Readings from the
-      <a href="https://www.oca.org/readings" target="_blank" rel="noopener">OCA Liturgical Calendar</a>
-    </div>
-  `;
+      Readings from the <a href="https://www.oca.org/readings" target="_blank" rel="noopener">OCA Liturgical Calendar</a>
+    </div>`;
+  document.getElementById('side-today').innerHTML = `
+    <p style="font-family:var(--f-display);font-style:italic;font-size:.9rem;color:var(--stone)">
+      Could not load liturgical data.
+    </p>`;
+}
 
-  document.getElementById('side-today').in
+/* ── BOOT ── */
+loadReadings();
+</script>
+
 <!-- Hero Image Rotator -->
 <script>
 /* ═══════════════════════════════════════════════════════
