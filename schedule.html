@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -667,30 +666,44 @@ async function loadLocalCal(year) {
   }
 }
 
+const PROXIES=['https://corsproxy.io/?','https://api.allorigins.win/raw?url='];
+
+async function fetchWithTimeout(url,ms=8000){
+  const ctrl=new AbortController();
+  const t=setTimeout(()=>ctrl.abort(),ms);
+  try{const r=await fetch(url,{signal:ctrl.signal});clearTimeout(t);if(!r.ok)throw new Error('HTTP '+r.status);return r.json();}
+  catch(e){clearTimeout(t);throw e;}
+}
+
 async function fetchDay(date){
   const k=dateKey(date);
   if(CACHE[k]) return CACHE[k];
 
+  /* Try local cache first */
   const year = date.getFullYear();
   const cal = await loadLocalCal(year);
   const dk = `${year}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`;
   if(cal && cal.days && cal.days[dk]){
     const day = cal.days[dk];
     const data = {
-      summary_title: day.feast,
-      titles: day.titles,
-      feasts: day.feasts,
-      saints: day.saints,
-      fast_level_desc: day.fast,
-      fast_exception_desc: day.fastEx,
-      tone: day.tone,
-      feast_level: day.lvl,
-      feast_level_description: day.lvlDesc,
-      readings: day.readings,
-      stories: []
+      summary_title: day.feast, titles: day.titles, feasts: day.feasts,
+      saints: day.saints, fast_level_desc: day.fast,
+      fast_exception_desc: day.fastEx, tone: day.tone,
+      feast_level: day.lvl, feast_level_description: day.lvlDesc,
+      readings: day.readings, stories: []
     };
     CACHE[k]=data;
     return data;
+  }
+
+  /* API fallback */
+  const base=`https://orthocal.info/api/gregorian/${date.getFullYear()}/${date.getMonth()+1}/${date.getDate()}/`;
+  for(const proxy of PROXIES){
+    try{
+      const data=await fetchWithTimeout(proxy+encodeURIComponent(base));
+      CACHE[k]=data;
+      return data;
+    }catch(e){console.warn('Proxy failed:',e.message);}
   }
   return null;
 }
@@ -770,7 +783,7 @@ function getFast(data,date){
 
 function getReadings(data){
   if(!data||!data.readings||!data.readings.length) return[];
-  return data.readings.slice(0,4).map(r=>r.ref||r.display||r).filter(Boolean);
+  return data.readings.slice(0,4).map(r=>r.display).filter(Boolean);
 }
 
 /* ═══════════════════════════════════════
