@@ -28,7 +28,7 @@ a{color:inherit;text-decoration:none}
 .nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(246,241,232,.97);backdrop-filter:blur(10px);border-bottom:var(--rule-faint)}
 .nav-inner{max-width:1380px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px;padding:0 3rem}
 .nav-logo-name{font-family:var(--f-display);font-weight:500;font-size:1.25rem;color:var(--text);display:block}
-.nav-logo-sub{font-family:var(--f-ui);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);display:block}
+.nav-logo-sub{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);display:block}
 .nav-links{display:flex;align-items:center;list-style:none}
 .nav-links>li{position:relative}
 .nav-links>li>a{font-family:var(--f-ui);font-size:.78rem;letter-spacing:.10em;text-transform:uppercase;color:var(--text);padding:1.1rem .85rem;display:block;transition:color .18s}
@@ -36,23 +36,23 @@ a{color:inherit;text-decoration:none}
 .nav-drop{position:absolute;top:100%;left:0;background:var(--vellum);border-top:2px solid var(--maroon);border-bottom:var(--rule-faint);border-left:var(--rule-faint);border-right:var(--rule-faint);min-width:200px;padding:.5rem 0;opacity:0;pointer-events:none;transform:translateY(-4px);transition:all .16s;box-shadow:0 8px 28px rgba(28,20,16,.10)}
 .nav-links>li:hover .nav-drop{opacity:1;pointer-events:all;transform:none}
 .nav-drop a{display:block;font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text);padding:.5rem 1.4rem;transition:color .14s}
-.nav-drop a:hover{color:var(--maroon)}
+.nav-drop a:hover{color:var(--maroon)}.nav-links .nav-active{color:var(--maroon)}.nav-links .nav-active-parent>a{color:var(--maroon);border-bottom:2px solid var(--gold)}.nav-drop .nav-active{color:var(--maroon);font-weight:600}
 .nav-give{font-family:var(--f-ui);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--vellum);background:var(--maroon);padding:.5rem 1.1rem;transition:background .2s}
 .nav-give:hover{background:var(--maroon-deep)}
 
 /* ── PAGE HERO ── */
-.page-hero{padding-top:60px;background:linear-gradient(to right,rgba(21,8,4,.92) 0%,rgba(21,8,4,.72) 55%,rgba(21,8,4,.45) 100%),url('/images/heroes/readings.webp') center/cover no-repeat;position:relative;overflow:hidden}
+.page-hero{padding-top:60px;background:linear-gradient(to right,rgba(21,8,4,.92) 0%,rgba(21,8,4,.72) 55%,rgba(21,8,4,.45) 100%),url('/images/heroes/readings.webp') center/cover no-repeat;background-color:var(--apse);position:relative;overflow:hidden}}
 .page-hero-inner{max-width:1380px;margin:0 auto;padding:4rem 4.5rem 3.5rem;position:relative;z-index:1}
 .page-hero-rosette{position:absolute;right:-120px;top:50%;transform:translateY(-50%);width:480px;height:480px;opacity:.06;pointer-events:none}
 .page-title{font-family:var(--f-display);font-weight:300;font-size:clamp(2.5rem,5vw,4.5rem);line-height:.95;color:#fff;margin:.5rem 0 .75rem}
 .page-title em{font-style:italic}
-.breadcrumb{font-family:var(--f-ui);font-size:.66rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.70);margin-bottom:1.5rem}
+.breadcrumb{font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.70);margin-bottom:1.5rem}
 .breadcrumb a{color:rgba(232,201,122,.70)}
 .hero-meta{font-family:var(--f-display);font-style:italic;font-size:1.1rem;color:rgba(255,255,255,.75);margin-top:.5rem;min-height:1.6rem}
 
 /* ── CHAPTER BAR ── */
 .chapter-bar{background:var(--maroon);padding:.65rem 4.5rem;display:flex;align-items:center;justify-content:space-between}
-.cbar-text{font-family:var(--f-ui);font-size:.70rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:rgba(246,241,232,.60)}
+.cbar-text{font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:rgba(246,241,232,.60)}
 .cbar-text.bright{color:rgba(246,241,232,.90)}
 .cbar-loading{display:inline-block;width:8px;height:8px;border:1px solid rgba(232,201,122,.40);border-top-color:var(--gold-lt);border-radius:50%;animation:spin .8s linear infinite;margin-right:.5rem;vertical-align:middle}
 @keyframes spin{to{transform:rotate(360deg)}}
@@ -68,22 +68,22 @@ a{color:inherit;text-decoration:none}
 .feast-name{font-family:var(--f-display);font-weight:300;font-size:clamp(2rem,4vw,3rem);line-height:1.05;color:var(--text)}
 .feast-saint{font-family:var(--f-display);font-style:italic;font-size:1.05rem;color:var(--maroon);display:block;margin-top:.3rem;line-height:1.5}
 .feast-badges{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:.85rem;align-items:center}
-.feast-tone{font-family:var(--f-ui);font-size:.60rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;border:1px solid var(--maroon);color:var(--maroon);padding:.28rem .8rem}
+.feast-tone{font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;border:1px solid var(--maroon);color:var(--maroon);padding:.28rem .8rem}
 .feast-fast{font-family:var(--f-body);font-style:italic;font-size:.92rem;color:var(--stone)}
-.feast-fast::before{content:'✦ ';color:var(--gold);font-style:normal;font-size:.65rem}
+.feast-fast::before{content:'✦ ';color:var(--gold);font-style:normal;font-size:.72rem}
 
 /* ── READING SECTION ── */
 .reading-section{margin-bottom:3.5rem;padding-bottom:3.5rem;border-bottom:var(--rule-faint)}
 .reading-section:last-of-type{border-bottom:none}
 
 .reading-header{display:flex;align-items:center;gap:.85rem;margin-bottom:1.75rem;flex-wrap:wrap}
-.reading-source-pill{font-family:var(--f-ui);font-size:.50rem;letter-spacing:.20em;text-transform:uppercase;color:rgba(246,241,232,.92);background:var(--maroon);padding:.35rem 1rem}
+.reading-source-pill{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.20em;text-transform:uppercase;color:rgba(246,241,232,.92);background:var(--maroon);padding:.35rem 1rem}
 .reading-ref{font-family:var(--f-display);font-style:italic;font-size:1.1rem;color:var(--stone)}
-.reading-pericope{font-family:var(--f-ui);font-size:.52rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone-lt)}
+.reading-pericope{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone-lt)}
 
 /* ── SCRIPTURE TEXT ── */
 .verse-text{font-family:var(--f-display);font-size:1.08rem;line-height:1.90;color:var(--ink);text-align:justify;hyphens:auto;max-width:62ch}
-.verse-num{font-family:var(--f-ui);font-size:.42rem;letter-spacing:.08em;color:var(--maroon);vertical-align:super;margin-right:.18em;line-height:0;font-style:normal;display:inline-block;margin-top:.1em}
+.verse-num{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.08em;color:var(--maroon);vertical-align:super;margin-right:.18em;line-height:0;font-style:normal;display:inline-block;margin-top:.1em}
 /* Paragraph break within a reading */
 .verse-para-break{display:block;margin-top:.6em}
 
@@ -91,27 +91,27 @@ a{color:inherit;text-decoration:none}
 .side-col{border-left:var(--rule-faint);padding-left:2.5rem;position:sticky;top:80px}
 .side-section{margin-bottom:2.5rem;padding-bottom:2.5rem;border-bottom:var(--rule-faint)}
 .side-section:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
-.side-head{font-family:var(--f-ui);font-size:.68rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.85rem}
+.side-head{font-family:var(--f-ui);font-size:.72rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.85rem}
 
 /* today summary card */
 .today-card{background:var(--vellum-mid);border-left:3px solid var(--gold);padding:1rem 1.1rem}
 .today-feast{font-family:var(--f-display);font-size:1rem;color:var(--text);line-height:1.35;margin-bottom:.35rem}
 .today-saints{font-family:var(--f-display);font-style:italic;font-size:.88rem;color:var(--stone);line-height:1.5;margin-bottom:.5rem}
-.today-tone{font-family:var(--f-ui);font-size:.52rem;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);display:block;margin-bottom:.25rem}
+.today-tone{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);display:block;margin-bottom:.25rem}
 .today-fast{font-family:var(--f-body);font-style:italic;font-size:.84rem;color:var(--stone)}
-.today-fast::before{content:'✦ ';color:var(--gold);font-style:normal;font-size:.6rem}
+.today-fast::before{content:'✦ ';color:var(--gold);font-style:normal;font-size:.72rem}
 
 /* reading index in sidebar */
 .reading-index{list-style:none}
 .reading-index li{padding:.5rem 0;border-bottom:var(--rule-hair)}
 .reading-index li:last-child{border-bottom:none}
-.reading-index a{font-family:var(--f-ui);font-size:.60rem;letter-spacing:.10em;text-transform:uppercase;color:var(--text);display:flex;justify-content:space-between;align-items:center;transition:color .18s}
+.reading-index a{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.10em;text-transform:uppercase;color:var(--text);display:flex;justify-content:space-between;align-items:center;transition:color .18s}
 .reading-index a:hover{color:var(--maroon)}
 .reading-index a::after{content:'→';color:var(--maroon);font-size:.80rem}
 .reading-index .ri-ref{font-family:var(--f-display);font-style:italic;font-size:.78rem;color:var(--stone);margin-top:1px;display:block;letter-spacing:0;text-transform:none}
 
 /* nav links */
-.annot-nav-link{display:flex;align-items:center;justify-content:space-between;font-family:var(--f-ui);font-size:.68rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--text);padding:.6rem 0;border-bottom:var(--rule-hair);transition:color .18s}
+.annot-nav-link{display:flex;align-items:center;justify-content:space-between;font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--text);padding:.6rem 0;border-bottom:var(--rule-hair);transition:color .18s}
 .annot-nav-link:last-child{border-bottom:none}
 .annot-nav-link:hover{color:var(--maroon)}
 .annot-nav-link::after{content:'→';color:var(--maroon)}
@@ -121,43 +121,43 @@ a{color:inherit;text-decoration:none}
 .loading-state::before{content:'';display:inline-block;width:14px;height:14px;border:1.5px solid rgba(123,29,42,.25);border-top-color:var(--maroon);border-radius:50%;animation:spin .9s linear infinite;flex-shrink:0}
 
 .error-state{font-family:var(--f-body);font-style:italic;color:var(--stone);padding:2rem;background:var(--vellum-mid);border-left:3px solid rgba(123,29,42,.25)}
-.error-state strong{font-family:var(--f-ui);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);display:block;margin-bottom:.5rem;font-style:normal}
+.error-state strong{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);display:block;margin-bottom:.5rem;font-style:normal}
 
 .no-text-note{margin-top:.5rem;padding:2.25rem 2.5rem;background:var(--apse);border-top:3px solid var(--gold);display:flex;align-items:center;justify-content:space-between;gap:2.5rem;flex-wrap:wrap;position:relative;overflow:hidden}
 .no-text-note::before{content:'✝';position:absolute;right:2rem;top:50%;transform:translateY(-50%);font-size:5rem;color:rgba(255,255,255,.03);pointer-events:none;font-family:serif}
 .no-text-note-body{flex:1}
-.no-text-note-kicker{font-family:var(--f-ui);font-size:.62rem;letter-spacing:.20em;text-transform:uppercase;color:var(--gold-lt);opacity:.7;display:block;margin-bottom:.5rem}
+.no-text-note-kicker{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.20em;text-transform:uppercase;color:var(--gold-lt);opacity:.7;display:block;margin-bottom:.5rem}
 .no-text-note-ref{font-family:var(--f-display);font-weight:300;font-size:clamp(1.5rem,2.5vw,2rem);color:#fff;line-height:1.15;display:block;margin-bottom:.5rem}
 .no-text-note-sub{font-family:var(--f-body);font-style:italic;font-size:.95rem;color:rgba(246,241,232,.50);line-height:1.6}
 .no-text-cta{display:flex;flex-direction:column;align-items:center;gap:.75rem;flex-shrink:0}
 .no-text-btn{display:inline-block;font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;padding:1rem 2rem;background:var(--gold);color:var(--apse);white-space:nowrap;transition:all .2s;flex-shrink:0;text-align:center}
 .no-text-btn:hover{background:var(--gold-lt);transform:translateY(-1px)}
-.no-text-bible{font-family:var(--f-ui);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,232,.30);text-align:center}
+.no-text-bible{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,232,.30);text-align:center}
 
 /* ── ATTRIBUTION ── */
-.attribution{font-family:var(--f-ui);font-size:.50rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone-lt);margin-top:3rem;padding-top:1.5rem;border-top:var(--rule-faint);display:flex;align-items:center;gap:.75rem}
+.attribution{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone-lt);margin-top:3rem;padding-top:1.5rem;border-top:var(--rule-faint);display:flex;align-items:center;gap:.75rem}
 .attribution a{color:var(--maroon)}
 
 /* ── FOOTER ── */
 footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:4.5rem 4.5rem 2.5rem}
 .footer-cross{display:block;text-align:center;font-size:1.1rem;color:rgba(184,131,40,.45);letter-spacing:.8em;padding-left:.8em;margin-bottom:4rem}
 .footer-cols{max-width:1380px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:5rem;margin-bottom:3.5rem}
-.footer-col-head{font-family:var(--f-ui);font-size:.68rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(246,241,232,.28);display:block;margin-bottom:1.2rem;padding-bottom:.5rem;border-bottom:1px solid rgba(246,241,232,.06)}
+.footer-col-head{font-family:var(--f-ui);font-size:.72rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(246,241,232,.82);display:block;margin-bottom:1.2rem;padding-bottom:.5rem;border-bottom:1px solid rgba(246,241,232,.06)}
 .footer-name{font-family:var(--f-display);font-weight:400;font-size:1.2rem;color:rgba(246,241,232,.88);line-height:1.3;margin-bottom:.75rem}
-.footer-meta{font-family:var(--f-ui);font-size:.66rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.30);line-height:2.4}
-.footer-meta a{color:rgba(184,131,40,.60);transition:color .2s}
+.footer-meta{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.30);line-height:2.4}
+.footer-meta a{color:rgba(184,131,40,.85);transition:color .2s}
 .footer-meta a:hover{color:var(--gold)}
 .footer-socials{display:flex;gap:1.5rem;margin-top:1.5rem}
-.footer-socials a{font-family:var(--f-ui);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,241,232,.35);transition:color .2s}
+.footer-socials a{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,241,232,.65);transition:color .2s}
 .footer-socials a:hover{color:var(--gold)}
 .footer-nav{list-style:none;display:flex;flex-direction:column}
-.footer-nav li{padding:.38rem 0;border-bottom:1px solid rgba(246,241,232,.04)}
+.footer-nav li{padding:.38rem 0;border-bottom:1px solid rgba(246,241,232,.10)}
 .footer-nav li:last-child{border-bottom:none}
-.footer-nav a{font-family:var(--f-ui);font-size:.68rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.45);transition:color .2s}
-.footer-nav a:hover{color:rgba(246,241,232,.85)}
-.footer-blurb{font-family:var(--f-display);font-style:italic;font-size:.92rem;color:rgba(246,241,232,.42);line-height:1.65;margin-bottom:1.25rem}
-.footer-bottom{max-width:1380px;margin:2.5rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(246,241,232,.06);display:flex;justify-content:space-between;align-items:center}
-.footer-copy,.footer-addr{font-family:var(--f-ui);font-size:.66rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.22)}
+.footer-nav a{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.85);transition:color .2s}
+.footer-nav a:hover{color:rgba(246,241,232,.95)}
+.footer-blurb{font-family:var(--f-display);font-style:italic;font-size:.92rem;color:rgba(246,241,232,.85);line-height:1.65;margin-bottom:1.25rem}
+.footer-bottom{max-width:1380px;margin:2.5rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(246,241,232,.12);display:flex;justify-content:space-between;align-items:center}
+.footer-copy,.footer-addr{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.60)}
 
 /* ── RESPONSIVE ── */
 /* ── MOBILE NAV DRAWER ── */
@@ -172,14 +172,14 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 .nav-drawer-overlay.open{opacity:1;pointer-events:all}
 .nav-drawer-head{padding:1.5rem 1.75rem 1rem;border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:space-between}
 .nav-drawer-logo{font-family:var(--f-display);font-weight:500;font-size:1.1rem;color:#fff}
-.nav-drawer-logo span{font-family:var(--f-ui);font-size:.52rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);display:block;margin-top:2px}
+.nav-drawer-logo span{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);display:block;margin-top:2px}
 .nav-drawer-close{width:32px;height:32px;background:rgba(255,255,255,.08);border:none;color:rgba(255,255,255,.65);cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:background .2s}
 .nav-drawer-close:hover{background:rgba(255,255,255,.15)}
 .nav-drawer-links{padding:1rem 0;flex:1}
 .nav-drawer-links a{display:block;font-family:var(--f-ui);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,232,.70);padding:.9rem 1.75rem;border-bottom:1px solid rgba(255,255,255,.05);transition:all .18s}
 .nav-drawer-links a:hover{color:#fff;background:rgba(255,255,255,.05)}
-.nav-drawer-links .drawer-section{font-family:var(--f-ui);font-size:.48rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(184,131,40,.55);padding:.85rem 1.75rem .35rem;display:block}
-.nav-drawer-give{margin:1.25rem 1.75rem;display:block;text-align:center;font-family:var(--f-ui);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;padding:.85rem;background:var(--maroon);color:var(--vellum);transition:background .2s}
+.nav-drawer-links .drawer-section{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(184,131,40,.55);padding:.85rem 1.75rem .35rem;display:block}
+.nav-drawer-give{margin:1.25rem 1.75rem;display:block;text-align:center;font-family:var(--f-ui);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;padding:.85rem;background:var(--maroon);color:var(--vellum);transition:background .2s}
 .nav-drawer-give:hover{background:var(--maroon-deep)}
 
 @media(max-width:1024px){
@@ -188,7 +188,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   .footer-cols{grid-template-columns:1fr 1fr;gap:3rem}
 }
 @media(max-width:768px){
-  .nav-links{display:none}.nav-hamburger{display:flex}
+  .nav-links{display:none}.nav-hamburger{display:flex}.nav-give{display:none}
   .page-hero-inner{padding:4rem 1.5rem 3rem}
   .chapter-bar{padding:.65rem 1.5rem}
   .readings-wrap{padding:3rem 1.5rem}
@@ -200,14 +200,14 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   /* page-specific mobile font fixes */
   .rd-title{font-size:1.1rem}
   .rd-verse{font-size:1rem;line-height:1.7}
-  .rd-ref{font-size:.68rem}
-  .sidebar-label{font-size:.62rem}
+  .rd-ref{font-size:.72rem}
+  .sidebar-label{font-size:.72rem}
 
   body{font-size:18px;line-height:1.8}
   /* UI labels — Cinzel uppercase small caps */
   [class*="-over"],[class*="-cat"],[class*="-sub"],[class*="-label"],
   [class*="-tag"],[class*="-kicker"],[class*="-lbl"],[class*="-badge"],
-  [class*="-date"],[class*="-meta"]{font-size:.68rem!important;letter-spacing:.12em}
+  [class*="-date"],[class*="-meta"]{font-size:.72rem!important;letter-spacing:.12em}
   /* Section headings */
   [class*="-title"]{line-height:1.2}
   /* Hero display text */
@@ -221,36 +221,14 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 }
 
 /* ── QUOTE INTERSTITIAL ───────────────────────────── */
-.quote-break{
-  background:var(--apse);
-  padding:5rem 4.5rem;
-  text-align:center;
-  position:relative;
-  overflow:hidden;
-  margin:0;
-}
-.quote-break::before{
-  content:'';
-  position:absolute;
-  top:0;left:50%;transform:translateX(-50%);
-  width:1px;height:40px;
-  background:rgba(184,131,40,.35);
-}
-.quote-break::after{
-  content:'';
-  position:absolute;
-  bottom:0;left:50%;transform:translateX(-50%);
-  width:1px;height:40px;
-  background:rgba(184,131,40,.35);
-}
-.qb-inner{max-width:780px;margin:0 auto;position:relative;z-index:1}
-.qb-cross{display:block;font-size:.85rem;color:rgba(184,131,40,.40);letter-spacing:.6em;padding-left:.6em;margin-bottom:1.75rem}
-.qb-rule{width:48px;height:1px;background:rgba(184,131,40,.40);margin:0 auto 1.75rem}
-.qb-text{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-weight:300;font-size:clamp(1.6rem,3.5vw,2.5rem);line-height:1.35;color:rgba(246,241,232,.88);margin-bottom:1.5rem}
-.qb-attr{font-family:'Cinzel',Georgia,serif;font-size:.62rem;letter-spacing:.20em;text-transform:uppercase;color:rgba(184,131,40,.65)}
+.quote-break{margin:0;padding:4rem 4.5rem;background:var(--vellum);position:relative}
+.qb-inner{max-width:680px;margin:0 auto;padding-left:2rem;border-left:3px solid var(--maroon);position:relative}
+.qb-cross{display:none}
+.qb-rule{display:none}
+.qb-text{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-weight:300;font-size:clamp(1.5rem,3vw,2.2rem);line-height:1.4;color:var(--text);margin-bottom:.75rem}
+.qb-attr{font-family:'Cinzel',Georgia,serif;font-size:.72rem;letter-spacing:.20em;text-transform:uppercase;color:var(--maroon);display:block}
 @media(max-width:768px){
-  .quote-break{padding:3.5rem 1.5rem}
-  .qb-text{font-size:1.45rem}
+  .quote-break{padding:2.5rem 1.5rem}.qb-inner{padding-left:1.25rem}.qb-text{font-size:1.3rem}
 }
 </style>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
@@ -287,9 +265,9 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
           <a href="/bulletins">Bulletins</a>
         </div>
       </li>
-      <li><a href="#">Resources ▾</a>
+      <li class="nav-active-parent"><a href="#">Resources ▾</a>
         <div class="nav-drop">
-          <a href="/readings">Readings</a>
+          <a href="/readings" class="nav-active" aria-current="page">Readings</a>
           <a href="/videos">Videos</a>
           <a href="/cemeteries">Cemeteries</a>
         </div>
@@ -408,6 +386,14 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 </div>
 
 <!-- ── FOOTER ── -->
+
+<div class="quote-break reveal">
+  <div class="qb-inner">
+    <p class="qb-text">The reading of the Scriptures is a great safeguard against sin; ignorance of the Scriptures is a great abyss and a profound cliff.</p>
+    <span class="qb-attr">St. John Chrysostom</span>
+  </div>
+</div>
+
 <footer>
   <span class="footer-cross">✦ ✝ ✦</span>
   <div class="footer-cols">
@@ -473,9 +459,12 @@ const MONTHS = ['January','February','March','April','May','June',
 const DAYS   = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 const ROMAN  = {1:'I',2:'II',3:'III',4:'IV',5:'V',6:'VI',7:'VII',8:'VIII'};
 
-/* ════════════════════════════════════════════
-   HELPERS
-════════════════════════════════════════════ */
+/* Books that bible-api.com cannot serve — OT deuterocanon + composites */
+const NO_FETCH_PREFIXES = [
+  'wis','wisdom','sir','sirach','tob','tobit','jdt','judith','bar','baruch',
+  '1 macc','2 macc','1macc','2macc','composite','ps of sol','prayer'
+];
+
 function feastClass(level) {
   if (level >= 7) return 'lv7';
   if (level >= 5) return 'lv5';
@@ -495,6 +484,55 @@ function sourceLabel(src) {
   const lower = src.toLowerCase();
   for (const [k, v] of Object.entries(map)) { if (lower.includes(k)) return v; }
   return cap(src);
+}
+
+/* ── Normalize a reference string for bible-api.com ──
+   OrthoCal uses periods as chapter/verse separators (John 10.9-16)
+   bible-api.com expects colons (John 10:9-16).
+   Also handle comma-separated multi-ranges (Heb 11.8, 11-16) by
+   keeping only the first range — the API doesn't support discontinuous refs. */
+function normalizeRef(ref) {
+  if (!ref) return null;
+  // Strip leading "Composite N - " labels
+  ref = ref.replace(/^composite\s+\d+\s*-\s*/i, '').trim();
+  // Take only the first segment of comma-separated ranges
+  ref = ref.split(',')[0].trim();
+  // Replace periods used as chapter:verse separator
+  // Match "digits.digits" pattern only (not dots in abbreviations)
+  ref = ref.replace(/(\d)\.(\d)/g, '$1:$2');
+  return ref;
+}
+
+/* ── Decide whether to attempt a bible-api.com fetch ── */
+function canFetch(ref) {
+  if (!ref) return false;
+  const lower = ref.toLowerCase();
+  return !NO_FETCH_PREFIXES.some(p => lower.startsWith(p));
+}
+
+/* ── Fetch passage text from bible-api.com (KJV) ──
+   Returns array of {verse, text} objects, or null on failure. */
+async function fetchPassage(ref) {
+  const normalized = normalizeRef(ref);
+  if (!normalized || !canFetch(normalized)) return null;
+  try {
+    const url = `https://bible-api.com/${encodeURIComponent(normalized)}?translation=kjv`;
+    const r = await fetch(url);
+    if (!r.ok) return null;
+    const json = await r.json();
+    if (json.error) return null;
+    // bible-api.com returns { verses: [{book_name, chapter, verse, text}], text }
+    return (json.verses && json.verses.length) ? json.verses : null;
+  } catch(e) {
+    return null;
+  }
+}
+
+/* ── Render verse array as styled HTML ── */
+function renderVerses(verses) {
+  return verses.map(v =>
+    `<sup class="verse-num">${v.verse}</sup>${v.text.trim()}`
+  ).join(' ');
 }
 
 /* ════════════════════════════════════════════
@@ -523,21 +561,20 @@ async function loadReadings() {
     const cal = await r.json();
     const day = cal && cal.days && cal.days[dateKey];
     if (day) {
-      /* Map local JSON fields → render-expected shape */
-      const readings = (day.readings || []).map((rd, i) => ({
-        source:  rd.source || '',
+      const readings = (day.readings || []).map(rd => ({
+        source:  rd.source  || '',
         display: rd.display || '',
-        short:   rd.short || '',
-        passage: []   /* local JSON has refs only, not full passage text */
+        short:   rd.short   || '',
+        desc:    rd.desc    || '',
       }));
       data = {
         summary_title:       day.feast,
-        titles:              day.titles  || [],
-        saints:              day.saints  || [],
-        fast_level_desc:     day.fast    || '',
+        titles:              day.titles        || [],
+        saints:              day.saints        || [],
+        fast_level_desc:     day.fast          || '',
         fast_exception_desc: day.fastException || '',
         tone:                day.tone,
-        feast_level:         day.feastLevel     || 0,
+        feast_level:         day.feastLevel    || 0,
         readings
       };
     }
@@ -608,39 +645,64 @@ async function loadReadings() {
       </div>
     </div>`;
 
-  /* ── EACH READING ── */
-  /* Local JSON has refs but no full passage text.
-     Show the reference cleanly with a direct link to OCA. */
+  /* ── RENDER SKELETON — one card per reading with a loading placeholder ── */
   readings.forEach((r, i) => {
     const lbl = sourceLabel(r.source);
     const ref = r.display || r.short || '';
+    const desc = r.desc ? `<span class="reading-pericope">${r.desc}</span>` : '';
     html += `
       <div class="reading-section" id="reading-${i}">
         <div class="reading-header">
           <span class="reading-source-pill">${lbl}</span>
-          ${ref ? `<span class="reading-ref">${ref}</span>` : ''}
+          ${ref  ? `<span class="reading-ref">${ref}</span>` : ''}
+          ${desc}
         </div>
-        <div class="no-text-note">
-          <div class="no-text-note-body">
-            <span class="no-text-note-kicker">Appointed Scripture</span>
-            ${ref ? `<span class="no-text-note-ref">${ref}</span>` : '<span class="no-text-note-ref">Today\'s Reading</span>'}
-            <span class="no-text-note-sub">The full passage text is available on the OCA Liturgical Calendar.</span>
-          </div>
-          <div class="no-text-cta">
-            <a href="https://www.oca.org/readings" target="_blank" rel="noopener" class="no-text-btn">Read Today's Scripture →</a>
-            <span class="no-text-bible">or open your Bible to the reference above</span>
-          </div>
-        </div>
+        <div class="verse-text" id="verse-${i}">
+          <span class="loading-state" style="font-size:1rem;padding:1rem 0">Loading passage…</span>
         </div>
       </div>`;
   });
 
   html += `
     <div class="attribution">
-      Readings from the <a href="https://www.oca.org/readings" target="_blank" rel="noopener">OCA Liturgical Calendar</a>
+      Liturgical calendar · <a href="https://orthocal.info" target="_blank" rel="noopener">OrthoCal</a> ·
+      Scripture text · <a href="https://bible-api.com" target="_blank" rel="noopener">bible-api.com</a> (KJV)
     </div>`;
 
   document.getElementById('readings-main').innerHTML = html;
+
+  /* ── FETCH PASSAGE TEXT FOR EACH READING (in parallel) ── */
+  await Promise.all(readings.map(async (r, i) => {
+    const ref = r.display || r.short || '';
+    const el  = document.getElementById(`verse-${i}`);
+    if (!el) return;
+
+    const verses = await fetchPassage(ref);
+
+    if (verses) {
+      el.innerHTML = `<p class="verse-text">${renderVerses(verses)}</p>`;
+    } else {
+      /* Graceful fallback for deuterocanon / composite / API miss */
+      const lbl = sourceLabel(r.source);
+      const isVespers = r.source.toLowerCase().includes('vespers');
+      el.innerHTML = `
+        <div class="no-text-note">
+          <div class="no-text-note-body">
+            <span class="no-text-note-kicker">${isVespers ? 'Vespers Reading' : 'Appointed Scripture'}</span>
+            ${ref ? `<span class="no-text-note-ref">${ref}</span>` : ''}
+            <span class="no-text-note-sub">${
+              isVespers
+                ? 'This reading is from the Old Testament or deuterocanonical books. Open your Bible or visit OCA.org for the full text.'
+                : 'Full text unavailable for this passage. Please visit OCA.org or open your Bible to the reference above.'
+            }</span>
+          </div>
+          <div class="no-text-cta">
+            <a href="https://www.oca.org/readings" target="_blank" rel="noopener" class="no-text-btn">View on OCA.org →</a>
+            <span class="no-text-bible">King James Version · bible-api.com</span>
+          </div>
+        </div>`;
+    }
+  }));
 }
 
 /* ════════════════════════════════════════════
