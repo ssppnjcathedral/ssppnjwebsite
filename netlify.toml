@@ -1,5 +1,19 @@
+# Netlify configuration — Saints Peter & Paul Orthodox Cathedral
+
+[build]
+  publish = "."
+
+# Allow _data/ directory to be served (Netlify blocks underscore dirs by default)
 [[headers]]
   for = "/_data/*"
   [headers.values]
     Access-Control-Allow-Origin = "*"
     Cache-Control = "public, max-age=3600"
+
+# Security + performance headers for all pages
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
