@@ -7,6 +7,24 @@
  * Usage:   node fetch-prologue.js
  * Output:  _data/prologue.json  (keyed by "MM-DD")
  * Deps:    npm install node-fetch
+ *
+ * ── CONFIRMED HTML PATTERNS (from raw file inspection) ──────────────────────
+ *
+ * Pattern A  (Jan 1 – Mar 18 approx)
+ *   <b><p>1. Saint Name.</p>\n</b>
+ *   <p>Body text...</p>
+ *
+ * Pattern B  (Mar 19 – May 18 approx)
+ *   <p><b>1. Saint Name.</b></p>   ← header is its own <p>, period may be outside </b>
+ *   <p>Body text...</p>             ← body is the NEXT <p>
+ *
+ * Pattern C  (May 19+ approx)
+ *   <p><b>1. Saint Name.</b></p>
+ *   <p>Body text...</p>
+ *   (same as B structurally — handled by same code path)
+ *
+ * In all patterns the bold element contains ONLY the saint name/number,
+ * and the body text is always in a separate following <p>.
  */
 
 const fetch = (...args) => import('node-fetch').then(({ default: f }) => f(...args));
@@ -51,7 +69,10 @@ function clean(str) {
     .replace(/\u00a0/g, ' ')
     .replace(/&nbsp;/g, ' ')
     .replace(/&amp;/g, '&')
+    .replace(/&quot;/g, '"')
     .replace(/&copy;/g, '©')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
     .trim();
 }
 
@@ -59,21 +80,27 @@ function stripTags(str) {
   return (str || '').replace(/<[^>]*>/g, '');
 }
 
+// Extract number and name from "1. Saint Name" or "Saint Name"
+function parseName(raw) {
+  const s = raw.replace(/\.$/, '').trim(); // strip trailing period
+  const numbered = s.match(/^(\d+)\.\s+(.+)$/);
+  if (numbered) return { num: parseInt(numbered[1], 10), name: numbered[2].trim() };
+  if (s.length > 0 && s.length < 150) return { num: null, name: s };
+  return null;
+}
+
+// Is this text a saint header? Must look like a name, not body prose.
+// Heuristic: short (< 120 chars), no sentence-ending punctuation mid-string,
+// doesn't start with a lowercase letter.
+function looksLikeHeader(text) {
+  if (!text || text.length > 150) return false;
+  if (/^\d+\.\s/.test(text)) return true;          // numbered → definitely a header
+  if (/^[a-z]/.test(text)) return false;            // starts lowercase → body text
+  if (text.split('.').length > 3) return false;     // multiple sentences → body text
+  return true;
+}
+
 // ─── Parser ───────────────────────────────────────────────────────────────────
-//
-// ACTUAL HTML STRUCTURE on myrrh-bearers.org:
-//
-//   Saint header:  <b><p>1. Saint Name.</p>\n</b>
-//   Saint body:    <p>Body text here...</p>
-//
-// The <b> wraps the <p>, not the other way around.
-// This is non-standard HTML but it's consistent across the site.
-//
-// Section headers: <h4>Reflection</h4>  (sometimes inside <center>)
-// Homily title:    <p class="rubric">About...</p>
-// Scripture:       <blockquote>...</blockquote>
-//
-// ─────────────────────────────────────────────────────────────────────────────
 
 function parseDayPage(html, month, day, url) {
 
@@ -83,7 +110,7 @@ function parseDayPage(html, month, day, url) {
     ? clean(stripTags(h1Match[1])).replace(/^Prologue from Ochrid\s*[-–]\s*/i, '').trim()
     : '';
 
-  // ── Isolate body: after </h1>, before attribution ─────────────────────────
+  // ── Isolate saints block: after </h1>, before first <h4> ──────────────────
   const h1End = html.indexOf('</h1>');
   if (h1End === -1) return empty(month, day, title, url);
 
@@ -92,68 +119,94 @@ function parseDayPage(html, month, day, url) {
   if (footerIdx !== -1) body = body.slice(0, footerIdx);
 
   // ── Split at h4 section headers ────────────────────────────────────────────
-  // h4 tags are sometimes wrapped in <center>...</center> — handle both
-  const h4All = [...body.matchAll(/<h4[^>]*>([\s\S]*?)<\/h4>/gi)];
+  const h4All     = [...body.matchAll(/<h4[^>]*>([\s\S]*?)<\/h4>/gi)];
   const saintsRaw = h4All.length > 0 ? body.slice(0, h4All[0].index) : body;
 
-  const sections = {};
+  const sections  = {};
   h4All.forEach((m, i) => {
-    const label = clean(stripTags(m[1])).toLowerCase();
-    const start = m.index + m[0].length;
-    const end   = i + 1 < h4All.length ? h4All[i + 1].index : body.length;
+    const label     = clean(stripTags(m[1])).toLowerCase();
+    const start     = m.index + m[0].length;
+    const end       = i + 1 < h4All.length ? h4All[i + 1].index : body.length;
     sections[label] = body.slice(start, end);
   });
 
   // ── Parse Saints ──────────────────────────────────────────────────────────
   //
-  // Pattern: <b><p>N. Saint Name.</p>\n</b><p>body text</p>
+  // Unified approach: tokenize the saints block into a flat list of tokens,
+  // each tagged as either HEADER or BODY, then group them.
   //
-  // Strategy: find every <b>...<p>...</p>...</b> block — that's a saint header.
-  // The very next <p> after the closing </b> is that saint's body text.
-  // Subsequent <p> tags (until the next <b><p>) are continuations.
+  // Token types:
+  //   HEADER — a <b><p>...</p></b> block (Pattern A)
+  //          — a <p> whose ONLY content (ignoring trailing period) is a <b>...</b> (Patterns B/C)
+  //   BODY   — any other <p> with actual prose text
 
-  const saints = [];
+  const tokens = [];
 
-  // Match all <b> blocks that contain a <p> — these are saint headers
-  // Use a forgiving regex since the </b> may come after the </p>
-  const bpRegex = /<b[^>]*>\s*<p[^>]*>([\s\S]*?)<\/p>\s*<\/b>/gi;
-  const bpMatches = [...saintsRaw.matchAll(bpRegex)];
+  // ── Pattern A tokens: <b><p>text</p></b> ───────────────────────────────────
+  const patARegex = /<b[^>]*>\s*<p[^>]*>([\s\S]*?)<\/p>\s*<\/b>/gi;
+  for (const m of saintsRaw.matchAll(patARegex)) {
+    const text = clean(stripTags(m[1]));
+    const parsed = parseName(text);
+    if (parsed) {
+      tokens.push({ type: 'HEADER', pos: m.index, len: m[0].length, parsed });
+    }
+  }
 
-  bpMatches.forEach((bm, i) => {
-    const headerText = clean(stripTags(bm[1]));
-    if (!headerText) return;
+  // ── Pattern B/C tokens: <p> containing only a <b> element ─────────────────
+  // Match every <p>...</p> and check if it's a standalone bold header
+  const pRegex = /<p[^>]*>([\s\S]*?)<\/p>/gi;
+  for (const pm of saintsRaw.matchAll(pRegex)) {
+    // Skip if already captured as part of Pattern A
+    const alreadyCaptured = tokens.some(t =>
+      pm.index >= t.pos && pm.index < t.pos + t.len
+    );
+    if (alreadyCaptured) continue;
 
-    // Extract optional number and name from "N. Saint Name." or "Saint Name."
-    const numbered   = headerText.match(/^(\d+)\.\s+(.+?)\.?\s*$/);
-    const unnumbered = headerText.match(/^(.+?)\.?\s*$/);
+    const inner = pm[1];
+    const pText = clean(stripTags(inner));
 
-    let num, name;
-    if (numbered) {
-      num  = parseInt(numbered[1], 10);
-      name = numbered[2].trim();
-    } else if (unnumbered) {
-      num  = saints.length + 1;
-      name = unnumbered[1].trim();
-    } else {
-      return;
+    // Is the entire paragraph content just a bold element (plus optional period)?
+    // Match: optional whitespace, <b>text</b>, optional period/whitespace
+    const soloB = inner.match(/^\s*<(?:b|strong)[^>]*>([\s\S]*?)<\/(?:b|strong)>\s*\.?\s*$/i);
+    if (soloB) {
+      const boldText = clean(stripTags(soloB[1]));
+      if (looksLikeHeader(boldText)) {
+        const parsed = parseName(boldText);
+        if (parsed) {
+          tokens.push({ type: 'HEADER', pos: pm.index, len: pm[0].length, parsed });
+          continue;
+        }
+      }
     }
 
-    // Find body text: all <p> tags between this </b> and the next <b><p>
-    const afterHeader = saintsRaw.slice(bm.index + bm[0].length);
-    const nextBPos    = i + 1 < bpMatches.length
-      ? bpMatches[i + 1].index - bm.index - bm[0].length
-      : afterHeader.length;
-    const bodyChunk   = afterHeader.slice(0, nextBPos);
+    // Otherwise it's a body paragraph
+    if (pText && !pText.includes('|')) { // skip toolbar paragraphs
+      tokens.push({ type: 'BODY', pos: pm.index, len: pm[0].length, text: pText });
+    }
+  }
 
-    const bodyParas   = [...bodyChunk.matchAll(/<p[^>]*>([\s\S]*?)<\/p>/gi)]
-      .map(pm => clean(stripTags(pm[1])))
-      .filter(Boolean)
-      .join(' ');
+  // Sort all tokens by position in the document
+  tokens.sort((a, b) => a.pos - b.pos);
 
-    saints.push({ number: num, name, text: bodyParas });
-  });
+  // ── Group tokens into saints ───────────────────────────────────────────────
+  const saints = [];
+  for (const tok of tokens) {
+    if (tok.type === 'HEADER') {
+      saints.push({
+        number: tok.parsed.num,
+        name:   tok.parsed.name,
+        text:   '',
+      });
+    } else if (tok.type === 'BODY' && saints.length > 0) {
+      saints[saints.length - 1].text =
+        (saints[saints.length - 1].text + ' ' + tok.text).trim();
+    }
+  }
 
-  // ── Parse Reflection ──────────────────────────────────────────────────────
+  // Auto-number any saints that had no number
+  saints.forEach((s, i) => { if (s.number === null) s.number = i + 1; });
+
+  // ── Reflection ─────────────────────────────────────────────────────────────
   let reflection = '';
   const reflKey  = Object.keys(sections).find(k => k.includes('reflection'));
   if (reflKey) {
@@ -161,44 +214,34 @@ function parseDayPage(html, month, day, url) {
       .map(p => clean(stripTags(p[1]))).filter(Boolean).join('\n\n');
   }
 
-  // ── Parse Contemplation ───────────────────────────────────────────────────
+  // ── Contemplation ──────────────────────────────────────────────────────────
   let contemplation = '';
   const contKey = Object.keys(sections).find(k => k.includes('contemplation'));
   if (contKey) {
     const sec = sections[contKey];
-    const parts = [
+    contemplation = [
       ...[...sec.matchAll(/<p[^>]*>([\s\S]*?)<\/p>/gi)].map(p => clean(stripTags(p[1]))),
       ...[...sec.matchAll(/<li[^>]*>([\s\S]*?)<\/li>/gi)].map(l => clean(stripTags(l[1]))),
-    ].filter(Boolean);
-    contemplation = parts.join('\n');
+    ].filter(Boolean).join('\n');
   }
 
-  // ── Parse Homily ──────────────────────────────────────────────────────────
+  // ── Homily ─────────────────────────────────────────────────────────────────
   let homily = { scripture: '', text: '' };
   const homKey = Object.keys(sections).find(k => k.includes('homily'));
   if (homKey) {
-    const sec = sections[homKey];
-
-    // Rubric title (p.rubric = "About the citizens of the other world")
+    const sec    = sections[homKey];
     const rubric = sec.match(/<p[^>]*class="rubric"[^>]*>([\s\S]*?)<\/p>/i);
     const rubricText = rubric ? clean(stripTags(rubric[1])) : '';
-
-    // Scripture in blockquote
-    const bq = sec.match(/<blockquote[^>]*>([\s\S]*?)<\/blockquote>/i);
+    const bq     = sec.match(/<blockquote[^>]*>([\s\S]*?)<\/blockquote>/i);
     if (bq) {
-      const bqText = clean(stripTags(bq[1]));
+      const bqText     = clean(stripTags(bq[1]));
       homily.scripture = rubricText ? `${rubricText} — ${bqText}` : bqText;
     } else if (rubricText) {
       homily.scripture = rubricText;
     }
-
-    // Body paragraphs — skip rubric and doxology
     homily.text = [...sec.matchAll(/<p[^>]*>([\s\S]*?)<\/p>/gi)]
       .map(p => clean(stripTags(p[1])))
-      .filter(t => t
-        && !t.match(/^To (Thee|You) (be |glory)/i)
-        && t !== rubricText
-      )
+      .filter(t => t && !t.match(/^(O Lord|To (Thee|You) (be |glory))/i) && t !== rubricText)
       .join('\n\n');
   }
 
@@ -206,8 +249,8 @@ function parseDayPage(html, month, day, url) {
 }
 
 function empty(month, day, title, url) {
-  return { month, day, title, saints: [], reflection: '', contemplation: '',
-           homily: { scripture: '', text: '' }, sourceUrl: url };
+  return { month, day, title, saints: [], reflection: '',
+           contemplation: '', homily: { scripture: '', text: '' }, sourceUrl: url };
 }
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
