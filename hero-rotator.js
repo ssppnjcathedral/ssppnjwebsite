@@ -1,95 +1,103 @@
-/* ═══════════════════════════════════════════════════════
+/*
    SSPP HERO IMAGE ROTATOR
-   Curated Wikimedia Commons Orthodox imagery
-   Public domain / CC-licensed — free to use
-   Picks one random image per page load, crossfades on a timer
-═══════════════════════════════════════════════════════ */
+   - Loads first image immediately on page load
+   - Ken Burns slow zoom on each image
+   - 7-second hold per image
+   - Smooth crossfade between images (no dark flash)
+   - Loops back to first image
+*/
 
 (function() {
 
-  /* ── CURATED IMAGE POOL ──────────────────────────────
-     All from Wikimedia Commons. Each has:
-     - url:   Direct image URL (1280px preview — fast load, sharp enough for hero)
-     - label: What it depicts
-     - pos:   CSS background-position for best crop
-  ─────────────────────────────────────────────────────── */
   var IMAGES = [
-
-    /* SSPP PARISH PHOTOS */
-    {
-      url: '/images/heroes/home-1.jpg',
-      label: 'Saints Peter & Paul Orthodox Cathedral',
-      pos: 'center center'
-    },
-    {
-      url: '/images/heroes/home-2.jpg',
-      label: 'Saints Peter & Paul Orthodox Cathedral',
-      pos: 'center center'
-    },
-    {
-      url: '/images/heroes/home-3.jpg',
-      label: 'Saints Peter & Paul Orthodox Cathedral',
-      pos: 'center center'
-    },
-    {
-      url: '/images/heroes/home-4.jpg',
-      label: 'Saints Peter & Paul Orthodox Cathedral',
-      pos: 'center center'
-    },
-    {
-      url: '/images/heroes/home-5.jpg',
-      label: 'Saints Peter & Paul Orthodox Cathedral',
-      pos: 'center center'
-    },
-    {
-      url: '/images/heroes/home-6.jpg',
-      label: 'Saints Peter & Paul Orthodox Cathedral',
-      pos: 'center center'
-    }
+    { url: '/images/heroes/home-1.jpg', pos: 'center center' },
+    { url: '/images/heroes/home-2.jpg', pos: 'center center' },
+    { url: '/images/heroes/home-3.jpg', pos: 'center center' },
+    { url: '/images/heroes/home-4.jpg', pos: 'center center' },
+    { url: '/images/heroes/home-5.jpg', pos: 'center center' },
+    { url: '/images/heroes/home-6.jpg', pos: 'center center' }
   ];
 
-  /* ── GRADIENT SCRIM ────────────────────────────────── */
-  var SCRIM = 'linear-gradient(to right, rgba(21,8,4,.88) 0%, rgba(21,8,4,.65) 55%, rgba(21,8,4,.38) 100%)';
+  var HOLD     = 7000;   // ms to hold each image
+  var FADE     = 1800;   // ms crossfade duration (match CSS transition)
+  var ZOOM_DUR = 9000;   // ms Ken Burns zoom duration (hold + fade)
 
-  /* ── FIND HERO ELEMENT ─────────────────────────────── */
-  var heroBg = document.querySelector('.hero-bg');
-  var hero = heroBg || document.querySelector('.page-hero') || document.querySelector('.giving-hero') || document.querySelector('.hero');
-  if (!hero) return;
+  var bg1 = document.getElementById('hero-bg1');
+  var bg2 = document.getElementById('hero-bg2');
+  if (!bg1 || !bg2) return;
 
-  /* ── PICK RANDOM START IMAGE ───────────────────────── */
-  function pick(exclude) {
-    var pool = IMAGES.filter(function(img, i) { return i !== exclude; });
-    return pool[Math.floor(Math.random() * pool.length)];
+  var current = 0;   // index of image currently visible
+  var front = bg1;   // the div currently on top (visible)
+  var back  = bg2;   // the div being prepared underneath
+
+  // Apply Ken Burns zoom animation to an element
+  function applyZoom(el) {
+    el.style.animation = 'none';
+    // Force reflow so animation restarts
+    void el.offsetWidth;
+    el.style.animation = 'kenburns ' + ZOOM_DUR + 'ms ease-out forwards';
   }
 
-  var currentIdx = Math.floor(Math.random() * IMAGES.length);
-  var current = IMAGES[currentIdx];
-
-  /* ── APPLY IMAGE ───────────────────────────────────── */
-  function applyImage(img) {
-    hero.style.background = SCRIM + ', url("' + img.url + '") center/cover no-repeat';
-    hero.style.transition = 'background 1.2s ease-in-out';
+  // Set background image on a div
+  function setImage(el, img) {
+    el.style.backgroundImage = 'url("' + img.url + '")';
+    el.style.backgroundSize = 'cover';
+    el.style.backgroundPosition = img.pos || 'center center';
+    el.style.backgroundRepeat = 'no-repeat';
   }
 
-  /* ── CROSSFADE TO NEXT ─────────────────────────────── */
+  // Load first image immediately — no wait
+  function init() {
+    var first = IMAGES[0];
+    setImage(front, first);
+    applyZoom(front);
+    front.style.opacity = '1';
+    back.style.opacity = '0';
+
+    // Preload second image
+    if (IMAGES.length > 1) {
+      var preload = new Image();
+      preload.src = IMAGES[1].url;
+    }
+
+    // Start the rotation timer
+    setTimeout(advance, HOLD);
+  }
+
+  // Crossfade to next image
   function advance() {
-    var nextIdx = Math.floor(Math.random() * IMAGES.length);
-    if (nextIdx === currentIdx) nextIdx = (nextIdx + 1) % IMAGES.length;
-    currentIdx = nextIdx;
-    applyImage(IMAGES[currentIdx]);
+    current = (current + 1) % IMAGES.length;
+    var next = IMAGES[current];
+
+    // Prepare back layer with next image (already invisible)
+    setImage(back, next);
+    applyZoom(back);
+
+    // Bring back layer to front (z-index already set in CSS: bg2 z-index:1)
+    // Fade it IN
+    back.style.transition = 'opacity ' + (FADE / 1000) + 's ease-in-out';
+    back.style.opacity = '1';
+
+    // After fade completes, swap roles and fade old front out
+    setTimeout(function() {
+      front.style.transition = 'none';
+      front.style.opacity = '0';
+
+      // Swap front and back references
+      var tmp = front;
+      front = back;
+      back = tmp;
+
+      // Hold then advance again
+      setTimeout(advance, HOLD);
+    }, FADE);
   }
 
-  /* ── PRELOAD THEN SHOW ─────────────────────────────── */
-  var img = new Image();
-  img.onload = function() {
-    applyImage(current);
-    setInterval(advance, 8000); /* rotate every 8 seconds */
-  };
-  img.onerror = function() {
-    /* First image failed — try next */
-    currentIdx = (currentIdx + 1) % IMAGES.length;
-    img.src = IMAGES[currentIdx].url;
-  };
-  img.src = current.url;
+  // Kick off on DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
 
 })();

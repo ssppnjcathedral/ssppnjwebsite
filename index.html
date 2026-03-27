@@ -86,7 +86,10 @@ img{display:block;max-width:100%}
 
 /* === HERO === */
 .hero{position:relative;height:100vh;min-height:640px;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
-.hero-bg{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(21,10,5,.50) 0%,rgba(21,10,5,.18) 45%,rgba(21,10,5,.70) 100%) center/cover no-repeat;background-color:#3B0F18}
+.hero-bg,.hero-bg2{position:absolute;inset:0;background-size:cover;background-position:center center;background-repeat:no-repeat;background-color:#3B0F18;transition:opacity 1.8s ease-in-out}
+.hero-bg2{opacity:0;z-index:1}
+.hero-bg{z-index:0}
+.hero-overlay{position:absolute;inset:0;background:rgba(21,10,5,.32);z-index:2;pointer-events:none}
 .hero-fallback{position:absolute;inset:0;background:linear-gradient(150deg,#2E0D14 0%,#7B1D2A 45%,#B88328 100%);z-index:-1}
 .hero-frame{position:absolute;inset:2.5rem;border:1px solid rgba(184,131,40,.20);pointer-events:none;z-index:2}
 .hfc{position:absolute;width:14px;height:14px;border-style:solid;border-color:rgba(184,131,40,.50)}
@@ -339,13 +342,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 .svc-live-badge{background:var(--maroon);color:var(--vellum)}
 .svc-soon-badge{background:rgba(184,131,40,.15);color:var(--gold)}
 
-/* ── E: BYZANTINE HERO SVG ── */
-.hero-byzantine{position:absolute;inset:0;z-index:1;display:flex;align-items:center;justify-content:center;pointer-events:none;overflow:hidden}
-.byz-svg{width:min(90vw,900px);height:min(90vw,900px);opacity:.10}
-.byz-draw{stroke-dasharray:2000;stroke-dashoffset:2000;fill:none}
-.byz-draw-1{animation:draw-in 3s cubic-bezier(.4,0,.2,1) .8s forwards}
-.byz-draw-2{animation:draw-in 2.5s cubic-bezier(.4,0,.2,1) 1.4s forwards}
-.byz-draw-3{animation:draw-in 2s cubic-bezier(.4,0,.2,1) 2s forwards}
+
 @keyframes draw-in{to{stroke-dashoffset:0}}
 
 /* ── I: WELCOME OVERLAY ── */
@@ -389,12 +386,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 .fp-link:hover{background:var(--maroon-deep)}
 @media(max-width:768px){.float-help,.float-panel{right:1rem}.float-panel{width:calc(100vw - 2rem)}}
 
-/* ── M: BYZANTINE BAND ── */
-.byz-band{background:var(--apse);padding:3.5rem 0;overflow:hidden;position:relative;border-top:1px solid rgba(184,131,40,.12);border-bottom:1px solid rgba(184,131,40,.12)}
-.byz-band-inner{display:flex;justify-content:center;opacity:.15}
-.byz-tile{width:72px;height:72px;flex-shrink:0}
-.byz-band-text{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--f-display);font-style:italic;font-weight:300;font-size:clamp(1.1rem,2.5vw,1.7rem);color:rgba(246,241,232,.55);text-align:center;padding:0 4rem;z-index:1}
-@media(max-width:768px){.byz-band-text{font-size:1rem;padding:0 1.5rem}}
+
 
 /* ── QUOTE BREAK ── */
 .quote-break{margin:0;padding:4rem 4.5rem;background:var(--vellum);position:relative}
@@ -408,6 +400,8 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 
 /* Content area background fix */
 .page-body,.main-wrap,.cal-wrap,.giving-wrap,.gallery-wrap,.video-wrap,.bulletin-wrap,.news-wrap,.contact-wrap,.cemetery-wrap{background:var(--vellum)}
+
+@keyframes kenburns{from{transform:scale(1)}to{transform:scale(1.08)}}
 </style>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
@@ -503,27 +497,9 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 <!-- HERO -->
 <section class="hero" id="top">
   <div class="hero-fallback"></div>
-  <div class="hero-bg"></div>
-  <!-- Byzantine animated element -->
-  <div class="hero-byzantine" aria-hidden="true">
-    <svg class="byz-svg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
-      <circle class="byz-draw byz-draw-1" cx="250" cy="250" r="240" stroke="rgba(232,201,122,.8)" stroke-width=".8"/>
-      <circle class="byz-draw byz-draw-1" cx="250" cy="250" r="190" stroke="rgba(184,131,40,.5)" stroke-width=".5"/>
-      <circle class="byz-draw byz-draw-2" cx="250" cy="250" r="140" stroke="rgba(232,201,122,.6)" stroke-width=".5"/>
-      <circle class="byz-draw byz-draw-2" cx="250" cy="250" r="80"  stroke="rgba(184,131,40,.5)" stroke-width=".6"/>
-      <path class="byz-draw byz-draw-1" stroke="rgba(232,201,122,.7)" stroke-width="1.2"
-        d="M130,360 L130,210 Q130,140 250,140 Q370,140 370,210 L370,360"/>
-      <path class="byz-draw byz-draw-2" stroke="rgba(184,131,40,.5)" stroke-width=".8"
-        d="M165,360 L165,225 Q165,178 250,178 Q335,178 335,225 L335,360"/>
-      <g class="byz-draw byz-draw-3" stroke="rgba(232,201,122,.6)" stroke-width="1">
-        <line x1="250" y1="10" x2="250" y2="490"/>
-        <line x1="10"  y1="250" x2="490" y2="250"/>
-        <line x1="75"  y1="75"  x2="425" y2="425"/>
-        <line x1="425" y1="75"  x2="75"  y2="425"/>
-      </g>
-    </svg>
-  </div>
-
+  <div class="hero-bg" id="hero-bg1"></div>
+  <div class="hero-bg2" id="hero-bg2"></div>
+  <div class="hero-overlay"></div>
   <div class="hero-frame">
     <div class="hfc tl"></div><div class="hfc tr"></div>
     <div class="hfc bl"></div><div class="hfc br"></div>
