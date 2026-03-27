@@ -6,12 +6,12 @@
  *
  * Usage:   node fetch-prologue.js
  * Output:  _data/prologue.json  (keyed by "MM-DD")
- * Deps:    npm install node-fetch node-html-parser
+ * Deps:    npm install node-fetch
  */
 
 const fetch = (...args) => import('node-fetch').then(({ default: f }) => f(...args));
-const fs   = require('fs');
-const path = require('path');
+const fs    = require('fs');
+const path  = require('path');
 
 // ─── Config ───────────────────────────────────────────────────────────────────
 
@@ -35,8 +35,8 @@ const MONTHS = [
 ];
 
 const MONTH_NUMBERS = {
-  january:'01', february:'02', march:'03', april:'04',
-  may:'05',     june:'06',     july:'07',  august:'08',
+  january:'01', february:'02', march:'03',  april:'04',
+  may:'05',     june:'06',     july:'07',   august:'08',
   september:'09', october:'10', november:'11', december:'12',
 };
 
@@ -49,6 +49,9 @@ function clean(str) {
     .replace(/\r?\n/g, ' ')
     .replace(/\s+/g, ' ')
     .replace(/\u00a0/g, ' ')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/&copy;/g, '©')
     .trim();
 }
 
@@ -57,6 +60,20 @@ function stripTags(str) {
 }
 
 // ─── Parser ───────────────────────────────────────────────────────────────────
+//
+// ACTUAL HTML STRUCTURE on myrrh-bearers.org:
+//
+//   Saint header:  <b><p>1. Saint Name.</p>\n</b>
+//   Saint body:    <p>Body text here...</p>
+//
+// The <b> wraps the <p>, not the other way around.
+// This is non-standard HTML but it's consistent across the site.
+//
+// Section headers: <h4>Reflection</h4>  (sometimes inside <center>)
+// Homily title:    <p class="rubric">About...</p>
+// Scripture:       <blockquote>...</blockquote>
+//
+// ─────────────────────────────────────────────────────────────────────────────
 
 function parseDayPage(html, month, day, url) {
 
@@ -66,7 +83,7 @@ function parseDayPage(html, month, day, url) {
     ? clean(stripTags(h1Match[1])).replace(/^Prologue from Ochrid\s*[-–]\s*/i, '').trim()
     : '';
 
-  // ── Isolate body content between </h1> and the attribution footer ──────────
+  // ── Isolate body: after </h1>, before attribution ─────────────────────────
   const h1End = html.indexOf('</h1>');
   if (h1End === -1) return empty(month, day, title, url);
 
@@ -75,6 +92,7 @@ function parseDayPage(html, month, day, url) {
   if (footerIdx !== -1) body = body.slice(0, footerIdx);
 
   // ── Split at h4 section headers ────────────────────────────────────────────
+  // h4 tags are sometimes wrapped in <center>...</center> — handle both
   const h4All = [...body.matchAll(/<h4[^>]*>([\s\S]*?)<\/h4>/gi)];
   const saintsRaw = h4All.length > 0 ? body.slice(0, h4All[0].index) : body;
 
@@ -88,64 +106,52 @@ function parseDayPage(html, month, day, url) {
 
   // ── Parse Saints ──────────────────────────────────────────────────────────
   //
-  // Two patterns used on this site:
+  // Pattern: <b><p>N. Saint Name.</p>\n</b><p>body text</p>
   //
-  // Pattern A (most days) — numbered:
-  //   <p><strong>1. Saint Name.</strong> body text</p>
-  //
-  // Pattern B (first entry on some days) — unnumbered:
-  //   <p><strong>St John the Baptist.</strong> body text</p>
-  //   followed later by <p><strong>2. Next Saint.</strong> ...</p>
-  //
-  // Strategy: treat ANY paragraph that opens with a <strong> or <b> element
-  // as a new saint header. Number is optional; if absent, auto-assign.
+  // Strategy: find every <b>...<p>...</p>...</b> block — that's a saint header.
+  // The very next <p> after the closing </b> is that saint's body text.
+  // Subsequent <p> tags (until the next <b><p>) are continuations.
 
   const saints = [];
-  const pAll   = [...saintsRaw.matchAll(/<p[^>]*>([\s\S]*?)<\/p>/gi)];
 
-  for (const pm of pAll) {
-    const inner = pm[1];
-    const pText = clean(stripTags(inner));
-    if (!pText) continue;
+  // Match all <b> blocks that contain a <p> — these are saint headers
+  // Use a forgiving regex since the </b> may come after the </p>
+  const bpRegex = /<b[^>]*>\s*<p[^>]*>([\s\S]*?)<\/p>\s*<\/b>/gi;
+  const bpMatches = [...saintsRaw.matchAll(bpRegex)];
 
-    // Does this paragraph start with a bold element?
-    const boldMatch = inner.match(/^\s*<(?:strong|b)[^>]*>([\s\S]*?)<\/(?:strong|b)>/i);
-    if (boldMatch) {
-      const boldText = clean(stripTags(boldMatch[1]));
+  bpMatches.forEach((bm, i) => {
+    const headerText = clean(stripTags(bm[1]));
+    if (!headerText) return;
 
-      // Skip nav or attribution bolds (very long or contain '|')
-      if (boldText.includes('|') || boldText.length > 120) continue;
+    // Extract optional number and name from "N. Saint Name." or "Saint Name."
+    const numbered   = headerText.match(/^(\d+)\.\s+(.+?)\.?\s*$/);
+    const unnumbered = headerText.match(/^(.+?)\.?\s*$/);
 
-      // Extract optional number and name
-      // Matches: "1. Saint Name." OR "Saint Name." OR "Saint Name"
-      const numbered   = boldText.match(/^(\d+)\.\s+(.+?)\.?\s*$/);
-      const unnumbered = boldText.match(/^(.+?)\.?\s*$/);
-
-      let num, name;
-      if (numbered) {
-        num  = parseInt(numbered[1], 10);
-        name = numbered[2].trim();
-      } else if (unnumbered) {
-        num  = saints.length + 1;
-        name = unnumbered[1].trim();
-      } else {
-        continue;
-      }
-
-      // Body text = everything in the <p> after the bold element
-      const boldEnd  = inner.indexOf(boldMatch[0]) + boldMatch[0].length;
-      const bodyText = clean(stripTags(inner.slice(boldEnd)));
-
-      saints.push({ number: num, name, text: bodyText });
-
+    let num, name;
+    if (numbered) {
+      num  = parseInt(numbered[1], 10);
+      name = numbered[2].trim();
+    } else if (unnumbered) {
+      num  = saints.length + 1;
+      name = unnumbered[1].trim();
     } else {
-      // No bold header — continuation paragraph for the last saint
-      if (saints.length > 0) {
-        saints[saints.length - 1].text =
-          (saints[saints.length - 1].text + ' ' + pText).trim();
-      }
+      return;
     }
-  }
+
+    // Find body text: all <p> tags between this </b> and the next <b><p>
+    const afterHeader = saintsRaw.slice(bm.index + bm[0].length);
+    const nextBPos    = i + 1 < bpMatches.length
+      ? bpMatches[i + 1].index - bm.index - bm[0].length
+      : afterHeader.length;
+    const bodyChunk   = afterHeader.slice(0, nextBPos);
+
+    const bodyParas   = [...bodyChunk.matchAll(/<p[^>]*>([\s\S]*?)<\/p>/gi)]
+      .map(pm => clean(stripTags(pm[1])))
+      .filter(Boolean)
+      .join(' ');
+
+    saints.push({ number: num, name, text: bodyParas });
+  });
 
   // ── Parse Reflection ──────────────────────────────────────────────────────
   let reflection = '';
@@ -160,22 +166,39 @@ function parseDayPage(html, month, day, url) {
   const contKey = Object.keys(sections).find(k => k.includes('contemplation'));
   if (contKey) {
     const sec = sections[contKey];
-    contemplation = [
+    const parts = [
       ...[...sec.matchAll(/<p[^>]*>([\s\S]*?)<\/p>/gi)].map(p => clean(stripTags(p[1]))),
       ...[...sec.matchAll(/<li[^>]*>([\s\S]*?)<\/li>/gi)].map(l => clean(stripTags(l[1]))),
-    ].filter(Boolean).join('\n');
+    ].filter(Boolean);
+    contemplation = parts.join('\n');
   }
 
   // ── Parse Homily ──────────────────────────────────────────────────────────
   let homily = { scripture: '', text: '' };
   const homKey = Object.keys(sections).find(k => k.includes('homily'));
   if (homKey) {
-    const sec   = sections[homKey];
-    const bq    = sec.match(/<blockquote[^>]*>([\s\S]*?)<\/blockquote>/i);
-    if (bq) homily.scripture = clean(stripTags(bq[1]));
+    const sec = sections[homKey];
+
+    // Rubric title (p.rubric = "About the citizens of the other world")
+    const rubric = sec.match(/<p[^>]*class="rubric"[^>]*>([\s\S]*?)<\/p>/i);
+    const rubricText = rubric ? clean(stripTags(rubric[1])) : '';
+
+    // Scripture in blockquote
+    const bq = sec.match(/<blockquote[^>]*>([\s\S]*?)<\/blockquote>/i);
+    if (bq) {
+      const bqText = clean(stripTags(bq[1]));
+      homily.scripture = rubricText ? `${rubricText} — ${bqText}` : bqText;
+    } else if (rubricText) {
+      homily.scripture = rubricText;
+    }
+
+    // Body paragraphs — skip rubric and doxology
     homily.text = [...sec.matchAll(/<p[^>]*>([\s\S]*?)<\/p>/gi)]
       .map(p => clean(stripTags(p[1])))
-      .filter(t => t && !t.match(/^To (Thee|You) (be |glory)/i))
+      .filter(t => t
+        && !t.match(/^To (Thee|You) (be |glory)/i)
+        && t !== rubricText
+      )
       .join('\n\n');
   }
 
@@ -183,7 +206,8 @@ function parseDayPage(html, month, day, url) {
 }
 
 function empty(month, day, title, url) {
-  return { month, day, title, saints: [], reflection: '', contemplation: '', homily: { scripture: '', text: '' }, sourceUrl: url };
+  return { month, day, title, saints: [], reflection: '', contemplation: '',
+           homily: { scripture: '', text: '' }, sourceUrl: url };
 }
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
@@ -193,8 +217,8 @@ async function main() {
   if (!fs.existsSync(outDir)) fs.mkdirSync(outDir, { recursive: true });
 
   const prologue = {};
-  let total  = 0;
-  const errors = [];
+  let total      = 0;
+  const errors   = [];
 
   for (const { name: month, days } of MONTHS) {
     const monthNum = MONTH_NUMBERS[month];
