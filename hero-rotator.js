@@ -20,7 +20,7 @@
 
   var HOLD     = 12000;  // ms to hold each image
   var FADE     = 1800;   // ms crossfade duration (match CSS transition)
-  var ZOOM_DUR = 9000;   // ms Ken Burns zoom duration (hold + fade)
+  var ZOOM_DUR = 13800;  // ms Ken Burns zoom — hold + fade so it never stops
 
   var bg1 = document.getElementById('hero-bg1');
   var bg2 = document.getElementById('hero-bg2');
