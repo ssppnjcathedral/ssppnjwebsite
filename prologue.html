@@ -534,14 +534,13 @@ async function loadDay(month, day) {
     '<p class="loading-state" style="font-size:.9rem;padding:1rem 0">Loading…</p>';
   document.getElementById('side-sections-wrap').style.display = 'none';
 
-  /* Fetch JSON */
+  /* Fetch JSON — monthly split files to stay under Netlify 2MB limit */
   let entry = null;
   try {
-    const r = await fetch('/_data/prologue.json');
+    const r = await fetch(`/_data/prologue-${monthKey}.json`);
     if (!r.ok) throw new Error('HTTP ' + r.status);
-    const all = await r.json();
-    const key = `${String(month).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
-    entry = all[key] || null;
+    const monthData = await r.json();
+    entry = monthData[String(day)] || null;
   } catch(e) {
     console.warn('Prologue fetch failed:', e.message);
   }
