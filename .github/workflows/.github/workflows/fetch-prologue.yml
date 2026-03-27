@@ -1,0 +1,44 @@
+name: Fetch Prologue of Ohrid
+
+on:
+  # ── Manual trigger — tap "Run workflow" in GitHub mobile app or web ──
+  workflow_dispatch:
+
+  # ── Optional: run automatically every day at 3:00 AM ET ──
+  # Uncomment the three lines below to enable automatic daily refresh
+  # schedule:
+  #   - cron: '0 8 * * *'   # 8:00 UTC = 3:00 AM ET (adjust for DST)
+
+jobs:
+  scrape:
+    name: Scrape & Commit Prologue JSON
+    runs-on: ubuntu-latest
+
+    steps:
+
+      # 1. Check out the repo
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # 3. Install dependencies
+      - name: Install dependencies
+        run: npm install node-fetch node-html-parser
+
+      # 4. Run the scraper
+      - name: Run Prologue scraper
+        run: node fetch-prologue.js
+
+      # 5. Commit and push the result
+      - name: Commit prologue.json
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add _data/prologue.json
+          git diff --staged --quiet || git commit -m "chore: update prologue.json [$(date -u '+%Y-%m-%d')]"
+          git push
