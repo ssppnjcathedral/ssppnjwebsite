@@ -21,13 +21,13 @@ const path = require('path');
 
 // ─── Config ───────────────────────────────────────────────────────────────────
 
-const BASE_URL = 'https://myrrh-bearers.org/prologue';
+const BASE_URL    = 'https://myrrh-bearers.org/prologue';
 const OUTPUT_PATH = path.join(__dirname, '_data', 'prologue.json');
-const DELAY_MS = 800; // be polite — ~800ms between requests
+const DELAY_MS    = 800;
 
 const MONTHS = [
   { name: 'january',   days: 31 },
-  { name: 'february',  days: 29 }, // include leap day
+  { name: 'february',  days: 29 },
   { name: 'march',     days: 31 },
   { name: 'april',     days: 30 },
   { name: 'may',       days: 31 },
@@ -41,9 +41,9 @@ const MONTHS = [
 ];
 
 const MONTH_NUMBERS = {
-  january: '01', february: '02', march: '03', april: '04',
-  may: '05', june: '06', july: '07', august: '08',
-  september: '09', october: '10', november: '11', december: '12',
+  january:'01', february:'02', march:'03', april:'04',
+  may:'05', june:'06', july:'07', august:'08',
+  september:'09', october:'10', november:'11', december:'12',
 };
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
@@ -53,125 +53,131 @@ function sleep(ms) {
 }
 
 function cleanText(str) {
-  return str
+  return (str || '')
+    .replace(/\r?\n/g, ' ')
     .replace(/\s+/g, ' ')
     .replace(/\u00a0/g, ' ')
     .trim();
 }
 
-/**
- * Parse a single day page HTML into structured data.
- */
+function stripTags(str) {
+  return (str || '').replace(/<[^>]*>/g, '');
+}
+
+// ─── Parser ───────────────────────────────────────────────────────────────────
+
 function parseDayPage(html, month, day, url) {
-  const root = parse(html);
 
   // ── Title ──────────────────────────────────────────────────────────────────
-  const h1 = root.querySelector('h1');
-  const rawTitle = h1 ? cleanText(h1.text) : '';
-  // Strip the "Prologue from Ochrid - " prefix
+  const h1Match = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i);
+  const rawTitle = h1Match ? cleanText(stripTags(h1Match[1])) : '';
   const title = rawTitle.replace(/^Prologue from Ochrid\s*[-–]\s*/i, '').trim();
 
-  // ── Body: everything after the nav, before the footer ─────────────────────
-  // The content is in the body; we want paragraphs and headers after the h1.
-  // Strategy: collect all <p> and <h4> elements, then walk through them.
+  // ── Isolate body: after </h1>, before attribution footer ──────────────────
+  const h1End = html.indexOf('</h1>');
+  if (h1End === -1) {
+    return { month, day, title, saints: [], reflection: '', contemplation: '', homily: { scripture: '', text: '' }, sourceUrl: url };
+  }
+
+  let body = html.slice(h1End + 5);
+  const footerIdx = body.indexOf('The Prologue From Ochrid');
+  if (footerIdx !== -1) body = body.slice(0, footerIdx);
+
+  // ── Find h4 section headers ────────────────────────────────────────────────
+  const h4Matches = [...body.matchAll(/<h4[^>]*>([\s\S]*?)<\/h4>/gi)];
+
+  // Everything before the first h4 = saints block
+  const firstH4Pos = h4Matches.length > 0 ? h4Matches[0].index : body.length;
+  const saintsRaw  = body.slice(0, firstH4Pos);
+
+  // Build named sections from h4 onwards
+  const sections = {};
+  h4Matches.forEach((m, i) => {
+    const label      = cleanText(stripTags(m[1])).toLowerCase();
+    const start      = m.index + m[0].length;
+    const end        = i + 1 < h4Matches.length ? h4Matches[i + 1].index : body.length;
+    sections[label]  = body.slice(start, end);
+  });
+
+  // ── Parse Saints ──────────────────────────────────────────────────────────
+  // Each saint = <p><strong>N. Name.</strong> body text</p>
+  // Continuation paragraphs (no bold) append to the previous saint.
 
   const saints = [];
-  let reflection = '';
-  let contemplation = '';
-  let homily = { scripture: '', text: '' };
+  const pMatches = [...saintsRaw.matchAll(/<p[^>]*>([\s\S]*?)<\/p>/gi)];
 
-  // Grab all meaningful block elements after h1
-  const allElements = root.querySelectorAll('p, h4, blockquote');
+  for (const pm of pMatches) {
+    const inner = pm[1];
+    const pText = cleanText(stripTags(inner));
+    if (!pText) continue;
 
-  let mode = 'saints'; // states: saints | reflection | contemplation | homily
-  let homilyLines = [];
-  let contemplationLines = [];
-
-  for (const el of allElements) {
-    const tag = el.tagName.toLowerCase();
-    const text = cleanText(el.text);
-
-    if (!text) continue;
-
-    // ── Section headers (h4) ────────────────────────────────────────────────
-    if (tag === 'h4') {
-      const lower = text.toLowerCase();
-      if (lower.includes('reflection')) { mode = 'reflection'; continue; }
-      if (lower.includes('contemplation')) { mode = 'contemplation'; continue; }
-      if (lower.includes('homily')) { mode = 'homily'; continue; }
-      continue;
+    // Look for opening bold tag with numbered saint header
+    const boldMatch = inner.match(/<(?:strong|b)[^>]*>([\s\S]*?)<\/(?:strong|b)>/i);
+    if (boldMatch) {
+      const boldText    = cleanText(stripTags(boldMatch[1]));
+      const headerMatch = boldText.match(/^(\d+)\.\s+(.+?)\.?\s*$/);
+      if (headerMatch) {
+        const boldEnd  = inner.indexOf(boldMatch[0]) + boldMatch[0].length;
+        const bodyText = cleanText(stripTags(inner.slice(boldEnd)));
+        saints.push({
+          number: parseInt(headerMatch[1], 10),
+          name:   headerMatch[2].replace(/\.$/, '').trim(),
+          text:   bodyText,
+        });
+        continue;
+      }
     }
 
-    // ── Blockquote = homily scripture citation ───────────────────────────────
-    if (tag === 'blockquote') {
-      if (mode === 'homily') {
-        homily.scripture = text;
-      }
-      continue;
-    }
-
-    // ── Paragraph handling ───────────────────────────────────────────────────
-    if (tag === 'p') {
-
-      // Skip nav paragraphs (they contain lots of pipe-separated links)
-      if (text.includes('|') && text.length < 400) continue;
-
-      // Skip copyright / attribution lines
-      if (text.startsWith('©') || text.startsWith('The Prologue From Ochrid')) continue;
-
-      switch (mode) {
-
-        case 'saints': {
-          // Saint entries start with a bold element like "1. The Holy Archangel Gabriel."
-          const boldEl = el.querySelector('strong, b');
-          if (boldEl) {
-            const boldText = cleanText(boldEl.text);
-            // Match numbered saint headers: "1. Saint Name."
-            const headerMatch = boldText.match(/^(\d+)\.\s+(.+?)\.?\s*$/);
-            if (headerMatch) {
-              // The rest of the paragraph text after the bold element
-              const saintBody = cleanText(text.replace(boldText, ''));
-              saints.push({
-                number: parseInt(headerMatch[1], 10),
-                name: headerMatch[2].trim(),
-                text: saintBody,
-              });
-              break;
-            }
-          }
-
-          // Continuation paragraph for the most recent saint (no bold header)
-          if (saints.length > 0) {
-            // Append to the last saint's text
-            saints[saints.length - 1].text += ' ' + text;
-            saints[saints.length - 1].text = saints[saints.length - 1].text.trim();
-          }
-          break;
-        }
-
-        case 'reflection': {
-          reflection += (reflection ? ' ' : '') + text;
-          break;
-        }
-
-        case 'contemplation': {
-          contemplationLines.push(text);
-          break;
-        }
-
-        case 'homily': {
-          // Skip "To You glory and thanks always. Amen." closing line
-          if (text.match(/^To You glory/i)) break;
-          homilyLines.push(text);
-          break;
-        }
-      }
+    // No header found — continuation of the previous saint
+    if (saints.length > 0 && pText) {
+      saints[saints.length - 1].text =
+        (saints[saints.length - 1].text + ' ' + pText).trim();
     }
   }
 
-  homily.text = homilyLines.join('\n\n').trim();
-  contemplation = contemplationLines.join('\n').trim();
-  reflection = reflection.trim();
+  // ── Parse Reflection ──────────────────────────────────────────────────────
+  let reflection = '';
+  const reflKey = Object.keys(sections).find(k => k.includes('reflection'));
+  if (reflKey) {
+    const paras = [...sections[reflKey].matchAll(/<p[^>]*>([\s\S]*?)<\/p>/gi)];
+    reflection = paras
+      .map(p => cleanText(stripTags(p[1])))
+      .filter(Boolean)
+      .join('\n\n');
+  }
+
+  // ── Parse Contemplation ───────────────────────────────────────────────────
+  let contemplation = '';
+  const contKey = Object.keys(sections).find(k => k.includes('contemplation'));
+  if (contKey) {
+    const sec   = sections[contKey];
+    const paras = [...sec.matchAll(/<p[^>]*>([\s\S]*?)<\/p>/gi)];
+    const lis   = [...sec.matchAll(/<li[^>]*>([\s\S]*?)<\/li>/gi)];
+    contemplation = [
+      ...paras.map(p => cleanText(stripTags(p[1]))),
+      ...lis.map(l => cleanText(stripTags(l[1]))),
+    ].filter(Boolean).join('\n');
+  }
+
+  // ── Parse Homily ──────────────────────────────────────────────────────────
+  let homily = { scripture: '', text: '' };
+  const homKey = Object.keys(sections).find(k => k.includes('homily'));
+  if (homKey) {
+    const sec = sections[homKey];
+
+    // Scripture citation lives in <blockquote>
+    const bqMatch = sec.match(/<blockquote[^>]*>([\s\S]*?)<\/blockquote>/i);
+    if (bqMatch) {
+      homily.scripture = cleanText(stripTags(bqMatch[1]));
+    }
+
+    // Body paragraphs — skip the doxology closing line
+    const paras = [...sec.matchAll(/<p[^>]*>([\s\S]*?)<\/p>/gi)];
+    homily.text = paras
+      .map(p => cleanText(stripTags(p[1])))
+      .filter(t => t && !t.match(/^To (Thee|You) (be |glory)/i))
+      .join('\n\n');
+  }
 
   return {
     month,
@@ -188,7 +194,6 @@ function parseDayPage(html, month, day, url) {
 // ─── Main ─────────────────────────────────────────────────────────────────────
 
 async function main() {
-  // Ensure output directory exists
   const outDir = path.dirname(OUTPUT_PATH);
   if (!fs.existsSync(outDir)) {
     fs.mkdirSync(outDir, { recursive: true });
@@ -196,7 +201,7 @@ async function main() {
   }
 
   const prologue = {};
-  let total = 0;
+  let total  = 0;
   let errors = [];
 
   for (const { name: month, days } of MONTHS) {
@@ -204,8 +209,8 @@ async function main() {
 
     for (let day = 1; day <= days; day++) {
       const dayStr = String(day).padStart(2, '0');
-      const key = `${monthNum}-${dayStr}`;
-      const url = `${BASE_URL}/${month}/${day}.htm`;
+      const key    = `${monthNum}-${dayStr}`;
+      const url    = `${BASE_URL}/${month}/${day}.htm`;
 
       process.stdout.write(`Fetching ${key} (${month} ${day})... `);
 
@@ -216,7 +221,6 @@ async function main() {
         });
 
         if (!res.ok) {
-          // Feb 29 may 404 on non-leap-year sites — log and skip gracefully
           if (res.status === 404) {
             console.log(`404 — skipped`);
             errors.push({ key, url, error: '404 Not Found' });
@@ -241,7 +245,6 @@ async function main() {
     }
   }
 
-  // ── Write output ────────────────────────────────────────────────────────────
   fs.writeFileSync(OUTPUT_PATH, JSON.stringify(prologue, null, 2), 'utf8');
 
   console.log('\n────────────────────────────────────────');
