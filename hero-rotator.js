@@ -52,7 +52,8 @@
   var SCRIM = 'linear-gradient(to right, rgba(21,8,4,.88) 0%, rgba(21,8,4,.65) 55%, rgba(21,8,4,.38) 100%)';
 
   /* ── FIND HERO ELEMENT ─────────────────────────────── */
-  var hero = document.querySelector('.page-hero') || document.querySelector('.giving-hero') || document.querySelector('.hero');
+  var heroBg = document.querySelector('.hero-bg');
+  var hero = heroBg || document.querySelector('.page-hero') || document.querySelector('.giving-hero') || document.querySelector('.hero');
   if (!hero) return;
 
   /* ── PICK RANDOM START IMAGE ───────────────────────── */
