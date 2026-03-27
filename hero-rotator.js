@@ -18,7 +18,7 @@
     { url: '/images/heroes/home-6.jpg', pos: 'center center' }
   ];
 
-  var HOLD     = 7000;   // ms to hold each image
+  var HOLD     = 12000;  // ms to hold each image
   var FADE     = 1800;   // ms crossfade duration (match CSS transition)
   var ZOOM_DUR = 9000;   // ms Ken Burns zoom duration (hold + fade)
 
@@ -64,33 +64,25 @@
     setTimeout(advance, HOLD);
   }
 
-  // Crossfade to next image
+  // Crossfade to next image — preloads before transitioning, skips missing files
   function advance() {
     current = (current + 1) % IMAGES.length;
     var next = IMAGES[current];
-
-    // Prepare back layer with next image (already invisible)
-    setImage(back, next);
-    applyZoom(back);
-
-    // Bring back layer to front (z-index already set in CSS: bg2 z-index:1)
-    // Fade it IN
-    back.style.transition = 'opacity ' + (FADE / 1000) + 's ease-in-out';
-    back.style.opacity = '1';
-
-    // After fade completes, swap roles and fade old front out
-    setTimeout(function() {
-      front.style.transition = 'none';
-      front.style.opacity = '0';
-
-      // Swap front and back references
-      var tmp = front;
-      front = back;
-      back = tmp;
-
-      // Hold then advance again
-      setTimeout(advance, HOLD);
-    }, FADE);
+    var preload = new Image();
+    preload.onload = function() {
+      setImage(back, next);
+      applyZoom(back);
+      back.style.transition = 'opacity ' + (FADE / 1000) + 's ease-in-out';
+      back.style.opacity = '1';
+      setTimeout(function() {
+        front.style.transition = 'none';
+        front.style.opacity = '0';
+        var tmp = front; front = back; back = tmp;
+        setTimeout(advance, HOLD);
+      }, FADE);
+    };
+    preload.onerror = function() { setTimeout(advance, 0); };
+    preload.src = next.url;
   }
 
   // Kick off on DOM ready
