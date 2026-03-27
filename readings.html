@@ -41,9 +41,9 @@ a{color:inherit;text-decoration:none}
 .nav-give:hover{background:var(--maroon-deep)}
 
 /* ── PAGE HERO ── */
-.page-hero{padding-top:60px;background:linear-gradient(to right,rgba(21,8,4,.92) 0%,rgba(21,8,4,.72) 55%,rgba(21,8,4,.45) 100%),url('/images/heroes/readings.webp') center/cover no-repeat;background-color:var(--apse);position:relative;overflow:hidden}}
-.page-hero-inner{max-width:1380px;margin:0 auto;padding:4rem 4.5rem 3.5rem;position:relative;z-index:1}
-.page-hero-rosette{position:absolute;right:-120px;top:50%;transform:translateY(-50%);width:480px;height:480px;opacity:.06;pointer-events:none}
+.page-hero{padding-top:60px;background:linear-gradient(to right,rgba(21,8,4,.92) 0%,rgba(21,8,4,.72) 55%,rgba(21,8,4,.45) 100%),url('/images/heroes/readings.webp') center/cover no-repeat;background-color:var(--apse);min-height:420px;display:flex;align-items:center;position:relative;overflow:hidden}}
+.page-hero-inner{max-width:1380px;margin:0 auto;padding:5rem 6rem 4rem;position:relative;z-index:1}
+
 .page-title{font-family:var(--f-display);font-weight:300;font-size:clamp(2.5rem,5vw,4.5rem);line-height:.95;color:#fff;margin:.5rem 0 .75rem}
 .page-title em{font-style:italic}
 .breadcrumb{font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.70);margin-bottom:1.5rem}
@@ -189,7 +189,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 }
 @media(max-width:768px){
   .nav-links{display:none}.nav-hamburger{display:flex}.nav-give{display:none}
-  .page-hero-inner{padding:4rem 1.5rem 3rem}
+  .page-hero-inner{padding:3.5rem 1.5rem 3rem}
   .chapter-bar{padding:.65rem 1.5rem}
   .readings-wrap{padding:3rem 1.5rem}
   .footer-cols{grid-template-columns:1fr;gap:2.5rem}
@@ -230,6 +230,9 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 @media(max-width:768px){
   .quote-break{padding:2.5rem 1.5rem}.qb-inner{padding-left:1.25rem}.qb-text{font-size:1.3rem}
 }
+footer .btn-outline{color:rgba(246,241,232,.92);border-color:rgba(246,241,232,.55)}footer .btn-outline:hover{background:rgba(246,241,232,.15);color:#fff;border-color:rgba(246,241,232,.80)}
+/* Content area background fix */
+.page-body,.main-wrap,.cal-wrap,.giving-wrap,.gallery-wrap,.video-wrap,.bulletin-wrap,.news-wrap,.contact-wrap,.cemetery-wrap{background:var(--vellum)}
 </style>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
@@ -313,15 +316,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 
 <!-- ── PAGE HERO ── -->
 <div class="page-hero">
-  <svg class="page-hero-rosette" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <circle cx="100" cy="100" r="95" fill="none" stroke="#fff" stroke-width=".6"/>
-    <circle cx="100" cy="100" r="60" fill="none" stroke="#fff" stroke-width=".4"/>
-    <g stroke="#fff" stroke-width=".4" fill="none">
-      <line x1="100" y1="5" x2="100" y2="195"/><line x1="5" y1="100" x2="195" y2="100"/>
-      <line x1="33" y1="33" x2="167" y2="167"/><line x1="167" y1="33" x2="33" y2="167"/>
-    </g>
-  </svg>
-  <div class="page-hero-inner">
+  <div class="page-hero-inner" style="padding-left:75px;padding-top:calc(5rem + 5px);padding-bottom:calc(4rem + 20px)">
     <p class="breadcrumb"><a href="/">Home</a> · Daily Readings</p>
     <span style="display:block;font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.20em;text-transform:uppercase;color:rgba(232,201,122,.65);margin-bottom:.5rem">Scripture</span>
     <div style="display:block;height:1px;background:rgba(232,201,122,.45);margin-bottom:1rem;width:48px"></div>

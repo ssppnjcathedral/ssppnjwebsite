@@ -15,7 +15,7 @@
 .nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(246,241,232,.97);backdrop-filter:blur(10px);border-bottom:var(--rule-faint)}
 .nav-inner{max-width:1380px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px;padding:0 3rem}
 .nav-logo-name{font-family:var(--f-display);font-weight:500;font-size:1.25rem;color:var(--text);display:block}
-.nav-logo-sub{font-family:var(--f-ui);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);display:block}
+.nav-logo-sub{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);display:block}
 .nav-links{display:flex;align-items:center;list-style:none}
 .nav-links>li{position:relative}
 .nav-links>li>a{font-family:var(--f-ui);font-size:.78rem;letter-spacing:.10em;text-transform:uppercase;color:var(--text);padding:1.1rem .85rem;display:block;transition:color .18s}
@@ -23,20 +23,20 @@
 .nav-drop{position:absolute;top:100%;left:0;background:var(--vellum);border-top:2px solid var(--maroon);border-bottom:var(--rule-faint);border-left:var(--rule-faint);border-right:var(--rule-faint);min-width:200px;padding:.5rem 0;opacity:0;pointer-events:none;transform:translateY(-4px);transition:all .16s;box-shadow:0 8px 28px rgba(28,20,16,.10)}
 .nav-links>li:hover .nav-drop{opacity:1;pointer-events:all;transform:none}
 .nav-drop a{display:block;font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text);padding:.5rem 1.4rem;transition:color .14s}
-.nav-drop a:hover{color:var(--maroon)}
+.nav-drop a:hover{color:var(--maroon)}.nav-links .nav-active{color:var(--maroon)}.nav-links .nav-active-parent>a{color:var(--maroon);border-bottom:2px solid var(--gold)}.nav-drop .nav-active{color:var(--maroon);font-weight:600}
 .nav-give{font-family:var(--f-ui);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--vellum);background:var(--maroon);padding:.5rem 1.1rem;transition:background .2s}
 .nav-give:hover{background:var(--maroon-deep)}
-.page-hero{padding-top:60px;background:linear-gradient(to right,rgba(59,15,24,.88) 0%,rgba(59,15,24,.62) 55%,rgba(59,15,24,.38) 100%),url('/images/heroes/our-beliefs.webp') center/cover no-repeat;position:relative;overflow:hidden}
-.page-hero-inner{max-width:1380px;margin:0 auto;padding:5rem 4.5rem 4rem}
-.page-hero-rosette{position:absolute;right:-120px;top:50%;transform:translateY(-50%);width:480px;height:480px;opacity:.06;pointer-events:none}
+.page-hero{padding-top:60px;background:linear-gradient(to right,rgba(59,15,24,.88) 0%,rgba(59,15,24,.62) 55%,rgba(59,15,24,.38) 100%),url('/images/heroes/our-beliefs.webp') center/cover no-repeat;background-color:var(--apse);min-height:420px;display:flex;align-items:center;position:relative;overflow:hidden}}
+.page-hero-inner{max-width:1380px;margin:0 auto;padding:5rem 6rem 4rem}
+
 .page-title{font-family:var(--f-display);font-weight:300;font-size:clamp(2.5rem,5vw,4.5rem);line-height:.95;color:#fff;margin:.5rem 0 .75rem}
 .page-title em{font-style:italic}
-.breadcrumb{font-family:var(--f-ui);font-size:.66rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.70);margin-bottom:1.5rem}
+.breadcrumb{font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.70);margin-bottom:1.5rem}
 .breadcrumb a{color:rgba(232,201,122,.70)}
 .chapter-bar{background:var(--maroon);padding:.65rem 4rem;display:flex;align-items:center;justify-content:space-between}
-.cbar-text{font-family:var(--f-ui);font-size:.70rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:rgba(246,241,232,.60)}
+.cbar-text{font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:rgba(246,241,232,.60)}
 .cbar-text.bright{color:rgba(246,241,232,.90)}
-.page-body{max-width:1380px;margin:0 auto;padding:5rem 4.5rem;display:grid;grid-template-columns:1fr 300px;gap:5rem}
+.page-body{background:var(--vellum);max-width:1380px;margin:0 auto;padding:5rem 4.5rem;display:grid;grid-template-columns:1fr 300px;gap:5rem}
 .prose{font-family:var(--f-body);font-size:1rem;line-height:1.82;color:var(--ink);text-align:justify;hyphens:auto;max-width:60ch}
 .prose p{margin-bottom:1.2em}
 .section-head{font-family:var(--f-display);font-weight:400;font-size:clamp(1.6rem,2.5vw,2.2rem);color:var(--text);margin:3rem 0 .5rem;line-height:1.15}
@@ -46,12 +46,12 @@
 .belief-card-body{font-family:var(--f-body);font-size:.95rem;line-height:1.75;color:var(--ink);text-align:justify;hyphens:auto}
 .creed-block{background:var(--vellum-mid);border:var(--rule-faint);border-top:2px solid var(--maroon);padding:2.5rem;margin:3rem 0}
 .creed-text{font-family:var(--f-display);font-style:italic;font-size:1.05rem;line-height:1.9;color:var(--ink)}
-.creed-source{font-family:var(--f-ui);font-size:.68rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);margin-top:1rem;display:block}
+.creed-source{font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);margin-top:1rem;display:block}
 .side-col{border-left:var(--rule-faint);padding-left:2.5rem}
 .side-section{margin-bottom:2.5rem;padding-bottom:2.5rem;border-bottom:var(--rule-faint)}
 .side-section:last-child{border-bottom:none}
-.side-head{font-family:var(--f-ui);font-size:.68rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.75rem}
-.annot-nav-link{display:flex;align-items:center;justify-content:space-between;font-family:var(--f-ui);font-size:.70rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--text);padding:.6rem 0;border-bottom:var(--rule-hair);transition:color .18s}
+.side-head{font-family:var(--f-ui);font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.75rem}
+.annot-nav-link{display:flex;align-items:center;justify-content:space-between;font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--text);padding:.6rem 0;border-bottom:var(--rule-hair);transition:color .18s}
 .annot-nav-link:last-child{border-bottom:none}
 .annot-nav-link:hover{color:var(--maroon)}
 .annot-nav-link::after{content:'→';color:var(--maroon)}
@@ -59,35 +59,43 @@
 .btn-maroon{color:var(--vellum);background:var(--maroon);border-color:var(--maroon)}
 .btn-maroon:hover{background:var(--maroon-deep)}
 .btn-outline{color:var(--maroon);border-color:var(--maroon)}
-.btn-outline:hover{background:var(--maroon);color:var(--vellum)}
+.btn-outline:hover{background:var(--maroon);color:var(--vellum)}footer .btn-outline{color:rgba(246,241,232,.92);border-color:rgba(246,241,232,.55)}footer .btn-outline:hover{background:rgba(246,241,232,.15);color:#fff;border-color:rgba(246,241,232,.80)}
 footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:4.5rem 4.5rem 2.5rem}
 .footer-cross{display:block;text-align:center;font-size:1.1rem;color:rgba(184,131,40,.45);letter-spacing:.8em;padding-left:.8em;margin-bottom:2.5rem}
-.footer-bottom{max-width:1380px;margin:2rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(246,241,232,.06);display:flex;justify-content:space-between}
-.footer-copy,.footer-addr{font-family:var(--f-ui);font-size:.64rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.22)}
+.footer-bottom{max-width:1380px;margin:2rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(246,241,232,.12);display:flex;justify-content:space-between}
+.footer-copy,.footer-addr{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.60)}
 .nav-hamburger{display:none;flex-direction:column;justify-content:space-between;width:28px;height:20px;cursor:pointer;padding:0;background:none;border:none;z-index:400}
 @media(max-width:1024px){.page-body{grid-template-columns:1fr}.side-col{border-left:none;border-top:var(--rule-faint);padding-left:0;padding-top:2.5rem;margin-top:2.5rem}}
-@media(max-width:768px){.nav-links{display:none}.nav-hamburger{display:flex}.nav-hamburger{display:flex}.page-hero-inner{padding:4rem 1.5rem 3rem}.page-body{padding:3rem 1.5rem}.chapter-bar{padding:.65rem 1.5rem}}
+@media(max-width:768px){.nav-links{display:none}.nav-hamburger{display:flex}.nav-give{display:none}.page-hero-inner{padding:3.5rem 1.5rem 3rem}.page-body{padding:3rem 1.5rem}.chapter-bar{padding:.65rem 1.5rem}}
 
 .footer-cols{max-width:1380px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:5rem;margin-bottom:3.5rem}
-.footer-col-head{font-family:var(--f-ui);font-size:.66rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(246,241,232,.28);display:block;margin-bottom:1.2rem;padding-bottom:.5rem;border-bottom:1px solid rgba(246,241,232,.06)}
+.footer-col-head{font-family:var(--f-ui);font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(246,241,232,.82);display:block;margin-bottom:1.2rem;padding-bottom:.5rem;border-bottom:1px solid rgba(246,241,232,.06)}
 .footer-name{font-family:var(--f-display);font-weight:400;font-size:1.2rem;color:rgba(246,241,232,.88);line-height:1.3;margin-bottom:.75rem}
-.footer-meta{font-family:var(--f-ui);font-size:.64rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.30);line-height:2.3}
-.footer-meta a{color:rgba(184,131,40,.60);transition:color .2s}
+.footer-meta{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.72);line-height:2.3}
+.footer-meta a{color:rgba(184,131,40,.85);transition:color .2s}
 .footer-meta a:hover{color:var(--gold)}
 .footer-socials{display:flex;gap:1.5rem;margin-top:1.5rem}
-.footer-socials a{font-family:var(--f-ui);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,241,232,.35);transition:color .2s}
+.footer-socials a{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,241,232,.65);transition:color .2s}
 .footer-socials a:hover{color:var(--gold)}
 .footer-nav{list-style:none;display:flex;flex-direction:column}
-.footer-nav li{padding:.38rem 0;border-bottom:1px solid rgba(246,241,232,.04)}
+.footer-nav li{padding:.38rem 0;border-bottom:1px solid rgba(246,241,232,.10)}
 .footer-nav li:last-child{border-bottom:none}
-.footer-nav a{font-family:var(--f-ui);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,232,.45);transition:color .2s}
-.footer-nav a:hover{color:rgba(246,241,232,.85)}
-.footer-blurb{font-family:var(--f-display);font-style:italic;font-size:.95rem;color:rgba(246,241,232,.42);line-height:1.65;margin-bottom:1.5rem}
+.footer-nav a{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,232,.85);transition:color .2s}
+.footer-nav a:hover{color:rgba(246,241,232,.95)}
+.footer-blurb{font-family:var(--f-display);font-style:italic;font-size:.95rem;color:rgba(246,241,232,.85);line-height:1.65;margin-bottom:1.5rem}
 .btn{display:inline-block;font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;padding:.85rem 2.2rem;border:1px solid currentColor;cursor:pointer;transition:all .22s;white-space:nowrap}
 .btn-outline{color:rgba(246,241,232,.70);border-color:rgba(246,241,232,.35)}
 .btn-outline:hover{color:#fff;border-color:#fff}
 @media(max-width:1100px){.footer-cols{grid-template-columns:1fr 1fr;gap:3rem}}
-@media(max-width:768px){.footer-cols{grid-template-columns:1fr;gap:2.5rem}footer{padding:4rem 1.5rem 2rem}.footer-bottom{flex-direction:column;gap:.75rem;text-align:center}.footer-addr{text-align:center}}
+@media(max-width:768px){.footer-cols{grid-template-columns:1fr;gap:2.5rem}footer{padding:4rem 1.5rem 2rem}.footer-bottom{flex-direction:column;gap:.75rem;text-align:center}
+  /* ── MOBILE FONT BUMPS ── */
+  body{font-size:18px;line-height:1.8}
+  [class*="-over"],[class*="-cat"],[class*="-sub"],[class*="-label"],[class*="-tag"],[class*="-kicker"],[class*="-lbl"],[class*="-badge"],[class*="-date"],[class*="-meta"]{font-size:.72rem!important;letter-spacing:.12em}
+  [class*="-title"]{line-height:1.2}
+  [class*="hero-title"],[class*="page-title"]{line-height:1.1}
+  [class*="-name"],[class*="-head"]{line-height:1.25}
+  .footer-copy,.footer-legal,.footer-bottom{font-size:.72rem}
+  .nav-drawer-links a{font-size:.76rem;padding:1rem 1.75rem}.footer-addr{text-align:center}}
 
 
 /* ── MOBILE NAV DRAWER ── */
@@ -102,48 +110,29 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 .nav-drawer-overlay.open{opacity:1;pointer-events:all}
 .nav-drawer-head{padding:1.5rem 1.75rem 1rem;border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:space-between}
 .nav-drawer-logo{font-family:var(--f-display);font-weight:500;font-size:1.1rem;color:#fff}
-.nav-drawer-logo span{font-family:var(--f-ui);font-size:.52rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);display:block;margin-top:2px}
+.nav-drawer-logo span{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);display:block;margin-top:2px}
 .nav-drawer-close{width:32px;height:32px;background:rgba(255,255,255,.08);border:none;color:rgba(255,255,255,.65);cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:background .2s}
 .nav-drawer-close:hover{background:rgba(255,255,255,.15)}
 .nav-drawer-links{padding:1rem 0;flex:1}
 .nav-drawer-links a{display:block;font-family:var(--f-ui);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,232,.70);padding:.9rem 1.75rem;border-bottom:1px solid rgba(255,255,255,.05);transition:all .18s}
 .nav-drawer-links a:hover{color:#fff;background:rgba(255,255,255,.05)}
-.nav-drawer-links .drawer-section{font-family:var(--f-ui);font-size:.48rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(184,131,40,.55);padding:.85rem 1.75rem .35rem;display:block}
-.nav-drawer-give{margin:1.25rem 1.75rem;display:block;text-align:center;font-family:var(--f-ui);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;padding:.85rem;background:var(--maroon);color:var(--vellum);transition:background .2s}
+.nav-drawer-links .drawer-section{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(184,131,40,.55);padding:.85rem 1.75rem .35rem;display:block}
+.nav-drawer-give{margin:1.25rem 1.75rem;display:block;text-align:center;font-family:var(--f-ui);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;padding:.85rem;background:var(--maroon);color:var(--vellum);transition:background .2s}
 .nav-drawer-give:hover{background:var(--maroon-deep)}
 
 /* ── QUOTE INTERSTITIAL ───────────────────────────── */
-.quote-break{
-  background:var(--apse);
-  padding:5rem 4.5rem;
-  text-align:center;
-  position:relative;
-  overflow:hidden;
-  margin:0;
-}
-.quote-break::before{
-  content:'';
-  position:absolute;
-  top:0;left:50%;transform:translateX(-50%);
-  width:1px;height:40px;
-  background:rgba(184,131,40,.35);
-}
-.quote-break::after{
-  content:'';
-  position:absolute;
-  bottom:0;left:50%;transform:translateX(-50%);
-  width:1px;height:40px;
-  background:rgba(184,131,40,.35);
-}
-.qb-inner{max-width:780px;margin:0 auto;position:relative;z-index:1}
-.qb-cross{display:block;font-size:.85rem;color:rgba(184,131,40,.40);letter-spacing:.6em;padding-left:.6em;margin-bottom:1.75rem}
-.qb-rule{width:48px;height:1px;background:rgba(184,131,40,.40);margin:0 auto 1.75rem}
-.qb-text{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-weight:300;font-size:clamp(1.6rem,3.5vw,2.5rem);line-height:1.35;color:rgba(246,241,232,.88);margin-bottom:1.5rem}
-.qb-attr{font-family:'Cinzel',Georgia,serif;font-size:.62rem;letter-spacing:.20em;text-transform:uppercase;color:rgba(184,131,40,.65)}
+.quote-break{margin:0;padding:4rem 4.5rem;background:var(--vellum);position:relative}
+.qb-inner{max-width:680px;margin:0 auto;padding-left:2rem;border-left:3px solid var(--maroon);position:relative}
+.qb-cross{display:none}
+.qb-rule{display:none}
+.qb-text{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-weight:300;font-size:clamp(1.5rem,3vw,2.2rem);line-height:1.4;color:var(--text);margin-bottom:.75rem}
+.qb-attr{font-family:'Cinzel',Georgia,serif;font-size:.72rem;letter-spacing:.20em;text-transform:uppercase;color:var(--maroon);display:block}
 @media(max-width:768px){
-  .quote-break{padding:3.5rem 1.5rem}
-  .qb-text{font-size:1.45rem}
+  .quote-break{padding:2.5rem 1.5rem}.qb-inner{padding-left:1.25rem}.qb-text{font-size:1.3rem}
 }
+
+/* Content area background fix */
+.page-body,.main-wrap,.cal-wrap,.giving-wrap,.gallery-wrap,.video-wrap,.bulletin-wrap,.news-wrap,.contact-wrap,.cemetery-wrap{background:var(--vellum)}
 </style>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
@@ -152,7 +141,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   <div class="nav-inner">
     <a href="/" style="line-height:1.2"><span class="nav-logo-name">Sts. Peter &amp; Paul</span><span class="nav-logo-sub">Orthodox Cathedral · Jersey City</span></a>
     <ul class="nav-links">
-      <li><a href="#">About Us ▾</a><div class="nav-drop"><a href="/about-our-church">About Our Church</a><a href="/our-beliefs">Our Beliefs</a><a href="/administration">Administration</a><a href="/gallery">Gallery</a></div></li>
+      <li class="nav-active-parent"><a href="#">About Us ▾</a><div class="nav-drop"><a href="/about-our-church">About Our Church</a><a href="/our-beliefs" class="nav-active" aria-current="page">Our Beliefs</a><a href="/administration">Administration</a><a href="/gallery">Gallery</a></div></li>
       <li><a href="#">Inquirers ▾</a><div class="nav-drop"><a href="/about-orthodoxy">About Orthodoxy</a><a href="/our-beliefs">Our Beliefs</a><a href="/videos">Videos</a></div></li>
       <li><a href="/schedule">Calendar</a></li>
       <li><a href="#">Bulletins ▾</a><div class="nav-drop"><a href="/news">News</a><a href="/bulletins">Bulletins</a></div></li>
@@ -197,8 +186,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 </div>
 
 <div class="page-hero">
-  <svg class="page-hero-rosette" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="100" cy="100" r="95" fill="none" stroke="#fff" stroke-width=".6"/><circle cx="100" cy="100" r="60" fill="none" stroke="#fff" stroke-width=".4"/><g stroke="#fff" stroke-width=".4" fill="none"><line x1="100" y1="5" x2="100" y2="195"/><line x1="5" y1="100" x2="195" y2="100"/><line x1="33" y1="33" x2="167" y2="167"/><line x1="167" y1="33" x2="33" y2="167"/></g></svg>
-  <div class="page-hero-inner">
+  <div class="page-hero-inner" style="padding-left:75px;padding-top:calc(5rem + 5px);padding-bottom:calc(4rem + 20px)">
     <p class="breadcrumb"><a href="/">Home</a> · Our Beliefs</p>
     <span class="rubric light">The Faith</span>
     <div class="rubric-rule" style="background:rgba(232,201,122,.6)"></div>
@@ -210,51 +198,72 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 
 <div class="page-body">
   <main>
-    <span class="rubric">The Faith Once Delivered</span>
+    <span class="rubric">What We Believe</span>
     <div class="rubric-rule"></div>
-    <h2 class="section-head">The Orthodox Christian Faith</h2>
-    <span class="rubric-voice">Ancient, unchanging, and fully alive</span>
+    <h2 class="section-head">About the Orthodox Faith</h2>
+
     <div class="prose" style="margin-top:2rem">
-      <p class="drop-cap">Orthodox Christianity is not a branch of Western Christianity that grew in a different direction. It is the original tree — the undivided Church of the first thousand years, the Faith delivered by Christ to the Apostles, preserved in unbroken continuity through councils, fathers, martyrs, and ordinary believers across twenty centuries.</p>
-      <p>We do not describe ourselves as the "true Church" in a triumphalist sense. We describe ourselves as the Church that has kept the fullness of the Faith — the Trinitarian theology settled at Nicaea, the Christology clarified at Chalcedon, the liturgical and sacramental life that the early Church recognized as essential to Christian existence.</p>
+      <p class="drop-cap">The Orthodox Church continues to live the faith of the early Church, which our ancestors in the faith have died, and lived, to pass on. The two millennia since Christ sent the Holy Spirit on the Church at Pentecost have given us a deep treasury of wisdom from across the world. And our fathers and mothers in the faith have provided us their personal examples of lives lived with Paradise in their hearts.</p>
+      <p>To be "Orthodox" refers to "rightly believing in" or "rightly praising" God, and those actions are inseparable. The Orthodox Church maintains that our rich Tradition, with its theology, art, and worship, guides us on the path of these past Christians; God wants each person to become His child, His friend, His coworker in making a good world, and on that path toward becoming like Christ, the Son of God, our steps are guided over and around pitfalls and hazards by the heritage of the Church's teachings — its memory.</p>
+      <p>It might seem to some that our Church is "stuck in its ways." We bow, we fast, and our priests wear cassocks and, often, large crosses. It is unusual, granted, but at its healthiest, it stands out in a similar way to how a green mountain stands out in a land where the sand shifts with the wind. Rootedness is a value — not just roots in anything, but particularly roots in the soil that grew the saints that have preceded us. Our Tradition, in all its aspects, grows slowly, losing nothing from the past but bringing all that is good across the centuries and all peoples to the Kingdom, which is the ground from which all good things come and to which they return.</p>
     </div>
 
-    <h2 class="section-head">Core Beliefs</h2>
+    <h2 class="section-head">The Nicene Creed</h2>
     <div class="rubric-rule"></div>
-    <div class="belief-card">
-      <div class="belief-card-title">The Holy Trinity</div>
-      <div class="belief-card-body">We believe in one God — Father, Son, and Holy Spirit — three Persons sharing one divine nature. This is not a mathematical puzzle but the very name of the God who has revealed Himself to us: the Father who creates, the Son who redeems, the Spirit who sanctifies.</div>
-    </div>
-    <div class="belief-card">
-      <div class="belief-card-title">Jesus Christ — Fully God and Fully Human</div>
-      <div class="belief-card-body">The Second Person of the Trinity took on human flesh, was born of the Virgin Mary, lived a human life, was crucified, died, was buried, and on the third day rose from the dead. He ascended to the Father and will come again to judge the living and the dead. His resurrection is not a metaphor — it is the central fact of history.</div>
-    </div>
-    <div class="belief-card">
-      <div class="belief-card-title">The Church</div>
-      <div class="belief-card-body">The Church is the Body of Christ — not a voluntary association of like-minded believers, but an organism that participates in the divine life. Membership in the Church is not merely institutional; it is mystical, eucharistic, and transformative.</div>
-    </div>
-    <div class="belief-card">
-      <div class="belief-card-title">The Holy Mysteries (Sacraments)</div>
-      <div class="belief-card-body">The Orthodox Church recognizes seven Holy Mysteries as the primary means of our participation in the life of God: Baptism, Chrismation, the Eucharist, Repentance (Confession), Holy Orders, Marriage, and Holy Unction. These are not symbolic acts — they are real encounters with the living God.</div>
-    </div>
-    <div class="belief-card">
-      <div class="belief-card-title">Scripture and Tradition</div>
-      <div class="belief-card-body">Holy Scripture and Holy Tradition are not two separate sources of authority — they are one living stream. Scripture was written within the Church, is interpreted by the Church, and cannot be rightly understood apart from the context of the community that received, preserved, and lives it.</div>
-    </div>
-    <div class="belief-card">
-      <div class="belief-card-title">The Theotokos and the Saints</div>
-      <div class="belief-card-body">The Virgin Mary — the Theotokos, or God-bearer — holds a unique place in Orthodox piety. We also honor the saints as members of the Church who have passed through death into the nearer presence of God, and who intercede for us before the Throne of grace.</div>
-    </div>
+    <span class="rubric-voice">Expressed by the Council of Nicaea, AD 325 — the touchstone of Orthodox faith</span>
 
-    <h2 class="section-head" style="margin-top:3rem">The Nicene Creed</h2>
-    <div class="rubric-rule"></div>
-    <span class="rubric-voice">Recited together at every Divine Liturgy since the Fourth Century</span>
-    <div class="creed-block">
-      <p class="creed-text">I believe in one God, the Father Almighty, Maker of heaven and earth, and of all things visible and invisible.<br><br>And in one Lord Jesus Christ, the Son of God, the only-begotten, born of the Father before all ages; Light of Light, true God of true God; begotten, not made; of one essence with the Father, by whom all things were made; who for us men and for our salvation came down from the heavens, and was incarnate of the Holy Spirit and the Virgin Mary, and became man.<br><br>And He was crucified for us under Pontius Pilate, and suffered and was buried; and He rose again on the third day, according to the Scriptures; and ascended into the heavens, and is seated at the right hand of the Father; and He shall come again with glory to judge the living and the dead; whose kingdom shall have no end.<br><br>And in the Holy Spirit, the Lord, the Giver of Life; who proceeds from the Father; who together with the Father and the Son is worshiped and glorified; who spoke by the prophets.<br><br>In one, holy, catholic, and apostolic Church. I confess one baptism for the forgiveness of sins. I look for the resurrection of the dead, and the life of the age to come. Amen.</p>
+    <div class="creed-block" style="margin-top:2rem">
+      <p class="creed-text">We believe in one God, the Father Almighty, Maker of Heaven and Earth and of all things visible and invisible. And in one Lord Jesus Christ, the Son of God, the only-begotten, begotten of the Father before all ages. Light of light; true God of true God; begotten, not made; of one essence with the Father, by Whom all things were made; Who for us men and for our salvation came down from Heaven, and was incarnate of the Holy Spirit and the Virgin Mary, and became man. And He was crucified for us under Pontius Pilate, and suffered, and was buried. And the third day He arose again, according to the Scriptures, and ascended into Heaven, and sits at the right hand of the Father; and He shall come again with glory to judge the living and the dead; Whose Kingdom shall have no end. And in the Holy Spirit, the Lord, the Giver of Life, Who proceeds from the Father; Who with the Father and the Son together is worshipped and glorified; Who spoke by the prophets. In one Holy, Catholic, and Apostolic Church. We acknowledge one baptism for the remission of sins. We look for the resurrection of the dead and the life of the world to come. Amen.</p>
       <span class="creed-source">The Nicene-Constantinopolitan Creed · AD 381</span>
     </div>
 
-    <div style="margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap">
+    <h2 class="section-head">The Orthodox Church in America</h2>
+    <div class="rubric-rule"></div>
+    <div class="prose" style="margin-top:1.5rem">
+      <p>The Orthodox Church in America traces its origins to the arrival in Kodiak, Alaska of eight Orthodox missionaries from the Valaamo Monastery in the northern Karelia region of Russia in 1794. The missionaries made a great impact on the native Alaskan population and were responsible for bringing many to the Orthodox Christian faith. Today, the Orthodox Church in America numbers some 700 parishes, missions, communities, monasteries, and institutions throughout the United States, Canada, and Mexico.</p>
+      <p>The bishops of the Orthodox Church in America take part in the Assembly of Canonical Orthodox Bishops of the United States of America. Distinguished by the different immigrant communities by which they were founded, these jurisdictions are all a part of the Orthodox Churches, and their faithful and clergy have unity in all sacraments. With other jurisdictions such as the Antiochian and Greek Orthodox, the Orthodox Church in America shares a single witness to the Orthodox faith, and forms part of the wider Orthodox communion throughout the world.</p>
+      <p><em>The Mission of The Orthodox Church in America is to be faithful in fulfilling the commandment of Christ to "Go into all the world and make disciples of all nations, baptizing them in the name of the Father, and of the Son and of the Holy Spirit…"</em></p>
+    </div>
+
+    <h2 class="section-head">The Holy Mysteries</h2>
+    <div class="rubric-rule"></div>
+    <span class="rubric-voice">The seven sacraments of the Orthodox Church</span>
+
+    <div style="margin-top:2rem">
+
+      <div class="faq-item open">
+        <div class="faq-q">Baptism &amp; Chrismation</div>
+        <div class="faq-a">The entrance rites into membership in the body of Christ are regularly offered for both adults and infants who have prepared to enter into the Church. The Orthodox Church maintains the apostolic and biblical understanding of the reality of the sacraments. Baptism and chrismation constitute the prayerful use of the physical creation to embody the acts of God. Christ told the Church to baptize all nations in the name of the Father, and of the Son, and of the Holy Spirit. The laying on of hands and the act of Chrismation is as old as the Old Testament and the anointing of prophets, priests, and kings. Children are baptized, chrismated, and given communion — full members of the Church from the beginning.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Confession</div>
+        <div class="faq-a">Confession is offered following evening services, as time allows prior to Liturgy on Sunday, and by appointment. The priest, as representative of the Church, hears the confession and binds or looses — witnessing the confession of the repentant person and admitting them to the communion of the table of Christ. Everything said to a priest in confession is under the seal of confession. The priest will not reveal your confessions. Confession is healthy for the soul. In confession we admit our faults out loud to another, and receive the assuring and healing words that what we have confessed is forgiven in Christ.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Communion (Eucharist)</div>
+        <div class="faq-a">The Divine Liturgy, at which we partake of the body and blood and divinity of Christ, is offered every Sunday and on feast days. As Saint Ignatius of Antioch wrote on his way to martyrdom in AD 108, the Eucharist is "the medicine of immortality, and the antidote to prevent us from dying, but which causes that we should live for ever in Jesus Christ." Communion is for Orthodox Christians who have prepared themselves through fasting, prayer, and the sacrament of confession.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Marriage</div>
+        <div class="faq-a">The celebration of a marriage in the church is determined by the Church's liturgical calendar and the parish calendar. The service consists of the Office of Betrothal — at which rings are blessed and exchanged, symbolizing that each spouse will constantly be complementing and enriching the other — followed by the Office of Crowning, in which the heads of the bridegroom and bride are crowned. The crowns are crowns of joy and Edenic vassalage, but also crowns of martyrdom, since marriage involves a self-sacrifice on both sides. At the end of the service the newly married couple drink from the same cup of wine, a symbol that after this they share a common life with one another.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Ordination</div>
+        <div class="faq-a">The apostles of Christ ordained the first seven deacons, including the protomartyr St. Stephen. They also ordained men to be presbyteroi ("elders") or episkopoi ("overseers") — words that would later give the words "priest" and "bishop" in English. The three main offices of the clergy are deacon, priest, and bishop. Ordination to any of the offices of the clergy is a calling to service to the body of Christ.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Unction</div>
+        <div class="faq-a">The sacrament of unction involves the prayerful anointing of the sick with oil. Its prayers ask for the healing of soul and body, the restoration of both physical and spiritual health, as St. James describes and as the apostles practiced (Mark 6:13; James 5:14–16).</div>
+      </div>
+
+    </div>
+
+    <div style="margin-top:3rem;display:flex;gap:1rem;flex-wrap:wrap">
       <a href="/about-orthodoxy" class="btn btn-maroon">Learn More About Orthodoxy</a>
       <a href="/contact-us" class="btn btn-outline">Speak With Our Priest</a>
     </div>
@@ -281,8 +290,16 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   </aside>
 </div>
 
+
+<div class="quote-break reveal">
+  <div class="qb-inner">
+    <p class="qb-text">Our heart is restless, O Lord, until it repose in Thee.</p>
+    <span class="qb-attr">St. Augustine of Hippo</span>
+  </div>
+</div>
+
 <footer>
-  <span class="footer-cross">✦ ✝ ✦</span>
+  <span class="footer-cross"></span>
   <div class="footer-cols">
     <div>
       <span class="footer-col-head">Saints Peter &amp; Paul Orthodox Cathedral</span>
@@ -328,10 +345,11 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
     </div>
   </div>
   <div class="footer-bottom">
-    <p class="footer-copy">© Saints Peter &amp; Paul Orthodox Cathedral. All Rights Reserved.</p>
-    <p class="footer-addr">109 Grand Street · Jersey City, NJ 07302 · (201) 434-1986</p>
+    <p class="footer-copy">&copy; Saints Peter &amp; Paul Orthodox Cathedral. All Rights Reserved.</p>
+    <p class="footer-addr">109 Grand Street &middot; Jersey City, NJ 07302 &middot; (201) 434-1986</p>
   </div>
 </footer>
+
 <!-- Hero Image Rotator -->
 <script>
 /* ═══════════════════════════════════════════════════════

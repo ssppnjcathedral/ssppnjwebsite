@@ -33,20 +33,20 @@ a{color:inherit;text-decoration:none}
 .rubric-voice{display:block;font-family:var(--f-display);font-style:italic;font-weight:400;font-size:1.15rem;color:var(--maroon);margin-top:.4rem;line-height:1.4}
 .rubric-voice.light{color:rgba(232,201,122,.75)}
 .chapter-bar{background:var(--maroon);padding:.65rem 4rem;display:flex;align-items:center;justify-content:space-between}
-.cbar-text{font-family:var(--f-ui);font-size:.70rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:rgba(246,241,232,.60)}
+.cbar-text{font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:rgba(246,241,232,.60)}
 .cbar-text.bright{color:rgba(246,241,232,.90)}
 .btn{display:inline-block;font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;padding:.85rem 2.2rem;border:1px solid currentColor;cursor:pointer;transition:all .22s;white-space:nowrap}
 .btn-maroon{color:var(--vellum);background:var(--maroon);border-color:var(--maroon)}
 .btn-maroon:hover{background:var(--maroon-deep)}
 .btn-outline{color:var(--maroon);border-color:var(--maroon)}
-.btn-outline:hover{background:var(--maroon);color:var(--vellum)}
-.sb-link{font-family:var(--f-ui);font-size:.70rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);border-bottom:1px solid rgba(123,29,42,.28);padding-bottom:.1rem;transition:border-color .2s}
+.btn-outline:hover{background:var(--maroon);color:var(--vellum)}footer .btn-outline{color:rgba(246,241,232,.92);border-color:rgba(246,241,232,.55)}footer .btn-outline:hover{background:rgba(246,241,232,.15);color:#fff;border-color:rgba(246,241,232,.80)}
+.sb-link{font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);border-bottom:1px solid rgba(123,29,42,.28);padding-bottom:.1rem;transition:border-color .2s}
 .sb-link:hover{border-color:var(--maroon)}
 /* NAV */
 .nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(246,241,232,.97);backdrop-filter:blur(10px);border-bottom:var(--rule-faint)}
 .nav-inner{max-width:1380px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px;padding:0 3rem}
 .nav-logo-name{font-family:var(--f-display);font-weight:500;font-size:1.25rem;color:var(--text);display:block}
-.nav-logo-sub{font-family:var(--f-ui);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);display:block}
+.nav-logo-sub{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);display:block}
 .nav-links{display:flex;align-items:center;list-style:none}
 .nav-links>li{position:relative}
 .nav-links>li>a{font-family:var(--f-ui);font-size:.78rem;letter-spacing:.10em;text-transform:uppercase;color:var(--ink);padding:1.1rem .85rem;display:block;transition:color .18s}
@@ -54,11 +54,11 @@ a{color:inherit;text-decoration:none}
 .nav-drop{position:absolute;top:100%;left:0;background:var(--vellum);border-top:2px solid var(--maroon);border-bottom:var(--rule-faint);border-left:var(--rule-faint);border-right:var(--rule-faint);min-width:200px;padding:.5rem 0;opacity:0;pointer-events:none;transform:translateY(-4px);transition:all .16s;box-shadow:0 8px 28px rgba(28,20,16,.10)}
 .nav-links>li:hover .nav-drop{opacity:1;pointer-events:all;transform:none}
 .nav-drop a{display:block;font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);padding:.5rem 1.4rem;transition:color .14s}
-.nav-drop a:hover{color:var(--maroon)}
+.nav-drop a:hover{color:var(--maroon)}.nav-links .nav-active{color:var(--maroon)}.nav-links .nav-active-parent>a{color:var(--maroon);border-bottom:2px solid var(--gold)}.nav-drop .nav-active{color:var(--maroon);font-weight:600}
 .nav-give{font-family:var(--f-ui);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--vellum);background:var(--maroon);padding:.5rem 1.1rem;transition:background .2s}
 .nav-give:hover{background:var(--maroon-deep)}
 /* PAGE HERO */
-.page-hero{padding-top:60px;background:linear-gradient(to right,rgba(21,8,4,.90) 0%,rgba(21,8,4,.68) 55%,rgba(21,8,4,.42) 100%),url('/images/heroes/cemeteries.webp') center/cover no-repeat;position:relative;overflow:hidden}
+.page-hero{padding-top:60px;background:linear-gradient(to right,rgba(21,8,4,.90) 0%,rgba(21,8,4,.68) 55%,rgba(21,8,4,.42) 100%),url('/images/heroes/cemeteries.webp') center/cover no-repeat;background-color:var(--apse);min-height:420px;display:flex;align-items:center;position:relative;overflow:hidden}}
 .page-hero-inner{max-width:1380px;margin:0 auto;padding:6rem 4.5rem 5rem;position:relative;z-index:1}
 .page-hero-title{font-family:var(--f-display);font-weight:300;font-size:clamp(2.8rem,6vw,5.5rem);line-height:.92;color:rgba(246,241,232,.95);margin:.5rem 0}
 .page-hero-title em{font-style:italic}
@@ -71,7 +71,7 @@ a{color:inherit;text-decoration:none}
 .body-p{font-family:var(--f-body);font-size:1rem;line-height:1.82;color:var(--ink);text-align:justify;hyphens:auto;margin-bottom:1.2em}
 .intro-aside{border-left:var(--rule-faint);padding-left:2.5rem}
 .aside-card{background:var(--vellum-mid);border:var(--rule-faint);padding:2rem 1.75rem;margin-bottom:1.5rem}
-.aside-card-label{font-family:var(--f-ui);font-size:.50rem;letter-spacing:.22em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.5rem}
+.aside-card-label{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.5rem}
 .aside-card-title{font-family:var(--f-display);font-size:1.35rem;font-weight:400;color:var(--text);margin-bottom:.4rem;line-height:1.2}
 .aside-card-body{font-family:var(--f-body);font-size:.92rem;line-height:1.72;color:var(--ink)}
 .aside-card-body strong{color:var(--maroon)}
@@ -89,15 +89,15 @@ a{color:inherit;text-decoration:none}
 .cemetery-photo-caption{position:absolute;bottom:0;left:0;right:0;padding:2rem 2rem 1.5rem;font-family:var(--f-display);font-style:italic;font-size:.92rem;color:rgba(255,255,255,.80);line-height:1.4}
 .cemetery-title{font-family:var(--f-display);font-weight:300;font-size:clamp(2rem,3.5vw,2.8rem);color:var(--text);margin:.5rem 0 .4rem;line-height:1.1}
 .cemetery-title em{font-style:italic;color:var(--maroon)}
-.cemetery-est{font-family:var(--f-ui);font-size:.50rem;letter-spacing:.22em;text-transform:uppercase;color:var(--maroon);display:block;margin-bottom:1.5rem}
+.cemetery-est{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--maroon);display:block;margin-bottom:1.5rem}
 .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:var(--rule-faint);margin:2rem 0}
 .info-cell{padding:.85rem 1.25rem;border-right:var(--rule-faint);border-bottom:var(--rule-faint)}
 .info-cell:nth-child(even){border-right:none}
 .info-cell:nth-last-child(-n+2){border-bottom:none}
-.info-label{font-family:var(--f-ui);font-size:.46rem;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.2rem}
+.info-label{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.2rem}
 .info-value{font-family:var(--f-display);font-size:1rem;color:var(--text);line-height:1.3}
 .info-value a{color:var(--maroon);border-bottom:1px solid rgba(123,29,42,.25)}
-.badge-historic{display:inline-block;font-family:var(--f-ui);font-size:.48rem;letter-spacing:.18em;text-transform:uppercase;padding:.28rem .9rem;border:1px solid var(--verdigris);color:var(--verdigris);margin-top:.5rem}
+.badge-historic{display:inline-block;font-family:var(--f-ui);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;padding:.28rem .9rem;border:1px solid var(--verdigris);color:var(--verdigris);margin-top:.5rem}
 /* INTERMENT */
 .interment-section{background:var(--vellum-mid);border-bottom:var(--rule-faint)}
 .interment-inner{max-width:1380px;margin:0 auto;padding:5rem 4.5rem;display:grid;grid-template-columns:3fr 2fr;gap:6rem}
@@ -108,31 +108,31 @@ a{color:inherit;text-decoration:none}
 .step-body{font-family:var(--f-body);font-size:.94rem;line-height:1.75;color:var(--ink)}
 .contact-card{background:var(--vellum);border:2px solid var(--maroon);padding:2.5rem 2rem}
 .contact-card-head{font-family:var(--f-display);font-weight:400;font-size:1.35rem;color:var(--text);margin-bottom:1.5rem}
-.contact-item{font-family:var(--f-ui);font-size:.50rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);padding:.6rem 0;border-bottom:var(--rule-hair);display:flex;flex-direction:column;gap:.2rem}
+.contact-item{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);padding:.6rem 0;border-bottom:var(--rule-hair);display:flex;flex-direction:column;gap:.2rem}
 .contact-item:last-of-type{border-bottom:none}
-.contact-item span{color:var(--stone);font-size:.44rem;letter-spacing:.16em}
+.contact-item span{color:var(--stone);font-size:.72rem;letter-spacing:.16em}
 .contact-item a{color:var(--maroon)}
 /* THEOLOGY */
 .theology-strip{background:var(--apse);padding:5rem 4.5rem;text-align:center}
 .theology-inner{max-width:860px;margin:0 auto}
 .theology-quote{font-family:var(--f-display);font-style:italic;font-weight:300;font-size:clamp(1.3rem,2.5vw,1.8rem);line-height:1.55;color:rgba(246,241,232,.80);margin:1rem 0 1.5rem}
-.theology-source{font-family:var(--f-ui);font-size:.50rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(184,131,40,.60)}
+.theology-source{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(184,131,40,.60)}
 /* FOOTER */
 footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:4.5rem 4.5rem 2.5rem}
 .footer-cross{display:block;text-align:center;font-size:1.1rem;color:rgba(184,131,40,.45);letter-spacing:.8em;padding-left:.8em;margin-bottom:4rem}
 .footer-cols{max-width:1380px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:5rem;margin-bottom:3.5rem}
-.footer-col-head{font-family:var(--f-ui);font-size:.66rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(246,241,232,.28);display:block;margin-bottom:1.2rem;padding-bottom:.5rem;border-bottom:1px solid rgba(246,241,232,.06)}
+.footer-col-head{font-family:var(--f-ui);font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(246,241,232,.82);display:block;margin-bottom:1.2rem;padding-bottom:.5rem;border-bottom:1px solid rgba(246,241,232,.06)}
 .footer-name{font-family:var(--f-display);font-weight:400;font-size:1.2rem;color:rgba(246,241,232,.88);line-height:1.3;margin-bottom:.75rem}
-.footer-meta{font-family:var(--f-ui);font-size:.64rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.30);line-height:2.3}
-.footer-meta a{color:rgba(184,131,40,.60);transition:color .2s}
+.footer-meta{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.72);line-height:2.3}
+.footer-meta a{color:rgba(184,131,40,.85);transition:color .2s}
 .footer-meta a:hover{color:var(--gold)}
 .footer-nav{list-style:none;display:flex;flex-direction:column}
-.footer-nav li{padding:.38rem 0;border-bottom:1px solid rgba(246,241,232,.04)}
+.footer-nav li{padding:.38rem 0;border-bottom:1px solid rgba(246,241,232,.10)}
 .footer-nav li:last-child{border-bottom:none}
-.footer-nav a{font-family:var(--f-ui);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,232,.45);transition:color .2s}
-.footer-nav a:hover{color:rgba(246,241,232,.85)}
-.footer-bottom{max-width:1380px;margin:2.5rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(246,241,232,.06);display:flex;justify-content:space-between;align-items:center}
-.footer-copy,.footer-addr{font-family:var(--f-ui);font-size:.64rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.22)}
+.footer-nav a{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,232,.85);transition:color .2s}
+.footer-nav a:hover{color:rgba(246,241,232,.95)}.footer-blurb{font-family:var(--f-display);font-style:italic;font-size:.95rem;color:rgba(246,241,232,.85);line-height:1.65;margin-bottom:1.25rem}
+.footer-bottom{max-width:1380px;margin:2.5rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(246,241,232,.12);display:flex;justify-content:space-between;align-items:center}
+.footer-copy,.footer-addr{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.60)}
 .footer-addr{text-align:right}
 /* RESPONSIVE */
 /* ── MOBILE NAV DRAWER ── */
@@ -147,14 +147,14 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 .nav-drawer-overlay.open{opacity:1;pointer-events:all}
 .nav-drawer-head{padding:1.5rem 1.75rem 1rem;border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:space-between}
 .nav-drawer-logo{font-family:var(--f-display);font-weight:500;font-size:1.1rem;color:#fff}
-.nav-drawer-logo span{font-family:var(--f-ui);font-size:.52rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);display:block;margin-top:2px}
+.nav-drawer-logo span{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);display:block;margin-top:2px}
 .nav-drawer-close{width:32px;height:32px;background:rgba(255,255,255,.08);border:none;color:rgba(255,255,255,.65);cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:background .2s}
 .nav-drawer-close:hover{background:rgba(255,255,255,.15)}
 .nav-drawer-links{padding:1rem 0;flex:1}
 .nav-drawer-links a{display:block;font-family:var(--f-ui);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,232,.70);padding:.9rem 1.75rem;border-bottom:1px solid rgba(255,255,255,.05);transition:all .18s}
 .nav-drawer-links a:hover{color:#fff;background:rgba(255,255,255,.05)}
-.nav-drawer-links .drawer-section{font-family:var(--f-ui);font-size:.48rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(184,131,40,.55);padding:.85rem 1.75rem .35rem;display:block}
-.nav-drawer-give{margin:1.25rem 1.75rem;display:block;text-align:center;font-family:var(--f-ui);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;padding:.85rem;background:var(--maroon);color:var(--vellum);transition:background .2s}
+.nav-drawer-links .drawer-section{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(184,131,40,.55);padding:.85rem 1.75rem .35rem;display:block}
+.nav-drawer-give{margin:1.25rem 1.75rem;display:block;text-align:center;font-family:var(--f-ui);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;padding:.85rem;background:var(--maroon);color:var(--vellum);transition:background .2s}
 .nav-drawer-give:hover{background:var(--maroon-deep)}
 
 @media(max-width:1100px){
@@ -166,7 +166,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   .footer-cols{grid-template-columns:1fr 1fr;gap:3rem}
 }
 @media(max-width:768px){
-  .nav-links{display:none}.nav-hamburger{display:flex}
+  .nav-links{display:none}.nav-hamburger{display:flex}.nav-give{display:none}
   .chapter-bar{padding:.65rem 1.5rem}
   .page-hero-inner,.intro-inner,.interment-inner{padding:4rem 1.5rem}
   .cemetery-text{padding:3.5rem 1.5rem}
@@ -178,41 +178,30 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   footer{padding:4rem 1.5rem 2rem}
   .footer-cols{grid-template-columns:1fr;gap:2.5rem}
   .footer-bottom{flex-direction:column;gap:.75rem;text-align:center}
+  /* ── MOBILE FONT BUMPS ── */
+  body{font-size:18px;line-height:1.8}
+  [class*="-over"],[class*="-cat"],[class*="-sub"],[class*="-label"],[class*="-tag"],[class*="-kicker"],[class*="-lbl"],[class*="-badge"],[class*="-date"],[class*="-meta"]{font-size:.72rem!important;letter-spacing:.12em}
+  [class*="-title"]{line-height:1.2}
+  [class*="hero-title"],[class*="page-title"]{line-height:1.1}
+  [class*="-name"],[class*="-head"]{line-height:1.25}
+  .footer-copy,.footer-legal,.footer-bottom{font-size:.72rem}
+  .nav-drawer-links a{font-size:.76rem;padding:1rem 1.75rem}
   .footer-addr{text-align:center}
 }
 
 /* ── QUOTE INTERSTITIAL ───────────────────────────── */
-.quote-break{
-  background:var(--apse);
-  padding:5rem 4.5rem;
-  text-align:center;
-  position:relative;
-  overflow:hidden;
-  margin:0;
-}
-.quote-break::before{
-  content:'';
-  position:absolute;
-  top:0;left:50%;transform:translateX(-50%);
-  width:1px;height:40px;
-  background:rgba(184,131,40,.35);
-}
-.quote-break::after{
-  content:'';
-  position:absolute;
-  bottom:0;left:50%;transform:translateX(-50%);
-  width:1px;height:40px;
-  background:rgba(184,131,40,.35);
-}
-.qb-inner{max-width:780px;margin:0 auto;position:relative;z-index:1}
-.qb-cross{display:block;font-size:.85rem;color:rgba(184,131,40,.40);letter-spacing:.6em;padding-left:.6em;margin-bottom:1.75rem}
-.qb-rule{width:48px;height:1px;background:rgba(184,131,40,.40);margin:0 auto 1.75rem}
-.qb-text{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-weight:300;font-size:clamp(1.6rem,3.5vw,2.5rem);line-height:1.35;color:rgba(246,241,232,.88);margin-bottom:1.5rem}
-.qb-attr{font-family:'Cinzel',Georgia,serif;font-size:.62rem;letter-spacing:.20em;text-transform:uppercase;color:rgba(184,131,40,.65)}
+.quote-break{margin:0;padding:4rem 4.5rem;background:var(--vellum);position:relative}
+.qb-inner{max-width:680px;margin:0 auto;padding-left:2rem;border-left:3px solid var(--maroon);position:relative}
+.qb-cross{display:none}
+.qb-rule{display:none}
+.qb-text{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-weight:300;font-size:clamp(1.5rem,3vw,2.2rem);line-height:1.4;color:var(--text);margin-bottom:.75rem}
+.qb-attr{font-family:'Cinzel',Georgia,serif;font-size:.72rem;letter-spacing:.20em;text-transform:uppercase;color:var(--maroon);display:block}
 @media(max-width:768px){
-  .quote-break{padding:3.5rem 1.5rem}
-  .qb-text{font-size:1.45rem}
+  .quote-break{padding:2.5rem 1.5rem}.qb-inner{padding-left:1.25rem}.qb-text{font-size:1.3rem}
 }
+
+/* Content area background fix */
+.page-body,.main-wrap,.cal-wrap,.giving-wrap,.gallery-wrap,.video-wrap,.bulletin-wrap,.news-wrap,.contact-wrap,.cemetery-wrap{background:var(--vellum)}
 </style>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
@@ -248,11 +237,11 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
           <a href="/bulletins">Bulletins</a>
         </div>
       </li>
-      <li><a href="#">Resources ▾</a>
+      <li class="nav-active-parent"><a href="#">Resources ▾</a>
         <div class="nav-drop">
           <a href="/readings">Readings</a>
           <a href="/videos">Videos</a>
-          <a href="/cemeteries">Cemeteries</a>
+          <a href="/cemeteries" class="nav-active" aria-current="page">Cemeteries</a>
         </div>
       </li>
       <li><a href="/contact-us">Contact</a></li>
@@ -297,7 +286,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 <!-- PAGE HERO -->
 <div class="page-hero">
   <div class="hero-cross-bg">✝</div>
-  <div class="page-hero-inner">
+  <div class="page-hero-inner" style="padding-left:75px;padding-top:calc(5rem + 5px);padding-bottom:calc(4rem + 20px)">
     <span class="rubric light">Parish Cemeteries</span>
     <div class="rubric-rule gold"></div>
     <h1 class="page-hero-title">The faithful<br>at <em>rest</em></h1>
@@ -507,8 +496,6 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 <!-- FOOTER -->
 <div class="quote-break reveal">
   <div class="qb-inner">
-    <span class="qb-cross">✦ ✝ ✦</span>
-    <div class="qb-rule"></div>
     <p class="qb-text">Blessed are the dead who die in the Lord. They rest from their labors, and their works follow them.</p>
     <span class="qb-attr">Revelation 14:13</span>
   </div>
@@ -519,24 +506,52 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
     <div>
       <span class="footer-col-head">Saints Peter &amp; Paul Orthodox Cathedral</span>
       <p class="footer-name">Sts. Peter &amp; Paul<br>Orthodox Cathedral</p>
-      <p class="footer-meta">Diocese of New York &amp; New Jersey<br><a href="https://nynjoca.org" target="_blank">nynjoca.org</a><br>Orthodox Church in America<br><a href="https://oca.org" target="_blank">oca.org</a></p>
+      <p class="footer-meta">
+        Diocese of New York &amp; New Jersey<br>
+        <a href="https://nynjoca.org" target="_blank">nynjoca.org</a><br>
+        Orthodox Church in America<br>
+        <a href="https://oca.org" target="_blank">oca.org</a>
+      </p>
+      <div class="footer-socials">
+        <a href="#" target="_blank">Facebook</a>
+        <a href="#" target="_blank">Instagram</a>
+      </div>
     </div>
     <div>
       <span class="footer-col-head">Navigate</span>
       <ul class="footer-nav">
-        <li><a href="/">Home</a></li>
         <li><a href="/about-our-church">About Our Church</a></li>
+        <li><a href="/administration">Administration</a></li>
         <li><a href="/schedule">Liturgical Calendar</a></li>
+        <li><a href="/gallery">Gallery</a></li>
+        <li><a href="/about-orthodoxy">About Orthodoxy</a></li>
+        <li><a href="/our-beliefs">Our Beliefs</a></li>
+        <li><a href="/videos">Videos</a></li>
         <li><a href="/readings">Daily Readings</a></li>
+        <li><a href="/saint-of-the-day">Saint of the Day</a></li>
         <li><a href="/bulletins">Bulletins</a></li>
         <li><a href="/cemeteries">Cemeteries</a></li>
         <li><a href="/contact-us">Contact Us</a></li>
-        <li><a href="/donate">Give</a></li>
       </ul>
     </div>
     <div>
-      <span class="footer-col-head">Cemetery Contact</span>
-      <p style="font-family:var(--f-ui);font-size:.50rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,232,.40);line-height:2.3">Parish Office<br>109 Grand Street<br>Jersey City, NJ 07302<br>(201) 434-1986<br><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="04777774746a6e446369656d682a6
+      <span class="footer-col-head">Visit Us</span>
+      <p class="footer-blurb">Whether you're visiting for the first time or looking to become part of our parish family — you are welcome here.</p>
+      <a href="/contact-us" class="btn btn-outline" style="margin-bottom:2rem;display:inline-block">Contact the Parish</a>
+      <span class="footer-col-head" style="margin-top:.5rem">Service Times</span>
+      <p class="footer-meta" style="line-height:2.4">
+        Vespers · Saturdays 5:00 PM<br>
+        Divine Liturgy · Sundays 9:30 AM<br>
+        Office · Mon–Fri 9:00 AM–5:00 PM
+      </p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© Saints Peter &amp; Paul Orthodox Cathedral. All Rights Reserved.</p>
+    <p class="footer-addr">109 Grand Street · Jersey City, NJ 07302 · (201) 434-1986</p>
+  </div>
+</footer>
+
 <!-- Hero Image Rotator -->
 <script>
 /* ═══════════════════════════════════════════════════════
