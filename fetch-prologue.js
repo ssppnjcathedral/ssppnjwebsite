@@ -2,29 +2,16 @@
 /**
  * fetch-prologue.js
  * Scrapes all 366 days of the Prologue of Ohrid from myrrh-bearers.org
- * and saves them as _data/prologue.json
+ * Writes 12 monthly files to _data/ to stay under Netlify's 2MB file limit.
+ *
+ *   _data/prologue-january.json
+ *   _data/prologue-february.json
+ *   ... etc
+ *
+ * Each file is keyed by day number: { "1": {...}, "2": {...}, ... }
  *
  * Usage:   node fetch-prologue.js
- * Output:  _data/prologue.json  (keyed by "MM-DD")
  * Deps:    npm install node-fetch
- *
- * ── CONFIRMED HTML PATTERNS (from raw file inspection) ──────────────────────
- *
- * Pattern A  (Jan 1 – Mar 18 approx)
- *   <b><p>1. Saint Name.</p>\n</b>
- *   <p>Body text...</p>
- *
- * Pattern B  (Mar 19 – May 18 approx)
- *   <p><b>1. Saint Name.</b></p>   ← header is its own <p>, period may be outside </b>
- *   <p>Body text...</p>             ← body is the NEXT <p>
- *
- * Pattern C  (May 19+ approx)
- *   <p><b>1. Saint Name.</b></p>
- *   <p>Body text...</p>
- *   (same as B structurally — handled by same code path)
- *
- * In all patterns the bold element contains ONLY the saint name/number,
- * and the body text is always in a separate following <p>.
  */
 
 const fetch = (...args) => import('node-fetch').then(({ default: f }) => f(...args));
@@ -33,9 +20,9 @@ const path  = require('path');
 
 // ─── Config ───────────────────────────────────────────────────────────────────
 
-const BASE_URL    = 'https://myrrh-bearers.org/prologue';
-const OUTPUT_PATH = path.join(__dirname, '_data', 'prologue.json');
-const DELAY_MS    = 800;
+const BASE_URL = 'https://myrrh-bearers.org/prologue';
+const DATA_DIR = path.join(__dirname, '_data');
+const DELAY_MS = 800;
 
 const MONTHS = [
   { name: 'january',   days: 31 },
@@ -51,12 +38,6 @@ const MONTHS = [
   { name: 'november',  days: 30 },
   { name: 'december',  days: 31 },
 ];
-
-const MONTH_NUMBERS = {
-  january:'01', february:'02', march:'03',  april:'04',
-  may:'05',     june:'06',     july:'07',   august:'08',
-  september:'09', october:'10', november:'11', december:'12',
-};
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -80,23 +61,19 @@ function stripTags(str) {
   return (str || '').replace(/<[^>]*>/g, '');
 }
 
-// Extract number and name from "1. Saint Name" or "Saint Name"
 function parseName(raw) {
-  const s = raw.replace(/\.$/, '').trim(); // strip trailing period
+  const s = raw.replace(/\.$/, '').trim();
   const numbered = s.match(/^(\d+)\.\s+(.+)$/);
   if (numbered) return { num: parseInt(numbered[1], 10), name: numbered[2].trim() };
   if (s.length > 0 && s.length < 150) return { num: null, name: s };
   return null;
 }
 
-// Is this text a saint header? Must look like a name, not body prose.
-// Heuristic: short (< 120 chars), no sentence-ending punctuation mid-string,
-// doesn't start with a lowercase letter.
 function looksLikeHeader(text) {
   if (!text || text.length > 150) return false;
-  if (/^\d+\.\s/.test(text)) return true;          // numbered → definitely a header
-  if (/^[a-z]/.test(text)) return false;            // starts lowercase → body text
-  if (text.split('.').length > 3) return false;     // multiple sentences → body text
+  if (/^\d+\.\s/.test(text)) return true;
+  if (/^[a-z]/.test(text)) return false;
+  if (text.split('.').length > 3) return false;
   return true;
 }
 
@@ -104,13 +81,12 @@ function looksLikeHeader(text) {
 
 function parseDayPage(html, month, day, url) {
 
-  // ── Title ──────────────────────────────────────────────────────────────────
+  // Title
   const h1Match = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i);
   const title   = h1Match
     ? clean(stripTags(h1Match[1])).replace(/^Prologue from Ochrid\s*[-–]\s*/i, '').trim()
     : '';
 
-  // ── Isolate saints block: after </h1>, before first <h4> ──────────────────
   const h1End = html.indexOf('</h1>');
   if (h1End === -1) return empty(month, day, title, url);
 
@@ -118,7 +94,7 @@ function parseDayPage(html, month, day, url) {
   const footerIdx = body.indexOf('The Prologue From Ochrid');
   if (footerIdx !== -1) body = body.slice(0, footerIdx);
 
-  // ── Split at h4 section headers ────────────────────────────────────────────
+  // Split at h4 section headers
   const h4All     = [...body.matchAll(/<h4[^>]*>([\s\S]*?)<\/h4>/gi)];
   const saintsRaw = h4All.length > 0 ? body.slice(0, h4All[0].index) : body;
 
@@ -130,43 +106,25 @@ function parseDayPage(html, month, day, url) {
     sections[label] = body.slice(start, end);
   });
 
-  // ── Parse Saints ──────────────────────────────────────────────────────────
-  //
-  // Unified approach: tokenize the saints block into a flat list of tokens,
-  // each tagged as either HEADER or BODY, then group them.
-  //
-  // Token types:
-  //   HEADER — a <b><p>...</p></b> block (Pattern A)
-  //          — a <p> whose ONLY content (ignoring trailing period) is a <b>...</b> (Patterns B/C)
-  //   BODY   — any other <p> with actual prose text
-
+  // ── Tokenize saints block ──────────────────────────────────────────────────
   const tokens = [];
 
-  // ── Pattern A tokens: <b><p>text</p></b> ───────────────────────────────────
-  const patARegex = /<b[^>]*>\s*<p[^>]*>([\s\S]*?)<\/p>\s*<\/b>/gi;
-  for (const m of saintsRaw.matchAll(patARegex)) {
-    const text = clean(stripTags(m[1]));
-    const parsed = parseName(text);
-    if (parsed) {
-      tokens.push({ type: 'HEADER', pos: m.index, len: m[0].length, parsed });
-    }
+  // Pattern A: <b><p>name</p></b>
+  for (const m of saintsRaw.matchAll(/<b[^>]*>\s*<p[^>]*>([\s\S]*?)<\/p>\s*<\/b>/gi)) {
+    const parsed = parseName(clean(stripTags(m[1])));
+    if (parsed) tokens.push({ type: 'HEADER', pos: m.index, len: m[0].length, parsed });
   }
 
-  // ── Pattern B/C tokens: <p> containing only a <b> element ─────────────────
-  // Match every <p>...</p> and check if it's a standalone bold header
-  const pRegex = /<p[^>]*>([\s\S]*?)<\/p>/gi;
-  for (const pm of saintsRaw.matchAll(pRegex)) {
-    // Skip if already captured as part of Pattern A
-    const alreadyCaptured = tokens.some(t =>
-      pm.index >= t.pos && pm.index < t.pos + t.len
-    );
+  // Pattern B/C: <p> whose sole content is a <b> or <strong> element
+  for (const pm of saintsRaw.matchAll(/<p[^>]*>([\s\S]*?)<\/p>/gi)) {
+    const alreadyCaptured = tokens.some(t => pm.index >= t.pos && pm.index < t.pos + t.len);
     if (alreadyCaptured) continue;
 
     const inner = pm[1];
     const pText = clean(stripTags(inner));
+    if (!pText) continue;
 
-    // Is the entire paragraph content just a bold element (plus optional period)?
-    // Match: optional whitespace, <b>text</b>, optional period/whitespace
+    // Solo bold header: entire <p> is just a <b>...</b> (period may be outside tag)
     const soloB = inner.match(/^\s*<(?:b|strong)[^>]*>([\s\S]*?)<\/(?:b|strong)>\s*\.?\s*$/i);
     if (soloB) {
       const boldText = clean(stripTags(soloB[1]));
@@ -179,34 +137,27 @@ function parseDayPage(html, month, day, url) {
       }
     }
 
-    // Otherwise it's a body paragraph
-    if (pText && !pText.includes('|')) { // skip toolbar paragraphs
+    // Body paragraph
+    if (!pText.includes('|')) {
       tokens.push({ type: 'BODY', pos: pm.index, len: pm[0].length, text: pText });
     }
   }
 
-  // Sort all tokens by position in the document
+  // Sort by document position and group into saints
   tokens.sort((a, b) => a.pos - b.pos);
 
-  // ── Group tokens into saints ───────────────────────────────────────────────
   const saints = [];
   for (const tok of tokens) {
     if (tok.type === 'HEADER') {
-      saints.push({
-        number: tok.parsed.num,
-        name:   tok.parsed.name,
-        text:   '',
-      });
+      saints.push({ number: tok.parsed.num, name: tok.parsed.name, text: '' });
     } else if (tok.type === 'BODY' && saints.length > 0) {
       saints[saints.length - 1].text =
         (saints[saints.length - 1].text + ' ' + tok.text).trim();
     }
   }
-
-  // Auto-number any saints that had no number
   saints.forEach((s, i) => { if (s.number === null) s.number = i + 1; });
 
-  // ── Reflection ─────────────────────────────────────────────────────────────
+  // Reflection
   let reflection = '';
   const reflKey  = Object.keys(sections).find(k => k.includes('reflection'));
   if (reflKey) {
@@ -214,7 +165,7 @@ function parseDayPage(html, month, day, url) {
       .map(p => clean(stripTags(p[1]))).filter(Boolean).join('\n\n');
   }
 
-  // ── Contemplation ──────────────────────────────────────────────────────────
+  // Contemplation
   let contemplation = '';
   const contKey = Object.keys(sections).find(k => k.includes('contemplation'));
   if (contKey) {
@@ -225,23 +176,26 @@ function parseDayPage(html, month, day, url) {
     ].filter(Boolean).join('\n');
   }
 
-  // ── Homily ─────────────────────────────────────────────────────────────────
+  // Homily
   let homily = { scripture: '', text: '' };
   const homKey = Object.keys(sections).find(k => k.includes('homily'));
   if (homKey) {
-    const sec    = sections[homKey];
-    const rubric = sec.match(/<p[^>]*class="rubric"[^>]*>([\s\S]*?)<\/p>/i);
+    const sec        = sections[homKey];
+    const rubric     = sec.match(/<p[^>]*class="rubric"[^>]*>([\s\S]*?)<\/p>/i);
     const rubricText = rubric ? clean(stripTags(rubric[1])) : '';
-    const bq     = sec.match(/<blockquote[^>]*>([\s\S]*?)<\/blockquote>/i);
+    const bq         = sec.match(/<blockquote[^>]*>([\s\S]*?)<\/blockquote>/i);
     if (bq) {
-      const bqText     = clean(stripTags(bq[1]));
-      homily.scripture = rubricText ? `${rubricText} — ${bqText}` : bqText;
+      homily.scripture = rubricText
+        ? `${rubricText} — ${clean(stripTags(bq[1]))}`
+        : clean(stripTags(bq[1]));
     } else if (rubricText) {
       homily.scripture = rubricText;
     }
     homily.text = [...sec.matchAll(/<p[^>]*>([\s\S]*?)<\/p>/gi)]
       .map(p => clean(stripTags(p[1])))
-      .filter(t => t && !t.match(/^(O Lord|To (Thee|You) (be |glory))/i) && t !== rubricText)
+      .filter(t => t
+        && !t.match(/^(O Lord|To (Thee|You) (be |glory))/i)
+        && t !== rubricText)
       .join('\n\n');
   }
 
@@ -256,22 +210,18 @@ function empty(month, day, title, url) {
 // ─── Main ─────────────────────────────────────────────────────────────────────
 
 async function main() {
-  const outDir = path.dirname(OUTPUT_PATH);
-  if (!fs.existsSync(outDir)) fs.mkdirSync(outDir, { recursive: true });
+  if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
 
-  const prologue = {};
-  let total      = 0;
+  let grandTotal = 0;
   const errors   = [];
 
   for (const { name: month, days } of MONTHS) {
-    const monthNum = MONTH_NUMBERS[month];
+    const monthData = {};
+    let monthTotal  = 0;
 
     for (let day = 1; day <= days; day++) {
-      const dayStr = String(day).padStart(2, '0');
-      const key    = `${monthNum}-${dayStr}`;
-      const url    = `${BASE_URL}/${month}/${day}.htm`;
-
-      process.stdout.write(`Fetching ${key} (${month} ${day})... `);
+      const url = `${BASE_URL}/${month}/${day}.htm`;
+      process.stdout.write(`Fetching ${month} ${day}... `);
 
       try {
         const res = await fetch(url, {
@@ -282,7 +232,7 @@ async function main() {
         if (!res.ok) {
           if (res.status === 404) {
             console.log('404 — skipped');
-            errors.push({ key, url, error: '404' });
+            errors.push({ month, day, error: '404' });
             await sleep(DELAY_MS);
             continue;
           }
@@ -291,27 +241,32 @@ async function main() {
 
         const html = await res.text();
         const data = parseDayPage(html, month, day, url);
-        prologue[key] = data;
-        total++;
+        monthData[String(day)] = data;
+        monthTotal++;
+        grandTotal++;
         console.log(`✓ (${data.saints.length} saints)`);
 
       } catch (err) {
         console.log(`✗ ${err.message}`);
-        errors.push({ key, url, error: err.message });
+        errors.push({ month, day, error: err.message });
       }
 
       await sleep(DELAY_MS);
     }
+
+    // Write monthly file
+    const outPath = path.join(DATA_DIR, `prologue-${month}.json`);
+    fs.writeFileSync(outPath, JSON.stringify(monthData, null, 2), 'utf8');
+    const kb = Math.round(fs.statSync(outPath).size / 1024);
+    console.log(`\n📄 Wrote prologue-${month}.json (${monthTotal} days, ${kb}KB)\n`);
   }
 
-  fs.writeFileSync(OUTPUT_PATH, JSON.stringify(prologue, null, 2), 'utf8');
+  console.log('────────────────────────────────────────');
+  console.log(`✅ Done. ${grandTotal} days scraped across 12 files.`);
 
-  console.log('\n────────────────────────────────────────');
-  console.log(`✅ Done. ${total} days scraped.`);
-  console.log(`📄 Output: ${OUTPUT_PATH}`);
   if (errors.length) {
     console.log(`\n⚠️  ${errors.length} error(s):`);
-    errors.forEach(e => console.log(`   ${e.key}  →  ${e.error}`));
+    errors.forEach(e => console.log(`   ${e.month} ${e.day}  →  ${e.error}`));
   }
 }
 
