@@ -67,11 +67,8 @@
 
   /* ── APPLY IMAGE ───────────────────────────────────── */
   function applyImage(img) {
-    hero.style.backgroundImage = SCRIM + ', url("' + img.url + '")';
-    hero.style.backgroundSize = 'cover';
-    hero.style.backgroundPosition = img.pos || 'center center';
-    hero.style.backgroundRepeat = 'no-repeat';
-    hero.style.transition = 'background-image 1.2s ease-in-out';
+    hero.style.background = SCRIM + ', url("' + img.url + '") center/cover no-repeat';
+    hero.style.transition = 'background 1.2s ease-in-out';
   }
 
   /* ── CROSSFADE TO NEXT ─────────────────────────────── */
