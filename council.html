@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Parish Council · Saints Peter &amp; Paul Orthodox Cathedral</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{--vellum:#F6F1E8;--vellum-mid:#EDE7DC;--vellum-alt:#E8E0D0;--text:#1E1510;--ink:#2C1F16;--maroon:#7B1D2A;--maroon-deep:#5C1520;--gold:#B88328;--gold-lt:#E8C97A;--verdigris:#3D6B5E;--stone:#7A6648;--stone-lt:#A89070;--apse:#3B0F18;--f-display:'Cormorant Garamond',Georgia,serif;--f-body:'EB Garamond',Georgia,serif;--f-ui:'Cinzel',Georgia,serif;--rule:1px solid var(--maroon);--rule-faint:1px solid rgba(123,29,42,0.14);--rule-hair:1px solid rgba(123,29,42,0.07)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--vellum);color:var(--text);font-family:var(--f-body);font-size:21px;line-height:1.75;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+
+/* ── PRIMITIVES ── */
+.rubric{display:block;font-family:var(--f-ui);font-size:.80rem;font-weight:500;letter-spacing:.20em;text-transform:uppercase;color:var(--stone);margin-bottom:.5rem}
+.rubric-rule{display:block;height:1px;background:var(--maroon);margin-bottom:1rem;width:48px}
+.rubric-voice{display:block;font-family:var(--f-display);font-style:italic;font-weight:400;font-size:1.15rem;color:var(--maroon);margin-top:.4rem;line-height:1.4}
+.btn{display:inline-block;font-family:var(--f-ui);font-size:.80rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;padding:.85rem 2.2rem;border:1px solid currentColor;cursor:pointer;transition:all .22s;white-space:nowrap}
+.btn-maroon{color:var(--vellum);background:var(--maroon);border-color:var(--maroon)}
+.btn-maroon:hover{background:var(--maroon-deep)}
+.btn-outline{color:var(--maroon);border-color:var(--maroon)}
+.btn-outline:hover{background:var(--maroon);color:var(--vellum)}
+.btn-outline{color:var(--maroon);border-color:var(--maroon)}
+.btn-outline:hover{background:var(--maroon);color:var(--vellum)}
+.sb-link{font-family:var(--f-ui);font-size:.80rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);border-bottom:1px solid rgba(123,29,42,.28);padding-bottom:.1rem;transition:border-color .2s}
+.sb-link:hover{border-color:var(--maroon)}
+
+/* ── NAV ── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(246,241,232,.97);backdrop-filter:blur(10px);border-bottom:var(--rule-faint)}
+.nav-inner{max-width:1380px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px;padding:0 3rem}
+.nav-logo-name{font-family:var(--f-display);font-weight:500;font-size:1.25rem;color:var(--text);display:block}
+.nav-logo-sub{font-family:var(--f-ui);font-size:.80rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);display:block}
+.nav-links{display:flex;align-items:center;list-style:none}
+.nav-links>li{position:relative}
+.nav-links>li>a{font-family:var(--f-ui);font-size:.80rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text);padding:1.1rem .85rem;display:block;transition:color .18s}
+.nav-links>li:hover>a,.nav-links .nav-active{color:var(--maroon)}
+.nav-links .nav-active-parent>a{color:var(--maroon);border-bottom:2px solid var(--gold)}
+.nav-drop{position:absolute;top:100%;left:0;background:var(--vellum);border-top:2px solid var(--maroon);border-bottom:var(--rule-faint);border-left:var(--rule-faint);border-right:var(--rule-faint);min-width:200px;padding:.5rem 0;opacity:0;pointer-events:none;transform:translateY(-4px);transition:all .16s;box-shadow:0 8px 28px rgba(28,20,16,.10)}
+.nav-links>li:hover .nav-drop{opacity:1;pointer-events:all;transform:none}
+.nav-drop a{display:block;font-family:var(--f-ui);font-size:.80rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text);padding:.5rem 1.4rem;transition:color .14s}
+.nav-drop a:hover,.nav-drop .nav-active{color:var(--maroon)}
+.nav-give{font-family:var(--f-ui);font-size:.80rem;letter-spacing:.14em;text-transform:uppercase;color:var(--vellum);background:var(--maroon);padding:.5rem 1.1rem;transition:background .2s}
+.nav-give:hover{background:var(--maroon-deep)}
+.nav-hamburger{display:none;flex-direction:column;justify-content:space-between;width:28px;height:20px;cursor:pointer;padding:0;background:none;border:none;z-index:400}
+.nav-hamburger span{display:block;width:100%;height:2px;background:var(--maroon);transition:all .28s ease;transform-origin:center}
+.nav-hamburger.open span:nth-child(1){transform:translateY(9px) rotate(45deg)}
+.nav-hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-9px) rotate(-45deg)}
+.nav-drawer{position:fixed;top:0;right:0;width:300px;max-width:85vw;height:100vh;background:var(--apse);z-index:350;transform:translateX(100%);transition:transform .32s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;overflow-y:auto}
+.nav-drawer.open{transform:translateX(0)}
+.nav-drawer-overlay{position:fixed;inset:0;background:rgba(21,8,4,.65);z-index:340;opacity:0;pointer-events:none;transition:opacity .32s}
+.nav-drawer-overlay.open{opacity:1;pointer-events:all}
+.nav-drawer-head{padding:1.5rem 1.75rem 1rem;border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:space-between}
+.nav-drawer-logo{font-family:var(--f-display);font-weight:500;font-size:1.1rem;color:#fff}
+.nav-drawer-logo span{font-family:var(--f-ui);font-size:.80rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);display:block;margin-top:2px}
+.nav-drawer-close{width:32px;height:32px;background:rgba(255,255,255,.08);border:none;color:rgba(255,255,255,.65);cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.nav-drawer-close:hover{background:rgba(255,255,255,.15)}
+.nav-drawer-links{padding:1rem 0;flex:1}
+.nav-drawer-links a{display:block;font-family:var(--f-ui);font-size:.80rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,232,.70);padding:.9rem 1.75rem;border-bottom:1px solid rgba(255,255,255,.05);transition:all .18s}
+.nav-drawer-links a:hover{color:#fff;background:rgba(255,255,255,.05)}
+.nav-drawer-links .drawer-section{font-family:var(--f-ui);font-size:.80rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(184,131,40,.55);padding:.85rem 1.75rem .35rem;display:block}
+.nav-drawer-give{margin:1.25rem 1.75rem;display:block;text-align:center;font-family:var(--f-ui);font-size:.80rem;letter-spacing:.16em;text-transform:uppercase;padding:.85rem;background:var(--maroon);color:var(--vellum);transition:background .2s}
+.nav-drawer-give:hover{background:var(--maroon-deep)}
+
+/* ── PAGE HERO ── */
+.page-hero{padding-top:60px;background:linear-gradient(to right,rgba(59,15,24,.90) 0%,rgba(59,15,24,.68) 55%,rgba(59,15,24,.42) 100%),url('/images/heroes/administration.webp') center/cover no-repeat;background-color:var(--apse);min-height:340px;display:flex;align-items:flex-end;position:relative;overflow:hidden}
+.page-hero-inner{max-width:1380px;margin:0 auto;padding:5rem 6rem 4rem}
+.page-title{font-family:var(--f-display);font-weight:400;font-size:clamp(2.5rem,5vw,4.5rem);line-height:.95;color:#fff;margin:.5rem 0 .75rem}
+.page-title em{font-style:italic}
+.page-subtitle{font-family:var(--f-display);font-style:italic;font-size:1.1rem;color:rgba(255,255,255,.65);margin-top:.5rem}
+.breadcrumb{font-family:var(--f-ui);font-size:.80rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:1.5rem}
+.breadcrumb a{color:rgba(232,201,122,.70)}
+.breadcrumb a:hover{color:var(--gold-lt)}
+.breadcrumb span{margin:0 .5em}
+
+/* ── CHAPTER BAR ── */
+.chapter-bar{background:var(--maroon);padding:.65rem 4rem;display:flex;align-items:center;justify-content:space-between}
+.cbar-text{font-family:var(--f-ui);font-size:.80rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:rgba(246,241,232,.60)}
+.cbar-text.bright{color:rgba(246,241,232,.90)}
+
+/* ── MAIN LAYOUT ── */
+.main-wrap{background:var(--vellum);max-width:1380px;margin:0 auto;padding:5rem 4.5rem}
+.section-head{font-family:var(--f-display);font-weight:500;font-size:clamp(1.6rem,2.5vw,2.2rem);color:var(--text);margin:3.5rem 0 .5rem;line-height:1.15}
+.section-head:first-child{margin-top:0}
+.prose{font-family:var(--f-body);font-size:1rem;line-height:1.85;color:var(--ink);max-width:68ch}
+.prose p{margin-bottom:1.2em}
+.prose p:last-child{margin-bottom:0}
+
+/* ── RESPONSIBILITY BLOCKS ── */
+.opening-grid{display:grid;grid-template-columns:1fr 400px;gap:15px;align-items:center;margin-bottom:4rem}
+.opening-col{}
+@media(max-width:768px){.opening-grid{grid-template-columns:1fr}}
+.doc-card{background:var(--vellum-mid);border:var(--rule-faint);border-top:3px solid var(--maroon);padding:2rem;margin-bottom:2rem}
+.doc-card-head{font-family:var(--f-ui);font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:1.25rem;padding-bottom:.6rem;border-bottom:var(--rule-hair)}
+.doc-link-list{list-style:none}
+.doc-link-list li{padding:.45rem 0;border-bottom:var(--rule-hair)}
+.doc-link-list li:last-child{border-bottom:none}
+.doc-link-list a{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--maroon);display:flex;align-items:center;justify-content:space-between;transition:opacity .2s}
+.doc-link-list a:hover{opacity:.7}
+.doc-link-list a::after{content:'→';color:var(--stone)}
+.doc-card-note{font-family:var(--f-body);font-style:italic;font-size:.88rem;line-height:1.68;color:var(--stone);margin-top:.75rem}
+.resp-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:var(--rule-faint);margin:2.5rem 0}
+.resp-card{position:relative;overflow:hidden;cursor:pointer;min-height:220px;display:flex;align-items:flex-start;border-right:var(--rule-faint);border-bottom:var(--rule-faint);background:var(--vellum);transition:transform .3s ease,box-shadow .3s ease,background .3s ease}
+.resp-card:nth-child(2n){border-right:none}
+.resp-card:nth-last-child(-n+2){border-bottom:none}
+.resp-card:hover{transform:translateY(-4px);box-shadow:0 12px 36px rgba(21,8,4,.12);background:var(--vellum-mid);z-index:2}
+.resp-card-body{position:relative;z-index:2;padding:2rem}
+.resp-icon{font-size:1.5rem;color:rgba(123,29,42,.22);margin-bottom:.85rem;display:block;transition:color .3s ease}
+.resp-card:hover .resp-icon{color:rgba(123,29,42,.45)}
+.resp-head{font-family:var(--f-ui);font-size:.80rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--maroon);display:block;margin-bottom:.6rem}
+.resp-body{font-family:var(--f-body);font-size:.92rem;line-height:1.72;color:var(--ink)}
+.resp-cta{display:inline-block;margin-top:1rem;font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);border-bottom:1px solid rgba(123,29,42,.30);padding-bottom:1px;opacity:0;transform:translateY(6px);transition:opacity .3s ease,transform .3s ease}
+.resp-card:hover .resp-cta{opacity:1;transform:translateY(0)}
+
+/* Council lightbox */
+.cl-overlay{display:none;position:fixed;inset:0;background:rgba(21,8,4,.90);z-index:9000;align-items:center;justify-content:center;padding:1.5rem}
+.cl-overlay.open{display:flex}
+.cl-box{background:var(--vellum);max-width:900px;width:100%;max-height:92vh;overflow-y:auto;position:relative}
+.cl-close{position:fixed;top:1.25rem;right:1.5rem;background:none;border:none;font-size:2.5rem;color:rgba(246,241,232,.85);cursor:pointer;line-height:1;padding:.25rem;z-index:10001}
+.cl-close:hover{color:#fff}
+.cl-inner{display:grid;grid-template-columns:65fr 35fr;min-height:500px}
+.cl-left{padding:3rem 2.5rem;border-right:1px solid rgba(123,29,42,.15)}
+.cl-right{padding:2.5rem 1.75rem;background:var(--vellum-mid)}
+.cl-label{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.20em;text-transform:uppercase;color:var(--maroon);display:block;margin-bottom:.5rem}
+.cl-rule{width:36px;height:2px;background:var(--maroon);margin:.6rem 0 1.25rem}
+.cl-title{font-family:var(--f-display);font-weight:400;font-size:2.4rem;color:var(--text);line-height:1.05;margin-bottom:.5rem}
+.cl-icon-glyph{font-size:2rem;color:rgba(184,131,40,.40);float:right;margin:0 0 .5rem 1rem}
+.cl-opening{font-family:var(--f-body);font-size:1rem;line-height:1.8;color:var(--ink);margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid rgba(123,29,42,.12)}
+.cl-section{margin-bottom:1.25rem}
+.cl-section-head{font-family:var(--f-ui);font-size:.80rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--maroon);display:block;margin-bottom:.4rem}
+.cl-section-body{font-family:var(--f-body);font-size:1rem;line-height:1.78;color:var(--ink)}
+.cl-divider{border:none;border-top:1px solid rgba(123,29,42,.10);margin:1.1rem 0}
+.cl-right-icon{width:100%;aspect-ratio:3/4;background:rgba(123,29,42,.07);display:flex;align-items:center;justify-content:center;font-size:4rem;color:rgba(123,29,42,.18);margin-bottom:1rem}
+.cl-right-label{font-family:var(--f-ui);font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;color:var(--maroon);text-align:center;display:block;margin-bottom:.35rem}
+.cl-right-title{font-family:var(--f-display);font-size:1.05rem;color:var(--text);margin-bottom:.6rem;line-height:1.2}
+.cl-right-body{font-family:var(--f-body);font-size:.82rem;line-height:1.65;color:var(--stone);margin-bottom:1.25rem}
+.cl-factoid{border-left:3px solid var(--maroon);padding:.75rem 1rem;margin-top:1.25rem}
+.cl-factoid-head{font-family:var(--f-ui);font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;color:var(--maroon);display:block;margin-bottom:.4rem}
+.cl-factoid-body{font-family:var(--f-body);font-size:.82rem;line-height:1.65;color:var(--ink)}
+.cl-ctas{display:flex;gap:1rem;flex-wrap:wrap;margin-top:2rem;padding-top:1.5rem;border-top:var(--rule-faint)}
+.opening-grid{display:grid;grid-template-columns:1fr 400px;gap:15px;align-items:center;margin-bottom:4rem}
+.opening-col{}
+.doc-card{background:var(--vellum-mid);border:var(--rule-faint);border-top:3px solid var(--maroon);padding:2rem;margin-bottom:2rem}
+.doc-card-head{font-family:var(--f-ui);font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:1.25rem;padding-bottom:.6rem;border-bottom:var(--rule-hair)}
+.doc-link-list{list-style:none}
+.doc-link-list li{padding:.45rem 0;border-bottom:var(--rule-hair)}
+.doc-link-list li:last-child{border-bottom:none}
+.doc-link-list a{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--maroon);display:flex;align-items:center;justify-content:space-between;transition:opacity .2s}
+.doc-link-list a:hover{opacity:.7}
+.doc-link-list a::after{content:'→';color:var(--stone)}
+.doc-card-note{font-family:var(--f-body);font-style:italic;font-size:.88rem;line-height:1.68;color:var(--stone);margin-top:.75rem}
+@media(max-width:768px){.opening-grid{grid-template-columns:1fr}}
+@media(max-width:768px){
+  .resp-card{min-height:200px}
+  .cl-inner{grid-template-columns:1fr}
+  .cl-left{padding:2rem 1.5rem;border-right:none;border-bottom:1px solid rgba(123,29,42,.15)}
+  .cl-right{padding:2rem 1.5rem}
+  .opening-grid{grid-template-columns:1fr}
+  .resp-grid{grid-template-columns:1fr}
+  .resp-card{border-right:none}
+  .resp-card:nth-last-child(-n+2){border-bottom:var(--rule-faint)}
+  .resp-card:last-child{border-bottom:none}
+}
+
+/* ── COUNCIL MEMBER GRID ── */
+.council-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:var(--rule-faint);margin:2rem 0}
+.council-card{padding:2rem;border-right:var(--rule-faint);border-bottom:var(--rule-faint)}
+.council-card:nth-child(3n){border-right:none}
+.council-card:nth-last-child(-n+3):nth-child(3n+1),
+.council-card:nth-last-child(-n+3):nth-child(3n+2),
+.council-card:nth-last-child(-n+3):nth-child(3n){border-bottom:none}
+.council-photo{width:90px;height:90px;border-radius:50%;background:var(--vellum-mid);border:2px solid rgba(123,29,42,.15);margin-bottom:1rem;display:flex;align-items:center;justify-content:center;font-size:1.6rem;color:rgba(123,29,42,.22);overflow:hidden}
+.council-photo img{width:100%;height:100%;object-fit:cover;object-position:center top}
+.council-name{font-family:var(--f-display);font-weight:500;font-size:1.05rem;color:var(--text);margin-bottom:.15rem}
+.council-role{font-family:var(--f-ui);font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);display:block;margin-bottom:.5rem}
+.council-note{font-family:var(--f-body);font-size:.88rem;line-height:1.68;color:var(--stone)}
+.council-list{display:grid;grid-template-columns:1fr 1fr;gap:0;border:var(--rule-faint);margin:1.5rem 0}
+.council-member{padding:1.25rem 1.5rem;border-right:var(--rule-faint);border-bottom:var(--rule-faint);background:var(--vellum);transition:transform .3s ease,box-shadow .3s ease,background .3s ease;cursor:default}
+.council-member:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(21,8,4,.10);background:var(--vellum-mid);z-index:2;position:relative}
+.council-member:nth-child(2n){border-right:none}
+.council-member:nth-last-child(-n+2){border-bottom:none}
+.council-member-name{font-family:var(--f-display);font-weight:500;font-size:1.05rem;color:var(--text);display:block;margin-bottom:.2rem}
+.council-member-role{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--maroon);display:block}
+
+/* ── PULL QUOTE ── */
+.quote-break{margin:4rem 0;padding:3rem 4rem;background:var(--vellum-mid);border-left:4px solid var(--gold);position:relative}
+.qb-text{font-family:var(--f-display);font-style:italic;font-weight:300;font-size:clamp(1.3rem,2.5vw,1.8rem);line-height:1.45;color:var(--text);margin-bottom:.75rem}
+.qb-attr{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.20em;text-transform:uppercase;color:var(--maroon)}
+
+/* ── ELIGIBILITY STRIP ── */
+.eligibility-strip{background:var(--apse);padding:0;margin:4rem 0;position:relative;overflow:hidden;display:grid;grid-template-columns:1fr 420px}
+.eligibility-strip::before{display:none}
+.es-text{padding:3rem 4rem;position:relative}
+.es-text::before{display:none}
+.es-image{position:relative;overflow:hidden;min-height:340px}
+.es-image img{width:100%;height:100%;object-fit:cover;object-position:center;opacity:.55;transition:opacity .4s ease}
+.es-image:hover img{opacity:.65}
+.es-image-fallback{position:absolute;inset:0;background:linear-gradient(135deg,rgba(92,21,32,.8),rgba(21,8,4,.95));display:flex;align-items:center;justify-content:center;font-size:5rem;color:rgba(184,131,40,.15)}
+.es-rubric{font-family:var(--f-ui);font-size:.80rem;letter-spacing:.20em;text-transform:uppercase;color:rgba(232,201,122,.60);display:block;margin-bottom:.5rem}
+.es-head{font-family:var(--f-display);font-weight:400;font-size:clamp(1.4rem,2.5vw,1.9rem);color:rgba(246,241,232,.95);margin-bottom:1rem;line-height:1.2}
+.es-body{font-family:var(--f-body);font-size:.95rem;line-height:1.82;color:rgba(246,241,232,.68);max-width:60ch}
+.es-cta{margin-top:2rem}
+
+/* ── FOOTER ── */
+footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:4.5rem 4.5rem 2.5rem}
+.footer-cross{display:block;text-align:center;font-size:1.1rem;color:rgba(184,131,40,.45);letter-spacing:.8em;padding-left:.8em;margin-bottom:4rem}
+.footer-cols{max-width:1380px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:5rem;margin-bottom:3.5rem}
+.footer-col-head{font-family:var(--f-ui);font-size:.80rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(246,241,232,.82);display:block;margin-bottom:1.2rem;padding-bottom:.5rem;border-bottom:1px solid rgba(246,241,232,.06)}
+.footer-name{font-family:var(--f-display);font-weight:400;font-size:1.1rem;color:rgba(246,241,232,.88);line-height:1.3;margin-bottom:.75rem}
+.footer-meta{font-family:var(--f-ui);font-size:.80rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.72);line-height:2.3}
+.footer-meta a{color:rgba(184,131,40,.85)}
+.footer-socials{display:flex;gap:1.5rem;margin-top:1.25rem}
+.footer-socials a{font-family:var(--f-ui);font-size:.80rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,241,232,.65)}
+.footer-nav{list-style:none}
+.footer-nav li{padding:.35rem 0;border-bottom:1px solid rgba(246,241,232,.10)}
+.footer-nav li:last-child{border-bottom:none}
+.footer-nav a{font-family:var(--f-ui);font-size:.80rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,232,.85)}
+.footer-nav a:hover{color:#fff}
+.footer-blurb{font-family:var(--f-display);font-style:italic;font-size:.95rem;color:rgba(246,241,232,.85);line-height:1.65;margin-bottom:1.25rem}
+.footer-bottom{max-width:1380px;margin:2rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(246,241,232,.12);display:flex;justify-content:space-between;align-items:center}
+.footer-copy,.footer-addr{font-family:var(--f-ui);font-size:.80rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.60)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  .opening-grid{display:grid;grid-template-columns:1fr 400px;gap:15px;align-items:center;margin-bottom:4rem}
+.opening-col{}
+@media(max-width:768px){.opening-grid{grid-template-columns:1fr}}
+.doc-card{background:var(--vellum-mid);border:var(--rule-faint);border-top:3px solid var(--maroon);padding:2rem;margin-bottom:2rem}
+.doc-card-head{font-family:var(--f-ui);font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:1.25rem;padding-bottom:.6rem;border-bottom:var(--rule-hair)}
+.doc-link-list{list-style:none}
+.doc-link-list li{padding:.45rem 0;border-bottom:var(--rule-hair)}
+.doc-link-list li:last-child{border-bottom:none}
+.doc-link-list a{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--maroon);display:flex;align-items:center;justify-content:space-between;transition:opacity .2s}
+.doc-link-list a:hover{opacity:.7}
+.doc-link-list a::after{content:'→';color:var(--stone)}
+.doc-card-note{font-family:var(--f-body);font-style:italic;font-size:.88rem;line-height:1.68;color:var(--stone);margin-top:.75rem}
+.resp-grid{grid-template-columns:1fr}
+  .resp-block{border-right:none}
+  .resp-block:nth-last-child(-n+2){border-bottom:var(--rule-faint)}
+  .resp-block:last-child{border-bottom:none}
+  .footer-cols{grid-template-columns:1fr 1fr;gap:3rem}
+}
+@media(max-width:768px){
+  .nav-links{display:none}.nav-hamburger{display:flex}.nav-give{display:none}
+  .page-hero-inner{padding:3.5rem 1.5rem 3rem}
+  .main-wrap{padding:3rem 1.5rem}
+  .chapter-bar{padding:.65rem 1.5rem}
+  .council-grid{grid-template-columns:1fr}
+  .council-card{border-right:none}
+  .council-card:nth-last-child(-n+3):nth-child(3n){border-bottom:var(--rule-faint)}
+  .council-card:last-child{border-bottom:none}
+  .quote-break{padding:2rem 1.5rem}
+  .eligibility-strip{grid-template-columns:1fr}.es-text{padding:2.5rem 1.5rem}.es-image{min-height:240px}
+  .footer-cols{grid-template-columns:1fr;gap:2.5rem}
+  footer{padding:4rem 1.5rem 2rem}
+  .footer-bottom{flex-direction:column;gap:.75rem;text-align:center}
+  body{font-size:18px;line-height:1.8}
+  [class*="-over"],[class*="-cat"],[class*="-sub"],[class*="-label"],[class*="-tag"],[class*="-kicker"],[class*="-lbl"],[class*="-badge"],[class*="-date"],[class*="-meta"]{font-size:.72rem!important;letter-spacing:.12em}
+  [class*="-title"]{line-height:1.2}
+  [class*="hero-title"],[class*="page-title"]{line-height:1.1}
+  [class*="-name"],[class*="-head"]{line-height:1.25}
+  .footer-copy,.footer-bottom{font-size:.72rem}
+  .nav-drawer-links a{font-size:.76rem;padding:1rem 1.75rem}
+}
+</style>
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" style="line-height:1.2">
+      <span class="nav-logo-name">Sts. Peter &amp; Paul</span>
+      <span class="nav-logo-sub">Orthodox Cathedral · Jersey City</span>
+    </a>
+    <ul class="nav-links">
+      <li class="nav-active-parent"><a href="#">About Us ▾</a>
+        <div class="nav-drop">
+          <a href="/about-our-church">About Our Church</a>
+          <a href="/our-beliefs">Our Beliefs</a>
+          <a href="/administration" class="nav-active" aria-current="page">Administration</a>
+          <a href="/gallery">Gallery</a>
+        </div>
+      </li>
+      <li><a href="#">Inquirers ▾</a>
+        <div class="nav-drop">
+          <a href="/about-orthodoxy">About Orthodoxy</a>
+          <a href="/our-beliefs">Our Beliefs</a>
+          <a href="/videos">Videos</a>
+        </div>
+      </li>
+      <li><a href="#">Worship ▾</a>
+        <div class="nav-drop">
+          <a href="/schedule">Liturgical Calendar</a>
+          <a href="/readings">Daily Readings</a>
+          <a href="/saint-of-the-day">Saint of the Day</a>
+          <a href="/prologue">Prologue of Ohrid</a>
+        </div>
+      </li>
+      <li><a href="#">Parish Life ▾</a>
+        <div class="nav-drop">
+          <a href="/news">News &amp; Announcements</a>
+          <a href="/bulletins">Bulletins</a>
+          <a href="/donate">Give Online</a>
+          <a href="/cemeteries">Cemeteries</a>
+        </div>
+      </li>
+      <li><a href="/contact-us">Contact</a></li>
+    </ul>
+    <a href="https://tithe.ly/give?c=5004259" target="_blank" class="nav-give">Give</a>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" onclick="openDrawer()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<div class="nav-drawer-overlay" id="nav-overlay" onclick="closeDrawer()"></div>
+<div class="nav-drawer" id="nav-drawer">
+  <div class="nav-drawer-head">
+    <div class="nav-drawer-logo">Sts. Peter &amp; Paul<span>Orthodox Cathedral · Jersey City</span></div>
+    <button class="nav-drawer-close" onclick="closeDrawer()">✕</button>
+  </div>
+  <div class="nav-drawer-links">
+    <span class="drawer-section">About</span>
+    <a href="/about-our-church">About Our Church</a>
+    <a href="/our-beliefs">Our Beliefs</a>
+    <a href="/administration">Administration</a>
+    <a href="/about-orthodoxy">About Orthodoxy</a>
+    <span class="drawer-section">Visit &amp; Worship</span>
+    <a href="/schedule">Liturgical Calendar</a>
+    <a href="/readings">Daily Readings</a>
+    <a href="/saint-of-the-day">Saint of the Day</a>
+    <a href="/prologue">Prologue of Ohrid</a>
+    <a href="/videos">Videos</a>
+    <span class="drawer-section">Parish Life</span>
+    <a href="/gallery">Gallery</a>
+    <a href="/bulletins">Bulletins</a>
+    <a href="/news">News &amp; Announcements</a>
+    <a href="/cemeteries">Cemeteries</a>
+    <a href="/donate">Give Online</a>
+    <span class="drawer-section">Contact</span>
+    <a href="/contact-us">Contact Us</a>
+  </div>
+  <a href="https://tithe.ly/give?c=5004259" target="_blank" class="nav-drawer-give">Give Online</a>
+</div>
+
+<div class="page-hero">
+  <div class="page-hero-inner" style="padding-left:75px;padding-top:calc(5rem + 5px);padding-bottom:calc(4rem + 20px)">
+    <p class="breadcrumb"><a href="/">Home</a> · About Orthodoxy</p>
+    <span class="rubric light">For Inquirers</span>
+    <div class="rubric-rule" style="background:rgba(232,201,122,.6)"></div>
+    <h1 class="page-title">About<br><em>Orthodoxy</em></h1>
+    <p style="font-family:var(--f-display);font-style:italic;font-size:1.1rem;color:rgba(255,255,255,.65);margin-top:.5rem">The ancient Christian Faith — twenty centuries of unbroken witness</p>
+  </div>
+</div>
+<div class="chapter-bar"><span class="cbar-text bright">About Orthodox Christianity</span><span class="cbar-text">For Inquirers &amp; Seekers</span></div>
+
+<!-- RESOURCE HUB STRIP -->
+<div class="hub-strip" id="hub-strip">
+  <div class="hub-strip-inner">
+    <span class="hub-rubric">The Inquirer&rsquo;s Path</span>
+    <h2 class="hub-headline">Everything a seeker needs to know about<br><em style="font-style:italic">Saints Peter &amp; Paul and the Orthodox Faith</em></h2>
+    <div class="hub-cards" id="hub-cards">
+        <a href="#history" class="hub-card" id="hub-card-0">
+          <span class="hub-card-icon">&#9766;</span>
+          <span class="hub-card-title">Ancient Roots</span>
+          <p class="hub-card-desc">The history of the Orthodox Church from the Apostles to today — 2,000 years of unbroken faith.</p>
+          <span class="hub-card-link">Read the History &rarr;</span>
+        </a>
+        <a href="#reading" class="hub-card" id="hub-card-1">
+          <span class="hub-card-icon">&#10002;</span>
+          <span class="hub-card-title">Recommended Reading</span>
+          <p class="hub-card-desc">Books that have guided seekers into the Orthodox Faith, from accessible introductions to spiritual classics.</p>
+          <span class="hub-card-link">Browse the List &rarr;</span>
+        </a>
+        <a href="#resources" class="hub-card" id="hub-card-2">
+          <span class="hub-card-icon">&#9769;</span>
+          <span class="hub-card-title">Learn the Faith</span>
+          <p class="hub-card-desc">Curated resources from the OCA — feasts &amp; saints, daily readings, and questions about Orthodoxy answered.</p>
+          <span class="hub-card-link">Explore Resources &rarr;</span>
+        </a>
+        <a href="#useful" class="hub-card" id="hub-card-3">
+          <span class="hub-card-icon">&#8853;</span>
+          <span class="hub-card-title">Useful Websites</span>
+          <p class="hub-card-desc">Important Orthodox resources online — the OCA, our diocese, Ancient Faith Ministries, and more.</p>
+          <span class="hub-card-link">See All Links &rarr;</span>
+        </a>
+    </div>
+  </div>
+</div>
+
+<div class="chapter-bar">
+  <span class="cbar-text bright">Parish Council</span>
+  <span class="cbar-text">Diocese of New York &amp; New Jersey · OCA</span>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main-wrap">
+
+  <!-- OPENING -->
+  <div class="opening-grid">
+    <div class="opening-col">
+      <span class="rubric">About the Council</span>
+      <div class="rubric-rule"></div>
+      <h2 class="section-head" style="margin-top:.5rem">Elected to serve</h2>
+      <span class="rubric-voice">The Parish Council assists the rector in the administration of the Cathedral</span>
+      <div class="prose" style="margin-top:2rem">
+        <p>The Parish Council of Saints Peter and Paul Orthodox Cathedral is elected annually by the Parish Assembly to assist the rector in the administration of the Cathedral. Council members are not administrators in a corporate sense — they are parishioners who have taken on a particular responsibility of service to their community, accountable to the Assembly and to God.</p>
+        <p>The Council oversees the temporal affairs of the Cathedral: its finances, its property, its programs, and its relationship to the wider Diocese of New York and New Jersey. In all things it works in partnership with the rector, in fidelity to the Statutes of the Orthodox Church in America.</p>
+      </div>
+    </div>
+    <div class="opening-col">
+      <div class="doc-card" style="margin-top:3.5rem">
+        <span class="doc-card-head">Parish Documents</span>
+        <ul class="doc-link-list">
+          <li><a href="/bylaws">Parish Bylaws</a></li>
+          <li><a href="#" onclick="openMinutes();return false;">Assembly Minutes 2025</a></li>
+          <li><a href="#" onclick="openReport();return false;">Income Statement 2025</a></li>
+          <li><a href="#" onclick="openBudget();return false;">Budget 2026</a></li>
+        </ul>
+        <p class="doc-card-note">Documents are updated following each Annual Parish Assembly. Contact the parish office for older records.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESPONSIBILITIES -->
+  <h2 class="section-head">What the Council does</h2>
+  <div class="rubric-rule"></div>
+
+  <div class="resp-grid">
+    <div class="resp-card" onclick="openCouncil(0)" role="button" tabindex="0" aria-label="Stewardship of finances">
+      <div class="resp-card-body">
+        <span class="resp-icon">&#9878;</span>
+        <span class="resp-head">Stewardship of finances</span>
+        <p class="resp-body">Receiving reports from the treasurer, approving the annual budget, and ensuring the Cathedral's resources are directed toward its mission.</p>
+        <span class="resp-cta">Learn More &rarr;</span>
+      </div>
+    </div>
+    <div class="resp-card" onclick="openCouncil(1)" role="button" tabindex="0" aria-label="Care of parish property">
+      <div class="resp-card-body">
+        <span class="resp-icon">&#8962;</span>
+        <span class="resp-head">Care of parish property</span>
+        <p class="resp-body">Maintaining the Cathedral building, the parish hall, the rectory, and the parking lot at 101 Grand Street in good order and repair.</p>
+        <span class="resp-cta">Learn More &rarr;</span>
+      </div>
+    </div>
+    <div class="resp-card" onclick="openCouncil(2)" role="button" tabindex="0" aria-label="Supporting parish life">
+      <div class="resp-card-body">
+        <span class="resp-icon">&#10016;</span>
+        <span class="resp-head">Supporting parish life</span>
+        <p class="resp-body">Helping to organize and resource the programs, events, and ministries that form the community throughout the year.</p>
+        <span class="resp-cta">Learn More &rarr;</span>
+      </div>
+    </div>
+    <div class="resp-card" onclick="openCouncil(3)" role="button" tabindex="0" aria-label="Representing the assembly">
+      <div class="resp-card-body">
+        <span class="resp-icon">&#9780;</span>
+        <span class="resp-head">Representing the assembly</span>
+        <p class="resp-body">Carrying the voice of the parish into decisions that affect the community, and bringing those decisions back to the Assembly for approval.</p>
+        <span class="resp-cta">Learn More &rarr;</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PULL QUOTE -->
+  <div class="quote-break">
+    <p class="qb-text">"The Parish Council shall be responsible not only for the spiritual and material needs of the Parish, but also for the encouragement of others to participate in the life and mission of the Parish."</p>
+    <span class="qb-attr">Parish Bylaws, Article VI</span>
+  </div>
+
+  <!-- CURRENT COUNCIL -->
+  <span class="rubric">Current Council</span>
+  <div class="rubric-rule"></div>
+  <h2 class="section-head" style="margin-top:.5rem">Members</h2>
+  <span class="rubric-voice">Elected at the Annual Parish Assembly</span>
+
+  <div class="council-list" style="margin-top:2rem">
+    <div class="council-member">
+      <span class="council-member-name">Marius Anghel</span>
+      <span class="council-member-role">Parish Council President</span>
+    </div>
+    <div class="council-member" style="background:var(--vellum-mid)">
+      <span class="council-member-name" style="color:var(--stone)">To Be Announced</span>
+      <span class="council-member-role" style="color:var(--stone-lt)">Vice President</span>
+    </div>
+    <div class="council-member" style="background:var(--vellum-mid)">
+      <span class="council-member-name" style="color:var(--stone)">To Be Announced</span>
+      <span class="council-member-role" style="color:var(--stone-lt)">Warden</span>
+    </div>
+    <div class="council-member">
+      <span class="council-member-name">Andrei Anghel</span>
+      <span class="council-member-role">Treasurer</span>
+    </div>
+    <div class="council-member">
+      <span class="council-member-name">Joanne Barry</span>
+      <span class="council-member-role">Secretary</span>
+    </div>
+    <div class="council-member">
+      <span class="council-member-name">Lorraine Morrow</span>
+      <span class="council-member-role">Council Member</span>
+    </div>
+    <div class="council-member">
+      <span class="council-member-name">Ero Ogbevire</span>
+      <span class="council-member-role">Council Member</span>
+    </div>
+    <div class="council-member">
+      <span class="council-member-name">Nicholas Rus</span>
+      <span class="council-member-role">Council Member</span>
+    </div>
+    <div class="council-member">
+      <span class="council-member-name">Kevin Johnson</span>
+      <span class="council-member-role">Council Member</span>
+    </div>
+    <div class="council-member">
+      <span class="council-member-name">Amanda Yan</span>
+      <span class="council-member-role">Council Member</span>
+    </div>
+    <div class="council-member">
+      <span class="council-member-name">Raymon Geis</span>
+      <span class="council-member-role">Council Member</span>
+    </div>
+    <div class="council-member">
+      <span class="council-member-name">Alexandru Chiorean</span>
+      <span class="council-member-role">Council Member</span>
+    </div>
+  </div>
+
+  <!-- ELIGIBILITY -->
+  <div class="eligibility-strip">
+    <div class="es-text">
+      <span class="es-rubric">Serving on the Council</span>
+      <h3 class="es-head">The Council is chosen by the parish, from the parish</h3>
+      <p class="es-body">Council members are elected at the Annual Parish Assembly, held each year on a Sunday following the Divine Liturgy. Any parishioner in good standing is eligible to vote and to serve — having received Holy Communion at least once in the past year, belonging to the parish for at least one year, and regularly fulfilling their financial obligations to the community.</p>
+      <p class="es-body" style="margin-top:1rem">If you are interested in parish governance or wish to learn more about how the Council works, reach out to the parish office or speak with Father Solomon after any service.</p>
+      <div class="es-cta">
+        <a href="/contact-us" class="btn btn-outline" style="color:rgba(246,241,232,.85);border-color:rgba(246,241,232,.35)">Contact the Parish</a>
+      </div>
+    </div>
+    <div class="es-image">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Romanian_Orthodox_Monastery_%2849074404227%29.jpg/800px-Romanian_Orthodox_Monastery_%2849074404227%29.jpg" alt="Parish community" onload="this.nextElementSibling.style.display='none'" onerror="this.style.display='none'" />
+      <div class="es-image-fallback">&#10013;</div>
+    </div>
+  </div>
+
+  <!-- BYLAWS LINK -->
+  <div style="margin-top:3rem;padding-top:2rem;border-top:var(--rule-faint)">
+    <span class="rubric">Governance</span>
+    <div class="rubric-rule"></div>
+    <p class="prose" style="margin-top:1rem"><p>The full responsibilities of the Parish Council are defined in the Cathedral Bylaws, approved by Archbishop Michael on December 30, 2019. The Bylaws govern all aspects of parish administration, from the conduct of the Annual Assembly to the canonical provisions for parish property.</p></p>
+    <a href="/bylaws" class="sb-link" style="margin-top:1rem;display:inline-block">Read the Parish Bylaws &rarr;</a>
+  </div>
+
+
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-cross">&#10022; &#10013; &#10022;</span>
+  <div class="footer-cols">
+    <div>
+      <span class="footer-col-head">Saints Peter &amp; Paul Orthodox Cathedral</span>
+      <p class="footer-name">Sts. Peter &amp; Paul<br>Orthodox Cathedral</p>
+      <p class="footer-meta">
+        Diocese of New York &amp; New Jersey<br>
+        <a href="https://nynjoca.org" target="_blank">nynjoca.org</a><br>
+        Orthodox Church in America<br>
+        <a href="https://oca.org" target="_blank">oca.org</a>
+      </p>
+      <div class="footer-socials">
+        <a href="#" target="_blank">Facebook</a>
+        <a href="#" target="_blank">Instagram</a>
+        <a href="https://www.youtube.com/@ssppnj" target="_blank">YouTube</a>
+      </div>
+    </div>
+    <div>
+      <span class="footer-col-head">Navigate</span>
+      <ul class="footer-nav">
+        <li><a href="/about-our-church">About Our Church</a></li>
+        <li><a href="/our-beliefs">Our Beliefs</a></li>
+        <li><a href="/administration">Administration</a></li>
+        <li><a href="/about-orthodoxy">About Orthodoxy</a></li>
+        <li><a href="/schedule">Liturgical Calendar</a></li>
+        <li><a href="/readings">Daily Readings</a></li>
+        <li><a href="/saint-of-the-day">Saint of the Day</a></li>
+        <li><a href="/prologue">Prologue of Ohrid</a></li>
+        <li><a href="/news">News &amp; Announcements</a></li>
+        <li><a href="/bulletins">Bulletins</a></li>
+        <li><a href="/gallery">Gallery</a></li>
+        <li><a href="/videos">Videos</a></li>
+        <li><a href="/cemeteries">Cemeteries</a></li>
+        <li><a href="/donate">Give Online</a></li>
+        <li><a href="/contact-us">Contact Us</a></li>
+      </ul>
+    </div>
+    <div>
+      <span class="footer-col-head">Visit Us</span>
+      <p class="footer-blurb">Whether you are visiting for the first time or looking to become part of our parish family, you are welcome here.</p>
+      <a href="/contact-us" class="btn btn-outline" style="margin-bottom:2rem;display:inline-block">Contact the Parish</a>
+      <span class="footer-col-head" style="margin-top:.5rem">Service Times</span>
+      <p class="footer-meta" style="line-height:2.4">
+        Vespers &middot; Saturdays 5:00 PM<br>
+        Divine Liturgy &middot; Sundays 9:30 AM<br>
+        Office &middot; Mon&ndash;Fri 9:00 AM&ndash;5:00 PM
+      </p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">&copy; Saints Peter &amp; Paul Orthodox Cathedral. All Rights Reserved.</p>
+    <p class="footer-addr">109 Grand Street &middot; Jersey City, NJ 07302 &middot; (201) 434-1986</p>
+  </div>
+</footer>
+
+
+<!-- INCOME STATEMENT LIGHTBOX -->
+<div class="cl-overlay" id="report-overlay" onclick="closeReport(event)" style="z-index:9100">
+  <div class="cl-box" style="max-width:860px">
+    <button class="cl-close" onclick="closeReportBtn()" style="z-index:10100">&#10005;</button>
+    <div style="background:var(--apse);padding:2rem 3rem;border-bottom:3px solid var(--gold)">
+      <span style="font-family:var(--f-ui);font-size:.72rem;letter-spacing:.20em;text-transform:uppercase;color:rgba(232,201,122,.65);display:block;margin-bottom:.4rem">Parish Council &middot; Finance</span>
+      <h2 style="font-family:var(--f-display);font-weight:400;font-size:2.2rem;color:#fff;line-height:1.05">2025 Income Statement</h2>
+      <p style="font-family:var(--f-ui);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(232,201,122,.70);margin-top:.6rem">Saints Peter and Paul Orthodox Cathedral &middot; January&ndash;December 2025</p>
+    </div>
+    <div style="padding:2.5rem 3rem">
+
+      <!-- SUMMARY STATS -->
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:var(--rule-faint);margin-bottom:2.5rem">
+        <div style="padding:1.25rem 1.5rem;text-align:center;border-right:var(--rule-faint)">
+          <span style="font-family:var(--f-display);font-weight:300;font-size:1.8rem;color:var(--verdigris);display:block;line-height:1">$313,943</span>
+          <span style="font-family:var(--f-ui);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);display:block;margin-top:.3rem">Total Income</span>
+        </div>
+        <div style="padding:1.25rem 1.5rem;text-align:center;border-right:var(--rule-faint)">
+          <span style="font-family:var(--f-display);font-weight:300;font-size:1.8rem;color:var(--maroon);display:block;line-height:1">$233,039</span>
+          <span style="font-family:var(--f-ui);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);display:block;margin-top:.3rem">Total Expenses</span>
+        </div>
+        <div style="padding:1.25rem 1.5rem;text-align:center">
+          <span style="font-family:var(--f-display);font-weight:300;font-size:1.8rem;color:var(--verdigris);display:block;line-height:1">$80,904</span>
+          <span style="font-family:var(--f-ui);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);display:block;margin-top:.3rem">Net Income (All Activity)</span>
+        </div>
+      </div>
+
+      <!-- INCOME TABLE -->
+      <p style="font-family:var(--f-ui);font-size:.72rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--maroon);margin-bottom:.75rem">Church Income</p>
+      <table style="width:100%;border-collapse:collapse;font-family:var(--f-body);font-size:.88rem;color:var(--ink);margin-bottom:2rem">
+        <thead>
+          <tr style="border-bottom:2px solid var(--maroon)">
+            <th style="text-align:left;padding:.4rem .75rem;font-family:var(--f-ui);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);font-weight:600">Source</th>
+            <th style="text-align:right;padding:.4rem .75rem;font-family:var(--f-ui);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);font-weight:600">Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid rgba(123,29,42,.07)"><td style="padding:.38rem .75rem">Offering</td><td style="text-align:right;padding:.38rem .75rem">$31,652</td></tr>
+          <tr style="border-bottom:1px solid rgba(123,29,42,.07)"><td style="padding:.38rem .75rem">Pledge</td><td style="text-align:right;padding:.38rem .75rem">$78,354</td></tr>
+          <tr style="border-bottom:1px solid rgba(123,29,42,.07)"><td style="padding:.38rem .75rem">Pascha 2025</td><td style="text-align:right;padding:.38rem .75rem">$8,279</td></tr>
+          <tr style="border-bottom:1px solid rgba(123,29,42,.07)"><td style="padding:.38rem .75rem">Candles</td><td style="text-align:right;padding:.38rem .75rem">$11,682</td></tr>
+          <tr style="border-bottom:1px solid rgba(123,29,42,.07)"><td style="padding:.38rem .75rem">Parking</td><td style="text-align:right;padding:.38rem .75rem">$16,250</td></tr>
+          <tr style="border-bottom:1px solid rgba(123,29,42,.07)"><td style="padding:.38rem .75rem">Restoration</td><td style="text-align:right;padding:.38rem .75rem">$15,726</td></tr>
+          <tr style="border-bottom:1px solid rgba(123,29,42,.07)"><td style="padding:.38rem .75rem">Reliquaries</td><td style="text-align:right;padding:.38rem .75rem">$5,100</td></tr>
+          <tr style="border-bottom:1px solid rgba(123,29,42,.07)"><td style="padding:.38rem .75rem">Hall Use</td><td style="text-align:right;padding:.38rem .75rem">$2,700</td></tr>
+          <tr style="border-bottom:1px solid rgba(123,29,42,.07)"><td style="padding:.38rem .75rem">Holy Days</td><td style="text-align:right;padding:.38rem .75rem">$2,211</td></tr>
+          <tr style="border-bottom:1px solid rgba(123,29,42,.07)"><td style="padding:.38rem .75rem;color:var(--stone)">All other income</td><td style="text-align:right;padding:.38rem .75rem;color:var(--stone)">$5,437</td></tr>
+          <tr style="border-top:2px solid var(--maroon);background:var(--vellum-mid)">
+            <td style="padding:.6rem .75rem;font-family:var(--f-ui);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600">Church Income Total</td>
+            <td style="text-align:right;padding:.6rem .75rem;font-family:var(--f-ui);font-size:.76rem;font-weight:600;color:var(--verdigris)">$177,391</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(123,29,42,.07);background:var(--vellum-mid)">
+            <td style="padding:.38rem .75rem;color:var(--stone)">Stock Donations</td>
+            <td style="text-align:right;padding:.38rem .75rem;color:var(--stone)">$136,552</td>
+          </tr>
+          <tr style="border-top:2px solid var(--maroon);background:var(--vellum-mid)">
+            <td style="padding:.75rem;font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600">Grand Total Income</td>
+            <td style="text-align:right;padding:.75rem;font-family:var(--f-ui);font-size:.80rem;font-weight:600;color:var(--verdigris)">$313,943</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- NET INCOME -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2rem">
+        <div style="padding:1.25rem 1.5rem;background:var(--vellum-mid);border-left:3px solid var(--stone)">
+          <span style="font-family:var(--f-ui);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.3rem">Net Income (Regular Activity)</span>
+          <span style="font-family:var(--f-display);font-size:1.5rem;color:var(--maroon);display:block">($55,648)</span>
+          <span style="font-family:var(--f-body);font-size:.80rem;color:var(--stone);margin-top:.3rem;display:block">Excluding stock donations</span>
+        </div>
+        <div style="padding:1.25rem 1.5rem;background:var(--vellum-mid);border-left:3px solid var(--verdigris)">
+          <span style="font-family:var(--f-ui);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.3rem">Net Income (All Activity)</span>
+          <span style="font-family:var(--f-display);font-size:1.5rem;color:var(--verdigris);display:block">$80,904</span>
+          <span style="font-family:var(--f-body);font-size:.80rem;color:var(--stone);margin-top:.3rem;display:block">Including stock donations</span>
+        </div>
+      </div>
+
+      <!-- INVESTMENT ACCOUNTS -->
+      <p style="font-family:var(--f-ui);font-size:.72rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--maroon);margin-bottom:.75rem">Morgan Stanley Investment Accounts</p>
+      <table style="width:100%;border-collapse:collapse;font-family:var(--f-body);font-size:.88rem;color:var(--ink)">
+        <thead>
+          <tr style="border-bottom:2px solid var(--maroon)">
+            <th style="text-align:left;padding:.4rem .75rem;font-family:var(--f-ui);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);font-weight:600">Account</th>
+            <th style="text-align:right;padding:.4rem .75rem;font-family:var(--f-ui);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);font-weight:600">Opening</th>
+            <th style="text-align:right;padding:.4rem .75rem;font-family:var(--f-ui);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);font-weight:600">Contributions</th>
+            <th style="text-align:right;padding:.4rem .75rem;font-family:var(--f-ui);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);font-weight:600">Closing</th>
+            <th style="text-align:right;padding:.4rem .75rem;font-family:var(--f-ui);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);font-weight:600">Growth</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid rgba(123,29,42,.07)"><td style="padding:.45rem .75rem">Main Account</td><td style="text-align:right;padding:.45rem .75rem">$586,220</td><td style="text-align:right;padding:.45rem .75rem">$136,552</td><td style="text-align:right;padding:.45rem .75rem;font-weight:500">$839,879</td><td style="text-align:right;padding:.45rem .75rem;color:var(--verdigris)">+17%</td></tr>
+          <tr style="border-bottom:1px solid rgba(123,29,42,.07)"><td style="padding:.45rem .75rem">Kukulak Charity</td><td style="text-align:right;padding:.45rem .75rem">$20,924</td><td style="text-align:right;padding:.45rem .75rem">&mdash;</td><td style="text-align:right;padding:.45rem .75rem;font-weight:500">$20,980</td><td style="text-align:right;padding:.45rem .75rem;color:var(--stone)">0%</td></tr>
+          <tr style="border-bottom:1px solid rgba(123,29,42,.07)"><td style="padding:.45rem .75rem">Education</td><td style="text-align:right;padding:.45rem .75rem">$22,975</td><td style="text-align:right;padding:.45rem .75rem">&mdash;</td><td style="text-align:right;padding:.45rem .75rem;font-weight:500">$23,591</td><td style="text-align:right;padding:.45rem .75rem;color:var(--verdigris)">+3%</td></tr>
+          <tr style="border-top:2px solid var(--maroon);background:var(--vellum-mid)">
+            <td style="padding:.75rem;font-family:var(--f-ui);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600">Total</td>
+            <td style="text-align:right;padding:.75rem;font-family:var(--f-ui);font-size:.72rem;font-weight:600">$630,119</td>
+            <td style="text-align:right;padding:.75rem;font-family:var(--f-ui);font-size:.72rem;font-weight:600">$136,552</td>
+            <td style="text-align:right;padding:.75rem;font-family:var(--f-ui);font-size:.72rem;font-weight:600;color:var(--verdigris)">$884,450</td>
+            <td style="text-align:right;padding:.75rem"></td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>
+
+<!-- BUDGET LIGHTBOX -->
+<div class="cl-overlay" id="budget-overlay" onclick="closeBudget(event)" style="z-index:9100">
+  <div class="cl-box" style="max-width:860px">
+    <button class="cl-close" onclick="closeBudgetBtn()" style="z-index:10100">&#10005;</button>
+    <div style="background:var(--apse);padding:2rem 3rem;border-bottom:3px solid var(--gold)">
+      <span style="font-family:var(--f-ui);font-size:.72rem;letter-spacing:.20em;text-transform:uppercase;color:rgba(232,201,122,.65);display:block;margin-bottom:.4rem">Parish Council</span>
+      <h2 style="font-family:var(--f-display);font-weight:400;font-size:2.2rem;color:#fff;line-height:1.05">Parish Budget 2026</h2>
+      <p style="font-family:var(--f-ui);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(232,201,122,.70);margin-top:.6rem">Approved at the Annual Parish Assembly &middot; January 2025</p>
+    </div>
+    <div style="padding:2.5rem 3rem">
+
+      <!-- TABLE -->
+      <table style="width:100%;border-collapse:collapse;font-family:var(--f-body);font-size:.88rem;color:var(--ink)">
+        <thead>
+          <tr style="border-bottom:2px solid var(--maroon)">
+            <th style="text-align:left;padding:.5rem .75rem;font-family:var(--f-ui);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);font-weight:600">Account</th>
+            <th style="text-align:right;padding:.5rem .75rem;font-family:var(--f-ui);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);font-weight:600">2025 Actual</th>
+            <th style="text-align:right;padding:.5rem .75rem;font-family:var(--f-ui);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);font-weight:600">2026 Budget</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- PERSONNEL -->
+          <tr style="background:var(--vellum-mid)">
+            <td colspan="3" style="padding:.5rem .75rem;font-family:var(--f-ui);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--stone);font-weight:600">Personnel</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(123,29,42,.07)"><td style="padding:.45rem .75rem">Salaries</td><td style="text-align:right;padding:.45rem .75rem">$43,000</td><td style="text-align:right;padding:.45rem .75rem;font-weight:500">$50,000</td></tr>
+          <tr style="border-bottom:1px solid rgba(123,29,42,.07)"><td style="padding:.45rem .75rem">Life Insurance</td><td style="text-align:right;padding:.45rem .75rem">$1,200</td><td style="text-align:right;padding:.45rem .75rem;font-weight:500">$1,200</td></tr>
+          <tr style="border-bottom:1px solid rgba(123,29,42,.07)"><td style="padding:.45rem .75rem">Pension</td><td style="text-align:right;padding:.45rem .75rem">$15,558</td><td style="text-align:right;padding:.45rem .75rem;font-weight:500">$18,000</td></tr>
+          <tr style="border-bottom:1px solid rgba(123,29,42,.07)"><td style="padding:.45rem .75rem">Auto Reimbursement</td><td style="text-align:right;padding:.45rem .75rem">$2,400</td><td style="text-align:right;padding:.45rem .75rem;font-weight:500">$2,400</td></tr>
+          <tr style="border-bottom:1px solid rgba(123,29,42,.07)"><td style="padding:.45rem .75rem">Social Security</td><td style="text-align:right;padding:.45rem .75rem">$11,902</td><td style="text-align:right;padding:.45rem .75rem;font-weight:500">$7,000</td></tr>
+          <tr style="border-bottom:1px solid rgba(123,29,42,.07)"><td style="padding:.45rem .75rem">Visiting Clergy Stipend</td><td style="text-align:right;padding:.45rem .75rem">$1,900</td><td style="text-align:right;padding:.45rem .75rem;font-weight:500">$2,000</td></tr>
+          <tr style="border-bottom:1px solid rgba(123,29,42,.07)"><td style="padding:.45rem .75rem">Assembly Expenses</td><td style="text-align:right;padding:.45rem .75rem">$150</td><td style="text-align:right;padding:.45rem .75rem;font-weight:500">$150</td></tr>
+
+          <!-- PARISH MINISTRY -->
+          <tr style="background:var(--vellum-mid)">
+            <td colspan="3" style="padding:.5rem .75rem;font-family:var(--f-ui);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--stone);font-weight:600">Parish Ministry</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(123,29,42,.07)"><td style="padding:.45rem .75rem">The Tithe</td><td style="text-align:right;padding:.45rem .75rem">$13,183</td><td style="text-align:right;padding:.45rem .75rem;font-weight:500">$15,000</td></tr>
+          <tr style="border-bottom:1px solid rgba(123,29,42,.07)"><td style="padding:.45rem .75rem">Parking Lot</td><td style="text-align:right;padding:.45rem .75rem">$8,000</td><td style="text-align:right;padding:.45rem .75rem;font-weight:500">$8,000</td></tr>
+          <tr style="border-bottom:1px solid rgba(123,29,42,.07)"><td style="padding:.45rem .75rem">Choir Director</td><td style="text-align:right;padding:.45rem .75rem">$16,800</td><td style="text-align:right;padding:.45rem .75rem;font-weight:500">$17,500</td></tr>
+          <tr style="border-bottom:1px solid rgba(123,29,42,.07)"><td style="padding:.45rem .75rem">Choir Expenses</td><td style="text-align:right;padding:.45rem .75rem">$600</td><td style="text-align:right;padding:.45rem .75rem;font-weight:500">$600</td></tr>
+          <tr style="border-bottom:1px solid rgba(123,29,42,.07)"><td style="padding:.45rem .75rem">Diocesan Benefactor</td><td style="text-align:right;padding:.45rem .75rem">$1,000</td><td style="text-align:right;padding:.45rem .75rem;font-weight:500">$1,500</td></tr>
+          <tr style="border-bottom:1px solid rgba(123,29,42,.07)"><td style="padding:.45rem .75rem">Concert Expenses</td><td style="text-align:right;padding:.45rem .75rem">$7,833</td><td style="text-align:right;padding:.45rem .75rem;font-weight:500">&mdash;</td></tr>
+          <tr style="border-bottom:1px solid rgba(123,29,42,.07)"><td style="padding:.45rem .75rem">Travel Expenses</td><td style="text-align:right;padding:.45rem .75rem">$965</td><td style="text-align:right;padding:.45rem .75rem;font-weight:500">$1,000</td></tr>
+          <tr style="border-bottom:1px solid rgba(123,29,42,.07)"><td style="padding:.45rem .75rem">Luncheons</td><td style="text-align:right;padding:.45rem .75rem">$1,903</td><td style="text-align:right;padding:.45rem .75rem;font-weight:500">$2,000</td></tr>
+          <tr style="border-bottom:1px solid rgba(123,29,42,.07)"><td style="padding:.45rem .75rem">Liturgical Supplies</td><td style="text-align:right;padding:.45rem .75rem">$241</td><td style="text-align:right;padding:.45rem .75rem;font-weight:500">$500</td></tr>
+          <tr style="border-bottom:1px solid rgba(123,29,42,.07)"><td style="padding:.45rem .75rem">Reliquaries &amp; Icons</td><td style="text-align:right;padding:.45rem .75rem">$5,445</td><td style="text-align:right;padding:.45rem .75rem;font-weight:500">$2,000</td></tr>
+
+          <!-- ADMINISTRATION -->
+          <tr style="background:var(--vellum-mid)">
+            <td colspan="3" style="padding:.5rem .75rem;font-family:var(--f-ui);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--stone);font-weight:600">Administration</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(123,29,42,.07)"><td style="padding:.45rem .75rem">Candles</td><td style="text-align:right;padding:.45rem .75rem">$4,158</td><td style="text-align:right;padding:.45rem .75rem;font-weight:500">$4,158</td></tr>
+          <tr style="border-bottom:1px solid rgba(123,29,42,.07)"><td style="padding:.45rem .75rem">Professional &amp; Legal Fees</td><td style="text-align:right;padding:.45rem .75rem">$63</td><td style="text-align:right;padding:.45rem .75rem;font-weight:500">$100</td></tr>
+          <tr style="border-bottom:1px solid rgba(123,29,42,.07)"><td style="padding:.45rem .75rem">Software / Hardware</td><td style="text-align:right;padding:.45rem .75rem">$383</td><td style="text-align:right;padding:.45rem .75rem;font-weight:500">$700</td></tr>
+          <tr style="border-bottom:1px solid rgba(123,29,42,.07)"><td style="padding:.45rem .75rem">Offering Envelopes</td><td style="text-align:right;padding:.45rem .75rem">$722</td><td style="text-align:right;padding:.45rem .75rem;font-weight:500">$800</td></tr>
+          <tr style="border-bottom:1px solid rgba(123,29,42,.07)"><td style="padding:.45rem .75rem">Office Supplies</td><td style="text-align:right;padding:.45rem .75rem">$939</td><td style="text-align:right;padding:.45rem .75rem;font-weight:500">$1,000</td></tr>
+          <tr style="border-bottom:1px solid rgba(123,29,42,.07)"><td style="padding:.45rem .75rem">Rectory Phone &amp; Internet</td><td style="text-align:right;padding:.45rem .75rem">$2,298</td><td style="text-align:right;padding:.45rem .75rem;font-weight:500">$2,300</td></tr>
+          <tr style="border-bottom:1px solid rgba(123,29,42,.07)"><td style="padding:.45rem .75rem">Bookstore</td><td style="text-align:right;padding:.45rem .75rem">$2,232</td><td style="text-align:right;padding:.45rem .75rem;font-weight:500">$2,400</td></tr>
+          <tr style="border-bottom:1px solid rgba(123,29,42,.07)"><td style="padding:.45rem .75rem">Payroll Fees</td><td style="text-align:right;padding:.45rem .75rem">$633</td><td style="text-align:right;padding:.45rem .75rem;font-weight:500">$700</td></tr>
+
+          <!-- FACILITIES -->
+          <tr style="background:var(--vellum-mid)">
+            <td colspan="3" style="padding:.5rem .75rem;font-family:var(--f-ui);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--stone);font-weight:600">Facilities</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(123,29,42,.07)"><td style="padding:.45rem .75rem">Utilities</td><td style="text-align:right;padding:.45rem .75rem">$19,970</td><td style="text-align:right;padding:.45rem .75rem;font-weight:500">$20,000</td></tr>
+          <tr style="border-bottom:1px solid rgba(123,29,42,.07)"><td style="padding:.45rem .75rem">Hall Supplies</td><td style="text-align:right;padding:.45rem .75rem">$891</td><td style="text-align:right;padding:.45rem .75rem;font-weight:500">$5,000</td></tr>
+          <tr style="border-bottom:1px solid rgba(123,29,42,.07)"><td style="padding:.45rem .75rem">Insurance</td><td style="text-align:right;padding:.45rem .75rem">$29,274</td><td style="text-align:right;padding:.45rem .75rem;font-weight:500">$35,000</td></tr>
+          <tr style="border-bottom:1px solid rgba(123,29,42,.07)"><td style="padding:.45rem .75rem">Janitorial Service</td><td style="text-align:right;padding:.45rem .75rem">$8,152</td><td style="text-align:right;padding:.45rem .75rem;font-weight:500">$9,000</td></tr>
+          <tr style="border-bottom:1px solid rgba(123,29,42,.07)"><td style="padding:.45rem .75rem">Repairs, Maintenance &amp; Restoration</td><td style="text-align:right;padding:.45rem .75rem">$30,641</td><td style="text-align:right;padding:.45rem .75rem;font-weight:500;color:var(--maroon)">$40,000</td></tr>
+
+          <!-- TOTAL -->
+          <tr style="border-top:2px solid var(--maroon);background:var(--vellum-mid)">
+            <td style="padding:.75rem;font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--text)">Total</td>
+            <td style="text-align:right;padding:.75rem;font-family:var(--f-ui);font-size:.80rem;font-weight:600;color:var(--text)">$233,039</td>
+            <td style="text-align:right;padding:.75rem;font-family:var(--f-ui);font-size:.80rem;font-weight:600;color:var(--maroon)">$250,008</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- NOTES -->
+      <div style="margin-top:2rem;padding:1.25rem 1.5rem;background:var(--vellum-mid);border-left:3px solid var(--gold)">
+        <p style="font-family:var(--f-ui);font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;color:var(--stone);margin-bottom:.6rem;font-weight:600">Notes</p>
+        <ul style="font-family:var(--f-body);font-size:.85rem;line-height:1.72;color:var(--stone);list-style:none;padding:0">
+          <li style="padding:.3rem 0;border-bottom:1px solid rgba(123,29,42,.07)">Social Security: 2025 expenses include 2024 and 2025 payments — double the yearly rate.</li>
+          <li style="padding:.3rem 0;border-bottom:1px solid rgba(123,29,42,.07)">Concert Expenses: 2025 expenses offset by income with net gain. Restructured for 2026 with no separate expense line.</li>
+          <li style="padding:.3rem 0;border-bottom:1px solid rgba(123,29,42,.07)">Repairs &amp; Maintenance: Hall Refurbishing and Restoration accounts consolidated here for 2026.</li>
+          <li style="padding:.3rem 0">Hall Supplies: 2025 reflects only first 2 months; remainder covered by donations.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- MINUTES LIGHTBOX -->
+<div class="cl-overlay" id="minutes-overlay" onclick="closeMinutes(event)" style="z-index:9100">
+  <div class="cl-box" style="max-width:780px">
+    <button class="cl-close" onclick="closeMinutesBtn()" style="z-index:10100">&#10005;</button>
+    <div style="background:var(--apse);padding:2rem 3rem;border-bottom:3px solid var(--gold)">
+      <span style="font-family:var(--f-ui);font-size:.72rem;letter-spacing:.20em;text-transform:uppercase;color:rgba(232,201,122,.65);display:block;margin-bottom:.4rem">Parish Assembly</span>
+      <h2 style="font-family:var(--f-display);font-weight:400;font-size:2.2rem;color:#fff;line-height:1.05">Minutes of Annual Parish Assembly</h2>
+      <p style="font-family:var(--f-ui);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(232,201,122,.70);margin-top:.6rem">January 26, 2025</p>
+    </div>
+    <div style="padding:2.5rem 3rem;font-family:var(--f-body);font-size:.97rem;line-height:1.82;color:var(--ink)">
+
+      <p style="margin-bottom:1.25em">A quorum was present and the meeting was called to order at 12:25 PM. Father Solomon opened the meeting with a prayer.</p>
+
+      <div style="margin:2rem 0;padding-bottom:1.5rem;border-bottom:1px solid rgba(123,29,42,.12)">
+        <p style="font-family:var(--f-ui);font-size:.72rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--maroon);margin-bottom:.6rem">Minutes</p>
+        <p>The minutes of the 2024 Annual Parish Assembly were approved by the assembly. <em style="color:var(--stone)">Motion: Andrei Anghel / Nick Rus.</em></p>
+      </div>
+
+      <div style="margin:2rem 0;padding-bottom:1.5rem;border-bottom:1px solid rgba(123,29,42,.12)">
+        <p style="font-family:var(--f-ui);font-size:.72rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--maroon);margin-bottom:.75rem">Pastor&rsquo;s Report</p>
+        <p style="margin-bottom:1em">The 2024 church year included two weddings, five baptisms, and two chrismations. Average Sunday attendance was 70 parishioners, reflecting a 27% increase from the prior year of 55. Aiden Harwood joined Ero Ogbevire as an altar server; they lead six boys who also participate.</p>
+        <p style="margin-bottom:1em">The choir participated in baptisms and other services. Bible study classes include 15 people on average, both in person and online. Coffee hour discussions include 10-12 people.</p>
+        <p style="margin-bottom:1em">An Akathist for the Three Holy Hierarchs was held in January. Father reported on our participation at the Inter-Parish Associations (IPA) initial meeting, a collaborative effort supported by the Assembly of Bishops.</p>
+        <p style="margin-bottom:1em">Renovation projects completed include: mold remediation for 107 Grand; church chandelier cleaned; choir loft restored with new chandelier, brass safety rail, and remediated water damage; additional pump installed in church hall for flood protection. Liturgical fans were acquired. Relics of our patron Saints Peter and Paul are now on display.</p>
+        <p style="margin-bottom:1em">Archbishop Michael will be with us February 22 and 23.</p>
+        <p>Gleb Ivanov reported six musical events last year: three School of Music children&rsquo;s recitals and three church concerts. The church received $3,700 through this fundraising initiative. The Pascha concert will be on May 2, 2025.</p>
+      </div>
+
+      <div style="margin:2rem 0;padding-bottom:1.5rem;border-bottom:1px solid rgba(123,29,42,.12)">
+        <p style="font-family:var(--f-ui);font-size:.72rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--maroon);margin-bottom:.75rem">Financial Report</p>
+        <p style="margin-bottom:1em">Church finances were presented by Andrei Anghel. Total income for the year (excluding major contributors) was $136,572 &mdash; a 7% increase over the prior year. All contributions totaled $288,685. However, excluding top contributors and stock donations, we showed a deficit of $68,977.</p>
+        <p style="margin-bottom:1em">Our largest expense was church restoration projects, totaling $27,600. An anticipated expense of $60,000 to repair the sunken floor was noted.</p>
+        <p style="margin-bottom:1em"><em style="color:var(--stone)">Motion to accept the financial report and budget for 2025: Charles George / Raymon Geis. Approved by the Assembly.</em></p>
+        <p>The auditor&rsquo;s report was presented by Father in the absence of the auditor, Jessia Anghel, who reviewed the church&rsquo;s books through December 31, 2024, and found them in good standing. <em style="color:var(--stone)">Motion to approve: Laura Johnson / Lorraine Morrow. Approved by the Assembly.</em></p>
+      </div>
+
+      <div style="margin:2rem 0;padding-bottom:1.5rem;border-bottom:1px solid rgba(123,29,42,.12)">
+        <p style="font-family:var(--f-ui);font-size:.72rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--maroon);margin-bottom:.75rem">New Business &mdash; Election of the Parish Council</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.35rem .35rem;background:var(--vellum-mid);padding:1.25rem 1.5rem;border-left:3px solid var(--maroon);margin-bottom:1em">
+          <div><span style="font-family:var(--f-display);font-size:1rem">Marius Anghel</span><span style="font-family:var(--f-ui);font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--maroon);display:block">President</span></div>
+          <div><span style="font-family:var(--f-display);font-size:1rem">Jeff Hoff</span><span style="font-family:var(--f-ui);font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--maroon);display:block">Vice President</span></div>
+          <div><span style="font-family:var(--f-display);font-size:1rem">Andrei Anghel</span><span style="font-family:var(--f-ui);font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--maroon);display:block">Treasurer</span></div>
+          <div><span style="font-family:var(--f-display);font-size:1rem">Joanne Barry</span><span style="font-family:var(--f-ui);font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--maroon);display:block">Secretary</span></div>
+          <div><span style="font-family:var(--f-display);font-size:1rem">Lorraine Morrow</span><span style="font-family:var(--f-ui);font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);display:block">Council Member</span></div>
+          <div><span style="font-family:var(--f-display);font-size:1rem">Ero Ogbevire</span><span style="font-family:var(--f-ui);font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);display:block">Council Member</span></div>
+          <div><span style="font-family:var(--f-display);font-size:1rem">Nicholas Rus</span><span style="font-family:var(--f-ui);font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);display:block">Council Member</span></div>
+          <div><span style="font-family:var(--f-display);font-size:1rem">Kevin Johnson</span><span style="font-family:var(--f-ui);font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);display:block">Council Member</span></div>
+          <div><span style="font-family:var(--f-display);font-size:1rem">Amanda Yan</span><span style="font-family:var(--f-ui);font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);display:block">Council Member</span></div>
+          <div><span style="font-family:var(--f-display);font-size:1rem">Raymon Geis</span><span style="font-family:var(--f-ui);font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);display:block">Council Member</span></div>
+          <div><span style="font-family:var(--f-display);font-size:1rem">Alexandru Chiorean</span><span style="font-family:var(--f-ui);font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);display:block">Council Member</span></div>
+        </div>
+        <p style="margin-bottom:.75em"><em style="color:var(--stone)">Motion to approve the slate of officers: Aiden Harwood / Aiden Willis. Approved by the Assembly.</em></p>
+        <p><strong style="font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase">Auditor Renewal</strong><br>Motion to renew the auditor for the 2025 church year: Joanne Barry / Lorraine Morrow. Approved by the Assembly.</p>
+      </div>
+
+      <div style="margin:2rem 0 0">
+        <p style="margin-bottom:.5em"><em style="color:var(--stone)">Motion to close: Aiden Harwood / Aiden Willis. Approved. Meeting adjourned at 1:15 PM.</em></p>
+        <div style="margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid rgba(123,29,42,.12);display:flex;gap:3rem">
+          <div>
+            <p style="font-family:var(--f-ui);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);margin-bottom:.2rem">Submitted by</p>
+            <p style="font-family:var(--f-display);font-size:1rem">Rev. Solomon Longo<br><span style="font-size:.9rem;color:var(--stone)">Rector</span></p>
+          </div>
+          <div>
+            <p style="font-family:var(--f-ui);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);margin-bottom:.2rem">Recorded by</p>
+            <p style="font-family:var(--f-display);font-size:1rem">Joanne S. Barry<br><span style="font-size:.9rem;color:var(--stone)">Secretary</span></p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- COUNCIL LIGHTBOX -->
+<div class="cl-overlay" id="cl-overlay" onclick="closeCouncil(event)">
+  <div class="cl-box">
+    <button class="cl-close" onclick="closeCouncilBtn()">&#10005;</button>
+    <div class="cl-inner">
+      <div class="cl-left">
+        <span class="cl-label" id="cl-label"></span>
+        <div class="cl-rule"></div>
+        <span class="cl-icon-glyph" id="cl-icon-glyph"></span>
+        <h2 class="cl-title" id="cl-title"></h2>
+        <p class="cl-opening" id="cl-opening"></p>
+        <div id="cl-sections"></div>
+        <div class="cl-ctas" id="cl-ctas"></div>
+      </div>
+      <div class="cl-right">
+        <div class="cl-right-icon" id="cl-right-icon"></div>
+        <span class="cl-right-label" id="cl-right-label"></span>
+        <p class="cl-right-title" id="cl-right-title"></p>
+        <p class="cl-right-body" id="cl-right-body"></p>
+        <div class="cl-factoid">
+          <span class="cl-factoid-head" id="cl-factoid-head"></span>
+          <p class="cl-factoid-body" id="cl-factoid-body"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+var COUNCIL_DATA = [
+  {
+    label: "Financial Stewardship",
+    title: "Stewardship of Finances",
+    icon: "&#9878;",
+    opening: "The Parish Council is responsible for the faithful stewardship of all financial gifts given to the Cathedral. Every dollar given by a parishioner is received as an act of worship — an offering toward the life and mission of the Church — and the Council takes that trust seriously.",
+    sections: [
+      {head: "Budget approval", body: "Each year the Council prepares and approves an annual budget, presenting it to the Parish Assembly for ratification. The budget reflects the parish's priorities: worship, community, outreach, and maintenance."},
+      {head: "Financial reporting", body: "The Treasurer provides written financial reports to the Council at each meeting and to the full Assembly annually. An independent audit is conducted each year by a CPA or qualified parishioner elected by the Assembly."},
+      {head: "Expenditure limits", body: "The Council may authorize expenditures up to $10,000 per item. Larger expenditures require Assembly approval, ensuring that major decisions are made by the full community."}
+    ],
+    rightLabel: "Parish Officer",
+    rightTitle: "The Treasurer",
+    rightBody: "The Treasurer tabulates and records all offerings and financial gifts to the Parish, and provides written reports to the Parish Council and to the Annual Assembly.",
+    factoidHead: "From the Bylaws",
+    factoidBody: "The Treasurer shall tabulate and record offerings and financial gifts to the Parish and provide written reports to the Parish Council and to the Annual Assembly. (Article VII)",
+    ctas: [
+      {label: "Give Online", href: "/donate", style: "maroon"},
+      {label: "Contact the Parish", href: "/contact-us", style: "outline"}
+    ]
+  },
+  {
+    label: "Property & Facilities",
+    title: "Care of Parish Property",
+    icon: "&#8962;",
+    opening: "Saints Peter and Paul has occupied its home on Grand Street since 1907. Caring for that building — and the parish hall, rectory, and parking lot — is a form of stewardship in itself, preserving a place of prayer for generations to come.",
+    sections: [
+      {head: "The Cathedral", body: "The Cathedral building at 111-113 Grand Street is the heart of the parish. The Council oversees its maintenance, upkeep, and any renovation or improvement projects."},
+      {head: "Parish facilities", body: "The parish hall, rectory at 109 Grand Street, and parking lot at 101 Grand Street are all under the Council's management, supporting coffee hour, parish events, and community life."},
+      {head: "Reporting concerns", body: "If you notice a maintenance issue or have a concern about parish facilities, please contact the parish office. The Council addresses property matters at each monthly meeting."}
+    ],
+    rightLabel: "Parish Officer",
+    rightTitle: "The Warden",
+    rightBody: "The Warden assists the Parish Priest in the day-to-day administration of the Cathedral, serving as a liaison between the clergy and the parish council on matters of property and facilities.",
+    factoidHead: "Did you know",
+    factoidBody: "Saints Peter and Paul has stood at 111-113 Grand Street since 1907 — over 115 years of continuous worship in the same building.",
+    ctas: [
+      {label: "Contact the Parish", href: "/contact-us", style: "maroon"},
+      {label: "About Our Church", href: "/about-our-church", style: "outline"}
+    ]
+  },
+  {
+    label: "Community & Ministry",
+    title: "Supporting Parish Life",
+    icon: "&#10016;",
+    opening: "A parish is more than a Sunday morning. The Council helps to resource the programs, events, and ministries that form the community throughout the year — from the coffee hour table to the Pascha feast, from the choir loft to the cemetery.",
+    sections: [
+      {head: "Parish events", body: "The Council helps plan and resource the events that mark the rhythm of parish life: Nativity celebrations, Pascha night, parish picnics, and the feast day of our patron Saints Peter and Paul on June 29."},
+      {head: "Outreach & service", body: "The Council supports the parish's outreach efforts, including charitable giving, food drives, and service to the broader Jersey City community."},
+      {head: "Get involved", body: "Every parishioner is part of parish life. Whether it's setting up for coffee hour, singing in the choir, or volunteering for a parish event — your participation is what makes this community what it is."}
+    ],
+    rightLabel: "Feast Day",
+    rightTitle: "Sts. Peter & Paul — June 29",
+    rightBody: "The feast day of our patron saints is the highlight of the parish year, celebrated with a hierarchical Liturgy, procession, and parish banquet.",
+    factoidHead: "Parish tradition",
+    factoidBody: "Coffee hour after the Sunday Liturgy has been a tradition at Saints Peter and Paul for generations. All are welcome at the table.",
+    ctas: [
+      {label: "Parish Calendar", href: "/schedule", style: "maroon"},
+      {label: "Contact Us", href: "/contact-us", style: "outline"}
+    ]
+  },
+  {
+    label: "Governance & Voice",
+    title: "Representing the Assembly",
+    icon: "&#9780;",
+    opening: "The Parish Council is elected by the Assembly to carry its voice into the day-to-day administration of the Cathedral. The relationship runs both ways: the Council brings decisions to the Assembly for ratification, and brings the Assembly's concerns back to the Council table.",
+    sections: [
+      {head: "The Annual Assembly", body: "Each year the Parish Assembly meets on a Sunday to receive reports, approve the budget, and elect the Council. All parishioners in good standing may vote."},
+      {head: "Episcopal accountability", body: "All major Assembly decisions require approval and confirmation by the diocesan bishop before taking effect. Minutes are submitted to Archbishop Michael within 30 days."},
+      {head: "Serving on the Council", body: "Any parishioner in good standing is eligible to serve. If you feel called to serve in this way, speak with Father Solomon or contact the parish office."}
+    ],
+    rightLabel: "Governing Document",
+    rightTitle: "The Parish Bylaws",
+    rightBody: "The Bylaws of Saints Peter and Paul Orthodox Cathedral were submitted to the Diocese on November 10, 2019 and approved by Archbishop Michael on December 30, 2019.",
+    factoidHead: "Article VI",
+    factoidBody: "The Parish Council shall be responsible not only for the spiritual and material needs of the Parish, but also for the encouragement of others to participate in the life and mission of the Parish. (Article VI)",
+    ctas: [
+      {label: "Read the Bylaws", href: "/bylaws", style: "maroon"},
+      {label: "Meet the Council", href: "/council", style: "outline"}
+    ]
+  }
+];
+
+function openCouncil(idx) {
+  var d = COUNCIL_DATA[idx];
+  document.getElementById('cl-label').textContent = d.label;
+  document.getElementById('cl-title').textContent = d.title;
+  document.getElementById('cl-icon-glyph').innerHTML = d.icon;
+  document.getElementById('cl-opening').textContent = d.opening;
+  var sec = document.getElementById('cl-sections');
+  sec.innerHTML = '';
+  d.sections.forEach(function(s, i) {
+    if (i > 0) { var hr = document.createElement('hr'); hr.className = 'cl-divider'; sec.appendChild(hr); }
+    var wrap = document.createElement('div'); wrap.className = 'cl-section';
+    var h = document.createElement('span'); h.className = 'cl-section-head'; h.textContent = s.head;
+    var b = document.createElement('p'); b.className = 'cl-section-body'; b.textContent = s.body;
+    wrap.appendChild(h); wrap.appendChild(b); sec.appendChild(wrap);
+  });
+  var ctas = document.getElementById('cl-ctas');
+  ctas.innerHTML = '';
+  d.ctas.forEach(function(c) {
+    var a = document.createElement('a');
+    a.href = c.href;
+    a.textContent = c.label;
+    a.className = c.style === 'maroon' ? 'btn btn-maroon' : 'btn btn-outline';
+    ctas.appendChild(a);
+  });
+  var ri = document.getElementById('cl-right-icon');
+  ri.innerHTML = d.icon;
+  ri.style.cssText = 'width:100%;padding-bottom:130%;background:rgba(123,29,42,.07);position:relative;margin-bottom:1rem;display:flex;align-items:center;justify-content:center;font-size:4rem;color:rgba(123,29,42,.18)';
+  document.getElementById('cl-right-label').textContent = d.rightLabel;
+  document.getElementById('cl-right-title').textContent = d.rightTitle;
+  document.getElementById('cl-right-body').textContent = d.rightBody;
+  document.getElementById('cl-factoid-head').textContent = d.factoidHead;
+  document.getElementById('cl-factoid-body').textContent = d.factoidBody;
+  document.getElementById('cl-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function openReport() {
+  document.getElementById('report-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeReportBtn() {
+  document.getElementById('report-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeReport(e) {
+  if (e.target === document.getElementById('report-overlay')) closeReportBtn();
+}
+
+function openBudget() {
+  document.getElementById('budget-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeBudgetBtn() {
+  document.getElementById('budget-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeBudget(e) {
+  if (e.target === document.getElementById('budget-overlay')) closeBudgetBtn();
+}
+
+function openMinutes() {
+  document.getElementById('minutes-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeMinutesBtn() {
+  document.getElementById('minutes-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeMinutes(e) {
+  if (e.target === document.getElementById('minutes-overlay')) closeMinutesBtn();
+}
+
+function closeCouncilBtn() {
+  document.getElementById('cl-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeCouncil(e) {
+  if (e.target === document.getElementById('cl-overlay')) closeCouncilBtn();
+}
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') { closeCouncilBtn(); closeMinutesBtn(); closeBudgetBtn(); closeReportBtn(); } });
+</script>
+<script src="/hero-rotator.js"></script>
+<script>
+if (window.netlifyIdentity) {
+  window.netlifyIdentity.on("init", user => {
+    if (!user) {
+      window.netlifyIdentity.on("login", () => { document.location.href = "/admin/"; });
+    }
+  });
+}
+</script>
+<script>
+function openDrawer(){
+  document.getElementById('nav-drawer').classList.add('open');
+  document.getElementById('nav-overlay').classList.add('open');
+  document.getElementById('nav-hamburger').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeDrawer(){
+  document.getElementById('nav-drawer').classList.remove('open');
+  document.getElementById('nav-overlay').classList.remove('open');
+  document.getElementById('nav-hamburger').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeDrawer();});
+</script>
+<script src="/enhancements.js"></script>
+</body>
+</html>

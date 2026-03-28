@@ -113,7 +113,7 @@ img{display:block;max-width:100%}
 @keyframes fu{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
 
 /* === THIS SUNDAY === */
-.this-sunday{background:var(--vellum);position:relative;overflow:hidden}
+.this-sunday{display:block;background:var(--vellum);position:relative;overflow:hidden}
 .ts-rosette{position:absolute;width:620px;height:620px;left:-150px;top:50%;transform:translateY(-50%);opacity:.055;pointer-events:none;z-index:0}
 .ts-body{display:grid;grid-template-columns:1fr 340px;max-width:1380px;margin:0 auto;padding:5rem 3rem 5.5rem 4.5rem;gap:5rem;position:relative;z-index:1}
 .ts-opening{border-left:4px solid var(--gold);padding-left:1.75rem;margin-bottom:2.5rem;transition:border-color .5s}
@@ -163,47 +163,11 @@ img{display:block;max-width:100%}
 .welcome-headline strong{font-style:normal;font-weight:500;color:var(--maroon)}
 .welcome-body{font-family:var(--f-body);font-size:1rem;line-height:1.82;color:var(--ink);text-align:justify;hyphens:auto;max-width:52ch;margin-bottom:1.2em}
 .welcome-btns{display:flex;gap:1rem;margin-top:2.5rem;flex-wrap:wrap}
-.welcome-photos{display:grid;grid-template-rows:3fr 2fr}
-.wp-top,.wp-btm{position:relative;overflow:hidden}
-.wp-top-bg{position:absolute;inset:0;background:linear-gradient(160deg,#7B1D2A 0%,#3B0F18 50%,#B88328 100%);transition:transform .5s}
-.wp-btm-bg{position:absolute;inset:0;background:linear-gradient(160deg,#1E3D35 0%,#3D6B5E 60%,#7A6648 100%);transition:transform .5s}
-.wp-top:hover .wp-top-bg,.wp-btm:hover .wp-btm-bg{transform:scale(1.03)}
-.wp-overlay{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(21,12,8,.72));padding:2.5rem 1.75rem 1.4rem}
-.wp-caption{font-family:var(--f-display);font-style:italic;font-size:.95rem;color:rgba(255,255,255,.88);line-height:1.4}
-.wp-divider{border:none;border-top:var(--rule-faint)}
 
 /* === WORSHIP === */
-.worship-section{background:var(--vellum);padding-top:0}
-.worship-header{max-width:1380px;margin:0 auto;padding:5rem 4.5rem 3.5rem;border-bottom:2px solid var(--maroon);text-align:center}
-.worship-headline{font-family:var(--f-display);font-weight:300;font-size:clamp(1.9rem,3.5vw,2.8rem);color:var(--text);margin:.5rem 0}
-.worship-grid{max-width:1380px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);border-bottom:var(--rule-faint)}
-.worship-office{padding:4rem 3.5rem 3.5rem;border-right:var(--rule-faint);position:relative}
-.worship-office:last-child{border-right:none}
-.worship-office::before{content:'';display:block;position:absolute;top:4rem;left:0;width:3px;height:36px}
-.office-a::before{background:var(--maroon)}
-.office-b::before{background:var(--gold)}
-.office-c::before{background:var(--verdigris)}
-.office-numeral{font-family:var(--f-display);font-style:italic;font-size:5rem;line-height:1;color:rgba(123,29,42,.07);margin-bottom:-.75rem}
-.office-title{font-family:var(--f-display);font-weight:400;font-size:1.9rem;color:var(--text);margin:.3rem 0 .2rem}
-.office-time{font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);display:block;margin-bottom:1.25rem}
-.office-body{font-family:var(--f-body);font-size:.96rem;line-height:1.78;color:var(--ink);text-align:justify;hyphens:auto;margin-bottom:2rem}
-hr.office-rule{border:none;border-top:var(--rule-faint);margin-bottom:1.25rem}
+hr
 
 /* === GALLERY === */
-.gallery-section{background:var(--apse);padding:5rem 0 4rem;overflow:hidden;border-top:2px solid rgba(184,131,40,.18)}
-.gallery-header{max-width:1380px;margin:0 auto 2.5rem;padding:0 4.5rem;display:flex;align-items:flex-end;justify-content:space-between}
-.gallery-headline{font-family:var(--f-display);font-weight:300;font-size:clamp(1.8rem,3vw,2.4rem);color:rgba(246,241,232,.92);margin:.4rem 0}
-.gallery-drag{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(246,241,232,.28);align-self:flex-end}
-.gallery-track{display:flex;gap:0;padding:0;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;cursor:grab}
-.gallery-track::-webkit-scrollbar{display:none}
-.gallery-track:active{cursor:grabbing}
-.gallery-slide{flex:0 0 400px;scroll-snap-align:start;position:relative;height:540px;border-right:1px solid rgba(246,241,232,.05);overflow:hidden}
-.gallery-slide-bg{position:absolute;inset:0;transition:transform .5s ease}
-.gallery-slide:hover .gallery-slide-bg{transform:scale(1.04)}
-.gallery-slide-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(21,12,8,.90) 100%)}
-.gallery-slide-content{position:absolute;bottom:0;left:0;right:0;padding:2.5rem 1.75rem 1.75rem}
-.gallery-caption{font-family:var(--f-display);font-style:italic;font-size:1.05rem;color:rgba(255,255,255,.90);line-height:1.4;margin-bottom:.3rem}
-.gallery-sub{font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(184,131,40,.75)}
 
 /* === BULLETIN === */
 .bulletin-section{background:var(--vellum)}
@@ -278,10 +242,6 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   .ts-body{grid-template-columns:1fr;gap:0;padding:4rem 2.5rem}
   .ts-right{border-left:none;border-top:var(--rule-faint);padding-left:0;padding-top:2.5rem;margin-top:2.5rem}
   .welcome-inner{grid-template-columns:1fr}
-  .welcome-photos{min-height:380px;grid-template-rows:1fr;grid-template-columns:1fr 1fr}
-  .wp-divider{display:none}
-  .worship-grid{grid-template-columns:1fr}
-  .worship-office{border-right:none;border-bottom:var(--rule-faint)}
   .bulletin-grid{grid-template-columns:1fr}
   .bulletin-entry{border-right:none;border-bottom:var(--rule-faint)}
   .footer-cols{grid-template-columns:1fr 1fr;gap:3rem}
@@ -296,12 +256,6 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   .ts-strip-item{border-right:none;border-bottom:var(--rule-faint)}
   .ts-strip-item:last-child{border-bottom:none}
   .welcome-text{padding:4rem 1.5rem}
-  .welcome-photos{grid-template-columns:1fr;grid-template-rows:260px 180px}
-  .wp-divider{display:block}
-  .worship-header{padding:4rem 1.5rem 2.5rem}
-  .worship-office{padding:3rem 1.5rem}
-  .gallery-slide{flex:0 0 300px;height:420px}
-  .gallery-header{padding:0 1.5rem}
   .bulletin-entry{padding:2.5rem 1.5rem}
   .footer-cols{grid-template-columns:1fr;gap:2.5rem}
   footer{padding:4rem 1.5rem 2rem}
@@ -346,8 +300,6 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 @keyframes draw-in{to{stroke-dashoffset:0}}
 
 /* ── I: WELCOME OVERLAY ── */
-.welcome-overlay{position:fixed;inset:0;z-index:9000;background:rgba(21,8,4,.97);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .6s ease}
-.welcome-overlay.active{opacity:1;pointer-events:all}
 .wo-inner{max-width:560px;padding:4rem 3rem;text-align:center;position:relative}
 .wo-cross{font-size:2.5rem;color:rgba(184,131,40,.40);letter-spacing:.8em;padding-left:.8em;display:block;margin-bottom:2rem;animation:wo-rise 1s .3s both}
 .wo-title{font-family:var(--f-display);font-style:italic;font-weight:300;font-size:clamp(2.2rem,5vw,3.2rem);line-height:1.15;color:rgba(246,241,232,.95);margin-bottom:.75rem;animation:wo-rise 1s .5s both}
@@ -399,21 +351,209 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 
 
 /* Content area background fix */
-.page-body,.main-wrap,.cal-wrap,.giving-wrap,.gallery-wrap,.video-wrap,.bulletin-wrap,.news-wrap,.contact-wrap,.cemetery-wrap{background:var(--vellum)}
+.page-body,.main-wrap,.cal-wrap,.giving-wrap,
 
 @keyframes kenburns{from{transform:scale(1)}to{transform:scale(1.08)}}
 
-.hero-frame{position:absolute;inset:1.5rem;pointer-events:none;z-index:4}
-.byz-strip{position:absolute;display:block;height:42px;background:url('/images/byzantine-border.svg') left center repeat-x;background-size:134px 42px}
-.byz-strip-top{top:0;left:0;right:0}
-.byz-strip-bottom{bottom:0;left:0;right:0;transform:scaleY(-1)}
-.byz-strip-left{left:0;top:42px;bottom:42px;width:42px;background:url('/images/byzantine-border.svg') center top repeat-y;background-size:42px 134px;transform:rotate(90deg) translateY(-42px);transform-origin:top left}
-.byz-strip-right{right:0;top:42px;bottom:42px;width:42px;background:url('/images/byzantine-border.svg') center top repeat-y;background-size:42px 134px;transform:rotate(-90deg) translateX(42px);transform-origin:top right}
+.hero-frame{position:absolute;inset:2.5rem;border:1px solid rgba(184,131,40,.20);pointer-events:none;z-index:2}
 .hfc{position:absolute;width:14px;height:14px;border-style:solid;border-color:rgba(184,131,40,.50)}
 .hfc.tl{top:-1px;left:-1px;border-width:2px 0 0 2px}
 .hfc.tr{top:-1px;right:-1px;border-width:2px 2px 0 0}
 .hfc.bl{bottom:-1px;left:-1px;border-width:0 0 2px 2px}
-.hfc.br{bottom:-1px;right:-1px;border-width:0 2px 2px 0}</style>
+.hfc.br{bottom:-1px;right:-1px;border-width:0 2px 2px 0}
+/* ── BYZANTINE BAND ── */
+.byz-band{background:var(--apse);padding:3.5rem 0;position:relative;overflow:hidden}
+.byz-band-inner{display:flex;justify-content:center;opacity:.15}
+.byz-tile{width:72px;height:72px;flex-shrink:0}
+.byz-band-text{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--f-display);font-style:italic;font-weight:300;font-size:clamp(1.1rem,2.5vw,1.6rem);color:rgba(246,241,232,.65);letter-spacing:.04em;text-align:center;padding:0 2rem}
+@media(max-width:768px){.byz-band-text{font-size:1rem;padding:0 1.5rem}}
+
+.worship-section{background:var(--vellum);padding-top:0}
+.worship-header{max-width:1380px;margin:0 auto;padding:5rem 4.5rem 3.5rem;border-bottom:2px solid var(--maroon);text-align:center}
+.worship-headline{font-family:var(--f-display);font-weight:300;font-size:clamp(1.9rem,3.5vw,2.8rem);color:var(--text);margin:.75rem 0 .5rem}
+.worship-grid{display:grid;grid-template-columns:repeat(3,1fr);height:520px}
+.worship-card{position:relative;overflow:hidden;cursor:pointer;transition:transform .3s ease,box-shadow .3s ease}
+.worship-card:hover{transform:translateY(-6px);box-shadow:0 16px 48px rgba(21,8,4,.4);z-index:2}
+.worship-card-bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .6s ease}
+.worship-card:hover .worship-card-bg{transform:scale(1.03)}
+.worship-card-scrim{position:absolute;inset:0;background:linear-gradient(to top,rgba(21,8,4,.92) 0%,rgba(21,8,4,.55) 45%,rgba(21,8,4,.15) 100%)}
+.worship-card-body{position:absolute;bottom:0;left:0;right:0;padding:2rem 2rem 1.75rem;transform:translateY(0);transition:transform .3s ease}
+.worship-card-cta{display:inline-block;font-family:var(--f-ui);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(184,131,40,.9);border-bottom:1px solid rgba(184,131,40,.4);padding-bottom:1px;margin-top:1rem;opacity:0;transform:translateY(6px);transition:opacity .3s ease,transform .3s ease}
+.worship-card:hover .worship-card-cta{opacity:1;transform:translateY(0)}
+.worship-card-title{font-family:var(--f-display);font-weight:300;font-size:1.75rem;color:rgba(246,241,232,.96);margin-bottom:.25rem}
+.worship-card-time{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(184,131,40,.85);margin-bottom:.75rem}
+.worship-card-desc{font-family:var(--f-body);font-size:.9rem;line-height:1.65;color:rgba(246,241,232,.7)}
+.worship-card-fallback{position:absolute;inset:0;background:linear-gradient(160deg,var(--apse) 0%,var(--maroon) 100%)}
+/* Lightbox */
+@media(max-width:768px){.worship-grid{grid-template-columns:1fr;height:auto}.worship-card{height:320px}}
+/* A: Photo header */
+/* C: Dark maroon header block */
+/* Content area */
+/* E: Gold ornamental divider */
+
+
+.wl-overlay{display:none;position:fixed;inset:0;background:rgba(21,8,4,.90);z-index:9000;align-items:center;justify-content:center;padding:1.5rem}
+.wl-overlay.open{display:flex}
+.wl-box{background:var(--vellum);max-width:900px;width:100%;max-height:92vh;overflow-y:auto;position:relative}
+.wl-close{position:fixed;top:1.25rem;right:1.5rem;background:none;border:none;font-size:2.5rem;color:rgba(246,241,232,.85);cursor:pointer;line-height:1;padding:.25rem;z-index:10001}
+.wl-close:hover{color:#fff}
+.wl-close:hover{color:var(--text)}
+.wl-inner{display:grid;grid-template-columns:65fr 35fr;min-height:500px}
+.wl-left{padding:3rem 2.5rem;border-right:1px solid rgba(123,29,42,.15)}
+.wl-right{padding:2.5rem 1.75rem;background:var(--vellum)}
+.wl-label{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.20em;text-transform:uppercase;color:var(--maroon);display:block;margin-bottom:.5rem}
+.wl-rule{width:36px;height:2px;background:var(--maroon);margin:.6rem 0 1.25rem}
+.wl-title{font-family:var(--f-display);font-weight:300;font-size:2.6rem;color:var(--text);line-height:1.05;margin-bottom:.3rem}
+.wl-subtitle{font-family:var(--f-display);font-style:italic;font-size:1.05rem;color:var(--stone);margin-bottom:1.25rem}
+.wl-time{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--maroon);border:1px solid rgba(184,131,40,.5);display:inline-block;padding:.28rem .85rem;margin-bottom:1.75rem}
+.wl-opening{font-family:var(--f-body);font-size:1rem;line-height:1.8;color:var(--ink);text-align:justify;hyphens:auto;margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid rgba(123,29,42,.12)}
+.wl-section{margin-bottom:1.25rem}
+.wl-section-head{font-family:var(--f-ui);font-size:.80rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--maroon);margin-bottom:.4rem}
+.wl-section-body{font-family:var(--f-body);font-size:.93rem;line-height:1.78;color:var(--ink);text-align:justify;hyphens:auto}
+.wl-divider{border:none;border-top:1px solid rgba(123,29,42,.10);margin:1.1rem 0}
+/* Right column */
+.wl-icon-placeholder{width:100%;padding-bottom:130%;background:rgba(123,29,42,.08);position:relative;margin-bottom:1rem;display:flex;align-items:center;justify-content:center}
+.wl-icon-placeholder::after{content:'';position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.wl-icon-cross{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);opacity:.18}
+.wl-icon-label{font-family:var(--f-ui);font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;color:var(--maroon);text-align:center;display:block;margin-bottom:.35rem}
+.wl-icon-name{font-family:var(--f-display);font-size:1.05rem;color:var(--text);text-align:center;margin-bottom:.6rem;line-height:1.2}
+.wl-icon-bio{font-family:var(--f-body);font-size:.82rem;line-height:1.65;color:var(--stone);margin-bottom:1.5rem}
+.wl-factoid{border-left:3px solid var(--maroon);padding:.75rem 1rem;margin-top:1.25rem}
+.wl-factoid-head{font-family:var(--f-ui);font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;color:var(--maroon);display:block;margin-bottom:.4rem}
+.wl-factoid-body{font-family:var(--f-body);font-size:.82rem;line-height:1.65;color:var(--ink)}
+
+.welcome-photos{display:flex;flex-direction:column}
+.wp-panel{position:relative;flex:1;min-height:170px;overflow:hidden;cursor:pointer;transition:transform .3s ease,box-shadow .3s ease}
+.wp-panel-bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .5s ease,filter .4s ease}
+.wp-panel:hover{transform:scale(1.02);box-shadow:0 8px 32px rgba(21,8,4,.5);z-index:2}
+.wp-panel:hover .wp-panel-bg{transform:scale(1.03)}
+.wp-panel-scrim{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(21,8,4,.15) 0%,rgba(21,8,4,.65) 100%)}
+.wp-panel-label{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:var(--f-ui);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(246,241,232,.85);text-align:center;pointer-events:none;transition:opacity .3s}
+
+
+.wp-panel-caption{position:absolute;bottom:0;left:0;right:0;padding:.6rem 1rem;font-family:var(--f-display);font-style:italic;font-size:.88rem;color:rgba(246,241,232,.85)}
+.wp-panel-1{background:linear-gradient(160deg,#7B1D2A,#3B0F18)}
+.wp-panel-2{background:linear-gradient(160deg,#3B0F18,#7B1D2A)}
+.wp-panel-3{background:linear-gradient(160deg,#3B0F18,#B88328)}
+/* Gallery lightbox */
+.wg-overlay{display:none;position:fixed;inset:0;background:rgba(21,8,4,.96);z-index:9100;flex-direction:column;align-items:center;justify-content:center}
+.wg-overlay.open{display:flex}
+.wg-close{position:fixed;top:1.25rem;right:1.5rem;background:none;border:none;font-size:2.5rem;color:rgba(246,241,232,.85);cursor:pointer;z-index:9200;line-height:1}
+.wg-close:hover{color:#fff}
+.wg-photo{width:min(800px,90vw);height:min(480px,55vh);background-size:cover;background-position:center;background-color:rgba(123,29,42,.2);display:flex;align-items:center;justify-content:center;position:relative;margin-bottom:1.5rem;transition:opacity .4s ease}
+.wg-photo-placeholder{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(246,241,232,.3);text-align:center}
+.wg-caption-area{text-align:center;max-width:600px;padding:0 1.5rem}
+.wg-section{font-family:var(--f-ui);font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(184,131,40,.75);display:block;margin-bottom:.4rem}
+.wg-caption{font-family:var(--f-display);font-style:italic;font-size:1.2rem;color:rgba(246,241,232,.9);margin-bottom:1.25rem;transition:opacity .35s ease}
+.wg-controls{display:flex;align-items:center;gap:1.5rem;justify-content:center}
+.wg-arrow{background:none;border:none;border-bottom:1px solid rgba(246,241,232,.4);border-right:1px solid rgba(246,241,232,.4);color:rgba(246,241,232,.7);width:14px;height:14px;cursor:pointer;transition:all .3s;padding:0}
+.wg-arrow:hover{border-color:rgba(184,131,40,.9);opacity:1}
+.wg-dots{display:flex;gap:.5rem}
+.wg-dot{width:6px;height:6px;border-radius:50%;background:rgba(246,241,232,.3);cursor:pointer;transition:background .2s}
+.wg-dot.active{background:rgba(184,131,40,.9)}
+.wg-counter{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;color:rgba(246,241,232,.4)}
+
+@keyframes wg-kenburns{from{transform:scale(1.06)}to{transform:scale(1)}}
+
+.worship-card:active{transform:translateY(-3px);box-shadow:0 8px 24px rgba(21,8,4,.4)}
+.wp-panel:active{transform:scale(1.01);box-shadow:0 4px 16px rgba(21,8,4,.4)}
+@media(max-width:768px){
+  /* Welcome section */
+  .welcome-text{padding:3rem 1.5rem}
+  .welcome-photos{min-height:auto}
+  .wp-panel{min-height:160px}
+  .wp-panel-text{font-size:1.3rem}
+  /* Worship lightbox */
+  .wl-box{max-height:100vh;max-height:100dvh}
+  .wl-inner{grid-template-columns:1fr}
+  .wl-left{border-right:none;border-bottom:1px solid rgba(123,29,42,.15);padding:2rem 1.5rem}
+  .wl-right{padding:1.75rem 1.5rem}
+  .wl-title{font-size:1.9rem}
+  .wl-icon-placeholder{padding-bottom:60%}
+  /* CTA always visible on touch */
+  .worship-card-cta{opacity:1;transform:translateY(0)}
+  /* Gallery lightbox */
+  .wg-photo{height:35vh;width:95vw}
+  .wg-caption{font-size:1rem}
+  .wg-arrow{width:18px;height:18px}
+  .wg-close{font-size:2rem;top:.75rem;right:.75rem}
+  /* Worship cards stack */
+  .worship-grid{grid-template-columns:1fr;height:auto}
+  .worship-card{height:280px}
+}
+
+.gallery-section{background:var(--vellum-mid);border-top:var(--rule-faint);border-bottom:var(--rule-faint)}
+.gallery-inner{max-width:1380px;margin:0 auto;display:grid;grid-template-columns:4fr 5fr;min-height:580px}
+.gallery-panels{display:flex;flex-direction:column}
+.gallery-panel{position:relative;flex:1;min-height:170px;overflow:hidden;cursor:pointer;transition:filter .4s ease}
+.gallery-panel:hover{filter:brightness(1.12)}
+.gallery-panel-bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .5s ease}
+.gallery-panel:hover .gallery-panel-bg{transform:scale(1.04)}
+.gallery-panel-scrim{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(21,8,4,.15) 0%,rgba(21,8,4,.65) 100%)}
+.gallery-panel-label{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:var(--f-display);font-style:italic;font-weight:300;font-size:1.4rem;color:rgba(246,241,232,.82);letter-spacing:.04em;text-shadow:0 2px 12px rgba(21,8,4,.5);pointer-events:none}
+.gallery-panel-caption{position:absolute;bottom:0;left:0;right:0;padding:.6rem 1rem;font-family:var(--f-display);font-style:italic;font-size:.85rem;color:rgba(246,241,232,.8)}
+.gallery-panel-1{background:linear-gradient(160deg,#3B0F18,#7B1D2A)}
+.gallery-panel-2{background:linear-gradient(160deg,#3B0F18,#7B1D2A)}
+.gallery-panel-3{background:linear-gradient(160deg,#3B0F18,#B88328)}
+.gallery-text{padding:6rem 4.5rem 6rem 5rem;border-left:var(--rule-faint);display:flex;flex-direction:column;justify-content:center}
+.gallery-text-headline{font-family:var(--f-display);font-weight:300;font-style:italic;font-size:clamp(1.8rem,3vw,2.6rem);line-height:1.15;color:var(--text);margin:.5rem 0 1.5rem}
+.gallery-text-body{font-family:var(--f-body);font-size:1rem;line-height:1.82;color:var(--ink);text-align:justify;hyphens:auto;margin-bottom:1.25rem}
+.gallery-text-btns{margin-top:1.5rem}
+@media(max-width:1100px){.gallery-inner{grid-template-columns:1fr}}
+@media(max-width:768px){.gallery-text{padding:3rem 1.5rem}.gallery-panel{min-height:150px}.gallery-panel-label{font-size:1.2rem}}
+.apostle-quote{background:var(--vellum);border-bottom:1px solid rgba(123,29,42,.15);padding:5rem 0}
+.apostle-inner{max-width:1380px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr;gap:0;align-items:center;padding:0 4.5rem}
+.apostle-icon{display:flex;flex-direction:column;align-items:center;padding-left:4rem;border-left:1px solid rgba(123,29,42,.15)}
+.apostle-icon-box{width:180px;height:240px;background:rgba(123,29,42,.06);position:relative;display:flex;align-items:center;justify-content:center;margin-bottom:1rem}
+.apostle-icon-label{font-family:var(--f-ui);font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);text-align:center;line-height:1.6}
+.apostle-quote-block{padding-right:4rem;border-left:3px solid var(--maroon);padding-left:0}
+.apostle-quote-text{font-family:var(--f-display);font-style:italic;font-weight:300;font-size:clamp(1.4rem,2.5vw,2rem);line-height:1.55;color:var(--text);margin-bottom:1.5rem}
+.apostle-quote-attr{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--maroon)}
+.apostle-quote-ref{font-family:var(--f-ui);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);margin-top:.25rem}
+@media(max-width:768px){.apostle-inner{grid-template-columns:1fr;padding:0 1.5rem;gap:2.5rem}.apostle-icon{padding-right:0;border-right:none;border-bottom:1px solid rgba(123,29,42,.15);padding-bottom:2.5rem}.apostle-quote-block{padding-left:1.5rem}.apostle-quote-text{font-size:1.3rem}}
+
+.aq-section{background:var(--vellum);padding:4.5rem 0;border-bottom:1px solid rgba(123,29,42,.15)}
+.aq-inner{max-width:1380px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr;align-items:center;padding:0 4.5rem;gap:0}
+.aq-quote{border-left:3px solid var(--maroon);padding-left:2.5rem;padding-right:4rem}
+.aq-text{font-family:var(--f-display);font-style:italic;font-weight:300;font-size:clamp(1.3rem,2.2vw,1.85rem);line-height:1.55;color:var(--text);margin-bottom:1.25rem}
+.aq-attr{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--maroon);display:block;margin-bottom:.25rem}
+.aq-ref{font-family:var(--f-ui);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone)}
+.aq-icon{display:flex;flex-direction:column;align-items:center;border-left:1px solid rgba(123,29,42,.15);padding-left:4rem}
+.aq-icon-box{width:160px;height:210px;background:rgba(123,29,42,.06);display:flex;align-items:center;justify-content:center;margin-bottom:.85rem}
+.aq-icon-label{font-family:var(--f-ui);font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;color:var(--stone);text-align:center;line-height:1.7}
+@media(max-width:768px){.aq-inner{grid-template-columns:1fr;padding:0 1.5rem;gap:2.5rem}.aq-icon{border-left:none;padding-left:0;border-top:1px solid rgba(123,29,42,.15);padding-top:2.5rem}.aq-quote{padding-right:0}}
+
+.rector-section{background:var(--vellum);border-top:var(--rule-faint);border-bottom:var(--rule-faint)}
+.rector-inner{max-width:1380px;margin:0 auto;display:grid;grid-template-columns:1fr 2fr;min-height:420px;align-items:stretch}
+.rector-photo{position:relative;overflow:hidden;min-height:380px;background:rgba(123,29,42,.07);display:flex;align-items:center;justify-content:center;flex-direction:column}
+.rector-photo-bg{position:absolute;inset:0;background-size:cover;background-position:center top}
+.rector-photo-fallback{position:absolute;inset:0;background:linear-gradient(160deg,rgba(123,29,42,.12),rgba(123,29,42,.06))}
+.rector-photo-cross{opacity:.15}
+.rector-photo-caption{position:absolute;bottom:0;left:0;right:0;padding:1rem 1.5rem;font-family:var(--f-ui);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);text-align:center}
+.rector-text{padding:5rem 4.5rem;border-left:var(--rule-faint);display:flex;flex-direction:column;justify-content:center}
+.rector-name{font-family:var(--f-display);font-weight:300;font-size:2rem;color:var(--text);margin:.5rem 0 .2rem;line-height:1.1}
+.rector-title{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--maroon);margin-bottom:1.75rem}
+.rector-title-rule{width:36px;height:2px;background:var(--maroon);margin:.6rem 0 1.5rem}
+.rector-body{font-family:var(--f-body);font-size:1rem;line-height:1.82;color:var(--ink);text-align:justify;hyphens:auto;margin-bottom:1.5rem}
+@media(max-width:1100px){.rector-inner{grid-template-columns:1fr}}
+@media(max-width:768px){.rector-photo{min-height:280px}.rector-text{padding:3rem 1.5rem}.rector-name{font-size:1.7rem}}
+.visit-section{background:var(--apse);padding:5rem 0;border-top:2px solid rgba(184,131,40,.18)}
+.visit-inner{max-width:1380px;margin:0 auto;padding:0 4.5rem;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.visit-left h2{font-family:var(--f-display);font-weight:300;font-size:clamp(2rem,3.5vw,2.8rem);color:rgba(246,241,232,.95);margin:.5rem 0 1.5rem;line-height:1.1}
+.visit-left p{font-family:var(--f-body);font-size:1rem;line-height:1.82;color:rgba(246,241,232,.7);margin-bottom:1.5rem}
+.visit-detail{margin-bottom:2rem;padding-bottom:2rem;border-bottom:1px solid rgba(246,241,232,.08)}
+.visit-detail:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.visit-detail-head{font-family:var(--f-ui);font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(184,131,40,.85);margin-bottom:.5rem}
+.visit-detail-body{font-family:var(--f-body);font-size:.96rem;line-height:1.78;color:rgba(246,241,232,.72)}
+.visit-detail-body strong{color:rgba(246,241,232,.92);font-weight:500}
+.visit-btns{display:flex;gap:1rem;margin-top:2.5rem;flex-wrap:wrap}
+.btn-gold{font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;padding:.85rem 2.2rem;border:1px solid rgba(184,131,40,.6);color:rgba(184,131,40,.9);background:none;cursor:pointer;transition:all .22s;display:inline-block}
+.btn-gold:hover{background:rgba(184,131,40,.12);border-color:rgba(184,131,40,.9)}
+.btn-vellum{font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;padding:.85rem 2.2rem;border:1px solid rgba(246,241,232,.25);color:rgba(246,241,232,.7);background:none;cursor:pointer;transition:all .22s;display:inline-block}
+.btn-vellum:hover{background:rgba(246,241,232,.08);border-color:rgba(246,241,232,.5);color:rgba(246,241,232,.95)}
+@media(max-width:1100px){.visit-inner{grid-template-columns:1fr;gap:3rem}}
+@media(max-width:768px){.visit-inner{padding:0 1.5rem}.visit-section{padding:3.5rem 0}}
+</style>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
@@ -492,6 +632,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
     <a href="/schedule">Liturgical Calendar</a>
     <a href="/readings">Daily Readings</a>
     <a href="/saint-of-the-day">Saint of the Day</a>
+    <a href="/prologue">Prologue of Ohrid</a>
     <a href="/videos">Videos</a>
     <span class="drawer-section">Parish Life</span>
     <a href="/gallery">Gallery</a>
@@ -505,133 +646,50 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   <a href="https://tithe.ly/give?c=5004259" target="_blank" class="nav-drawer-give">Give Online</a>
 </div>
 
-<!-- HERO -->
-<section class="hero" id="top">
-  <div class="hero-fallback"></div>
-  <div class="hero-bg" id="hero-bg1"></div>
-  <div class="hero-bg2" id="hero-bg2"></div>
-  <div class="hero-overlay"></div>
-  <div class="hero-frame">
-    <div class="byz-strip byz-strip-top"></div>
-    <div class="byz-strip byz-strip-bottom"></div>
-    <div class="byz-strip byz-strip-left"></div>
-    <div class="byz-strip byz-strip-right"></div>
-  </div><div class="hfc tr"></div>
-    <div class="hfc bl"></div><div class="hfc br"></div>
-  </div><div class="hfc tr"></div>
-    <div class="hfc bl"></div><div class="hfc br"></div>
-    <!-- Byzantine border strips -->
-  </div><div class="hfc tr"></div>
-    <div class="hfc bl"></div><div class="hfc br"></div>
+<div class="page-hero">
+  <div class="page-hero-inner" style="padding-left:75px;padding-top:calc(5rem + 5px);padding-bottom:calc(4rem + 20px)">
+    <p class="breadcrumb"><a href="/">Home</a> · About Orthodoxy</p>
+    <span class="rubric light">For Inquirers</span>
+    <div class="rubric-rule" style="background:rgba(232,201,122,.6)"></div>
+    <h1 class="page-title">About<br><em>Orthodoxy</em></h1>
+    <p style="font-family:var(--f-display);font-style:italic;font-size:1.1rem;color:rgba(255,255,255,.65);margin-top:.5rem">The ancient Christian Faith — twenty centuries of unbroken witness</p>
   </div>
-  <div class="hero-content">
-    <p class="hero-eyebrow">Diocese of New York &amp; New Jersey · Orthodox Church in America</p>
-    <h1 class="hero-title">Saints<br><em>Peter</em> &amp; <em>Paul</em></h1>
-    <div class="hero-divider"><span class="hero-divider-inner">✦</span></div>
-    <p class="hero-loc">Orthodox Cathedral &nbsp;·&nbsp; Jersey City, NJ &nbsp;·&nbsp; Est. 1907</p>
-    <p class="hero-tag">Monumental from the outside. Warm and alive within.</p>
-    <div class="hero-cta"><a href="#this-sunday" class="btn btn-white">Enter</a></div>
-  </div>
-  <div class="hero-scroll">Scroll<div class="hero-scroll-line"></div></div>
-</section>
+</div>
+<div class="chapter-bar"><span class="cbar-text bright">About Orthodox Christianity</span><span class="cbar-text">For Inquirers &amp; Seekers</span></div>
 
-<!-- THIS SUNDAY -->
-<section class="this-sunday" id="this-sunday">
-  <div class="chapter-bar">
-    <span class="cbar-text bright">The Liturgical Calendar</span>
-    <span class="cbar-text" id="cbar-date">Loading…</span>
-  </div>
-  <!-- Rosette watermark -->
-  <svg class="ts-rosette" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <circle cx="100" cy="100" r="95" fill="none" stroke="#7B1D2A" stroke-width=".6"/>
-    <circle cx="100" cy="100" r="78" fill="none" stroke="#7B1D2A" stroke-width=".4"/>
-    <circle cx="100" cy="100" r="60" fill="none" stroke="#7B1D2A" stroke-width=".4"/>
-    <circle cx="100" cy="100" r="42" fill="none" stroke="#7B1D2A" stroke-width=".4"/>
-    <circle cx="100" cy="100" r="24" fill="none" stroke="#7B1D2A" stroke-width=".5"/>
-    <circle cx="100" cy="100" r="8"  fill="none" stroke="#7B1D2A" stroke-width=".6"/>
-    <g stroke="#7B1D2A" stroke-width=".4" fill="none">
-      <line x1="100" y1="5" x2="100" y2="195"/>
-      <line x1="5" y1="100" x2="195" y2="100"/>
-      <line x1="33" y1="33" x2="167" y2="167"/>
-      <line x1="167" y1="33" x2="33" y2="167"/>
-      <line x1="5" y1="58" x2="195" y2="58"/>
-      <line x1="5" y1="142" x2="195" y2="142"/>
-      <line x1="58" y1="5" x2="58" y2="195"/>
-      <line x1="142" y1="5" x2="142" y2="195"/>
-    </g>
-    <g fill="#7B1D2A">
-      <circle cx="100" cy="5" r="2.5"/><circle cx="100" cy="195" r="2.5"/>
-      <circle cx="5" cy="100" r="2.5"/><circle cx="195" cy="100" r="2.5"/>
-      <circle cx="33" cy="33" r="2"/><circle cx="167" cy="33" r="2"/>
-      <circle cx="33" cy="167" r="2"/><circle cx="167" cy="167" r="2"/>
-    </g>
-  </svg>
-  <div class="ts-body">
-    <!-- LEFT -->
-    <div class="ts-left">
-      <span class="rubric">This Sunday</span>
-      <div class="rubric-rule"></div>
-      <div id="sunday-panel"><p class="ts-loading">Loading liturgical data…</p></div>
-      <div class="ts-strip" style="margin-top:2rem">
-        <div class="ts-strip-item">
-          <span class="ts-strip-day">Saturday</span>
-          <span class="ts-strip-name">Vespers</span>
-          <span class="ts-strip-time">5:00 PM</span>
-        </div>
-        <div class="ts-strip-item">
-          <span class="ts-strip-day">Sunday</span>
-          <span class="ts-strip-name">Divine Liturgy</span>
-          <span class="ts-strip-time">9:30 AM</span>
-        </div>
-        <div class="ts-strip-item">
-          <span class="ts-strip-day">Mon–Fri</span>
-          <span class="ts-strip-name">Parish Office</span>
-          <span class="ts-strip-time">9:00 AM – 5:00 PM</span>
-        </div>
-      </div>
-    </div>
-    <!-- RIGHT: annotation margin -->
-    <div class="ts-right">
-      <span class="annot-label">The Week Ahead</span>
-      <span class="rubric-voice" style="margin-bottom:1.5rem">Seven days of the Church calendar</span>
-      <div id="week-strip"><p class="ts-loading" style="font-size:.9rem">Loading calendar…</p></div>
-      <div class="annot-nav">
-        <a href="/readings" class="annot-nav-link">Daily Readings</a>
-        <a href="/saint-of-the-day" class="annot-nav-link">Saint of the Day</a>
-        <a href="/schedule" class="annot-nav-link">Full Calendar</a>
-        <a href="/bulletins" class="annot-nav-link">Parish Bulletins</a>
-      </div>
+<!-- RESOURCE HUB STRIP -->
+<div class="hub-strip" id="hub-strip">
+  <div class="hub-strip-inner">
+    <span class="hub-rubric">The Inquirer&rsquo;s Path</span>
+    <h2 class="hub-headline">Everything a seeker needs to know about<br><em style="font-style:italic">Saints Peter &amp; Paul and the Orthodox Faith</em></h2>
+    <div class="hub-cards" id="hub-cards">
+        <a href="#history" class="hub-card" id="hub-card-0">
+          <span class="hub-card-icon">&#9766;</span>
+          <span class="hub-card-title">Ancient Roots</span>
+          <p class="hub-card-desc">The history of the Orthodox Church from the Apostles to today — 2,000 years of unbroken faith.</p>
+          <span class="hub-card-link">Read the History &rarr;</span>
+        </a>
+        <a href="#reading" class="hub-card" id="hub-card-1">
+          <span class="hub-card-icon">&#10002;</span>
+          <span class="hub-card-title">Recommended Reading</span>
+          <p class="hub-card-desc">Books that have guided seekers into the Orthodox Faith, from accessible introductions to spiritual classics.</p>
+          <span class="hub-card-link">Browse the List &rarr;</span>
+        </a>
+        <a href="#resources" class="hub-card" id="hub-card-2">
+          <span class="hub-card-icon">&#9769;</span>
+          <span class="hub-card-title">Learn the Faith</span>
+          <p class="hub-card-desc">Curated resources from the OCA — feasts &amp; saints, daily readings, and questions about Orthodoxy answered.</p>
+          <span class="hub-card-link">Explore Resources &rarr;</span>
+        </a>
+        <a href="#useful" class="hub-card" id="hub-card-3">
+          <span class="hub-card-icon">&#8853;</span>
+          <span class="hub-card-title">Useful Websites</span>
+          <p class="hub-card-desc">Important Orthodox resources online — the OCA, our diocese, Ancient Faith Ministries, and more.</p>
+          <span class="hub-card-link">See All Links &rarr;</span>
+        </a>
     </div>
   </div>
-</section>
-
-<!-- WELCOME -->
-<section class="welcome-section">
-  <div class="welcome-inner">
-    <div class="welcome-text">
-      <span class="rubric">Welcome</span>
-      <div class="rubric-rule"></div>
-      <h2 class="welcome-headline">A living community,<br><strong>one hundred and fifteen</strong><br>years on Grand Street.</h2>
-      <p class="welcome-body drop-cap">Founded in 1907 by immigrants from the Austro-Hungarian and Russian Empires, Saints Peter &amp; Paul has been a place of worship, refuge, and fellowship in Jersey City for over a century. Elevated to a Cathedral in 2020, we remain what we have always been: a parish — one that gathers every Sunday, feeds one another at the table, and keeps the ancient Faith alive in a changing city.</p>
-      <p class="welcome-body">Whether you are exploring Orthodoxy for the first time, seeking a parish home in Jersey City, or returning to the Faith of your fathers — you are welcome here. Come as you are.</p>
-      <div class="welcome-btns">
-        <a href="/contact-us" class="btn btn-maroon">Register with the Parish</a>
-        <a href="/about-orthodoxy" class="btn btn-outline">Explore Orthodoxy</a>
-      </div>
-    </div>
-    <div class="welcome-photos">
-      <div class="wp-top">
-        <div class="wp-top-bg"></div>
-        <div class="wp-overlay"><p class="wp-caption">The nave on a Sunday morning — 111 Grand Street</p></div>
-      </div>
-      <hr class="wp-divider"/>
-      <div class="wp-btm">
-        <div class="wp-btm-bg"></div>
-        <div class="wp-overlay"><p class="wp-caption">Coffee hour after the Divine Liturgy</p></div>
-      </div>
-    </div>
-  </div>
-</section>
+</div>
 
 <!-- WORSHIP -->
 <section class="worship-section">
@@ -639,111 +697,164 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
     <span class="rubric" style="text-align:center">Worship</span>
     <div class="rubric-rule centered"></div>
     <h2 class="worship-headline">Join Us for Worship</h2>
-    <span class="rubric-voice" style="text-align:center;display:block">All are welcome — come as you are</span>
+    <span class="rubric-voice" style="text-align:center;display:block">All are welcome. Come as you are.</span>
   </div>
   <div class="worship-grid">
-    <div class="worship-office office-a">
-      <div class="office-numeral">I</div>
-      <h3 class="office-title">Vespers</h3>
-      <span class="office-time">Saturdays · 5:00 PM</span>
-      <hr class="office-rule"/>
-      <p class="office-body">The ancient evening prayer of the Church, welcoming the Lord's Day as it begins at sundown. A contemplative, candlelit service of psalmody and hymnody. No preparation needed — simply arrive, and be still.</p>
-      <a href="/schedule" class="sb-link">Full Schedule</a>
+
+    <div class="worship-card" onclick="openWorship(0)" role="button" tabindex="0" aria-label="Learn about Vespers">
+      <div class="worship-card-fallback"></div>
+      <div class="worship-card-bg" style="background-image:url('/images/heroes/vespers-service.jpg')"></div>
+      <div class="worship-card-scrim"></div>
+      <div class="worship-card-body">
+        <div class="worship-card-title">Vespers</div>
+        <div class="worship-card-time">Saturdays · 5:00 PM</div>
+        <div class="worship-card-desc">The ancient evening prayer of the Church, welcoming the Lord's Day as it begins at sundown.</div>
+        <span class="worship-card-cta">Learn More</span>
+      </div>
     </div>
-    <div class="worship-office office-b">
-      <div class="office-numeral">II</div>
-      <h3 class="office-title">Divine Liturgy</h3>
-      <span class="office-time">Sundays · 9:30 AM</span>
-      <hr class="office-rule"/>
-      <p class="office-body">The central act of Orthodox Christian worship — the Divine Liturgy of St. John Chrysostom. Scripture, prayer, and the Holy Eucharist offered together as they have been since the first century of the Church.</p>
-      <a href="/readings" class="sb-link">This Sunday's Readings</a>
+
+    <div class="worship-card" onclick="openWorship(1)" role="button" tabindex="0" aria-label="Learn about Divine Liturgy">
+      <div class="worship-card-fallback"></div>
+      <div class="worship-card-bg" style="background-image:url('/images/heroes/divine-liturgy.jpg')"></div>
+      <div class="worship-card-scrim"></div>
+      <div class="worship-card-body">
+        <div class="worship-card-title">Divine Liturgy</div>
+        <div class="worship-card-time">Sundays · 9:30 AM</div>
+        <div class="worship-card-desc">The central act of Orthodox Christian worship, offered as it has been since the first century of the Church.</div>
+        <span class="worship-card-cta">Learn More</span>
+      </div>
     </div>
-    <div class="worship-office office-c">
-      <div class="office-numeral">III</div>
-      <h3 class="office-title">New to Orthodoxy?</h3>
-      <span class="office-time">Inquirers Welcome</span>
-      <hr class="office-rule"/>
-      <p class="office-body">You do not need to be Orthodox to attend our services. Many find their way to the Church through curiosity — through a question, a book, a hunger for something older and deeper. Begin here, with us.</p>
-      <a href="/about-orthodoxy" class="sb-link">Learn About Our Faith</a>
+
+    <div class="worship-card" onclick="openWorship(2)" role="button" tabindex="0" aria-label="Learn about visiting for the first time">
+      <div class="worship-card-fallback"></div>
+      <div class="worship-card-bg" style="background-image:url('/images/heroes/inquirers.jpg')"></div>
+      <div class="worship-card-scrim"></div>
+      <div class="worship-card-body">
+        <div class="worship-card-title">New to Orthodoxy?</div>
+        <div class="worship-card-time">Inquirers Welcome</div>
+        <div class="worship-card-desc">You do not need to be Orthodox to attend. Many find their way here through curiosity and a hunger for something ancient and alive.</div>
+        <span class="worship-card-cta">Learn More</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- WORSHIP LIGHTBOX -->
+<div class="wl-overlay" id="wl-overlay" onclick="closeWorship(event)">
+  <div class="wl-box" id="wl-box">
+    <div class="wl-inner">
+      <div class="wl-left">
+        <span class="wl-label" id="wl-label"></span>
+        <div class="wl-rule"></div>
+        <h2 class="wl-title" id="wl-title"></h2>
+        <p class="wl-subtitle" id="wl-subtitle"></p>
+        <div class="wl-time" id="wl-time"></div>
+        <p class="wl-opening" id="wl-opening"></p>
+        <div id="wl-content"></div>
+      </div>
+      <div class="wl-right">
+        <div class="wl-icon-placeholder" id="wl-icon">
+          <svg width='48' height='48' viewBox='0 0 48 48' fill='none' xmlns='http://www.w3.org/2000/svg'><rect x='21' y='4' width='6' height='40' fill='#7B1D2A'/><rect x='4' y='17' width='40' height='6' fill='#7B1D2A'/></svg>
+        </div>
+        <span class="wl-icon-label" id="wl-icon-label"></span>
+        <p class="wl-icon-name" id="wl-icon-name"></p>
+        <p class="wl-icon-bio" id="wl-icon-bio"></p>
+        <div class="wl-factoid">
+          <span class="wl-factoid-head" id="wl-factoid-head"></span>
+          <p class="wl-factoid-body" id="wl-factoid-body"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- APOSTLE QUOTE -->
+<section class="aq-section">
+  <div class="aq-inner">
+    <div class="aq-quote">
+      <p class="aq-text">"The Church is not walls and roof, but faith and life."</p>
+      <span class="aq-attr">St. John Chrysostom</span>
+      <span class="aq-ref">Archbishop of Constantinople, 4th century</span>
+    </div>
+    <div class="aq-icon">
+      <div class="aq-icon-box"><svg width="36" height="36" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="20" y="3" width="8" height="42" fill="#7B1D2A" opacity="0.2"/><rect x="3" y="16" width="42" height="8" fill="#7B1D2A" opacity="0.2"/></svg></div>
+      <span class="aq-icon-label">Icon of St. John<br>Chrysostom</span>
     </div>
   </div>
 </section>
 
 <!-- GALLERY -->
 <section class="gallery-section">
-  <div class="gallery-header">
-    <div>
-      <span class="rubric light">Parish Life</span>
-      <h2 class="gallery-headline">The Community in Worship &amp; Fellowship</h2>
-      <span class="rubric-voice light">Real faces, real moments, one hundred years of life together</span>
-    </div>
-    <span class="gallery-drag">← Drag to Explore →</span>
-  </div>
-  <div class="gallery-track" id="galleryTrack">
-    <div class="gallery-slide">
-      <div class="gallery-slide-bg" style="background:linear-gradient(160deg,#1A0508,#7B1D2A 55%,#B88328)"></div>
-      <div class="gallery-slide-overlay"></div>
-      <div class="gallery-slide-content">
-        <p class="gallery-caption">Pascha — the feast of feasts</p>
-        <p class="gallery-sub">Holy Saturday · 2025</p>
+  <div class="gallery-inner">
+    <div class="gallery-panels">
+      <div class="gallery-panel gallery-panel-1" onclick="openGallery(0)" role="button" tabindex="0">
+        <div class="gallery-panel-bg" style="background-image:url('/images/heroes/tradition-panel.jpg')"></div>
+        <div class="gallery-panel-scrim"></div>
+        <div class="gallery-panel-label">Tradition</div>
+        <div class="gallery-panel-caption">The ancient Faith, kept alive</div>
+      </div>
+      <div class="gallery-panel gallery-panel-2" onclick="openGallery(1)" role="button" tabindex="0">
+        <div class="gallery-panel-bg" style="background-image:url('/images/heroes/community-panel.jpg')"></div>
+        <div class="gallery-panel-scrim"></div>
+        <div class="gallery-panel-label">Community</div>
+        <div class="gallery-panel-caption">Parish life on Grand Street</div>
+      </div>
+      <div class="gallery-panel gallery-panel-3" onclick="openGallery(2)" role="button" tabindex="0">
+        <div class="gallery-panel-bg" style="background-image:url('/images/heroes/family-panel.jpg')"></div>
+        <div class="gallery-panel-scrim"></div>
+        <div class="gallery-panel-label">Family</div>
+        <div class="gallery-panel-caption">Generations rooted in the Faith</div>
       </div>
     </div>
-    <div class="gallery-slide">
-      <div class="gallery-slide-bg" style="background:linear-gradient(160deg,#0D1F1B,#3D6B5E 60%,#7A6648)"></div>
-      <div class="gallery-slide-overlay"></div>
-      <div class="gallery-slide-content">
-        <p class="gallery-caption">The choir lifts its voice at the Divine Liturgy</p>
-        <p class="gallery-sub">Gleb Ivanov, Interim Music Director</p>
-      </div>
-    </div>
-    <div class="gallery-slide">
-      <div class="gallery-slide-bg" style="background:linear-gradient(160deg,#2E0D14,#1A0508 50%,#7B1D2A)"></div>
-      <div class="gallery-slide-overlay"></div>
-      <div class="gallery-slide-content">
-        <p class="gallery-caption">Procession on Theophany — the Blessing of Waters</p>
-        <p class="gallery-sub">January 2026</p>
-      </div>
-    </div>
-    <div class="gallery-slide">
-      <div class="gallery-slide-bg" style="background:linear-gradient(160deg,#1C1005,#B88328 60%,#7A6648)"></div>
-      <div class="gallery-slide-overlay"></div>
-      <div class="gallery-slide-content">
-        <p class="gallery-caption">Coffee hour — the liturgy continues around the table</p>
-        <p class="gallery-sub">After the Divine Liturgy, every Sunday</p>
-      </div>
-    </div>
-    <div class="gallery-slide">
-      <div class="gallery-slide-bg" style="background:linear-gradient(160deg,#0A1A2E,#1A0508 50%,#3D6B5E)"></div>
-      <div class="gallery-slide-overlay"></div>
-      <div class="gallery-slide-content">
-        <p class="gallery-caption">The copper domes over Grand Street — a century of witness</p>
-        <p class="gallery-sub">111–113 Grand Street, Jersey City</p>
-      </div>
-    </div>
-    <div class="gallery-slide">
-      <div class="gallery-slide-bg" style="background:linear-gradient(160deg,#7B1D2A,#1A0508 55%,#B88328)"></div>
-      <div class="gallery-slide-overlay"></div>
-      <div class="gallery-slide-content">
-        <p class="gallery-caption">Children carrying candles on Palm Sunday</p>
-        <p class="gallery-sub">Entry of the Lord into Jerusalem · 2025</p>
-      </div>
-    </div>
-    <div class="gallery-slide">
-      <div class="gallery-slide-bg" style="background:linear-gradient(160deg,#1E1005,#7A6648 50%,#3B0F18)"></div>
-      <div class="gallery-slide-overlay"></div>
-      <div class="gallery-slide-content">
-        <p class="gallery-caption">Unction — the Mystery of Holy Oil</p>
-        <p class="gallery-sub">Great Lent · 2025</p>
+    <div class="gallery-text">
+      <span class="rubric">Parish Life</span>
+      <div class="rubric-rule"></div>
+      <h2 class="gallery-text-headline">The Community in Worship &amp; Fellowship</h2>
+      <p class="gallery-text-body">Saints Peter &amp; Paul is not only a place of prayer. It is a community of people who have gathered around the same table for over a century, through feast and fast, joy and sorrow, immigration and homecoming.</p>
+      <p class="gallery-text-body">After every Divine Liturgy on Sunday, the parish gathers for coffee hour. On great feast days, the tables overflow. At Pascha, we stay through the night together. In the baptismal font, new members are born into the family. At the graveside, we do not leave one another alone.</p>
+      <p class="gallery-text-body">This is what it means to be a parish. Not a congregation that meets once a week, but a family that shares a life.</p>
+      <div class="gallery-text-btns">
+        <a href="/gallery" class="btn btn-maroon">See Parish Life</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- M: Byzantine band -->
-<div class="byz-band reveal">
-  <div class="byz-band-inner" aria-hidden="true"><svg class="byz-tile" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="70" height="70" fill="none" stroke="rgba(184,131,40,.9)" stroke-width=".6"/><circle cx="36" cy="36" r="16" fill="none" stroke="rgba(184,131,40,.7)" stroke-width=".5"/><line x1="36" y1="1" x2="36" y2="71" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><line x1="1" y1="36" x2="71" y2="36" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><circle cx="36" cy="36" r="4" fill="rgba(184,131,40,.5)"/></svg><svg class="byz-tile" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="70" height="70" fill="none" stroke="rgba(184,131,40,.9)" stroke-width=".6"/><circle cx="36" cy="36" r="16" fill="none" stroke="rgba(184,131,40,.7)" stroke-width=".5"/><line x1="36" y1="1" x2="36" y2="71" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><line x1="1" y1="36" x2="71" y2="36" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><circle cx="36" cy="36" r="4" fill="rgba(184,131,40,.5)"/></svg><svg class="byz-tile" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="70" height="70" fill="none" stroke="rgba(184,131,40,.9)" stroke-width=".6"/><circle cx="36" cy="36" r="16" fill="none" stroke="rgba(184,131,40,.7)" stroke-width=".5"/><line x1="36" y1="1" x2="36" y2="71" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><line x1="1" y1="36" x2="71" y2="36" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><circle cx="36" cy="36" r="4" fill="rgba(184,131,40,.5)"/></svg><svg class="byz-tile" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="70" height="70" fill="none" stroke="rgba(184,131,40,.9)" stroke-width=".6"/><circle cx="36" cy="36" r="16" fill="none" stroke="rgba(184,131,40,.7)" stroke-width=".5"/><line x1="36" y1="1" x2="36" y2="71" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><line x1="1" y1="36" x2="71" y2="36" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><circle cx="36" cy="36" r="4" fill="rgba(184,131,40,.5)"/></svg><svg class="byz-tile" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="70" height="70" fill="none" stroke="rgba(184,131,40,.9)" stroke-width=".6"/><circle cx="36" cy="36" r="16" fill="none" stroke="rgba(184,131,40,.7)" stroke-width=".5"/><line x1="36" y1="1" x2="36" y2="71" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><line x1="1" y1="36" x2="71" y2="36" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><circle cx="36" cy="36" r="4" fill="rgba(184,131,40,.5)"/></svg><svg class="byz-tile" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="70" height="70" fill="none" stroke="rgba(184,131,40,.9)" stroke-width=".6"/><circle cx="36" cy="36" r="16" fill="none" stroke="rgba(184,131,40,.7)" stroke-width=".5"/><line x1="36" y1="1" x2="36" y2="71" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><line x1="1" y1="36" x2="71" y2="36" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><circle cx="36" cy="36" r="4" fill="rgba(184,131,40,.5)"/></svg><svg class="byz-tile" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="70" height="70" fill="none" stroke="rgba(184,131,40,.9)" stroke-width=".6"/><circle cx="36" cy="36" r="16" fill="none" stroke="rgba(184,131,40,.7)" stroke-width=".5"/><line x1="36" y1="1" x2="36" y2="71" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><line x1="1" y1="36" x2="71" y2="36" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><circle cx="36" cy="36" r="4" fill="rgba(184,131,40,.5)"/></svg><svg class="byz-tile" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="70" height="70" fill="none" stroke="rgba(184,131,40,.9)" stroke-width=".6"/><circle cx="36" cy="36" r="16" fill="none" stroke="rgba(184,131,40,.7)" stroke-width=".5"/><line x1="36" y1="1" x2="36" y2="71" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><line x1="1" y1="36" x2="71" y2="36" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><circle cx="36" cy="36" r="4" fill="rgba(184,131,40,.5)"/></svg><svg class="byz-tile" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="70" height="70" fill="none" stroke="rgba(184,131,40,.9)" stroke-width=".6"/><circle cx="36" cy="36" r="16" fill="none" stroke="rgba(184,131,40,.7)" stroke-width=".5"/><line x1="36" y1="1" x2="36" y2="71" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><line x1="1" y1="36" x2="71" y2="36" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><circle cx="36" cy="36" r="4" fill="rgba(184,131,40,.5)"/></svg><svg class="byz-tile" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="70" height="70" fill="none" stroke="rgba(184,131,40,.9)" stroke-width=".6"/><circle cx="36" cy="36" r="16" fill="none" stroke="rgba(184,131,40,.7)" stroke-width=".5"/><line x1="36" y1="1" x2="36" y2="71" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><line x1="1" y1="36" x2="71" y2="36" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><circle cx="36" cy="36" r="4" fill="rgba(184,131,40,.5)"/></svg><svg class="byz-tile" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="70" height="70" fill="none" stroke="rgba(184,131,40,.9)" stroke-width=".6"/><circle cx="36" cy="36" r="16" fill="none" stroke="rgba(184,131,40,.7)" stroke-width=".5"/><line x1="36" y1="1" x2="36" y2="71" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><line x1="1" y1="36" x2="71" y2="36" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><circle cx="36" cy="36" r="4" fill="rgba(184,131,40,.5)"/></svg><svg class="byz-tile" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="70" height="70" fill="none" stroke="rgba(184,131,40,.9)" stroke-width=".6"/><circle cx="36" cy="36" r="16" fill="none" stroke="rgba(184,131,40,.7)" stroke-width=".5"/><line x1="36" y1="1" x2="36" y2="71" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><line x1="1" y1="36" x2="71" y2="36" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><circle cx="36" cy="36" r="4" fill="rgba(184,131,40,.5)"/></svg><svg class="byz-tile" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="70" height="70" fill="none" stroke="rgba(184,131,40,.9)" stroke-width=".6"/><circle cx="36" cy="36" r="16" fill="none" stroke="rgba(184,131,40,.7)" stroke-width=".5"/><line x1="36" y1="1" x2="36" y2="71" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><line x1="1" y1="36" x2="71" y2="36" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><circle cx="36" cy="36" r="4" fill="rgba(184,131,40,.5)"/></svg><svg class="byz-tile" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="70" height="70" fill="none" stroke="rgba(184,131,40,.9)" stroke-width=".6"/><circle cx="36" cy="36" r="16" fill="none" stroke="rgba(184,131,40,.7)" stroke-width=".5"/><line x1="36" y1="1" x2="36" y2="71" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><line x1="1" y1="36" x2="71" y2="36" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><circle cx="36" cy="36" r="4" fill="rgba(184,131,40,.5)"/></svg><svg class="byz-tile" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="70" height="70" fill="none" stroke="rgba(184,131,40,.9)" stroke-width=".6"/><circle cx="36" cy="36" r="16" fill="none" stroke="rgba(184,131,40,.7)" stroke-width=".5"/><line x1="36" y1="1" x2="36" y2="71" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><line x1="1" y1="36" x2="71" y2="36" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><circle cx="36" cy="36" r="4" fill="rgba(184,131,40,.5)"/></svg><svg class="byz-tile" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="70" height="70" fill="none" stroke="rgba(184,131,40,.9)" stroke-width=".6"/><circle cx="36" cy="36" r="16" fill="none" stroke="rgba(184,131,40,.7)" stroke-width=".5"/><line x1="36" y1="1" x2="36" y2="71" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><line x1="1" y1="36" x2="71" y2="36" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><circle cx="36" cy="36" r="4" fill="rgba(184,131,40,.5)"/></svg><svg class="byz-tile" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="70" height="70" fill="none" stroke="rgba(184,131,40,.9)" stroke-width=".6"/><circle cx="36" cy="36" r="16" fill="none" stroke="rgba(184,131,40,.7)" stroke-width=".5"/><line x1="36" y1="1" x2="36" y2="71" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><line x1="1" y1="36" x2="71" y2="36" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><circle cx="36" cy="36" r="4" fill="rgba(184,131,40,.5)"/></svg><svg class="byz-tile" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="70" height="70" fill="none" stroke="rgba(184,131,40,.9)" stroke-width=".6"/><circle cx="36" cy="36" r="16" fill="none" stroke="rgba(184,131,40,.7)" stroke-width=".5"/><line x1="36" y1="1" x2="36" y2="71" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><line x1="1" y1="36" x2="71" y2="36" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><circle cx="36" cy="36" r="4" fill="rgba(184,131,40,.5)"/></svg><svg class="byz-tile" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="70" height="70" fill="none" stroke="rgba(184,131,40,.9)" stroke-width=".6"/><circle cx="36" cy="36" r="16" fill="none" stroke="rgba(184,131,40,.7)" stroke-width=".5"/><line x1="36" y1="1" x2="36" y2="71" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><line x1="1" y1="36" x2="71" y2="36" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><circle cx="36" cy="36" r="4" fill="rgba(184,131,40,.5)"/></svg><svg class="byz-tile" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="70" height="70" fill="none" stroke="rgba(184,131,40,.9)" stroke-width=".6"/><circle cx="36" cy="36" r="16" fill="none" stroke="rgba(184,131,40,.7)" stroke-width=".5"/><line x1="36" y1="1" x2="36" y2="71" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><line x1="1" y1="36" x2="71" y2="36" stroke="rgba(184,131,40,.4)" stroke-width=".4"/><circle cx="36" cy="36" r="4" fill="rgba(184,131,40,.5)"/></svg></div>
-  <div class="byz-band-text"><em>&ldquo;Holy, Holy, Holy, Lord of Hosts &mdash; the whole earth is full of His glory.&rdquo;</em></div>
-</div>
+<!-- PLAN YOUR VISIT -->
+<section class="visit-section reveal">
+  <div class="visit-inner">
+    <div class="visit-left">
+      <span class="rubric light">First Time Here?</span>
+      <div class="rubric-rule gold" style="margin:.5rem 0 1rem"></div>
+      <h2>Plan Your<br><em>Visit</em></h2>
+      <p>Everything you need to know before you arrive. No experience with Orthodox Christianity is required. Simply come.</p>
+      <div class="visit-btns">
+        <a href="/visit" class="btn-gold">Full Visitor Guide</a>
+        <a href="/contact-us" class="btn-vellum">Get in Touch</a>
+      </div>
+    </div>
+    <div class="visit-right">
+      <div class="visit-detail">
+        <p class="visit-detail-head">Address</p>
+        <p class="visit-detail-body"><strong>111 Grand Street</strong><br>Jersey City, NJ 07302<br>Corner of Grand &amp; Marin Boulevard</p>
+      </div>
+      <div class="visit-detail">
+        <p class="visit-detail-head">Sunday Services</p>
+        <p class="visit-detail-body"><strong>Vespers:</strong> Saturday at 5:00 PM<br><strong>Divine Liturgy:</strong> Sunday at 9:30 AM<br>Coffee hour follows every Sunday Liturgy</p>
+      </div>
+      <div class="visit-detail">
+        <p class="visit-detail-head">Parking</p>
+        <p class="visit-detail-body">Parking is available on Sundays in the gated lot directly across from the church on Grand Street. Street parking is also available in the surrounding neighborhood.</p>
+      </div>
+      <div class="visit-detail">
+        <p class="visit-detail-head">What to Wear</p>
+        <p class="visit-detail-body">Modest, respectful attire. Come as you are — you will be welcomed warmly regardless. Women traditionally cover their heads inside the church, though visitors are not expected to do so.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- BULLETIN -->
 <section class="bulletin-section">
   <div class="chapter-bar">
@@ -796,7 +907,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   </div>
 </div>
 <footer>
-  <span class="footer-cross">✦ ✝ ✦</span>
+  <span class="footer-cross">&#10022; &#10013; &#10022;</span>
   <div class="footer-cols">
     <div>
       <span class="footer-col-head">Saints Peter &amp; Paul Orthodox Cathedral</span>
@@ -810,39 +921,44 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
       <div class="footer-socials">
         <a href="#" target="_blank">Facebook</a>
         <a href="#" target="_blank">Instagram</a>
+        <a href="https://www.youtube.com/@ssppnj" target="_blank">YouTube</a>
       </div>
     </div>
     <div>
       <span class="footer-col-head">Navigate</span>
       <ul class="footer-nav">
         <li><a href="/about-our-church">About Our Church</a></li>
-        <li><a href="/administration">Administration</a></li>
-        <li><a href="/schedule">Liturgical Calendar</a></li>
-        <li><a href="/gallery">Gallery</a></li>
-        <li><a href="/about-orthodoxy">About Orthodoxy</a></li>
         <li><a href="/our-beliefs">Our Beliefs</a></li>
-        <li><a href="/videos">Videos</a></li>
+        <li><a href="/administration">Administration</a></li>
+        <li><a href="/about-orthodoxy">About Orthodoxy</a></li>
+        <li><a href="/schedule">Liturgical Calendar</a></li>
         <li><a href="/readings">Daily Readings</a></li>
         <li><a href="/saint-of-the-day">Saint of the Day</a></li>
+        <li><a href="/prologue">Prologue of Ohrid</a></li>
+        <li><a href="/news">News &amp; Announcements</a></li>
         <li><a href="/bulletins">Bulletins</a></li>
+        <li><a href="/gallery">Gallery</a></li>
+        <li><a href="/videos">Videos</a></li>
         <li><a href="/cemeteries">Cemeteries</a></li>
+        <li><a href="/donate">Give Online</a></li>
         <li><a href="/contact-us">Contact Us</a></li>
       </ul>
     </div>
     <div>
-      <span class="footer-col-head">Join Our Community</span>
-      <p class="footer-blurb">We'd love to hear from you — whether you're visiting for the first time or looking to become part of our parish family.</p>
-      <a href="/contact-us" class="btn btn-outline" style="margin-bottom:2rem;display:inline-block">Register with the Parish</a>
-      <span class="footer-col-head" style="margin-top:.5rem">Newsletter</span>
-      <div class="footer-email">
-        <input type="email" placeholder="Your email address"/>
-        <button type="button">Subscribe</button>
-      </div>
+      <span class="footer-col-head">Visit Us</span>
+      <p class="footer-blurb">Whether you are visiting for the first time or looking to become part of our parish family, you are welcome here.</p>
+      <a href="/contact-us" class="btn btn-outline" style="margin-bottom:2rem;display:inline-block">Contact the Parish</a>
+      <span class="footer-col-head" style="margin-top:.5rem">Service Times</span>
+      <p class="footer-meta" style="line-height:2.4">
+        Vespers &middot; Saturdays 5:00 PM<br>
+        Divine Liturgy &middot; Sundays 9:30 AM<br>
+        Office &middot; Mon&ndash;Fri 9:00 AM&ndash;5:00 PM
+      </p>
     </div>
   </div>
   <div class="footer-bottom">
-    <p class="footer-copy">© Saints Peter &amp; Paul Orthodox Cathedral. All Rights Reserved.</p>
-    <p class="footer-addr">109 Grand Street · Jersey City, NJ 07302<br>(201) 434-1986 · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b1c2c2c1c1dfdbf1d6dcd0d8dd9fd2dedc">[email&#160;protected]</a></p>
+    <p class="footer-copy">&copy; Saints Peter &amp; Paul Orthodox Cathedral. All Rights Reserved.</p>
+    <p class="footer-addr">109 Grand Street &middot; Jersey City, NJ 07302 &middot; (201) 434-1986</p>
   </div>
 </footer>
 
@@ -1012,5 +1128,219 @@ document.addEventListener('DOMContentLoaded', function(){ initLiveCalendar(); })
 <script src="/index-scripts.js"></script>
 <script src="/hero-rotator.js"></script>
 <script src="/enhancements.js"></script>
+
+<script>
+var WORSHIP_DATA = [
+  {
+    label: "The Evening Prayer",
+    title: "Vespers",
+    subtitle: "The Ancient Evening Prayer of the Church",
+    time: "Saturdays at 5:00 PM",
+    opening: "Vespers is the ancient evening service of the Orthodox Church, marking the beginning of the Lord's Day. In the Orthodox tradition, as in ancient Jewish custom, the new day begins at sundown -- so Saturday evening is already Sunday in a liturgical sense. It is a service of psalms, hymns, and candlelight, drawing the faithful into the stillness of the coming night.",
+    sections: [
+      {head: "What to Expect", body: "The service lasts approximately 45 to 60 minutes. You will hear beautiful choral chanting, incense, candlelight, and the reading of psalms and evening hymns. There is no sermon. The pace is contemplative and unhurried."},
+      {head: "What to Wear", body: "Modest, respectful attire. Women traditionally cover their heads inside the church, though visitors are not expected to do so."},
+      {head: "Preparation", body: "No preparation needed. Simply arrive and be still."}
+    ],
+    iconLabel: "The Daily Cycle",
+    iconName: "The Liturgy of the Hours",
+    iconBio: "Orthodox Christians have prayed the daily cycle of services since the earliest centuries of the Church, following the pattern of the Jewish Temple and the Desert Fathers of Egypt.",
+    factoidHead: "Historical Note",
+    factoidBody: "Vespers descends directly from the Jewish evening prayer of the Second Temple period. The early Christians, many of them Jewish converts, continued the practice. By the 4th century, the Desert Fathers had formalized it into the evening office still prayed today across the Orthodox world."
+  },
+  {
+    label: "Sunday Worship",
+    title: "Divine Liturgy",
+    subtitle: "The Central Act of Orthodox Worship",
+    time: "Sundays at 9:30 AM",
+    opening: "The Divine Liturgy of St. John Chrysostom is celebrated every Sunday at 9:30 AM. It is the same Liturgy offered by Orthodox Christians for over 1,600 years, unchanged in its essential form since the early Church. In the Liturgy, heaven and earth are joined -- the faithful stand with the angels before the throne of God.",
+    sections: [
+      {head: "What to Expect", body: "The service lasts approximately 90 minutes. It includes Scripture readings, a homily, litanies of prayer, and culminates in the offering of the Holy Eucharist. The Liturgy is sung throughout with no instruments, only voices."},
+      {head: "Holy Communion", body: "Holy Communion is offered only to baptized, chrismated Orthodox Christians who have prepared through fasting and confession. All are welcome to attend and receive a blessing from the priest."},
+      {head: "Arriving", body: "Arrive any time, though arriving at the beginning allows you to experience the full arc of the service."}
+    ],
+    iconLabel: "Father of the Church",
+    iconName: "St. John Chrysostom",
+    iconBio: "Archbishop of Constantinople (349-407 AD), renowned for his preaching and pastoral care. He compiled the Divine Liturgy still celebrated by Orthodox Christians throughout the world.",
+    factoidHead: "Historical Note",
+    factoidBody: "The Divine Liturgy was compiled in its present form by St. John Chrysostom in Antioch in the late 4th century, drawing on even earlier apostolic traditions. It has been celebrated continuously for over 1,600 years, making it one of the oldest living liturgical rites in the world."
+  },
+  {
+    label: "First Time Here",
+    title: "New to Orthodoxy?",
+    subtitle: "All Are Welcome",
+    time: "Every Sunday at 9:30 AM",
+    opening: "You do not need to be Orthodox, baptized, or even Christian to visit Saints Peter and Paul. Many people find their way to the Church through curiosity: a question, a book, a conversation, or simply a hunger for something ancient and alive. You will be warmly welcomed -- no one will ask why you are there.",
+    sections: [
+      {head: "What to Expect", body: "Feel free to stand, sit, light a candle, or simply observe. An usher or parishioner will gladly help you find a service book or answer questions."},
+      {head: "After the Service", body: "After the Liturgy on Sundays, the parish gathers for coffee hour and you are invited to join. It is the best place to meet the community and ask questions."},
+      {head: "Going Deeper", body: "If you would like to learn more about the Orthodox Faith, speak with Fr. Solomon after the service or contact the parish office. We offer inquirer classes for those exploring Orthodoxy seriously."}
+    ],
+    iconLabel: "Ancient Practice",
+    iconName: "The Catechumenate",
+    iconBio: "From the earliest centuries, the Orthodox Church has welcomed seekers through a period of formation called the Catechumenate, preparing them gradually for Baptism and full membership.",
+    factoidHead: "Historical Note",
+    factoidBody: "In the ancient Church, those not yet baptized were called Catechumens. They attended the first half of the Liturgy -- the Liturgy of the Word -- and were then dismissed before the Eucharist. This practice of welcome and gradual formation goes back to the Apostolic era."
+  }
+];
+
+function openWorship(idx) {
+  var d = WORSHIP_DATA[idx];
+  document.getElementById("wl-label").textContent = d.label;
+  document.getElementById("wl-title").textContent = d.title;
+  document.getElementById("wl-subtitle").textContent = d.subtitle;
+  document.getElementById("wl-time").textContent = d.time;
+  document.getElementById("wl-opening").textContent = d.opening;
+  document.getElementById("wl-icon-label").textContent = d.iconLabel;
+  document.getElementById("wl-icon-name").textContent = d.iconName;
+  document.getElementById("wl-icon-bio").textContent = d.iconBio;
+  document.getElementById("wl-factoid-head").textContent = d.factoidHead;
+  document.getElementById("wl-factoid-body").textContent = d.factoidBody;
+  var container = document.getElementById("wl-content");
+  container.innerHTML = "";
+  d.sections.forEach(function(s, i) {
+    if (i > 0) {
+      var hr = document.createElement("hr");
+      hr.className = "wl-divider";
+      container.appendChild(hr);
+    }
+    var wrap = document.createElement("div");
+    wrap.className = "wl-section";
+    var head = document.createElement("p");
+    head.className = "wl-section-head";
+    head.textContent = s.head;
+    var body = document.createElement("p");
+    body.className = "wl-section-body";
+    body.textContent = s.body;
+    wrap.appendChild(head);
+    wrap.appendChild(body);
+    container.appendChild(wrap);
+  });
+  document.getElementById("wl-overlay").classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+
+function closeWorshipBtn() {
+  document.getElementById("wl-overlay").classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+function closeWorship(e) {
+  if (e.target === document.getElementById("wl-overlay")) closeWorshipBtn();
+}
+
+document.addEventListener("keydown", function(e) {
+  if (e.key === "Escape") closeWorshipBtn();
+});
+</script>
+
+
+<script>
+var GALLERY = [
+  {
+    section: "Tradition",
+    photos: [
+      {src: "/images/gallery/tradition-1.jpg", caption: "The iconostasis of the Cathedral"},
+      {src: "/images/gallery/tradition-2.jpg", caption: "Candles burning before the icons"},
+      {src: "/images/gallery/tradition-3.jpg", caption: "The Holy Table"},
+      {src: "/images/gallery/tradition-4.jpg", caption: "The censer and incense"},
+      {src: "/images/gallery/tradition-5.jpg", caption: "Icons of the saints"},
+      {src: "/images/gallery/tradition-6.jpg", caption: "The ancient Faith preserved"}
+    ]
+  },
+  {
+    section: "Community",
+    photos: [
+      {src: "/images/gallery/community-1.jpg", caption: "Coffee hour after the Divine Liturgy"},
+      {src: "/images/gallery/community-2.jpg", caption: "Parish feast day celebration"},
+      {src: "/images/gallery/community-3.jpg", caption: "Children of the parish"},
+      {src: "/images/gallery/community-4.jpg", caption: "Fellowship on Grand Street"},
+      {src: "/images/gallery/community-5.jpg", caption: "The parish family gathers"},
+      {src: "/images/gallery/community-6.jpg", caption: "A century of community"}
+    ]
+  },
+  {
+    section: "Family",
+    photos: [
+      {src: "/images/gallery/family-1.jpg", caption: "A baptism at Saints Peter & Paul"},
+      {src: "/images/gallery/family-2.jpg", caption: "Children of the parish at the Divine Liturgy"},
+      {src: "/images/gallery/family-3.jpg", caption: "A parish wedding"},
+      {src: "/images/gallery/family-4.jpg", caption: "Three generations on Grand Street"},
+      {src: "/images/gallery/family-5.jpg", caption: "The youngest members of the parish"},
+      {src: "/images/gallery/family-6.jpg", caption: "A century of families in the Faith"}
+    ]
+  }
+];
+
+var gSection = 0;
+var gIndex = 0;
+
+function openGallery(sectionIdx) {
+  gSection = sectionIdx;
+  gIndex = 0;
+  renderGallery();
+  document.getElementById("wg-overlay").classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+
+function closeGallery() {
+  document.getElementById("wg-overlay").classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+function closeGalleryOverlay(e) {
+  if (e.target === document.getElementById("wg-overlay")) closeGallery();
+}
+
+function galleryStep(dir) {
+  var photos = GALLERY[gSection].photos;
+  gIndex = (gIndex + dir + photos.length) % photos.length;
+  renderGallery();
+}
+
+function galleryGoTo(idx) {
+  gIndex = idx;
+  renderGallery();
+}
+
+function renderGallery() {
+  var g = GALLERY[gSection];
+  var photo = g.photos[gIndex];
+  var photoEl = document.getElementById("wg-photo");
+  var placeholderEl = document.getElementById("wg-placeholder");
+  var captionEl = document.getElementById("wg-caption");
+  photoEl.style.opacity = "0";
+  captionEl.style.opacity = "0";
+  setTimeout(function() {
+    photoEl.style.backgroundImage = 'url("' + photo.src + '")';
+    photoEl.style.animation = "none";
+    void photoEl.offsetWidth;
+    photoEl.style.animation = "wg-kenburns 6s ease-out forwards";
+    placeholderEl.textContent = g.section + " — Photo " + (gIndex + 1);
+    document.getElementById("wg-section").textContent = g.section;
+    captionEl.textContent = photo.caption;
+    photoEl.style.opacity = "1";
+    captionEl.style.opacity = "1";
+  }, 350);
+  placeholderEl.textContent = g.section + " — Photo " + (gIndex + 1);
+  document.getElementById("wg-section").textContent = g.section;
+  document.getElementById("wg-caption").textContent = photo.caption;
+  var dotsEl = document.getElementById("wg-dots");
+  dotsEl.innerHTML = "";
+  g.photos.forEach(function(p, i) {
+    var dot = document.createElement("div");
+    dot.className = "wg-dot" + (i === gIndex ? " active" : "");
+    dot.onclick = (function(idx) { return function() { galleryGoTo(idx); }; })(i);
+    dotsEl.appendChild(dot);
+  });
+}
+
+document.addEventListener("keydown", function(e) {
+  if (!document.getElementById("wg-overlay").classList.contains("open")) return;
+  if (e.key === "ArrowLeft") galleryStep(-1);
+  if (e.key === "ArrowRight") galleryStep(1);
+  if (e.key === "Escape") closeGallery();
+});
+</script>
 </body>
 </html>

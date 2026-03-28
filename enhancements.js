@@ -116,3 +116,71 @@
   }
 
 })();
+
+
+/* ── B. PARALLAX HERO TEXT ─────────────────────────────
+   Hero content scrolls at 40% speed of page scroll,
+   creating depth as user scrolls past the hero.        */
+(function() {
+  var heroContent = document.querySelector('.hero-content');
+  var heroScroll = document.querySelector('.hero-scroll');
+  if (!heroContent) return;
+  window.addEventListener('scroll', function() {
+    var y = window.pageYOffset;
+    heroContent.style.transform = 'translateY(' + (y * 0.3) + 'px)';
+    heroContent.style.opacity = 1 - (y / window.innerHeight * 1.4);
+    if (heroScroll) heroScroll.style.opacity = 1 - (y / 200);
+  }, { passive: true });
+})();
+
+/* ── E. STAGGERED CHILD REVEALS ───────────────────────
+   Each section's children fade up sequentially,
+   150ms apart, when the section enters the viewport.   */
+(function() {
+  var staggerTargets = document.querySelectorAll(
+    '.welcome-text, .rector-text, .visit-left, .visit-right, .worship-header, .gallery-text, .aq-quote, .aq-icon'
+  );
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (!entry.isIntersecting) return;
+      var children = entry.target.children;
+      Array.from(children).forEach(function(child, i) {
+        child.style.opacity = '0';
+        child.style.transform = 'translateY(18px)';
+        child.style.transition = 'opacity .6s ease ' + (i * 150) + 'ms, transform .6s ease ' + (i * 150) + 'ms';
+        setTimeout(function() {
+          child.style.opacity = '1';
+          child.style.transform = 'translateY(0)';
+        }, 50 + i * 150);
+      });
+      obs.unobserve(entry.target);
+    });
+  }, { threshold: 0.15 });
+  staggerTargets.forEach(function(el) { obs.observe(el); });
+})();
+
+/* ── F. GOLD LINE DRAW ON SECTION ENTER ───────────────
+   A thin gold line draws from left to right across the
+   top of key sections as they enter the viewport.      */
+(function() {
+  var style = document.createElement('style');
+  style.textContent = '.section-line{position:relative}.section-line::before{content:"";position:absolute;top:0;left:0;height:1px;background:rgba(184,131,40,.45);width:0;transition:width 1.1s cubic-bezier(.4,0,.2,1)}.section-line.line-drawn::before{width:100%}';
+  document.head.appendChild(style);
+
+  var lineSections = document.querySelectorAll(
+    '.welcome-section, .rector-section, .visit-section, .gallery-section, .bulletin-section, .aq-section'
+  );
+  lineSections.forEach(function(s) { s.classList.add('section-line'); });
+
+  var lineObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        setTimeout(function() {
+          entry.target.classList.add('line-drawn');
+        }, 200);
+        lineObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.05 });
+  lineSections.forEach(function(s) { lineObs.observe(s); });
+})();

@@ -104,7 +104,7 @@ async function init(){
   if(sundayData){
     renderSunday(sundayData, sunday);
   } else {
-    document.getElementById('sunday-panel').innerHTML='<p class="ts-loading">Liturgical data temporarily unavailable.</p>';
+    document.querySelector('.this-sunday').style.display='block';document.getElementById('sunday-panel').innerHTML='<p class="ts-loading">Liturgical data temporarily unavailable.</p>';
   }
   /* Week strip — all from cache, no extra fetches */
   var entries = [];

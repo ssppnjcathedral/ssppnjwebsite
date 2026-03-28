@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Parish Bylaws · Saints Peter &amp; Paul Orthodox Cathedral</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{--vellum:#F6F1E8;--vellum-mid:#EDE7DC;--vellum-alt:#E8E0D0;--text:#1E1510;--ink:#2C1F16;--maroon:#7B1D2A;--maroon-deep:#5C1520;--gold:#B88328;--gold-lt:#E8C97A;--verdigris:#3D6B5E;--stone:#7A6648;--stone-lt:#A89070;--apse:#3B0F18;--f-display:'Cormorant Garamond',Georgia,serif;--f-body:'EB Garamond',Georgia,serif;--f-ui:'Cinzel',Georgia,serif;--rule:1px solid var(--maroon);--rule-faint:1px solid rgba(123,29,42,0.14);--rule-hair:1px solid rgba(123,29,42,0.07)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--vellum);color:var(--text);font-family:var(--f-body);font-size:20px;line-height:1.78;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+
+/* ── PRIMITIVES ── */
+.rubric{display:block;font-family:var(--f-ui);font-size:.80rem;font-weight:500;letter-spacing:.20em;text-transform:uppercase;color:var(--stone);margin-bottom:.5rem}
+.rubric-rule{display:block;height:1px;background:var(--maroon);margin-bottom:1rem;width:48px}
+.chapter-bar{background:var(--maroon);padding:.65rem 4rem;display:flex;align-items:center;justify-content:space-between}
+.cbar-text{font-family:var(--f-ui);font-size:.80rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:rgba(246,241,232,.60)}
+.cbar-text.bright{color:rgba(246,241,232,.90)}
+.sb-link{font-family:var(--f-ui);font-size:.80rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);border-bottom:1px solid rgba(123,29,42,.28);padding-bottom:.1rem;transition:border-color .2s}
+.sb-link:hover{border-color:var(--maroon)}
+
+/* ── NAV ── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(246,241,232,.97);backdrop-filter:blur(10px);border-bottom:var(--rule-faint)}
+.nav-inner{max-width:1380px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px;padding:0 3rem}
+.nav-logo-name{font-family:var(--f-display);font-weight:500;font-size:1.25rem;color:var(--text);display:block}
+.nav-logo-sub{font-family:var(--f-ui);font-size:.80rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);display:block}
+.nav-links{display:flex;align-items:center;list-style:none}
+.nav-links>li{position:relative}
+.nav-links>li>a{font-family:var(--f-ui);font-size:.80rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text);padding:1.1rem .85rem;display:block;transition:color .18s}
+.nav-links>li:hover>a,.nav-links .nav-active{color:var(--maroon)}
+.nav-links .nav-active-parent>a{color:var(--maroon);border-bottom:2px solid var(--gold)}
+.nav-drop{position:absolute;top:100%;left:0;background:var(--vellum);border-top:2px solid var(--maroon);border-bottom:var(--rule-faint);border-left:var(--rule-faint);border-right:var(--rule-faint);min-width:200px;padding:.5rem 0;opacity:0;pointer-events:none;transform:translateY(-4px);transition:all .16s;box-shadow:0 8px 28px rgba(28,20,16,.10)}
+.nav-links>li:hover .nav-drop{opacity:1;pointer-events:all;transform:none}
+.nav-drop a{display:block;font-family:var(--f-ui);font-size:.80rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text);padding:.5rem 1.4rem;transition:color .14s}
+.nav-drop a:hover,.nav-drop .nav-active{color:var(--maroon)}
+.nav-give{font-family:var(--f-ui);font-size:.80rem;letter-spacing:.14em;text-transform:uppercase;color:var(--vellum);background:var(--maroon);padding:.5rem 1.1rem;transition:background .2s}
+.nav-give:hover{background:var(--maroon-deep)}
+.nav-hamburger{display:none;flex-direction:column;justify-content:space-between;width:28px;height:20px;cursor:pointer;padding:0;background:none;border:none;z-index:400}
+.nav-hamburger span{display:block;width:100%;height:2px;background:var(--maroon);transition:all .28s ease;transform-origin:center}
+.nav-hamburger.open span:nth-child(1){transform:translateY(9px) rotate(45deg)}
+.nav-hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-9px) rotate(-45deg)}
+.nav-drawer{position:fixed;top:0;right:0;width:300px;max-width:85vw;height:100vh;background:var(--apse);z-index:350;transform:translateX(100%);transition:transform .32s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;overflow-y:auto}
+.nav-drawer.open{transform:translateX(0)}
+.nav-drawer-overlay{position:fixed;inset:0;background:rgba(21,8,4,.65);z-index:340;opacity:0;pointer-events:none;transition:opacity .32s}
+.nav-drawer-overlay.open{opacity:1;pointer-events:all}
+.nav-drawer-head{padding:1.5rem 1.75rem 1rem;border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:space-between}
+.nav-drawer-logo{font-family:var(--f-display);font-weight:500;font-size:1.1rem;color:#fff}
+.nav-drawer-logo span{font-family:var(--f-ui);font-size:.80rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);display:block;margin-top:2px}
+.nav-drawer-close{width:32px;height:32px;background:rgba(255,255,255,.08);border:none;color:rgba(255,255,255,.65);cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.nav-drawer-close:hover{background:rgba(255,255,255,.15)}
+.nav-drawer-links{padding:1rem 0;flex:1}
+.nav-drawer-links a{display:block;font-family:var(--f-ui);font-size:.80rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,232,.70);padding:.9rem 1.75rem;border-bottom:1px solid rgba(255,255,255,.05);transition:all .18s}
+.nav-drawer-links a:hover{color:#fff;background:rgba(255,255,255,.05)}
+.nav-drawer-links .drawer-section{font-family:var(--f-ui);font-size:.80rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(184,131,40,.55);padding:.85rem 1.75rem .35rem;display:block}
+.nav-drawer-give{margin:1.25rem 1.75rem;display:block;text-align:center;font-family:var(--f-ui);font-size:.80rem;letter-spacing:.16em;text-transform:uppercase;padding:.85rem;background:var(--maroon);color:var(--vellum);transition:background .2s}
+.nav-drawer-give:hover{background:var(--maroon-deep)}
+
+/* ── PAGE HERO ── */
+.page-hero{padding-top:60px;background:linear-gradient(to right,rgba(59,15,24,.90) 0%,rgba(59,15,24,.68) 55%,rgba(59,15,24,.42) 100%),url('/images/heroes/administration.webp') center/cover no-repeat;background-color:var(--apse);min-height:340px;display:flex;align-items:center;position:relative;overflow:hidden}
+.page-hero-inner{max-width:1380px;margin:0 auto;padding:4rem 6rem 3.5rem}
+.page-title{font-family:var(--f-display);font-weight:400;font-size:clamp(2.5rem,5vw,4.5rem);line-height:.95;color:#fff;margin:.5rem 0 .75rem}
+.page-title em{font-style:italic}
+.page-subtitle{font-family:var(--f-display);font-style:italic;font-size:1.1rem;color:rgba(255,255,255,.60);margin-top:.5rem}
+.breadcrumb{font-family:var(--f-ui);font-size:.80rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:1.5rem}
+.breadcrumb a{color:rgba(232,201,122,.70)}
+.breadcrumb a:hover{color:var(--gold-lt)}
+.breadcrumb span{margin:0 .5em}
+
+/* ── BODY LAYOUT ── */
+.bylaws-wrap{max-width:1380px;margin:0 auto;padding:5rem 4.5rem;display:grid;grid-template-columns:220px 1fr;gap:5rem;align-items:start}
+
+/* ── STICKY ARTICLE NAV ── */
+.bylaws-nav{position:sticky;top:80px}
+.bylaws-nav-head{font-family:var(--f-ui);font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.75rem;padding-bottom:.5rem;border-bottom:var(--rule-faint)}
+.bylaws-nav-list{list-style:none}
+.bylaws-nav-list li{border-bottom:var(--rule-hair)}
+.bylaws-nav-list li:last-child{border-bottom:none}
+.bylaws-nav-list a{display:block;font-family:var(--f-ui);font-size:.72rem;letter-spacing:.10em;text-transform:uppercase;color:var(--stone);padding:.45rem 0;transition:color .18s;line-height:1.4}
+.bylaws-nav-list a:hover{color:var(--maroon)}
+.bylaws-nav-list a.active{color:var(--maroon);font-weight:600}
+
+/* ── BYLAWS CONTENT ── */
+.bylaws-main{}
+.bylaws-preface{background:var(--vellum-mid);border-left:4px solid var(--gold);padding:2rem 2.5rem;margin-bottom:3rem}
+.bylaws-preface-head{font-family:var(--f-ui);font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.75rem}
+.bylaws-preface p{font-family:var(--f-body);font-size:.95rem;line-height:1.80;color:var(--ink);margin-bottom:.75em}
+.bylaws-preface p:last-child{margin-bottom:0}
+
+.bylaw-article{margin-bottom:3.5rem;padding-bottom:3.5rem;border-bottom:var(--rule-faint);scroll-margin-top:80px}
+.bylaw-article:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.bylaw-article-head{font-family:var(--f-ui);font-size:.72rem;font-weight:600;letter-spacing:.20em;text-transform:uppercase;color:var(--maroon);display:block;margin-bottom:.5rem}
+.bylaw-title{font-family:var(--f-display);font-weight:500;font-size:clamp(1.4rem,2vw,1.9rem);color:var(--text);line-height:1.15;margin-bottom:1.25rem}
+.bylaw-body{font-family:var(--f-body);font-size:.97rem;line-height:1.82;color:var(--ink)}
+.bylaw-body ol{padding-left:1.5rem;margin:.75rem 0}
+.bylaw-body ol li{margin-bottom:.85em;padding-left:.25rem}
+.bylaw-body ol li:last-child{margin-bottom:0}
+.bylaw-body p{margin-bottom:.85em}
+.bylaw-body p:last-child{margin-bottom:0}
+
+/* ── SUBMISSION STRIP ── */
+.bylaws-submission{background:var(--apse);padding:2.5rem 4rem;margin-top:3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.bs-text{font-family:var(--f-display);font-style:italic;font-size:1rem;color:rgba(246,241,232,.70);line-height:1.6}
+.bs-date{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(232,201,122,.65);display:block;margin-bottom:.35rem}
+
+/* ── FOOTER ── */
+footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:4.5rem 4.5rem 2.5rem}
+.footer-cross{display:block;text-align:center;font-size:1.1rem;color:rgba(184,131,40,.45);letter-spacing:.8em;padding-left:.8em;margin-bottom:4rem}
+.footer-cols{max-width:1380px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:5rem;margin-bottom:3.5rem}
+.footer-col-head{font-family:var(--f-ui);font-size:.80rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(246,241,232,.82);display:block;margin-bottom:1.2rem;padding-bottom:.5rem;border-bottom:1px solid rgba(246,241,232,.06)}
+.footer-name{font-family:var(--f-display);font-weight:400;font-size:1.1rem;color:rgba(246,241,232,.88);line-height:1.3;margin-bottom:.75rem}
+.footer-meta{font-family:var(--f-ui);font-size:.80rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.72);line-height:2.3}
+.footer-meta a{color:rgba(184,131,40,.85)}
+.footer-socials{display:flex;gap:1.5rem;margin-top:1.25rem}
+.footer-socials a{font-family:var(--f-ui);font-size:.80rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,241,232,.65)}
+.footer-socials a:hover{color:var(--gold)}
+.footer-nav{list-style:none}
+.footer-nav li{padding:.35rem 0;border-bottom:1px solid rgba(246,241,232,.10)}
+.footer-nav li:last-child{border-bottom:none}
+.footer-nav a{font-family:var(--f-ui);font-size:.80rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,232,.85)}
+.footer-nav a:hover{color:#fff}
+.footer-blurb{font-family:var(--f-display);font-style:italic;font-size:.95rem;color:rgba(246,241,232,.85);line-height:1.65;margin-bottom:1.25rem}
+.footer-bottom{max-width:1380px;margin:2rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(246,241,232,.12);display:flex;justify-content:space-between;align-items:center}
+.footer-copy,.footer-addr{font-family:var(--f-ui);font-size:.80rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.60)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  .bylaws-wrap{grid-template-columns:1fr;gap:0}
+  .bylaws-nav{position:static;border-bottom:var(--rule-faint);padding-bottom:2rem;margin-bottom:3rem}
+  .bylaws-nav-list{display:flex;flex-wrap:wrap;gap:.25rem}
+  .bylaws-nav-list li{border-bottom:none}
+  .bylaws-nav-list a{padding:.3rem .6rem;border:var(--rule-faint);font-size:.65rem}
+  .footer-cols{grid-template-columns:1fr 1fr;gap:3rem}
+}
+@media(max-width:1024px){
+  .nav-links{display:none}.nav-hamburger{display:flex}.nav-give{display:none}
+  .page-hero-inner{padding:3.5rem 1.5rem 3rem}
+  .bylaws-wrap{padding:3rem 1.5rem}
+  .chapter-bar{padding:.65rem 1.5rem}
+  .bylaws-submission{padding:2rem 1.5rem;flex-direction:column;align-items:flex-start}
+  .footer-cols{grid-template-columns:1fr;gap:2.5rem}
+  footer{padding:4rem 1.5rem 2rem}
+  .footer-bottom{flex-direction:column;gap:.75rem;text-align:center}
+  body{font-size:18px;line-height:1.8}
+  [class*="-over"],[class*="-cat"],[class*="-sub"],[class*="-label"],[class*="-tag"],[class*="-kicker"],[class*="-lbl"],[class*="-badge"],[class*="-date"],[class*="-meta"]{font-size:.72rem!important;letter-spacing:.12em}
+  .footer-copy,.footer-bottom{font-size:.72rem}
+  .nav-drawer-links a{font-size:.76rem;padding:1rem 1.75rem}
+}
+</style>
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" style="line-height:1.2">
+      <span class="nav-logo-name">Sts. Peter &amp; Paul</span>
+      <span class="nav-logo-sub">Orthodox Cathedral · Jersey City</span>
+    </a>
+    <ul class="nav-links">
+      <li class="nav-active-parent"><a href="#">About Us ▾</a>
+        <div class="nav-drop">
+          <a href="/about-our-church">About Our Church</a>
+          <a href="/our-beliefs">Our Beliefs</a>
+          <a href="/administration" class="nav-active">Administration</a>
+          <a href="/gallery">Gallery</a>
+        </div>
+      </li>
+      <li><a href="#">Inquirers ▾</a>
+        <div class="nav-drop">
+          <a href="/about-orthodoxy">About Orthodoxy</a>
+          <a href="/our-beliefs">Our Beliefs</a>
+          <a href="/videos">Videos</a>
+        </div>
+      </li>
+      <li><a href="#">Worship ▾</a>
+        <div class="nav-drop">
+          <a href="/schedule">Liturgical Calendar</a>
+          <a href="/readings">Daily Readings</a>
+          <a href="/saint-of-the-day">Saint of the Day</a>
+          <a href="/prologue">Prologue of Ohrid</a>
+        </div>
+      </li>
+      <li><a href="#">Parish Life ▾</a>
+        <div class="nav-drop">
+          <a href="/news">News &amp; Announcements</a>
+          <a href="/bulletins">Bulletins</a>
+          <a href="/donate">Give Online</a>
+          <a href="/cemeteries">Cemeteries</a>
+        </div>
+      </li>
+      <li><a href="/contact-us">Contact</a></li>
+    </ul>
+    <a href="https://tithe.ly/give?c=5004259" target="_blank" class="nav-give">Give</a>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" onclick="openDrawer()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<div class="nav-drawer-overlay" id="nav-overlay" onclick="closeDrawer()"></div>
+<div class="nav-drawer" id="nav-drawer">
+  <div class="nav-drawer-head">
+    <div class="nav-drawer-logo">Sts. Peter &amp; Paul<span>Orthodox Cathedral · Jersey City</span></div>
+    <button class="nav-drawer-close" onclick="closeDrawer()">✕</button>
+  </div>
+  <div class="nav-drawer-links">
+    <span class="drawer-section">About</span>
+    <a href="/about-our-church">About Our Church</a>
+    <a href="/our-beliefs">Our Beliefs</a>
+    <a href="/administration">Administration</a>
+    <a href="/about-orthodoxy">About Orthodoxy</a>
+    <span class="drawer-section">Visit &amp; Worship</span>
+    <a href="/schedule">Liturgical Calendar</a>
+    <a href="/readings">Daily Readings</a>
+    <a href="/saint-of-the-day">Saint of the Day</a>
+    <a href="/prologue">Prologue of Ohrid</a>
+    <a href="/videos">Videos</a>
+    <span class="drawer-section">Parish Life</span>
+    <a href="/gallery">Gallery</a>
+    <a href="/bulletins">Bulletins</a>
+    <a href="/news">News &amp; Announcements</a>
+    <a href="/cemeteries">Cemeteries</a>
+    <a href="/donate">Give Online</a>
+    <span class="drawer-section">Contact</span>
+    <a href="/contact-us">Contact Us</a>
+  </div>
+  <a href="https://tithe.ly/give?c=5004259" target="_blank" class="nav-drawer-give">Give Online</a>
+</div>
+
+<div class="page-hero">
+  <div class="page-hero-inner" style="padding-left:75px;padding-top:calc(5rem + 5px);padding-bottom:calc(4rem + 20px)">
+    <p class="breadcrumb"><a href="/">Home</a> · About Orthodoxy</p>
+    <span class="rubric light">For Inquirers</span>
+    <div class="rubric-rule" style="background:rgba(232,201,122,.6)"></div>
+    <h1 class="page-title">About<br><em>Orthodoxy</em></h1>
+    <p style="font-family:var(--f-display);font-style:italic;font-size:1.1rem;color:rgba(255,255,255,.65);margin-top:.5rem">The ancient Christian Faith — twenty centuries of unbroken witness</p>
+  </div>
+</div>
+<div class="chapter-bar"><span class="cbar-text bright">About Orthodox Christianity</span><span class="cbar-text">For Inquirers &amp; Seekers</span></div>
+
+<!-- RESOURCE HUB STRIP -->
+<div class="hub-strip" id="hub-strip">
+  <div class="hub-strip-inner">
+    <span class="hub-rubric">The Inquirer&rsquo;s Path</span>
+    <h2 class="hub-headline">Everything a seeker needs to know about<br><em style="font-style:italic">Saints Peter &amp; Paul and the Orthodox Faith</em></h2>
+    <div class="hub-cards" id="hub-cards">
+        <a href="#history" class="hub-card" id="hub-card-0">
+          <span class="hub-card-icon">&#9766;</span>
+          <span class="hub-card-title">Ancient Roots</span>
+          <p class="hub-card-desc">The history of the Orthodox Church from the Apostles to today — 2,000 years of unbroken faith.</p>
+          <span class="hub-card-link">Read the History &rarr;</span>
+        </a>
+        <a href="#reading" class="hub-card" id="hub-card-1">
+          <span class="hub-card-icon">&#10002;</span>
+          <span class="hub-card-title">Recommended Reading</span>
+          <p class="hub-card-desc">Books that have guided seekers into the Orthodox Faith, from accessible introductions to spiritual classics.</p>
+          <span class="hub-card-link">Browse the List &rarr;</span>
+        </a>
+        <a href="#resources" class="hub-card" id="hub-card-2">
+          <span class="hub-card-icon">&#9769;</span>
+          <span class="hub-card-title">Learn the Faith</span>
+          <p class="hub-card-desc">Curated resources from the OCA — feasts &amp; saints, daily readings, and questions about Orthodoxy answered.</p>
+          <span class="hub-card-link">Explore Resources &rarr;</span>
+        </a>
+        <a href="#useful" class="hub-card" id="hub-card-3">
+          <span class="hub-card-icon">&#8853;</span>
+          <span class="hub-card-title">Useful Websites</span>
+          <p class="hub-card-desc">Important Orthodox resources online — the OCA, our diocese, Ancient Faith Ministries, and more.</p>
+          <span class="hub-card-link">See All Links &rarr;</span>
+        </a>
+    </div>
+  </div>
+</div>
+
+<div class="chapter-bar">
+  <span class="cbar-text bright">Parish Bylaws</span>
+  <span class="cbar-text">Saints Peter &amp; Paul Orthodox Cathedral · Jersey City, NJ</span>
+</div>
+
+<!-- BYLAWS BODY -->
+<div class="bylaws-wrap">
+
+  <!-- STICKY NAV -->
+  <nav class="bylaws-nav" aria-label="Article navigation">
+    <span class="bylaws-nav-head">Articles</span>
+    <ul class="bylaws-nav-list">
+      <li><a href="#preface">Preface</a></li>
+      <li><a href="#article-i">I. The Parish</a></li>
+      <li><a href="#article-ii">II. The Parish Priest</a></li>
+      <li><a href="#article-iii">III. A Parishioner</a></li>
+      <li><a href="#article-iv">IV. Director of Music</a></li>
+      <li><a href="#article-v">V. Parish Assemblies</a></li>
+      <li><a href="#article-vi">VI. The Parish Council</a></li>
+      <li><a href="#article-vii">VII. Administrative Officers</a></li>
+      <li><a href="#article-viii">VIII. Effective Dates</a></li>
+      <li><a href="#article-ix">IX. Minutes &amp; Records</a></li>
+      <li><a href="#article-x">X. Voting</a></li>
+      <li><a href="#article-xi">XI. Auditing</a></li>
+      <li><a href="#article-xii">XII. Amendments</a></li>
+      <li><a href="#article-xiii">XIII. The Cemetery</a></li>
+      <li><a href="#article-xiv">XIV. Parking</a></li>
+      <li><a href="#article-xv">XV. Canonical Disruption</a></li>
+      <li><a href="#article-xvi">XVI. Dissolution</a></li>
+    </ul>
+    <div style="margin-top:2rem;padding-top:1.5rem;border-top:var(--rule-faint)">
+      <a href="/administration" class="sb-link">Back to Administration &rarr;</a>
+    </div>
+  </nav>
+
+  <!-- ARTICLES -->
+  <main class="bylaws-main">
+
+    <!-- PREFACE -->
+    <div id="preface" class="bylaws-preface">
+      <span class="bylaws-preface-head">Preface</span>
+      <p>The Saints Peter and Paul Orthodox Cathedral is a local community of the Diocese of New York and New Jersey of the Orthodox Church in America and incorporated as "Saints Peter and Paul Russian Orthodox Greek Catholic Church of Jersey City, New Jersey," a religious (not-for-profit) corporation in the State of New Jersey, on February 2, 1907.</p>
+      <p>The address of the Cathedral is 111-113 Grand Street, Jersey City, NJ 07302, and the Parish Office address is 109 Grand Street, Jersey City, NJ 07302. The Saints Peter and Paul Orthodox Cathedral shall be referred to as the Parish.</p>
+    </div>
+
+    <!-- ARTICLE I -->
+    <div id="article-i" class="bylaw-article">
+      <span class="bylaw-article-head">Article I</span>
+      <h2 class="bylaw-title">The Parish</h2>
+      <div class="bylaw-body">
+        <ol>
+          <li>The Parish is the local manifestation and ecclesial body of The Orthodox Church in America consisting of the geographical territory defined by the Holy Synod of Bishops of The Orthodox Church in America as constituting the Diocese of New York and New Jersey.</li>
+          <li>The Parish is a not-for-profit corporation chartered under the laws of the State of New Jersey and the United States of America with 501c3 status.</li>
+          <li>The Parish is governed by the canons and established discipline of the Orthodox Church, the Statute of The Orthodox Church in America as approved by the Thirteenth All-American Council and affirmed by the Holy Synod of Bishops on November 1, 2015, and the Bylaws of the Diocese of New York and New Jersey approved December 1, 2012.</li>
+          <li>The Parish is the sole owner of all Parish property, assets, and funds. In administering them, however, the Parishioners and the officers elected by them must always remember the religious nature, purposes, and goals of the Parish and function as trustees of that which is entrusted to their stewardship. The Parish, with the whole Cathedral, serves Christ and continues His work in the world, and all decisions concerning Parish property must be inspired by that care and by the spiritual needs of the Cathedral.</li>
+          <li>The Parish is constituted by the Priest and the Parishioners.</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- ARTICLE II -->
+    <div id="article-ii" class="bylaw-article">
+      <span class="bylaw-article-head">Article II</span>
+      <h2 class="bylaw-title">The Parish Priest</h2>
+      <div class="bylaw-body">
+        <ol>
+          <li>The Priest, who is canonically ordained and appointed by the diocesan bishop, administers the Parish.</li>
+          <li>The Priest is the spiritual father and teacher of his flock and the celebrant of the liturgical worship as established by the Cathedral. He teaches and edifies the faithful entrusted to his spiritual care and assures that all activities within the Parish serve the mission of the Cathedral. No activities in the Parish can be initiated without his knowledge, approval, and blessing; neither should he do anything pertaining to the Parish without the knowledge of the duly elected Parish Council, so that always and everywhere there may be unity, mutual trust, cooperation, and love.</li>
+          <li>The Priest shall be appointed by the bishop and compensated by the Parish with an amount determined by the Parish Council and the Bishop. The Clergy Compensation Guidelines established by the Orthodox Church in America list the financial package. The Priest shall be subject to annual increase based on performance and budgetary capacity. The Priest shall receive an annual cost-of-living raise. Vacation time is based on years of Priesthood as stated in the Bylaws of the Diocese of New York and New Jersey. A furnished rectory shall be provided for the Priest at 109 Grand Street, Jersey City, and utilities shall be provided by the Parish.</li>
+          <li>The Priest in conformity with his teaching office shall have final authority over the Cathedral school and worship.</li>
+          <li>The Priest shall have the option to disagree with any decisions of the Parish Council or the Parish Assembly. His disagreement and motivated opinion must be recorded in the minutes and the matter submitted to the Bishop. Parish officers may state their motivated opinions in writing, first to the District Dean, who shall relay them to the Bishop.</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- ARTICLE III -->
+    <div id="article-iii" class="bylaw-article">
+      <span class="bylaw-article-head">Article III</span>
+      <h2 class="bylaw-title">A Parishioner</h2>
+      <div class="bylaw-body">
+        <ol>
+          <li>A Parishioner, who by virtue of Baptism and Chrismation is of the Body of Christ, strives to live in accordance with the high calling as an Orthodox Christian. No one can be a Parishioner who is openly opposed to, betrays, or lives in a manner contrary to the teaching of the Orthodox Church, or who leads a life or acts in a manner condemned by the Holy Canons as incompatible with Orthodox Christian teachings.</li>
+          <li>A Parishioner who is at least 18 years of age; who receives the Sacrament of Confession at least once a year in his home Parish or, with the permission of the Parish Priest, elsewhere; who receives Holy Communion at least once a year in his home Parish; who is present at the services; who has belonged to the Parish for a period of one year; and who regularly fulfills such financial obligations as may be established by the All-American Councils, Diocesan Assemblies, and Parish — is afforded the privilege of voting at Parish Assemblies. The final determination of who qualifies as a Parish member shall be made by the Parish Rector, in consultation with any Parish Council members with whom he may need to consult.</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- ARTICLE IV -->
+    <div id="article-iv" class="bylaw-article">
+      <span class="bylaw-article-head">Article IV</span>
+      <h2 class="bylaw-title">Director of Music</h2>
+      <div class="bylaw-body">
+        <ol>
+          <li>The Director of Music under the supervision of the Priest shall be responsible for all services and for directing, rehearsing, and teaching the Parish Choir.</li>
+          <li>The Director of Music shall receive compensation as determined by the Parish Assembly.</li>
+          <li>The Director of Music shall maintain and develop the Parish Choir Library of Music.</li>
+          <li>The Director of Music shall conduct his office for various needs, such as baptisms, weddings, and burials, and shall be compensated for these from the stipend given.</li>
+          <li>The Director of Music shall be entitled to vacation as established by the Parish Assembly.</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- ARTICLE V -->
+    <div id="article-v" class="bylaw-article">
+      <span class="bylaw-article-head">Article V</span>
+      <h2 class="bylaw-title">Parish Assemblies</h2>
+      <div class="bylaw-body">
+        <ol>
+          <li>The Annual Parish Assembly shall be held on a Sunday at the Cathedral; the date and time shall be determined by the Priest and the Parish Council.</li>
+          <li>The Assembly shall be announced in the Cathedral and posted in the parish bulletin at least three consecutive Sundays prior to the Assembly.</li>
+          <li>The Annual Parish Assembly shall receive written reports of the Priest, administrative officers, and others as necessary; shall conduct all administrative business of the Parish; shall approve budgets; shall elect a Lay Delegate to the Diocesan Assembly and a delegate to the All-American Council; and shall elect the officers of the Parish.</li>
+          <li>A Special Assembly may be called by decision of the Priest and the Parish Council. The business shall be confined to one topic. The Assembly shall be announced at least three consecutive Sundays.</li>
+          <li>The Assemblies shall consist of the Priest and Parishioners in good standing as defined previously.</li>
+          <li>The Priest shall preside at the Annual and Special Assemblies.</li>
+          <li>Attendance shall be recorded by the secretary.</li>
+          <li>A quorum shall consist of one-third of the Parishioners.</li>
+          <li>The order of business for the Parish Assembly shall be as follows: (a) Opening Prayer; (b) Establishment of a Quorum; (c) Approval of Previous Minutes; (d) Report of the Parish Priest; (e) Report of Parish Finances; (f) Report of the Auditor; (g) Approval of Budget; (h) Election of the Parish Council; (i) New Business; (j) Old Business; (k) Motion to Close; (l) Closing Prayer.</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- ARTICLE VI -->
+    <div id="article-vi" class="bylaw-article">
+      <span class="bylaw-article-head">Article VI</span>
+      <h2 class="bylaw-title">The Parish Council</h2>
+      <div class="bylaw-body">
+        <ol>
+          <li>The Parish Council shall be elected at the Annual Parish Assembly to assist the Parish Priest in the administration of the Parish and to execute the decisions of the Parish Assembly.</li>
+          <li>The Parish Council shall, after their election by the Parish Assembly and the approval by the Bishop, be installed by the Parish Priest, making a solemn commitment to uphold their office for the well-being of the Cathedral.</li>
+          <li>The Parish Council shall partake of Holy Confession and Holy Communion in conjunction with the administering of the Oath of Service.</li>
+          <li>The Parish Council shall consist of the Parish Priest and at least 6 parishioners.</li>
+          <li>The Parish Council shall be convened regularly at the Parish at a time established by the Parish Priest and the Parish Council.</li>
+          <li>The Priest presides at the Parish Council Meeting.</li>
+          <li>The Parish Council Minutes shall be signed by the Rector and the Parish Council Secretary of the Parish.</li>
+          <li>The Parish Council expenditures shall not exceed ten thousand dollars on any item, renovation, or improvement of Cathedral property. Exceptions include emergency situations.</li>
+          <li>The Parish Council shall be responsible not only for the spiritual and material needs of the Parish, but also for the encouragement of others to participate in the life and mission of the Parish, the Diocese, and the Orthodox Church in America, and thus to manifest the unity of the Body of Christ.</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- ARTICLE VII -->
+    <div id="article-vii" class="bylaw-article">
+      <span class="bylaw-article-head">Article VII</span>
+      <h2 class="bylaw-title">Administrative Officers</h2>
+      <div class="bylaw-body">
+        <p>The administrative officers of the Parish are:</p>
+        <ol type="a" style="list-style-type:lower-alpha">
+          <li>The Parish Priest.</li>
+          <li>The Warden, who shall assist the Parish Priest.</li>
+          <li>The Treasurer, who shall tabulate and record offerings and financial gifts to the Parish and provide written reports to the Parish Council and to the Annual Assembly.</li>
+          <li>The Secretary, who shall record and maintain minutes of the Annual and Special Assemblies, and the Parish Council Meetings.</li>
+        </ol>
+        <p style="margin-top:1em">The Parish Priest and the Parish Council shall establish operational procedures for tabulation of offerings, deposits, withdrawals, transfers, signatures on checks and accounts, and other administrative procedures. The non-Administrative Council Persons shall assist at the Divine Services; receive and assist in tabulation of the offerings; and maintain order within the Cathedral and parish hall.</p>
+      </div>
+    </div>
+
+    <!-- ARTICLE VIII -->
+    <div id="article-viii" class="bylaw-article">
+      <span class="bylaw-article-head">Article VIII</span>
+      <h2 class="bylaw-title">The Effective Dates of Decisions</h2>
+      <div class="bylaw-body">
+        <p>All decisions of the Annual and Special Parish Assemblies are in effect only after approval and confirmation by the Bishop. Minutes of the Assemblies must be mailed to the Bishop within 30 days of the Assembly.</p>
+      </div>
+    </div>
+
+    <!-- ARTICLE IX -->
+    <div id="article-ix" class="bylaw-article">
+      <span class="bylaw-article-head">Article IX</span>
+      <h2 class="bylaw-title">The Parish Minutes, Records, and Seal</h2>
+      <div class="bylaw-body">
+        <p>All decisions of the Annual and Special Parish Assemblies are in effect only after approval and confirmation by the Bishop. Minutes of the Assemblies must be mailed to the Bishop within 30 days of the Assembly.</p>
+      </div>
+    </div>
+
+    <!-- ARTICLE X -->
+    <div id="article-x" class="bylaw-article">
+      <span class="bylaw-article-head">Article X</span>
+      <h2 class="bylaw-title">Voting</h2>
+      <div class="bylaw-body">
+        <p>Voting at an Assembly and Parish Council Meeting shall be taken by voice, by ballot, or any other method authorized by the Assembly or the Parish Council Meeting.</p>
+      </div>
+    </div>
+
+    <!-- ARTICLE XI -->
+    <div id="article-xi" class="bylaw-article">
+      <span class="bylaw-article-head">Article XI</span>
+      <h2 class="bylaw-title">Auditing</h2>
+      <div class="bylaw-body">
+        <p>An audit of financial records shall be done by a CPA, or a qualified non-Parish Council parishioner, who is elected by the Parish Assembly. An annual audit is done and presented at the Annual Parish Assembly.</p>
+      </div>
+    </div>
+
+    <!-- ARTICLE XII -->
+    <div id="article-xii" class="bylaw-article">
+      <span class="bylaw-article-head">Article XII</span>
+      <h2 class="bylaw-title">Amendments</h2>
+      <div class="bylaw-body">
+        <ol>
+          <li>Amendments to these Bylaws shall be proposed in writing to be reviewed by the Parish Council. The Priest and the Parish Council shall set the date for the Annual or Special Parish Assembly to consider the amendments.</li>
+          <li>The text of any proposed changes, amendments, or additions to the Parish Bylaws must be mailed to all Parishioners for distribution to the membership at least thirty days before the Assembly.</li>
+          <li>The Bylaws may be amended by decision of the Annual Parish Assembly or Special Parish Assembly as far as they do not conflict with the laws of the State of New Jersey.</li>
+          <li>A proposed amendment must be voted on at the Annual Parish Assembly or Special Parish Assembly at which it is presented if two-thirds of voting members are present.</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- ARTICLE XIII -->
+    <div id="article-xiii" class="bylaw-article">
+      <span class="bylaw-article-head">Article XIII</span>
+      <h2 class="bylaw-title">The Parish Cemetery</h2>
+      <div class="bylaw-body">
+        <p>The parish cemetery is a section of Graceland Cemetery, Kenilworth, New Jersey. Graves are purchased through the parish office for a fee established by the parish assembly. The Graceland Cemetery Corporation charges a grave opening fee payable to them.</p>
+      </div>
+    </div>
+
+    <!-- ARTICLE XIV -->
+    <div id="article-xiv" class="bylaw-article">
+      <span class="bylaw-article-head">Article XIV</span>
+      <h2 class="bylaw-title">Cathedral Parking</h2>
+      <div class="bylaw-body">
+        <p>The Cathedral Parking located at 101 Grand Street, Jersey City, New Jersey is under the management of the Parish Council.</p>
+      </div>
+    </div>
+
+    <!-- ARTICLE XV -->
+    <div id="article-xv" class="bylaw-article">
+      <span class="bylaw-article-head">Article XV</span>
+      <h2 class="bylaw-title">Canonical Disruption of the Parish</h2>
+      <div class="bylaw-body">
+        <p>In the event of apostasy from the Orthodox Faith, schism, or defection of a Parish from the canonical jurisdiction of The Orthodox Church in America, the Bishop, in consultation with the Diocesan Council, shall have the power to declare the Parish in canonical disorder and shall immediately assume the administration and control of its properties and funds, or delegate such administration and control to the District Dean, until the Bishop, in consultation with the Diocesan Council, declares the Parish to be in canonical order. If this does not occur, the Bishop may declare the Parish to be dissolved and canonically suppressed. This decision may be appealed by the Parish to the Holy Synod, which has final jurisdiction in all matters of canonical order. If a group in a Parish decides to withdraw from the jurisdiction of The Orthodox Church in America, that segment of the Parish which remains loyal to the jurisdiction of The Orthodox Church in America shall retain full title to all the Parish assets and property.</p>
+      </div>
+    </div>
+
+    <!-- ARTICLE XVI -->
+    <div id="article-xvi" class="bylaw-article">
+      <span class="bylaw-article-head">Article XVI</span>
+      <h2 class="bylaw-title">Dissolution of the Parish</h2>
+      <div class="bylaw-body">
+        <ol>
+          <li>When it is determined by the Bishop or by the Parish Council that the Parish is incapable of sustaining itself and/or wishes to be dissolved, an Annual or Special Parish Assembly shall be called in accordance with the terms of the Parish Bylaws. If three-fourths of the existing members present and in good standing vote in favor of such dissolution, or if a Parish has been disbanded and a Parish Assembly cannot be called, the Bishop may declare said Parish dissolved.</li>
+          <li>In the case of a Declaration of Dissolution of the Parish by the Bishop, all Parish property, real and personal, shall devolve to the Diocese and shall be subject to appropriate disposition as the Bishop sees fit. All sacred items, including the Holy Antimension, the Tabernacle, the Holy Icons, and the Sacred Vessels, must be immediately surrendered to the Bishop or to the Dean of the New Jersey Deanery.</li>
+          <li>Anything to the contrary notwithstanding, the canonical provisions of this Section cannot be amended, altered, changed, or modified.</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- SUBMISSION -->
+    <div class="bylaws-submission">
+      <div>
+        <span class="bs-date">Submitted November 10, 2019 · Approved December 30, 2019</span>
+        <p class="bs-text">Submitted to the Diocesan Archbishop on November 10, 2019. Approved and Blessed by His Eminence Archbishop Michael on December 30, 2019.</p>
+      </div>
+      <a href="/administration" class="sb-link" style="color:rgba(232,201,122,.75);border-color:rgba(232,201,122,.35);white-space:nowrap">Back to Administration &rarr;</a>
+    </div>
+
+  </main>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-cross">&#10022; &#10013; &#10022;</span>
+  <div class="footer-cols">
+    <div>
+      <span class="footer-col-head">Saints Peter &amp; Paul Orthodox Cathedral</span>
+      <p class="footer-name">Sts. Peter &amp; Paul<br>Orthodox Cathedral</p>
+      <p class="footer-meta">
+        Diocese of New York &amp; New Jersey<br>
+        <a href="https://nynjoca.org" target="_blank">nynjoca.org</a><br>
+        Orthodox Church in America<br>
+        <a href="https://oca.org" target="_blank">oca.org</a>
+      </p>
+      <div class="footer-socials">
+        <a href="#" target="_blank">Facebook</a>
+        <a href="#" target="_blank">Instagram</a>
+        <a href="https://www.youtube.com/@ssppnj" target="_blank">YouTube</a>
+      </div>
+    </div>
+    <div>
+      <span class="footer-col-head">Navigate</span>
+      <ul class="footer-nav">
+        <li><a href="/about-our-church">About Our Church</a></li>
+        <li><a href="/our-beliefs">Our Beliefs</a></li>
+        <li><a href="/administration">Administration</a></li>
+        <li><a href="/about-orthodoxy">About Orthodoxy</a></li>
+        <li><a href="/schedule">Liturgical Calendar</a></li>
+        <li><a href="/readings">Daily Readings</a></li>
+        <li><a href="/saint-of-the-day">Saint of the Day</a></li>
+        <li><a href="/prologue">Prologue of Ohrid</a></li>
+        <li><a href="/news">News &amp; Announcements</a></li>
+        <li><a href="/bulletins">Bulletins</a></li>
+        <li><a href="/gallery">Gallery</a></li>
+        <li><a href="/videos">Videos</a></li>
+        <li><a href="/cemeteries">Cemeteries</a></li>
+        <li><a href="/donate">Give Online</a></li>
+        <li><a href="/contact-us">Contact Us</a></li>
+      </ul>
+    </div>
+    <div>
+      <span class="footer-col-head">Visit Us</span>
+      <p class="footer-blurb">Whether you are visiting for the first time or looking to become part of our parish family, you are welcome here.</p>
+      <a href="/contact-us" class="btn btn-outline" style="margin-bottom:2rem;display:inline-block">Contact the Parish</a>
+      <span class="footer-col-head" style="margin-top:.5rem">Service Times</span>
+      <p class="footer-meta" style="line-height:2.4">
+        Vespers &middot; Saturdays 5:00 PM<br>
+        Divine Liturgy &middot; Sundays 9:30 AM<br>
+        Office &middot; Mon&ndash;Fri 9:00 AM&ndash;5:00 PM
+      </p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">&copy; Saints Peter &amp; Paul Orthodox Cathedral. All Rights Reserved.</p>
+    <p class="footer-addr">109 Grand Street &middot; Jersey City, NJ 07302 &middot; (201) 434-1986</p>
+  </div>
+</footer>
+
+<!-- ACTIVE NAV HIGHLIGHT ON SCROLL -->
+<script>
+(function(){
+  var links = document.querySelectorAll('.bylaws-nav-list a');
+  var sections = Array.from(links).map(function(l){ return document.querySelector(l.getAttribute('href')); });
+  function onScroll(){
+    var scrollY = window.scrollY + 100;
+    var active = 0;
+    sections.forEach(function(s, i){ if(s && s.offsetTop <= scrollY) active = i; });
+    links.forEach(function(l, i){ l.classList.toggle('active', i === active); });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+})();
+</script>
+
+<script src="/hero-rotator.js"></script>
+<script>
+if (window.netlifyIdentity) {
+  window.netlifyIdentity.on("init", user => {
+    if (!user) { window.netlifyIdentity.on("login", () => { document.location.href = "/admin/"; }); }
+  });
+}
+</script>
+<script>
+function openDrawer(){
+  document.getElementById('nav-drawer').classList.add('open');
+  document.getElementById('nav-overlay').classList.add('open');
+  document.getElementById('nav-hamburger').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeDrawer(){
+  document.getElementById('nav-drawer').classList.remove('open');
+  document.getElementById('nav-overlay').classList.remove('open');
+  document.getElementById('nav-hamburger').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeDrawer();});
+</script>
+<script src="/enhancements.js"></script>
+</body>
+</html>

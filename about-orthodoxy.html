@@ -37,10 +37,69 @@
 .cbar-text{font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:rgba(246,241,232,.60)}
 .cbar-text.bright{color:rgba(246,241,232,.90)}
 .page-body{background:var(--vellum);max-width:1380px;margin:0 auto;padding:5rem 4.5rem;display:grid;grid-template-columns:1fr 300px;gap:5rem}
-.prose{font-family:var(--f-body);font-size:1rem;line-height:1.82;color:var(--ink);text-align:justify;hyphens:auto;max-width:60ch}
+.prose{font-family:var(--f-body);font-size:1rem;line-height:1.82;color:var(--ink);text-align:justify;hyphens:auto}
 .prose p{margin-bottom:1.2em}
 .section-head{font-family:var(--f-display);font-weight:400;font-size:clamp(1.6rem,2.5vw,2.2rem);color:var(--text);margin:3rem 0 .5rem;line-height:1.15}
 .drop-cap::first-letter{font-family:var(--f-display);font-style:italic;font-weight:300;font-size:4.5em;line-height:.78;float:left;margin-right:.07em;margin-top:.07em;color:var(--maroon)}
+
+/* ── RECOMMENDED READING ── */
+.reading-section{background:var(--vellum-mid);padding:4.5rem 4.5rem;border-top:var(--rule-faint);border-bottom:var(--rule-faint)}
+.reading-inner{max-width:1380px;margin:0 auto}
+.reading-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:2.5rem;border:var(--rule-faint)}
+.reading-col{padding:2.5rem;border-right:var(--rule-faint);animation:rcol-in .6s ease both}.reading-col:nth-child(1){animation-delay:.1s}.reading-col:nth-child(2){animation-delay:.28s}.reading-col:nth-child(3){animation-delay:.46s}@keyframes rcol-in{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.reading-col.visible{opacity:1;transform:translateY(0)}
+.reading-col:last-child{border-right:none}
+.reading-col-label{font-family:var(--f-ui);font-size:.65rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.4rem}
+.reading-col-rule{width:32px;height:2px;background:var(--maroon);display:block;margin-bottom:2rem}
+.reading-col-head{font-family:var(--f-display);font-weight:400;font-size:1.3rem;color:var(--text);margin-bottom:1.5rem;line-height:1.2}
+.reading-book-wrap{position:relative;border-bottom:var(--rule-hair);min-height:6.5rem}
+.reading-book-wrap:last-child{border-bottom:none}
+.reading-book{display:block;padding:.85rem .75rem;cursor:pointer;text-decoration:none;color:inherit;position:absolute;left:0;right:0;top:0;background:var(--vellum-mid);transition:transform .4s cubic-bezier(.25,.8,.25,1),box-shadow .4s cubic-bezier(.25,.8,.25,1),background .3s ease;z-index:1;border-radius:2px;transform:translateZ(0);-webkit-font-smoothing:antialiased;backface-visibility:hidden}
+.reading-book:hover{transform:translateZ(0) scale(1.02);box-shadow:0 12px 36px rgba(21,8,4,.13);background:var(--vellum);z-index:20;border-radius:4px}
+.reading-book::after{content:'→';position:absolute;right:.85rem;top:.95rem;font-size:.75rem;color:var(--maroon);opacity:0;transition:opacity .35s ease}
+.reading-book:hover::after{opacity:1}
+.reading-book-title{font-family:var(--f-display);font-style:italic;font-size:1.2rem;font-weight:500;color:var(--text);display:block;margin-bottom:.12rem;transition:color .3s ease}
+.reading-book:hover .reading-book-title{color:var(--maroon)}
+.reading-book-author{font-family:var(--f-ui);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:0}
+.reading-book-desc{font-family:var(--f-body);font-size:.95rem;line-height:1.72;color:var(--stone);max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.25,.8,.25,1),opacity .4s ease,margin-top .4s ease;opacity:0;margin-top:0}
+.reading-book:hover .reading-book-desc{max-height:160px;opacity:1;margin-top:.65rem}
+
+
+/* ── TABBED ENCYCLOPEDIA ── */
+.enc-wrap{display:grid;grid-template-columns:220px 1fr;gap:0;margin-top:2.5rem;border:var(--rule-faint);min-height:480px;background:var(--vellum)}
+.enc-tabs{border-right:var(--rule-faint);background:var(--vellum-mid)}
+.enc-tab{display:block;width:100%;text-align:left;background:none;border:none;border-bottom:var(--rule-hair);padding:.85rem 1.25rem;font-family:var(--f-ui);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);font-weight:500;cursor:pointer;transition:all .18s;position:relative;display:flex;align-items:center;gap:.6rem}
+.enc-tab-icon{font-size:.85rem;opacity:.60;transition:opacity .2s;flex-shrink:0}
+.enc-tab:hover .enc-tab-icon{opacity:.75}
+.enc-tab.active .enc-tab-icon{opacity:1;color:var(--maroon)}
+.enc-pane-icon{font-size:3rem;color:rgba(123,29,42,.12);float:right;margin:0 0 .5rem 1rem;line-height:1}
+.enc-tab:last-child{border-bottom:none}
+.enc-tab:hover{color:var(--maroon);background:var(--vellum-mid)}
+.enc-tab.active{color:var(--maroon);background:var(--vellum);font-weight:600}
+.enc-tab.active::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--maroon);animation:enc-bar .2s ease}
+@keyframes enc-bar{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+.enc-pane{display:none;padding:2.5rem 3rem;animation:enc-fade .25s ease}
+.enc-pane.active{display:block;background:var(--vellum)}
+.enc-pane.active .enc-stat{animation:enc-stat-in .35s ease .1s both}
+.enc-pane.active .enc-stat-label{animation:enc-stat-in .35s ease .18s both}
+.enc-pane.active .enc-head{animation:enc-fade .35s ease .22s both}
+.enc-pane.active .enc-body{animation:enc-fade .35s ease .30s both}
+@keyframes enc-fade{from{opacity:0;transform:translateX(18px)}to{opacity:1;transform:translateX(0)}}
+@keyframes enc-stat-in{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+.enc-stat{font-family:var(--f-display);font-weight:300;font-style:italic;font-size:clamp(2rem,3.5vw,2.8rem);color:var(--maroon);line-height:1;display:block;margin-bottom:.2rem}
+.enc-stat-label{font-family:var(--f-ui);font-size:.62rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:1.5rem;padding-bottom:1.25rem;border-bottom:var(--rule-faint)}
+.enc-head{font-family:var(--f-display);font-weight:500;font-size:1.3rem;color:var(--text);margin-bottom:.75rem;line-height:1.2}
+.enc-body{font-family:var(--f-body);font-size:.97rem;line-height:1.85;color:var(--ink)}
+@media(max-width:768px){
+  .enc-wrap{grid-template-columns:1fr;min-height:auto}
+  .enc-tabs{border-right:none;border-bottom:var(--rule-faint);display:flex;flex-direction:column}
+  .enc-tab{border-bottom:var(--rule-hair);border-right:none;flex:none;text-align:left;padding:.75rem 1rem;font-size:.68rem;justify-content:space-between}
+  .enc-tab:hover{transform:none;box-shadow:none}
+  .enc-tab.active::before{top:0;bottom:0;left:0;right:auto;width:3px;height:auto}
+  .enc-pane{padding:1.5rem 1.25rem}
+  .enc-stat{font-size:1.8rem}
+  .enc-pane-icon{display:none}
+}
 
 /* FAQ accordion */
 .faq-item{border-bottom:var(--rule-faint);overflow:hidden}
@@ -58,10 +117,13 @@
 .side-section{margin-bottom:2.5rem;padding-bottom:2.5rem;border-bottom:var(--rule-faint)}
 .side-section:last-child{border-bottom:none}
 .side-head{font-family:var(--f-ui);font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.75rem}
-.annot-nav-link{display:flex;align-items:center;justify-content:space-between;font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--text);padding:.6rem 0;border-bottom:var(--rule-hair);transition:color .18s}
+.annot-nav-link{display:flex;align-items:center;justify-content:space-between;font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--text);padding:.6rem 0;border-bottom:var(--rule-hair);transition:color .18s;position:relative;overflow:hidden}
 .annot-nav-link:last-child{border-bottom:none}
+.annot-nav-link::before{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--maroon);transition:width .28s ease}
 .annot-nav-link:hover{color:var(--maroon)}
-.annot-nav-link::after{content:'→';color:var(--maroon)}
+.annot-nav-link:hover::before{width:calc(100% - 1.5rem)}
+.annot-nav-link::after{content:'→';color:var(--maroon);transition:transform .22s ease}
+.annot-nav-link:hover::after{transform:translateX(3px)}
 .btn{display:inline-block;font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;padding:.85rem 2.2rem;border:1px solid currentColor;cursor:pointer;transition:all .22s}
 .btn-maroon{color:var(--vellum);background:var(--maroon);border-color:var(--maroon)}
 .btn-maroon:hover{background:var(--maroon-deep)}
@@ -72,8 +134,8 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 .footer-bottom{max-width:1380px;margin:2rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(246,241,232,.12);display:flex;justify-content:space-between}
 .footer-copy,.footer-addr{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.60)}
 .nav-hamburger{display:none;flex-direction:column;justify-content:space-between;width:28px;height:20px;cursor:pointer;padding:0;background:none;border:none;z-index:400}
-@media(max-width:1024px){.page-body{grid-template-columns:1fr}.side-col{border-left:none;border-top:var(--rule-faint);padding-left:0;padding-top:2.5rem;margin-top:2.5rem}}
-@media(max-width:768px){.nav-links{display:none}.nav-hamburger{display:flex}.nav-give{display:none}.page-hero-inner{padding:3.5rem 1.5rem 3rem}.page-body{padding:3rem 1.5rem}.chapter-bar{padding:.65rem 1.5rem}}
+@media(max-width:768px){.page-body{grid-template-columns:1fr}.side-col{display:none}}
+@media(max-width:1100px){.nav-links{display:none}.nav-hamburger{display:flex}.nav-give{display:none}.page-hero-inner{padding:3.5rem 1.5rem 3rem}.page-body{padding:3rem 1.5rem}.chapter-bar{padding:.65rem 1.5rem}}
 
 .footer-cols{max-width:1380px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:5rem;margin-bottom:3.5rem}
 .footer-col-head{font-family:var(--f-ui);font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(246,241,232,.82);display:block;margin-bottom:1.2rem;padding-bottom:.5rem;border-bottom:1px solid rgba(246,241,232,.06)}
@@ -138,6 +200,84 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   .quote-break{padding:2.5rem 1.5rem}.qb-inner{padding-left:1.25rem}.qb-text{font-size:1.3rem}
 }
 
+/* ── RESOURCE HUB CARDS ── */
+.hub-strip{background:var(--vellum-mid);padding:3.5rem 4.5rem;overflow:hidden}
+.hub-strip-inner{max-width:1380px;margin:0 auto}
+.hub-rubric{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.20em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.5rem}
+.hub-headline{font-family:var(--f-display);font-weight:400;font-size:clamp(1.4rem,2.5vw,1.9rem);color:var(--text);margin-bottom:2.5rem;line-height:1.2}
+
+/* Progress path */
+
+/* Cards */
+.hub-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:var(--rule-faint);position:relative}
+.hub-card{padding:2rem 1.75rem 1.75rem;border-right:var(--rule-faint);opacity:0;transform:translateY(14px);transition:opacity .45s ease,transform .45s ease,background 0s,box-shadow .3s}
+.hub-card.visible{opacity:1;transform:translateY(0)}
+.hub-card.visible:hover{transform:scale(1.04);box-shadow:0 16px 40px rgba(0,0,0,.50);background:var(--vellum);z-index:2;position:relative}
+.hub-card:last-child{border-right:none}
+
+/* Step number */
+
+.hub-card-icon{font-size:1.6rem;color:rgba(123,29,42,.30);margin-bottom:.85rem;display:block;transition:color .4s}
+.hub-card-title{font-family:var(--f-display);font-weight:500;font-size:1.3rem;color:var(--text);display:block;margin-bottom:.5rem}
+.hub-card-desc{font-family:var(--f-body);font-size:.95rem;line-height:1.72;color:var(--stone);margin-bottom:1.1rem}
+.hub-card-link{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);border-bottom:1px solid rgba(123,29,42,.30);padding-bottom:1px;transition:color .2s,border-color .2s}
+.hub-card:hover .hub-card-link{color:var(--maroon-deep);border-color:var(--maroon)}
+
+/* ── LEARN THE FAITH ── */
+.learn-section{background:var(--vellum-mid);padding:4rem 4.5rem;border-top:var(--rule-faint);border-bottom:var(--rule-faint)}
+.learn-inner{max-width:1380px;margin:0 auto}
+.learn-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:var(--rule-faint);margin-top:2rem}
+.learn-card{padding:2rem;border-right:var(--rule-faint);cursor:pointer;transition:background .25s,transform .3s ease,box-shadow .3s ease}
+.learn-card:last-child{border-right:none}
+.learn-card:hover{background:var(--vellum-mid);transform:scale(1.04);box-shadow:0 16px 40px rgba(21,8,4,.12);z-index:2;position:relative}
+.learn-card-icon{font-size:1.6rem;color:rgba(123,29,42,.25);margin-bottom:1rem;display:block}
+.learn-card-title{font-family:var(--f-display);font-weight:500;font-size:1.15rem;color:var(--text);display:block;margin-bottom:.4rem}
+.learn-card-desc{font-family:var(--f-body);font-size:.90rem;line-height:1.70;color:var(--stone);margin-bottom:1rem}
+.learn-card-cta{font-family:var(--f-ui);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);border-bottom:1px solid rgba(123,29,42,.28);padding-bottom:1px}
+
+/* ── USEFUL WEBSITES ── */
+.links-section{padding:4rem 4.5rem}
+.links-inner{max-width:1380px;margin:0 auto}
+.links-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:var(--rule-faint);margin-top:2rem}
+.link-card{padding:1.75rem 2rem;border-right:var(--rule-faint);border-bottom:var(--rule-faint);display:flex;flex-direction:column;gap:.5rem;transition:background .22s}
+.link-card:nth-child(3n){border-right:none}
+.link-card:nth-last-child(-n+3){border-bottom:none}
+.link-card:hover{background:var(--vellum-mid)}
+.link-card-name{font-family:var(--f-display);font-weight:500;font-size:1rem;color:var(--text)}
+.link-card-desc{font-family:var(--f-body);font-size:.85rem;line-height:1.65;color:var(--stone);flex:1}
+.link-card-url{font-family:var(--f-ui);font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--maroon);margin-top:.25rem;display:flex;align-items:center;justify-content:space-between}
+.link-card-url::after{content:'→';color:var(--stone)}
+
+@media(max-width:768px){
+  .hub-strip{padding:2.5rem 1.5rem}
+  .hub-headline{font-size:1.3rem;margin-bottom:1.75rem}
+  .hub-cards{grid-template-columns:1fr;border:var(--rule-faint)}
+  .hub-card{padding:1.5rem 1.25rem;border-right:none;border-bottom:var(--rule-faint);background:var(--vellum-mid)}
+  .hub-card:nth-child(2n){border-right:none}
+  .hub-card:last-child{border-bottom:none}
+  .hub-card.visible:hover{transform:none;box-shadow:none;background:var(--vellum-mid)}
+  .hub-path-track,.hub-path-line{display:none}
+  .hub-card-title{font-size:1.1rem}
+  .hub-card-desc{font-size:.88rem}
+  .hub-card-step{font-size:.60rem}
+  .learn-section{padding:2.5rem 1.5rem}
+  .learn-cards{grid-template-columns:1fr}
+  .learn-card{border-right:none;border-bottom:var(--rule-faint)}
+  .learn-card:last-child{border-bottom:none}
+  .learn-card:hover{transform:none;box-shadow:none}
+  .links-section{padding:2.5rem 1.5rem}
+  .links-grid{grid-template-columns:1fr}
+  .link-card{border-right:none}
+  .link-card:nth-last-child(-n+3){border-bottom:var(--rule-faint)}
+  .link-card:last-child{border-bottom:none}
+  .reading-section{padding:2.5rem 1.5rem}
+  .reading-cols{grid-template-columns:1fr}
+  .reading-col{border-right:none;border-bottom:var(--rule-faint);padding:2rem 0}
+  .reading-col:last-child{border-bottom:none}
+  .reading-book-wrap{min-height:5rem}
+  .reading-book:hover{transform:translateZ(0) !important;box-shadow:none !important}
+}
+
 /* Content area background fix */
 .page-body,.main-wrap,.cal-wrap,.giving-wrap,.gallery-wrap,.video-wrap,.bulletin-wrap,.news-wrap,.contact-wrap,.cemetery-wrap{background:var(--vellum)}
 </style>
@@ -179,6 +319,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
     <a href="/schedule">Liturgical Calendar</a>
     <a href="/readings">Daily Readings</a>
     <a href="/saint-of-the-day">Saint of the Day</a>
+    <a href="/prologue">Prologue of Ohrid</a>
     <a href="/videos">Videos</a>
     <span class="drawer-section">Parish Life</span>
     <a href="/gallery">Gallery</a>
@@ -203,9 +344,43 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 </div>
 <div class="chapter-bar"><span class="cbar-text bright">About Orthodox Christianity</span><span class="cbar-text">For Inquirers &amp; Seekers</span></div>
 
+<!-- RESOURCE HUB STRIP -->
+<div class="hub-strip" id="hub-strip">
+  <div class="hub-strip-inner">
+    <span class="hub-rubric">The Inquirer&rsquo;s Path</span>
+    <h2 class="hub-headline">Everything a seeker needs to know about<br><em style="font-style:italic">Saints Peter &amp; Paul and the Orthodox Faith</em></h2>
+    <div class="hub-cards" id="hub-cards">
+        <a href="#history" class="hub-card" id="hub-card-0">
+          <span class="hub-card-icon">&#9766;</span>
+          <span class="hub-card-title">Ancient Roots</span>
+          <p class="hub-card-desc">The history of the Orthodox Church from the Apostles to today — 2,000 years of unbroken faith.</p>
+          <span class="hub-card-link">Read the History &rarr;</span>
+        </a>
+        <a href="#reading" class="hub-card" id="hub-card-1">
+          <span class="hub-card-icon">&#10002;</span>
+          <span class="hub-card-title">Recommended Reading</span>
+          <p class="hub-card-desc">Books that have guided seekers into the Orthodox Faith, from accessible introductions to spiritual classics.</p>
+          <span class="hub-card-link">Browse the List &rarr;</span>
+        </a>
+        <a href="#resources" class="hub-card" id="hub-card-2">
+          <span class="hub-card-icon">&#9769;</span>
+          <span class="hub-card-title">Learn the Faith</span>
+          <p class="hub-card-desc">Curated resources from the OCA — feasts &amp; saints, daily readings, and questions about Orthodoxy answered.</p>
+          <span class="hub-card-link">Explore Resources &rarr;</span>
+        </a>
+        <a href="#useful" class="hub-card" id="hub-card-3">
+          <span class="hub-card-icon">&#8853;</span>
+          <span class="hub-card-title">Useful Websites</span>
+          <p class="hub-card-desc">Important Orthodox resources online — the OCA, our diocese, Ancient Faith Ministries, and more.</p>
+          <span class="hub-card-link">See All Links &rarr;</span>
+        </a>
+    </div>
+  </div>
+</div>
+
 <div class="page-body">
   <main>
-    <span class="rubric">Ancient Roots</span>
+    <span class="rubric" id="history">Ancient Roots</span>
     <div class="rubric-rule"></div>
     <h2 class="section-head">The History of the Church: An Introduction</h2>
     <span class="rubric-voice">The original Christian Faith — twenty centuries of unbroken witness</span>
@@ -217,44 +392,75 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
     <h2 class="section-head">Historical Points</h2>
     <div class="rubric-rule"></div>
 
-    <div class="faq-item open">
-      <div class="faq-q">Orthodox Population</div>
-      <div class="faq-a">Today the Orthodox Church numbers approximately 300 million Christians who follow the faith and practices that were defined by the first seven ecumenical councils. The word orthodox ("right belief and right glory") has traditionally been used, in the Greek-speaking Christian world, to designate communities or individuals who preserved the true faith as opposed to those who were declared heretical. The official designation of the church in its liturgical and canonical texts is "the Orthodox Catholic Church."</div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-q">Autocephalous Churches</div>
-      <div class="faq-a">The Orthodox Church is a family of "autocephalous" (self-governing) churches, with the Ecumenical Patriarch of Constantinople holding titular or honorary primacy as primus inter pares (the first among equals). The Orthodox Church is not a centralized organization headed by a pontiff. The unity of the Church is rather manifested in common faith and communion in the sacraments, and Christ himself is the head of the Church. Today there are many autocephalous churches: Constantinople, Alexandria, Antioch, Jerusalem, Russia, Serbia, Romania, Bulgaria, Georgia, Cyprus, Greece, Poland, Albania, and America.</div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-q">The Patriarchates</div>
-      <div class="faq-a">The order of precedence among autocephalous churches does not reflect actual influence or numerical importance. There remains a consensus that Constantinople's primacy of honor — recognized by the ancient canons because it was the capital of the ancient Byzantine empire — should remain as a symbol and tool of church unity and cooperation. Orthodoxy is not merely a type of earthly organization: it is the mystical Body of Christ, whose Head is Christ Himself, and its composition includes not only priests but all who truly believe in Christ.</div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-q">The Great Schism</div>
-      <div class="faq-a">The Great Schism between the Eastern and Western Church (customarily AD 1054) was the result of a process of estrangement that began in the latter centuries of the first millennium. Linguistic and cultural differences, as well as political events, contributed to this estrangement. Theological differences could have probably been settled if there were not two different concepts of church authority. The growth of the Roman form of primacy — which claimed immediate jurisdictional authority over other churches — was incompatible with the traditional Orthodox ecclesiology. The Eastern Christians considered all churches as sister churches and understood the primacy of the Roman bishop only as first among equals among his brother bishops.</div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-q">Differences in Doctrine</div>
-      <div class="faq-a">In the course of time the Church of Rome adopted various teachings not thoroughly supported in the Tradition, and finally proclaimed the teaching of the Pope's infallibility when teaching ex cathedra. This widened the gap even more between the Christian East and West. The Protestant communities which split from Rome diverged in various ways from the teaching of the Holy Fathers and the Holy Ecumenical Councils. Many Orthodox theologians believe that in spiritual experience and the understanding of God and salvation, there exist significant differences between Orthodox and non-Orthodox confessions — a direct consequence of a gradual abandonment of the sacred tradition. This underscores the reason that Orthodox Christians would like to see their family and friends join them in their Orthodox parishes.</div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-q">Orthodox Diaspora</div>
-      <div class="faq-a">After the Schism of 1054, the membership of the Eastern Orthodox Church was spread throughout the Middle East, the Balkans, and Russia, with its center in Constantinople, the capital of the Byzantine Empire. Missionary expansion toward Asia and emigration toward the West have helped to maintain the importance of Orthodoxy worldwide. Today, the Orthodox Church is present almost everywhere in the world and is bearing witness of apostolic and patristic tradition to all peoples.</div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-q">Monasticism</div>
-      <div class="faq-a">The Orthodox Church is well known for its developed monasticism. The uninterrupted monastic tradition of Orthodox Christianity can be traced from the Egyptian desert monasteries of the 3rd and 4th centuries — themselves inspired by the lives of the prophets up to St. John the Baptist. Monasticism quickly spread all over the Mediterranean and Europe: in Palestine, Syria, Cappadocia, Gaul, Ireland, Italy, Greece and Slavic countries. Allowing single-minded attention to the Kingdom of God, monasticism has always been a beacon of Orthodoxy and has continued to make a strong and lasting impact on Orthodox spirituality as a whole.</div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-q">Divine Liturgical Tradition</div>
-      <div class="faq-a">The Orthodox Church today is an invaluable treasury of the rich liturgical tradition handed down from the earliest centuries of Christianity. The sense of the sacred, the beauty and grandeur of the Orthodox Divine Liturgy make the presence of heaven on earth live and intensive. Orthodox Church art and music has a very functional role in the liturgical life and helps even the bodily senses to feel the spiritual grandeur of the Lord's mysteries. Orthodox icons are not simply beautiful works of art — they are also a means through which we experience the reality of the Heavenly Kingdom on earth, one of the frequent conduits through which heavenly assistance comes.</div>
+    <div class="enc-wrap">
+      <div class="enc-tabs">
+        <button class="enc-tab active" onclick="showPane(0)"><span class="enc-tab-icon">&#9670;</span>Orthodox Population</button>
+        <button class="enc-tab" onclick="showPane(1)"><span class="enc-tab-icon">&#10013;</span>Autocephalous Churches</button>
+        <button class="enc-tab" onclick="showPane(2)"><span class="enc-tab-icon">&#9733;</span>The Patriarchates</button>
+        <button class="enc-tab" onclick="showPane(3)"><span class="enc-tab-icon">&#8853;</span>The Great Schism</button>
+        <button class="enc-tab" onclick="showPane(4)"><span class="enc-tab-icon">&#9830;</span>Differences in Doctrine</button>
+        <button class="enc-tab" onclick="showPane(5)"><span class="enc-tab-icon">&#9737;</span>Orthodox Diaspora</button>
+        <button class="enc-tab" onclick="showPane(6)"><span class="enc-tab-icon">&#10016;</span>Monasticism</button>
+        <button class="enc-tab" onclick="showPane(7)"><span class="enc-tab-icon">&#9769;</span>Divine Liturgical Tradition</button>
+      </div>
+      <div>
+        <div class="enc-pane active">
+          <span class="enc-pane-icon">&#9670;</span>
+          <span class="enc-stat">300 Million</span>
+          <span class="enc-stat-label">Christians worldwide</span>
+          <p class="enc-head">Orthodox Population</p>
+          <p class="enc-body">Today the Orthodox Church numbers approximately 300 million Christians who follow the faith and practices defined by the first seven ecumenical councils. The word orthodox — "right belief and right glory" — has traditionally designated communities who preserved the true faith as opposed to those declared heretical. The official designation of the Church in its liturgical and canonical texts is "the Orthodox Catholic Church."</p>
+        </div>
+        <div class="enc-pane">
+          <span class="enc-pane-icon">&#10013;</span>
+          <span class="enc-stat">14</span>
+          <span class="enc-stat-label">Autocephalous churches</span>
+          <p class="enc-head">Autocephalous Churches</p>
+          <p class="enc-body">The Orthodox Church is a family of self-governing churches, with the Ecumenical Patriarch of Constantinople holding honorary primacy as primus inter pares — first among equals. The Church is not a centralized organization headed by a pontiff. Its unity is manifested in common faith and communion in the sacraments. Christ himself is the head of the Church. Today the autocephalous churches include Constantinople, Alexandria, Antioch, Jerusalem, Russia, Serbia, Romania, Bulgaria, Georgia, Cyprus, Greece, Poland, Albania, and America.</p>
+        </div>
+        <div class="enc-pane">
+          <span class="enc-pane-icon">&#9733;</span>
+          <span class="enc-stat">Primus Inter Pares</span>
+          <span class="enc-stat-label">First among equals</span>
+          <p class="enc-head">The Patriarchates</p>
+          <p class="enc-body">The order of precedence among the autocephalous churches does not reflect actual influence or numerical importance. There remains a consensus that Constantinople's primacy of honor — recognized by the ancient canons because it was the capital of the Byzantine Empire — should remain as a symbol and tool of church unity. Orthodoxy is not merely an earthly organization: it is the mystical Body of Christ, whose composition includes not only clergy but all who truly believe and have entered through Holy Baptism.</p>
+        </div>
+        <div class="enc-pane">
+          <span class="enc-pane-icon">&#8853;</span>
+          <span class="enc-stat">AD 1054</span>
+          <span class="enc-stat-label">The Great Schism</span>
+          <p class="enc-head">The Great Schism</p>
+          <p class="enc-body">The Schism between the Eastern and Western Church was the result of centuries of estrangement — linguistic, cultural, and political. At its root were two incompatible concepts of church authority. The Roman claim to immediate jurisdictional primacy was incompatible with the traditional Orthodox understanding, which held all churches as sister churches and recognized the Roman bishop only as first among equals. For the East, the highest authority in doctrinal disputes was never a single bishop, but an Ecumenical Council of all the churches.</p>
+        </div>
+        <div class="enc-pane">
+          <span class="enc-pane-icon">&#9830;</span>
+          <span class="enc-stat">One Faith</span>
+          <span class="enc-stat-label">Divided over centuries</span>
+          <p class="enc-head">Differences in Doctrine</p>
+          <p class="enc-body">Over time the Church of Rome adopted teachings not thoroughly supported in the Tradition, culminating in the proclamation of papal infallibility. Protestant communities which later split from Rome diverged further still. Many Orthodox theologians hold that the differences are not merely cultural but are a direct consequence of a gradual departure from sacred tradition. This is why Orthodox Christians want their family and friends to join them — not from exclusivity, but from the genuine conviction that they have found a treasure worth sharing.</p>
+        </div>
+        <div class="enc-pane">
+          <span class="enc-pane-icon">&#9737;</span>
+          <span class="enc-stat">Every Continent</span>
+          <span class="enc-stat-label">Orthodox presence worldwide</span>
+          <p class="enc-head">Orthodox Diaspora</p>
+          <p class="enc-body">After the Schism of 1054, Orthodoxy's heartland remained the Middle East, the Balkans, and Russia — with Constantinople as its center. Missionary expansion into Asia and emigration to the West carried Orthodoxy to every corner of the globe. Saints Peter and Paul in Jersey City is itself a product of that diaspora — a parish founded by immigrant faithful who brought the ancient faith with them and kept it alive for generations.</p>
+        </div>
+        <div class="enc-pane">
+          <span class="enc-pane-icon">&#10016;</span>
+          <span class="enc-stat">17 Centuries</span>
+          <span class="enc-stat-label">Of unbroken monasticism</span>
+          <p class="enc-head">Monasticism</p>
+          <p class="enc-body">The Orthodox Church is well known for its developed monasticism, traceable from the Egyptian desert monasteries of the 3rd and 4th centuries — themselves inspired by the prophets and St. John the Baptist. Monasticism spread through Palestine, Syria, Cappadocia, Gaul, Ireland, Italy, Greece, and the Slavic lands. Allowing single-minded attention to the Kingdom of God, it has always been a beacon of Orthodoxy and continues to make a lasting impact on Orthodox spirituality worldwide.</p>
+        </div>
+        <div class="enc-pane">
+          <span class="enc-pane-icon">&#9769;</span>
+          <span class="enc-stat">1,600 Years</span>
+          <span class="enc-stat-label">The same Divine Liturgy</span>
+          <p class="enc-head">The Divine Liturgical Tradition</p>
+          <p class="enc-body">The Orthodox Church is an invaluable treasury of liturgical tradition handed down from the earliest centuries of Christianity. The beauty and grandeur of the Divine Liturgy make the presence of heaven on earth real and immediate. Orthodox art and music serve a functional role in the liturgy — helping even the bodily senses to feel the spiritual grandeur of the mysteries. Icons are not merely art: they are a means through which we experience the reality of the Heavenly Kingdom, conduits through which heavenly assistance comes.</p>
+        </div>
+      </div>
     </div>
 
     <p style="font-family:var(--f-display);font-style:italic;font-size:.88rem;color:var(--stone);margin-top:2.5rem;line-height:1.6">Attribution: The historical summary above was originally created by monks at Decani Monastery in Kosovo, retrieved from archive.org. Edits by Fr. Solomon Longo.</p>
@@ -273,12 +479,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
       <a href="/schedule" class="annot-nav-link">Service Schedule</a>
       <a href="/contact-us" class="annot-nav-link">Contact the Parish</a>
     </div>
-    <div class="side-section">
-      <span class="side-head">Recommended Reading</span>
-      <p style="font-family:var(--f-display);font-style:italic;font-size:.95rem;color:var(--ink);line-height:1.7;margin-bottom:.75rem">The Orthodox Way — Kallistos Ware</p>
-      <p style="font-family:var(--f-display);font-style:italic;font-size:.95rem;color:var(--ink);line-height:1.7;margin-bottom:.75rem">Surprised by Christ — Fr. James Bernstein</p>
-      <p style="font-family:var(--f-display);font-style:italic;font-size:.95rem;color:var(--ink);line-height:1.7">The Orthodox Church — Kallistos Ware</p>
-    </div>
+
     <div class="side-section">
       <span class="side-head">Useful Resources</span>
       <a href="https://oca.org" target="_blank" class="annot-nav-link">Orthodox Church in America</a>
@@ -289,6 +490,214 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 </div>
 
 
+<!-- RECOMMENDED READING --><span id="reading"></span>
+<div class="reading-section" id="reading-section">
+  <div class="reading-inner">
+    <span class="rubric">For Inquirers &amp; Seekers</span>
+    <div class="rubric-rule"></div>
+    <h2 class="section-head" style="margin-top:.5rem">Recommended Reading</h2>
+    <span class="rubric-voice">Books that have guided countless people into the Orthodox Faith</span>
+    <div class="reading-cols">
+
+      <div class="reading-col" id="rcol-0">
+        <span class="reading-col-label">Begin Here</span>
+        <span class="reading-col-rule"></span>
+        <p class="reading-col-head">Essential first books for anyone curious about Orthodoxy</p>
+        <div class="reading-book-wrap"><a href="https://www.amazon.com/Orthodox-Way-Kallistos-Ware/dp/0913836583" target="_blank" class="reading-book">
+          <span class="reading-book-title">The Orthodox Way</span>
+          <span class="reading-book-author">Kallistos Ware</span>
+          <p class="reading-book-desc">The single most recommended starting point. Covers theology, prayer, and the spiritual life with warmth and accessibility. Begin here.</p>
+        </a></div>
+        <div class="reading-book-wrap"><a href="https://www.amazon.com/Orthodox-Church-Kallistos-Ware/dp/0140146563" target="_blank" class="reading-book">
+          <span class="reading-book-title">The Orthodox Church</span>
+          <span class="reading-book-author">Kallistos Ware</span>
+          <p class="reading-book-desc">The companion to The Orthodox Way — more historical and institutional. Covers the history, structure, and faith of the Church from the early centuries to today.</p>
+        </a></div>
+        <div class="reading-book-wrap"><a href="https://www.amazon.com/Surprised-Christ-James-Bernstein/dp/1888212470" target="_blank" class="reading-book">
+          <span class="reading-book-title">Surprised by Christ</span>
+          <span class="reading-book-author">Fr. James Bernstein</span>
+          <p class="reading-book-desc">A convert's memoir — one of the most compelling accounts of a journey into Orthodoxy. Especially resonant for those coming from Protestant backgrounds.</p>
+        </a></div>
+        <div class="reading-book-wrap"><a href="https://www.amazon.com/Becoming-Orthodox-Journey-Ancient-Christian/dp/1888212411" target="_blank" class="reading-book">
+          <span class="reading-book-title">Becoming Orthodox</span>
+          <span class="reading-book-author">Fr. Peter Gillquist</span>
+          <p class="reading-book-desc">The story of a large Protestant community's decade-long journey into the Orthodox Church. Practical, honest, and deeply moving.</p>
+        </a></div>
+        <div class="reading-book-wrap"><a href="https://store.ancientfaith.com/the-religion-of-the-apostles/" target="_blank" class="reading-book">
+          <span class="reading-book-title">The Religion of the Apostles</span>
+          <span class="reading-book-author">Fr. Stephen De Young</span>
+          <p class="reading-book-desc">Traces Orthodox Christianity back to its apostolic roots in first-century Judaism. An eye-opening case that the Faith was complete from the beginning.</p>
+        </a></div>
+        <div class="reading-book-wrap"><a href="https://store.ancientfaith.com/saint-paul-the-pharisee-jewish-apostle-to-all-nations/" target="_blank" class="reading-book">
+          <span class="reading-book-title">Saint Paul the Pharisee</span>
+          <span class="reading-book-author">Fr. Stephen De Young</span>
+          <p class="reading-book-desc">A deep reading of St. Paul's letters through the lens of Second Temple Judaism and Orthodox tradition. Reframes Paul as a thoroughly Jewish apostle whose theology is inseparable from the Old Testament world.</p>
+        </a></div>
+        <div class="reading-book-wrap"><a href="https://store.ancientfaith.com/orthodoxy-and-heterodoxy-finding-the-way-to-christ-in-a-complicated-religious-landscape" target="_blank" class="reading-book">
+          <span class="reading-book-title">Orthodoxy and Heterodoxy</span>
+          <span class="reading-book-author">Fr. Andrew Stephen Damick</span>
+          <p class="reading-book-desc">A clear-eyed guide to how Orthodoxy relates to other Christian traditions — Catholic, Protestant, and beyond. Charitable, thorough, and essential for anyone coming from another background.</p>
+        </a></div>
+        
+      </div>
+
+      <div class="reading-col" id="rcol-1">
+        <span class="reading-col-label">Go Deeper</span>
+        <span class="reading-col-rule"></span>
+        <p class="reading-col-head">For those ready to engage Orthodox theology seriously</p>
+        <div class="reading-book-wrap"><a href="https://www.amazon.com/Life-World-Sacraments-Orthodoxy/dp/0913836087" target="_blank" class="reading-book">
+          <span class="reading-book-title">For the Life of the World</span>
+          <span class="reading-book-author">Fr. Alexander Schmemann</span>
+          <p class="reading-book-desc">A slim, essential book about the sacramental vision of the world. Changes how you see everything. One of the most important Orthodox texts of the 20th century.</p>
+        </a></div>
+        <div class="reading-book-wrap"><a href="https://www.amazon.com/Mystical-Theology-Eastern-Church/dp/0913836311" target="_blank" class="reading-book">
+          <span class="reading-book-title">The Mystical Theology of the Eastern Church</span>
+          <span class="reading-book-author">Vladimir Lossky</span>
+          <p class="reading-book-desc">The foundational theological introduction to the Eastern tradition. Essential for anyone who wants to understand Orthodox thought at its depth.</p>
+        </a></div>
+        <div class="reading-book-wrap"><a href="https://www.amazon.com/Deification-Christ-Perspectives-Contemporary-Theologians/dp/0881410306" target="_blank" class="reading-book">
+          <span class="reading-book-title">Deification in Christ</span>
+          <span class="reading-book-author">Panayiotis Nellas</span>
+          <p class="reading-book-desc">A profound study of Orthodox anthropology and theosis — what it means for the human person to be made in the image of God and to grow into His likeness.</p>
+        </a></div>
+        <div class="reading-book-wrap"><a href="https://www.amazon.com/Maximus-Confessor-Early-Church-Fathers/dp/041511845X" target="_blank" class="reading-book">
+          <span class="reading-book-title">St. Maximus the Confessor</span>
+          <span class="reading-book-author">Andrew Louth</span>
+          <p class="reading-book-desc">The best single-volume introduction to the greatest Byzantine theologian. Louth translates key texts and provides a lucid guide to Maximus's cosmic vision.</p>
+        </a></div>
+        <div class="reading-book-wrap"><a href="https://www.amazon.com/Ethics-Beauty-Timothy-G-Patitsas/dp/1635511003" target="_blank" class="reading-book">
+          <span class="reading-book-title">The Ethics of Beauty</span>
+          <span class="reading-book-author">Timothy Patitsas</span>
+          <p class="reading-book-desc">A remarkable work of Orthodox moral theology arguing that beauty is the proper ground of Christian ethics. Dense, rewarding, and original.</p>
+        </a></div>
+        <div class="reading-book-wrap"><a href="https://www.amazon.com/Christ-Conqueror-Hell-Orthodox-Perspective/dp/0881410616" target="_blank" class="reading-book">
+          <span class="reading-book-title">Christ the Conqueror of Hell</span>
+          <span class="reading-book-author">Metropolitan Hilarion Alfeyev</span>
+          <p class="reading-book-desc">A deep study of Christ's descent into Hades. Presents a message of cosmic hope using Scripture, patristic tradition, and liturgical texts.</p>
+        </a></div>
+        <div class="reading-book-wrap"><a href="https://www.amazon.com/Orthodox-Christianity-Metropolitan-Hilarion-Alfeyev/dp/0881412767" target="_blank" class="reading-book">
+          <span class="reading-book-title">Orthodox Christianity (5 vols.)</span>
+          <span class="reading-book-author">Metropolitan Hilarion Alfeyev</span>
+          <p class="reading-book-desc">The most comprehensive modern survey of Orthodox theology, history, worship, and spiritual life. A monumental reference for serious students of the faith.</p>
+        </a></div>
+      </div>
+
+      <div class="reading-col" id="rcol-2">
+        <span class="reading-col-label">Spiritual Classics</span>
+        <span class="reading-col-rule"></span>
+        <p class="reading-col-head">The enduring texts of Orthodox prayer and the inner life</p>
+        <div class="reading-book-wrap"><a href="https://www.amazon.com/Way-Pilgrim-Continues-His-ebook/dp/B0DCKBVJJ3" target="_blank" class="reading-book">
+          <span class="reading-book-title">The Way of a Pilgrim</span>
+          <span class="reading-book-author">Anonymous</span>
+          <p class="reading-book-desc">A 19th-century Russian pilgrim's account of learning the Jesus Prayer. Short, luminous, and transformative. One of the most beloved books in Orthodox literature.</p>
+        </a></div>
+        <div class="reading-book-wrap"><a href="https://www.amazon.com/Mountain-Silence-Search-Orthodox-Spirituality/dp/0385500920" target="_blank" class="reading-book">
+          <span class="reading-book-title">The Mountain of Silence</span>
+          <span class="reading-book-author">Kyriacos C. Markides</span>
+          <p class="reading-book-desc">A sociologist follows a Mount Athos monk to Cyprus and discovers the depth of Orthodox mystical spirituality. Accessible, deeply moving, and an ideal introduction for Western seekers.</p>
+        </a></div>
+        <div class="reading-book-wrap"><a href="https://www.amazon.com/Philokalia-Complete-Text-compiled-Nikodimos/dp/0571193536" target="_blank" class="reading-book">
+          <span class="reading-book-title">The Philokalia</span>
+          <span class="reading-book-author">Various Desert Fathers</span>
+          <p class="reading-book-desc">The collected writings of the Desert Fathers on prayer and the inner life. Not read cover to cover — dipped into. Begin with Volume 1. A lifetime's companion.</p>
+        </a></div>
+        <div class="reading-book-wrap"><a href="https://www.amazon.com/Therapy-Spiritual-Illness-Introduction-Tradition/dp/1896800394" target="_blank" class="reading-book">
+          <span class="reading-book-title">Therapy of Spiritual Illness</span>
+          <span class="reading-book-author">Jean-Claude Larchet</span>
+          <p class="reading-book-desc">A vast synthesis of patristic teaching on the passions, healing, and salvation. Presents Orthodox asceticism as a complete science of the soul.</p>
+        </a></div>
+        <div class="reading-book-wrap"><a href="https://www.amazon.com/Elder-Paisios-Mount-Athos-Hieromonk/dp/0990700364" target="_blank" class="reading-book">
+          <span class="reading-book-title">Elder Paisios of Mount Athos</span>
+          <span class="reading-book-author">Hieromonk Isaac</span>
+          <p class="reading-book-desc">The spiritual counsels of one of the most beloved saints of the 20th century. Practical, warm, occasionally astonishing. Beloved across the Orthodox world.</p>
+        </a></div>
+        <div class="reading-book-wrap"><a href="https://www.amazon.com/Incarnation-St-Athanasius/dp/0881411639" target="_blank" class="reading-book">
+          <span class="reading-book-title">On the Incarnation</span>
+          <span class="reading-book-author">St. Athanasius the Great</span>
+          <p class="reading-book-desc">The foundational text on why God became man. Written in the 4th century, it reads with startling clarity. C.S. Lewis called it a masterpiece and wrote the introduction to the popular English edition — a fitting entry point.</p>
+        </a></div>
+        <div class="reading-book-wrap"><a href="https://www.amazon.com/Orthodox-Faith-John-Damascus/dp/0813200474" target="_blank" class="reading-book">
+          <span class="reading-book-title">On the Orthodox Faith</span>
+          <span class="reading-book-author">St. John of Damascus</span>
+          <p class="reading-book-desc">The definitive systematic theology of the Eastern Church, written in the 8th century. Still the standard reference for Orthodox doctrine. Dense but essential for anyone who wants to understand the faith at its foundations.</p>
+        </a></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- LEARN THE FAITH -->
+<div class="learn-section" id="resources">
+  <div class="learn-inner">
+    <span class="rubric">Resources</span>
+    <div class="rubric-rule"></div>
+    <h2 class="section-head" style="margin-top:.5rem">Learn about the Faith</h2>
+    <span class="rubric-voice">Curated resources from the Orthodox Church in America</span>
+    <div class="learn-cards">
+      <a href="https://www.oca.org/fs" target="_blank" class="learn-card">
+        <span class="learn-card-icon">&#10013;</span>
+        <span class="learn-card-title">Feasts &amp; Saints</span>
+        <p class="learn-card-desc">An online library of icons, saints&rsquo; lives, and liturgical commemorations for every day of the year.</p>
+        <span class="learn-card-cta">Visit OCA.org &rarr;</span>
+      </a>
+      <a href="https://www.oca.org/readings" target="_blank" class="learn-card">
+        <span class="learn-card-icon">&#9997;</span>
+        <span class="learn-card-title">Scripture Readings</span>
+        <p class="learn-card-desc">Daily devotionals and readings of today&rsquo;s appointed Epistle and Gospel.</p>
+        <span class="learn-card-cta">Visit OCA.org &rarr;</span>
+      </a>
+      <a href="https://www.oca.org/questions" target="_blank" class="learn-card">
+        <span class="learn-card-icon">&#9998;</span>
+        <span class="learn-card-title">Questions &amp; Answers</span>
+        <p class="learn-card-desc">Common questions about Orthodox Christianity and the Orthodox Church in America, answered.</p>
+        <span class="learn-card-cta">Visit OCA.org &rarr;</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- USEFUL WEBSITES -->
+<div class="links-section" id="useful">
+  <div class="links-inner">
+    <span class="rubric">Useful Websites</span>
+    <div class="rubric-rule"></div>
+    <h2 class="section-head" style="margin-top:.5rem">Orthodox resources online</h2>
+    <div class="links-grid">
+      <a href="https://www.oca.org" target="_blank" class="link-card">
+        <span class="link-card-name">Orthodox Church in America</span>
+        <p class="link-card-desc">The official website of the OCA — news, saints, readings, Q&amp;A, and the full organizational structure of the Church.</p>
+        <span class="link-card-url">oca.org</span>
+      </a>
+      <a href="https://www.nynjoca.org" target="_blank" class="link-card">
+        <span class="link-card-name">Diocese of New York &amp; New Jersey</span>
+        <p class="link-card-desc">Our diocesan home, under Archbishop Michael. Parish listings, diocesan news, and resources for parish life.</p>
+        <span class="link-card-url">nynjoca.org</span>
+      </a>
+      <a href="https://www.ancientfaith.com" target="_blank" class="link-card">
+        <span class="link-card-name">Ancient Faith Ministries</span>
+        <p class="link-card-desc">Podcasts, radio, and written resources for Orthodox Christians and inquirers. One of the richest free libraries of Orthodox content.</p>
+        <span class="link-card-url">ancientfaith.com</span>
+      </a>
+      <a href="https://www.orthodoxfellowship.org" target="_blank" class="link-card">
+        <span class="link-card-name">Fellowship of Orthodox Christians in America</span>
+        <p class="link-card-desc">A pan-Orthodox youth and young adult organization fostering community across jurisdictions.</p>
+        <span class="link-card-url">orthodoxfellowship.org</span>
+      </a>
+      <a href="https://www.stots.edu" target="_blank" class="link-card">
+        <span class="link-card-name">St. Tikhon&rsquo;s Orthodox Theological Seminary</span>
+        <p class="link-card-desc">Where Fr. Solomon received his Master of Divinity. One of the two OCA seminaries in North America.</p>
+        <span class="link-card-url">stots.edu</span>
+      </a>
+      <a href="https://www.svots.edu" target="_blank" class="link-card">
+        <span class="link-card-name">St. Vladimir&rsquo;s Orthodox Theological Seminary</span>
+        <p class="link-card-desc">A leading center of Orthodox theology and scholarship, home to some of the most important Orthodox thinkers of the 20th century.</p>
+        <span class="link-card-url">svots.edu</span>
+      </a>
+    </div>
+  </div>
+</div>
+
 <div class="quote-break reveal">
   <div class="qb-inner">
     <p class="qb-text">Orthodoxy is not one religion among others. It is the revelation of the living God, preserved without diminution from the day of Pentecost.</p>
@@ -297,7 +706,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 </div>
 
 <footer>
-  <span class="footer-cross"></span>
+  <span class="footer-cross">&#10022; &#10013; &#10022;</span>
   <div class="footer-cols">
     <div>
       <span class="footer-col-head">Saints Peter &amp; Paul Orthodox Cathedral</span>
@@ -311,34 +720,38 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
       <div class="footer-socials">
         <a href="#" target="_blank">Facebook</a>
         <a href="#" target="_blank">Instagram</a>
+        <a href="https://www.youtube.com/@ssppnj" target="_blank">YouTube</a>
       </div>
     </div>
     <div>
       <span class="footer-col-head">Navigate</span>
       <ul class="footer-nav">
         <li><a href="/about-our-church">About Our Church</a></li>
-        <li><a href="/administration">Administration</a></li>
-        <li><a href="/schedule">Liturgical Calendar</a></li>
-        <li><a href="/gallery">Gallery</a></li>
-        <li><a href="/about-orthodoxy">About Orthodoxy</a></li>
         <li><a href="/our-beliefs">Our Beliefs</a></li>
-        <li><a href="/videos">Videos</a></li>
+        <li><a href="/administration">Administration</a></li>
+        <li><a href="/about-orthodoxy">About Orthodoxy</a></li>
+        <li><a href="/schedule">Liturgical Calendar</a></li>
         <li><a href="/readings">Daily Readings</a></li>
         <li><a href="/saint-of-the-day">Saint of the Day</a></li>
+        <li><a href="/prologue">Prologue of Ohrid</a></li>
+        <li><a href="/news">News &amp; Announcements</a></li>
         <li><a href="/bulletins">Bulletins</a></li>
+        <li><a href="/gallery">Gallery</a></li>
+        <li><a href="/videos">Videos</a></li>
         <li><a href="/cemeteries">Cemeteries</a></li>
+        <li><a href="/donate">Give Online</a></li>
         <li><a href="/contact-us">Contact Us</a></li>
       </ul>
     </div>
     <div>
       <span class="footer-col-head">Visit Us</span>
-      <p class="footer-blurb">Whether you're visiting for the first time or looking to become part of our parish family — you are welcome here.</p>
+      <p class="footer-blurb">Whether you are visiting for the first time or looking to become part of our parish family, you are welcome here.</p>
       <a href="/contact-us" class="btn btn-outline" style="margin-bottom:2rem;display:inline-block">Contact the Parish</a>
       <span class="footer-col-head" style="margin-top:.5rem">Service Times</span>
       <p class="footer-meta" style="line-height:2.4">
-        Vespers · Saturdays 5:00 PM<br>
-        Divine Liturgy · Sundays 9:30 AM<br>
-        Office · Mon–Fri 9:00 AM–5:00 PM
+        Vespers &middot; Saturdays 5:00 PM<br>
+        Divine Liturgy &middot; Sundays 9:30 AM<br>
+        Office &middot; Mon&ndash;Fri 9:00 AM&ndash;5:00 PM
       </p>
     </div>
   </div>
@@ -592,6 +1005,38 @@ document.querySelectorAll('.faq-q').forEach(function(btn){
     if(!isOpen) item.classList.add('open');
   });
 });
+</script>
+<script>
+function showPane(idx) {
+  document.querySelectorAll('.enc-tab').forEach(function(t, i) { t.classList.toggle('active', i === idx); });
+  document.querySelectorAll('.enc-pane').forEach(function(p, i) { p.classList.toggle('active', i === idx); });
+}
+document.addEventListener('keydown', function(e) {
+  var tabs = document.querySelectorAll('.enc-tab');
+  var active = -1;
+  tabs.forEach(function(t, i) { if (t.classList.contains('active')) active = i; });
+  if (active === -1) return;
+  if (e.key === 'ArrowDown' && active < tabs.length - 1) { e.preventDefault(); showPane(active + 1); tabs[active + 1].focus(); }
+  else if (e.key === 'ArrowUp' && active > 0) { e.preventDefault(); showPane(active - 1); tabs[active - 1].focus(); }
+});
+</script>
+<script>
+(function() {
+  var cards = document.querySelectorAll('.hub-card');
+  if (!cards.length) return;
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        var idx = Array.from(cards).indexOf(entry.target);
+        setTimeout(function() {
+          entry.target.classList.add('visible');
+        }, idx * 150);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  cards.forEach(function(c) { observer.observe(c); });
+})();
 </script>
 </body>
 </html>
