@@ -1423,7 +1423,7 @@ document.addEventListener('keydown', function(e){if(e.key==='Escape')closeHubDet
 
 (async function initHub() {
   try {
-    var r = await fetch('/_data/parish-events.json');
+    var r = await fetch('/parish-events.json');
     if (!r.ok) return;
     var json = await r.json();
     var today = new Date(); today.setHours(0,0,0,0);

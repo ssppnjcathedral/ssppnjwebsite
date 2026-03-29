@@ -140,7 +140,7 @@ var _parishEvents = null;
 async function getParishEvents() {
   if (_parishEvents) return _parishEvents;
   try {
-    var r = await fetch('/_data/parish-events.json');
+    var r = await fetch('/parish-events.json');
     if (!r.ok) throw new Error('HTTP ' + r.status);
     var json = await r.json();
     _parishEvents = json.events || [];
