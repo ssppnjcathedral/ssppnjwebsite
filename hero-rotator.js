@@ -1,13 +1,12 @@
 /*
    SSPP HERO IMAGE ROTATOR
    - Loads first image immediately on page load
-   - Ken Burns slow zoom on each image
-   - 15-second hold per image
-   - Smooth crossfade between images (no dark flash)
-   - Loops back to first image
+   - Ken Burns slow zoom on each image (15s)
+   - Smooth crossfade between images — no dark flash
+   - Loops continuously
 */
 
-(function() {
+(function () {
 
   var IMAGES = [
     { url: '/images/heroes/home-1.jpg', pos: 'center center' },
@@ -18,74 +17,89 @@
     { url: '/images/heroes/home-6.jpg', pos: 'center center' }
   ];
 
-  var HOLD     = 15000;  // ms to hold each image
-  var FADE     = 1800;   // ms crossfade duration (match CSS transition)
-  var ZOOM_DUR = 16800;  // ms Ken Burns zoom — hold + fade so it never stops
+  var HOLD     = 15000;  // ms to show each image
+  var FADE     = 2000;   // ms crossfade
+  var ZOOM_DUR = 17000;  // ms zoom — longer than HOLD+FADE so it never stops mid-slide
 
   var bg1 = document.getElementById('hero-bg1');
   var bg2 = document.getElementById('hero-bg2');
   if (!bg1 || !bg2) return;
 
-  var current = 0;   // index of image currently visible
-  var front = bg1;   // the div currently on top (visible)
-  var back  = bg2;   // the div being prepared underneath
+  /* Reset any CSS z-index — we manage it dynamically */
+  bg1.style.zIndex  = '1';
+  bg2.style.zIndex  = '0';
+  bg1.style.opacity = '0';
+  bg2.style.opacity = '0';
 
-  // Apply Ken Burns zoom animation to an element
+  var current = 0;
+  var front = bg1;  /* currently visible */
+  var back  = bg2;  /* being prepared    */
+
   function applyZoom(el) {
     el.style.animation = 'none';
-    // Force reflow so animation restarts
-    void el.offsetWidth;
-    el.style.animation = 'kenburns ' + ZOOM_DUR + 'ms ease-out forwards';
+    void el.offsetWidth; /* force reflow so animation restarts */
+    el.style.animation = 'kenburns ' + ZOOM_DUR + 'ms linear forwards';
   }
 
-  // Set background image on a div
   function setImage(el, img) {
-    el.style.backgroundImage = 'url("' + img.url + '")';
-    el.style.backgroundSize = 'cover';
+    el.style.backgroundImage    = 'url("' + img.url + '")';
+    el.style.backgroundSize     = 'cover';
     el.style.backgroundPosition = img.pos || 'center center';
-    el.style.backgroundRepeat = 'no-repeat';
+    el.style.backgroundRepeat   = 'no-repeat';
   }
 
-  // Load first image immediately — no wait
   function init() {
-    var first = IMAGES[0];
-    setImage(front, first);
+    setImage(front, IMAGES[0]);
     applyZoom(front);
-    front.style.opacity = '1';
-    back.style.opacity = '0';
+    front.style.zIndex     = '1';
+    front.style.transition = 'opacity ' + (FADE / 1000) + 's ease-in-out';
+    front.style.opacity    = '1';
 
-    // Preload second image
-    if (IMAGES.length > 1) {
-      var preload = new Image();
-      preload.src = IMAGES[1].url;
-    }
+    /* preload next */
+    if (IMAGES.length > 1) new Image().src = IMAGES[1].url;
 
-    // Start the rotation timer
     setTimeout(advance, HOLD);
   }
 
-  // Crossfade to next image — preloads before transitioning, skips missing files
   function advance() {
     current = (current + 1) % IMAGES.length;
     var next = IMAGES[current];
-    var preload = new Image();
-    preload.onload = function() {
+
+    var img = new Image();
+    img.onload = function () {
+      /* prepare back layer silently underneath */
       setImage(back, next);
       applyZoom(back);
-      back.style.transition = 'opacity ' + (FADE / 1000) + 's ease-in-out';
-      back.style.opacity = '1';
-      setTimeout(function() {
-        front.style.transition = 'none';
-        front.style.opacity = '0';
-        var tmp = front; front = back; back = tmp;
-        setTimeout(advance, HOLD);
-      }, FADE);
+      back.style.transition = 'none';
+      back.style.opacity    = '0';
+      back.style.zIndex     = '0';
+
+      /* double rAF so browser paints the reset before we animate */
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          back.style.zIndex     = '2';   /* lift above front */
+          back.style.transition = 'opacity ' + (FADE / 1000) + 's ease-in-out';
+          back.style.opacity    = '1';
+
+          setTimeout(function () {
+            /* back fully visible — hide and demote front */
+            front.style.transition = 'none';
+            front.style.opacity    = '0';
+            front.style.zIndex     = '0';
+            back.style.zIndex      = '1';
+
+            /* swap */
+            var tmp = front; front = back; back = tmp;
+
+            setTimeout(advance, HOLD);
+          }, FADE);
+        });
+      });
     };
-    preload.onerror = function() { setTimeout(advance, 0); };
-    preload.src = next.url;
+    img.onerror = function () { setTimeout(advance, 500); };
+    img.src = next.url;
   }
 
-  // Kick off on DOM ready
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {
