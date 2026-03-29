@@ -3,20 +3,6 @@
 [build]
   publish = "."
 
-# Explicitly serve _data/ directory (Netlify blocks underscore dirs by default)
-[[redirects]]
-  from = "/_data/*"
-  to = "/_data/:splat"
-  status = 200
-  force = true
-
-# Allow _data/ directory to be served
-[[headers]]
-  for = "/_data/*"
-  [headers.values]
-    Access-Control-Allow-Origin = "*"
-    Cache-Control = "public, max-age=3600"
-
 # Security + performance headers for all pages
 [[headers]]
   for = "/*"
