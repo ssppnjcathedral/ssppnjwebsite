@@ -315,6 +315,8 @@ async function initParishEvents() {
   var events = await getParishEvents();
   var active = getActiveEvents(events);
   var sunday = getNextSunday();
+  /* Pre-fetch calendar so loadFromLocalCal has data to work with */
+  await getCalendar(sunday.getFullYear());
   var sundayData = await loadFromLocalCal(sunday);
 
   if (active.length > 0) {
