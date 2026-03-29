@@ -2,127 +2,105 @@ backend:
   name: git-gateway
   branch: main
 
-media_folder: images/gallery
-public_folder: /images/gallery
+media_folder: "images/events"
+public_folder: "/images/events"
 
-site_url: https://ssppnjtest.netlify.app
+publish_mode: editorial_workflow
 
 collections:
+  - name: "parish-events"
+    label: "Parish Events"
+    label_singular: "Event"
+    description: "Add, edit, and manage parish services, community events, concerts, and announcements. Toggle 'Featured' to pin any event to the top of the homepage regardless of date."
+    files:
+      - name: "all-events"
+        label: "All Events"
+        file: "_data/parish-events.json"
+        fields:
+          - name: events
+            label: Events
+            label_singular: Event
+            widget: list
+            summary: "{{fields.title}} — {{fields.date}}"
+            fields:
+              - name: id
+                label: ID
+                widget: string
+                hint: "Unique identifier, no spaces (e.g. presanctified-apr-1). Used internally."
 
-  # ── GALLERY PHOTOS ──────────────────────────────────
-  - name: gallery
-    label: Gallery Photos
-    label_singular: Photo
-    folder: _data/gallery
-    create: true
-    slug: "{{slug}}"
-    extension: json
-    format: json
-    fields:
-      - label: Photo
-        name: src
-        widget: image
-        media_folder: /images/gallery
-        public_folder: /images/gallery
-        hint: Upload your photo here
-      - label: Title
-        name: title
-        widget: string
-        hint: e.g. "Children with candles on Palm Sunday"
-      - label: Caption Label
-        name: label
-        widget: string
-        hint: e.g. "Community · Palm Sunday"
-      - label: Category
-        name: cat
-        widget: select
-        options:
-          - { label: Community, value: community }
-          - { label: Cathedral, value: cathedral }
-          - { label: Events, value: events }
-      - label: Year
-        name: year
-        widget: select
-        options:
-          - { label: "2026", value: "2026" }
-          - { label: "2025", value: "2025" }
-          - { label: "2024", value: "2024" }
-          - { label: Pre-2023, value: pre2023 }
-      - label: Card Height
-        name: h
-        widget: number
-        default: 160
-        value_type: int
-        min: 128
-        max: 220
-        hint: "Height of the photo card (128-220). Vary for masonry effect."
+              - name: active
+                label: Active (show on site)
+                widget: boolean
+                default: true
+                hint: "Turn off to hide this event without deleting it."
 
-  # ── BULLETINS ───────────────────────────────────────
-  - name: bulletins
-    label: Bulletins
-    label_singular: Bulletin
-    folder: _data/bulletins
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}"
-    extension: json
-    format: json
-    fields:
-      - label: Title
-        name: title
-        widget: string
-        hint: e.g. "Sunday of the Prodigal Son"
-      - label: Date
-        name: date
-        widget: datetime
-        format: YYYY-MM-DD
-        date_format: MMMM D, YYYY
-        time_format: false
-      - label: PDF File
-        name: pdf
-        widget: file
-        media_folder: /files/bulletins
-        public_folder: /files/bulletins
-        hint: Upload the bulletin PDF
-      - label: Notes
-        name: notes
-        widget: string
-        required: false
-        hint: Optional — any notes about this bulletin
+              - name: featured
+                label: Featured (sticky to homepage)
+                widget: boolean
+                default: false
+                hint: "Pin this event to the top of the Coming Up section on the homepage, regardless of date. Use for major events you want to stay prominent."
 
-  # ── NEWS & ANNOUNCEMENTS ────────────────────────────
-  - name: news
-    label: News & Announcements
-    label_singular: Announcement
-    folder: _data/news
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    extension: json
-    format: json
-    fields:
-      - label: Title
-        name: title
-        widget: string
-      - label: Date
-        name: date
-        widget: datetime
-        format: YYYY-MM-DD
-        date_format: MMMM D, YYYY
-        time_format: false
-      - label: Category
-        name: category
-        widget: select
-        options:
-          - Announcement
-          - Event
-          - Service
-          - Community
-      - label: Body
-        name: body
-        widget: markdown
-        hint: The full text of the announcement
-      - label: Featured Image
-        name: image
-        widget: image
-        required: false
-        media_folder: /images/news
-        public_folder: /images/news
+              - name: title
+                label: Event Title
+                widget: string
+                hint: "e.g. Presanctified Liturgy, Spring Food Drive, Men's Breakfast"
+
+              - name: subtitle
+                label: Subtitle
+                widget: string
+                required: false
+                hint: "Optional short line under the title. e.g. 'An evening of sacred music'"
+
+              - name: type
+                label: Event Type
+                widget: select
+                options:
+                  - { label: "Liturgy (Divine Liturgy, Presanctified, etc.)", value: "liturgy" }
+                  - { label: "Vespers", value: "vespers" }
+                  - { label: "Community (food drives, outreach, etc.)", value: "community" }
+                  - { label: "Social (men's group, women's group, outings)", value: "social" }
+                  - { label: "Concert / Music", value: "concert" }
+                  - { label: "Announcement", value: "announcement" }
+                hint: "Determines the color badge shown on the homepage and schedule page."
+
+              - name: date
+                label: Date
+                widget: datetime
+                format: "YYYY-MM-DD"
+                date_format: "YYYY-MM-DD"
+                time_format: false
+                hint: "The date of the event."
+
+              - name: time
+                label: Time
+                widget: string
+                hint: "e.g. 6:30 PM, After Divine Liturgy (~12:00 PM)"
+
+              - name: location
+                label: Location
+                widget: string
+                default: "Cathedral Nave · 111 Grand Street"
+                hint: "Where the event takes place."
+
+              - name: contact
+                label: Contact / Organizer
+                widget: string
+                required: false
+                hint: "e.g. Parish Office, Fr. Solomon Longo, Diaconal Ministry"
+
+              - name: description
+                label: Description
+                widget: text
+                hint: "Full description shown on the event detail page. 2-4 sentences is ideal."
+
+              - name: image
+                label: Event Image
+                widget: image
+                required: false
+                hint: "Optional image for the event card on the schedule page."
+
+              - name: link
+                label: External Link
+                widget: string
+                required: false
+                hint: "Optional URL if the event has an external registration page or more info."
