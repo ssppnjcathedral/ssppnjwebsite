@@ -320,8 +320,65 @@ async function initParishEvents() {
   var sundayData = await loadFromLocalCal(sunday);
 
   if (active.length > 0) {
-    renderParishEvents(active);
-    if (sundayData) renderSundayIntoSecondary(sundayData, sunday);
+    /* Build the full secondary calendar HTML before injecting */
+    var calSecondaryHTML = '';
+    if (sundayData) {
+      var feast    = (sundayData.titles&&sundayData.titles[0])||sundayData.summary_title||'Sunday';
+      var saints   = (sundayData.saints||[]).slice(0,3).map(function(s){ return typeof s==='string'?s:(s&&s.name?s.name:''); }).filter(Boolean).join('; ');
+      var tone     = sundayData.tone ? 'Tone '+toRoman(sundayData.tone) : '';
+      var fast1    = sundayData.fast_level_description||'';
+      var fast2    = sundayData.fast_exception_desc||'';
+      var fastDesc = [fast1,fast2].filter(Boolean).join(' \u2014 ');
+      var m2  = String(sunday.getMonth()+1).padStart(2,'0');
+      var dy2 = String(sunday.getDate()).padStart(2,'0');
+      var ocaDay = 'https://www.oca.org/saints/lives/'+sunday.getFullYear()+'/'+m2+'/'+dy2;
+      calSecondaryHTML = '<div class="pe-cal-row">'
+        + '<span class="pe-cal-badge">This Sunday</span>'
+        + '<span class="pe-cal-info">'
+        +   '<a href="'+ocaDay+'" target="_blank" rel="noopener" class="pe-cal-title">'+feast+'</a>'
+        + (saints ? '<a href="/saint-of-the-day" class="pe-cal-saint">'+saints+'</a>' : '')
+        + (tone   ? '<span class="pe-cal-tone">'+tone+'</span>' : '')
+        + '</span></div>'
+        + (fastDesc ? '<div class="pe-cal-row pe-cal-row-fast">'
+        +   '<span class="pe-cal-badge pe-cal-badge-fast">Fast</span>'
+        +   '<a href="https://www.oca.org/orthodoxy/the-orthodox-faith/worship/fasting" target="_blank" rel="noopener" class="pe-cal-fast">'+fastDesc+'</a>'
+        + '</div>' : '');
+    }
+
+    /* Render everything in one shot */
+    var typeMap = EVENT_TYPES;
+    var eventsHTML = active.map(function(ev) {
+      var t = typeMap[ev.type] || typeMap.announcement;
+      var dateLabel = formatEventDate(ev.date);
+      var featuredAttr = ev.featured ? ' pe-featured' : '';
+      return '<div class="pe-row ' + t.rowCls + featuredAttr + '" onclick="openEventDetail(\'' + ev.id + '\')" role="button" tabindex="0">'
+        + (ev.featured ? '<span class="pe-featured-dot"></span>' : '')
+        + '<span class="pe-badge ' + t.badgeCls + '">' + t.label + '</span>'
+        + '<span class="pe-info">'
+        +   '<span class="pe-title">' + ev.title + '</span>'
+        +   '<span class="pe-meta">' + dateLabel + ' &nbsp;&middot;&nbsp; ' + ev.time + '</span>'
+        + '</span>'
+        + '<span class="pe-arrow">&#8594;</span>'
+        + '</div>';
+    }).join('');
+
+    var panel = document.getElementById('sunday-panel');
+    if (!panel) return;
+    panel.innerHTML = '<div class="pe-block">'
+      + '<span class="rubric">At Saints Peter &amp; Paul</span>'
+      + '<div class="rubric-rule"></div>'
+      + '<h2 class="pe-headline">Coming Up</h2>'
+      + '<span class="pe-sub">Parish services &amp; events</span>'
+      + '<div class="pe-events">' + eventsHTML + '</div>'
+      + '</div>'
+      + '<div class="pe-cal-secondary">'
+      + '<span class="pe-cal-label">The Liturgical Calendar</span>'
+      + (calSecondaryHTML || '<p class="ts-loading" style="font-size:.85rem">Loading liturgical data\u2026</p>')
+      + '</div>';
+
+    Array.from(panel.children).forEach(function(el, i) { tagReveal(el, 'rv', i + 1); });
+    panel.querySelectorAll('.pe-row').forEach(function(el, i) { tagReveal(el, 'rv', i + 1); });
+
   } else {
     if (sundayData) renderSunday(sundayData, sunday);
     else {
