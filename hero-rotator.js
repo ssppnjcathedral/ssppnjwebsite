@@ -2,7 +2,7 @@
    SSPP HERO IMAGE ROTATOR
    - Loads first image immediately on page load
    - Ken Burns slow zoom on each image
-   - 7-second hold per image
+   - 15-second hold per image
    - Smooth crossfade between images (no dark flash)
    - Loops back to first image
 */
@@ -18,9 +18,9 @@
     { url: '/images/heroes/home-6.jpg', pos: 'center center' }
   ];
 
-  var HOLD     = 12000;  // ms to hold each image
+  var HOLD     = 15000;  // ms to hold each image
   var FADE     = 1800;   // ms crossfade duration (match CSS transition)
-  var ZOOM_DUR = 13800;  // ms Ken Burns zoom — hold + fade so it never stops
+  var ZOOM_DUR = 16800;  // ms Ken Burns zoom — hold + fade so it never stops
 
   var bg1 = document.getElementById('hero-bg1');
   var bg2 = document.getElementById('hero-bg2');
