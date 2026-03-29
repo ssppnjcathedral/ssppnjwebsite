@@ -412,7 +412,8 @@ init = async function() {
   var today = new Date();
   document.getElementById('cbar-date').textContent = displayDate(today);
   await initParishEvents();
-  var cal = await getCalendar(today.getFullYear());
+  /* Calendar already fetched for Sunday's year — also fetch today's if different */
+  var cal2 = await getCalendar(today.getFullYear());
   var entries = [];
   for(var i=0;i<7;i++){
     var d2 = addDays(today, i);
@@ -420,7 +421,10 @@ init = async function() {
     if(data) entries.push({date:d2, data:data});
   }
   if(entries.length) renderWeek(entries);
-  else document.getElementById('week-strip').innerHTML='<p class="ts-loading" style="font-size:.85rem">Calendar temporarily unavailable.</p>';
+  else {
+    console.warn('Week strip empty. cal loaded:', !!cal2, 'cache:', !!_calCache);
+    document.getElementById('week-strip').innerHTML='<p class="ts-loading" style="font-size:.85rem">Calendar temporarily unavailable.</p>';
+  }
 };
 
 /* Now safe to call — override is fully defined */
