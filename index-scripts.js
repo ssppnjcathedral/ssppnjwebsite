@@ -118,6 +118,252 @@ async function init(){
 }
 init();
 
+/* ═══════════════════════════════════════════════════════
+   PARISH EVENTS SYSTEM
+   Reads /_data/parish-events.json
+   Featured events stick to top regardless of date.
+   Non-featured events show within a 30-day window.
+   Falls back to liturgical calendar view when no events.
+═══════════════════════════════════════════════════════ */
+
+var EVENT_TYPES = {
+  liturgy:     { label:'Liturgy',   badgeCls:'pe-badge-litu', rowCls:'pe-row-litu',  borderColor:'var(--maroon)' },
+  vespers:     { label:'Vespers',   badgeCls:'pe-badge-vesp', rowCls:'pe-row-vesp',  borderColor:'var(--gold)' },
+  community:   { label:'Community', badgeCls:'pe-badge-comm', rowCls:'pe-row-comm',  borderColor:'#3D6B5E' },
+  social:      { label:'Social',    badgeCls:'pe-badge-soci', rowCls:'pe-row-soci',  borderColor:'var(--stone)' },
+  concert:     { label:'Concert',   badgeCls:'pe-badge-mus',  rowCls:'pe-row-mus',   borderColor:'var(--apse)' },
+  announcement:{ label:'Notice',    badgeCls:'pe-badge-ann',  rowCls:'pe-row-ann',   borderColor:'var(--gold)' }
+};
+
+var _parishEvents = null;
+
+async function getParishEvents() {
+  if (_parishEvents) return _parishEvents;
+  try {
+    var r = await fetch('/_data/parish-events.json');
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    var json = await r.json();
+    _parishEvents = json.events || [];
+    return _parishEvents;
+  } catch(e) {
+    console.warn('Parish events fetch failed:', e.message);
+    return [];
+  }
+}
+
+function getActiveEvents(events) {
+  var today = new Date();
+  today.setHours(0,0,0,0);
+  var window30 = new Date(today);
+  window30.setDate(window30.getDate() + 30);
+
+  return events.filter(function(ev) {
+    if (!ev.active) return false;
+    var evDate = new Date(ev.date + 'T00:00:00');
+    if (ev.featured) return true;
+    return evDate >= today && evDate <= window30;
+  }).sort(function(a, b) {
+    if (a.featured && !b.featured) return -1;
+    if (!a.featured && b.featured) return 1;
+    return new Date(a.date) - new Date(b.date);
+  });
+}
+
+function formatEventDate(dateStr) {
+  var d = new Date(dateStr + 'T00:00:00');
+  var today = new Date();
+  today.setHours(0,0,0,0);
+  var tomorrow = new Date(today);
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  if (d.toDateString() === today.toDateString()) return 'Today';
+  if (d.toDateString() === tomorrow.toDateString()) return 'Tomorrow';
+  return DAYS_SHORT[d.getDay()] + ', ' + MONTHS_S[d.getMonth()] + ' ' + d.getDate();
+}
+
+function renderParishEvents(events) {
+  var panel = document.getElementById('sunday-panel');
+  if (!panel) return;
+
+  var typeMap = EVENT_TYPES;
+
+  var eventsHTML = events.map(function(ev) {
+    var t = typeMap[ev.type] || typeMap.announcement;
+    var dateLabel = formatEventDate(ev.date);
+    var featuredAttr = ev.featured ? ' pe-featured' : '';
+    return '<div class="pe-row ' + t.rowCls + featuredAttr + '" onclick="openEventDetail(\'' + ev.id + '\')" role="button" tabindex="0">'
+      + (ev.featured ? '<span class="pe-featured-dot"></span>' : '')
+      + '<span class="pe-badge ' + t.badgeCls + '">' + t.label + '</span>'
+      + '<span class="pe-info">'
+      +   '<span class="pe-title">' + ev.title + '</span>'
+      +   '<span class="pe-meta">' + dateLabel + ' &nbsp;&middot;&nbsp; ' + ev.time + '</span>'
+      + '</span>'
+      + '<span class="pe-arrow">&#8594;</span>'
+      + '</div>';
+  }).join('');
+
+  var calBlock = '<div class="pe-cal-secondary">'
+    + '<span class="pe-cal-label">The Liturgical Calendar</span>'
+    + '<div id="pe-sunday-inner"><p class="ts-loading">Loading liturgical data&hellip;</p></div>'
+    + '</div>';
+
+  panel.innerHTML = '<div class="pe-block">'
+    + '<span class="rubric">At Saints Peter &amp; Paul</span>'
+    + '<div class="rubric-rule"></div>'
+    + '<h2 class="pe-headline">Coming Up</h2>'
+    + '<span class="pe-sub">Parish services &amp; events</span>'
+    + '<div class="pe-events">' + eventsHTML + '</div>'
+    + '</div>'
+    + calBlock;
+
+  Array.from(panel.children).forEach(function(el, i) { tagReveal(el, 'rv', i + 1); });
+  panel.querySelectorAll('.pe-row').forEach(function(el, i) { tagReveal(el, 'rv', i + 1); });
+}
+
+function renderSundayIntoSecondary(data, d) {
+  var el = document.getElementById('pe-sunday-inner');
+  if (!el) return;
+  var feast    = (data.titles&&data.titles[0])||data.summary_title||'Sunday';
+  var saints   = (data.saints||[]).slice(0,3).map(function(s){ return typeof s==='string'?s:(s&&s.name?s.name:''); }).filter(Boolean).join('; ');
+  var tone     = data.tone ? 'Tone '+toRoman(data.tone) : '';
+  var fast1    = data.fast_level_description||'';
+  var fast2    = data.fast_exception_desc||'';
+  var fastDesc = [fast1,fast2].filter(Boolean).join(' \u2014 ');
+
+  var m  = String(d.getMonth()+1).padStart(2,'0');
+  var dy = String(d.getDate()).padStart(2,'0');
+  var ocaDay = 'https://www.oca.org/saints/lives/'+d.getFullYear()+'/'+m+'/'+dy;
+
+  var html = '<div class="pe-cal-row">'
+    + '<span class="pe-cal-badge">This Sunday</span>'
+    + '<span class="pe-cal-info">'
+    +   '<a href="'+ocaDay+'" target="_blank" rel="noopener" class="pe-cal-title">'+feast+'</a>'
+    + (saints ? '<a href="/saint-of-the-day" class="pe-cal-saint">'+saints+'</a>' : '')
+    + (tone   ? '<span class="pe-cal-tone">'+tone+'</span>' : '')
+    + '</span>'
+    + '</div>'
+    + (fastDesc ? '<div class="pe-cal-row pe-cal-row-fast">'
+    +   '<span class="pe-cal-badge pe-cal-badge-fast">Fast</span>'
+    +   '<a href="https://www.oca.org/orthodoxy/the-orthodox-faith/worship/fasting" target="_blank" rel="noopener" class="pe-cal-fast">'+fastDesc+'</a>'
+    + '</div>' : '');
+
+  el.innerHTML = html;
+}
+
+/* Event detail overlay */
+var _eventsCache = null;
+
+async function openEventDetail(id) {
+  if (!_eventsCache) _eventsCache = await getParishEvents();
+  var ev = _eventsCache.find(function(e) { return e.id === id; });
+  if (!ev) return;
+  var t = EVENT_TYPES[ev.type] || EVENT_TYPES.announcement;
+  var overlay = document.getElementById('pe-overlay');
+  if (!overlay) {
+    overlay = document.createElement('div');
+    overlay.id = 'pe-overlay';
+    overlay.className = 'pe-overlay';
+    overlay.innerHTML = '<div class="pe-detail-card" id="pe-detail-card"></div>';
+    overlay.addEventListener('click', function(e) {
+      if (e.target === overlay) closeEventDetail();
+    });
+    document.body.appendChild(overlay);
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeEventDetail();
+    });
+  }
+
+  var d = new Date(ev.date + 'T00:00:00');
+  var dateLabel = DAYS_SHORT[d.getDay()] + ', ' + MONTHS_S[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
+
+  document.getElementById('pe-detail-card').innerHTML =
+    '<button class="pe-close" onclick="closeEventDetail()">&#x2715; Close</button>'
+    + '<div class="pe-detail-header">'
+    +   '<div class="pe-detail-type-row">'
+    +     '<span class="pe-badge ' + t.badgeCls + '">' + t.label + '</span>'
+    +     '<span class="pe-detail-date-lbl">' + dateLabel + '</span>'
+    +   '</div>'
+    +   '<h2 class="pe-detail-title">' + ev.title + '</h2>'
+    +   (ev.subtitle ? '<p class="pe-detail-subtitle">' + ev.subtitle + '</p>' : '')
+    + '</div>'
+    + '<div class="pe-detail-rule"></div>'
+    + '<div class="pe-detail-body">'
+    +   '<p class="pe-detail-desc">' + ev.description + '</p>'
+    +   '<div class="pe-detail-meta">'
+    +     '<div class="pe-meta-item"><span class="pe-meta-label">Date</span><span class="pe-meta-val">' + dateLabel + '</span></div>'
+    +     '<div class="pe-meta-item"><span class="pe-meta-label">Time</span><span class="pe-meta-val">' + ev.time + '</span></div>'
+    +     '<div class="pe-meta-item"><span class="pe-meta-label">Location</span><span class="pe-meta-val">' + ev.location + '</span></div>'
+    +     (ev.contact ? '<div class="pe-meta-item"><span class="pe-meta-label">Contact</span><span class="pe-meta-val">' + ev.contact + '</span></div>' : '')
+    +   '</div>'
+    + '</div>'
+    + '<div class="pe-detail-footer">'
+    +   (ev.link ? '<a href="' + ev.link + '" target="_blank" rel="noopener" class="btn btn-maroon">Learn More</a>' : '<span class="btn btn-maroon" style="cursor:default">All Are Welcome</span>')
+    +   '<button class="btn btn-outline" onclick="closeEventDetail()">Back to Calendar</button>'
+    + '</div>';
+
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeEventDetail() {
+  var overlay = document.getElementById('pe-overlay');
+  if (overlay) overlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+/* Override init to integrate parish events */
+async function initParishEvents() {
+  var events = await getParishEvents();
+  var active = getActiveEvents(events);
+  var sunday = getNextSunday();
+  var sundayData = await loadFromLocalCal(sunday);
+
+  if (active.length > 0) {
+    renderParishEvents(active);
+    if (sundayData) renderSundayIntoSecondary(sundayData, sunday);
+  } else {
+    if (sundayData) renderSunday(sundayData, sunday);
+    else {
+      var panel = document.getElementById('sunday-panel');
+      if (panel) panel.innerHTML = '<p class="ts-loading">Liturgical data temporarily unavailable.</p>';
+    }
+  }
+
+  /* Inject parish event tags into week-ahead strip */
+  var today = new Date();
+  today.setHours(0,0,0,0);
+  events.filter(function(ev) { return ev.active; }).forEach(function(ev) {
+    var evDate = new Date(ev.date + 'T00:00:00');
+    var diff = Math.round((evDate - today) / 86400000);
+    if (diff >= 0 && diff < 7) {
+      var weekEntries = document.querySelectorAll('.week-entry');
+      if (weekEntries[diff]) {
+        var t = EVENT_TYPES[ev.type] || EVENT_TYPES.announcement;
+        var tag = document.createElement('span');
+        tag.className = 'pe-week-tag';
+        tag.textContent = ev.title + ' \u00b7 ' + ev.time;
+        weekEntries[diff].appendChild(tag);
+      }
+    }
+  });
+}
+
+/* Replace the original init calendar call with parish events init */
+var _origInit = init;
+init = async function() {
+  var today = new Date();
+  document.getElementById('cbar-date').textContent = displayDate(today);
+  await initParishEvents();
+  var cal = await getCalendar(today.getFullYear());
+  var entries = [];
+  for(var i=0;i<7;i++){
+    var d2 = addDays(today, i);
+    var data = await loadFromLocalCal(d2);
+    if(data) entries.push({date:d2, data:data});
+  }
+  if(entries.length) renderWeek(entries);
+  else document.getElementById('week-strip').innerHTML='<p class="ts-loading" style="font-size:.85rem">Calendar temporarily unavailable.</p>';
+};
+
 (function(){
   var t=document.getElementById('galleryTrack');
   if(!t)return;
