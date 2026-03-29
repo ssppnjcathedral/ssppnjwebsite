@@ -116,7 +116,7 @@ async function init(){
   if(entries.length) renderWeek(entries);
   else document.getElementById('week-strip').innerHTML='<p class="ts-loading" style="font-size:.85rem">Calendar temporarily unavailable.</p>';
 }
-init();
+/* Parish events system loads below — init() called after override is defined */
 
 /* ═══════════════════════════════════════════════════════
    PARISH EVENTS SYSTEM
@@ -363,6 +363,9 @@ init = async function() {
   if(entries.length) renderWeek(entries);
   else document.getElementById('week-strip').innerHTML='<p class="ts-loading" style="font-size:.85rem">Calendar temporarily unavailable.</p>';
 };
+
+/* Now safe to call — override is fully defined */
+init();
 
 (function(){
   var t=document.getElementById('galleryTrack');
