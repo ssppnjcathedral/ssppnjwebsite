@@ -113,8 +113,8 @@ img{display:block;max-width:100%}
 @keyframes fu{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
 
 /* === THIS SUNDAY === */
-.this-sunday{display:block;background:var(--vellum);position:relative;overflow:hidden}
-.ts-rosette{position:absolute;width:620px;height:620px;left:-150px;top:50%;transform:translateY(-50%);opacity:.055;pointer-events:none;z-index:0}
+.this-sunday{display:block;background:radial-gradient(ellipse 55% 80% at 8% 50%,rgba(184,131,40,0.09) 0%,transparent 65%),radial-gradient(ellipse 40% 65% at 92% 50%,rgba(123,29,42,0.07) 0%,transparent 60%),linear-gradient(180deg,var(--vellum-mid) 0%,var(--vellum) 12%,var(--vellum) 88%,var(--vellum-mid) 100%);position:relative;overflow:hidden}
+.ts-rosette{position:absolute;width:620px;height:620px;left:-120px;top:50%;transform:translateY(-50%);opacity:.18;pointer-events:none;z-index:0;mix-blend-mode:multiply}
 .ts-body{display:grid;grid-template-columns:1fr 340px;max-width:1380px;margin:0 auto;padding:5rem 3rem 5.5rem 4.5rem;gap:5rem;position:relative;z-index:1}
 .ts-opening{border-left:4px solid var(--gold);padding-left:1.75rem;margin-bottom:2.5rem;transition:border-color .5s}
 .ts-opening.lv0{border-color:var(--stone-lt)}
@@ -682,30 +682,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
     <span class="cbar-text" id="cbar-date">Loading…</span>
   </div>
   <!-- Rosette watermark -->
-  <svg class="ts-rosette" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <circle cx="100" cy="100" r="95" fill="none" stroke="#7B1D2A" stroke-width=".6"/>
-    <circle cx="100" cy="100" r="78" fill="none" stroke="#7B1D2A" stroke-width=".4"/>
-    <circle cx="100" cy="100" r="60" fill="none" stroke="#7B1D2A" stroke-width=".4"/>
-    <circle cx="100" cy="100" r="42" fill="none" stroke="#7B1D2A" stroke-width=".4"/>
-    <circle cx="100" cy="100" r="24" fill="none" stroke="#7B1D2A" stroke-width=".5"/>
-    <circle cx="100" cy="100" r="8"  fill="none" stroke="#7B1D2A" stroke-width=".6"/>
-    <g stroke="#7B1D2A" stroke-width=".4" fill="none">
-      <line x1="100" y1="5" x2="100" y2="195"/>
-      <line x1="5" y1="100" x2="195" y2="100"/>
-      <line x1="33" y1="33" x2="167" y2="167"/>
-      <line x1="167" y1="33" x2="33" y2="167"/>
-      <line x1="5" y1="58" x2="195" y2="58"/>
-      <line x1="5" y1="142" x2="195" y2="142"/>
-      <line x1="58" y1="5" x2="58" y2="195"/>
-      <line x1="142" y1="5" x2="142" y2="195"/>
-    </g>
-    <g fill="#7B1D2A">
-      <circle cx="100" cy="5" r="2.5"/><circle cx="100" cy="195" r="2.5"/>
-      <circle cx="5" cy="100" r="2.5"/><circle cx="195" cy="100" r="2.5"/>
-      <circle cx="33" cy="33" r="2"/><circle cx="167" cy="33" r="2"/>
-      <circle cx="33" cy="167" r="2"/><circle cx="167" cy="167" r="2"/>
-    </g>
-  </svg>
+  <img class="ts-rosette" src="/images/rosette.webp" alt="">
   <div class="ts-body">
     <!-- LEFT -->
     <div class="ts-left">
