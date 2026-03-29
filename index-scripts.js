@@ -135,6 +135,16 @@ var EVENT_TYPES = {
   announcement:{ label:'Notice',    badgeCls:'pe-badge-ann',  rowCls:'pe-row-ann',   borderColor:'var(--gold)' }
 };
 
+function tagReveal(el, cls, delay){
+  if(!el) return;
+  el.classList.add(cls||'rv');
+  if(delay) el.classList.add('rv-d'+Math.min(delay,4));
+  var io = new IntersectionObserver(function(entries, obs){
+    if(entries[0].isIntersecting){ el.classList.add('in'); obs.disconnect(); }
+  },{threshold:0.08});
+  io.observe(el);
+}
+
 var _parishEvents = null;
 
 async function getParishEvents() {
