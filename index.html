@@ -249,8 +249,9 @@ hr
 
 /* === GIVING === */
 .giving-section{background:var(--apse);padding:8rem 2rem;text-align:center;position:relative;overflow:hidden}
-.giving-cross-bg{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:50rem;line-height:1;color:rgba(184,131,40,.025);pointer-events:none;z-index:0;font-family:serif}
-.giving-inner{max-width:620px;margin:0 auto;position:relative;z-index:1}
+.giving-photo-bg{position:absolute;inset:0;background-image:url('https://picsum.photos/seed/sspp-giving/1600/900');background-size:cover;background-position:center;z-index:0;transform:scale(1.03)}
+.giving-photo-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(21,8,4,.82) 0%,rgba(59,15,24,.78) 100%);z-index:1}
+.giving-inner{max-width:620px;margin:0 auto;position:relative;z-index:2}
 .giving-title{font-family:var(--f-display);font-weight:300;font-size:clamp(2rem,4vw,3rem);line-height:1.15;color:rgba(246,241,232,.94);margin:.75rem 0}
 .giving-title em{font-style:italic;color:var(--gold-lt)}
 .giving-body{font-family:var(--f-body);font-size:.97rem;line-height:1.82;color:rgba(246,241,232,.60);text-align:justify;hyphens:auto;margin-bottom:3rem}
@@ -803,19 +804,19 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
     </div>
     <div class="welcome-photos">
       <div class="wp-panel wp-panel-1" onclick="openGallery(0)" role="button" tabindex="0">
-        <div class="wp-panel-bg" style="background-image:url('/images/heroes/tradition-panel.jpg')"></div>
+        <div class="wp-panel-bg" style="background-image:url('https://picsum.photos/seed/sspp-tradition/800/600')"></div>
         <div class="wp-panel-scrim"></div>
         <div class="wp-panel-label"><span class="wp-panel-text">Tradition</span></div>
         <div class="wp-panel-caption">Generations rooted in the Faith</div>
       </div>
       <div class="wp-panel wp-panel-2" onclick="openGallery(1)" role="button" tabindex="0">
-        <div class="wp-panel-bg" style="background-image:url('/images/heroes/community-panel.jpg')"></div>
+        <div class="wp-panel-bg" style="background-image:url('https://picsum.photos/seed/sspp-community/800/600')"></div>
         <div class="wp-panel-scrim"></div>
         <div class="wp-panel-label"><span class="wp-panel-text">Community</span></div>
         <div class="wp-panel-caption">Parish life on Grand Street</div>
       </div>
       <div class="wp-panel wp-panel-3" onclick="openGallery(2)" role="button" tabindex="0">
-        <div class="wp-panel-bg" style="background-image:url('/images/heroes/family-panel.jpg')"></div>
+        <div class="wp-panel-bg" style="background-image:url('https://picsum.photos/seed/sspp-family/800/600')"></div>
         <div class="wp-panel-scrim"></div>
         <div class="wp-panel-label"><span class="wp-panel-text">Family</span></div>
         <div class="wp-panel-caption">Generations rooted in the Faith</div>
@@ -853,7 +854,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 
     <div class="worship-card" onclick="openWorship(0)" role="button" tabindex="0" aria-label="Learn about Vespers">
       <div class="worship-card-fallback"></div>
-      <div class="worship-card-bg" style="background-image:url('/images/heroes/vespers-service.jpg')"></div>
+      <div class="worship-card-bg" style="background-image:url('https://picsum.photos/seed/sspp-vespers/800/1000')"></div>
       <div class="worship-card-scrim"></div>
       <div class="worship-card-body">
         <div class="worship-card-title">Vespers</div>
@@ -865,7 +866,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 
     <div class="worship-card" onclick="openWorship(1)" role="button" tabindex="0" aria-label="Learn about Divine Liturgy">
       <div class="worship-card-fallback"></div>
-      <div class="worship-card-bg" style="background-image:url('/images/heroes/divine-liturgy.jpg')"></div>
+      <div class="worship-card-bg" style="background-image:url('https://picsum.photos/seed/sspp-liturgy/800/1000')"></div>
       <div class="worship-card-scrim"></div>
       <div class="worship-card-body">
         <div class="worship-card-title">Divine Liturgy</div>
@@ -877,7 +878,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 
     <div class="worship-card" onclick="openWorship(2)" role="button" tabindex="0" aria-label="Learn about visiting for the first time">
       <div class="worship-card-fallback"></div>
-      <div class="worship-card-bg" style="background-image:url('/images/heroes/inquirers.jpg')"></div>
+      <div class="worship-card-bg" style="background-image:url('https://picsum.photos/seed/sspp-inquirers/800/1000')"></div>
       <div class="worship-card-scrim"></div>
       <div class="worship-card-body">
         <div class="worship-card-title">New to Orthodoxy?</div>
@@ -939,19 +940,19 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   <div class="gallery-inner">
     <div class="gallery-panels">
       <div class="gallery-panel gallery-panel-1" onclick="openGallery(0)" role="button" tabindex="0">
-        <div class="gallery-panel-bg" style="background-image:url('/images/heroes/tradition-panel.jpg')"></div>
+        <div class="gallery-panel-bg" style="background-image:url('https://picsum.photos/seed/sspp-tradition/800/600')"></div>
         <div class="gallery-panel-scrim"></div>
         <div class="gallery-panel-label">Tradition</div>
         <div class="gallery-panel-caption">The ancient Faith, kept alive</div>
       </div>
       <div class="gallery-panel gallery-panel-2" onclick="openGallery(1)" role="button" tabindex="0">
-        <div class="gallery-panel-bg" style="background-image:url('/images/heroes/community-panel.jpg')"></div>
+        <div class="gallery-panel-bg" style="background-image:url('https://picsum.photos/seed/sspp-community/800/600')"></div>
         <div class="gallery-panel-scrim"></div>
         <div class="gallery-panel-label">Community</div>
         <div class="gallery-panel-caption">Parish life on Grand Street</div>
       </div>
       <div class="gallery-panel gallery-panel-3" onclick="openGallery(2)" role="button" tabindex="0">
-        <div class="gallery-panel-bg" style="background-image:url('/images/heroes/family-panel.jpg')"></div>
+        <div class="gallery-panel-bg" style="background-image:url('https://picsum.photos/seed/sspp-family/800/600')"></div>
         <div class="gallery-panel-scrim"></div>
         <div class="gallery-panel-label">Family</div>
         <div class="gallery-panel-caption">Generations rooted in the Faith</div>
@@ -1038,7 +1039,8 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 
 <!-- GIVING -->
 <section class="giving-section">
-  <div class="giving-cross-bg">✝</div>
+  <div class="giving-photo-bg"></div>
+  <div class="giving-photo-overlay"></div>
   <div class="giving-inner">
     <span class="rubric light" style="text-align:center;display:block">Stewardship</span>
     <div class="rubric-rule gold centered"></div>
