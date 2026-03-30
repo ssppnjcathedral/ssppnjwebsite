@@ -113,7 +113,7 @@ a{color:inherit;text-decoration:none}
 .rail-dot-wrap{width:36px;height:26px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
 .rail-dot{width:6px;height:6px;border-radius:50%;border:1.5px solid rgba(123,29,42,.28);background:transparent;transition:all .28s cubic-bezier(.22,1,.36,1)}
 .rail-item.rail-active .rail-dot{background:var(--maroon);border-color:var(--maroon);width:8px;height:8px;box-shadow:0 0 0 3px rgba(123,29,42,.12)}
-.rail-num{font-family:var(--f-ui);font-size:.48rem;letter-spacing:.05em;color:rgba(123,29,42,.28);display:block;transition:color .28s;line-height:1}
+.rail-num{font-family:var(--f-ui);font-size:.62rem;font-weight:600;letter-spacing:.04em;color:rgba(123,29,42,.35);display:block;transition:color .28s;line-height:1}
 .rail-item.rail-active .rail-num{color:var(--maroon)}
 .rail-label{position:absolute;left:calc(100% + 10px);top:50%;transform:translateY(-50%);background:var(--vellum);border:var(--rule-faint);border-left:2px solid var(--maroon);padding:.28rem .7rem;font-family:var(--f-ui);font-size:.58rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--maroon);white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .18s;box-shadow:0 2px 10px rgba(28,20,16,.08)}
 .rail-item:hover .rail-label{opacity:1}
@@ -410,12 +410,6 @@ footer .btn-outline:hover{background:rgba(246,241,232,.15);color:#fff;border-col
 <!-- LEFT RAIL -->
 <nav class="lit-rail" id="lit-rail" aria-label="Section navigation">
 
-  <div class="rail-item" data-rail="guidance" onclick="jumpTo('guidance')">
-    <div class="rail-dot-wrap"><div class="rail-dot"></div><span class="rail-label">Guidance</span></div>
-    <span class="rail-num">&#10013;</span>
-  </div>
-  <div class="rail-connector"></div>
-
   <div class="rail-item" data-rail="great-litany" onclick="jumpTo('great-litany')">
     <div class="rail-dot-wrap"><div class="rail-dot"></div><span class="rail-label">Great Litany</span></div>
     <span class="rail-num">I</span>
@@ -471,7 +465,7 @@ footer .btn-outline:hover{background:rgba(246,241,232,.15);color:#fff;border-col
   <div class="rail-connector"></div>
 
   <div class="rail-item" data-rail="faithful-litany" onclick="jumpTo('faithful-litany')">
-    <div class="rail-dot-wrap"><div class="rail-dot"></div><span class="rail-label">Litany of the Faithful</span></div>
+    <div class="rail-dot-wrap"><div class="rail-dot"></div><span class="rail-label">Litany of Faithful</span></div>
     <span class="rail-num">X</span>
   </div>
   <div class="rail-connector"></div>
@@ -513,14 +507,20 @@ footer .btn-outline:hover{background:rgba(246,241,232,.15);color:#fff;border-col
   <div class="rail-connector"></div>
 
   <div class="rail-item" data-rail="communion" onclick="jumpTo('communion')">
-    <div class="rail-dot-wrap"><div class="rail-dot"></div><span class="rail-label">Communion</span></div>
+    <div class="rail-dot-wrap"><div class="rail-dot"></div><span class="rail-label">Holy Communion</span></div>
     <span class="rail-num">XVII</span>
   </div>
   <div class="rail-connector"></div>
 
   <div class="rail-item" data-rail="thanksgiving" onclick="jumpTo('thanksgiving')">
-    <div class="rail-dot-wrap"><div class="rail-dot"></div><span class="rail-label">Thanksgiving</span></div>
+    <div class="rail-dot-wrap"><div class="rail-dot"></div><span class="rail-label">Thanksgiving &amp; Dismissal</span></div>
     <span class="rail-num">XVIII</span>
+  </div>
+  <div class="rail-connector"></div>
+
+  <div class="rail-item" data-rail="guidance" onclick="jumpTo('guidance')">
+    <div class="rail-dot-wrap"><div class="rail-dot"></div><span class="rail-label">Guidance</span></div>
+    <span class="rail-num">&#10013;</span>
   </div>
   <div class="rail-connector"></div>
 
@@ -535,70 +535,6 @@ footer .btn-outline:hover{background:rgba(246,241,232,.15);color:#fff;border-col
 <main class="lit-main" id="lit-main">
 
 <!-- ════ GUIDANCE ════ -->
-<section class="lit-section" id="guidance" data-section="guidance">
-  <span class="section-tag">Before You Begin</span>
-  <div class="section-head-row">
-    <h2 class="section-head">Guidance on<br><em>Participation</em></h2>
-  </div>
-  <span class="section-sub">Notes by Fr. Solomon Longo</span>
-  <div class="prose">
-    <p>Below are some guidelines on etiquette. Do not worry about getting them wrong at times.</p>
-  </div>
-
-  <div class="lit-subsection">
-    <span class="subsection-num">Participation</span>
-    <h3 class="subsection-head">What should I be doing during the Liturgy?</h3>
-    <span class="subsection-sub">Instructions on how to participate in the Divine Liturgy</span>
-    <div class="prose">
-      <p><strong>When do I stand?</strong> If the priest is outside the doors to the altar, standing is called for unless the homily is in progress or if prayers are being said while kneeling. Standing is almost always appropriate; pews are a recent occurrence in Orthodox services; pews are useful but should not be overused. Especially stand during the Gospel reading, the Little and Great Entrances, the Creed, the Anaphora, the Lord's Prayer and while Communion is distributed. When sitting, one should remain reverent. We have saintly examples of worshipping peacefully, reverently, simply, joyfully, and tearfully, but no examples of worshipping casually.</p>
-      <p><strong>What about clothing?</strong> The worship of God should ultimately come to evoke an attitude that is neither casual nor immodest and pretentious. Traditionally, men are not to cover their heads, and women are to wear head coverings. Shoes may be removed in accordance with some Orthodox traditions. At no time will a visitor be criticized for their clothing; it is up to the person to conscientiously choose their attire.</p>
-      <p><strong>Who can receive holy communion?</strong> Only those received into the Orthodox Church by baptism and/or chrismation. Additionally, the faithful should confess at the frequency agreed upon with the priest in order to receive. The ancient churches have never distributed communion incautiously, as it is sacred.</p>
-      <p><strong>What do we do with our children?</strong> Children become full members in the Orthodox Church, receiving baptism, chrismation, and communion. As such, they should grow in capacity to attend the whole service. Screens should not be used to pacify. Soft toys, drawing, and books may be helpful at times. Children having an unusually difficult time may be taken out for a break but please bring them back in soon, as being in the service should be normative and is necessary for them to become calmer and more attentive over time.</p>
-    </div>
-  </div>
-
-  <div class="lit-subsection">
-    <span class="subsection-num">Embodied Prayer</span>
-    <h3 class="subsection-head">What is the Sign of the Cross?</h3>
-    <div class="prose">
-      <p>The Sign of the Cross is of apostolic origin. Early Christian writers of the 200s AD, such as Tertullian and St. Cyprian speak of its antiquity. Tertullian wrote about its use in daily life: "when we come in or go out, when we dress, when we wash." The gesture involves tracing a cross on one's body, from the forehead to the chest, then from the right shoulder to the left shoulder.</p>
-      <p>When people make the Sign of the Cross they are "blessing themselves." This is a physical prayer. The body prays and worships, too. The body, and physical world matter. Faith is not limited to our thoughts. As taught since the time of the earliest Christians, making the sign of the cross is a powerful symbol of protection by unity with Christ.</p>
-    </div>
-  </div>
-
-  <div class="lit-subsection">
-    <span class="subsection-num">How the Liturgy Reflects Reality</span>
-    <h3 class="subsection-head">Why are people moving around?</h3>
-    <div class="prose">
-      <p>Apart from the young children, adults also move around during the service. You may see people venerate icons or light candles during the service. People usually do this when they arrive, even if they are late. When the priest addresses the people, or at sacred times like the Great Entrance or Gospel reading, people remain still; at other times it is normal to occasionally go about one's prayers within the ongoing prayer of the community as a whole. Visitors are always welcome to light candles and venerate icons.</p>
-    </div>
-  </div>
-
-  <div class="lit-subsection">
-    <span class="subsection-num">Manifesting Prayer into the Material World</span>
-    <h3 class="subsection-head">Why all the candles and incense?</h3>
-    <div class="prose">
-      <p>The Church is pre-modern and manifests a nearly timeless life within the Holy Spirit. Candles are not only for beauty, but also join a physical, olfactory and visual aspect to prayer. People placing candles are giving small gifts of beauty to God while also "materializing" their prayer. Because of the multi-faceted meaning of the candles, they have been lit in worship since the earliest years of the church, even in the daytime. Like candles, incense is present from Old Testament times, and in accordance with the book of Revelation. Incense is offered by the priest with the sign of the cross and the prayer, "We offer Thee incense, O Christ our God, as a sweet smelling spiritual fragrance, receive it upon Thy heavenly altar and send down upon us, in return, the grace of Thy Holy Spirit."</p>
-    </div>
-  </div>
-
-  <div class="lit-subsection">
-    <span class="subsection-num">Sing and Make Music in Your Hearts to the Lord</span>
-    <h3 class="subsection-head">What should I say during the Liturgy?</h3>
-    <div class="prose">
-      <p>The Orthodox Church has historically valued the languages and music of multiple cultures. Our services are in English, but you may occasionally hear a bit of Greek and Slavonic for the Trisagion or the Cherubic Hymn.</p>
-      <p>The predominant use of English allows many people to participate, and the Liturgy is indeed meant to be truly prayed by everyone in attendance. This begins with attention. St. Theophan the Recluse says that prayers without attention are like letters without addresses. We should mean the lines of the liturgy and make them our true prayers.</p>
-      <p>When singing along with the choir and congregation, sing what you've learned, chant what you've heard enough times to remember. The services are internalized over the course of time. Do not feel as though you are supposed to understand or remember every prayer immediately.</p>
-    </div>
-  </div>
-
-  <div class="mob-ctx-card">
-    <span class="mob-ctx-tag">Using This Book</span>
-    <p class="mob-ctx-body">Priest parts appear in a lighter color. The people's responses appear in full ink and are slightly larger. Stage directions appear in italics. Use the navigation above or the section pill below to move through the service.</p>
-  </div>
-</section>
-
-<!-- ════ I. GREAT LITANY ════ -->
 <section class="lit-section" id="great-litany" data-section="great-litany">
   <div class="section-watermark">I</div>
   <span class="section-tag">Part One</span>
@@ -1654,7 +1590,7 @@ footer .btn-outline:hover{background:rgba(246,241,232,.15);color:#fff;border-col
 
   <div class="lit-subsection">
     <span class="subsection-num">The Creed</span>
-    <h3 class="subsection-head">The Creed &mdash; The Symbol of Our Faith</h3>
+    <h3 class="subsection-head">The Creed, The Symbol of Our Faith</h3>
     <div class="lex-block">
       <div class="lex-exchange">
         <span class="lex-label priest">Priest</span>
@@ -2254,6 +2190,70 @@ footer .btn-outline:hover{background:rgba(246,241,232,.15);color:#fff;border-col
 </section>
 
 <!-- ════ XIX. AFTER COMMUNION / DISMISSAL ════ -->
+<section class="lit-section" id="guidance" data-section="guidance">
+  <span class="section-tag">Before You Begin</span>
+  <div class="section-head-row">
+    <h2 class="section-head">Guidance on<br><em>Participation</em></h2>
+  </div>
+  <span class="section-sub">Notes by Fr. Solomon Longo</span>
+  <div class="prose">
+    <p>Below are some guidelines on etiquette. Do not worry about getting them wrong at times.</p>
+  </div>
+
+  <div class="lit-subsection">
+    <span class="subsection-num">Participation</span>
+    <h3 class="subsection-head">What should I be doing during the Liturgy?</h3>
+    <span class="subsection-sub">Instructions on how to participate in the Divine Liturgy</span>
+    <div class="prose">
+      <p><strong>When do I stand?</strong> If the priest is outside the doors to the altar, standing is called for unless the homily is in progress or if prayers are being said while kneeling. Standing is almost always appropriate; pews are a recent occurrence in Orthodox services; pews are useful but should not be overused. Especially stand during the Gospel reading, the Little and Great Entrances, the Creed, the Anaphora, the Lord's Prayer and while Communion is distributed. When sitting, one should remain reverent. We have saintly examples of worshipping peacefully, reverently, simply, joyfully, and tearfully, but no examples of worshipping casually.</p>
+      <p><strong>What about clothing?</strong> The worship of God should ultimately come to evoke an attitude that is neither casual nor immodest and pretentious. Traditionally, men are not to cover their heads, and women are to wear head coverings. Shoes may be removed in accordance with some Orthodox traditions. At no time will a visitor be criticized for their clothing; it is up to the person to conscientiously choose their attire.</p>
+      <p><strong>Who can receive holy communion?</strong> Only those received into the Orthodox Church by baptism and/or chrismation. Additionally, the faithful should confess at the frequency agreed upon with the priest in order to receive. The ancient churches have never distributed communion incautiously, as it is sacred.</p>
+      <p><strong>What do we do with our children?</strong> Children become full members in the Orthodox Church, receiving baptism, chrismation, and communion. As such, they should grow in capacity to attend the whole service. Screens should not be used to pacify. Soft toys, drawing, and books may be helpful at times. Children having an unusually difficult time may be taken out for a break but please bring them back in soon, as being in the service should be normative and is necessary for them to become calmer and more attentive over time.</p>
+    </div>
+  </div>
+
+  <div class="lit-subsection">
+    <span class="subsection-num">Embodied Prayer</span>
+    <h3 class="subsection-head">What is the Sign of the Cross?</h3>
+    <div class="prose">
+      <p>The Sign of the Cross is of apostolic origin. Early Christian writers of the 200s AD, such as Tertullian and St. Cyprian speak of its antiquity. Tertullian wrote about its use in daily life: "when we come in or go out, when we dress, when we wash." The gesture involves tracing a cross on one's body, from the forehead to the chest, then from the right shoulder to the left shoulder.</p>
+      <p>When people make the Sign of the Cross they are "blessing themselves." This is a physical prayer. The body prays and worships, too. The body, and physical world matter. Faith is not limited to our thoughts. As taught since the time of the earliest Christians, making the sign of the cross is a powerful symbol of protection by unity with Christ.</p>
+    </div>
+  </div>
+
+  <div class="lit-subsection">
+    <span class="subsection-num">How the Liturgy Reflects Reality</span>
+    <h3 class="subsection-head">Why are people moving around?</h3>
+    <div class="prose">
+      <p>Apart from the young children, adults also move around during the service. You may see people venerate icons or light candles during the service. People usually do this when they arrive, even if they are late. When the priest addresses the people, or at sacred times like the Great Entrance or Gospel reading, people remain still; at other times it is normal to occasionally go about one's prayers within the ongoing prayer of the community as a whole. Visitors are always welcome to light candles and venerate icons.</p>
+    </div>
+  </div>
+
+  <div class="lit-subsection">
+    <span class="subsection-num">Manifesting Prayer into the Material World</span>
+    <h3 class="subsection-head">Why all the candles and incense?</h3>
+    <div class="prose">
+      <p>The Church is pre-modern and manifests a nearly timeless life within the Holy Spirit. Candles are not only for beauty, but also join a physical, olfactory and visual aspect to prayer. People placing candles are giving small gifts of beauty to God while also "materializing" their prayer. Because of the multi-faceted meaning of the candles, they have been lit in worship since the earliest years of the church, even in the daytime. Like candles, incense is present from Old Testament times, and in accordance with the book of Revelation. Incense is offered by the priest with the sign of the cross and the prayer, "We offer Thee incense, O Christ our God, as a sweet smelling spiritual fragrance, receive it upon Thy heavenly altar and send down upon us, in return, the grace of Thy Holy Spirit."</p>
+    </div>
+  </div>
+
+  <div class="lit-subsection">
+    <span class="subsection-num">Sing and Make Music in Your Hearts to the Lord</span>
+    <h3 class="subsection-head">What should I say during the Liturgy?</h3>
+    <div class="prose">
+      <p>The Orthodox Church has historically valued the languages and music of multiple cultures. Our services are in English, but you may occasionally hear a bit of Greek and Slavonic for the Trisagion or the Cherubic Hymn.</p>
+      <p>The predominant use of English allows many people to participate, and the Liturgy is indeed meant to be truly prayed by everyone in attendance. This begins with attention. St. Theophan the Recluse says that prayers without attention are like letters without addresses. We should mean the lines of the liturgy and make them our true prayers.</p>
+      <p>When singing along with the choir and congregation, sing what you've learned, chant what you've heard enough times to remember. The services are internalized over the course of time. Do not feel as though you are supposed to understand or remember every prayer immediately.</p>
+    </div>
+  </div>
+
+  <div class="mob-ctx-card">
+    <span class="mob-ctx-tag">Using This Book</span>
+    <p class="mob-ctx-body">Priest parts appear in a lighter color. The people's responses appear in full ink and are slightly larger. Stage directions appear in italics. Use the navigation above or the section pill below to move through the service.</p>
+  </div>
+</section>
+
+<!-- ════ I. GREAT LITANY ════ -->
 <section class="lit-section" id="after-communion" data-section="after-communion">
   <div class="section-watermark">&#10013;</div>
   <span class="section-tag">Conclusion</span>
@@ -2319,7 +2319,7 @@ footer .btn-outline:hover{background:rgba(246,241,232,.15);color:#fff;border-col
 
   <div class="mob-ctx-card">
     <span class="mob-ctx-tag">The Dismissal</span>
-    <p class="mob-ctx-body">The Dismissal sends the faithful back into the world having participated in the Kingdom of Heaven. The antidoron — blessed but not consecrated bread — is distributed to all present as a token of love and community.</p>
+    <p class="mob-ctx-body">The Dismissal sends the faithful back into the world having participated in the Kingdom of Heaven. The antidoron, blessed but not consecrated bread, is distributed to all present as a token of love and community.</p>
   </div>
 
   <div class="visit-cta-card">
@@ -2338,8 +2338,8 @@ footer .btn-outline:hover{background:rgba(246,241,232,.15);color:#fff;border-col
   <div class="sidebar-track">
 
     <div class="sb-panel sb-active" data-panel="guidance">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Icon_of_Christ_Pantocrator%2C_Sinai%2C_6th_century.jpg/400px-Icon_of_Christ_Pantocrator%2C_Sinai%2C_6th_century.jpg" alt="Christ Pantocrator" class="sb-icon" onerror="this.src='https://picsum.photos/id/1038/400/260'"/>
-      <span class="sb-icon-cap">Christ Pantocrator &middot; Sinai, 6th century</span>
+      <img src="/images/sidebar/christ-pantocrator-sinai.jpg" alt="Christ Pantocrator icon" class="sb-icon" onerror="this.style.display='none'"/>
+      <span class="sb-icon-cap">Christ Pantocrator icon</span>
       <span class="sb-panel-tag">What Is the Divine Liturgy?</span>
       <div class="sb-rule"></div>
       <div class="sb-blockquote"><span class="sb-blockquote-text">"The services of the church offer the experience, rare in modern America, of entering into something holy and healing, and which does not change to win us over, but changes us for union with the Highest."</span></div>
@@ -2351,8 +2351,8 @@ footer .btn-outline:hover{background:rgba(246,241,232,.15);color:#fff;border-col
     </div>
 
     <div class="sb-panel" data-panel="great-litany">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Deesis_mosaic_Hagia_Sophia.jpg/400px-Deesis_mosaic_Hagia_Sophia.jpg" alt="Deesis mosaic, Hagia Sophia" class="sb-icon" onerror="this.src='https://picsum.photos/id/1040/400/260'"/>
-      <span class="sb-icon-cap">Deesis Mosaic &middot; Hagia Sophia, 13th century</span>
+      <img src="/images/sidebar/deesis-hagia-sophia.jpg" alt="Deesis mosaic" class="sb-icon" onerror="this.style.display='none'"/>
+      <span class="sb-icon-cap">Deesis mosaic</span>
       <span class="sb-panel-tag">The Great Litany &amp; Antiphons</span>
       <div class="sb-rule"></div>
       <span class="sb-panel-head">What Is a Litany?</span>
@@ -2365,19 +2365,19 @@ footer .btn-outline:hover{background:rgba(246,241,232,.15);color:#fff;border-col
     </div>
 
     <div class="sb-panel" data-panel="antiphon-1">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/BibleCodex.jpg/400px-BibleCodex.jpg" alt="Illuminated Psalter" class="sb-icon" onerror="this.src='https://picsum.photos/id/1015/400/260'"/>
-      <span class="sb-icon-cap">Illuminated Psalter &middot; Byzantine, 13th century</span>
+      <img src="/images/sidebar/illuminated-psalter.jpg" alt="Illuminated Byzantine psalter" class="sb-icon" onerror="this.style.display='none'"/>
+      <span class="sb-icon-cap">Illuminated Byzantine psalter</span>
       <span class="sb-panel-tag">The Music of the Divine Liturgy</span>
       <div class="sb-rule"></div>
       <span class="sb-panel-head">The Octoechos</span>
       <p class="sb-body" style="margin-top:.4rem">The Octoechos system is an eight-tone musical framework used in Byzantine and Slavic chant to organize specific melodies according to the liturgical calendar. The Temple had a choir of Levites, and the synagogues also made use of the Psalms. Orthodox Christians continued this musical tradition.</p>
       <div class="sb-rule"></div>
-      <p class="sb-body">Hymnographers like St. Romanos the Melodist and St. John of Damascus composed songs beloved to this day. This was the blossoming of the Byzantine musical tradition — the Znamenny chants of the Slavic peoples, and the harmonized choral settings that followed, all preserve deep theological richness, connecting American congregations to the ancient musical heritages of the faith.</p>
+      <p class="sb-body">Hymnographers like St. Romanos the Melodist and St. John of Damascus composed songs beloved to this day. This was the blossoming of the Byzantine musical tradition, including the Znamenny chants of the Slavic peoples, and the harmonized choral settings that followed, all preserve deep theological richness, connecting American congregations to the ancient musical heritages of the faith.</p>
     </div>
 
     <div class="sb-panel" data-panel="antiphon-2">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Justinian_mosaik_ravenna.jpg/400px-Justinian_mosaik_ravenna.jpg" alt="Justinian mosaic, Ravenna" class="sb-icon" onerror="this.src='https://picsum.photos/id/1016/400/260'"/>
-      <span class="sb-icon-cap">Emperor Justinian I &middot; San Vitale, Ravenna, 6th century</span>
+      <img src="/images/sidebar/justinian-ravenna.jpg" alt="Byzantine imperial mosaic" class="sb-icon" onerror="this.style.display='none'"/>
+      <span class="sb-icon-cap">Byzantine imperial mosaic</span>
       <span class="sb-panel-tag">The Second Antiphon</span>
       <div class="sb-rule"></div>
       <span class="sb-panel-head">Only Begotten Son</span>
@@ -2387,8 +2387,8 @@ footer .btn-outline:hover{background:rgba(246,241,232,.15);color:#fff;border-col
     </div>
 
     <div class="sb-panel" data-panel="antiphon-3">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Sermon_on_the_Mount_Fra_Angelico.jpg/400px-Sermon_on_the_Mount_Fra_Angelico.jpg" alt="Sermon on the Mount" class="sb-icon" onerror="this.src='https://picsum.photos/id/1019/400/260'"/>
-      <span class="sb-icon-cap">Sermon on the Mount &middot; Fra Angelico, c. 1440</span>
+      <img src="/images/sidebar/sermon-on-mount-fra-angelico.jpg" alt="The Sermon on the Mount" class="sb-icon" onerror="this.style.display='none'"/>
+      <span class="sb-icon-cap">The Sermon on the Mount</span>
       <span class="sb-panel-tag">The Beatitudes</span>
       <div class="sb-rule"></div>
       <p class="sb-body">The Beatitudes are not a list of rewards but a description of the Kingdom of Heaven as it exists now, present in those who mourn, the meek, the merciful, and the pure in heart. Sung at this moment, they prepare the faithful for the entrance of the Gospel into the church.</p>
@@ -2397,8 +2397,8 @@ footer .btn-outline:hover{background:rgba(246,241,232,.15);color:#fff;border-col
     </div>
 
     <div class="sb-panel" data-panel="little-entrance">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Theotokos_of_Vladimir.jpg/400px-Theotokos_of_Vladimir.jpg" alt="Theotokos of Vladimir icon" class="sb-icon" onerror="this.src='https://picsum.photos/id/1005/400/260'"/>
-      <span class="sb-icon-cap">Theotokos of Vladimir &middot; 12th century</span>
+      <img src="/images/sidebar/theotokos-of-vladimir.jpg" alt="Icon of the Theotokos" class="sb-icon" onerror="this.style.display='none'"/>
+      <span class="sb-icon-cap">Icon of the Theotokos</span>
       <span class="sb-panel-tag">The Little Entrance</span>
       <div class="sb-rule"></div>
       <p class="sb-body">The Little Entrance is a solemn procession where the Gospel Book is carried to the altar, symbolizing Christ's entry into the world and His presence among His people. This moment marks the transition to the proclamation of God's Word.</p>
@@ -2407,8 +2407,8 @@ footer .btn-outline:hover{background:rgba(246,241,232,.15);color:#fff;border-col
     </div>
 
     <div class="sb-panel" data-panel="trisagion">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Isaiah_scroll_MS_A_%28color%29.jpg/400px-Isaiah_scroll_MS_A_%28color%29.jpg" alt="Isaiah scroll" class="sb-icon" onerror="this.src='https://picsum.photos/id/1020/400/260'"/>
-      <span class="sb-icon-cap">Great Isaiah Scroll &middot; Dead Sea Scrolls, 2nd century BC</span>
+      <img src="/images/sidebar/isaiah-scroll.jpg" alt="The Isaiah Scroll" class="sb-icon" onerror="this.style.display='none'"/>
+      <span class="sb-icon-cap">The Isaiah Scroll</span>
       <span class="sb-panel-tag">Why Is There Chanting?</span>
       <div class="sb-rule"></div>
       <span class="sb-panel-head">An Ancient Sacred Practice</span>
@@ -2418,8 +2418,8 @@ footer .btn-outline:hover{background:rgba(246,241,232,.15);color:#fff;border-col
     </div>
 
     <div class="sb-panel" data-panel="readings">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Meister_des_Rabbula-Evangeliums_001.jpg/400px-Meister_des_Rabbula-Evangeliums_001.jpg" alt="Rabbula Gospels" class="sb-icon" onerror="this.src='https://picsum.photos/id/1025/400/260'"/>
-      <span class="sb-icon-cap">Rabbula Gospels &middot; Syrian, 586 AD</span>
+      <img src="/images/sidebar/rabbula-gospels.jpg" alt="Illuminated Gospel manuscript" class="sb-icon" onerror="this.style.display='none'"/>
+      <span class="sb-icon-cap">Illuminated Gospel manuscript</span>
       <span class="sb-panel-tag">The Proclamation of Scripture</span>
       <div class="sb-rule"></div>
       <span class="sb-panel-head">What Is the Prokeimenon?</span>
@@ -2432,8 +2432,8 @@ footer .btn-outline:hover{background:rgba(246,241,232,.15);color:#fff;border-col
     </div>
 
     <div class="sb-panel" data-panel="fervent">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Anastasis_mosaic_Chora.jpg/400px-Anastasis_mosaic_Chora.jpg" alt="Anastasis mosaic, Chora Church" class="sb-icon" onerror="this.src='https://picsum.photos/id/1035/400/260'"/>
-      <span class="sb-icon-cap">Anastasis Mosaic &middot; Chora Church, Constantinople, 14th century</span>
+      <img src="/images/sidebar/anastasis-chora.jpg" alt="Anastasis icon" class="sb-icon" onerror="this.style.display='none'"/>
+      <span class="sb-icon-cap">Anastasis icon</span>
       <span class="sb-panel-tag">Fervent Supplication</span>
       <div class="sb-rule"></div>
       <span class="sb-panel-head">The Triple Response</span>
@@ -2443,8 +2443,8 @@ footer .btn-outline:hover{background:rgba(246,241,232,.15);color:#fff;border-col
     </div>
 
     <div class="sb-panel" data-panel="catechumens">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Baptism_of_Christ_Hagia_Sophia.jpg/400px-Baptism_of_Christ_Hagia_Sophia.jpg" alt="Baptism of Christ" class="sb-icon" onerror="this.src='https://picsum.photos/id/1036/400/260'"/>
-      <span class="sb-icon-cap">Baptism of Christ &middot; Hagia Sophia, 9th century</span>
+      <img src="/images/sidebar/baptism-of-christ.jpg" alt="Baptism of Christ mosaic" class="sb-icon" onerror="this.style.display='none'"/>
+      <span class="sb-icon-cap">Baptism of Christ mosaic</span>
       <span class="sb-panel-tag">Who Are the Catechumens?</span>
       <div class="sb-rule"></div>
       <span class="sb-panel-head">Those Being Instructed</span>
@@ -2454,8 +2454,8 @@ footer .btn-outline:hover{background:rgba(246,241,232,.15);color:#fff;border-col
     </div>
 
     <div class="sb-panel" data-panel="faithful-litany">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Holy_Trinity_Andrei_Rublev.jpg/400px-Holy_Trinity_Andrei_Rublev.jpg" alt="Holy Trinity icon" class="sb-icon" onerror="this.src='https://picsum.photos/id/1039/400/260'"/>
-      <span class="sb-icon-cap">Holy Trinity &middot; Andrei Rublev, c. 1411</span>
+      <img src="/images/sidebar/holy-trinity-rublev.jpg" alt="Icon of the Holy Trinity" class="sb-icon" onerror="this.style.display='none'"/>
+      <span class="sb-icon-cap">Icon of the Holy Trinity</span>
       <span class="sb-panel-tag">Litanies of the Faithful</span>
       <div class="sb-rule"></div>
       <p class="sb-body">With the catechumens departed, the Church stands as one body: the baptized, the chrismated, the communing faithful. These two short litanies ask God to cleanse their souls and bodies and make them worthy to offer the Holy Gifts. They mark the solemn boundary between the Liturgy of the Word and the Liturgy of the Faithful.</p>
@@ -2464,8 +2464,8 @@ footer .btn-outline:hover{background:rgba(246,241,232,.15);color:#fff;border-col
     </div>
 
     <div class="sb-panel" data-panel="great-entrance">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Leonardo_da_Vinci_-_The_Last_Supper_high_res.jpg/400px-Leonardo_da_Vinci_-_The_Last_Supper_high_res.jpg" alt="The Last Supper" class="sb-icon" onerror="this.src='https://picsum.photos/id/1042/400/260'"/>
-      <span class="sb-icon-cap">The Last Supper &middot; Leonardo da Vinci, 1498</span>
+      <img src="/images/sidebar/communion-of-apostles-icon.jpg" alt="Communion of the Apostles icon" class="sb-icon" onerror="this.style.display='none'"/>
+      <span class="sb-icon-cap">Communion of the Apostles icon</span>
       <span class="sb-panel-tag">The Great Entrance</span>
       <div class="sb-rule"></div>
       <span class="sb-panel-head">The Cherubim</span>
@@ -2475,8 +2475,8 @@ footer .btn-outline:hover{background:rgba(246,241,232,.15);color:#fff;border-col
     </div>
 
     <div class="sb-panel" data-panel="supplication">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Hagia_Sophia_altar.jpg/400px-Hagia_Sophia_altar.jpg" alt="Orthodox altar" class="sb-icon" onerror="this.src='https://picsum.photos/id/1043/400/260'"/>
-      <span class="sb-icon-cap">The Holy Altar &middot; Orthodox liturgical practice</span>
+      <img src="/images/sidebar/hagia-sophia-altar.jpg" alt="Orthodox altar" class="sb-icon" onerror="this.style.display='none'"/>
+      <span class="sb-icon-cap">Orthodox altar</span>
       <span class="sb-panel-tag">Litany of Supplication</span>
       <div class="sb-rule"></div>
       <span class="sb-panel-head">Grant It, O Lord</span>
@@ -2484,8 +2484,8 @@ footer .btn-outline:hover{background:rgba(246,241,232,.15);color:#fff;border-col
     </div>
 
     <div class="sb-panel" data-panel="peace-creed">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Council_of_Nicaea_icon.jpg/400px-Council_of_Nicaea_icon.jpg" alt="Council of Nicaea" class="sb-icon" onerror="this.src='https://picsum.photos/id/1044/400/260'"/>
-      <span class="sb-icon-cap">First Council of Nicaea &middot; Icon, traditional</span>
+      <img src="/images/sidebar/council-of-nicaea.jpg" alt="The Council of Nicaea" class="sb-icon" onerror="this.style.display='none'"/>
+      <span class="sb-icon-cap">The Council of Nicaea</span>
       <span class="sb-panel-tag">The Symbol of Our Faith</span>
       <div class="sb-rule"></div>
       <span class="sb-panel-head">What Is a Creed?</span>
@@ -2495,8 +2495,8 @@ footer .btn-outline:hover{background:rgba(246,241,232,.15);color:#fff;border-col
     </div>
 
     <div class="sb-panel" data-panel="anaphora">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Communion_of_the_Apostles.jpg/400px-Communion_of_the_Apostles.jpg" alt="Communion of Apostles" class="sb-icon" onerror="this.src='https://picsum.photos/id/1048/400/260'"/>
-      <span class="sb-icon-cap">Communion of the Apostles &middot; Byzantine mosaic, 12th century</span>
+      <img src="/images/sidebar/communion-of-apostles.jpg" alt="Communion of the Apostles" class="sb-icon" onerror="this.style.display='none'"/>
+      <span class="sb-icon-cap">Communion of the Apostles</span>
       <span class="sb-panel-tag">The Anaphora</span>
       <div class="sb-rule"></div>
       <span class="sb-panel-head">Mary and All the Saints</span>
@@ -2506,8 +2506,8 @@ footer .btn-outline:hover{background:rgba(246,241,232,.15);color:#fff;border-col
     </div>
 
     <div class="sb-panel" data-panel="before-lords-prayer">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Chalice_%28PSF%29.jpg/400px-Chalice_%28PSF%29.jpg" alt="The Holy Chalice" class="sb-icon" onerror="this.src='https://picsum.photos/id/1050/400/260'"/>
-      <span class="sb-icon-cap">The Holy Chalice &middot; Symbol of the Eucharist</span>
+      <img src="/images/sidebar/holy-chalice.jpg" alt="The Holy Chalice" class="sb-icon" onerror="this.style.display='none'"/>
+      <span class="sb-icon-cap">The Holy Chalice</span>
       <span class="sb-panel-tag">What Is Happening Before Communion?</span>
       <div class="sb-rule"></div>
       <span class="sb-panel-head">The Koinonikon</span>
@@ -2517,8 +2517,8 @@ footer .btn-outline:hover{background:rgba(246,241,232,.15);color:#fff;border-col
     </div>
 
     <div class="sb-panel" data-panel="lords-prayer">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Our_Father_in_Aramaic.jpg/400px-Our_Father_in_Aramaic.jpg" alt="The Lord's Prayer" class="sb-icon" onerror="this.src='https://picsum.photos/id/1051/400/260'"/>
-      <span class="sb-icon-cap">The Lord's Prayer &middot; Orthodox liturgical tradition</span>
+      <img src="/images/sidebar/lords-prayer-aramaic.jpg" alt="The Lord's Prayer" class="sb-icon" onerror="this.style.display='none'"/>
+      <span class="sb-icon-cap">The Lord's Prayer</span>
       <span class="sb-panel-tag">The Lord's Prayer</span>
       <div class="sb-rule"></div>
       <span class="sb-panel-head">The Prayer of Christ</span>
@@ -2528,8 +2528,8 @@ footer .btn-outline:hover{background:rgba(246,241,232,.15);color:#fff;border-col
     </div>
 
     <div class="sb-panel" data-panel="communion">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Icon_of_Christ_Pantocrator%2C_Sinai%2C_6th_century.jpg/400px-Icon_of_Christ_Pantocrator%2C_Sinai%2C_6th_century.jpg" alt="Christ Pantocrator" class="sb-icon" onerror="this.src='https://picsum.photos/id/1052/400/260'"/>
-      <span class="sb-icon-cap">Christ Pantocrator &middot; Sinai, 6th century</span>
+      <img src="/images/sidebar/christ-pantocrator-sinai.jpg" alt="Christ Pantocrator icon" class="sb-icon" onerror="this.style.display='none'"/>
+      <span class="sb-icon-cap">Christ Pantocrator icon</span>
       <span class="sb-panel-tag">Why Is Communion So Important?</span>
       <div class="sb-rule"></div>
       <p class="sb-body">St. Ignatius, the martyred 1st century bishop of Antioch, writes: "the Eucharist is the flesh of our Savior Jesus Christ, flesh which suffered for our sins and which the Father, in His goodness, raised up again." St. Justin the Martyr wrote in 150 AD: "this food is called among us Eucharist, of which no one is allowed to partake but the man who believes... and who has been washed with the washing that is for the remission of sins."</p>
@@ -2538,8 +2538,8 @@ footer .btn-outline:hover{background:rgba(246,241,232,.15);color:#fff;border-col
     </div>
 
     <div class="sb-panel" data-panel="thanksgiving">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Mosaic_of_John_Chrysostom_from_Hagia_Sophia.jpg/400px-Mosaic_of_John_Chrysostom_from_Hagia_Sophia.jpg" alt="St. John Chrysostom" class="sb-icon" onerror="this.src='https://picsum.photos/id/1053/400/260'"/>
-      <span class="sb-icon-cap">St. John Chrysostom &middot; Hagia Sophia, 9th century</span>
+      <img src="/images/sidebar/john-chrysostom-mosaic.jpg" alt="St. John Chrysostom mosaic" class="sb-icon" onerror="this.style.display='none'"/>
+      <span class="sb-icon-cap">St. John Chrysostom mosaic</span>
       <span class="sb-panel-tag">Thanksgiving &amp; Dismissal</span>
       <div class="sb-rule"></div>
       <span class="sb-panel-head">What Is the Amvon?</span>
@@ -2550,8 +2550,8 @@ footer .btn-outline:hover{background:rgba(246,241,232,.15);color:#fff;border-col
     </div>
 
     <div class="sb-panel" data-panel="after-communion">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Praying_Hands_Durer.jpg/400px-Praying_Hands_Durer.jpg" alt="Praying Hands, Durer" class="sb-icon" onerror="this.src='https://picsum.photos/id/1054/400/260'"/>
-      <span class="sb-icon-cap">Praying Hands &middot; Albrecht D&#252;rer, 1508</span>
+      <img src="/images/sidebar/praying-hands-durer.jpg" alt="Hands in prayer" class="sb-icon" onerror="this.style.display='none'"/>
+      <span class="sb-icon-cap">Hands in prayer</span>
       <span class="sb-panel-tag">Saint John Chrysostom</span>
       <div class="sb-rule"></div>
       <span class="sb-panel-head">The Golden-Mouthed</span>
@@ -2592,12 +2592,11 @@ footer .btn-outline:hover{background:rgba(246,241,232,.15);color:#fff;border-col
   </div>
   <div class="mob-sheet-list">
     <span class="mob-sheet-group">Before the Service</span>
-    <button class="mob-sheet-item" data-sheet-id="guidance" onclick="sheetJump('guidance')"><span class="mob-sheet-num">&#10013;</span><span class="mob-sheet-name">Guidance on Participation</span></button>
     <span class="mob-sheet-group">Liturgy of the Word</span>
     <button class="mob-sheet-item" data-sheet-id="great-litany" onclick="sheetJump('great-litany')"><span class="mob-sheet-num">I</span><span class="mob-sheet-name">Great Litany</span></button>
     <button class="mob-sheet-item" data-sheet-id="antiphon-1" onclick="sheetJump('antiphon-1')"><span class="mob-sheet-num">II</span><span class="mob-sheet-name">First Antiphon</span></button>
     <button class="mob-sheet-item" data-sheet-id="antiphon-2" onclick="sheetJump('antiphon-2')"><span class="mob-sheet-num">III</span><span class="mob-sheet-name">Second Antiphon</span></button>
-    <button class="mob-sheet-item" data-sheet-id="antiphon-3" onclick="sheetJump('antiphon-3')"><span class="mob-sheet-num">IV</span><span class="mob-sheet-name">Third Antiphon &mdash; The Beatitudes</span></button>
+    <button class="mob-sheet-item" data-sheet-id="antiphon-3" onclick="sheetJump('antiphon-3')"><span class="mob-sheet-num">IV</span><span class="mob-sheet-name">Third Antiphon, The Beatitudes</span></button>
     <button class="mob-sheet-item" data-sheet-id="little-entrance" onclick="sheetJump('little-entrance')"><span class="mob-sheet-num">V</span><span class="mob-sheet-name">Little Entrance</span></button>
     <button class="mob-sheet-item" data-sheet-id="trisagion" onclick="sheetJump('trisagion')"><span class="mob-sheet-num">VI</span><span class="mob-sheet-name">Trisagion</span></button>
     <button class="mob-sheet-item" data-sheet-id="readings" onclick="sheetJump('readings')"><span class="mob-sheet-num">VII</span><span class="mob-sheet-name">The Readings</span></button>
@@ -2614,6 +2613,7 @@ footer .btn-outline:hover{background:rgba(246,241,232,.15);color:#fff;border-col
     <button class="mob-sheet-item" data-sheet-id="lords-prayer" onclick="sheetJump('lords-prayer')"><span class="mob-sheet-num">XVI</span><span class="mob-sheet-name">The Lord's Prayer</span></button>
     <button class="mob-sheet-item" data-sheet-id="communion" onclick="sheetJump('communion')"><span class="mob-sheet-num">XVII</span><span class="mob-sheet-name">Holy Communion</span></button>
     <button class="mob-sheet-item" data-sheet-id="thanksgiving" onclick="sheetJump('thanksgiving')"><span class="mob-sheet-num">XVIII</span><span class="mob-sheet-name">Thanksgiving &amp; Dismissal</span></button>
+    <button class="mob-sheet-item" data-sheet-id="guidance" onclick="sheetJump('guidance')"><span class="mob-sheet-num">&#10013;</span><span class="mob-sheet-name">Guidance on Participation</span></button>
     <span class="mob-sheet-group">Appendix</span>
     <button class="mob-sheet-item" data-sheet-id="after-communion" onclick="sheetJump('after-communion')"><span class="mob-sheet-num">&#10013;</span><span class="mob-sheet-name">After Communion Prayers</span></button>
   </div>
@@ -2693,7 +2693,6 @@ function jumpTo(id){
 
 // ── SECTION DATA ──
 const SECTIONS=[
-  {id:'guidance',    label:'Guidance',            rail:'guidance',            panel:'guidance'},
   {id:'great-litany',label:'Great Litany',         rail:'great-litany',        panel:'great-litany'},
   {id:'antiphon-1',  label:'First Antiphon',       rail:'antiphon-1',          panel:'antiphon-1'},
   {id:'antiphon-2',  label:'Second Antiphon',      rail:'antiphon-2',          panel:'antiphon-2'},
@@ -2712,6 +2711,7 @@ const SECTIONS=[
   {id:'lords-prayer',label:"The Lord's Prayer",   rail:'lords-prayer',        panel:'lords-prayer'},
   {id:'communion',   label:'Holy Communion',       rail:'communion',           panel:'communion'},
   {id:'thanksgiving',label:'Thanksgiving',         rail:'thanksgiving',        panel:'thanksgiving'},
+  {id:'guidance',    label:'Guidance',            rail:'guidance',            panel:'guidance'},
   {id:'after-communion',label:'After Communion',   rail:'after-communion',     panel:'after-communion'}
 ];
 
