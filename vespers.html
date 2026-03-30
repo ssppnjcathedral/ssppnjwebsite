@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Vespers &middot; Saints Peter &amp; Paul Orthodox Cathedral</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --vellum:#F6F1E8;--vellum-mid:#EDE7DC;--vellum-alt:#E8E0D0;
+  --text:#1E1510;--ink:#2C1F16;
+  --maroon:#7B1D2A;--maroon-deep:#5C1520;
+  --gold:#B88328;--gold-lt:#E8C97A;
+  --verdigris:#3D6B5E;--stone:#7A6648;--stone-lt:#A89070;
+  --apse:#3B0F18;
+  --f-display:'Cormorant Garamond',Georgia,serif;
+  --f-body:'EB Garamond',Georgia,serif;
+  --f-ui:'Cinzel',Georgia,serif;
+  --rule:1px solid var(--maroon);
+  --rule-faint:1px solid rgba(123,29,42,0.14);
+  --rule-hair:1px solid rgba(123,29,42,0.07)
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--vellum);color:var(--text);font-family:var(--f-body);font-size:23px;line-height:1.75;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+
+.rubric{display:block;font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.20em;text-transform:uppercase;color:var(--stone);margin-bottom:.5rem}
+.rubric.light{color:rgba(246,241,232,.55)}
+.rubric-rule{display:block;height:1px;background:var(--maroon);margin-bottom:1rem;width:48px}
+.rubric-voice{display:block;font-family:var(--f-display);font-style:italic;font-weight:400;font-size:1.15rem;color:var(--maroon);margin-top:.4rem;line-height:1.4}
+.btn{display:inline-block;font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;padding:.85rem 2.2rem;border:1px solid currentColor;cursor:pointer;transition:all .22s;white-space:nowrap}
+.btn-maroon{color:var(--vellum);background:var(--maroon);border-color:var(--maroon)}
+.btn-maroon:hover{background:var(--maroon-deep)}
+.btn-outline{color:var(--maroon);border-color:var(--maroon)}
+.btn-outline:hover{background:var(--maroon);color:var(--vellum)}
+.btn-vellum{color:var(--maroon);background:var(--vellum);border-color:var(--vellum)}
+.btn-vellum:hover{background:var(--vellum-mid)}
+
+/* ── NAV ── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(246,241,232,.97);backdrop-filter:blur(10px);border-bottom:var(--rule-faint)}
+.nav-inner{max-width:1380px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px;padding:0 2rem}
+.nav-logo-name{font-family:var(--f-display);font-weight:500;font-size:1.25rem;color:var(--text);display:block}
+.nav-logo-sub{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);display:block}
+.nav-links{display:flex;align-items:center;list-style:none}
+.nav-links>li{position:relative}
+.nav-links>li>a{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);padding:1.1rem .65rem;display:block;transition:color .18s}
+.nav-links>li:hover>a{color:var(--maroon)}
+.nav-drop{position:absolute;top:100%;left:0;background:var(--vellum);border-top:2px solid var(--maroon);border-bottom:var(--rule-faint);border-left:var(--rule-faint);border-right:var(--rule-faint);min-width:200px;padding:.5rem 0;opacity:0;pointer-events:none;transform:translateY(-4px);transition:all .16s;box-shadow:0 8px 28px rgba(28,20,16,.10)}
+.nav-links>li:hover .nav-drop{opacity:1;pointer-events:all;transform:none}
+.nav-drop a{display:block;font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);padding:.5rem 1.4rem;transition:color .14s}
+.nav-drop a:hover{color:var(--maroon)}
+.nav-links .nav-active-parent>a{color:var(--maroon);border-bottom:2px solid var(--gold)}
+.nav-drop .nav-active{color:var(--maroon);font-weight:600}
+.nav-give{font-family:var(--f-ui);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--vellum);background:var(--maroon);padding:.5rem 1.1rem;transition:background .2s}
+.nav-give:hover{background:var(--maroon-deep)}
+.nav-hamburger{display:none;flex-direction:column;justify-content:space-between;width:28px;height:20px;cursor:pointer;padding:0;background:none;border:none;z-index:400}
+.nav-hamburger span{display:block;width:100%;height:2px;background:var(--maroon);transition:all .28s ease;transform-origin:center}
+.nav-hamburger.open span:nth-child(1){transform:translateY(9px) rotate(45deg)}
+.nav-hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-9px) rotate(-45deg)}
+
+/* ── MOBILE DRAWER ── */
+.nav-drawer{position:fixed;top:0;right:0;width:300px;max-width:85vw;height:100vh;background:var(--apse);z-index:350;transform:translateX(100%);transition:transform .32s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;overflow-y:auto}
+.nav-drawer.open{transform:translateX(0)}
+.nav-drawer-overlay{position:fixed;inset:0;background:rgba(21,8,4,.65);z-index:340;opacity:0;pointer-events:none;transition:opacity .32s}
+.nav-drawer-overlay.open{opacity:1;pointer-events:all}
+.nav-drawer-head{padding:1.5rem 1.75rem 1rem;border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:space-between}
+.nav-drawer-logo{font-family:var(--f-display);font-weight:500;font-size:1.1rem;color:#fff}
+.nav-drawer-logo span{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);display:block;margin-top:2px}
+.nav-drawer-close{width:32px;height:32px;background:rgba(255,255,255,.08);border:none;color:rgba(255,255,255,.65);cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.nav-drawer-close:hover{background:rgba(255,255,255,.15)}
+.nav-drawer-links{padding:1rem 0;flex:1}
+.nav-drawer-links a{display:block;font-family:var(--f-ui);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,232,.70);padding:.9rem 1.75rem;border-bottom:1px solid rgba(255,255,255,.05);transition:all .18s}
+.nav-drawer-links a:hover{color:#fff;background:rgba(255,255,255,.05)}
+.nav-drawer-links .drawer-section{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(184,131,40,.55);padding:.85rem 1.75rem .35rem;display:block}
+.nav-drawer-give{margin:1.25rem 1.75rem;display:block;text-align:center;font-family:var(--f-ui);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;padding:.85rem;background:var(--maroon);color:var(--vellum);transition:background .2s}
+.nav-drawer-give:hover{background:var(--maroon-deep)}
+
+/* ── PAGE HERO ── */
+.page-hero{padding-top:60px;background:linear-gradient(to right,rgba(59,15,24,.92) 0%,rgba(59,15,24,.72) 55%,rgba(59,15,24,.38) 100%),url('https://picsum.photos/id/1018/1600/700') center/cover no-repeat;background-color:var(--apse);min-height:460px;display:flex;align-items:center;position:relative;overflow:hidden}
+.page-hero-inner{max-width:1380px;margin:0 auto;padding:5rem 6rem 4rem 3.5rem;width:100%}
+.page-title{font-family:var(--f-display);font-weight:300;font-size:clamp(2.5rem,5vw,4.5rem);line-height:.95;color:#fff;margin:.5rem 0 .75rem;max-width:700px}
+.page-title em{font-style:italic;font-weight:300}
+.page-subtitle{font-family:var(--f-display);font-style:italic;font-size:1.55rem;color:rgba(255,255,255,.75);margin-top:.5rem;max-width:560px;line-height:1.4}
+.breadcrumb{font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.42);margin-bottom:1.5rem}
+.breadcrumb a{color:rgba(232,201,122,.70)}
+.breadcrumb a:hover{color:var(--gold-lt)}
+
+/* ── CHAPTER BAR ── */
+.chapter-bar{background:var(--maroon);padding:.65rem 4rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.cbar-text{font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:rgba(246,241,232,.60)}
+.cbar-text.bright{color:rgba(246,241,232,.90)}
+.cbar-links{display:flex;gap:1.25rem;flex-wrap:wrap}
+.cbar-link{font-family:var(--f-ui);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,232,.55);transition:color .18s;cursor:pointer;border:none;background:none;padding:0}
+.cbar-link:hover,.cbar-link.cbar-active{color:rgba(232,201,122,.92)}
+
+/* ── THREE-COLUMN LAYOUT ── */
+.liturgy-layout{display:grid;grid-template-columns:72px 1fr 300px;max-width:1380px;margin:0 auto;background:var(--vellum);position:relative;min-height:80vh}
+
+/* ── LEFT NAV RAIL ── */
+.lit-rail{position:sticky;top:60px;height:calc(100vh - 60px);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1.5rem 0;border-right:var(--rule-faint);z-index:10;opacity:0;transition:opacity .5s}
+.lit-rail.rail-visible{opacity:1}
+.rail-connector{width:1px;background:rgba(123,29,42,.10);flex:1;max-height:14px}
+.rail-item{display:flex;flex-direction:column;align-items:center;cursor:pointer;position:relative;padding:.14rem 0}
+.rail-dot-wrap{width:36px;height:28px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+.rail-dot{width:7px;height:7px;border-radius:50%;border:1.5px solid rgba(123,29,42,.28);background:transparent;transition:all .28s cubic-bezier(.22,1,.36,1)}
+.rail-item.rail-active .rail-dot{background:var(--maroon);border-color:var(--maroon);width:9px;height:9px;box-shadow:0 0 0 3px rgba(123,29,42,.12)}
+.rail-num{font-family:var(--f-ui);font-size:.52rem;letter-spacing:.05em;color:rgba(123,29,42,.28);display:block;transition:color .28s;line-height:1}
+.rail-item.rail-active .rail-num{color:var(--maroon)}
+.rail-label{position:absolute;left:calc(100% + 10px);top:50%;transform:translateY(-50%);background:var(--vellum);border:var(--rule-faint);border-left:2px solid var(--maroon);padding:.28rem .7rem;font-family:var(--f-ui);font-size:.58rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--maroon);white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .18s;box-shadow:0 2px 10px rgba(28,20,16,.08)}
+.rail-item:hover .rail-label{opacity:1}
+
+/* ── MAIN ARTICLE ── */
+.lit-main{padding:4.5rem 4rem 7rem 3.5rem;max-width:700px}
+
+/* ── SECTION BLOCKS ── */
+.lit-section{padding:4.5rem 0 2.5rem;border-top:var(--rule-faint);position:relative;scroll-margin-top:80px}
+.lit-section:first-child{border-top:none;padding-top:0}
+.section-watermark{font-family:var(--f-display);font-weight:300;font-size:10rem;color:var(--maroon);opacity:.04;position:absolute;right:-1.5rem;top:.25rem;line-height:1;pointer-events:none;user-select:none;z-index:0}
+.section-tag{font-family:var(--f-ui);font-size:.62rem;font-weight:500;letter-spacing:.20em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.6rem;position:relative;z-index:1}
+.section-head{font-family:var(--f-display);font-weight:400;font-size:clamp(1.7rem,2.8vw,2.4rem);color:var(--text);line-height:1.08;margin-bottom:.4rem;position:relative;z-index:1}
+.section-head em{font-style:italic;font-weight:300}
+.section-sub{font-family:var(--f-display);font-style:italic;font-size:clamp(1.4rem,2.5vw,1.8rem);color:var(--maroon);display:block;margin-bottom:1.85rem;line-height:1.38;position:relative;z-index:1}
+.prose{font-family:var(--f-body);font-size:1rem;line-height:1.88;color:var(--ink);hyphens:auto;position:relative;z-index:1}
+.prose p{margin-bottom:1.3em}
+.prose strong{font-weight:500;color:var(--text)}
+.drop-cap::first-letter{font-family:var(--f-display);font-style:italic;font-weight:300;font-size:4.5em;line-height:.78;float:left;margin-right:.08em;margin-top:.06em;color:var(--maroon)}
+
+/* ── STRUCTURE HEADER ── */
+.structure-header{padding:3.5rem 0 1.25rem;border-top:var(--rule-faint);scroll-margin-top:80px}
+
+/* ── SUBSECTION HEADINGS ── */
+.lit-subsection{margin:2.25rem 0 0;padding-top:1.75rem;border-top:var(--rule-hair)}
+.subsection-head{font-family:var(--f-display);font-weight:500;font-size:1.25rem;color:var(--text);line-height:1.2;margin-bottom:.25rem}
+.subsection-sub{font-family:var(--f-display);font-style:italic;font-size:clamp(1.2rem,2vw,1.4rem);color:var(--maroon);display:block;margin-bottom:.9rem}
+.subsection-num{font-family:var(--f-ui);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.3rem}
+
+/* ── CALLOUT BOX ── */
+.callout-box{background:var(--vellum-mid);border-left:3px solid var(--gold);border-radius:0;padding:1.5rem 1.65rem;margin:2.5rem 0;position:relative;z-index:1}
+.callout-tag{font-family:var(--f-ui);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.4rem}
+.callout-head{font-family:var(--f-display);font-weight:500;font-size:1.5rem;color:var(--text);margin-bottom:.2rem;line-height:1.15}
+.callout-sub{font-family:var(--f-body);font-size:1.05rem;color:var(--stone);display:block;margin-bottom:.9rem}
+.callout-body{font-family:var(--f-body);font-size:1.05rem;line-height:1.80;color:var(--ink)}
+.callout-body strong{color:var(--text);font-weight:500}
+
+/* ── SUPPLEMENTARY SECTIONS ── */
+.supp-section{padding:4rem 0 2.5rem;border-top:var(--rule-faint);position:relative;scroll-margin-top:80px}
+.supp-tag{font-family:var(--f-ui);font-size:.62rem;font-weight:500;letter-spacing:.20em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.6rem}
+.supp-head{font-family:var(--f-display);font-weight:400;font-size:clamp(1.9rem,2.8vw,2.4rem);color:var(--text);line-height:1.1;margin-bottom:.4rem}
+.supp-sub{font-family:var(--f-display);font-style:italic;font-size:1.4rem;color:var(--maroon);display:block;margin-bottom:1.6rem}
+
+/* ── VISIT CTA CARD ── */
+.visit-cta-card{background:var(--vellum-mid);border:var(--rule-faint);border-left:3px solid var(--gold);padding:1.85rem 2.1rem;margin:3rem 0}
+.visit-cta-card h3{font-family:var(--f-display);font-weight:400;font-size:1.5rem;color:var(--text);margin:.3rem 0 .5rem}
+.visit-cta-card p{font-family:var(--f-body);font-size:.94rem;line-height:1.78;color:var(--ink);margin-bottom:1.25rem}
+.visit-cta-btns{display:flex;gap:.75rem;flex-wrap:wrap}
+
+/* ── MOBILE SIDEBAR CARDS ── */
+.mob-ctx-card{display:none;background:var(--maroon);padding:1.6rem 1.75rem;margin:1.75rem 0}
+.mob-ctx-tag{font-family:var(--f-ui);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(232,201,122,.58);display:block;margin-bottom:.55rem}
+.mob-ctx-body{font-family:var(--f-body);font-size:1.05rem;line-height:1.78;color:rgba(246,241,232,.80)}
+
+/* ── RIGHT SIDEBAR PANEL ── */
+.lit-sidebar{position:sticky;top:60px;height:calc(100vh - 60px);border-left:var(--rule-faint);background:var(--vellum);overflow:hidden}
+.sidebar-track{height:100%;position:relative;overflow:hidden}
+.sb-panel{position:absolute;inset:0;padding:2.25rem 2rem 2.25rem 2.25rem;opacity:0;transform:translateY(10px);transition:opacity .38s cubic-bezier(.22,1,.36,1),transform .38s cubic-bezier(.22,1,.36,1);pointer-events:none;overflow-y:auto;scrollbar-width:thin;scrollbar-color:rgba(123,29,42,.15) transparent}
+.sb-panel.sb-active{opacity:1;transform:none;pointer-events:all}
+.sb-panel-tag{font-family:var(--f-ui);font-size:.60rem;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.5rem}
+.sb-rule{height:1px;background:rgba(123,29,42,.10);margin:1.1rem 0}
+.sb-panel-head{font-family:var(--f-display);font-weight:400;font-size:1.15rem;color:var(--text);line-height:1.25;margin-bottom:.5rem;display:block}
+.sb-body{font-family:var(--f-body);font-size:1.05rem;line-height:1.78;color:var(--ink);opacity:.90}
+.sb-body em{font-style:italic}
+.sb-body strong{font-weight:500}
+.sb-icon{width:100%;max-height:170px;object-fit:cover;object-position:center top;margin-bottom:.8rem;display:block;filter:sepia(.08)}
+.sb-icon-cap{font-family:var(--f-ui);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);display:block;padding-bottom:.65rem;margin-bottom:1rem;border-bottom:var(--rule-hair)}
+.sb-blockquote{border-left:2px solid var(--maroon);padding-left:1rem;margin:1rem 0}
+.sb-blockquote-text{font-family:var(--f-display);font-style:italic;font-size:1.2rem;line-height:1.55;color:var(--text);display:block}
+.sb-blockquote-attr{font-family:var(--f-ui);font-size:.58rem;letter-spacing:.13em;text-transform:uppercase;color:var(--stone);display:block;margin-top:.45rem}
+.sb-scripture{text-align:center;padding:.85rem .5rem}
+.sb-scripture-text{font-family:var(--f-display);font-style:italic;font-size:1rem;color:var(--maroon);line-height:1.5;display:block;margin-bottom:.3rem}
+.sb-scripture-ref{font-family:var(--f-ui);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone)}
+.sb-chi-rho{text-align:center;font-size:2.5rem;color:var(--maroon);opacity:.22;display:block;margin:1.5rem 0 .5rem;line-height:1}
+
+/* ── QUOTE BREAK ── */
+.quote-break{margin:0;padding:4rem 4.5rem;background:var(--vellum);border-top:var(--rule-faint);border-bottom:var(--rule-faint)}
+.qb-inner{max-width:680px;margin:0 auto;padding-left:2rem;border-left:3px solid var(--maroon)}
+.qb-text{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-weight:300;font-size:clamp(1.5rem,3vw,2.2rem);line-height:1.4;color:var(--text);margin-bottom:.75rem}
+.qb-attr{font-family:'Cinzel',Georgia,serif;font-size:.72rem;letter-spacing:.20em;text-transform:uppercase;color:var(--maroon);display:block}
+
+/* ── FINAL CTA ── */
+.lit-cta{background:var(--maroon);padding:3.75rem 4.5rem;text-align:center}
+.lit-cta-head{font-family:var(--f-display);font-weight:300;font-size:clamp(2rem,3.5vw,3rem);color:#fff;margin-bottom:.4rem;line-height:1.1}
+.lit-cta-head em{font-style:italic}
+.lit-cta-sub{font-family:var(--f-display);font-style:italic;font-size:1.6rem;color:rgba(255,255,255,.70);margin-bottom:2rem;display:block}
+.lit-cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+@media(max-width:600px){.lit-cta-btns{flex-direction:column;align-items:center}.lit-cta-btns .btn{width:100%;max-width:240px;text-align:center;padding:.6rem 1.2rem}}
+footer .btn-outline{color:rgba(246,241,232,.92);border-color:rgba(246,241,232,.55)}
+footer .btn-outline:hover{background:rgba(246,241,232,.15);color:#fff;border-color:rgba(246,241,232,.80)}
+
+/* ── FOOTER ── */
+footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:3rem 4.5rem 2rem}
+.footer-cross{display:block;text-align:center;font-size:1.1rem;color:rgba(184,131,40,.45);letter-spacing:.8em;padding-left:.8em;margin-bottom:2.5rem}
+.footer-cols{max-width:1380px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:4rem;margin-bottom:2.5rem}
+.footer-col-head{font-family:var(--f-ui);font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(246,241,232,.82);display:block;margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid rgba(246,241,232,.18)}
+.footer-name{font-family:var(--f-display);font-weight:400;font-size:1.1rem;color:rgba(246,241,232,.88);line-height:1.3;margin-bottom:.75rem}
+.footer-meta{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.72);line-height:2.3}
+.footer-meta a{color:rgba(184,131,40,.85);transition:color .2s}
+.footer-meta a:hover{color:var(--gold)}
+.footer-blurb{font-family:var(--f-display);font-style:italic;font-size:.95rem;color:rgba(246,241,232,.85);line-height:1.65;margin-bottom:1.25rem}
+.footer-nav{list-style:none;display:flex;flex-direction:column}
+.footer-nav li{padding:.35rem 0;border-bottom:1px solid rgba(246,241,232,.10)}
+.footer-nav li:last-child{border-bottom:none}
+.footer-nav a{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,232,.85);transition:color .2s}
+.footer-nav a:hover{color:rgba(246,241,232,.95)}
+.footer-bottom{max-width:1380px;margin:2rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(246,241,232,.12);display:flex;justify-content:space-between;align-items:center}
+.footer-copy,.footer-addr{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.60)}
+.footer-addr{text-align:right}
+
+/* ── MOBILE FLOATING PILL ── */
+.mob-pill{display:flex;position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);background:var(--apse);border:1px solid rgba(184,131,40,.20);border-radius:100px;padding:.5rem .85rem;z-index:150;align-items:center;gap:.6rem;box-shadow:0 6px 30px rgba(21,8,4,.38);opacity:0;transition:opacity .4s}
+.mob-pill.pill-visible{opacity:1}
+.mob-pill-arrow{background:rgba(255,255,255,.06);border:none;color:rgba(246,241,232,.60);font-size:1.05rem;cursor:pointer;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:all .18s;flex-shrink:0}
+.mob-pill-arrow:hover:not(:disabled){background:rgba(255,255,255,.14);color:#fff}
+.mob-pill-arrow:disabled{opacity:.22;cursor:default}
+.mob-pill-label{font-family:var(--f-ui);font-size:.58rem;letter-spacing:.11em;text-transform:uppercase;color:rgba(246,241,232,.80);padding:.3rem 1rem;display:flex;align-items:center;justify-content:center;gap:.5rem;min-width:150px;cursor:pointer;transition:color .18s}
+.mob-pill-label:hover{color:#fff}
+.mob-pill-hint{display:flex;align-items:center;flex-shrink:0}
+.mob-pill-hint svg{width:12px;height:12px;flex-shrink:0}
+
+/* ── BOTTOM SHEET ── */
+.mob-sheet-overlay{display:none;position:fixed;inset:0;background:rgba(21,8,4,.60);z-index:300;opacity:0;transition:opacity .28s}
+.mob-sheet-overlay.open{opacity:1;display:block}
+.mob-sheet{position:fixed;bottom:0;left:0;right:0;background:var(--apse);z-index:310;border-top:1px solid rgba(184,131,40,.18);border-radius:18px 18px 0 0;transform:translateY(100%);transition:transform .32s cubic-bezier(.4,0,.2,1);max-height:78vh;display:none;flex-direction:column}
+.mob-sheet.open{transform:translateY(0);display:flex}
+.mob-sheet-handle{width:36px;height:4px;background:rgba(246,241,232,.18);border-radius:2px;margin:1rem auto .5rem;flex-shrink:0}
+.mob-sheet-head{padding:.5rem 1.5rem 1rem;border-bottom:1px solid rgba(255,255,255,.06);flex-shrink:0;display:flex;align-items:center;justify-content:space-between}
+.mob-sheet-title{font-family:var(--f-display);font-size:1.25rem;font-weight:500;color:#fff;letter-spacing:.02em}
+.mob-sheet-close{background:rgba(255,255,255,.06);border:none;color:rgba(246,241,232,.55);width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:.85rem;display:flex;align-items:center;justify-content:center;transition:background .18s}
+.mob-sheet-close:hover{background:rgba(255,255,255,.14);color:#fff}
+.mob-sheet-list{overflow-y:auto;flex:1;padding:.5rem 0 2rem;-webkit-overflow-scrolling:touch}
+.mob-sheet-group{font-family:var(--f-ui);font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(184,131,40,.45);padding:.9rem 1.5rem .35rem;display:block}
+.mob-sheet-item{display:flex;align-items:center;gap:.85rem;padding:.75rem 1.5rem;border:none;background:none;width:100%;text-align:left;cursor:pointer;transition:background .16s;border-bottom:1px solid rgba(255,255,255,.04)}
+.mob-sheet-item:hover{background:rgba(255,255,255,.05)}
+.mob-sheet-item.sheet-active{background:rgba(123,29,42,.35)}
+.mob-sheet-num{font-family:var(--f-ui);font-size:.55rem;letter-spacing:.10em;color:rgba(184,131,40,.55);width:22px;flex-shrink:0;text-align:right}
+.mob-sheet-item.sheet-active .mob-sheet-num{color:rgba(184,131,40,.90)}
+.mob-sheet-name{font-family:var(--f-display);font-weight:400;font-size:1.05rem;color:rgba(246,241,232,.75);line-height:1.2}
+.mob-sheet-item.sheet-active .mob-sheet-name{color:#fff}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  .liturgy-layout{grid-template-columns:1fr}
+  .lit-rail{display:none}
+  .lit-sidebar{display:none}
+  .lit-main{padding:3.5rem 2rem 5rem;max-width:100%}
+  .mob-ctx-card{display:block}
+  .chapter-bar{padding:.65rem 1.5rem}
+  .quote-break{padding:3rem 2rem}
+  .lit-cta{padding:3rem 1.5rem}
+  footer{padding:3rem 1.5rem 1.5rem}
+  .footer-cols{grid-template-columns:1fr 1fr;gap:2.5rem}
+  .footer-bottom{flex-direction:column;gap:.75rem;text-align:center}
+  .footer-addr{text-align:center}
+}
+@media(max-width:1180px){
+  .nav-links{display:none}.nav-hamburger{display:flex}.nav-give{display:none}
+}
+@media(max-width:768px){
+  .page-hero-inner{padding:3.5rem 1.5rem 3rem}
+  .chapter-bar .cbar-links{display:none}
+  .footer-cols{grid-template-columns:1fr;gap:2rem}
+  body{font-size:18px;line-height:1.8}
+  [class*="-over"],[class*="-cat"],[class*="-sub"],[class*="-label"],[class*="-tag"],[class*="-kicker"],[class*="-lbl"],[class*="-badge"],[class*="-date"],[class*="-meta"]{font-size:.72rem!important;letter-spacing:.12em}
+  [class*="-title"]{line-height:1.2}
+  [class*="hero-title"],[class*="page-title"]{line-height:1.1}
+  [class*="-name"],[class*="-head"]{line-height:1.25}
+  .footer-copy,.footer-bottom{font-size:.72rem}
+  .nav-drawer-links a{font-size:.76rem;padding:1rem 1.75rem}
+}
+.page-body,.lit-main,.liturgy-layout{background:var(--vellum)}
+</style>
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" style="line-height:1.2"><span class="nav-logo-name">Sts. Peter &amp; Paul</span><span class="nav-logo-sub">Orthodox Cathedral &middot; Jersey City</span></a>
+    <ul class="nav-links">
+      <li><a href="#">About Us &#9662;</a>
+        <div class="nav-drop">
+          <a href="/about-our-church">About Our Church</a>
+          <a href="/church-history">Church History</a>
+          <a href="/our-beliefs">Our Beliefs</a>
+          <a href="/administration">Administration</a>
+          <a href="/gallery">Gallery</a>
+        </div>
+      </li>
+      <li><a href="#">Inquirers &#9662;</a>
+        <div class="nav-drop">
+          <a href="/about-orthodoxy">About Orthodoxy</a>
+          <a href="/our-beliefs">Our Beliefs</a>
+          <a href="/divine-liturgy">The Divine Liturgy</a>
+          <a href="/visit">Plan Your Visit</a>
+          <a href="/videos">Videos</a>
+        </div>
+      </li>
+      <li><a href="/schedule">Calendar</a></li>
+      <li><a href="#">Bulletins &#9662;</a>
+        <div class="nav-drop">
+          <a href="/news">News</a>
+          <a href="/bulletins">Bulletins</a>
+        </div>
+      </li>
+      <li class="nav-active-parent"><a href="#">Resources &#9662;</a>
+        <div class="nav-drop">
+          <a href="/readings">Readings</a>
+          <a href="/prologue">Prologue</a>
+          <a href="/vespers" class="nav-active" aria-current="page">Vespers</a>
+          <a href="/divine-liturgy">The Divine Liturgy</a>
+          <a href="/videos">Videos</a>
+          <a href="/cemeteries">Cemeteries</a>
+        </div>
+      </li>
+      <li><a href="/contact-us">Contact</a></li>
+    </ul>
+    <a href="https://tithe.ly/give?c=5004259" target="_blank" class="nav-give">Give</a>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" onclick="openDrawer()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<div class="nav-drawer-overlay" id="nav-overlay" onclick="closeDrawer()"></div>
+<div class="nav-drawer" id="nav-drawer">
+  <div class="nav-drawer-head">
+    <div class="nav-drawer-logo">Sts. Peter &amp; Paul<span>Orthodox Cathedral &middot; Jersey City</span></div>
+    <button class="nav-drawer-close" onclick="closeDrawer()">&#10005;</button>
+  </div>
+  <div class="nav-drawer-links">
+    <span class="drawer-section">About</span>
+    <a href="/about-our-church">About Our Church</a>
+    <a href="/church-history">Church History</a>
+    <a href="/our-beliefs">Our Beliefs</a>
+    <a href="/administration">Administration</a>
+    <a href="/about-orthodoxy">About Orthodoxy</a>
+    <span class="drawer-section">Visit &amp; Worship</span>
+    <a href="/schedule">Liturgical Calendar</a>
+    <a href="/divine-liturgy">The Divine Liturgy</a>
+    <a href="/vespers" style="color:rgba(232,201,122,.90)">Vespers</a>
+    <a href="/visit">Plan Your Visit</a>
+    <a href="/readings">Daily Readings</a>
+    <a href="/saint-of-the-day">Saint of the Day</a>
+    <a href="/videos">Videos</a>
+    <span class="drawer-section">Parish Life</span>
+    <a href="/gallery">Gallery</a>
+    <a href="/bulletins">Bulletins</a>
+    <a href="/news">News &amp; Announcements</a>
+    <a href="/cemeteries">Cemeteries</a>
+    <a href="/donate">Give Online</a>
+    <span class="drawer-section">Contact</span>
+    <a href="/contact-us">Contact Us</a>
+  </div>
+  <a href="https://tithe.ly/give?c=5004259" target="_blank" class="nav-drawer-give">Give Online</a>
+</div>
+
+<!-- HERO -->
+<div class="page-hero" id="page-hero">
+  <div class="page-hero-inner">
+    <p class="breadcrumb"><a href="/">Home</a> &middot; <a href="/schedule">Worship</a> &middot; Vespers</p>
+    <span class="rubric light">The Daily Cycle of Prayer</span>
+    <div class="rubric-rule" style="background:rgba(232,201,122,.6)"></div>
+    <h1 class="page-title">Vespers<br><em>The Evening Prayer of the Church</em></h1>
+    <p class="page-subtitle">The sanctification of the close of day and the threshold of the Kingdom</p>
+  </div>
+</div>
+
+<!-- CHAPTER BAR -->
+<div class="chapter-bar">
+  <span class="cbar-text bright">The Structure of Vespers</span>
+  <div class="cbar-links">
+    <button class="cbar-link" onclick="jumpTo('intro')">Introduction</button>
+    <button class="cbar-link" onclick="jumpTo('opening-psalm')">The Service</button>
+    <button class="cbar-link" onclick="jumpTo('great-vespers')">Great Vespers</button>
+    <button class="cbar-link" onclick="jumpTo('vigil')">The Vigil</button>
+    <button class="cbar-link" onclick="jumpTo('jewish-roots')">Origins</button>
+    <button class="cbar-link" onclick="jumpTo('at-sspp')">At SSPP</button>
+  </div>
+</div>
+
+<!-- THREE-COLUMN LAYOUT -->
+<div class="liturgy-layout">
+
+  <!-- LEFT NAV RAIL -->
+  <nav class="lit-rail" id="lit-rail" aria-label="Section navigation">
+
+    <div class="rail-item" data-rail="intro" onclick="jumpTo('intro')">
+      <div class="rail-dot-wrap"><div class="rail-dot"></div><span class="rail-label">Introduction</span></div>
+      <span class="rail-num">&#10013;</span>
+    </div>
+    <div class="rail-connector"></div>
+
+    <div class="rail-item" data-rail="jewish-roots" onclick="jumpTo('jewish-roots')">
+      <div class="rail-dot-wrap"><div class="rail-dot"></div><span class="rail-label">Jewish Evening Prayer</span></div>
+      <span class="rail-num" style="font-size:.50rem">&#9670;</span>
+    </div>
+    <div class="rail-connector"></div>
+
+    <div class="rail-item" data-rail="opening-psalm" onclick="jumpTo('opening-psalm')">
+      <div class="rail-dot-wrap"><div class="rail-dot"></div><span class="rail-label">The Opening Psalm</span></div>
+      <span class="rail-num">I</span>
+    </div>
+    <div class="rail-connector"></div>
+
+    <div class="rail-item" data-rail="great-litany" onclick="jumpTo('great-litany')">
+      <div class="rail-dot-wrap"><div class="rail-dot"></div><span class="rail-label">The Great Litany</span></div>
+      <span class="rail-num">II</span>
+    </div>
+    <div class="rail-connector"></div>
+
+    <div class="rail-item" data-rail="kathisma" onclick="jumpTo('kathisma')">
+      <div class="rail-dot-wrap"><div class="rail-dot"></div><span class="rail-label">The Kathisma</span></div>
+      <span class="rail-num">III</span>
+    </div>
+    <div class="rail-connector"></div>
+
+    <div class="rail-item" data-rail="lord-i-cried" onclick="jumpTo('lord-i-cried')">
+      <div class="rail-dot-wrap"><div class="rail-dot"></div><span class="rail-label">Lord, I Have Cried</span></div>
+      <span class="rail-num">IV</span>
+    </div>
+    <div class="rail-connector"></div>
+
+    <div class="rail-item" data-rail="entrance" onclick="jumpTo('entrance')">
+      <div class="rail-dot-wrap"><div class="rail-dot"></div><span class="rail-label">The Evening Entrance</span></div>
+      <span class="rail-num">V</span>
+    </div>
+    <div class="rail-connector"></div>
+
+    <div class="rail-item" data-rail="prokeimenon" onclick="jumpTo('prokeimenon')">
+      <div class="rail-dot-wrap"><div class="rail-dot"></div><span class="rail-label">The Prokeimenon</span></div>
+      <span class="rail-num">VI</span>
+    </div>
+    <div class="rail-connector"></div>
+
+    <div class="rail-item" data-rail="fervent-litany" onclick="jumpTo('fervent-litany')">
+      <div class="rail-dot-wrap"><div class="rail-dot"></div><span class="rail-label">Litany of Fervent Supplication</span></div>
+      <span class="rail-num">VII</span>
+    </div>
+    <div class="rail-connector"></div>
+
+    <div class="rail-item" data-rail="aposticha" onclick="jumpTo('aposticha')">
+      <div class="rail-dot-wrap"><div class="rail-dot"></div><span class="rail-label">The Aposticha</span></div>
+      <span class="rail-num">VIII</span>
+    </div>
+    <div class="rail-connector"></div>
+
+    <div class="rail-item" data-rail="nunc-dimittis" onclick="jumpTo('nunc-dimittis')">
+      <div class="rail-dot-wrap"><div class="rail-dot"></div><span class="rail-label">The Nunc Dimittis</span></div>
+      <span class="rail-num">IX</span>
+    </div>
+    <div class="rail-connector"></div>
+
+    <div class="rail-item" data-rail="trisagion" onclick="jumpTo('trisagion')">
+      <div class="rail-dot-wrap"><div class="rail-dot"></div><span class="rail-label">Trisagion &amp; Dismissal</span></div>
+      <span class="rail-num">X</span>
+    </div>
+    <div class="rail-connector"></div>
+
+    <div class="rail-item" data-rail="great-vespers" onclick="jumpTo('great-vespers')">
+      <div class="rail-dot-wrap"><div class="rail-dot"></div><span class="rail-label">Great Vespers</span></div>
+      <span class="rail-num" style="font-size:.50rem">&#9670;</span>
+    </div>
+    <div class="rail-connector"></div>
+
+    <div class="rail-item" data-rail="vigil" onclick="jumpTo('vigil')">
+      <div class="rail-dot-wrap"><div class="rail-dot"></div><span class="rail-label">All-Night Vigil</span></div>
+      <span class="rail-num" style="font-size:.50rem">&#9670;</span>
+    </div>
+    <div class="rail-connector"></div>
+
+    <div class="rail-item" data-rail="light" onclick="jumpTo('light')">
+      <div class="rail-dot-wrap"><div class="rail-dot"></div><span class="rail-label">The Theology of Light</span></div>
+      <span class="rail-num" style="font-size:.50rem">&#9670;</span>
+    </div>
+    <div class="rail-connector"></div>
+
+    <div class="rail-item" data-rail="at-sspp" onclick="jumpTo('at-sspp')">
+      <div class="rail-dot-wrap"><div class="rail-dot"></div><span class="rail-label">Vespers at SSPP</span></div>
+      <span class="rail-num" style="font-size:.50rem">&#9670;</span>
+    </div>
+
+  </nav>
+
+  <!-- MAIN ARTICLE -->
+  <main class="lit-main" id="lit-main">
+
+    <!-- INTRO -->
+    <section class="lit-section" id="intro" data-section="intro">
+      <span class="section-tag">What Is Vespers?</span>
+      <h2 class="section-head">The Evening Prayer<br><em>of the Ancient Church</em></h2>
+      <span class="section-sub">Where the day ends and the liturgical night begins</span>
+      <p style="font-family:var(--f-ui);font-size:.80rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);margin-bottom:1.4rem">Follow along in order or jump to any moment using the navigation above.</p>
+      <div class="prose drop-cap">
+        <p>Vespers is the evening prayer of the Orthodox Church, offered at the close of day as the sun descends and darkness gathers. Its name comes from the Latin <strong>vesper</strong>, meaning evening star, and it marks the beginning of the liturgical day in the Orthodox tradition. The Orthodox Church, following the ancient reckoning of time found in Genesis ("and there was evening, and there was morning"), counts the day from sunset to sunset. Saturday evening Vespers is therefore the true beginning of <strong>Sunday</strong>, the Lord's Day.</p>
+        <p>Vespers is one of the oldest forms of Christian prayer, continuous with the evening sacrifice and lamp-lighting of the Jerusalem Temple. The early Christians, many of them Jews, carried this tradition into the life of the Church. What had been the <strong>Tamid</strong>, the daily evening offering, became the offering of prayer, incense, and praise offered to the God who became man in Jesus Christ.</p>
+        <p>Through <strong>psalms</strong>, <strong>hymns</strong>, <strong>incense</strong>, and the quiet rhythm of corporate prayer, Vespers sanctifies the close of the day. It asks God's forgiveness for the sins of the hours just passed, gives thanks for the day that was, and commends the coming night and all who sleep in it to His mercy. It is not a lesser service. It is the threshold of the Kingdom, where time meets eternity at the end of every day.</p>
+        <p>Vespers takes several forms across the liturgical year. The most common is <strong>Sunday Vespers</strong>, served every Saturday evening. <strong>Great Vespers</strong> is offered on the eves of major feasts and precedes the All-Night Vigil. <strong>Small Vespers</strong> is a brief form served before the Vigil on feast days. What follows is a guide to the structure of the Saturday evening service as it is celebrated at Saints Peter and Paul.</p>
+      </div>
+      <div class="mob-ctx-card">
+        <span class="mob-ctx-tag">The Liturgical Day</span>
+        <p class="mob-ctx-body">In the Orthodox tradition, the day begins at sunset, following Genesis: "And there was evening, and there was morning." Saturday Vespers is therefore the first prayer of Sunday. When you attend Vespers on Saturday evening, you have already begun to keep the Lord's Day.</p>
+      </div>
+    </section>
+
+    <!-- JEWISH ROOTS -->
+    <section class="supp-section" id="jewish-roots" data-section="jewish-roots">
+      <span class="supp-tag">Origins</span>
+      <h2 class="supp-head">Vespers and the Jewish Evening Prayer</h2>
+      <span class="supp-sub">The Temple lamp-lighting and the daily evening sacrifice</span>
+      <div class="prose drop-cap">
+        <p>Vespers is inseparable from its Jewish roots. Every evening in the Jerusalem Temple, at the ninth hour, the <strong>Tamid</strong> sacrifice was offered: a lamb, together with incense burned at the golden altar before the Holy of Holies. The smoke of the incense rose before the face of God as the day ended, the Menorah was kindled, and the Levites sang the psalms appointed to the evening. This ritual shaped the consciousness of ancient Israel and of the earliest Christians, who continued to pray at the hours of the Temple sacrifices even after the Resurrection.</p>
+        <p>The Christian Vespers absorbed and transformed this heritage. The lamb of the Tamid becomes the Lamb of God whose once-for-all sacrifice is commemorated in every Liturgy. The incense of the Temple becomes the incense of Psalm 141. The Menorah becomes the evening lamp, lit at the beginning of every Vespers, around which Phos Hilaron is sung. The psalms of the Levites become the kathisma of the Church. Nothing is abandoned; everything is fulfilled.</p>
+        <p>The practice of praying while facing <strong>east</strong> at Vespers carries further theological weight. East is the direction of the rising sun, which the Fathers understood as a symbol of Christ, the Sun of Righteousness. At Vespers, the sun sets in the west. The faithful turn their backs on the dying day and face east, toward the hope of the resurrection and the return of the Son. Every Vespers is an act of eschatological hope.</p>
+      </div>
+      <div class="mob-ctx-card">
+        <span class="mob-ctx-tag">Facing East</span>
+        <p class="mob-ctx-body">The custom of praying toward the east is among the oldest Christian practices. St. Basil the Great listed it among the unwritten traditions of the Church. The east is the direction of paradise, of the risen sun, and of the return of Christ. To pray facing east is to pray facing the hope of the Kingdom.</p>
+      </div>
+    </section>
+
+    <!-- STRUCTURE HEADER -->
+    <div class="structure-header" id="structure">
+      <span class="rubric">Ten Moments of Evening Prayer</span>
+      <div class="rubric-rule"></div>
+      <h2 style="font-family:var(--f-display);font-weight:300;font-size:clamp(1.8rem,3vw,2.7rem);color:var(--text);margin-bottom:.25rem;line-height:1.1">The Structure of<br><em>Vespers</em></h2>
+      <span class="rubric-voice">From the opening blessing to the dismissal, one continuous offering of praise</span>
+    </div>
+
+    <!-- I. OPENING PSALM -->
+    <section class="lit-section" id="opening-psalm" data-section="opening-psalm">
+      <div class="section-watermark">I</div>
+      <span class="section-tag">Part One</span>
+      <h2 class="section-head">The Opening Psalm</h2>
+      <span class="section-sub">Blessing the Lord at the close of day</span>
+      <div class="prose drop-cap">
+        <p>Vespers opens with the priest's exclamation, "Blessed is our God," and the people's response, "Amen." This is followed immediately by <strong>Psalm 104</strong>, the great creation psalm: "Bless the Lord, O my soul. O Lord my God, Thou art very great." Chanted or read, the psalm surveys the whole of creation, from the foundations of the earth to the creatures of the sea, as a hymn of praise to the Creator. It situates the service in the broadest possible frame: we are gathered not merely as members of a parish, but as creatures offering the evening praise of all creation to its Maker.</p>
+        <p>The psalm ends with a doxology and is followed by the <strong>Introductory Prayers</strong>, recited at the beginning of every service in the Orthodox Church. These include the Trisagion prayers, the Lord's Prayer, and several short troparia, centering the congregation in the life of prayer before the service proper begins.</p>
+      </div>
+      <div class="mob-ctx-card">
+        <span class="mob-ctx-tag">Psalm 104</span>
+        <p class="mob-ctx-body">"O Lord, how manifold are Thy works. In wisdom hast Thou made them all. The earth is full of Thy riches." The creation psalm has opened Christian evening prayer since the earliest centuries. It reminds the gathered assembly that their praise joins the unending praise of every creature.</p>
+      </div>
+    </section>
+
+    <!-- II. GREAT LITANY -->
+    <section class="lit-section" id="great-litany" data-section="great-litany">
+      <div class="section-watermark">II</div>
+      <span class="section-tag">Part Two</span>
+      <h2 class="section-head">The Great Litany</h2>
+      <span class="section-sub">Petitions for the evening and for all people</span>
+      <div class="prose drop-cap">
+        <p>Following the opening psalm, the <strong>Great Litany</strong> gathers the prayers of the congregation into a single corporate voice. The deacon or priest offers petitions for the peace of the world, the well-being of the Church, the travelers, the sick, the suffering, and the salvation of all. The congregation responds to each petition with "Lord, have mercy," the ancient cry of the Church that bridges every language and every century. The Great Litany at Vespers carries the same universal breadth as its counterpart in the Divine Liturgy: it holds the whole world before God as the day draws to a close.</p>
+      </div>
+      <div class="mob-ctx-card">
+        <span class="mob-ctx-tag">Lord, Have Mercy</span>
+        <p class="mob-ctx-body">The Greek <em>Kyrie, eleison</em> has been the heartbeat of Orthodox prayer since the earliest communities. To pray it at Vespers is to join every evening prayer of the Church from the catacombs to the present day.</p>
+      </div>
+    </section>
+
+    <!-- III. KATHISMA -->
+    <section class="lit-section" id="kathisma" data-section="kathisma">
+      <div class="section-watermark">III</div>
+      <span class="section-tag">Part Three</span>
+      <h2 class="section-head">The Kathisma</h2>
+      <span class="section-sub">Appointed psalms of the day</span>
+      <div class="prose drop-cap">
+        <p>The <strong>Kathisma</strong> is a section of the Psalter appointed for the service. The Psalter is divided into twenty kathismata, and the Church reads through all 150 psalms in the course of a week at normal times, and in a single week during Great Lent. At Vespers, the appointed kathisma is chanted or read, and the congregation may be seated (the word <em>kathisma</em> itself means "that which is sat"). This sitting is not casualness; it is the attentive repose of a people resting in the Word of God after the labor of the day. The psalms of the kathisma vary by day and by liturgical season, ensuring that the full richness of the Psalter is heard throughout the year.</p>
+      </div>
+      <div class="mob-ctx-card">
+        <span class="mob-ctx-tag">The Psalter in Orthodox Life</span>
+        <p class="mob-ctx-body">The 150 psalms of the Psalter are the backbone of Orthodox daily prayer. Monks read through the entire Psalter every week. In parishes, the cycle takes longer, but the psalms remain the continuous prayer of the Church across every service, every season, every century.</p>
+      </div>
+    </section>
+
+    <!-- IV. LORD I HAVE CRIED -->
+    <section class="lit-section" id="lord-i-cried" data-section="lord-i-cried">
+      <div class="section-watermark">IV</div>
+      <span class="section-tag">Part Four</span>
+      <h2 class="section-head">Lord, I Have Cried</h2>
+      <span class="section-sub">Incense, the lifting of hands, and the hymns of the day</span>
+      <div class="prose drop-cap">
+        <p>The emotional and liturgical center of Vespers is the chanting of <strong>Psalm 141</strong>, "Lord, I have cried unto Thee, hear me. Hear me, O Lord." It is at this moment that the <strong>incense</strong> is offered, filling the church with fragrant smoke. The pairing of incense with this psalm is ancient and deliberate: the psalm itself asks that prayer rise "as incense" before God, and the lifting of hands "as the evening sacrifice." What is sung in word is enacted in the rising smoke, which billows upward through the iconostasis, around the icons, and through the nave as a visible representation of the prayers of the faithful ascending to the throne of God.</p>
+        <p>Woven into Psalm 141 are the <strong>Stichera</strong>, appointed hymns for the feast or saint of the day. These short, poetic verses are inserted between verses of the psalm, layering the theology of the specific commemoration onto the ancient words of David. The service becomes, in this moment, both timeless and particular, connecting today's celebration with the great chain of the Church's prayer across the centuries.</p>
+      </div>
+
+      <div class="callout-box">
+        <span class="callout-tag">The Theology of Incense</span>
+        <h3 class="callout-head">Let My Prayer Arise as Incense</h3>
+        <span class="callout-sub">Psalm 141 and the ancient evening sacrifice</span>
+        <p class="callout-body">The use of incense at Vespers is not ceremonial decoration. It is a direct fulfillment of Psalm 141:2, "Let my prayer arise in Thy sight as incense, and the lifting up of my hands as the evening sacrifice." In the Jerusalem Temple, the Tamid sacrifice was accompanied by the burning of incense at the altar of incense every evening. The Church carries this forward: the incense of Vespers is the Christian evening sacrifice, offered not in blood but in prayer, praise, and the fragrant smoke that rises before the face of God.</p>
+      </div>
+
+      <div class="mob-ctx-card">
+        <span class="mob-ctx-tag">The Stichera</span>
+        <p class="mob-ctx-body">The stichera are poetic hymns inserted between psalm verses, composed by the great hymnographers of the Church, including St. John of Damascus, St. Romanos the Melodist, and Empress Theophano. They are among the most beautiful texts in Orthodox liturgical poetry.</p>
+      </div>
+    </section>
+
+    <!-- V. ENTRANCE -->
+    <section class="lit-section" id="entrance" data-section="entrance">
+      <div class="section-watermark">V</div>
+      <span class="section-tag">Part Five</span>
+      <h2 class="section-head">The Evening Entrance</h2>
+      <span class="section-sub">The Little Entrance of Vespers</span>
+      <div class="prose drop-cap">
+        <p>At Great Vespers and on feast days, the service includes the <strong>Evening Entrance</strong>, a solemn procession in which the clergy enter the altar through the Royal Doors carrying a censer. The deacon or priest chants "Wisdom. Let us attend." The doors of the altar open, symbolizing the opening of the Kingdom of Heaven, and the priest stands in the doorway as the people sing the ancient hymn <strong>Phos Hilaron</strong>, "O Gladsome Light." This entrance recalls both the evening lamp-lighting of the Temple and the coming of Christ as the Light of the World. At the Sunday Vespers served without the Entrance, this moment is marked by the singing of Phos Hilaron at the ambo or from the kliros, without the procession.</p>
+      </div>
+      <div class="mob-ctx-card">
+        <span class="mob-ctx-tag">O Gladsome Light</span>
+        <p class="mob-ctx-body">Phos Hilaron is the oldest known Christian hymn still sung in its original form. St. Basil the Great, writing in the 4th century, described it as already ancient in his day. It has been chanted at the lighting of the evening lamp, the beginning of every Vespers, without interruption since the earliest Christian centuries.</p>
+      </div>
+    </section>
+
+    <!-- VI. PROKEIMENON -->
+    <section class="lit-section" id="prokeimenon" data-section="prokeimenon">
+      <div class="section-watermark">VI</div>
+      <span class="section-tag">Part Six</span>
+      <h2 class="section-head">The Prokeimenon</h2>
+      <span class="section-sub">A verse announcing the theme of the feast</span>
+      <div class="prose drop-cap">
+        <p>Following the Entrance, the <strong>Prokeimenon</strong> is chanted. The word means "that which lies before" and it is a verse from the Psalms appointed to the day, chanted antiphonally between the reader and the congregation. On Saturday evenings, the prokeimenon announces the theme of the Lord's Day. On feast days, it announces the specific celebration being kept. The prokeimenon serves as a kind of liturgical headline, a brief but theologically dense summary of the service's subject, offered in the words of the Psalmist. At Great Vespers on the eves of major feasts, the prokeimenon may be followed by <strong>parimia</strong>, Old Testament readings that illuminate the feast from the prophetic tradition.</p>
+      </div>
+      <div class="mob-ctx-card">
+        <span class="mob-ctx-tag">Parimia</span>
+        <p class="mob-ctx-body">On the eves of major feasts, Old Testament readings called parimia are chanted after the prokeimenon. These passages, drawn from Genesis, Proverbs, Isaiah, and other books, were chosen by the early Church as prophetic foreshadowings of the feast being celebrated. Hearing them read aloud is one of the great experiences of Orthodox liturgical life.</p>
+      </div>
+    </section>
+
+    <!-- VII. FERVENT LITANY -->
+    <section class="lit-section" id="fervent-litany" data-section="fervent-litany">
+      <div class="section-watermark">VII</div>
+      <span class="section-tag">Part Seven</span>
+      <h2 class="section-head">Litany of Fervent<br>Supplication</h2>
+      <span class="section-sub">Intensified evening prayer for all the faithful</span>
+      <div class="prose drop-cap">
+        <p>As Vespers moves toward its close, the <strong>Litany of Fervent Supplication</strong> deepens the tone of prayer. Where the Great Litany responded with a single "Lord, have mercy," this litany draws a triple response: "Lord, have mercy. Lord, have mercy. Lord, have mercy." The tripling is an intensification, an expression of the congregation's awareness that the night is coming and that they entrust themselves entirely to God's care. The petitions cover the needs of the faithful, the clergy, and the whole Church, and conclude with a commendation of all to the mercy of God as the day ends.</p>
+      </div>
+      <div class="mob-ctx-card">
+        <span class="mob-ctx-tag">Prayer at the Close of Day</span>
+        <p class="mob-ctx-body">The Litany of Fervent Supplication at Vespers carries the full weight of the day's fatigue, its failures, and its mercies before God. The triple Kyrie is not merely repetition; it is the Church throwing itself on the mercy of God with three-fold urgency as the night approaches.</p>
+      </div>
+    </section>
+
+    <!-- VIII. APOSTICHA -->
+    <section class="lit-section" id="aposticha" data-section="aposticha">
+      <div class="section-watermark">VIII</div>
+      <span class="section-tag">Part Eight</span>
+      <h2 class="section-head">The Aposticha</h2>
+      <span class="section-sub">Hymns of the close of Vespers</span>
+      <div class="prose drop-cap">
+        <p>The <strong>Aposticha</strong> are a second set of stichera, hymns appointed to the feast or the day of the week, chanted near the end of Vespers. They are structurally similar to the stichera of "Lord, I Have Cried" but carry a different set of psalm verses and hymns. On Saturday evenings, the Aposticha include the <strong>Dogmatikon</strong>, a profound theological hymn honoring the Theotokos that encapsulates the mystery of the Incarnation in a single, compact poetic statement. The Dogmatikon varies each week according to the tone of the week's cycle, and its theology is so dense that it has been the subject of patristic commentary for centuries. On feast days, specific Aposticha for the commemoration replace the Dogmatikon.</p>
+      </div>
+      <div class="mob-ctx-card">
+        <span class="mob-ctx-tag">The Dogmatikon</span>
+        <p class="mob-ctx-body">The Dogmatikon is a short hymn chanted at Saturday Vespers honoring the Theotokos and expressing the mystery of the Incarnation. It changes each week according to the liturgical tone, and its compressed theological richness is one of the great jewels of the Byzantine hymnographic tradition.</p>
+      </div>
+    </section>
+
+    <!-- IX. NUNC DIMITTIS -->
+    <section class="lit-section" id="nunc-dimittis" data-section="nunc-dimittis">
+      <div class="section-watermark">IX</div>
+      <span class="section-tag">Part Nine</span>
+      <h2 class="section-head">The Nunc Dimittis</h2>
+      <span class="section-sub">Lord, now lettest Thou Thy servant depart in peace</span>
+      <div class="prose drop-cap">
+        <p>Near the end of Vespers, the canticle of <strong>Symeon the God-Receiver</strong> is chanted: "Lord, now lettest Thou Thy servant depart in peace, according to Thy word, for mine eyes have seen Thy salvation." These words, from the Gospel of Luke, were spoken by the aged Symeon when he held the infant Christ in his arms in the Temple. At Vespers they become the prayer of every believer at the close of day: we have seen, in this service, a foretaste of the Kingdom; we have been held, as Symeon held the Child; and we are now sent into the night in peace. The Nunc Dimittis is one of the oldest Christian canticles and has been sung at Vespers without interruption since the earliest centuries.</p>
+      </div>
+      <div class="mob-ctx-card">
+        <span class="mob-ctx-tag">Symeon the God-Receiver</span>
+        <p class="mob-ctx-body">Symeon is commemorated on February 3rd and on the feast of the Presentation of Christ (February 2nd). The Orthodox Church calls him "God-Receiver" because he was the one who received the infant God into his arms. His canticle closes every Vespers and Compline as the prayer of those who have received Christ and are now sent in peace.</p>
+      </div>
+    </section>
+
+    <!-- X. TRISAGION AND DISMISSAL -->
+    <section class="lit-section" id="trisagion" data-section="trisagion">
+      <div class="section-watermark">X</div>
+      <span class="section-tag">Part Ten</span>
+      <h2 class="section-head">The Trisagion Prayers<br>and Dismissal</h2>
+      <span class="section-sub">The blessing and sending forth into the night</span>
+      <div class="prose drop-cap">
+        <p>Vespers concludes with the <strong>Trisagion prayers</strong>, the standard sequence of short prayers that opens and closes every Orthodox service: "Holy God, Holy Mighty, Holy Immortal, have mercy on us," the Lord's Prayer, and a final set of dismissal troparia. The priest then offers the <strong>Dismissal</strong>, blessing the congregation and sending them into the night in the protection of God and the intercession of the Theotokos and the saints. The faithful venerate the cross or icon presented by the priest and depart. In the Orthodox understanding, the dismissal is not an ending. It is a sending. The faithful carry the prayers of Vespers into their homes, their families, and the darkness of the night, bringing the peace of the Church with them as a light in the dark.</p>
+      </div>
+      <div class="mob-ctx-card">
+        <span class="mob-ctx-tag">The Dismissal</span>
+        <p class="mob-ctx-body">The word "liturgy" comes from the Greek leitourgia, meaning "the work of the people." Every dismissal in the Orthodox Church is a commissioning. The faithful are not sent home; they are sent out, carrying the grace of the service into the world.</p>
+      </div>
+    </section>
+
+    <!-- GREAT VESPERS -->
+    <section class="supp-section" id="great-vespers" data-section="great-vespers">
+      <span class="supp-tag">Supplementary</span>
+      <h2 class="supp-head">Great Vespers and Small Vespers</h2>
+      <span class="supp-sub">The two forms of the evening service</span>
+      <div class="prose drop-cap">
+        <p>The Orthodox tradition distinguishes between several forms of Vespers. <strong>Great Vespers</strong> is the most solemn form, served on Saturday evenings and on the eves of major feasts. It includes the Evening Entrance, the Phos Hilaron sung in procession, Old Testament readings (parimia) on feast eves, the Litiya on great feasts, and often the blessing of the five loaves, wheat, wine, and oil in memory of the feeding of the multitude. Great Vespers is a service of considerable liturgical depth and length, often running sixty to ninety minutes.</p>
+        <p><strong>Small Vespers</strong> is a brief, simplified form of the service, served on feast day afternoons before the All-Night Vigil begins. It is shorter than Sunday Vespers, with fewer hymns and no kathisma. Its purpose is to bring the day's lesser hours to a close before the great celebration of the night begins.</p>
+        <p>The <strong>Litiya</strong>, served within Great Vespers on the eves of twelve great feasts and patronal feasts, is a solemn procession and prayer outside the altar. It includes intensified litanies and concludes with the <strong>blessing of the loaves</strong>: five small breads, wheat, wine, and oil are blessed in memory of the miracle of the loaves and fishes, and distributed to the faithful after the Vigil or after the Liturgy the next morning.</p>
+      </div>
+      <div class="mob-ctx-card">
+        <span class="mob-ctx-tag">The Blessing of the Loaves</span>
+        <p class="mob-ctx-body">At the Litiya on the eves of great feasts, five loaves of bread are blessed together with wheat, wine, and oil, in memory of the feeding of the five thousand. The blessed bread (artos) is distributed to the faithful and eaten as a blessing. It is not communion, but it is a tangible sign of God's provision and a foretaste of the heavenly banquet.</p>
+      </div>
+    </section>
+
+    <!-- ALL-NIGHT VIGIL -->
+    <section class="supp-section" id="vigil" data-section="vigil">
+      <span class="supp-tag">Supplementary</span>
+      <h2 class="supp-head">The All-Night Vigil</h2>
+      <span class="supp-sub">Great Vespers joined to Matins on the eve of a major feast</span>
+      <div class="prose drop-cap">
+        <p>On the eves of the twelve great feasts and other major commemorations, the Orthodox Church celebrates the <strong>All-Night Vigil</strong>, a continuous service that joins Great Vespers, Matins, and the First Hour into a single unbroken prayer. In monastic settings the Vigil is literally all night, beginning at sunset and concluding at dawn. In parish practice it is typically condensed to two to three hours in the evening, but the structure and content remain the same. The Vigil is the liturgical expression of the Church keeping watch through the night, as the faithful kept watch at the tomb and as Symeon kept watch his whole life for the coming of the Messiah.</p>
+        <p>The Vigil includes the <strong>Polyeleos</strong>, a solemn section of Matins in which the Royal Doors are opened, the priest censes the whole church, and Psalms 134 and 135 are chanted with the refrain "For His mercy endureth forever." On major feasts, the Megalynarion, a hymn magnifying the Theotokos or the saint, is added. The Vigil concludes with the reading of the Gospel and the anointing of the faithful with blessed oil, a sign of healing and grace.</p>
+      </div>
+      <div class="mob-ctx-card">
+        <span class="mob-ctx-tag">Keeping Watch</span>
+        <p class="mob-ctx-body">The All-Night Vigil is the most complete expression of Orthodox liturgical prayer available in a parish setting. Those who attend it arrive at the Liturgy the next morning already formed by hours of prayer, psalms, and hymnody. The Vigil and the Liturgy together constitute the full celebration of a feast.</p>
+      </div>
+    </section>
+
+    <!-- THEOLOGY OF LIGHT -->
+    <section class="supp-section" id="light" data-section="light">
+      <span class="supp-tag">Theology</span>
+      <h2 class="supp-head">The Theology of Light</h2>
+      <span class="supp-sub">Phos Hilaron and the oldest Christian hymn still in use</span>
+      <div class="prose drop-cap">
+        <p>The central image of Vespers is <strong>light</strong>. The service begins as the day fades and lamp-light takes over. At the moment of the Evening Entrance, or at the chanting of Phos Hilaron in the nave, the church is illumined with candles and lampadas, and the ancient hymn is sung. Phos Hilaron, "O Gladsome Light," is the earliest known Christian hymn still sung in its original form. St. Basil the Great, writing around 375 AD, described it as already ancient in his time, a tradition received from the Fathers before him.</p>
+        <p>The hymn hails Christ as the "Gladsome Light of the holy glory of the immortal, heavenly, holy, blessed Father." It is sung as the lamps are lit, as darkness gathers outside, and as the community gathers in the warmth of the church. The theological point is unmistakable: the light of Christ does not compete with the dying sun. It replaces it. The night outside becomes irrelevant, because the true Light has come into the world, and "the darkness did not overcome it" (John 1:5).</p>
+        <p>Light at Vespers also carries a Resurrection dimension. The darkness of the evening points toward the darkness of Christ's tomb. But the lamp that burns in that darkness points to the fire that lit the world on the night of the Paschal Vigil, the fire from which every candle in every Vespers ultimately descends. To light a candle at Vespers is to participate in the Resurrection.</p>
+      </div>
+
+      <div class="callout-box">
+        <span class="callout-tag">Phos Hilaron</span>
+        <h3 class="callout-head">O Gladsome Light</h3>
+        <span class="callout-sub">The oldest Christian hymn still sung in its original form</span>
+        <p class="callout-body">Phos Hilaron addresses Christ as the evening light of the Father's glory, giving thanks that the day has reached its end and the evening star has appeared. St. Basil called it a tradition "received from the Fathers." It has been chanted at the lighting of the evening lamp, at every Vespers in every Orthodox church, in every language, without interruption for at least seventeen centuries. When you hear it at Saints Peter and Paul on a Saturday evening, you are singing what Christians have sung since before the Council of Nicaea.</p>
+      </div>
+
+      <div class="mob-ctx-card">
+        <span class="mob-ctx-tag">Light and Darkness</span>
+        <p class="mob-ctx-body">"The light shines in the darkness, and the darkness has not overcome it." (John 1:5) Every lamp lit at Vespers is a confession of this truth. The darkness of evening, of sin, of death itself, cannot overcome the light of the Risen Christ. Vespers is the nightly celebration of that victory.</p>
+      </div>
+    </section>
+
+    <!-- AT SSPP -->
+    <section class="supp-section" id="at-sspp" data-section="at-sspp">
+      <span class="supp-tag">At Saints Peter and Paul</span>
+      <h2 class="supp-head">Vespers at SSPP</h2>
+      <span class="supp-sub">What to expect on a Saturday evening</span>
+      <div class="prose drop-cap">
+        <p>Vespers at Saints Peter and Paul Cathedral is served every <strong>Saturday at 5:00 PM</strong>. The service runs approximately <strong>45 minutes to one hour</strong>, depending on the feast. It is held in the main nave of the church, with the full complement of clergy and choir when available.</p>
+        <p>Vespers is accessible to anyone regardless of background or familiarity with Orthodox worship. It is quieter and shorter than the Divine Liturgy, making it an excellent first exposure to Orthodox prayer. There is no communion at Vespers, so the question of who may receive does not arise. All are welcome to attend, to stand or sit as they are able, to light a candle, and to pray.</p>
+        <p>For those new to Orthodox worship, a few simple things to know: the service is mostly chanted, with periodic responses from the choir and congregation. You will stand for most of the service, though sitting during the kathisma is customary. Candles may be purchased and lit before icons in the narthex or nave at any time. Appropriate dress is expected, covering shoulders and knees. Head coverings for women are traditional but not required.</p>
+        <p>Saturday Vespers is the beginning of Sunday. Those who attend it arrive at the Divine Liturgy the next morning already steeped in prayer, already oriented toward the Resurrection. Coming to both is the fullest way to keep the Lord's Day.</p>
+      </div>
+
+      <div class="callout-box">
+        <span class="callout-tag">Your First Vespers</span>
+        <h3 class="callout-head">What to Expect</h3>
+        <span class="callout-sub">A guide for those attending for the first time</span>
+        <p class="callout-body">Arrive a few minutes early and light a candle before an icon. The service begins promptly at 5:00 PM. You will hear chanting, smell incense, and see the clergy move in and out of the altar. You are not expected to know all the responses; simply be present and let the prayers carry you. The service lasts about 45 minutes. When it ends, you are free to venerate icons, speak with Fr. Solomon, or simply depart in peace. No one will pressure you or single you out. You are a guest of the Church, and the Church is glad to have you.</p>
+      </div>
+
+      <div class="visit-cta-card">
+        <span class="rubric">Join Us</span>
+        <h3>Saturdays at 5:00 PM</h3>
+        <p>109 Grand Street, Jersey City, NJ 07302. All are welcome to attend. Come Saturday evening. Stay Sunday morning.</p>
+        <div class="visit-cta-btns">
+          <a href="/visit" class="btn btn-maroon">Plan Your Visit</a>
+          <a href="/schedule" class="btn btn-outline">Full Schedule</a>
+          <a href="/divine-liturgy" class="btn btn-outline">The Divine Liturgy</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- RIGHT SIDEBAR -->
+  <aside class="lit-sidebar" id="lit-sidebar">
+    <div class="sidebar-track">
+
+      <!-- INTRO PANEL -->
+      <div class="sb-panel sb-active" data-panel="intro">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Theotokos_of_Vladimir.jpg/400px-Theotokos_of_Vladimir.jpg" alt="Theotokos of Vladimir" class="sb-icon" onerror="this.src='https://picsum.photos/id/1005/400/260'"/>
+        <span class="sb-icon-cap">Theotokos of Vladimir &middot; 12th century</span>
+        <span class="sb-panel-tag">The Liturgical Day</span>
+        <div class="sb-rule"></div>
+        <p class="sb-body">In the Orthodox tradition, the day begins at sunset, following the account in Genesis: "And there was evening, and there was morning." Saturday Vespers is therefore the first prayer of Sunday. When you attend Vespers on a Saturday evening, you have already begun to keep the Lord's Day.</p>
+        <div class="sb-rule"></div>
+        <span class="sb-panel-head">Vespers and the Theotokos</span>
+        <p class="sb-body" style="margin-top:.4rem">Vespers has a deeply Marian character. The Dogmatikon hymn at Saturday Vespers honors the Theotokos and proclaims the mystery of the Incarnation. Many of the most beloved hymns of the service address her directly as the one through whom God entered the world.</p>
+      </div>
+
+      <!-- OPENING PSALM PANEL -->
+      <div class="sb-panel" data-panel="opening-psalm">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Last_Supper_by_Jaume_Huguet.jpg/400px-Last_Supper_by_Jaume_Huguet.jpg" alt="Byzantine manuscript illumination" class="sb-icon" onerror="this.src='https://picsum.photos/id/1015/400/260'"/>
+        <span class="sb-icon-cap">Byzantine Church Art &middot; Medieval tradition</span>
+        <span class="sb-panel-tag">Psalm 104</span>
+        <div class="sb-rule"></div>
+        <div class="sb-scripture">
+          <span class="sb-scripture-text">"O Lord, how manifold are Thy works. In wisdom hast Thou made them all. The earth is full of Thy riches."</span>
+          <span class="sb-scripture-ref">Psalm 104:24</span>
+        </div>
+        <div class="sb-rule"></div>
+        <p class="sb-body">The creation psalm has opened Christian evening prayer since the earliest centuries. It situates the worshipper in the broadest possible frame: not as a member of a congregation, but as a creature joining the ceaseless praise of all creation before its Maker.</p>
+      </div>
+
+      <!-- GREAT LITANY PANEL -->
+      <div class="sb-panel" data-panel="great-litany">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Deesis_mosaic_Hagia_Sophia.jpg/400px-Deesis_mosaic_Hagia_Sophia.jpg" alt="Deesis mosaic, Hagia Sophia" class="sb-icon" onerror="this.src='https://picsum.photos/id/1040/400/260'"/>
+        <span class="sb-icon-cap">Deesis Mosaic &middot; Hagia Sophia, 13th century</span>
+        <span class="sb-panel-tag">The Great Litany</span>
+        <div class="sb-rule"></div>
+        <p class="sb-body">The Great Litany at Vespers holds the whole world before God as the day ends. It prays for the peace of all, for the sick and suffering, for travelers and those at sea, and for the salvation of every soul. To respond "Lord, have mercy" to each petition is to participate in the Church's intercession for the whole of humanity.</p>
+        <div class="sb-rule"></div>
+        <span class="sb-panel-head">Kyrie Eleison</span>
+        <p class="sb-body" style="margin-top:.4rem">The Greek cry "Lord, have mercy" has been the heartbeat of Orthodox prayer since the earliest communities. To pray it at Vespers is to join every evening prayer of the Church from the catacombs to the present day.</p>
+      </div>
+
+      <!-- KATHISMA PANEL -->
+      <div class="sb-panel" data-panel="kathisma">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Monastery_of_Saint_Naum_02.jpg/400px-Monastery_of_Saint_Naum_02.jpg" alt="Monastery of Saint Naum" class="sb-icon" onerror="this.src='https://picsum.photos/id/1039/400/260'"/>
+        <span class="sb-icon-cap">Monastery of Saint Naum &middot; North Macedonia</span>
+        <span class="sb-panel-tag">The Psalter in Orthodox Life</span>
+        <div class="sb-rule"></div>
+        <p class="sb-body">The 150 psalms of the Psalter are the backbone of Orthodox daily prayer. In monasteries, monks read through all 150 psalms every week. The Psalter is not supplementary material; it is the primary textbook of Orthodox prayer, the vocabulary in which every other liturgical text is rooted.</p>
+        <div class="sb-rule"></div>
+        <span class="sb-panel-head">What "Kathisma" Means</span>
+        <p class="sb-body" style="margin-top:.4rem">The Greek word <em>kathisma</em> means "that which is sat," referring to the custom of sitting during the psalm readings. This sitting is attentive repose, not casualness, the posture of those who rest in the Word of God after the labor of the day.</p>
+      </div>
+
+      <!-- LORD I CRIED PANEL -->
+      <div class="sb-panel" data-panel="lord-i-cried">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Church_of_the_Dormition_of_the_Theotokos_iconostasis.jpg/400px-Church_of_the_Dormition_of_the_Theotokos_iconostasis.jpg" alt="Incense at the iconostasis" class="sb-icon" onerror="this.src='https://picsum.photos/id/1060/400/260'"/>
+        <span class="sb-icon-cap">Incense Rising at the Iconostasis</span>
+        <span class="sb-panel-tag">Psalm 141:2</span>
+        <div class="sb-rule"></div>
+        <div class="sb-scripture">
+          <span class="sb-scripture-text">"Let my prayer arise in Thy sight as incense, and the lifting up of my hands as the evening sacrifice."</span>
+          <span class="sb-scripture-ref">Psalm 141:2</span>
+        </div>
+        <div class="sb-rule"></div>
+        <p class="sb-body">The incense offered at Vespers is a direct liturgical fulfillment of this verse. The smoke rising through the nave is not decoration. It is prayer made visible, the evening sacrifice of the new covenant, ascending before the face of God.</p>
+      </div>
+
+      <!-- ENTRANCE PANEL -->
+      <div class="sb-panel" data-panel="entrance">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Russian_Orthodox_iconostasis_Deventer.jpg/400px-Russian_Orthodox_iconostasis_Deventer.jpg" alt="Royal Doors, Orthodox iconostasis" class="sb-icon" onerror="this.src='https://picsum.photos/id/1052/400/260'"/>
+        <span class="sb-icon-cap">Royal Doors &middot; Orthodox Iconostasis</span>
+        <span class="sb-panel-tag">Phos Hilaron</span>
+        <div class="sb-rule"></div>
+        <div class="sb-blockquote">
+          <span class="sb-blockquote-text">"O Gladsome Light of the holy glory of the Immortal Father, Heavenly, Holy, Blessed, O Jesus Christ: having come to the setting of the sun and beholding the light of evening, we praise God, Father, Son, and Holy Spirit."</span>
+          <span class="sb-blockquote-attr">Phos Hilaron &middot; Before 375 AD</span>
+        </div>
+        <div class="sb-rule"></div>
+        <p class="sb-body">St. Basil the Great described Phos Hilaron as "received from the Fathers" in 375 AD, indicating it was already ancient. It has been sung continuously ever since, making it the oldest intact Christian hymn in regular liturgical use.</p>
+      </div>
+
+      <!-- PROKEIMENON PANEL -->
+      <div class="sb-panel" data-panel="prokeimenon">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Icon_of_Christ_Pantocrator%2C_Sinai%2C_6th_century.jpg/400px-Icon_of_Christ_Pantocrator%2C_Sinai%2C_6th_century.jpg" alt="Icon of the Prophet-King David" class="sb-icon" onerror="this.src='https://picsum.photos/id/1012/400/260'"/>
+        <span class="sb-icon-cap">Christ Pantocrator &middot; Sinai, 6th century</span>
+        <span class="sb-panel-tag">Parimia Readings</span>
+        <div class="sb-rule"></div>
+        <p class="sb-body">On the eves of major feasts, Old Testament readings called <em>parimia</em> are chanted after the prokeimenon. These passages from Genesis, Proverbs, Isaiah, and other books were chosen by the early Church as prophetic foreshadowings of the feast being celebrated.</p>
+        <div class="sb-rule"></div>
+        <span class="sb-panel-head">Saturday Evening Prokeimenon</span>
+        <p class="sb-body" style="margin-top:.4rem">On Saturday evenings, the prokeimenon of the Lord's Day is chanted: "The Lord is King, He is robed in majesty." This verse from Psalm 92 announces the Resurrection even before Sunday has officially begun, reminding the faithful that every week culminates in the triumph of Christ over death.</p>
+      </div>
+
+      <!-- FERVENT LITANY PANEL -->
+      <div class="sb-panel" data-panel="fervent-litany">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Rila_Monastery_Bulgaria.jpg/400px-Rila_Monastery_Bulgaria.jpg" alt="Rila Monastery at dusk" class="sb-icon" onerror="this.src='https://picsum.photos/id/1036/400/260'"/>
+        <span class="sb-icon-cap">Rila Monastery &middot; Bulgaria, at dusk</span>
+        <span class="sb-panel-tag">Prayer at the Close of Day</span>
+        <div class="sb-rule"></div>
+        <p class="sb-body">The triple "Lord, have mercy" of the Litany of Fervent Supplication is an intensification, not a repetition. It is the Church throwing itself on the mercy of God with three-fold urgency as the night approaches, entrusting the sleeping hours entirely to His care.</p>
+        <div class="sb-rule"></div>
+        <span class="sb-panel-head">The Hours of Prayer</span>
+        <p class="sb-body" style="margin-top:.4rem">Orthodox Christians are called to pray at the seven traditional hours of prayer: Prime, Terce, Sext, None, Vespers, Compline, and Matins. Vespers is the evening anchor of this daily rhythm, the hinge on which the day turns toward the night and toward God.</p>
+      </div>
+
+      <!-- APOSTICHA PANEL -->
+      <div class="sb-panel" data-panel="aposticha">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Romanian_Orthodox_Monastery_%2849074404227%29.jpg/400px-Romanian_Orthodox_Monastery_%2849074404227%29.jpg" alt="Romanian Orthodox Monastery at night" class="sb-icon" onerror="this.src='https://picsum.photos/id/1038/400/260'"/>
+        <span class="sb-icon-cap">Romanian Orthodox Monastery &middot; Evening</span>
+        <span class="sb-panel-tag">The Dogmatikon</span>
+        <div class="sb-rule"></div>
+        <p class="sb-body">The Dogmatikon is a short hymn honoring the Theotokos and expressing the mystery of the Incarnation, chanted at Saturday Vespers in the Aposticha. It changes each week according to the liturgical tone, cycling through eight tones over eight weeks. Each tone carries a different melodic mode and a slightly different theological emphasis.</p>
+        <div class="sb-rule"></div>
+        <span class="sb-panel-head">The Eight Tones</span>
+        <p class="sb-body" style="margin-top:.4rem">Byzantine music is organized into eight tones, a system established by St. John of Damascus in the 8th century. Each tone has its own character and melodic patterns. The cycle of eight tones repeats throughout the year, giving the liturgical music of the Church a constant sense of variation within deep continuity.</p>
+      </div>
+
+      <!-- NUNC DIMITTIS PANEL -->
+      <div class="sb-panel" data-panel="nunc-dimittis">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Vasily_Velikiy.jpg/400px-Vasily_Velikiy.jpg" alt="Icon of Symeon the God-Receiver" class="sb-icon" onerror="this.src='https://picsum.photos/id/1013/400/260'"/>
+        <span class="sb-icon-cap">Symeon the God-Receiver &middot; Orthodox Icon</span>
+        <span class="sb-panel-tag">Luke 2:29-32</span>
+        <div class="sb-rule"></div>
+        <div class="sb-scripture">
+          <span class="sb-scripture-text">"Lord, now lettest Thou Thy servant depart in peace, according to Thy word, for mine eyes have seen Thy salvation."</span>
+          <span class="sb-scripture-ref">Luke 2:29-30</span>
+        </div>
+        <div class="sb-rule"></div>
+        <p class="sb-body">Symeon is called "God-Receiver" because he received the infant Christ into his arms in the Temple. His canticle closes every Vespers and Compline as the prayer of those who have received Christ in the service and are now sent into the night in peace.</p>
+      </div>
+
+      <!-- TRISAGION PANEL -->
+      <div class="sb-panel" data-panel="trisagion">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Interior_of_Greek_Orthodox_church_18th_century_section.JPG/400px-Interior_of_Greek_Orthodox_church_18th_century_section.JPG" alt="Greek Orthodox church interior" class="sb-icon" onerror="this.src='https://picsum.photos/id/1053/400/260'"/>
+        <span class="sb-icon-cap">Greek Orthodox Church Interior &middot; 18th century</span>
+        <span class="sb-panel-tag">The Dismissal</span>
+        <div class="sb-rule"></div>
+        <p class="sb-body">The word "liturgy" comes from the Greek <em>leitourgia</em>, meaning "the work of the people." Every dismissal in the Orthodox Church is a commissioning. The faithful are not sent home; they are sent out, carrying the prayers of the service into the world and into the night.</p>
+        <div class="sb-rule"></div>
+        <span class="sb-panel-head">The Trisagion</span>
+        <p class="sb-body" style="margin-top:.4rem">"Holy God, Holy Mighty, Holy Immortal, have mercy on us" is chanted three times at the beginning and end of every Orthodox service. It is one of the most ancient liturgical texts of the Church, traced to the 5th century and possibly earlier.</p>
+      </div>
+
+      <!-- GREAT VESPERS PANEL -->
+      <div class="sb-panel" data-panel="great-vespers">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Kizhi_church_1.jpg/400px-Kizhi_church_1.jpg" alt="Church of the Transfiguration, Kizhi" class="sb-icon" onerror="this.src='https://picsum.photos/id/1047/400/260'"/>
+        <span class="sb-icon-cap">Church of the Transfiguration &middot; Kizhi Island, Russia</span>
+        <span class="sb-panel-tag">The Blessing of the Loaves</span>
+        <div class="sb-rule"></div>
+        <p class="sb-body">At the Litiya on the eves of great feasts, five loaves of bread are blessed together with wheat, wine, and oil, in memory of the feeding of the five thousand. The blessed bread is distributed to the faithful and eaten as a sign of God's provision. It is not communion, but a tangible foretaste of the heavenly banquet.</p>
+        <div class="sb-rule"></div>
+        <span class="sb-panel-head">Great vs. Small Vespers</span>
+        <p class="sb-body" style="margin-top:.4rem">Great Vespers runs 60 to 90 minutes and includes the Evening Entrance, parimia, and often the Litiya. Small Vespers is a brief preparatory service before the All-Night Vigil, typically 20 to 30 minutes, with reduced hymnody and no kathisma.</p>
+      </div>
+
+      <!-- VIGIL PANEL -->
+      <div class="sb-panel" data-panel="vigil">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Mystras_view.jpg/400px-Mystras_view.jpg" alt="Byzantine churches at night, Mystras" class="sb-icon" onerror="this.src='https://picsum.photos/id/1050/400/260'"/>
+        <span class="sb-icon-cap">Byzantine Churches &middot; Mystras, Greece</span>
+        <span class="sb-panel-tag">Keeping Watch</span>
+        <div class="sb-rule"></div>
+        <p class="sb-body">The All-Night Vigil is the most complete expression of Orthodox liturgical prayer available in a parish setting. Those who attend it arrive at the Liturgy the next morning already formed by hours of prayer, psalms, and hymnody. The Vigil and the Liturgy together constitute the full celebration of a feast.</p>
+        <div class="sb-rule"></div>
+        <span class="sb-panel-head">The Polyeleos</span>
+        <p class="sb-body" style="margin-top:.4rem">At the heart of the Vigil's Matins, the Polyeleos is a solemn section in which the Royal Doors open, the entire church is censed, and Psalms 134 and 135 are chanted to the refrain "For His mercy endureth forever." It is one of the most beautiful moments in Orthodox worship.</p>
+      </div>
+
+      <!-- JEWISH ROOTS PANEL -->
+      <div class="sb-panel" data-panel="jewish-roots">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Iglesia_de_la_Natividad%2C_Bet_Sahour%2C_Palestina%2C_2013-09-12%2C_DD_04.jpg/400px-Iglesia_de_la_Natividad%2C_Bet_Sahour%2C_Palestina%2C_2013-09-12%2C_DD_04.jpg" alt="Church of the Nativity, Bethlehem" class="sb-icon" onerror="this.src='https://picsum.photos/id/1048/400/260'"/>
+        <span class="sb-icon-cap">Church of the Nativity &middot; Bethlehem</span>
+        <span class="sb-panel-tag">The Tamid Sacrifice</span>
+        <div class="sb-rule"></div>
+        <p class="sb-body">Every evening in the Jerusalem Temple, the Tamid sacrifice was offered: a lamb, with incense burned at the golden altar before the Holy of Holies. The smoke rose before the face of God as the day ended and the Menorah was kindled. Christian Vespers absorbed and transformed this heritage completely.</p>
+        <div class="sb-rule"></div>
+        <span class="sb-panel-head">Facing East</span>
+        <p class="sb-body" style="margin-top:.4rem">St. Basil the Great listed praying toward the east among the unwritten traditions of the Church. The east is the direction of paradise, of the risen sun, of the return of Christ. To pray facing east at Vespers is to turn away from the dying day and face the hope of the Resurrection.</p>
+      </div>
+
+      <!-- LIGHT PANEL -->
+      <div class="sb-panel" data-panel="light">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Turku_Orthodox_Church%2C_interior.JPG/400px-Turku_Orthodox_Church%2C_interior.JPG" alt="Orthodox church interior with candlelight" class="sb-icon" onerror="this.src='https://picsum.photos/id/1055/400/260'"/>
+        <span class="sb-icon-cap">Orthodox Church Interior &middot; Turku, Finland</span>
+        <span class="sb-panel-tag">John 1:5</span>
+        <div class="sb-rule"></div>
+        <div class="sb-scripture">
+          <span class="sb-scripture-text">"The light shines in the darkness, and the darkness has not overcome it."</span>
+          <span class="sb-scripture-ref">John 1:5</span>
+        </div>
+        <div class="sb-rule"></div>
+        <p class="sb-body">Every lamp lit at Vespers is a confession of this truth. The darkness of evening, of sin, of death itself cannot overcome the light of the Risen Christ. Vespers is the nightly celebration of that victory.</p>
+        <div class="sb-rule"></div>
+        <span class="sb-panel-head">Seventeen Centuries Unbroken</span>
+        <p class="sb-body" style="margin-top:.4rem">Phos Hilaron has been chanted at every Orthodox Vespers since before the Council of Nicaea. When you hear it at Saints Peter and Paul, you are singing what Christians have sung in every generation since the Church began.</p>
+      </div>
+
+      <!-- AT SSPP PANEL -->
+      <div class="sb-panel" data-panel="at-sspp">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Saint_Nicholas_Orthodox_church_in_Bangkok_%2810%29.jpg/400px-Saint_Nicholas_Orthodox_church_in_Bangkok_%2810%29.jpg" alt="Orthodox church interior with evening light" class="sb-icon" onerror="this.src='https://picsum.photos/id/1036/400/260'"/>
+        <span class="sb-icon-cap">Evening Light &middot; Orthodox Church Interior</span>
+        <span class="sb-panel-tag">Saints Peter and Paul Cathedral</span>
+        <div class="sb-rule"></div>
+        <p class="sb-body">109 Grand Street, Jersey City, NJ 07302. Vespers is served every Saturday at 5:00 PM. All are welcome to attend, regardless of background or faith tradition. No prior knowledge of Orthodox worship is required.</p>
+        <div class="sb-rule"></div>
+        <span class="sb-panel-head">Come Saturday. Stay Sunday.</span>
+        <p class="sb-body" style="margin-top:.4rem">Saturday Vespers and Sunday Divine Liturgy together constitute the full weekly cycle of Orthodox worship. Those who attend both experience the complete arc of the Lord's Day, from the evening prayer that begins it to the Eucharist that is its heart.</p>
+        <div class="sb-rule"></div>
+        <span class="sb-chi-rho">&#10016;</span>
+      </div>
+
+    </div>
+  </aside>
+
+</div><!-- /liturgy-layout -->
+
+<!-- QUOTE BREAK -->
+<div class="quote-break">
+  <div class="qb-inner">
+    <p class="qb-text">"Let my prayer arise in Thy sight as incense, and the lifting up of my hands as the evening sacrifice."</p>
+    <span class="qb-attr">Psalm 141:2 &middot; Chanted at every Vespers throughout the Orthodox world</span>
+  </div>
+</div>
+
+<!-- FINAL CTA -->
+<div class="lit-cta">
+  <h2 class="lit-cta-head">Come Saturday Evening.<br><em>Stay Sunday Morning.</em></h2>
+  <span class="lit-cta-sub">Vespers at 5:00 PM. Divine Liturgy at 9:30 AM. All are welcome.</span>
+  <div class="lit-cta-btns">
+    <a href="/visit" class="btn btn-vellum">Plan Your Visit</a>
+    <a href="/schedule" class="btn btn-outline" style="color:rgba(246,241,232,.85);border-color:rgba(246,241,232,.38)">Full Schedule</a>
+    <a href="/divine-liturgy" class="btn btn-outline" style="color:rgba(246,241,232,.85);border-color:rgba(246,241,232,.38)">The Divine Liturgy</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-cross">&#10013; &nbsp; &#10013; &nbsp; &#10013;</div>
+  <div class="footer-cols">
+    <div>
+      <p class="footer-name">Saints Peter &amp; Paul<br>Orthodox Cathedral</p>
+      <p class="footer-blurb">A community of faith in the heart of Jersey City, worshipping in the ancient tradition of the Orthodox Church since 1907.</p>
+      <p class="footer-meta">109 Grand Street<br>Jersey City, NJ 07302<br><a href="tel:+12014341986">(201) 434-1986</a><br><a href="/cdn-cgi/l/email-protection#ec85828a83ac9c8998899e8d82889c8d99808f8d988489889e8d80c28f8381"><span class="__cf_email__" data-cfemail="4e272028210e3e2b3a2b3c2f202a3e2f3b222d2f3a262b2a3c2f22602d2123">[email&#160;protected]</span></a></p>
+    </div>
+    <div>
+      <span class="footer-col-head">Navigate</span>
+      <ul class="footer-nav">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about-our-church">About Our Church</a></li>
+        <li><a href="/about-orthodoxy">About Orthodoxy</a></li>
+        <li><a href="/divine-liturgy">The Divine Liturgy</a></li>
+        <li><a href="/vespers">Vespers</a></li>
+        <li><a href="/schedule">Liturgical Calendar</a></li>
+        <li><a href="/contact-us">Contact Us</a></li>
+      </ul>
+    </div>
+    <div>
+      <span class="footer-col-head">Visit Us</span>
+      <p class="footer-blurb">Whether you are visiting for the first time or looking to become part of our parish family, you are welcome here.</p>
+      <span class="footer-col-head" style="margin-top:.5rem">Service Times</span>
+      <p class="footer-meta" style="line-height:2.4">Vespers &middot; Saturdays 5:00 PM<br>Divine Liturgy &middot; Sundays 9:30 AM<br>Office &middot; Mon&ndash;Fri 9:00 AM&ndash;5:00 PM</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">&copy; Saints Peter &amp; Paul Orthodox Cathedral. All Rights Reserved.</p>
+    <p class="footer-addr">109 Grand Street &middot; Jersey City, NJ 07302 &middot; Diocese of New York &amp; New Jersey &middot; OCA</p>
+  </div>
+</footer>
+
+<!-- MOBILE FLOATING PILL -->
+<div class="mob-pill" id="mob-pill">
+  <button class="mob-pill-arrow" id="pill-prev" onclick="mobNav(-1)" aria-label="Previous section">&#8592;</button>
+  <div class="mob-pill-label" id="pill-label" onclick="openSheet()">
+    <span id="pill-label-text">Introduction</span>
+    <span class="mob-pill-hint">
+      <svg viewBox="0 0 24 24" fill="none" stroke="rgba(184,131,40,.75)" stroke-width="2.5" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </span>
+  </div>
+  <button class="mob-pill-arrow" id="pill-next" onclick="mobNav(1)" aria-label="Next section">&#8594;</button>
+</div>
+
+<!-- BOTTOM SHEET -->
+<div class="mob-sheet-overlay" id="sheet-overlay" onclick="closeSheet()"></div>
+<div class="mob-sheet" id="mob-sheet">
+  <div class="mob-sheet-handle"></div>
+  <div class="mob-sheet-head">
+    <span class="mob-sheet-title">The Structure of Vespers</span>
+    <button class="mob-sheet-close" onclick="closeSheet()">&#10005;</button>
+  </div>
+  <div class="mob-sheet-list" id="sheet-list">
+    <span class="mob-sheet-group">Overview</span>
+    <button class="mob-sheet-item" data-sheet-id="intro" onclick="sheetJump('intro')">
+      <span class="mob-sheet-num">&#10013;</span>
+      <span class="mob-sheet-name">Introduction</span>
+    </button>
+    <button class="mob-sheet-item" data-sheet-id="jewish-roots" onclick="sheetJump('jewish-roots')">
+      <span class="mob-sheet-num">&#9670;</span>
+      <span class="mob-sheet-name">Origins: Jewish Evening Prayer</span>
+    </button>
+
+    <span class="mob-sheet-group">The Service</span>
+    <button class="mob-sheet-item" data-sheet-id="opening-psalm" onclick="sheetJump('opening-psalm')">
+      <span class="mob-sheet-num">I</span>
+      <span class="mob-sheet-name">The Opening Psalm</span>
+    </button>
+    <button class="mob-sheet-item" data-sheet-id="great-litany" onclick="sheetJump('great-litany')">
+      <span class="mob-sheet-num">II</span>
+      <span class="mob-sheet-name">The Great Litany</span>
+    </button>
+    <button class="mob-sheet-item" data-sheet-id="kathisma" onclick="sheetJump('kathisma')">
+      <span class="mob-sheet-num">III</span>
+      <span class="mob-sheet-name">The Kathisma</span>
+    </button>
+    <button class="mob-sheet-item" data-sheet-id="lord-i-cried" onclick="sheetJump('lord-i-cried')">
+      <span class="mob-sheet-num">IV</span>
+      <span class="mob-sheet-name">Lord, I Have Cried</span>
+    </button>
+    <button class="mob-sheet-item" data-sheet-id="entrance" onclick="sheetJump('entrance')">
+      <span class="mob-sheet-num">V</span>
+      <span class="mob-sheet-name">The Evening Entrance</span>
+    </button>
+    <button class="mob-sheet-item" data-sheet-id="prokeimenon" onclick="sheetJump('prokeimenon')">
+      <span class="mob-sheet-num">VI</span>
+      <span class="mob-sheet-name">The Prokeimenon</span>
+    </button>
+    <button class="mob-sheet-item" data-sheet-id="fervent-litany" onclick="sheetJump('fervent-litany')">
+      <span class="mob-sheet-num">VII</span>
+      <span class="mob-sheet-name">Litany of Fervent Supplication</span>
+    </button>
+    <button class="mob-sheet-item" data-sheet-id="aposticha" onclick="sheetJump('aposticha')">
+      <span class="mob-sheet-num">VIII</span>
+      <span class="mob-sheet-name">The Aposticha</span>
+    </button>
+    <button class="mob-sheet-item" data-sheet-id="nunc-dimittis" onclick="sheetJump('nunc-dimittis')">
+      <span class="mob-sheet-num">IX</span>
+      <span class="mob-sheet-name">The Nunc Dimittis</span>
+    </button>
+    <button class="mob-sheet-item" data-sheet-id="trisagion" onclick="sheetJump('trisagion')">
+      <span class="mob-sheet-num">X</span>
+      <span class="mob-sheet-name">Trisagion and Dismissal</span>
+    </button>
+
+    <span class="mob-sheet-group">Going Deeper</span>
+    <button class="mob-sheet-item" data-sheet-id="great-vespers" onclick="sheetJump('great-vespers')">      <span class="mob-sheet-num">&#9670;</span>
+      <span class="mob-sheet-name">Great and Small Vespers</span>
+    </button>
+    <button class="mob-sheet-item" data-sheet-id="vigil" onclick="sheetJump('vigil')">
+      <span class="mob-sheet-num">&#9670;</span>
+      <span class="mob-sheet-name">The All-Night Vigil</span>
+    </button>
+    <button class="mob-sheet-item" data-sheet-id="light" onclick="sheetJump('light')">
+      <span class="mob-sheet-num">&#9670;</span>
+      <span class="mob-sheet-name">The Theology of Light</span>
+    </button>
+    <button class="mob-sheet-item" data-sheet-id="at-sspp" onclick="sheetJump('at-sspp')">
+      <span class="mob-sheet-num">&#9670;</span>
+      <span class="mob-sheet-name">Vespers at SSPP</span>
+    </button>
+  </div>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+/* ── SHEET ── */
+function openSheet(){
+  document.getElementById('sheet-overlay').style.display='block';
+  document.getElementById('mob-sheet').style.display='flex';
+  document.getElementById('mob-sheet').style.flexDirection='column';
+  setTimeout(function(){
+    document.getElementById('sheet-overlay').classList.add('open');
+    document.getElementById('mob-sheet').classList.add('open');
+  },10);
+  document.body.style.overflow='hidden';
+}
+function closeSheet(){
+  document.getElementById('sheet-overlay').classList.remove('open');
+  document.getElementById('mob-sheet').classList.remove('open');
+  setTimeout(function(){document.getElementById('sheet-overlay').style.display='none';},320);
+  document.body.style.overflow='';
+}
+function sheetJump(id){closeSheet();setTimeout(function(){jumpTo(id);},340);}
+function syncSheet(sectionId){
+  document.querySelectorAll('.mob-sheet-item').forEach(function(el){
+    el.classList.toggle('sheet-active',el.dataset.sheetId===sectionId);
+  });
+}
+
+/* ── NAV DRAWER ── */
+function openDrawer(){
+  document.getElementById('nav-drawer').classList.add('open');
+  document.getElementById('nav-overlay').classList.add('open');
+  document.getElementById('nav-hamburger').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeDrawer(){
+  document.getElementById('nav-drawer').classList.remove('open');
+  document.getElementById('nav-overlay').classList.remove('open');
+  document.getElementById('nav-hamburger').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeDrawer();closeSheet();}});
+
+/* ── SECTION REGISTRY ── */
+var SECS=[
+  {id:'intro',         label:'Introduction',                  panel:'intro',         cbar:0},
+  {id:'jewish-roots',  label:'Origins',                       panel:'jewish-roots',  cbar:4},
+  {id:'opening-psalm', label:'I. The Opening Psalm',          panel:'opening-psalm', cbar:1},
+  {id:'great-litany',  label:'II. The Great Litany',          panel:'great-litany',  cbar:1},
+  {id:'kathisma',      label:'III. The Kathisma',             panel:'kathisma',      cbar:1},
+  {id:'lord-i-cried',  label:'IV. Lord, I Have Cried',        panel:'lord-i-cried',  cbar:1},
+  {id:'entrance',      label:'V. The Evening Entrance',       panel:'entrance',      cbar:1},
+  {id:'prokeimenon',   label:'VI. The Prokeimenon',           panel:'prokeimenon',   cbar:1},
+  {id:'fervent-litany',label:'VII. Litany of Supplication',   panel:'fervent-litany',cbar:1},
+  {id:'aposticha',     label:'VIII. The Aposticha',           panel:'aposticha',     cbar:1},
+  {id:'nunc-dimittis', label:'IX. The Nunc Dimittis',         panel:'nunc-dimittis', cbar:1},
+  {id:'trisagion',     label:'X. Trisagion and Dismissal',    panel:'trisagion',     cbar:1},
+  {id:'great-vespers', label:'Great and Small Vespers',       panel:'great-vespers', cbar:2},
+  {id:'vigil',         label:'The All-Night Vigil',           panel:'vigil',         cbar:3},
+  {id:'light',         label:'The Theology of Light',         panel:'light',         cbar:4},
+  {id:'at-sspp',       label:'Vespers at SSPP',               panel:'at-sspp',       cbar:5}
+];
+var activeIdx=0;
+
+function jumpTo(id){
+  var el=document.getElementById(id);
+  if(!el) return;
+  window.scrollTo({top:el.getBoundingClientRect().top+window.pageYOffset-80,behavior:'smooth'});
+}
+
+function activateSection(idx){
+  if(idx<0||idx>=SECS.length) return;
+  activeIdx=idx;
+  var s=SECS[idx];
+  document.querySelectorAll('.rail-item').forEach(function(el){el.classList.remove('rail-active')});
+  var ri=document.querySelector('.rail-item[data-rail="'+s.id+'"]');
+  if(ri) ri.classList.add('rail-active');
+  document.querySelectorAll('.sb-panel').forEach(function(el){el.classList.remove('sb-active')});
+  var sp=document.querySelector('.sb-panel[data-panel="'+s.panel+'"]');
+  if(sp) sp.classList.add('sb-active');
+  var cbLinks=document.querySelectorAll('.cbar-link');
+  cbLinks.forEach(function(el,i){el.classList.toggle('cbar-active',s.cbar===i);});
+  var lbl=document.getElementById('pill-label-text');
+  if(lbl) lbl.textContent=s.label;
+  var prev=document.getElementById('pill-prev');
+  var next=document.getElementById('pill-next');
+  if(prev) prev.disabled=(idx===0);
+  if(next) next.disabled=(idx===SECS.length-1);
+  syncSheet(s.id);
+}
+
+var observer=new IntersectionObserver(function(entries){
+  entries.forEach(function(entry){
+    if(!entry.isIntersecting) return;
+    var sid=entry.target.dataset.section||entry.target.id;
+    var idx=SECS.findIndex(function(s){return s.id===sid;});
+    if(idx>-1) activateSection(idx);
+  });
+},{threshold:0.2,rootMargin:'-70px 0px -30% 0px'});
+
+SECS.forEach(function(s){
+  var el=document.getElementById(s.id);
+  if(el) observer.observe(el);
+});
+
+var rail=document.getElementById('lit-rail');
+var pill=document.getElementById('mob-pill');
+window.addEventListener('scroll',function(){
+  if(window.pageYOffset>280){
+    if(rail) rail.classList.add('rail-visible');
+    if(pill) pill.classList.add('pill-visible');
+  }
+},{passive:true});
+
+function mobNav(dir){
+  var ni=activeIdx+dir;
+  if(ni<0||ni>=SECS.length) return;
+  jumpTo(SECS[ni].id);
+}
+
+activateSection(0);
+
+if(window.netlifyIdentity){
+  window.netlifyIdentity.on('init',function(user){
+    if(!user){window.netlifyIdentity.on('login',function(){document.location.href='/admin/';});}
+  });
+}
+</script>
+
+<!-- Hero Image Rotator -->
+<script>
+(function(){
+  var IMAGES=[
+    {url:'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Turku_Orthodox_Church%2C_interior.JPG/1280px-Turku_Orthodox_Church%2C_interior.JPG',pos:'center center'},
+    {url:'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Interior_of_Greek_Orthodox_church_18th_century_section.JPG/1280px-Interior_of_Greek_Orthodox_church_18th_century_section.JPG',pos:'center center'},
+    {url:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Rila_Monastery_Bulgaria.jpg/1280px-Rila_Monastery_Bulgaria.jpg',pos:'center 40%'},
+    {url:'https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Monastery_of_Saint_Naum_02.jpg/1280px-Monastery_of_Saint_Naum_02.jpg',pos:'center center'},
+    {url:'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Mystras_view.jpg/1280px-Mystras_view.jpg',pos:'center center'}
+  ];
+  var SCRIM='linear-gradient(to right, rgba(59,15,24,.92) 0%, rgba(59,15,24,.72) 55%, rgba(59,15,24,.38) 100%)';
+  var hero=document.getElementById('page-hero');
+  if(!hero) return;
+  var ci=Math.floor(Math.random()*IMAGES.length);
+  function apply(img){hero.style.backgroundImage=SCRIM+', url("'+img.url+'")';hero.style.backgroundSize='cover';hero.style.backgroundPosition=img.pos||'center center';hero.style.backgroundRepeat='no-repeat';}
+  function advance(){var ni=Math.floor(Math.random()*IMAGES.length);if(ni===ci) ni=(ni+1)%IMAGES.length;ci=ni;apply(IMAGES[ci]);}
+  va
