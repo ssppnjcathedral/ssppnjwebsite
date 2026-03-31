@@ -227,7 +227,7 @@ body{background:white;margin:0;padding:0;-webkit-print-color-adjust:exact;print-
         <div><div class="saints-head">Venerated Saints;</div><ul id="p1-saints-list" class="saints-list"></ul></div>
         <div>
           <div class="toc-box"><span class="toc-head">In this Bulletin</span><div class="toc-row"><span>Venerated Saints</span><span class="toc-dots"></span><span>1</span></div><div class="toc-row"><span>Scripture Readings</span><span class="toc-dots"></span><span>2</span></div><div class="toc-row"><span>News &amp; Events</span><span class="toc-dots"></span><span>3</span></div><div class="toc-row"><span>Prayer List</span><span class="toc-dots"></span><span>3</span></div></div>
-          <div class="contact-box"><div class="contact-logo"><img src="/images/logo/logo-2026.svg" alt="Parish logo" onerror="this.style.display='none'"/></div><div class="contact-details"><span class="contact-parish">Peter&amp;Paul<br>Orthodox Cathedral</span>Office Phone: (201) 434-1986<br>Email: ssppnj@gmail.com<br>Website: www.peterandpaulcathedral.com<br>Address: 109 Grand St. Jersey City, NJ</div></div>
+          <div class="contact-box"><div class="contact-logo"><img src="/images/logo/logo-2026.svg" alt="Parish logo" onerror="this.style.display='none'"/></div><div class="contact-details"><span class="contact-parish">Peter&amp;Paul<br>Orthodox Cathedral</span>Office Phone: (201) 434-1986<br>Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="23505053534d4963444e424a4f0d404c4e">[email&#160;protected]</a><br>Website: www.peterandpaulcathedral.com<br>Address: 109 Grand St. Jersey City, NJ</div></div>
         </div>
       </div>
       <span class="bull-pnum bull-pnum-l">01</span>
@@ -290,7 +290,7 @@ body{background:white;margin:0;padding:0;-webkit-print-color-adjust:exact;print-
   </div>
   <div class="footer-bottom"><p class="footer-copy">&copy; Saints Peter &amp; Paul Orthodox Cathedral. All Rights Reserved.</p><p class="footer-addr">109 Grand Street &middot; Jersey City, NJ 07302 &middot; (201) 434-1986</p></div>
 </footer>
-<script src="https://cdn.jsdelivr.net/npm/marked@9.1.6/marked.min.js"></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdn.jsdelivr.net/npm/marked@9.1.6/marked.min.js"></script>
 <script>
 var MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
 var IN_PX=96;
@@ -402,9 +402,17 @@ function renderBulletin(){
   var year=_currentDate.split('-')[0];
   var cal=(_calCache[year]&&_calCache[year].days[_currentDate])||{};
   var date=new Date(_currentDate+'T12:00:00');
-  var dateStr=fmtDate(date),feastStr=_bulletinData.feast_subtitle||cal.feast||'';
-  document.title=_bulletinData.sunday_title+' \u00b7 '+dateStr+' \u00b7 Sts. Peter & Paul';
-  document.getElementById('bull-bar-label').textContent=_bulletinData.sunday_title+'  \u00b7  '+dateStr;
+  var dateStr=fmtDate(date);
+  /* Title: use calendar feast name. Titles array gives the Sunday ordinal when feast is generic */
+  var sundayTitle = cal.feast || (cal.titles&&cal.titles[0]) || '';
+  /* Subtitle: first 2-3 saints from the calendar — same as what shows in the saints screenshot */
+  var saints = cal.saints || [];
+  var feastSubtitle = saints.slice(0,3).join('; ');
+  /* Running header: feast name */
+  var feastStr = cal.feast || '';
+
+  document.title=sundayTitle+' \u00b7 '+dateStr+' \u00b7 Sts. Peter & Paul';
+  document.getElementById('bull-bar-label').textContent=sundayTitle+'  \u00b7  '+dateStr;
   [1,2,3,4].forEach(function(n){var rd=document.getElementById('rh-date-'+n),rf=document.getElementById('rh-feast-'+n);if(rd)rd.textContent=dateStr;if(rf)rf.textContent=feastStr});
   renderPage1(cal);renderPage2(cal);renderPage3(date);renderPage4();
   document.getElementById('bull-loading').style.display='none';
@@ -412,8 +420,12 @@ function renderBulletin(){
   document.fonts.ready.then(function(){requestAnimationFrame(function(){requestAnimationFrame(function(){computeImageLayout()})})});
 }
 function renderPage1(cal){
-  document.getElementById('p1-sunday-title').textContent=(_bulletinData.sunday_title||'')+';';
-  document.getElementById('p1-feast-sub').textContent=_bulletinData.feast_subtitle||cal.feast||'';
+  /* Title from calendar feast */
+  var sundayTitle = cal.feast || (cal.titles&&cal.titles[0]) || '';
+  document.getElementById('p1-sunday-title').textContent = sundayTitle + ';';
+  /* Subtitle: first 2-3 saints from calendar */
+  var saints = cal.saints || [];
+  document.getElementById('p1-feast-sub').textContent = saints.slice(0,3).join('; ');
   var artEl=document.getElementById('p1-article');
   if(_bulletinData.reflection_body){
     if(typeof marked!=='undefined'){artEl.innerHTML=marked.parse(_bulletinData.reflection_body)}
@@ -516,9 +528,4 @@ function computePage2Images(){
 }
 function printBulletin(){computeImageLayout();setTimeout(function(){window.print()},150)}
 window.onbeforeprint=computeImageLayout;
-function showError(msg){document.getElementById('bull-loading').innerHTML='<div style="text-align:center"><p style="font-family:var(--f-display);font-style:italic;font-size:1.2rem;color:rgba(246,241,232,.7)">Unable to load bulletin</p><p style="font-family:var(--f-ui);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(246,241,232,.4);margin-top:.5rem">'+msg+'</p><a href="/bulletins" style="color:var(--gold);font-family:var(--f-ui);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;display:block;margin-top:.75rem">&#8592; Back to Archive</a></div>'}
-if(window.netlifyIdentity){window.netlifyIdentity.on('init',function(user){if(!user)window.netlifyIdentity.on('login',function(){document.location.href='/admin/'})})}
-initBulletin();
-</script>
-</body>
-</html>
+function showError(msg){document.getElementById('bull-loading').innerHTML='<div style="text-align:center"><p style="font-family:var(--f-display);font-style:italic;font-size:1.2rem;color:rgba(246,241,232,.7)">Unable to load bulletin</p><p style="font-family:var(--f-ui);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(246,241,232,.4);margin-top:.5rem">'+msg+'</p><a href="/bulletins" style="color:var(--gold);font-family:var(--f-ui);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;display:block;margin-top:.75rem">&#8592; Back to A
