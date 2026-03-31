@@ -94,9 +94,147 @@ img{display:block;max-width:100%}
 .pe-meta-label{font-family:var(--f-ui);font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.2rem}
 .pe-meta-val{font-family:var(--f-display);font-size:.95rem;color:var(--text);display:block}
 .pe-detail-footer{padding:1rem 2.25rem 1.5rem;border-top:1px solid rgba(123,29,42,.1);display:flex;gap:.75rem;flex-wrap:wrap}
+.wl-cta-footer{padding:1.75rem 2.5rem 2rem;border-top:1px solid rgba(123,29,42,.1);display:flex;gap:.85rem;flex-wrap:wrap;align-items:center;background:var(--vellum)}
+.wl-cta-footer a{font-family:var(--f-ui);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;padding:.72rem 1.6rem;border:1px solid;transition:all .2s;white-space:nowrap;display:inline-block;text-decoration:none}
+.wl-cta-footer a.primary{background:var(--maroon);color:var(--vellum);border-color:var(--maroon)}
+.wl-cta-footer a.primary:hover{background:var(--maroon-deep);border-color:var(--maroon-deep)}
+.wl-cta-footer a.secondary{color:var(--maroon);border-color:rgba(123,29,42,.3)}
+.wl-cta-footer a.secondary:hover{background:var(--maroon);color:var(--vellum);border-color:var(--maroon)}
+@media(max-width:768px){.wl-cta-footer{padding:1.25rem;flex-direction:column;gap:.6rem;position:sticky;bottom:0;box-shadow:0 -4px 20px rgba(28,20,16,.08)}.wl-cta-footer a{width:100%;text-align:center;box-sizing:border-box}}
 .pe-close{position:absolute;top:1rem;right:1rem;font-family:var(--f-ui);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--stone);background:none;border:none;cursor:pointer;padding:.3rem .5rem;transition:color .18s}
 .pe-close:hover{color:var(--maroon)}
 @media(max-width:768px){.pe-detail-body{grid-template-columns:1fr}.pe-detail-meta{border-left:none;border-top:var(--rule-faint);padding-left:0;padding-top:1rem}.pe-detail-header{padding:1.5rem 1.25rem 1rem}.pe-detail-rule{margin:0 1.25rem}.pe-detail-footer{padding:.75rem 1.25rem 1.25rem}}
+
+/* === MOBILE FULL-SCREEN MODALS === */
+@media(max-width:768px){
+
+  /* Shared slide-up behaviour */
+  .pe-overlay,.wl-overlay,.wg-overlay,.welcome-overlay{
+    align-items:flex-end;
+    padding:0 !important;
+  }
+
+  /* Parish Events */
+  .pe-detail-card{
+    max-width:100%;
+    width:100%;
+    max-height:100dvh;
+    height:100dvh;
+    border-radius:0;
+    display:flex;
+    flex-direction:column;
+    transform:translateY(100%);
+    transition:transform .35s cubic-bezier(.4,0,.2,1);
+  }
+  .pe-overlay.open .pe-detail-card{transform:translateY(0)}
+  .pe-close{
+    position:sticky;
+    top:0;
+    right:auto;
+    width:100%;
+    background:var(--vellum);
+    border-bottom:var(--rule-faint);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:.85rem 1.25rem;
+    z-index:10;
+    font-size:.58rem;
+    letter-spacing:.14em;
+  }
+  .pe-close::before{content:'← Back';font-family:var(--f-ui);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone)}
+  .pe-detail-body{flex:1;overflow-y:auto}
+
+  /* Worship Lightbox */
+  .wl-overlay{padding:0 !important;align-items:stretch !important;justify-content:stretch !important}
+  .wl-box{
+    max-width:100vw !important;
+    width:100vw !important;
+    max-height:100dvh !important;
+    height:100dvh !important;
+    border-radius:0;
+    display:flex;
+    flex-direction:column;
+    overflow-y:auto;
+    margin:0;
+    transform:translateY(100%);
+    transition:transform .35s cubic-bezier(.4,0,.2,1);
+  }
+  .wl-overlay.open .wl-box{transform:translateY(0)}
+  .wl-close{
+    position:sticky !important;
+    top:0 !important;
+    right:auto !important;
+    width:100%;
+    background:var(--vellum) !important;
+    border-bottom:1px solid rgba(123,29,42,.1);
+    display:flex !important;
+    align-items:center;
+    justify-content:space-between;
+    padding:.85rem 1.25rem;
+    font-size:.75rem !important;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    font-family:var(--f-ui);
+    color:var(--stone) !important;
+    z-index:10;
+    flex-shrink:0;
+    line-height:1 !important;
+  }
+  .wl-inner{display:flex !important;flex-direction:column !important;min-height:0;overflow:visible}
+  .wl-left{width:100%;border-right:none !important;border-bottom:1px solid rgba(123,29,42,.15);padding:1.75rem 1.25rem}
+  .wl-right{width:100%;padding:1.5rem 1.25rem}
+  .wl-title{font-size:1.9rem}
+  .wl-icon-placeholder{padding-bottom:55%}
+  .wl-opening,.wl-section-body{text-align:left !important;hyphens:none !important}
+
+  /* Gallery Lightbox */
+  .wg-overlay{padding:0;flex-direction:column;justify-content:flex-end}
+  .wg-overlay > *{
+    transform:translateY(100%);
+    transition:transform .35s cubic-bezier(.4,0,.2,1);
+  }
+  .wg-overlay.open > *{transform:translateY(0)}
+  .wg-close{
+    position:fixed;
+    top:0;left:0;right:0;
+    height:48px;
+    background:rgba(21,8,4,.85);
+    border-bottom:1px solid rgba(246,241,232,.08);
+    display:flex;
+    align-items:center;
+    padding:0 1.25rem;
+    font-family:var(--f-ui);
+    font-size:.58rem;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:rgba(246,241,232,.7);
+    font-size:inherit;
+  }
+  .wg-photo{
+    width:100vw;
+    height:50dvh;
+    margin:48px 0 0;
+  }
+  .wg-caption-area{padding:1.25rem 1.5rem;width:100%;background:rgba(21,8,4,.6)}
+  .wg-caption{font-size:.95rem}
+
+  /* Welcome Overlay */
+  .welcome-overlay{align-items:flex-end;padding:0}
+  .wo-inner{
+    max-width:100%;
+    width:100%;
+    padding:2rem 1.5rem 3rem;
+    border:none;
+    border-top:2px solid rgba(184,131,40,.25);
+    transform:translateY(100%);
+    transition:transform .35s cubic-bezier(.4,0,.2,1);
+  }
+  .welcome-overlay.active .wo-inner{transform:translateY(0)}
+  .wo-title{font-size:2rem}
+  .wo-btns{flex-direction:column}
+  .wo-dismiss{margin-top:1.25rem}
+}
 .rubric{display:block;font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.20em;text-transform:uppercase;color:var(--stone);margin-bottom:.5rem}
 .rubric.light{color:rgba(246,241,232,.55)}
 .rubric-rule{display:block;height:1px;background:var(--maroon);margin-bottom:1rem;width:48px}
@@ -133,6 +271,7 @@ img{display:block;max-width:100%}
 .nav-inner{max-width:1380px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px;padding:0 3rem}
 .nav-logo-img{height:38px;width:auto;display:block}
 .footer-logo-img{height:44px;width:auto;display:block;margin-bottom:1.75rem;filter:brightness(0) invert(1);opacity:.85}
+.footer-name{font-family:var(--f-display);font-weight:400;font-size:1.2rem;color:rgba(246,241,232,.88);line-height:1.3;margin-bottom:.75rem}
 .nav-mega-group{height:100%;display:flex;align-items:center}
 .nav-links{display:flex;align-items:center;list-style:none;height:100%}
 .nav-links>li{height:100%;display:flex;align-items:center}
@@ -149,7 +288,7 @@ img{display:block;max-width:100%}
 .mega-panel.mega-visible .mega-photo-bg{transform:scale(1.18)}
 .mega-photo-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(59,15,24,.88) 0%,rgba(59,15,24,.72) 100%)}
 .mega-photo-content{position:relative;z-index:1;padding:2rem 2rem;display:flex;flex-direction:column;height:100%;min-height:220px}
-.mega-photo-cross{font-size:1rem;color:rgba(184,131,40,.30);display:block;margin-bottom:auto;letter-spacing:.2em}
+.mega-photo-cross{display:none}
 .mega-photo-label{font-family:var(--f-ui);font-size:.5rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(232,201,122,.65);display:block;margin-bottom:.4rem}
 .mega-photo-quote{font-family:var(--f-display);font-style:italic;font-weight:300;font-size:1.45rem;color:rgba(246,241,232,.92);line-height:1.25}
 .mega-content{border-left:2px solid var(--maroon)}
@@ -325,8 +464,8 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 .nav-drawer-overlay{position:fixed;inset:0;background:rgba(21,8,4,.65);z-index:340;opacity:0;pointer-events:none;transition:opacity .32s}
 .nav-drawer-overlay.open{opacity:1;pointer-events:all}
 .nav-drawer-head{padding:1.5rem 1.75rem 1rem;border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:space-between}
-.nav-drawer-logo{font-family:var(--f-display);font-weight:500;font-size:1.1rem;color:#fff}
-.nav-drawer-logo span{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);display:block;margin-top:2px}
+.nav-drawer-logo{font-family:var(--f-display);font-weight:500;font-size:1.2rem;color:rgba(246,241,232,.95)}
+.nav-drawer-logo span{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,241,232,.6);display:block;margin-top:2px}
 .nav-drawer-close{width:32px;height:32px;background:rgba(255,255,255,.08);border:none;color:rgba(255,255,255,.65);cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:background .2s}
 .nav-drawer-close:hover{background:rgba(255,255,255,.15)}
 .nav-drawer-links{display:none}
@@ -340,20 +479,20 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 .dr-photo-quote{font-family:var(--f-display);font-style:italic;font-weight:300;font-size:1.1rem;color:rgba(246,241,232,.92);line-height:1.2;transition:opacity .25s}
 .dr-accordion{flex:1;overflow-y:auto}
 .dr-section{border-bottom:1px solid rgba(255,255,255,.06)}
-.dr-section-head{display:flex;align-items:center;justify-content:space-between;padding:.85rem 1.25rem;cursor:pointer;transition:background .18s;user-select:none}
+.dr-section-head{display:flex;align-items:center;justify-content:space-between;padding:1.1rem 1.25rem;cursor:pointer;transition:background .18s;user-select:none}
 .dr-section-head:hover{background:rgba(255,255,255,.03)}
 .dr-section.open .dr-section-head{background:rgba(184,131,40,.07)}
-.dr-section-name{font-family:var(--f-ui);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,241,232,.6);transition:color .18s}
-.dr-section.open .dr-section-name{color:rgba(232,201,122,.9)}
-.dr-section-toggle{font-family:var(--f-ui);font-size:.8rem;color:rgba(184,131,40,.45);line-height:1;transition:color .18s;width:16px;text-align:center;flex-shrink:0}
-.dr-section.open .dr-section-toggle{color:rgba(184,131,40,.85)}
+.dr-section-name{font-family:var(--f-ui);font-size:.9rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,241,232,.85);transition:color .18s}
+.dr-section.open .dr-section-name{color:rgba(232,201,122,1)}
+.dr-section-toggle{font-family:var(--f-ui);font-size:1rem;color:rgba(184,131,40,.7);line-height:1;transition:color .18s;width:16px;text-align:center;flex-shrink:0}
+.dr-section.open .dr-section-toggle{color:rgba(184,131,40,1)}
 .dr-section-links{max-height:0;overflow:hidden;transition:max-height .35s ease}
 .dr-section.open .dr-section-links{max-height:700px}
-.dr-link{display:block;padding:.6rem 1.25rem .5rem;border-bottom:1px solid rgba(255,255,255,.04);transition:background .15s;text-decoration:none}
+.dr-link{display:block;padding:.85rem 1.25rem .75rem;border-bottom:1px solid rgba(255,255,255,.06);transition:background .15s;text-decoration:none}
 .dr-link:last-child{border-bottom:none}
-.dr-link:hover{background:rgba(255,255,255,.04)}
-.dr-link-name{font-family:var(--f-body);font-size:.98rem;color:rgba(246,241,232,.78);display:block;line-height:1.25}
-.dr-link-sub{font-family:var(--f-body);font-style:italic;font-size:.72rem;color:rgba(184,131,40,.42);display:block;margin-top:.05rem;line-height:1.25}
+.dr-link:hover{background:rgba(255,255,255,.06)}
+.dr-link-name{font-family:var(--f-body);font-size:1.3rem;color:rgba(246,241,232,.92);display:block;line-height:1.25}
+.dr-link-sub{font-family:var(--f-body);font-style:italic;font-size:.88rem;color:rgba(232,201,122,.55);display:block;margin-top:.08rem;line-height:1.25}
 .nav-drawer-give{margin:1.25rem 1.75rem;display:block;text-align:center;font-family:var(--f-ui);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;padding:.85rem;background:var(--maroon);color:var(--vellum);transition:background .2s}
 .nav-drawer-give:hover{background:var(--maroon-deep)}
 
@@ -401,17 +540,26 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 /* ── F: LIVE LITURGICAL BANNER ── */
 .lit-banner{position:fixed;top:60px;left:0;right:0;z-index:190;background:var(--apse);border-bottom:1px solid rgba(184,131,40,.20);padding:0 3rem;height:36px;display:flex;align-items:center;justify-content:space-between;font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;transform:translateY(-100%);transition:transform .4s ease}
 .lit-banner.visible{transform:translateY(0)}
-.lb-left{display:flex;align-items:center;gap:1.5rem;color:rgba(246,241,232,.55)}
-.lb-feast{color:rgba(246,241,232,.88);font-size:.72rem}
+.lb-left{display:flex;align-items:center;gap:1.5rem;color:rgba(246,241,232,.55);min-width:0}
+.lb-feast{color:rgba(246,241,232,.88);font-size:.72rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .lb-fast{color:var(--verdigris)}
 .lb-tone{color:rgba(184,131,40,.70)}
-.lb-right{display:flex;align-items:center;gap:.5rem;color:rgba(246,241,232,.45)}
+.lb-right{display:flex;align-items:center;gap:.5rem;color:rgba(246,241,232,.45);flex-shrink:0}
 .lb-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0;animation:pulse-dot 2s ease-in-out infinite}
 .lb-dot.live{background:#4CAF50}
 .lb-dot.soon{background:var(--gold-lt)}
 @keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
 .lb-next{color:rgba(246,241,232,.75);font-weight:500}
-@media(max-width:768px){.lit-banner{padding:0 1rem;height:32px}.lb-tone,.lb-fast{display:none}}
+@media(max-width:768px){
+  .lit-banner{height:auto;padding:0;flex-direction:column;align-items:stretch}
+  .lb-row-1{display:flex;align-items:center;gap:.65rem;padding:.45rem 1rem;border-bottom:1px solid rgba(255,255,255,.05);width:100%}
+  .lb-row-2{display:flex;align-items:center;gap:.65rem;padding:.35rem 1rem;width:100%}
+  .lb-left{gap:.65rem;flex:1;min-width:0}
+  .lb-feast{white-space:normal;overflow:visible;text-overflow:clip;font-size:.62rem;letter-spacing:.1em;line-height:1.3}
+  .lb-fast{font-size:.58rem;letter-spacing:.08em;flex-shrink:0}
+  .lb-tone{font-size:.58rem;letter-spacing:.08em}
+  .lb-next{font-size:.58rem;letter-spacing:.08em}
+}
 
 /* ── K: SERVICE PULSE ── */
 .ts-strip-item{transition:background .4s ease}
@@ -588,20 +736,8 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   .welcome-photos{min-height:auto}
   .wp-panel{min-height:160px}
   .wp-panel-text{font-size:1.3rem}
-  /* Worship lightbox */
-  .wl-box{max-height:100vh;max-height:100dvh}
-  .wl-inner{grid-template-columns:1fr}
-  .wl-left{border-right:none;border-bottom:1px solid rgba(123,29,42,.15);padding:2rem 1.5rem}
-  .wl-right{padding:1.75rem 1.5rem}
-  .wl-title{font-size:1.9rem}
-  .wl-icon-placeholder{padding-bottom:60%}
   /* CTA always visible on touch */
   .worship-card-cta{opacity:1;transform:translateY(0)}
-  /* Gallery lightbox */
-  .wg-photo{height:35vh;width:95vw}
-  .wg-caption{font-size:1rem}
-  .wg-arrow{width:18px;height:18px}
-  .wg-close{font-size:2rem;top:.75rem;right:.75rem}
   /* Worship cards stack */
   .worship-grid{grid-template-columns:1fr;height:auto}
   .worship-card{height:280px}
@@ -723,7 +859,6 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
         <div class="mega-photo-bg" style="background-image:url('https://picsum.photos/seed/sspp-exterior/400/500')"></div>
           <div class="mega-photo-overlay"></div>
           <div class="mega-photo-content">
-            <span class="mega-photo-cross">✦ ✝ ✦</span>
             <span class="mega-photo-label">About Us</span>
             <p class="mega-photo-quote">A century of faith on Grand Street.</p>
           </div>
@@ -758,7 +893,6 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
         <div class="mega-photo-bg" style="background-image:url('https://picsum.photos/seed/sspp-interior/400/500')"></div>
           <div class="mega-photo-overlay"></div>
           <div class="mega-photo-content">
-            <span class="mega-photo-cross">✦ ✝ ✦</span>
             <span class="mega-photo-label">Resources</span>
             <p class="mega-photo-quote">The living tradition of the Church.</p>
           </div>
@@ -797,7 +931,6 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
         <div class="mega-photo-bg" style="background-image:url('https://picsum.photos/seed/sspp-welcome/400/500')"></div>
           <div class="mega-photo-overlay"></div>
           <div class="mega-photo-content">
-            <span class="mega-photo-cross">✦ ✝ ✦</span>
             <span class="mega-photo-label">Inquirers</span>
             <p class="mega-photo-quote">Exploring the ancient Faith?</p>
           </div>
@@ -840,7 +973,6 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
         <div class="mega-photo-bg" style="background-image:url('https://picsum.photos/seed/sspp-calendar/400/500')"></div>
           <div class="mega-photo-overlay"></div>
           <div class="mega-photo-content">
-            <span class="mega-photo-cross">✦ ✝ ✦</span>
             <span class="mega-photo-label">Calendar</span>
             <p class="mega-photo-quote">The rhythm of the Church's year.</p>
           </div>
@@ -873,7 +1005,6 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
         <div class="mega-photo-bg" style="background-image:url('https://picsum.photos/seed/sspp-community/400/500')"></div>
           <div class="mega-photo-overlay"></div>
           <div class="mega-photo-content">
-            <span class="mega-photo-cross">✦ ✝ ✦</span>
             <span class="mega-photo-label">Parish Life</span>
             <p class="mega-photo-quote">A family that shares a life.</p>
           </div>
@@ -908,13 +1039,19 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 
 <!-- F: Live Banner -->
 <div class="lit-banner" id="lit-banner">
-  <div class="lb-left">
-    <span class="lb-dot" id="lb-dot"></span>
-    <span class="lb-feast" id="lb-feast">Loading…</span>
-    <span class="lb-fast"  id="lb-fast"></span>
-    <span class="lb-tone"  id="lb-tone"></span>
+  <div class="lb-row-1">
+    <div class="lb-left">
+      <span class="lb-dot" id="lb-dot"></span>
+      <span class="lb-feast" id="lb-feast">Loading…</span>
+    </div>
+    <div class="lb-right"><span class="lb-fast" id="lb-fast"></span></div>
   </div>
-  <div class="lb-right"><span id="lb-next"></span></div>
+  <div class="lb-row-2">
+    <div class="lb-left">
+      <span class="lb-tone" id="lb-tone"></span>
+    </div>
+    <div class="lb-right"><span class="lb-next" id="lb-next"></span></div>
+  </div>
 </div>
 
 <!-- MOBILE NAV DRAWER -->
@@ -923,15 +1060,6 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   <div class="nav-drawer-head">
     <div class="nav-drawer-logo">Sts. Peter &amp; Paul<span>Orthodox Cathedral · Jersey City</span></div>
     <button class="nav-drawer-close" onclick="closeDrawer()">✕</button>
-  </div>
-  <div class="dr-photo" id="dr-photo">
-    <div class="dr-photo-bg" id="dr-photo-bg"></div>
-    <div class="dr-photo-overlay"></div>
-    <div class="dr-photo-content">
-      <span class="dr-photo-cross">✦ ✝ ✦</span>
-      <span class="dr-photo-lbl" id="dr-photo-lbl">Orthodox Cathedral</span>
-      <p class="dr-photo-quote" id="dr-photo-quote">Jersey City, New Jersey</p>
-    </div>
   </div>
   <div class="dr-accordion" id="dr-accordion">
 
@@ -1018,13 +1146,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   <div class="hero-fallback"></div>
   <div class="hero-bg" id="hero-bg1"></div>
   <div class="hero-bg2" id="hero-bg2"></div>
-  <div class="hero-overlay"></div>
-  
-
-    <div class="byz-strip byz-strip-bottom"></div>
-    <div class="byz-strip byz-strip-left"></div>
-    <div class="byz-strip byz-strip-right"></div>
-  <div class="hero-content">
+  <div class="hero-overlay"></div>  <div class="hero-content">
     <p class="hero-eyebrow">Diocese of New York &amp; New Jersey · Orthodox Church in America</p>
     <h1 class="hero-title">Saints<br><em>Peter</em> &amp; <em>Paul</em></h1>
     
@@ -1188,6 +1310,10 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 <!-- WORSHIP LIGHTBOX -->
 <div class="wl-overlay" id="wl-overlay" onclick="closeWorship(event)">
   <div class="wl-box" id="wl-box">
+    <button class="wl-close" onclick="closeWorshipBtn()">
+      <span style="font-family:var(--f-ui);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone)">← Back</span>
+      <span onclick="closeWorshipBtn()" style="font-size:1.2rem;color:var(--stone);line-height:1;font-weight:300;font-family:var(--f-display)">✕</span>
+    </button>
     <div class="wl-inner">
       <div class="wl-left">
         <span class="wl-label" id="wl-label"></span>
@@ -1353,7 +1479,6 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   </div>
 </div>
 <footer>
-  <span class="footer-cross">✦ ✝ ✦</span>
   <div class="footer-cols">
 
     <!-- COL 1: Cathedral info + newsletter -->
@@ -1476,13 +1601,6 @@ function drToggle(head){
   if(!isOpen){
     section.classList.add('open');
     section.querySelector('.dr-section-toggle').textContent='−';
-    drUpdatePhoto(
-      section.getAttribute('data-photo'),
-      section.getAttribute('data-label'),
-      section.getAttribute('data-quote')
-    );
-  } else {
-    drResetPhoto();
   }
 }
 
@@ -1759,7 +1877,12 @@ var WORSHIP_DATA = [
     iconName: "The Liturgy of the Hours",
     iconBio: "Orthodox Christians have prayed the daily cycle of services since the earliest centuries of the Church, following the pattern of the Jewish Temple and the Desert Fathers of Egypt.",
     factoidHead: "Historical Note",
-    factoidBody: "Vespers descends directly from the Jewish evening prayer of the Second Temple period. The early Christians, many of them Jewish converts, continued the practice. By the 4th century, the Desert Fathers had formalized it into the evening office still prayed today across the Orthodox world."
+    factoidBody: "Vespers descends directly from the Jewish evening prayer of the Second Temple period. The early Christians, many of them Jewish converts, continued the practice. By the 4th century, the Desert Fathers had formalized it into the evening office still prayed today across the Orthodox world.",
+    ctas: [
+      {label: "Full Vespers Guide", href: "/vespers", primary: true},
+      {label: "Plan Your Visit", href: "/visit"},
+      {label: "Liturgical Calendar", href: "/schedule"}
+    ]
   },
   {
     label: "Sunday Worship",
@@ -1776,7 +1899,12 @@ var WORSHIP_DATA = [
     iconName: "St. John Chrysostom",
     iconBio: "Archbishop of Constantinople (349-407 AD), renowned for his preaching and pastoral care. He compiled the Divine Liturgy still celebrated by Orthodox Christians throughout the world.",
     factoidHead: "Historical Note",
-    factoidBody: "The Divine Liturgy was compiled in its present form by St. John Chrysostom in Antioch in the late 4th century, drawing on even earlier apostolic traditions. It has been celebrated continuously for over 1,600 years, making it one of the oldest living liturgical rites in the world."
+    factoidBody: "The Divine Liturgy was compiled in its present form by St. John Chrysostom in Antioch in the late 4th century, drawing on even earlier apostolic traditions. It has been celebrated continuously for over 1,600 years, making it one of the oldest living liturgical rites in the world.",
+    ctas: [
+      {label: "Full Liturgy Guide", href: "/divine-liturgy", primary: true},
+      {label: "Plan Your Visit", href: "/visit"},
+      {label: "Daily Readings", href: "/readings"}
+    ]
   },
   {
     label: "First Time Here",
@@ -1793,7 +1921,12 @@ var WORSHIP_DATA = [
     iconName: "The Catechumenate",
     iconBio: "From the earliest centuries, the Orthodox Church has welcomed seekers through a period of formation called the Catechumenate, preparing them gradually for Baptism and full membership.",
     factoidHead: "Historical Note",
-    factoidBody: "In the ancient Church, those not yet baptized were called Catechumens. They attended the first half of the Liturgy -- the Liturgy of the Word -- and were then dismissed before the Eucharist. This practice of welcome and gradual formation goes back to the Apostolic era."
+    factoidBody: "In the ancient Church, those not yet baptized were called Catechumens. They attended the first half of the Liturgy -- the Liturgy of the Word -- and were then dismissed before the Eucharist. This practice of welcome and gradual formation goes back to the Apostolic era.",
+    ctas: [
+      {label: "Plan Your Visit", href: "/visit", primary: true},
+      {label: "About Orthodoxy", href: "/about-orthodoxy"},
+      {label: "Contact Us", href: "/contact-us"}
+    ]
   }
 ];
 
@@ -1829,6 +1962,17 @@ function openWorship(idx) {
     wrap.appendChild(body);
     container.appendChild(wrap);
   });
+  var primary = d.ctas ? d.ctas.find(function(c){ return c.primary; }) : null;
+  if(primary){
+    var ctaWrap = document.createElement("div");
+    ctaWrap.style.cssText = "margin-top:2rem;padding-top:1.5rem;border-top:1px solid rgba(123,29,42,.1)";
+    var ctaLink = document.createElement("a");
+    ctaLink.href = primary.href;
+    ctaLink.textContent = primary.label;
+    ctaLink.style.cssText = "display:inline-block;font-family:var(--f-ui);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;padding:.72rem 1.6rem;background:var(--maroon);color:var(--vellum);border:1px solid var(--maroon);text-decoration:none;transition:background .2s";
+    ctaWrap.appendChild(ctaLink);
+    container.appendChild(ctaWrap);
+  }
   document.getElementById("wl-overlay").classList.add("open");
   document.body.style.overflow = "hidden";
 }
