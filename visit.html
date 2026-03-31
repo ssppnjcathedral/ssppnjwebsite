@@ -80,12 +80,12 @@ footer .btn-outline:hover{background:rgba(246,241,232,.15);color:#fff;border-col
 .vp-title em{font-style:italic}
 .vp-title-rule{width:56px;height:1px;background:var(--gold);margin:1.5rem 0}
 .vp-hero-right{}
-.vp-welcome-card{background:rgba(246,241,232,.055);border:1px solid rgba(184,131,40,.20);padding:2.5rem}
-.vp-welcome-label{font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:rgba(232,201,122,.65);display:block;margin-bottom:1.25rem}
-.vp-welcome-text{font-family:var(--f-display);font-size:1.05rem;line-height:1.80;color:rgba(246,241,232,.82)}
+.vp-welcome-card{background:var(--vellum);border:1px solid rgba(184,131,40,.20);padding:2.5rem}
+.vp-welcome-label{font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:1.25rem}
+.vp-welcome-text{font-family:var(--f-display);font-size:1.05rem;line-height:1.80;color:var(--ink)}
 .vp-welcome-text p{margin-bottom:1em}
 .vp-welcome-text p:last-of-type{margin-bottom:0}
-.vp-welcome-sig{font-family:var(--f-display);font-style:italic;font-size:.92rem;color:rgba(184,131,40,.80);margin-top:1.5rem;display:block}
+.vp-welcome-sig{font-family:var(--f-display);font-style:italic;font-size:.92rem;color:var(--maroon);margin-top:1.5rem;display:block}
 
 /* ── YOUR FIRST VISIT ── */
 .vp-first{background:var(--vellum);padding:0}
@@ -150,6 +150,31 @@ footer .btn-outline:hover{background:rgba(246,241,232,.15);color:#fff;border-col
 .vp-path-cta{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(184,131,40,.90);display:flex;align-items:center;gap:.5rem;transition:color .2s}
 .vp-path-cta::after{content:'→';transition:transform .2s}
 @media(hover:hover){.vp-path:hover .vp-path-cta{color:var(--gold)}.vp-path:hover .vp-path-cta::after{transform:translateX(5px)}}
+
+/* ── ORTHODOX CATECHESIS ── */
+.vp-catechesis{background:var(--vellum);border-top:var(--rule-faint)}
+.vp-cat-inner{max-width:1380px;margin:0 auto;padding:5.5rem 4.5rem}
+.vp-cat-head{display:flex;align-items:flex-end;justify-content:space-between;gap:3rem;margin-bottom:3.5rem}
+.vp-cat-title{font-family:var(--f-display);font-weight:300;font-size:clamp(1.8rem,3vw,2.8rem);color:var(--text);line-height:1.1;margin:.5rem 0}
+.vp-cat-title em{font-style:italic}
+.vp-cat-intro{font-family:var(--f-display);font-style:italic;font-size:1rem;color:var(--stone);max-width:34ch;text-align:right;line-height:1.65;flex-shrink:0}
+.vp-cat-moments{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(123,29,42,.10);margin-bottom:3rem}
+.vp-cat-moment{background:var(--vellum);padding:2.5rem 2.75rem;position:relative}
+.vp-cat-moment:last-child{grid-column:span 2;background:var(--apse);display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+.vcm-num{font-family:var(--f-display);font-weight:300;font-size:3.5rem;line-height:1;color:rgba(123,29,42,.10);display:block;margin-bottom:-.25rem}
+.vp-cat-moment:last-child .vcm-num{color:rgba(246,241,232,.08)}
+.vcm-era{font-family:var(--f-ui);font-size:.65rem;font-weight:500;letter-spacing:.20em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.55rem}
+.vp-cat-moment:last-child .vcm-era{color:rgba(184,131,40,.65)}
+.vcm-title{font-family:var(--f-display);font-weight:400;font-size:clamp(1.1rem,1.8vw,1.4rem);color:var(--maroon);line-height:1.2;margin-bottom:.85rem}
+.vp-cat-moment:last-child .vcm-title{color:rgba(246,241,232,.92);font-size:clamp(1.2rem,2vw,1.65rem)}
+.vcm-body{font-family:var(--f-body);font-size:.92rem;line-height:1.78;color:var(--ink)}
+.vp-cat-moment:last-child .vcm-body{color:rgba(246,241,232,.65)}
+.vcm-last-cta{display:flex;flex-direction:column;gap:1rem;align-items:flex-start}
+.vcm-cta-body{font-family:var(--f-display);font-style:italic;font-size:1rem;color:rgba(246,241,232,.60);line-height:1.65}
+.vp-cat-footer{display:flex;align-items:center;justify-content:space-between;padding-top:2rem;border-top:var(--rule-faint)}
+.vp-cat-footer-text{font-family:var(--f-display);font-style:italic;font-size:.95rem;color:var(--stone)}
+.vp-cat-link{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);border-bottom:1px solid rgba(123,29,42,.28);padding-bottom:.1rem;transition:border-color .2s;white-space:nowrap;flex-shrink:0}
+.vp-cat-link:hover{border-color:var(--maroon)}
 
 /* ── THIS WEEK ── */
 .vp-week{background:var(--vellum);border-top:var(--rule-faint)}
@@ -240,11 +265,16 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   .vp-contact-inner{grid-template-columns:1fr;gap:3rem}
   .vp-explore-head{flex-direction:column;align-items:flex-start;gap:1rem}
   .vp-explore-sub{text-align:left}
+  .vp-cat-head{flex-direction:column;align-items:flex-start;gap:1rem}
+  .vp-cat-intro{text-align:left;max-width:100%}
+  .vp-cat-moments{grid-template-columns:1fr}
+  .vp-cat-moment:last-child{grid-column:span 1;grid-template-columns:1fr}
+  .vp-cat-footer{flex-direction:column;gap:1rem;align-items:flex-start}
   .footer-cols{grid-template-columns:1fr 1fr;gap:2.5rem}
 }
 @media(max-width:768px){
   .nav-links{display:none}.nav-hamburger{display:flex}.nav-give{display:none}
-  .vp-hero-inner,.vp-first-inner,.vp-where-inner,.vp-explore-inner,.vp-week-inner,.vp-contact-inner{padding:3.5rem 1.5rem}
+  .vp-hero-inner,.vp-first-inner,.vp-where-inner,.vp-explore-inner,.vp-cat-inner,.vp-week-inner,.vp-contact-inner{padding:3.5rem 1.5rem}
   .chapter-bar{padding:.65rem 1.5rem}
   .vp-cards,.vp-paths,.vp-services{grid-template-columns:1fr}
   .vp-card,.vp-svc{border-right:none;border-bottom:var(--rule-faint)}
@@ -564,6 +594,77 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
       </a>
 
     </div>
+  </div>
+</section>
+
+<!-- 4b. ORTHODOX CATECHESIS -->
+<section class="vp-catechesis" id="catechesis">
+  <div class="chapter-bar">
+    <span class="cbar-text bright">Orthodox Catechesis</span>
+    <span class="cbar-text">The journey of becoming Orthodox &middot; 3,000 years in five moments</span>
+  </div>
+  <div class="vp-cat-inner">
+
+    <div class="vp-cat-head">
+      <div>
+        <span class="rubric">The Journey of Formation</span>
+        <div class="rubric-rule" style="margin:.5rem 0 .75rem"></div>
+        <h2 class="vp-cat-title">What does it mean<br><em>to become Orthodox?</em></h2>
+      </div>
+      <p class="vp-cat-intro">Catechesis is as old as the Shema. These five moments trace the thread from ancient Israel to the parish on Grand Street.</p>
+    </div>
+
+    <div class="vp-cat-moments">
+
+      <div class="vp-cat-moment">
+        <span class="vcm-num">I</span>
+        <span class="vcm-era">c. 1400 BCE &middot; Old Testament</span>
+        <h3 class="vcm-title">The Ancient Command: Teach Your Children Diligently</h3>
+        <p class="vcm-body">The Shema — <em>Hear, O Israel</em> — is the oldest catechetical formula in the Judeo-Christian world. Moses commanded parents to teach the faith at home, on the road, lying down and rising up. The entire book of Deuteronomy is one sustained act of catechesis: salvation history retold so the next generation might receive it as their own.</p>
+      </div>
+
+      <div class="vp-cat-moment">
+        <span class="vcm-num">II</span>
+        <span class="vcm-era">c. 50–215 AD &middot; New Testament &amp; Early Church</span>
+        <h3 class="vcm-title">The Pattern of the First Christians: Road, Table, Mission</h3>
+        <p class="vcm-body">The Didache — the oldest surviving Christian catechetical text — presents a moral instruction followed by directives on baptism, Eucharist, and prayer. The Emmaus road narrative gave the Church its catechetical pattern: scripture opened, community gathered, sacrament received, mission sent. To become a Christian was not a transaction. It was a transformation.</p>
+      </div>
+
+      <div class="vp-cat-moment">
+        <span class="vcm-num">III</span>
+        <span class="vcm-era">c. 350 AD &middot; Jerusalem</span>
+        <h3 class="vcm-title">St. Cyril and the Art of Mystagogy</h3>
+        <p class="vcm-body">St. Cyril of Jerusalem did not explain the sacraments to candidates before they experienced them. He walked them into the water, anointed them, placed the Body and Blood in their hands — and only then unfolded the meaning of what they had lived. This is mystagogy: leading the newly illumined deeper into the mystery they have already entered. It is a pattern still practiced in this parish today.</p>
+      </div>
+
+      <div class="vp-cat-moment">
+        <span class="vcm-num">IV</span>
+        <span class="vcm-era">19th–20th Century &middot; Russia &amp; America</span>
+        <h3 class="vcm-title">A Tradition That Traveled: From Moscow to Jersey City</h3>
+        <p class="vcm-body">St. Philaret of Moscow's Catechism followed Orthodox immigrants across the Atlantic. Those immigrants built parishes like this one. When Fr. Alexander Schmemann and Fr. Thomas Hopko articulated an Orthodox theology of formation for the OCA in the 1970s, they were not inventing something new — they were recovering something ancient and making it legible in English, for Americans choosing Orthodoxy with open eyes.</p>
+      </div>
+
+      <!-- Moment V — spans full width, apse background -->
+      <div class="vp-cat-moment">
+        <div>
+          <span class="vcm-num">V</span>
+          <span class="vcm-era">Today &middot; Saints Peter &amp; Paul Cathedral</span>
+          <h3 class="vcm-title">What Catechesis Looks Like Here</h3>
+          <p class="vcm-body">While the OCA prescribes no mandatory format for catechesis, Fr. Solomon offers formal catechesis classes throughout the liturgical year for those preparing to enter the Church. A catechumen attends Liturgy regularly, participates in classes alongside others on the same journey, meets with Fr. Solomon for personal instruction, and receives a prayer and fasting rule suited to their life. The sacramental life of the parish opens at the pace their heart requires.</p>
+        </div>
+        <div class="vcm-last-cta">
+          <p class="vcm-cta-body">The ancient pattern — scripture, community, sacrament, mission — is the same one the Church has kept since the road to Emmaus. We are glad you are here, and glad to walk it with you.</p>
+          <a href="/contact-us" class="btn btn-outline" style="color:rgba(246,241,232,.90);border-color:rgba(246,241,232,.38);">Contact Fr. Solomon</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="vp-cat-footer">
+      <span class="vp-cat-footer-text">Catechesis at Saints Peter &amp; Paul is a 3,000-year tradition rooted in scripture, liturgy, and personal formation.</span>
+      <a href="/catechesis" class="vp-cat-link">Read the full history of Orthodox catechesis &#8594;</a>
+    </div>
+
   </div>
 </section>
 
