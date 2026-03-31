@@ -600,19 +600,66 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 .float-help{position:fixed;bottom:2rem;right:2rem;z-index:500;display:flex;align-items:center;gap:.65rem;background:var(--maroon);color:var(--vellum);font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;padding:.7rem 1.2rem .7rem .9rem;cursor:pointer;border:none;box-shadow:0 4px 24px rgba(21,8,4,.35);transform:translateY(100px);opacity:0;transition:transform .4s cubic-bezier(.22,1,.36,1),opacity .4s ease,background .2s}
 .float-help.visible{transform:translateY(0);opacity:1}
 .float-help:hover{background:var(--maroon-deep)}
-.float-panel{position:fixed;bottom:5.5rem;right:2rem;z-index:500;width:300px;background:var(--vellum);border-top:2px solid var(--maroon);box-shadow:0 8px 40px rgba(21,8,4,.25);transform:translateY(20px) scale(.96);opacity:0;pointer-events:none;transition:all .3s cubic-bezier(.22,1,.36,1)}
+
+/* Panel */
+.float-panel{position:fixed;bottom:5.5rem;right:2rem;z-index:500;width:340px;background:var(--vellum);border-top:2px solid var(--maroon);box-shadow:0 8px 40px rgba(21,8,4,.25);transform:translateY(20px) scale(.96);opacity:0;pointer-events:none;transition:all .3s cubic-bezier(.22,1,.36,1)}
 .float-panel.open{transform:translateY(0) scale(1);opacity:1;pointer-events:all}
-.fp-head{padding:1.25rem 1.5rem;border-bottom:var(--rule-faint)}
-.fp-title{font-family:var(--f-display);font-size:1.25rem;color:var(--text);display:block}
-.fp-sub{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);margin-top:.2rem;display:block}
-.fp-body{padding:1.25rem 1.5rem}
-.fp-item{display:flex;align-items:baseline;gap:.65rem;padding:.55rem 0;border-bottom:var(--rule-hair)}
+
+/* Live status bar */
+.fp-live{display:flex;align-items:center;gap:.6rem;padding:.65rem 1.5rem;background:rgba(123,29,42,.05);border-bottom:var(--rule-hair)}
+.fp-live-dot{width:7px;height:7px;border-radius:50%;background:var(--gold);flex-shrink:0;animation:pulse-dot 2s ease-in-out infinite}
+.fp-live-dot.live{background:#4CAF50}
+.fp-live-text{font-family:var(--f-ui);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--maroon)}
+
+/* Head */
+.fp-head{padding:1.1rem 1.5rem .9rem;border-bottom:var(--rule-faint)}
+.fp-title{font-family:var(--f-display);font-size:1.2rem;color:var(--text);display:block;line-height:1.2}
+.fp-sunday{font-family:var(--f-display);font-style:italic;font-size:.88rem;color:var(--stone);display:block;margin-top:.2rem}
+
+/* Tabs */
+.fp-tabs{display:flex;border-bottom:var(--rule-faint)}
+.fp-tab{flex:1;font-family:var(--f-ui);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);padding:.65rem 0;text-align:center;cursor:pointer;border-bottom:2px solid transparent;transition:color .18s,border-color .18s;background:none;border-left:none;border-right:none;border-top:none}
+.fp-tab.active{color:var(--maroon);border-bottom-color:var(--gold)}
+
+/* Tab panes */
+.fp-pane{display:none}
+.fp-pane.active{display:block}
+
+/* Visit info */
+.fp-body{padding:1rem 1.5rem .5rem}
+.fp-item{display:flex;align-items:baseline;gap:.65rem;padding:.45rem 0;border-bottom:var(--rule-hair)}
 .fp-item:last-child{border-bottom:none}
-.fp-label{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);width:80px;flex-shrink:0}
-.fp-val{font-family:var(--f-display);font-size:1rem;color:var(--ink)}
-.fp-link{display:block;margin:1rem 1.5rem 1.25rem;font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;text-align:center;padding:.65rem;background:var(--maroon);color:var(--vellum);transition:background .2s}
-.fp-link:hover{background:var(--maroon-deep)}
-@media(max-width:768px){.float-help,.float-panel{right:1rem}.float-panel{width:calc(100vw - 2rem)}}
+.fp-label{font-family:var(--f-ui);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);width:72px;flex-shrink:0}
+.fp-val{font-family:var(--f-display);font-size:.98rem;color:var(--ink)}
+
+/* About orthodoxy pane */
+.fp-about{padding:1rem 1.5rem .5rem;font-family:var(--f-body);font-size:.92rem;line-height:1.75;color:var(--ink)}
+
+/* CTA rows */
+.fp-ctas{padding:.75rem 1.5rem 1.25rem;display:flex;flex-direction:column;gap:.4rem}
+.fp-cta{display:flex;align-items:center;justify-content:space-between;font-family:var(--f-ui);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;padding:.6rem .85rem;transition:background .18s,color .18s;text-decoration:none}
+.fp-cta-primary{background:var(--maroon);color:var(--vellum)}
+.fp-cta-primary:hover{background:var(--maroon-deep)}
+.fp-cta-secondary{color:var(--maroon);border:1px solid rgba(123,29,42,.2)}
+.fp-cta-secondary:hover{background:rgba(123,29,42,.05)}
+.fp-cta-arrow{opacity:.6}
+
+/* Mobile bottom sheet */
+@media(max-width:768px){
+  .float-help{right:1rem;bottom:1.5rem}
+  .float-panel{
+    right:0;left:0;bottom:0;width:100%;
+    border-top:2px solid var(--maroon);
+    border-radius:0;
+    transform:translateY(100%);
+    transition:transform .35s cubic-bezier(.4,0,.2,1);
+    opacity:1;
+    max-height:90dvh;
+    overflow-y:auto;
+  }
+  .float-panel.open{transform:translateY(0);opacity:1}
+  .fp-mobile-handle{display:block;width:36px;height:4px;background:rgba(123,29,42,.2);border-radius:2px;margin:.85rem auto .5rem}
+}
 
 
 
@@ -1173,6 +1220,11 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
       <div id="sunday-panel"><p class="ts-loading">Loading liturgical data…</p></div>
       <div class="ts-strip" style="margin-top:2rem">
         <div class="ts-strip-item">
+          <span class="ts-strip-day">Wednesday</span>
+          <span class="ts-strip-name">Catechism Class</span>
+          <span class="ts-strip-time">8:00 – 9:30 PM</span>
+        </div>
+        <div class="ts-strip-item">
           <span class="ts-strip-day">Saturday</span>
           <span class="ts-strip-name">Vespers</span>
           <span class="ts-strip-time">5:00 PM</span>
@@ -1181,11 +1233,6 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
           <span class="ts-strip-day">Sunday</span>
           <span class="ts-strip-name">Divine Liturgy</span>
           <span class="ts-strip-time">9:30 AM</span>
-        </div>
-        <div class="ts-strip-item">
-          <span class="ts-strip-day">Mon–Fri</span>
-          <span class="ts-strip-name">Parish Office</span>
-          <span class="ts-strip-time">9:00 AM – 5:00 PM</span>
         </div>
       </div>
     </div>
@@ -1408,7 +1455,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
     <div class="visit-right">
       <div class="visit-detail">
         <p class="visit-detail-head">Address</p>
-        <p class="visit-detail-body"><strong>111 Grand Street</strong><br>Jersey City, NJ 07302<br>Corner of Grand &amp; Marin Boulevard</p>
+        <p class="visit-detail-body"><a href="https://maps.google.com/?q=109+Grand+Street+Jersey+City+NJ+07302" target="_blank" rel="noopener" style="color:inherit;border-bottom:1px solid rgba(246,241,232,.3)"><strong>109 Grand Street</strong><br>Jersey City, NJ 07302</a><br>Corner of Grand &amp; Marin Boulevard</p>
       </div>
       <div class="visit-detail">
         <p class="visit-detail-head">Sunday Services</p>
@@ -1560,7 +1607,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   </div>
   <div class="footer-bottom">
     <p class="footer-copy">© Saints Peter &amp; Paul Orthodox Cathedral. All Rights Reserved.</p>
-    <p class="footer-addr">111 Grand Street · Jersey City, NJ 07302<br>(201) 434-1986 · <a href="mailto:office@peterandpaulcathedral.com">office@peterandpaulcathedral.com</a></p>
+    <p class="footer-addr"><a href="https://maps.google.com/?q=109+Grand+Street+Jersey+City+NJ+07302" target="_blank" rel="noopener" style="color:inherit;border-bottom:1px solid rgba(246,241,232,.25)">109 Grand Street · Jersey City, NJ 07302</a><br>(201) 434-1986 · <a href="mailto:office@peterandpaulcathedral.com">office@peterandpaulcathedral.com</a></p>
   </div>
 </footer>
 
@@ -1741,16 +1788,50 @@ async function initMegaCalWeek(){
 <button class="float-help" id="float-help" onclick="toggleFloatPanel()">
   <span>First time here?</span>
 </button>
+
 <div class="float-panel" id="float-panel">
-  <div class="fp-head"><span class="fp-title">Plan Your Visit</span><span class="fp-sub">Everything you need to know</span></div>
-  <div class="fp-body">
-    <div class="fp-item"><span class="fp-label">Vespers</span><span class="fp-val">Saturdays &middot; 5:00 PM</span></div>
-    <div class="fp-item"><span class="fp-label">Liturgy</span><span class="fp-val">Sundays &middot; 9:30 AM</span></div>
-    <div class="fp-item"><span class="fp-label">Address</span><span class="fp-val">111 Grand St, Jersey City</span></div>
-    <div class="fp-item"><span class="fp-label">Dress</span><span class="fp-val">Modest, respectful attire</span></div>
-    <div class="fp-item"><span class="fp-label">Welcome</span><span class="fp-val">All are welcome to attend</span></div>
+  <div class="fp-mobile-handle"></div>
+
+  <!-- Live status -->
+  <div class="fp-live" id="fp-live">
+    <span class="fp-live-dot" id="fp-live-dot"></span>
+    <span class="fp-live-text" id="fp-live-text">Loading…</span>
   </div>
-  <a href="/about-orthodoxy" class="fp-link">Learn About Our Faith &rarr;</a>
+
+  <!-- Head -->
+  <div class="fp-head">
+    <span class="fp-title">Welcome to Sts. Peter &amp; Paul</span>
+    <span class="fp-sunday" id="fp-sunday"></span>
+  </div>
+
+  <!-- Tabs -->
+  <div class="fp-tabs">
+    <button class="fp-tab active" id="fp-tab-visit" onclick="fpSwitchTab('visit')">Visit Info</button>
+    <button class="fp-tab" id="fp-tab-about" onclick="fpSwitchTab('about')">About Orthodoxy</button>
+  </div>
+
+  <!-- Visit Info pane -->
+  <div class="fp-pane active" id="fp-pane-visit">
+    <div class="fp-body">
+      <div class="fp-item"><span class="fp-label">Vespers</span><span class="fp-val">Saturdays &middot; 5:00 PM</span></div>
+      <div class="fp-item"><span class="fp-label">Liturgy</span><span class="fp-val">Sundays &middot; 9:30 AM</span></div>
+      <div class="fp-item"><span class="fp-label">Address</span><span class="fp-val"><a href="https://maps.google.com/?q=109+Grand+Street+Jersey+City+NJ+07302" target="_blank" rel="noopener" style="color:inherit;border-bottom:1px solid rgba(44,31,22,.2)">109 Grand St, Jersey City</a></span></div>
+      <div class="fp-item"><span class="fp-label">Dress</span><span class="fp-val">Modest, respectful attire</span></div>
+      <div class="fp-item"><span class="fp-label">Welcome</span><span class="fp-val">All are welcome to attend</span></div>
+    </div>
+  </div>
+
+  <!-- About Orthodoxy pane -->
+  <div class="fp-pane" id="fp-pane-about">
+    <p class="fp-about">Orthodox Christianity is the ancient Faith of the Apostles — unchanged in doctrine, worship, and way of life for two thousand years. We do not ask you to believe before you belong. Come, observe, and ask questions freely.</p>
+  </div>
+
+  <!-- CTA buttons -->
+  <div class="fp-ctas">
+    <a href="/visit" class="fp-cta fp-cta-primary">Plan Your Visit <span class="fp-cta-arrow">→</span></a>
+    <a href="/about-orthodoxy" class="fp-cta fp-cta-secondary">About Orthodoxy <span class="fp-cta-arrow">→</span></a>
+    <a href="/contact-us" class="fp-cta fp-cta-secondary">Contact Us <span class="fp-cta-arrow">→</span></a>
+  </div>
 </div>
 
 <script>
@@ -1784,6 +1865,55 @@ function toggleFloatPanel(){
   _panelOpen=!_panelOpen;
   var p=document.getElementById('float-panel');
   if(p) p.classList.toggle('open',_panelOpen);
+  if(_panelOpen) fpInit();
+}
+function fpSwitchTab(tab){
+  ['visit','about'].forEach(function(t){
+    document.getElementById('fp-tab-'+t).classList.toggle('active', t===tab);
+    document.getElementById('fp-pane-'+t).classList.toggle('active', t===tab);
+  });
+}
+function fpInit(){
+  /* Live service status */
+  var now=new Date();
+  var day=now.getDay(), hr=now.getHours(), mn=now.getMinutes();
+  var dotEl=document.getElementById('fp-live-dot');
+  var txtEl=document.getElementById('fp-live-text');
+  var totalMins=hr*60+mn;
+  var liveText='', dotClass='';
+  if(day===6 && totalMins>=17*60-30 && totalMins<18*60){
+    liveText='Vespers is live now · 5:00 PM'; dotClass='live';
+  } else if(day===0 && totalMins>=9*60+15 && totalMins<11*60){
+    liveText='Divine Liturgy is live now · 9:30 AM'; dotClass='live';
+  } else if(day===6 && totalMins>=14*60 && totalMins<17*60){
+    var mins=17*60-totalMins;
+    liveText='Vespers tonight in '+Math.round(mins/60*10)/10+' hrs · 5:00 PM'; dotClass='';
+  } else if(day===5 && totalMins>=17*60){
+    liveText='Vespers tomorrow · Saturday 5:00 PM'; dotClass='';
+  } else {
+    /* Find next Sunday */
+    var daysToSun=(7-day)%7||7;
+    liveText='Next Liturgy in '+daysToSun+' day'+(daysToSun>1?'s':'')+' · Sunday 9:30 AM'; dotClass='';
+  }
+  if(dotEl) dotEl.className='fp-live-dot'+(dotClass?' '+dotClass:'');
+  if(txtEl) txtEl.textContent=liveText;
+
+  /* This Sunday's feast from calendar cache */
+  if(typeof getCalendar==='function'){
+    var sunday=new Date(now);
+    var dToSun=now.getDay()===0?0:(7-now.getDay());
+    sunday.setDate(sunday.getDate()+dToSun);
+    var key=sunday.getFullYear()+'-'+String(sunday.getMonth()+1).padStart(2,'0')+'-'+String(sunday.getDate()).padStart(2,'0');
+    getCalendar(sunday.getFullYear()).then(function(cal){
+      if(cal&&cal.days&&cal.days[key]){
+        var feast=cal.days[key].feast||'';
+        if(feast){
+          var el=document.getElementById('fp-sunday');
+          if(el) el.textContent='This Sunday: '+feast;
+        }
+      }
+    });
+  }
 }
 window.addEventListener('scroll',function(){
   if(!_floatVisible && window.scrollY>400) showFloatHelp();
