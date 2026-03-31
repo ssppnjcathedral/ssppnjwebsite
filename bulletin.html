@@ -65,9 +65,9 @@
 .np-logo-pp .amp{font-style:italic;font-weight:300;font-size:22pt}
 .np-logo-sub{font-family:var(--f-ui);font-size:7.5pt;letter-spacing:.08em;color:var(--b-ink);display:block;border-top:.5pt solid var(--b-ink);padding-top:2.5pt;margin-top:3pt}
 .p1-title{margin-bottom:.18in}
-.p1-title-main{display:block;font-family:var(--f-display);font-size:26pt;font-weight:400;line-height:1.0;color:var(--b-ink);border-left:4pt solid var(--b-maroon);padding-left:.28em}
+.p1-title-main{display:block;font-family:var(--f-display);font-size:26pt;font-weight:600;line-height:1.0;color:var(--b-ink);border-left:4pt solid var(--b-maroon);padding-left:.28em}
 .p1-title-sub{display:block;font-family:var(--f-body);font-size:10pt;font-style:italic;color:var(--b-ink);padding-left:calc(.28em + 4pt);margin-top:3pt;line-height:1.35}
-.p1-article{columns:2;column-gap:.25in;column-fill:balance;font-size:10pt;line-height:1.5;text-align:justify;margin-bottom:.15in}
+.p1-article{columns:2;column-gap:.25in;column-fill:balance;font-size:13pt;line-height:1.5;text-align:justify;margin-bottom:.15in}
 .p1-article p{text-indent:1.4em;margin-bottom:0}
 .p1-article p:first-child{text-indent:0}
 .p1-article p:first-child::first-letter{font-family:var(--f-display);font-size:3.4em;font-weight:600;color:var(--b-maroon);float:left;line-height:.75;padding-right:.05em;padding-top:.05em}
@@ -75,7 +75,7 @@
 .p1-img-wrap img{width:100%;height:100%;object-fit:cover;display:block}
 .p1-img-caption{position:absolute;bottom:0;right:0;background:rgba(59,15,24,.76);color:#fff;font-family:var(--f-body);font-style:italic;font-size:8.5pt;padding:4pt 9pt;max-width:2.2in;text-align:right;line-height:1.35}
 .p1-bottom{display:grid;grid-template-columns:1fr 2.1in;gap:.2in;align-items:start;margin-top:.05in}
-.saints-head{font-family:var(--f-display);font-size:20pt;font-weight:400;line-height:1.0;color:var(--b-ink);border-left:4pt solid var(--b-maroon);padding-left:.28em;margin-bottom:.14in}
+.saints-head{font-family:var(--f-display);font-size:20pt;font-weight:600;line-height:1.0;color:var(--b-ink);border-left:4pt solid var(--b-maroon);padding-left:.28em;margin-bottom:.14in}
 .saints-list{list-style:none}
 .saint-item{font-size:9.5pt;line-height:1.5;padding:1pt 0;border-bottom:.25pt solid rgba(123,29,42,.18)}
 .saint-item:last-child{border-bottom:none}
@@ -88,12 +88,13 @@
 .contact-logo img{width:34pt;height:auto;display:block}
 .contact-details{font-size:7.5pt;line-height:1.65;color:var(--b-ink)}
 .contact-parish{font-family:var(--f-display);font-size:9.5pt;font-weight:500;line-height:1.15;display:block;margin-bottom:3pt}
-.p2-layout{display:grid;grid-template-columns:58% 1fr;gap:.22in}
-.p2-readings-head{font-family:var(--f-display);font-size:21pt;font-weight:400;line-height:1.0;color:var(--b-ink);border-left:4pt solid var(--b-maroon);padding-left:.28em;margin-bottom:.18in}
-.reading-block{margin-bottom:.18in}
-.reading-ref{display:block;font-family:var(--f-display);font-size:11pt;font-style:italic;text-align:center;margin-bottom:.07in;color:var(--b-ink)}
+.p2-layout{display:grid;grid-template-columns:1fr 1.6in;gap:.18in;height:calc(11in - var(--b-mt) - var(--b-mb) - .7in)}
+.p2-readings-head{font-family:var(--f-display);font-size:21pt;font-weight:600;line-height:1.0;color:var(--b-ink);border-left:4pt solid var(--b-maroon);padding-left:.28em;margin-bottom:.18in}
+.readings-flow{columns:3;column-gap:.18in;column-fill:auto;height:calc(11in - var(--b-mt) - var(--b-mb) - .9in)}
+.reading-block{break-inside:avoid;margin-bottom:.14in}
+.reading-ref{display:block;font-family:var(--f-display);font-size:13pt;font-style:italic;text-align:center;margin-bottom:.07in;color:var(--b-ink)}
 .reading-ref em{font-style:normal;font-size:8.5pt;color:var(--b-stone)}
-.reading-cols{font-size:9.5pt;line-height:1.52;text-align:justify}
+.reading-cols{font-size:12pt;line-height:1.52;text-align:justify;display:block}
 .reading-cols p{text-indent:1.2em;margin-bottom:0}
 .reading-cols p:first-child{text-indent:0}
 .reading-cols p.rdrop{text-indent:0}
@@ -102,7 +103,7 @@
 .reading-placeholder{font-size:9pt;font-style:italic;text-align:center;margin:.06in 0;color:var(--b-stone);padding:.06in;border:.5pt dashed rgba(122,102,72,.35)}
 .reading-loading{font-size:8.5pt;font-style:italic;color:rgba(122,102,72,.5);text-align:center;padding:.08in 0}
 .v-num{font-size:6pt;vertical-align:super;font-family:var(--f-ui);letter-spacing:.02em;color:var(--b-maroon);margin-right:1pt;font-style:normal}
-.troparia-head{font-family:var(--f-display);font-size:21pt;font-weight:400;line-height:1.0;color:var(--b-ink);border-left:4pt solid var(--b-maroon);padding-left:.28em;margin-bottom:.18in}
+.troparia-head{font-family:var(--f-display);font-size:21pt;font-weight:600;line-height:1.0;color:var(--b-ink);border-left:4pt solid var(--b-maroon);padding-left:.28em;margin-bottom:.18in}
 .troparia-text{font-size:9.5pt;line-height:1.55;color:var(--b-ink)}
 .troparia-text p{margin-bottom:.16in}
 .troparia-text p:last-child{margin-bottom:0}
@@ -110,7 +111,7 @@
 .icon-wrap img{width:100%;display:block;object-fit:cover;object-position:center top}
 .icon-cap{font-family:var(--f-body);font-style:italic;font-size:8.5pt;text-align:center;color:var(--b-ink);margin-top:3pt;display:block}
 .p3-layout{display:grid;grid-template-columns:45% 1fr;gap:.22in}
-.p3-sec-head{font-family:var(--f-display);font-size:18pt;font-weight:400;line-height:1.0;color:var(--b-ink);border-left:4pt solid var(--b-maroon);padding-left:.28em;margin-bottom:.13in}
+.p3-sec-head{font-family:var(--f-display);font-size:18pt;font-weight:600;line-height:1.0;color:var(--b-ink);border-left:4pt solid var(--b-maroon);padding-left:.28em;margin-bottom:.13in}
 .schedule-body{font-size:9.5pt;line-height:1.55}
 .schedule-body p{margin-bottom:.1in}
 .schedule-body p:last-child{margin-bottom:0}
@@ -118,14 +119,14 @@
 .prayer-list{list-style:none;font-size:9.5pt;line-height:1.62}
 .prayer-list li{padding:.5pt 0;border-bottom:.2pt solid rgba(123,29,42,.13)}
 .prayer-list li:last-child{border-bottom:none}
-.cal-section-head{font-family:var(--f-display);font-size:18pt;font-weight:400;line-height:1.0;color:var(--b-ink);margin-bottom:.12in;border-bottom:.75pt solid var(--b-maroon);padding-bottom:3pt}
+.cal-section-head{font-family:var(--f-display);font-size:18pt;font-weight:600;line-height:1.0;color:var(--b-ink);margin-bottom:.12in;border-bottom:.75pt solid var(--b-maroon);padding-bottom:3pt}
 .cal-event{display:grid;grid-template-columns:2.2em 1fr;gap:.08in;margin-bottom:.16in;align-items:start}
 .cal-date-num{font-family:var(--f-display);font-size:26pt;font-weight:300;color:var(--b-maroon);line-height:1}
 .cal-info{font-size:9pt;line-height:1.45}
 .cal-name{display:block;font-size:9.5pt;font-weight:500;line-height:1.3}
 .cal-time{display:block;font-size:8.5pt;color:var(--b-stone)}
 .cal-loc{display:block;font-size:8pt;font-weight:600;line-height:1.35;margin-top:1pt}
-.ann-head{font-family:var(--f-display);font-size:18pt;font-weight:400;line-height:1.0;color:var(--b-ink);border-left:4pt solid var(--b-maroon);padding-left:.28em;margin-bottom:.12in}
+.ann-head{font-family:var(--f-display);font-size:18pt;font-weight:600;line-height:1.0;color:var(--b-ink);border-left:4pt solid var(--b-maroon);padding-left:.28em;margin-bottom:.12in}
 .ann-item{font-size:9.5pt;line-height:1.5;margin-bottom:.13in}
 .ann-item:last-child{margin-bottom:0}
 .ann-title{font-weight:600}
@@ -330,10 +331,11 @@ async function fetchPassage(ref){
     return(j.verses&&j.verses.length)?j.verses:null;
   }catch(e){return null}
 }
-function renderVerseHtml(verses){
-  /* Inline verse numbers as small superscripts, text flows as one block */
-  return verses.map(function(v){
-    return'<sup class="v-num">'+v.verse+'</sup>'+v.text.trim();
+function renderVerseHtml(verses,skipFirst){
+  /* skipFirst=true: omit verse number on verse 1 so drop cap hits the letter */
+  return verses.map(function(v,i){
+    var num=(i===0&&skipFirst)?'':'<sup class="v-num">'+v.verse+'</sup>';
+    return num+v.text.trim();
   }).join(' ');
 }
 
@@ -345,7 +347,7 @@ async function loadScriptureTexts(primary){
     if(!slot)continue;
     var verses=await fetchPassage(r.display||r.short);
     if(verses&&verses.length){
-      var html='<div class="reading-cols"><p class="rdrop">'+renderVerseHtml(verses)+'</p></div>';
+      var html='<div class="reading-cols"><p class="rdrop">'+renderVerseHtml(verses,true)+'</p></div>';
       slot.innerHTML=html;
     }else{
       /* Graceful fallback — ref still shown, text just not available */
@@ -415,7 +417,7 @@ function renderBulletin(){
   var date=new Date(_currentDate+'T12:00:00');
   var dateStr=fmtDate(date),feastStr=_bulletinData.feast_subtitle||cal.feast||'';
   document.title=_bulletinData.sunday_title+' \u00b7 '+dateStr+' \u00b7 Sts. Peter & Paul';
-  document.getElementById('bull-bar-label').textContent=_bulletinData.sunday_title+'  \u00b7  '+dateStr;
+  document.getElementById('bull-bar-label').textContent=(cal.feast||(cal.titles&&cal.titles[0])||'Bulletin')+'  \u00b7  '+dateStr;
   [1,2,3,4].forEach(function(n){var rd=document.getElementById('rh-date-'+n),rf=document.getElementById('rh-feast-'+n);if(rd)rd.textContent=dateStr;if(rf)rf.textContent=feastStr});
   renderPage1(cal);renderPage2(cal);renderPage3(date);renderPage4();
   document.getElementById('bull-loading').style.display='none';
@@ -423,8 +425,11 @@ function renderBulletin(){
   document.fonts.ready.then(function(){requestAnimationFrame(function(){requestAnimationFrame(function(){computeImageLayout()})})});
 }
 function renderPage1(cal){
-  document.getElementById('p1-sunday-title').textContent=(_bulletinData.sunday_title||'')+';';
-  document.getElementById('p1-feast-sub').textContent=_bulletinData.feast_subtitle||cal.feast||'';
+  /* Title and subtitle from calendar — Fr. Solomon sets only the date in Decap */
+  var sundayTitle=cal.feast||(cal.titles&&cal.titles[0])||'';
+  document.getElementById('p1-sunday-title').textContent=sundayTitle+';';
+  var saints=cal.saints||[];
+  document.getElementById('p1-feast-sub').textContent=saints.slice(0,3).join('; ');
   var artEl=document.getElementById('p1-article');
   if(_bulletinData.reflection_body){
     artEl.innerHTML=simpleMarkdown(_bulletinData.reflection_body);
@@ -453,7 +458,7 @@ function renderPage2(cal){
   var html='';
   primary.forEach(function(r,i){
     var desc=r.desc?' <em style="font-size:8.5pt;font-weight:400">('+r.desc+')</em>':'';
-    html+='<div class="reading-block">';
+    html+='<div class="reading-block" style="break-inside:avoid">';
     html+='<span class="reading-ref">'+(r.display||r.short)+desc+'</span>';
     html+='<div id="rslot-'+i+'"><p class="reading-loading">Loading&hellip;</p></div>';
     html+='</div>';
@@ -461,7 +466,7 @@ function renderPage2(cal){
   if(alsoRead.length){
     html+='<p class="also-read">Also read: '+alsoRead.map(function(r){return r.short||r.display}).join('; ')+'</p>';
   }
-  document.getElementById('p2-readings').innerHTML=html;
+  document.getElementById('p2-readings').innerHTML='<div class="readings-flow">'+html+'</div>';
 
   /* Fire async text fetch — non-blocking, fills slots as each resolves */
   loadScriptureTexts(primary);
