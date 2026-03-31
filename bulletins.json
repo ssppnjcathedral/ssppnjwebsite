@@ -1,18 +1,20 @@
 {
   "bulletins": [
     {
-      "patristic_quotes": [
-        {
-          "quote": "This is the wood with which, as if He were a great warrior, the Master was wounded in His hands, and in His feet, and in His side, that is, the very body of God, and thus healed the bruises of our sins along with our nature which was wounded by the evil dragon. And if I must add something to these praises, this is the wood upon which the Master's blood was spilled, endowing it with invincible power that burns the demons and illumines the world.",
-          "attribution": "On the Veneration of the Cross, St Theodore the Studite"
-        },
-        {
-          "quote": "The Most High planted in the middle of Paradise the thrice blessed wood, the gift of life for us, in order that, in approaching it, Adam might find eternal and immortal life. But he did not strive earnestly to know this life, and he failed to attain it, and revealed death. However, the robber, seeing how the plant in Eden had been beautifully transplanted in Golgotha, recognized the life in it and said to himself: This is what my father lost formerly in Paradise.",
-          "attribution": "St Romanos the Melodist, On the Adoration at the Cross"
-        }
-      ],
-      "troparia_text": "The Angelic Powers were at Thy tomb; the guards became as dead men. Mary stood by Thy grave, seeking Thy most pure body. Thou didst capture hell not being tempted by it. Thou didst come to the Virgin, granting life. O Lord, Who didst rise from the dead, glory to Thee.\n\nO Lord, save Thy people, and bless Thine inheritance! Grant victories to the Orthodox Christians over their adversaries; and by virtue of Thy Cross, preserve Thy habitation!\n\nWhen Christ God, the Giver of Life, raised all of the dead from the valleys of misery with His mighty hand, He bestowed resurrection on the human race.",
+      "date": "2025-09-21",
+      "sunday_title": "15th Sunday after Pentecost",
+      "feast_subtitle": "Leavetaking of Exaltation of the Precious and Life-Giving Cross - September 21, 2025",
       "reflection_title": "The Exaltation of the Holy Cross",
+      "reflection_body": "The pagan Roman Emperors tried to obliterate the holy places where our Lord Jesus Christ suffered and rose from the dead, so that they would be forgotten. Emperor Hadrian (117-138) ordered that Golgotha and the Lord's Sepulchre be buried, and that a temple in honor of the pagan \"goddess\" Venus and a statue of Jupiter be placed there.\n\nIn 313 Saint Constantine issued the Edict of Milan, by which Christianity was legalized in the Western half of the Empire. Although Licinius had signed the Edict of Milan in order to oblige Constantine, he continued his cruel persecutions against Christians. Only after his defeat was St. Helen, mother of St. Constantine, able to travel to Judea to build more than 80 churches, including at Bethlehem, on the Mount of Olives where the Lord ascended, at the Garden of Gethsemane, and where the Mother of God was buried after her Dormition.\n\nExcavations under the temple of Venus revealed the empty tomb, three crosses, the inscribed board once attached to the cross by Pilate, and the nails. The cross of Christ was identified by miraculous healings and Patriarch Makarios held the cross vertical for the people to see.",
+      "featured_image": "",
+      "featured_image_caption": "Adoration of the Cross",
+      "saint_icon_image": "",
+      "saint_icon_caption": "Saint Wenceslaus",
+      "show_second_image": false,
+      "second_image": "",
+      "second_image_caption": "",
+      "reading_texts": [],      "troparia_text": "The Angelic Powers were at Thy tomb; the guards became as dead men. Mary stood by Thy grave, seeking Thy most pure body. Thou didst capture hell not being tempted by it. Thou didst come to the Virgin, granting life. O Lord, Who didst rise from the dead, glory to Thee.\n\nO Lord, save Thy people, and bless Thine inheritance! Grant victories to the Orthodox Christians over their adversaries; and by virtue of Thy Cross, preserve Thy habitation!\n\nWhen Christ God, the Giver of Life, raised all of the dead from the valleys of misery with His mighty hand, He bestowed resurrection on the human race.",
+      "thank_you_line": "Thank you to Team A for Coffee Hour.",
       "special_announcements": [
         {
           "title": "Fr. Solomon on Vacation",
@@ -23,28 +25,16 @@
           "body": "On September 28th, at 9am, we will baptize Lorenzo and Beatriz's little girl. All are invited to take part in the prayers. Liturgy will begin at approximately 10am following the baptism."
         }
       ],
-      "thank_you_line": "Thank you to Team B for Coffee Hour.",
-      "sunday_title": "15th Sunday after Pentecost",
-      "featured_image": "/images/bulletins/adoration-of-the-holy-cross-icons-orthodox-christian-supply_488_562x-3.png",
-      "date": "2025-09-21",
-      "second_image": "",
-      "featured_image_caption": "Adoration of the Cross",
-      "show_second_image": true,
-      "reading_texts": [
+      "patristic_quotes": [
         {
-          "text": " testing Him, and saying, 36“Teacher, which is the great commandment in the law?” 37Jesus said to him, “’You shall love the LORD your God with all your heart, with all your soul, and with all your mind.’ 38This is the first and great commandment. 39And the second is like it: ‘You shall love your neighbor as yourself.’ 40On these two commandments hang all the Law and the Prophets.” 41While the Pharisees were gathered together, Jesus asked them, 42saying, “What do you think about the Christ? Whose Son is He?” They said to Him, “The Son of David.” 43He said to them, “How then does David in the Spirit call Him ‘Lord,’ saying: 44‘The LORD said to my Lord, sit at My right hand, till I make Your enemies Your footstool’?45If David then calls Him ‘Lord,’ how is He his Son?” 46And no one was able to answer Him a word, nor from that day on did anyone dare question Him anymore.\n",
-          "ref": "Galatians 2:16-20 "
+          "quote": "This is the wood with which, as if He were a great warrior, the Master was wounded in His hands, and in His feet, and in His side, that is, the very body of God, and thus healed the bruises of our sins along with our nature which was wounded by the evil dragon. And if I must add something to these praises, this is the wood upon which the Master's blood was spilled, endowing it with invincible power that burns the demons and illumines the world.",
+          "attribution": "On the Veneration of the Cross, St Theodore the Studite"
         },
         {
-          "ref": "Ephesians 2:16-20 ",
-          "text": "law but by faith in Jesus Christ, even we have believed in Christ Jesus, that we might be justified by faith in Christ and not by the works of the law; for by the works of the law no flesh shall be justified. 17But if, while we seek to be justified by Christ, we ourselves also are found sinners, is Christ therefore a minister of sin? Certainly not! 18For if I build again those things which I destroyed, I make myself a transgressor. 19For I through the law died to the law that I might live to God. 20I have been crucified with Christ; it is no longer I who live, but Christ lives in me; and the life which I now live in the flesh I live by faith in the Son of God, who loved me and gave Himself for me."
+          "quote": "The Most High planted in the middle of Paradise the thrice blessed wood, the gift of life for us, in order that, in approaching it, Adam might find eternal and immortal life. But he did not strive earnestly to know this life, and he failed to attain it, and revealed death. However, the robber, seeing how the plant in Eden had been beautifully transplanted in Golgotha, recognized the life in it and said to himself: This is what my father lost formerly in Paradise.",
+          "attribution": "St Romanos the Melodist, On the Adoration at the Cross"
         }
-      ],
-      "saint_icon_image": "/images/bulletins/saintwenceslaussmall__30694-1.png",
-      "feast_subtitle": "Leavetaking of Exaltation of the Precious and Life-Giving Cross - September 21, 2025",
-      "reflection_body": "The pagan Roman Emperors tried to obliterate the holy places where our Lord Jesus Christ suffered and rose from the dead, so that they would be forgotten. Emperor Hadrian (117-138) ordered that Golgotha and the Lord's Sepulchre be buried, and that a temple in honor of the pagan \"goddess\" Venus and a statue of Jupiter be placed there.\n\nIn 313 Saint Constantine issued the Edict of Milan, by which Christianity was legalized in the Western half of the Empire. Although Licinius had signed the Edict of Milan in order to oblige Constantine, he continued his cruel persecutions against Christians. Only after his defeat was St. Helen, mother of St. Constantine, able to travel to Judea to build more than 80 churches, including at Bethlehem, on the Mount of Olives where the Lord ascended, at the Garden of Gethsemane, and where the Mother of God was buried after her Dormition.\n\nExcavations under the temple of Venus revealed the empty tomb, three crosses, the inscribed board once attached to the cross by Pilate, and the nails. The cross of Christ was identified by miraculous healings and Patriarch Makarios held the cross vertical for the people to see.",
-      "second_image_caption": "Saint Wenceslaus the Good",
-      "saint_icon_caption": "Saint Wenceslaus"
+      ]
     }
   ]
 }

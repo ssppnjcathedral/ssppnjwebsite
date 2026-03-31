@@ -99,6 +99,8 @@
 .reading-cols .rdrop::first-letter{font-family:var(--f-display);font-size:3.2em;font-weight:600;color:var(--b-maroon);float:left;line-height:.78;padding-right:.04em;padding-top:.06em}
 .also-read{font-family:var(--f-body);font-style:italic;font-size:9pt;text-align:center;margin-top:.1in;color:var(--b-ink)}
 .reading-placeholder{font-size:9pt;font-style:italic;text-align:center;margin:.06in 0;color:var(--b-stone);padding:.06in;border:.5pt dashed rgba(122,102,72,.35)}
+.reading-loading{font-size:8.5pt;font-style:italic;color:rgba(122,102,72,.5);text-align:center;padding:.08in 0}
+.v-num{font-size:6pt;vertical-align:super;font-family:var(--f-ui);letter-spacing:.02em;color:var(--b-maroon);margin-right:1pt;font-style:normal}
 .troparia-head{font-family:var(--f-display);font-size:21pt;font-weight:400;line-height:1.0;color:var(--b-ink);border-left:4pt solid var(--b-maroon);padding-left:.28em;margin-bottom:.18in}
 .troparia-text{font-size:9.5pt;line-height:1.55;color:var(--b-ink)}
 .troparia-text p{margin-bottom:.16in}
@@ -298,6 +300,61 @@ function fmtDate(d){return MONTHS[d.getMonth()]+' '+d.getDate()+', '+d.getFullYe
 function openDrawer(){document.getElementById('nav-drawer').classList.add('open');document.getElementById('nav-overlay').classList.add('open');document.getElementById('nav-hamburger').classList.add('open');document.body.style.overflow='hidden'}
 function closeDrawer(){document.getElementById('nav-drawer').classList.remove('open');document.getElementById('nav-overlay').classList.remove('open');document.getElementById('nav-hamburger').classList.remove('open');document.body.style.overflow=''}
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeDrawer()});
+/* ═══════════════════════════════════════════════════════
+   SCRIPTURE API — bible-api.com / KJV
+   Same logic as readings.html — ported for bulletin use.
+   Fetches Epistle + Gospel text automatically by date.
+═══════════════════════════════════════════════════════ */
+var NO_FETCH_PREFIXES=['wis','wisdom','sir','sirach','tob','tobit','jdt','judith','bar','baruch','1 macc','2 macc','1macc','2macc','composite','ps of sol','prayer'];
+function normalizeRef(ref){
+  if(!ref)return null;
+  ref=ref.replace(/^composite\s+\d+\s*-\s*/i,'').trim();
+  ref=ref.split(',')[0].trim();
+  ref=ref.replace(/(\d)\.(\d)/g,'$1:$2');
+  return ref;
+}
+function canFetch(ref){
+  if(!ref)return false;
+  var l=ref.toLowerCase();
+  return!NO_FETCH_PREFIXES.some(function(p){return l.startsWith(p)});
+}
+async function fetchPassage(ref){
+  var n=normalizeRef(ref);
+  if(!n||!canFetch(n))return null;
+  try{
+    var r=await fetch('https://bible-api.com/'+encodeURIComponent(n)+'?translation=kjv');
+    if(!r.ok)return null;
+    var j=await r.json();
+    if(j.error)return null;
+    return(j.verses&&j.verses.length)?j.verses:null;
+  }catch(e){return null}
+}
+function renderVerseHtml(verses){
+  /* Inline verse numbers as small superscripts, text flows as one block */
+  return verses.map(function(v){
+    return'<sup class="v-num">'+v.verse+'</sup>'+v.text.trim();
+  }).join(' ');
+}
+
+async function loadScriptureTexts(primary){
+  /* Fetch epistle + gospel texts one at a time, filling slots as they resolve */
+  for(var i=0;i<primary.length;i++){
+    var r=primary[i];
+    var slot=document.getElementById('rslot-'+i);
+    if(!slot)continue;
+    var verses=await fetchPassage(r.display||r.short);
+    if(verses&&verses.length){
+      var html='<div class="reading-cols"><p class="reading-body rdrop">'+renderVerseHtml(verses)+'</p></div>';
+      slot.innerHTML=html;
+    }else{
+      /* Graceful fallback — ref still shown, text just not available */
+      slot.innerHTML='<p class="reading-placeholder">Text not available for this reading via API.</p>';
+    }
+  }
+  /* Recompute page 2 image layout now that reading heights are final */
+  requestAnimationFrame(function(){requestAnimationFrame(function(){computePage2Images()})});
+}
+
 async function initBulletin(){
   var params=new URLSearchParams(window.location.search),reqDate=params.get('date');
   try{
@@ -348,24 +405,46 @@ function renderPage1(cal){
   document.getElementById('p1-saints-list').innerHTML=all.map(function(s){return'<li class="saint-item">'+s.replace(/\(([^)]+)\)/g,'<em>($1)</em>')+'</li>'}).join('')||'<li class="saint-item"><em>See calendar</em></li>';
 }
 function renderPage2(cal){
-  var readings=cal.readings||[],epistles=readings.filter(function(r){return r.source==='Epistle'}),gospels=readings.filter(function(r){return r.source==='Gospel'}),matins=readings.filter(function(r){return r.source==='Matins Gospel'});
-  var primary=[];if(epistles[0])primary.push(epistles[0]);if(gospels[0])primary.push(gospels[0]);if(gospels[1])primary.push(gospels[1]);
+  var readings=cal.readings||[];
+  /* Only Epistle and Gospel shown with full text on the bulletin */
+  var epistles=readings.filter(function(r){return r.source==='Epistle'});
+  var gospels =readings.filter(function(r){return r.source==='Gospel'});
+  var matins  =readings.filter(function(r){return r.source==='Matins Gospel'});
+
+  /* Primary: first Epistle + first two Gospels */
+  var primary=[];
+  if(epistles[0])primary.push(epistles[0]);
+  if(gospels[0]) primary.push(gospels[0]);
+  if(gospels[1]) primary.push(gospels[1]);
+
+  /* Also read: remaining epistles + matins Gospel — ref only, no text fetch */
   var alsoRead=epistles.slice(1).concat(matins);
-  var rtexts=_bulletinData.reading_texts||[];
-  function findText(r){return rtexts.find(function(t){return t.ref===r.display||t.ref===r.short||r.display.indexOf(t.ref)>=0})}
+
+  /* Build shells with loading placeholders — text filled async below */
   var html='';
-  primary.forEach(function(r){
-    var ot=findText(r);
-    html+='<div class="reading-block"><span class="reading-ref">'+r.display+(r.desc?' <em>('+r.desc+')</em>':'')+'</span>';
-    if(ot&&ot.text){html+='<div class="reading-cols"><div class="reading-body">';ot.text.split('\n').filter(function(l){return l.trim()}).forEach(function(line,li){html+='<p'+(li===0?' class="rdrop"':'')+'>'+line+'</p>'});html+='</div></div>'}
-    else{html+='<p class="reading-placeholder">Full text not provided. Paste via Bulletin CMS to print inline.</p>'}
+  primary.forEach(function(r,i){
+    var desc=r.desc?' <em style="font-size:8.5pt;font-weight:400">('+r.desc+')</em>':'';
+    html+='<div class="reading-block">';
+    html+='<span class="reading-ref">'+(r.display||r.short)+desc+'</span>';
+    html+='<div id="rslot-'+i+'"><p class="reading-loading">Loading&hellip;</p></div>';
     html+='</div>';
   });
-  if(alsoRead.length)html+='<p class="also-read">Also read: '+alsoRead.map(function(r){return r.short||r.display}).join('; ')+'</p>';
+  if(alsoRead.length){
+    html+='<p class="also-read">Also read: '+alsoRead.map(function(r){return r.short||r.display}).join('; ')+'</p>';
+  }
   document.getElementById('p2-readings').innerHTML=html;
+
+  /* Fire async text fetch — non-blocking, fills slots as each resolves */
+  loadScriptureTexts(primary);
+
+  /* Troparia */
   var tropEl=document.getElementById('p2-troparia');
-  if(_bulletinData.troparia_text){if(typeof marked!=='undefined'){tropEl.innerHTML=marked.parse(_bulletinData.troparia_text)}else{tropEl.innerHTML=_bulletinData.troparia_text.split(/\n\n+/).filter(function(p){return p.trim()}).map(function(p){return'<p>'+p+'</p>'}).join('')}}
-  else{tropEl.innerHTML='<p style="font-size:9pt;font-style:italic;color:var(--b-stone)">Tone '+(cal.tone||'')+'</p>'}
+  if(_bulletinData.troparia_text){
+    if(typeof marked!=='undefined'){tropEl.innerHTML=marked.parse(_bulletinData.troparia_text)}
+    else{tropEl.innerHTML=_bulletinData.troparia_text.split(/\n\n+/).filter(function(p){return p.trim()}).map(function(p){return'<p>'+p+'</p>'}).join('')}
+  }else{tropEl.innerHTML='<p style="font-size:9pt;font-style:italic;color:var(--b-stone)">Tone '+(cal.tone||'')+'</p>'}
+
+  /* Icons — visibility handled by computePage2Images after texts load */
   if(_bulletinData.saint_icon_image){document.getElementById('p2-icon-1').src=_bulletinData.saint_icon_image;document.getElementById('p2-icon-1-cap').textContent=_bulletinData.saint_icon_caption||'';document.getElementById('p2-icon-wrap-1').dataset.hasImage='true'}
   if(_bulletinData.show_second_image&&_bulletinData.second_image){document.getElementById('p2-icon-2').src=_bulletinData.second_image;document.getElementById('p2-icon-2-cap').textContent=_bulletinData.second_image_caption||'';var w2=document.getElementById('p2-icon-wrap-2');w2.dataset.hasImage='true';w2.dataset.requested='true'}
 }
