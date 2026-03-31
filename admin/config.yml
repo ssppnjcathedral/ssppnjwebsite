@@ -104,3 +104,163 @@ collections:
                 widget: string
                 required: false
                 hint: "Optional URL if the event has an external registration page or more info."
+
+  - name: "bulletins"
+    label: "Weekly Bulletins"
+    label_singular: "Bulletin"
+    description: "Create and manage weekly parish bulletins. Readings, saints, and tone auto-populate from the liturgical calendar by date. Only the authored sections need to be filled in each week."
+    files:
+      - name: "all-bulletins"
+        label: "All Bulletins"
+        file: "bulletins.json"
+        fields:
+          - name: bulletins
+            label: Bulletins
+            label_singular: Bulletin
+            widget: list
+            summary: "{{fields.sunday_title}} — {{fields.date}}"
+            fields:
+              - name: date
+                label: "Date (YYYY-MM-DD)"
+                widget: string
+                hint: "Must match the liturgical calendar exactly. Example: 2026-04-05"
+
+              - name: sunday_title
+                label: Sunday Title
+                widget: string
+                hint: "Example: 15th Sunday after Pentecost"
+
+              - name: feast_subtitle
+                label: Feast Subtitle
+                widget: string
+                hint: "Shown under the title and in the running header. Example: Leavetaking of the Exaltation of the Cross — September 21, 2025"
+
+              - name: reflection_title
+                label: Reflection Title
+                widget: string
+                required: false
+                hint: "Optional internal title for the reflection article (not displayed in bulletin)."
+
+              - name: reflection_body
+                label: Reflection Body
+                widget: markdown
+                hint: "Fr. Solomon's reflection article for page 1. Appears in two columns with a drop cap on the first letter."
+
+              - name: featured_image
+                label: "Cover Image (Page 1)"
+                widget: image
+                required: false
+                media_folder: "/images/bulletins"
+                hint: "Full-width image on the cover page. The system will automatically scale or hide it based on how much space the article text leaves."
+
+              - name: featured_image_caption
+                label: Cover Image Caption
+                widget: string
+                required: false
+                hint: "Short caption shown in the bottom-right corner of the cover image."
+
+              - name: saint_icon_image
+                label: "Saint Icon (Page 2 — right rail)"
+                widget: image
+                required: false
+                media_folder: "/images/bulletins"
+                hint: "Icon image shown in the Troparia column on page 2. Automatically sized to fill remaining space after the troparia text."
+
+              - name: saint_icon_caption
+                label: Saint Icon Caption
+                widget: string
+                required: false
+                hint: "Example: Saint Wenceslaus"
+
+              - name: show_second_image
+                label: "Show second image on Page 2 (if space allows)"
+                widget: boolean
+                default: false
+                hint: "Toggle on if the troparia text is short and you have a second image to fill the rail. The system will only show it if there is enough room."
+
+              - name: second_image
+                label: "Second Image (Page 2)"
+                widget: image
+                required: false
+                media_folder: "/images/bulletins"
+
+              - name: second_image_caption
+                label: Second Image Caption
+                widget: string
+                required: false
+
+              - name: reading_texts
+                label: "Scripture Reading Texts (Page 2)"
+                widget: list
+                required: false
+                hint: "Optional — paste the full reading text here to print inline on page 2. If left empty, only the reference is shown. Copy text from oca.org or a public domain source."
+                summary: "{{fields.ref}}"
+                fields:
+                  - name: ref
+                    label: "Reference (must match calendar exactly)"
+                    widget: string
+                    hint: "Example: Galatians 2:16-20 — must match the display field from the liturgical calendar."
+                  - name: text
+                    label: Full Text
+                    widget: text
+                    hint: "Paste the full scripture passage. Each paragraph on its own line. The first paragraph will receive a drop cap."
+
+              - name: troparia_text
+                label: "Troparia (Page 2 — right rail)"
+                widget: markdown
+                required: false
+                hint: "Sunday troparia and kontakion. Can be copied from oca.org. Each stanza as its own paragraph."
+
+              - name: thank_you_line
+                label: "Thank You (Page 3)"
+                widget: string
+                required: false
+                hint: "Example: Thank you to Team A for Coffee Hour."
+
+              - name: special_announcements
+                label: "Special Announcements (Page 3)"
+                widget: list
+                required: false
+                summary: "{{fields.title}}"
+                fields:
+                  - name: title
+                    label: Title
+                    widget: string
+                    hint: "Bold lead-in. Example: Fr. Solomon on Vacation"
+                  - name: body
+                    label: Body
+                    widget: text
+
+              - name: patristic_quotes
+                label: "Patristic Quotes (Page 4)"
+                widget: list
+                required: false
+                hint: "1 or 2 patristic quotes shown on the tear-off page."
+                summary: "{{fields.attribution}}"
+                fields:
+                  - name: quote
+                    label: Quote
+                    widget: text
+                  - name: attribution
+                    label: Attribution
+                    widget: string
+                    hint: "Example: On the Veneration of the Cross, St Theodore the Studite"
+
+  - name: "prayer-list"
+    label: "Prayer List"
+    description: "The parish prayer list. Carries forward week to week automatically. Only update when names need to be added or removed. The list appears on every bulletin's page 3."
+    files:
+      - name: "prayer-list"
+        label: "Prayer List"
+        file: "prayer-list.json"
+        fields:
+          - name: names
+            label: Names
+            label_singular: Name
+            widget: list
+            hint: "One name per entry. The list carries forward to every bulletin automatically."
+            field:
+              name: name
+              label: Name
+              widget: string
+              hint: "Example: Nancy, Aidan W.'s mother | Example: Victims of war in Ukraine"
