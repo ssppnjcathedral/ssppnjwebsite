@@ -5,7 +5,6 @@ backend:
 media_folder: "images/events"
 public_folder: "/images/events"
 
-publish_mode: editorial_workflow
 
 collections:
   - name: "parish-events"
