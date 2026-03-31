@@ -278,7 +278,7 @@ async function loadSaints(){
   /* ── 1. Load OCA saints JSON (primary source) ─────────────── */
   let saints = [];
   try {
-    const r = await fetch('/oca-saints-'+MN[mo]+'.json');
+    const r = await fetch('/_data/oca-saints-'+MN[mo]+'.json');
     if (!r.ok) throw new Error('HTTP '+r.status);
     const monthData = await r.json();
     const dayData   = monthData[String(d)];
@@ -290,7 +290,7 @@ async function loadSaints(){
   /* ── 2. Load calendar JSON for tone / fast info (supplementary) ── */
   let calInfo = {};
   try {
-    const r = await fetch('/calendar-'+y+'.json');
+    const r = await fetch('/_data/calendar-'+y+'.json');
     if (!r.ok) throw new Error('HTTP '+r.status);
     const cal = await r.json();
     const day = cal && cal.days && cal.days[dateKey];
