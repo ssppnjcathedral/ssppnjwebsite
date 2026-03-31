@@ -354,13 +354,12 @@ img{display:block;max-width:100%}
 @media(hover:hover){.ts-saint a:hover{opacity:.65}}
 .ts-tone{display:inline-block;margin-top:.75rem;font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;border:1px solid var(--maroon);color:var(--maroon);padding:.28rem .8rem}
 .ts-strip{display:flex;gap:.75rem;margin:2rem 0}
-.ts-strip-item{flex:1;padding:1.25rem 1.4rem;text-align:center;background:var(--vellum);border:1px solid rgba(122,102,72,.12);overflow:hidden;position:relative;transition:box-shadow .3s ease;cursor:default}
-
-.ts-strip-day{font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.2rem}
-.ts-strip-name{font-family:var(--f-display);font-size:1.05rem;color:var(--text);display:block;transform-origin:center;display:inline-block}
-.ts-strip-time{font-family:var(--f-ui);font-size:.72rem;font-weight:600;letter-spacing:.10em;text-transform:uppercase;color:var(--maroon);display:block;margin-top:.1rem}
-@media(hover:hover){.ts-strip-item:hover{box-shadow:0 6px 24px rgba(21,8,4,.10)}}
+.ts-strip-item{flex:1;padding:1.25rem 1.4rem;text-align:center;background:var(--vellum);border:1px solid rgba(122,102,72,.12);overflow:hidden;position:relative;transition:box-shadow .3s ease,transform .25s ease;cursor:pointer;display:block;text-decoration:none;color:inherit}
+@media(hover:hover){.ts-strip-item:hover{box-shadow:0 6px 24px rgba(21,8,4,.10);transform:scale(1.04)}}
 @media(hover:hover){.ts-strip-item:hover .ts-strip-name{animation:svc-zoom .45s ease forwards}}
+.ts-strip-day{font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.2rem}
+.ts-strip-name{font-family:var(--f-display);font-size:1.05rem;color:var(--text);display:inline-block;transform-origin:center}
+.ts-strip-time{font-family:var(--f-ui);font-size:.72rem;font-weight:600;letter-spacing:.10em;text-transform:uppercase;color:var(--maroon);display:block;margin-top:.1rem}
 @keyframes svc-zoom{0%{transform:scale(1)}40%{transform:scale(1.06)}100%{transform:scale(1)}}
 .ts-readings{border-top:2px solid var(--maroon);border-bottom:var(--rule-faint);padding:1.5rem 0;margin:2rem 0}
 .ts-readings-head{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;color:var(--maroon);margin-bottom:1.2rem}
@@ -522,7 +521,6 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   body{font-size:19px;line-height:1.9}
   p,li,.ts-strip-name,.ts-loading,.ts-opening,.ts-tone,.ts-fast,.week-entry,.rubric-voice,.bulletin-lede,.bulletin-meta,.visit-detail-body,.fp-val,.fp-label,.wo-sub,.wo-dismiss,.byz-band-text,.footer-blurb,.worship-card-desc,.rector-body,.visit-detail-body,.news-body,.about-body{font-size:1.05rem!important;line-height:1.9}
   [class*="-over"],[class*="-cat"],[class*="-label"],[class*="-tag"],[class*="-kicker"],[class*="-lbl"],[class*="-badge"],[class*="-date"],[class*="-meta"],[class*="-eyebrow"],[class*="-rubric"]{font-size:.88rem!important;letter-spacing:.10em}
-  .ts-strip-day,.ts-strip-time,.rubric,.annot-label,.chapter-bar *,.lb-feast,.lb-fast,.lb-tone,.sb-link,.worship-card-time,.worship-card-cta{font-size:.88rem!important}
   [class*="-title"]{line-height:1.2}
   [class*="hero-title"],[class*="page-title"]{line-height:1.1}
   [class*="-name"],[class*="-head"]{line-height:1.25}
@@ -538,27 +536,8 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 }
 
 /* ── F: LIVE LITURGICAL BANNER ── */
-.lit-banner{position:fixed;top:60px;left:0;right:0;z-index:190;background:var(--vellum-mid);border-bottom:1px solid rgba(123,29,42,.15);border-top:1px solid rgba(123,29,42,.06);padding:0 3rem;height:44px;display:flex;align-items:center;justify-content:space-between;font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;transform:translateY(-100%);transition:transform .4s ease}
-.lit-banner.visible{transform:translateY(0)}
-.lb-left{display:flex;align-items:center;gap:1.5rem;color:var(--stone);min-width:0}
-.lb-feast{color:var(--ink);font-size:.72rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.lb-fast{color:var(--verdigris)}
-.lb-tone{color:var(--stone)}
-.lb-right{display:flex;align-items:center;gap:.5rem;color:var(--stone);flex-shrink:0}
-.lb-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0;animation:pulse-dot 2s ease-in-out infinite}
-.lb-dot.live{background:#2d7a3a}
-.lb-dot.soon{background:var(--gold)}
 @keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
-.lb-next{color:var(--maroon);font-weight:500}
 @media(max-width:768px){
-  .lit-banner{height:auto;padding:0;flex-direction:column;align-items:stretch}
-  .lb-row-1{display:flex;align-items:center;gap:.65rem;padding:.45rem 1rem;border-bottom:1px solid rgba(255,255,255,.05);width:100%}
-  .lb-row-2{display:flex;align-items:center;gap:.65rem;padding:.35rem 1rem;width:100%}
-  .lb-left{gap:.65rem;flex:1;min-width:0}
-  .lb-feast{white-space:normal;overflow:visible;text-overflow:clip;font-size:.62rem;letter-spacing:.1em;line-height:1.3}
-  .lb-fast{font-size:.58rem;letter-spacing:.08em;flex-shrink:0}
-  .lb-tone{font-size:.58rem;letter-spacing:.08em}
-  .lb-next{font-size:.58rem;letter-spacing:.08em}
 }
 
 /* ── K: SERVICE PULSE ── */
@@ -1084,23 +1063,6 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   </div>
 </nav>
 
-<!-- F: Live Banner -->
-<div class="lit-banner" id="lit-banner">
-  <div class="lb-row-1">
-    <div class="lb-left">
-      <span class="lb-dot" id="lb-dot"></span>
-      <span class="lb-feast" id="lb-feast">Loading…</span>
-    </div>
-    <div class="lb-right"><span class="lb-fast" id="lb-fast"></span></div>
-  </div>
-  <div class="lb-row-2">
-    <div class="lb-left">
-      <span class="lb-tone" id="lb-tone"></span>
-    </div>
-    <div class="lb-right"><span class="lb-next" id="lb-next"></span></div>
-  </div>
-</div>
-
 <!-- MOBILE NAV DRAWER -->
 <div class="nav-drawer-overlay" id="nav-overlay" onclick="closeDrawer()"></div>
 <div class="nav-drawer" id="nav-drawer">
@@ -1219,21 +1181,21 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
       <div class="rubric-rule"></div>
       <div id="sunday-panel"><p class="ts-loading">Loading liturgical data…</p></div>
       <div class="ts-strip" style="margin-top:2rem">
-        <div class="ts-strip-item">
+        <a href="/catechism" class="ts-strip-item">
           <span class="ts-strip-day">Wednesday</span>
           <span class="ts-strip-name">Catechism Class</span>
           <span class="ts-strip-time">8:00 – 9:30 PM</span>
-        </div>
-        <div class="ts-strip-item">
+        </a>
+        <a href="/vespers" class="ts-strip-item">
           <span class="ts-strip-day">Saturday</span>
           <span class="ts-strip-name">Vespers</span>
           <span class="ts-strip-time">5:00 PM</span>
-        </div>
-        <div class="ts-strip-item">
+        </a>
+        <a href="/divine-liturgy" class="ts-strip-item">
           <span class="ts-strip-day">Sunday</span>
           <span class="ts-strip-name">Divine Liturgy</span>
           <span class="ts-strip-time">9:30 AM</span>
-        </div>
+        </a>
       </div>
     </div>
     <!-- RIGHT: annotation margin -->
@@ -1937,40 +1899,8 @@ async function initLiveCalendar(){
   var cal=await getCalendar(y);
   if(!cal||!cal.days||!cal.days[dateKey]) return;
   var day=cal.days[dateKey];
-  var data={
-    feast:      day.feast||'',
-    fast:       day.fast||'',
-    fastException: day.fastException||'',
-    tone:       day.tone||0,
-    feastLevel: day.feastLevel||0
-  };
-  var feastEl=document.getElementById('lb-feast');
-  var fastEl =document.getElementById('lb-fast');
-  var toneEl =document.getElementById('lb-tone');
-  var dotEl  =document.getElementById('lb-dot');
-  var nextEl =document.getElementById('lb-next');
-  var banner =document.getElementById('lit-banner');
-  if(feastEl) feastEl.textContent=data.feast||'Ordinary Day';
-  if(fastEl && data.fast) fastEl.textContent='✦ '+data.fast;
-  if(toneEl && data.tone) toneEl.textContent='Tone '+(ROMAN_MAP[data.tone]||data.tone);
+  var data={ feastLevel: day.feastLevel||0 };
   var now=new Date(), dow=now.getDay(), h=now.getHours(), min=now.getMinutes(), tot=h*60+min;
-  var svcLabel='', dotState='normal';
-  if(dow===6){
-    if(tot>=17*60&&tot<18*60){svcLabel='Vespers · Happening Now';dotState='live';}
-    else if(tot>=16*60&&tot<17*60){svcLabel='Vespers starting soon';dotState='soon';}
-    else if(tot<17*60){var mins=17*60-tot;svcLabel='Vespers in '+(mins>59?Math.floor(mins/60)+'h '+(mins%60)+'m':mins+'m');}
-    else svcLabel='Liturgy · Sunday 9:30 AM';
-  } else if(dow===0){
-    if(tot>=9*60+30&&tot<11*60){svcLabel='Divine Liturgy · Happening Now';dotState='live';}
-    else if(tot>=9*60&&tot<9*60+30){svcLabel='Liturgy beginning soon';dotState='soon';}
-    else if(tot<9*60+30){var mins2=(9*60+30)-tot;svcLabel='Liturgy in '+(mins2>59?Math.floor(mins2/60)+'h '+(mins2%60)+'m':mins2+'m');}
-    else svcLabel='Next Vespers · Saturday 5:00 PM';
-  } else {
-    var dts=6-dow; svcLabel='Next: Vespers '+(dts===1?'tomorrow':'in '+dts+' days')+' · 5:00 PM';
-  }
-  if(nextEl) nextEl.textContent=svcLabel;
-  if(dotEl){dotEl.classList.remove('live','soon');if(dotState==='live')dotEl.classList.add('live');if(dotState==='soon')dotEl.classList.add('soon');}
-  if(banner) setTimeout(function(){banner.classList.add('visible');},1000);
   /* K: pulse service strip */
   document.querySelectorAll('.ts-strip-item').forEach(function(strip){
     var lbl=strip.querySelector('.ts-strip-day');
