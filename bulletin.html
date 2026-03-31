@@ -357,6 +357,12 @@ async function loadScriptureTexts(primary){
 
 async function initBulletin(){
   var params=new URLSearchParams(window.location.search),reqDate=params.get('date');
+  /* Normalize date to YYYY-MM-DD — handle MM-DD-YYYY if someone typed it wrong */
+  if(reqDate){
+    var mmddyyyy=/^(\d{2})-(\d{2})-(\d{4})$/;
+    var m=reqDate.match(mmddyyyy);
+    if(m) reqDate=m[3]+'-'+m[1]+'-'+m[2];
+  }
   try{
     var r=await fetch('/bulletins.json');
     if(!r.ok)throw new Error('No bulletins file found.');
