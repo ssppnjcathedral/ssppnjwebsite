@@ -118,22 +118,12 @@ collections:
             label: Bulletins
             label_singular: Bulletin
             widget: list
-            summary: "{{fields.sunday_title}} — {{fields.date}}"
+            summary: "{{fields.date}} — {{fields.reflection_title}}"
             fields:
               - name: date
                 label: "Date (YYYY-MM-DD)"
                 widget: string
                 hint: "Must match the liturgical calendar exactly. Example: 2026-04-05"
-
-              - name: sunday_title
-                label: Sunday Title
-                widget: string
-                hint: "Example: 15th Sunday after Pentecost"
-
-              - name: feast_subtitle
-                label: Feast Subtitle
-                widget: string
-                hint: "Shown under the title and in the running header. Example: Leavetaking of the Exaltation of the Cross — September 21, 2025"
 
               - name: reflection_title
                 label: Reflection Title
