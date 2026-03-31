@@ -189,6 +189,10 @@ footer .btn-outline{color:rgba(246,241,232,.92);border-color:rgba(246,241,232,.5
       <div id="side-feast" style="font-family:var(--f-display);font-size:.95rem;color:var(--ink);line-height:1.8">Loading…</div>
     </div>
     <div class="side-section">
+      <span class="side-head">Observance</span>
+      <div id="side-observance"></div>
+    </div>
+    <div class="side-section">
       <span class="side-head">Navigate</span>
       <a href="/readings" class="annot-nav-link">Today's Readings</a>
       <a href="/schedule" class="annot-nav-link">Full Calendar</a>
@@ -321,63 +325,87 @@ async function loadSaints(){
     return;
   }
 
-  /* ── Tone / fast info bar ────────────────────────────────────── */
+  /* ── Tone / fast ─────────────────────────────────────────────── */
   const ROMAN = {1:'I',2:'II',3:'III',4:'IV',5:'V',6:'VI',7:'VII',8:'VIII'};
   const toneStr = calInfo.tone ? 'Tone '+(ROMAN[calInfo.tone]||calInfo.tone) : '';
   const fastStr = [calInfo.fast, calInfo.fastException].filter(Boolean).join(' — ');
 
-  /* ── Render saint entries ────────────────────────────────────── */
-  const ocaDayUrl = 'https://www.oca.org/saints/lives/'+y+'/'+mm+'/'+dd;
-
-  const html = saints.map(function(s, i){
-    const name    = s.name    || 'Holy Saint';
-    const image   = s.image   || '';
-    const excerpt = s.excerpt || '';
-    const lifeUrl = s.url     || ocaDayUrl;
-
-    /* Icon image block — only rendered when image URL is present */
-    const imgHtml = image
-      ? '<img src="'+image+'" alt="'+name.replace(/"/g,'&quot;')+'"'
-        +' style="width:88px;height:88px;object-fit:cover;flex-shrink:0;'
-        +'border:1px solid rgba(123,29,42,.12);display:block"'
-        +' onerror="this.style.display=\'none\'">'
-      : '';
-
-    /* Excerpt paragraph — drop "No information available" stubs */
-    const showExcerpt = excerpt && !/^no information available/i.test(excerpt.trim());
-    const excerptHtml = showExcerpt
-      ? '<p>'+excerpt+'</p>'
-      : '<p style="color:var(--stone);font-style:italic">No extended biography is currently available.</p>';
-
-    return '<div class="saint-entry">'
-      +'<span class="rubric">'+(i===0?'Primary Commemoration':'Also Commemorated Today')+'</span>'
-      +'<div class="rubric-rule"></div>'
-      +'<div style="display:flex;gap:1.25rem;align-items:flex-start;margin-bottom:1rem">'
-      + imgHtml
-      +'<div>'
-      +'<span class="feast-date-badge">'+MS[mo]+' '+d+'</span>'
-      +'<h2 class="saint-name">'+name+'</h2>'
-      +'</div>'
-      +'</div>'
-      +'<div class="saint-story">'
-      + excerptHtml
-      +'<p style="margin-top:.75rem"><a href="'+lifeUrl+'" target="_blank" rel="noopener"'
-      +' style="font-family:var(--f-ui);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);text-decoration:none">'
-      +'Read the Full Life at OCA &rarr;</a></p>'
-      +'</div>'
-      +'</div>';
-  }).join('');
-
-  /* ── Info bar (tone + fast) ──────────────────────────────────── */
-  let infoBar = '';
+  /* Update sidebar observance pills */
   if (toneStr || fastStr) {
-    infoBar = '<div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.5rem;padding-top:1.5rem;border-top:var(--rule-faint)">';
-    if (toneStr) infoBar += '<span style="font-family:var(--f-ui);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone)">'+toneStr+'</span>';
-    if (fastStr) infoBar += '<span style="font-family:var(--f-ui);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--verdigris)">&#10022; '+fastStr+'</span>';
-    infoBar += '</div>';
+    let pillsHtml = '';
+    if (toneStr) pillsHtml += '<span style="display:inline-block;font-family:var(--f-ui);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;padding:.2rem .65rem;background:rgba(59,15,24,.07);color:var(--stone);margin-bottom:.35rem">'+toneStr+'</span><br>';
+    if (fastStr) pillsHtml += '<span style="display:inline-block;font-family:var(--f-ui);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;padding:.2rem .65rem;background:rgba(61,107,94,.09);color:var(--verdigris);margin-top:.2rem">&#10022; '+fastStr+'</span>';
+    const obs = document.getElementById('side-observance');
+    if (obs) obs.innerHTML = pillsHtml;
   }
 
-  document.getElementById('saints-container').innerHTML = html + infoBar;
+  const ocaDayUrl = 'https://www.oca.org/saints/lives/'+y+'/'+mm+'/'+dd;
+  const primary   = saints[0];
+  const secondary = saints.slice(1);
+
+  /* ── PRIMARY saint ───────────────────────────────────────────── */
+  const pName    = primary.name    || 'Holy Saint';
+  const pImage   = primary.image   || '';
+  const pExcerpt = primary.excerpt || '';
+  const pUrl     = primary.url     || ocaDayUrl;
+
+  const pImgHtml = pImage
+    ? '<img src="'+pImage+'" alt="'+pName.replace(/"/g,'&quot;')+'"'
+      +' style="width:110px;height:110px;object-fit:cover;flex-shrink:0;border:1px solid rgba(123,29,42,.14)"'
+      +' onerror="this.style.display=\'none\'">'
+    : '<div style="width:110px;height:110px;flex-shrink:0;background:#d4c9b8;border:1px solid rgba(123,29,42,.12);display:flex;align-items:center;justify-content:center;font-size:1.8rem;color:rgba(123,29,42,.3)">&#10013;</div>';
+
+  const showPExcerpt = pExcerpt && !/^no information available/i.test(pExcerpt.trim());
+  const pExcerptHtml = showPExcerpt
+    ? '<p>'+pExcerpt+'</p>'
+    : '<p style="color:var(--stone);font-style:italic">No extended biography is currently available for this commemoration.</p>';
+
+  let out = '<span class="rubric">Primary Commemoration</span>'
+    +'<div class="rubric-rule"></div>'
+    +'<div style="display:flex;gap:1.5rem;align-items:flex-start;margin-bottom:1.25rem">'
+    + pImgHtml
+    +'<div>'
+    +'<span class="feast-date-badge">'+MS[mo]+' '+d+'</span>'
+    +'<h2 class="saint-name">'+pName+'</h2>'
+    +'</div>'
+    +'</div>'
+    +'<div class="saint-story">'+pExcerptHtml+'</div>'
+    +'<a href="'+pUrl+'" target="_blank" rel="noopener"'
+    +' style="display:inline-block;margin-top:1rem;font-family:var(--f-ui);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--maroon);border-bottom:1px solid rgba(123,29,42,.25);padding-bottom:1px;text-decoration:none">'
+    +'Read the Full Life at OCA &rarr;</a>';
+
+  /* ── SECONDARY saints grid ───────────────────────────────────── */
+  if (secondary.length) {
+    out += '<div style="margin-top:2.5rem;padding-top:2rem;border-top:2px solid var(--maroon)">'
+      +'<span style="font-family:var(--f-ui);font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:1.25rem">Also Commemorated Today</span>'
+      +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem">';
+
+    secondary.forEach(function(s){
+      const sName  = s.name  || 'Holy Saint';
+      const sImage = s.image || '';
+      const sUrl   = s.url   || ocaDayUrl;
+
+      const sImgHtml = sImage
+        ? '<img src="'+sImage+'" alt="'+sName.replace(/"/g,'&quot;')+'"'
+          +' style="width:42px;height:42px;object-fit:cover;flex-shrink:0;border:1px solid rgba(123,29,42,.10)"'
+          +' onerror="this.outerHTML=\'<div style=&quot;width:42px;height:42px;flex-shrink:0;background:#d4c9b8;border:1px solid rgba(123,29,42,.10);display:flex;align-items:center;justify-content:center;font-size:.8rem;color:rgba(123,29,42,.3)&quot;>&#10013;</div>\'">'
+        : '<div style="width:42px;height:42px;flex-shrink:0;background:#d4c9b8;border:1px solid rgba(123,29,42,.10);display:flex;align-items:center;justify-content:center;font-size:.8rem;color:rgba(123,29,42,.3)">&#10013;</div>';
+
+      out += '<div style="display:flex;gap:.75rem;align-items:flex-start;padding:.75rem;background:rgba(123,29,42,.04);border:1px solid rgba(123,29,42,.08)">'
+        + sImgHtml
+        +'<div>'
+        +'<p style="font-family:var(--f-display);font-weight:400;font-size:.92rem;color:var(--ink);line-height:1.25;margin:0 0 .3rem">'+sName+'</p>'
+        +'<a href="'+sUrl+'" target="_blank" rel="noopener"'
+        +' style="font-family:var(--f-ui);font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);text-decoration:none">'
+        +'Read Life &rarr;</a>'
+        +'</div>'
+        +'</div>';
+    });
+
+    out += '</div></div>';
+  }
+
+  document.getElementById('saints-container').innerHTML = out;
 }
 
 loadSaints();
