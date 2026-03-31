@@ -570,12 +570,10 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeDrawer(
       years.forEach(function(yr){
         html += '<div class="year-group"><div class="year-label">'+yr+'</div><ul class="bulletin-list">';
         byYear[yr].forEach(function(b){
-          var subtitle = b.feast_subtitle || '';
-          /* Strip the date portion from subtitle for display */
-          var subDisplay = subtitle.replace(/\s*[-\u2013]\s*(January|February|March|April|May|June|July|August|September|October|November|December)\s+\d+,?\s*\d{4}/i,'').trim();
+          var displayTitle = b.reflection_title || b.date;
           html += '<li class="bulletin-row">'+
             '<span class="bulletin-date">'+fmtDate(b.date)+'</span>'+
-            '<span class="bulletin-title">'+b.sunday_title+(subDisplay?' <em>&middot; '+subDisplay+'</em>':'')+'</span>'+
+            '<span class="bulletin-title">'+displayTitle+'</span>'+
             '<a href="/bulletin?date='+b.date+'" class="bulletin-dl">View &rarr;</a>'+
           '</li>';
         });
