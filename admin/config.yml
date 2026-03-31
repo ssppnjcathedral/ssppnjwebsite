@@ -121,9 +121,12 @@ collections:
             summary: "{{fields.date}} — {{fields.reflection_title}}"
             fields:
               - name: date
-                label: "Date (YYYY-MM-DD)"
-                widget: string
-                hint: "Must match the liturgical calendar exactly. Example: 2026-04-05"
+                label: "Bulletin Date"
+                widget: datetime
+                format: "YYYY-MM-DD"
+                date_format: "YYYY-MM-DD"
+                time_format: false
+                hint: "Select the Sunday date for this bulletin."
 
               - name: reflection_title
                 label: Reflection Title
