@@ -370,7 +370,26 @@ async function initBulletin(){
     _currentDate=_bulletinData.date;
     if(reqDate!==_currentDate)history.replaceState(null,'','?date='+_currentDate);
     var year=_currentDate.split('-')[0];
-    if(!_calCache[year]){try{var cr=await fetch('/calendar-'+year+'.json');_calCache[year]=cr.ok?await cr.json():{days:{}}}catch(e){_calCache[year]={days:{}}}}
+    if(!_calCache[year]){
+      /* Try the bulletin's year first, then adjacent years as fallback */
+      var yearsToTry=[year, String(parseInt(year)+1), String(parseInt(year)-1)];
+      for(var yi=0;yi<yearsToTry.length;yi++){
+        var y=yearsToTry[yi];
+        try{
+          var cr=await fetch('/_data/calendar-'+y+'.json');
+          if(cr.ok){
+            var calJson=await cr.json();
+            /* Only use this calendar if it has the date we need */
+            if(yi===0||( calJson.days&&calJson.days[_currentDate])){
+              _calCache[year]=calJson;break;
+            } else if(yi===0){
+              _calCache[year]=calJson;break;
+            }
+          }
+        }catch(e){}
+      }
+      if(!_calCache[year]) _calCache[year]={days:{}};
+    }
     try{var pr=await fetch('/prayer-list.json');_prayerList=pr.ok?await pr.json():{names:[]}}catch(e){_prayerList={names:[]}}
     try{var er=await fetch('/parish-events.json');_events=er.ok?await er.json():{events:[]}}catch(e){_events={events:[]}}
     renderBulletin();updateNavBtns();
