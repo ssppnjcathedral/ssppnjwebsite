@@ -93,10 +93,11 @@
 .reading-block{margin-bottom:.18in}
 .reading-ref{display:block;font-family:var(--f-display);font-size:11pt;font-style:italic;text-align:center;margin-bottom:.07in;color:var(--b-ink)}
 .reading-ref em{font-style:normal;font-size:8.5pt;color:var(--b-stone)}
-.reading-cols{columns:2;column-gap:.18in;font-size:9.5pt;line-height:1.48;text-align:justify}
-.reading-cols p{text-indent:1em;margin-bottom:0}
+.reading-cols{font-size:9.5pt;line-height:1.52;text-align:justify}
+.reading-cols p{text-indent:1.2em;margin-bottom:0}
 .reading-cols p:first-child{text-indent:0}
-.reading-cols .rdrop::first-letter{font-family:var(--f-display);font-size:3.2em;font-weight:600;color:var(--b-maroon);float:left;line-height:.78;padding-right:.04em;padding-top:.06em}
+.reading-cols p.rdrop{text-indent:0}
+.reading-cols p.rdrop::first-letter{font-family:var(--f-display);font-size:3.4em;font-weight:600;color:var(--b-maroon);float:left;line-height:.75;padding-right:.06em;padding-top:.04em;margin-bottom:-.05em}
 .also-read{font-family:var(--f-body);font-style:italic;font-size:9pt;text-align:center;margin-top:.1in;color:var(--b-ink)}
 .reading-placeholder{font-size:9pt;font-style:italic;text-align:center;margin:.06in 0;color:var(--b-stone);padding:.06in;border:.5pt dashed rgba(122,102,72,.35)}
 .reading-loading{font-size:8.5pt;font-style:italic;color:rgba(122,102,72,.5);text-align:center;padding:.08in 0}
@@ -344,7 +345,7 @@ async function loadScriptureTexts(primary){
     if(!slot)continue;
     var verses=await fetchPassage(r.display||r.short);
     if(verses&&verses.length){
-      var html='<div class="reading-cols"><p class="reading-body rdrop">'+renderVerseHtml(verses)+'</p></div>';
+      var html='<div class="reading-cols"><p class="rdrop">'+renderVerseHtml(verses)+'</p></div>';
       slot.innerHTML=html;
     }else{
       /* Graceful fallback — ref still shown, text just not available */
