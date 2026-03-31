@@ -5,9 +5,6 @@
 <title>Parish Bulletin &middot; Sts. Peter &amp; Paul Orthodox Cathedral</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet"/>
-<!-- Disable Cloudflare email obfuscation which blocks script execution -->
-<meta name="cf-2fa-verify" content="noindex"/>
-<script>window.cfAsyncIndex=false;</script>
 <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 <style>
 :root{--vellum:#F6F1E8;--vellum-mid:#EDE7DC;--text:#1E1510;--ink:#2C1F16;--maroon:#7B1D2A;--maroon-deep:#5C1520;--gold:#B88328;--gold-lt:#E8C97A;--verdigris:#3D6B5E;--stone:#7A6648;--apse:#3B0F18;--f-display:'Cormorant Garamond',Georgia,serif;--f-body:'EB Garamond',Georgia,serif;--f-ui:'Cinzel',Georgia,serif;--rule:1px solid var(--maroon);--rule-faint:1px solid rgba(123,29,42,.14);--rule-hair:1px solid rgba(123,29,42,.07);--b-bg:#F8F4ED;--b-ink:#1B120B;--b-maroon:#7B1D2A;--b-stone:#7A6648;--b-mt:0.55in;--b-ms:0.6in;--b-mb:0.5in}
@@ -230,7 +227,7 @@ body{background:white;margin:0;padding:0;-webkit-print-color-adjust:exact;print-
         <div><div class="saints-head">Venerated Saints;</div><ul id="p1-saints-list" class="saints-list"></ul></div>
         <div>
           <div class="toc-box"><span class="toc-head">In this Bulletin</span><div class="toc-row"><span>Venerated Saints</span><span class="toc-dots"></span><span>1</span></div><div class="toc-row"><span>Scripture Readings</span><span class="toc-dots"></span><span>2</span></div><div class="toc-row"><span>News &amp; Events</span><span class="toc-dots"></span><span>3</span></div><div class="toc-row"><span>Prayer List</span><span class="toc-dots"></span><span>3</span></div></div>
-          <div class="contact-box"><div class="contact-logo"><img src="/images/logo/logo-2026.svg" alt="Parish logo" onerror="this.style.display='none'"/></div><div class="contact-details"><span class="contact-parish">Peter&amp;Paul<br>Orthodox Cathedral</span>Office Phone: (201) 434-1986<br>Email: <!--email_off-->ssppnj@gmail.com<!--/email_off--><br>Website: www.peterandpaulcathedral.com<br>Address: 109 Grand St. Jersey City, NJ</div></div>
+          <div class="contact-box"><div class="contact-logo"><img src="/images/logo/logo-2026.svg" alt="Parish logo" onerror="this.style.display='none'"/></div><div class="contact-details"><span class="contact-parish">Peter&amp;Paul<br>Orthodox Cathedral</span>Office Phone: (201) 434-1986<br>Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4d3e3e3d3d23270d2a202c2421632e2220">[email&#160;protected]</a><br>Website: www.peterandpaulcathedral.com<br>Address: 109 Grand St. Jersey City, NJ</div></div>
         </div>
       </div>
       <span class="bull-pnum bull-pnum-l">01</span>
@@ -293,7 +290,7 @@ body{background:white;margin:0;padding:0;-webkit-print-color-adjust:exact;print-
   </div>
   <div class="footer-bottom"><p class="footer-copy">&copy; Saints Peter &amp; Paul Orthodox Cathedral. All Rights Reserved.</p><p class="footer-addr">109 Grand Street &middot; Jersey City, NJ 07302 &middot; (201) 434-1986</p></div>
 </footer>
-
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 <script>
 var MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
 var IN_PX=96;
@@ -360,8 +357,7 @@ async function loadScriptureTexts(primary){
 
 function simpleMarkdown(md){
   if(!md)return '';
-  var lines=md.split(/\n\n+/).filter(function(p){return p.trim();});
-  return lines.map(function(p){
+  return md.split(/\n\n+/).filter(function(p){return p.trim();}).map(function(p){
     var s=p.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
     s=s.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>');
     s=s.replace(/\*([^*]+)\*/g,'<em>$1</em>');
@@ -371,20 +367,10 @@ function simpleMarkdown(md){
 }
 async function initBulletin(){
   var params=new URLSearchParams(window.location.search),reqDate=params.get('date');
-  /* Normalize date to YYYY-MM-DD — handle MM-DD-YYYY if someone typed it wrong */
-  if(reqDate){
-    var mmddyyyy=/^(\d{2})-(\d{2})-(\d{4})$/;
-    var m=reqDate.match(mmddyyyy);
-    if(m) reqDate=m[3]+'-'+m[1]+'-'+m[2];
-  }
-  console.log('[Bulletin] init — reqDate:', reqDate);
   try{
-    console.log('[Bulletin] fetching /bulletins.json...');
     var r=await fetch('/bulletins.json');
-    console.log('[Bulletin] /bulletins.json status:', r.status, r.ok);
-    if(!r.ok)throw new Error('bulletins.json returned '+r.status+' — make sure the file is at the repo root.');
+    if(!r.ok)throw new Error('No bulletins file found.');
     var j=await r.json();
-    console.log('[Bulletin] parsed bulletins:', j.bulletins ? j.bulletins.length : 'no .bulletins key');
     _bulletins=(j.bulletins||[]).sort(function(a,b){return b.date<a.date?-1:1});
     if(!_bulletins.length){showError('No bulletins have been published yet.');return}
     if(!reqDate)reqDate=_bulletins[0].date;
@@ -426,17 +412,9 @@ function renderBulletin(){
   var year=_currentDate.split('-')[0];
   var cal=(_calCache[year]&&_calCache[year].days[_currentDate])||{};
   var date=new Date(_currentDate+'T12:00:00');
-  var dateStr=fmtDate(date);
-  /* Title: use calendar feast name. Titles array gives the Sunday ordinal when feast is generic */
-  var sundayTitle = cal.feast || (cal.titles&&cal.titles[0]) || '';
-  /* Subtitle: first 2-3 saints from the calendar — same as what shows in the saints screenshot */
-  var saints = cal.saints || [];
-  var feastSubtitle = saints.slice(0,3).join('; ');
-  /* Running header: feast name */
-  var feastStr = cal.feast || '';
-
-  document.title=sundayTitle+' \u00b7 '+dateStr+' \u00b7 Sts. Peter & Paul';
-  document.getElementById('bull-bar-label').textContent=sundayTitle+'  \u00b7  '+dateStr;
+  var dateStr=fmtDate(date),feastStr=_bulletinData.feast_subtitle||cal.feast||'';
+  document.title=_bulletinData.sunday_title+' \u00b7 '+dateStr+' \u00b7 Sts. Peter & Paul';
+  document.getElementById('bull-bar-label').textContent=_bulletinData.sunday_title+'  \u00b7  '+dateStr;
   [1,2,3,4].forEach(function(n){var rd=document.getElementById('rh-date-'+n),rf=document.getElementById('rh-feast-'+n);if(rd)rd.textContent=dateStr;if(rf)rf.textContent=feastStr});
   renderPage1(cal);renderPage2(cal);renderPage3(date);renderPage4();
   document.getElementById('bull-loading').style.display='none';
@@ -444,16 +422,11 @@ function renderBulletin(){
   document.fonts.ready.then(function(){requestAnimationFrame(function(){requestAnimationFrame(function(){computeImageLayout()})})});
 }
 function renderPage1(cal){
-  /* Title from calendar feast */
-  var sundayTitle = cal.feast || (cal.titles&&cal.titles[0]) || '';
-  document.getElementById('p1-sunday-title').textContent = sundayTitle + ';';
-  /* Subtitle: first 2-3 saints from calendar */
-  var saints = cal.saints || [];
-  document.getElementById('p1-feast-sub').textContent = saints.slice(0,3).join('; ');
+  document.getElementById('p1-sunday-title').textContent=(_bulletinData.sunday_title||'')+';';
+  document.getElementById('p1-feast-sub').textContent=_bulletinData.feast_subtitle||cal.feast||'';
   var artEl=document.getElementById('p1-article');
   if(_bulletinData.reflection_body){
     artEl.innerHTML=simpleMarkdown(_bulletinData.reflection_body);
-    else{artEl.innerHTML=_bulletinData.reflection_body.split(/\n\n+/).filter(function(p){return p.trim()}).map(function(p){return'<p>'+p.replace(/\n/g,' ')+'</p>'}).join('')}
   }
   if(_bulletinData.featured_image){document.getElementById('p1-img').src=_bulletinData.featured_image;document.getElementById('p1-img-caption').textContent=_bulletinData.featured_image_caption||'';document.getElementById('p1-img-wrap').dataset.hasImage='true'}
   var all=(cal.feasts||[]).concat(cal.saints||[]);
@@ -496,7 +469,6 @@ function renderPage2(cal){
   var tropEl=document.getElementById('p2-troparia');
   if(_bulletinData.troparia_text){
     tropEl.innerHTML=simpleMarkdown(_bulletinData.troparia_text);
-    else{tropEl.innerHTML=_bulletinData.troparia_text.split(/\n\n+/).filter(function(p){return p.trim()}).map(function(p){return'<p>'+p+'</p>'}).join('')}
   }else{tropEl.innerHTML='<p style="font-size:9pt;font-style:italic;color:var(--b-stone)">Tone '+(cal.tone||'')+'</p>'}
 
   /* Icons — visibility handled by computePage2Images after texts load */
@@ -552,4 +524,9 @@ function computePage2Images(){
 }
 function printBulletin(){computeImageLayout();setTimeout(function(){window.print()},150)}
 window.onbeforeprint=computeImageLayout;
-function showError(msg){document.getElementById('bull-loading').innerHTML='<div style="text-align:center"><p style="font-family:var(--f-display);font-style:italic;font-size:1.2rem;color:rgba(246,241,232,.7)">Unable to load bulletin</p><p style="font-family:var(--f-ui);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(246,241,232,.4);margin-top:.5rem">'+msg+'</p><a href="/bulletins" style="color:var(--gold);font-family:var(--f-ui);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;display:block;margin-top:.75rem">&#8592; Back to A
+function showError(msg){document.getElementById('bull-loading').innerHTML='<div style="text-align:center"><p style="font-family:var(--f-display);font-style:italic;font-size:1.2rem;color:rgba(246,241,232,.7)">Unable to load bulletin</p><p style="font-family:var(--f-ui);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(246,241,232,.4);margin-top:.5rem">'+msg+'</p><a href="/bulletins" style="color:var(--gold);font-family:var(--f-ui);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;display:block;margin-top:.75rem">&#8592; Back to Archive</a></div>';}
+if(window.netlifyIdentity){window.netlifyIdentity.on('init',function(user){if(!user)window.netlifyIdentity.on('login',function(){document.location.href='/admin/';});})}
+initBulletin();
+</script>
+</body>
+</html>
