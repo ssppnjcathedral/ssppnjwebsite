@@ -189,22 +189,6 @@ collections:
                 widget: string
                 required: false
 
-              - name: reading_texts
-                label: "Scripture Reading Texts (Page 2)"
-                widget: list
-                required: false
-                hint: "Optional — paste the full reading text here to print inline on page 2. If left empty, only the reference is shown. Copy text from oca.org or a public domain source."
-                summary: "{{fields.ref}}"
-                fields:
-                  - name: ref
-                    label: "Reference (must match calendar exactly)"
-                    widget: string
-                    hint: "Example: Galatians 2:16-20 — must match the display field from the liturgical calendar."
-                  - name: text
-                    label: Full Text
-                    widget: text
-                    hint: "Paste the full scripture passage. Each paragraph on its own line. The first paragraph will receive a drop cap."
-
               - name: troparia_text
                 label: "Troparia (Page 2 — right rail)"
                 widget: markdown
