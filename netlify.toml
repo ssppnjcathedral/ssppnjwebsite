@@ -23,9 +23,3 @@
   [headers.values]
     Content-Type = "application/json; charset=utf-8"
 
-# Bulletin page — disable Cloudflare email obfuscation which blocks script execution
-[[headers]]
-  for = "/bulletin"
-  [headers.values]
-    X-Robots-Tag = "noindex"
-    Cache-Control = "no-cache"
