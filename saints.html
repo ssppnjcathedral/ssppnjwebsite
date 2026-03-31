@@ -179,7 +179,27 @@ footer .btn-outline{color:rgba(246,241,232,.92);border-color:rgba(246,241,232,.5
     <p id="sotd-date" style="font-family:var(--f-display);font-style:italic;font-size:1.1rem;color:rgba(255,255,255,.65);margin-top:.5rem">Loading today's saints…</p>
   </div>
 </div>
-<div class="chapter-bar"><span class="cbar-text bright">Hagiography</span><span class="cbar-text">Lives of the Saints · OCA Calendar</span></div>
+<div class="chapter-bar" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem">
+  <span class="cbar-text bright">Hagiography</span>
+  <div style="display:flex;align-items:center;gap:.75rem">
+    <button id="btn-prev" onclick="shiftDay(-1)" aria-label="Previous day"
+      style="background:none;border:1px solid rgba(246,241,232,.25);color:rgba(246,241,232,.8);width:28px;height:28px;cursor:pointer;font-size:.85rem;display:flex;align-items:center;justify-content:center;transition:border-color .18s"
+      onmouseover="this.style.borderColor='rgba(246,241,232,.6)'" onmouseout="this.style.borderColor='rgba(246,241,232,.25)'">&#8592;</button>
+    <div style="display:flex;align-items:center;gap:.5rem">
+      <span id="nav-date-label" class="cbar-text bright" style="min-width:160px;text-align:center"></span>
+      <input type="date" id="date-picker"
+        style="background:rgba(246,241,232,.08);border:1px solid rgba(246,241,232,.2);color:rgba(246,241,232,.7);font-family:var(--f-ui);font-size:.6rem;letter-spacing:.1em;padding:.25rem .5rem;cursor:pointer;outline:none;width:34px;opacity:0;position:absolute"
+        onchange="jumpToDate(this.value)">
+      <button onclick="document.getElementById('date-picker').showPicker?document.getElementById('date-picker').showPicker():document.getElementById('date-picker').click()"
+        style="background:none;border:1px solid rgba(246,241,232,.25);color:rgba(246,241,232,.65);font-family:var(--f-ui);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;padding:.25rem .65rem;cursor:pointer;transition:border-color .18s"
+        onmouseover="this.style.borderColor='rgba(246,241,232,.6)'" onmouseout="this.style.borderColor='rgba(246,241,232,.25)'">Jump to Date</button>
+    </div>
+    <button id="btn-next" onclick="shiftDay(1)" aria-label="Next day"
+      style="background:none;border:1px solid rgba(246,241,232,.25);color:rgba(246,241,232,.8);width:28px;height:28px;cursor:pointer;font-size:.85rem;display:flex;align-items:center;justify-content:center;transition:border-color .18s"
+      onmouseover="this.style.borderColor='rgba(246,241,232,.6)'" onmouseout="this.style.borderColor='rgba(246,241,232,.25)'">&#8594;</button>
+  </div>
+  <span class="cbar-text">Lives of the Saints · OCA Calendar</span>
+</div>
 
 <div class="saints-wrap">
   <main id="saints-container"><p class="loading-state">Loading the lives of today's saints…</p></main>
@@ -263,23 +283,81 @@ footer .btn-outline{color:rgba(246,241,232,.92);border-color:rgba(246,241,232,.5
   </div>
 </footer>
 <script>
-const MS=['January','February','March','April','May','June','July','August','September','October','November','December'];
-const MN=['january','february','march','april','may','june','july','august','september','october','november','december'];
-const DS=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+const MS  = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+const MN  = ['january','february','march','april','may','june','july','august','september','october','november','december'];
+const DS  = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+const ROMAN = {1:'I',2:'II',3:'III',4:'IV',5:'V',6:'VI',7:'VII',8:'VIII'};
 
-async function loadSaints(){
-  const today = new Date();
-  const y     = today.getFullYear();
-  const mo    = today.getMonth();          // 0-indexed
-  const d     = today.getDate();
-  const mm    = String(mo+1).padStart(2,'0');
-  const dd    = String(d).padStart(2,'0');
+/* ── Active date state ────────────────────────────────────────────── */
+let activeDate = new Date();
+
+function parseDateParam() {
+  const p = new URLSearchParams(window.location.search).get('date');
+  if (p && /^\d{4}-\d{2}-\d{2}$/.test(p)) {
+    const d = new Date(p + 'T12:00:00');
+    if (!isNaN(d)) return d;
+  }
+  return new Date();
+}
+
+function pushDate(date) {
+  const iso = fmtISO(date);
+  const url  = window.location.pathname + '?date=' + iso;
+  history.pushState({date: iso}, '', url);
+}
+
+function fmtISO(date) {
+  return date.getFullYear()+'-'+pad2(date.getMonth()+1)+'-'+pad2(date.getDate());
+}
+
+function pad2(n) { return String(n).padStart(2,'0'); }
+
+/* ── Navigation controls ─────────────────────────────────────────── */
+function shiftDay(delta) {
+  const d = new Date(activeDate);
+  d.setDate(d.getDate() + delta);
+  activeDate = d;
+  pushDate(d);
+  loadSaints(d);
+}
+
+function jumpToDate(val) {
+  if (!val) return;
+  const d = new Date(val + 'T12:00:00');
+  if (isNaN(d)) return;
+  activeDate = d;
+  pushDate(d);
+  loadSaints(d);
+}
+
+window.addEventListener('popstate', function(e) {
+  activeDate = parseDateParam();
+  loadSaints(activeDate);
+});
+
+/* ── Main loader ─────────────────────────────────────────────────── */
+async function loadSaints(date) {
+  date = date || activeDate;
+  const y   = date.getFullYear();
+  const mo  = date.getMonth();
+  const d   = date.getDate();
+  const mm  = pad2(mo + 1);
+  const dd  = pad2(d);
   const dateKey = y+'-'+mm+'-'+dd;
-  const dateStr = DS[today.getDay()]+', '+MS[mo]+' '+d+', '+y;
+  const isToday = fmtISO(date) === fmtISO(new Date());
 
-  document.getElementById('sotd-date').textContent = dateStr;
+  /* Update header label */
+  const label = DS[date.getDay()]+', '+MS[mo]+' '+d+', '+y;
+  document.getElementById('sotd-date').textContent = label;
+  document.getElementById('nav-date-label').textContent = isToday ? 'Today' : MS[mo]+' '+d+', '+y;
+  document.getElementById('date-picker').value = dateKey;
 
-  /* ── 1. Load OCA saints JSON (primary source) ─────────────── */
+  /* Reset containers */
+  document.getElementById('saints-container').innerHTML = '<p class="loading-state">Loading…</p>';
+  document.getElementById('side-feast').innerHTML = 'Loading…';
+  document.getElementById('side-observance').innerHTML = '';
+
+  /* ── 1. OCA saints JSON ──────────────────────────────────────── */
   let saints = [];
   try {
     const r = await fetch('/_data/oca-saints-'+MN[mo]+'.json');
@@ -291,68 +369,54 @@ async function loadSaints(){
     console.warn('OCA saints fetch failed:', e.message);
   }
 
-  /* ── 2. Load calendar JSON for tone / fast info (supplementary) ── */
+  /* ── 2. Calendar JSON for tone / fast ───────────────────────── */
   let calInfo = {};
   try {
     const r = await fetch('/_data/calendar-'+y+'.json');
     if (!r.ok) throw new Error('HTTP '+r.status);
     const cal = await r.json();
     const day = cal && cal.days && cal.days[dateKey];
-    if (day) calInfo = {
-      feast: day.feast||'',
-      tone:  day.tone||0,
-      fast:  day.fast||'',
-      fastException: day.fastException||''
-    };
+    if (day) calInfo = { feast: day.feast||'', tone: day.tone||0, fast: day.fast||'', fastException: day.fastException||'' };
   } catch(e) {
     console.warn('Calendar fetch failed:', e.message);
   }
 
-  /* ── Sidebar feast label ─────────────────────────────────────── */
+  /* ── Sidebar: feast ─────────────────────────────────────────── */
   const feast = calInfo.feast || (saints.length ? saints[0].name : '');
-  if (feast) {
-    document.getElementById('side-feast').innerHTML =
-      '<strong style="font-family:var(--f-ui);font-size:.48rem;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);display:block;margin-bottom:.3rem">Today</strong>'
-      + feast;
-  }
+  document.getElementById('side-feast').innerHTML = feast
+    ? '<strong style="font-family:var(--f-ui);font-size:.48rem;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);display:block;margin-bottom:.3rem">'+(isToday?'Today':MS[mo]+' '+d)+'</strong>'+feast
+    : 'No feast data available.';
 
-  /* ── No saints fallback ──────────────────────────────────────── */
-  if (!saints.length) {
-    document.getElementById('saints-container').innerHTML =
-      '<p class="loading-state">Saints data for today is not yet available. '
-      +'Visit <a href="https://www.oca.org/saints/lives/'+y+'/'+mm+'/'+dd
-      +'" target="_blank" rel="noopener" style="color:var(--maroon)">oca.org</a> for today\'s commemorations.</p>';
-    return;
-  }
-
-  /* ── Tone / fast ─────────────────────────────────────────────── */
-  const ROMAN = {1:'I',2:'II',3:'III',4:'IV',5:'V',6:'VI',7:'VII',8:'VIII'};
+  /* ── Sidebar: observance pills ──────────────────────────────── */
   const toneStr = calInfo.tone ? 'Tone '+(ROMAN[calInfo.tone]||calInfo.tone) : '';
   const fastStr = [calInfo.fast, calInfo.fastException].filter(Boolean).join(' — ');
-
-  /* Update sidebar observance pills */
   if (toneStr || fastStr) {
     let pillsHtml = '';
     if (toneStr) pillsHtml += '<span style="display:inline-block;font-family:var(--f-ui);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;padding:.2rem .65rem;background:rgba(59,15,24,.07);color:var(--stone);margin-bottom:.35rem">'+toneStr+'</span><br>';
     if (fastStr) pillsHtml += '<span style="display:inline-block;font-family:var(--f-ui);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;padding:.2rem .65rem;background:rgba(61,107,94,.09);color:var(--verdigris);margin-top:.2rem">&#10022; '+fastStr+'</span>';
-    const obs = document.getElementById('side-observance');
-    if (obs) obs.innerHTML = pillsHtml;
+    document.getElementById('side-observance').innerHTML = pillsHtml;
   }
 
+  /* ── No saints fallback ─────────────────────────────────────── */
   const ocaDayUrl = 'https://www.oca.org/saints/lives/'+y+'/'+mm+'/'+dd;
+  if (!saints.length) {
+    document.getElementById('saints-container').innerHTML =
+      '<p class="loading-state">Saints data for this day is not yet available. '
+      +'Visit <a href="'+ocaDayUrl+'" target="_blank" rel="noopener" style="color:var(--maroon)">oca.org</a> for the full listing.</p>';
+    return;
+  }
+
+  /* ── Primary saint ──────────────────────────────────────────── */
   const primary   = saints[0];
   const secondary = saints.slice(1);
 
-  /* ── PRIMARY saint ───────────────────────────────────────────── */
   const pName    = primary.name    || 'Holy Saint';
   const pImage   = primary.image   || '';
   const pExcerpt = primary.excerpt || '';
   const pUrl     = primary.url     || ocaDayUrl;
 
   const pImgHtml = pImage
-    ? '<img src="'+pImage+'" alt="'+pName.replace(/"/g,'&quot;')+'"'
-      +' style="width:110px;height:110px;object-fit:cover;flex-shrink:0;border:1px solid rgba(123,29,42,.14)"'
-      +' onerror="this.style.display=\'none\'">'
+    ? '<img src="'+pImage+'" alt="'+pName.replace(/"/g,'&quot;')+'" style="width:110px;height:110px;object-fit:cover;flex-shrink:0;border:1px solid rgba(123,29,42,.14)" onerror="this.style.display=\'none\'">'
     : '<div style="width:110px;height:110px;flex-shrink:0;background:#d4c9b8;border:1px solid rgba(123,29,42,.12);display:flex;align-items:center;justify-content:center;font-size:1.8rem;color:rgba(123,29,42,.3)">&#10013;</div>';
 
   const showPExcerpt = pExcerpt && !/^no information available/i.test(pExcerpt.trim());
@@ -364,17 +428,13 @@ async function loadSaints(){
     +'<div class="rubric-rule"></div>'
     +'<div style="display:flex;gap:1.5rem;align-items:flex-start;margin-bottom:1.25rem">'
     + pImgHtml
-    +'<div>'
-    +'<span class="feast-date-badge">'+MS[mo]+' '+d+'</span>'
-    +'<h2 class="saint-name">'+pName+'</h2>'
-    +'</div>'
+    +'<div><span class="feast-date-badge">'+MS[mo]+' '+d+'</span>'
+    +'<h2 class="saint-name">'+pName+'</h2></div>'
     +'</div>'
     +'<div class="saint-story">'+pExcerptHtml+'</div>'
-    +'<a href="'+pUrl+'" target="_blank" rel="noopener"'
-    +' style="display:inline-block;margin-top:1rem;font-family:var(--f-ui);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--maroon);border-bottom:1px solid rgba(123,29,42,.25);padding-bottom:1px;text-decoration:none">'
-    +'Read the Full Life at OCA &rarr;</a>';
+    +'<a href="'+pUrl+'" target="_blank" rel="noopener" style="display:inline-block;margin-top:1rem;font-family:var(--f-ui);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--maroon);border-bottom:1px solid rgba(123,29,42,.25);padding-bottom:1px;text-decoration:none">Read the Full Life at OCA &rarr;</a>';
 
-  /* ── SECONDARY saints grid ───────────────────────────────────── */
+  /* ── Secondary saints grid ──────────────────────────────────── */
   if (secondary.length) {
     out += '<div style="margin-top:2.5rem;padding-top:2rem;border-top:2px solid var(--maroon)">'
       +'<span style="font-family:var(--f-ui);font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:1.25rem">Also Commemorated Today</span>'
@@ -384,22 +444,14 @@ async function loadSaints(){
       const sName  = s.name  || 'Holy Saint';
       const sImage = s.image || '';
       const sUrl   = s.url   || ocaDayUrl;
-
       const sImgHtml = sImage
-        ? '<img src="'+sImage+'" alt="'+sName.replace(/"/g,'&quot;')+'"'
-          +' style="width:42px;height:42px;object-fit:cover;flex-shrink:0;border:1px solid rgba(123,29,42,.10)"'
-          +' onerror="this.outerHTML=\'<div style=&quot;width:42px;height:42px;flex-shrink:0;background:#d4c9b8;border:1px solid rgba(123,29,42,.10);display:flex;align-items:center;justify-content:center;font-size:.8rem;color:rgba(123,29,42,.3)&quot;>&#10013;</div>\'">'
+        ? '<img src="'+sImage+'" alt="'+sName.replace(/"/g,'&quot;')+'" style="width:42px;height:42px;object-fit:cover;flex-shrink:0;border:1px solid rgba(123,29,42,.10)" onerror="this.outerHTML=\'<div style=&quot;width:42px;height:42px;flex-shrink:0;background:#d4c9b8;border:1px solid rgba(123,29,42,.10);display:flex;align-items:center;justify-content:center;font-size:.8rem;color:rgba(123,29,42,.3)&quot;>&#10013;</div>\'">'
         : '<div style="width:42px;height:42px;flex-shrink:0;background:#d4c9b8;border:1px solid rgba(123,29,42,.10);display:flex;align-items:center;justify-content:center;font-size:.8rem;color:rgba(123,29,42,.3)">&#10013;</div>';
-
       out += '<div style="display:flex;gap:.75rem;align-items:flex-start;padding:.75rem;background:rgba(123,29,42,.04);border:1px solid rgba(123,29,42,.08)">'
         + sImgHtml
-        +'<div>'
-        +'<p style="font-family:var(--f-display);font-weight:400;font-size:.92rem;color:var(--ink);line-height:1.25;margin:0 0 .3rem">'+sName+'</p>'
-        +'<a href="'+sUrl+'" target="_blank" rel="noopener"'
-        +' style="font-family:var(--f-ui);font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);text-decoration:none">'
-        +'Read Life &rarr;</a>'
-        +'</div>'
-        +'</div>';
+        +'<div><p style="font-family:var(--f-display);font-weight:400;font-size:.92rem;color:var(--ink);line-height:1.25;margin:0 0 .3rem">'+sName+'</p>'
+        +'<a href="'+sUrl+'" target="_blank" rel="noopener" style="font-family:var(--f-ui);font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);text-decoration:none">Read Life &rarr;</a>'
+        +'</div></div>';
     });
 
     out += '</div></div>';
@@ -408,7 +460,9 @@ async function loadSaints(){
   document.getElementById('saints-container').innerHTML = out;
 }
 
-loadSaints();
+/* ── Init ────────────────────────────────────────────────────────── */
+activeDate = parseDateParam();
+loadSaints(activeDate);
 </script>
 
 <!-- Hero Image Rotator -->
