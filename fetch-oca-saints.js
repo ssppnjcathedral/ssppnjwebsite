@@ -82,15 +82,17 @@ function stripTags(str) {
 /**
  * Parses the OCA daily listing page HTML.
  *
- * The page structure for each saint entry looks like:
+ * Actual OCA page structure per saint entry:
  *
- *   <img ... src="https://images.oca.org/icons/xsm/..." alt="Saint Name">
- *   <h2><a href="/saints/lives/2026/MM/DD/slug">Saint Name</a></h2>
+ *   <img src="https://images.oca.org/icons/xsm/..." alt="Saint Name">
+ *   <h2>Saint Name</h2>
  *   <p>Short excerpt text...</p>
- *   <a href="...">Read the Life</a>
+ *   <a href="/saints/lives/2026/MM/DD/slug">Read the Life</a>
+ *   <a href="/saints/troparia/...">Troparion & Kontakion</a>
  *
- * We find each <h2> that contains a saints/lives link as our anchor,
- * then look backwards for the nearest <img> and forwards for the <p> excerpt.
+ * Strategy: anchor on every "Read the Life" link (href contains /saints/lives/).
+ * From each anchor position, scan backward for the nearest <h2> (name) and
+ * <img> (icon), and forward/backward for the <p> excerpt.
  */
 function parseDayPage(html, month, day, url) {
   const saints = [];
@@ -100,34 +102,40 @@ function parseDayPage(html, month, day, url) {
   const mainMatch = html.match(/<main[^>]*>([\s\S]*?)<\/main>/i);
   if (mainMatch) content = mainMatch[1];
 
-  // Find all saint entry h2 headings with a lives link
-  const h2Pattern = /<h2[^>]*>([\s\S]*?)<\/h2>/gi;
-  let h2Match;
+  // Find all "Read the Life" links — one per saint
+  const lifeLinkPattern = /<a[^>]+href="([^"]*\/saints\/lives\/[^"]+)"[^>]*>([\s\S]*?)<\/a>/gi;
+  let linkMatch;
+  const lifeLinks = [];
+  while ((linkMatch = lifeLinkPattern.exec(content)) !== null) {
+    const linkText = clean(stripTags(linkMatch[2]));
+    // Only grab "Read the Life" links, skip troparia/kontakia links
+    if (/read\s+the\s+life/i.test(linkText)) {
+      lifeLinks.push({ href: linkMatch[1], index: linkMatch.index, fullLen: linkMatch[0].length });
+    }
+  }
 
-  while ((h2Match = h2Pattern.exec(content)) !== null) {
-    const h2Inner = h2Match[1];
+  for (let li = 0; li < lifeLinks.length; li++) {
+    const link      = lifeLinks[li];
+    const prevLink  = lifeLinks[li - 1];
 
-    // Must contain a /saints/lives/ link — that's how we know it's a saint heading
-    const linkMatch = h2Inner.match(/href="([^"]*\/saints\/lives\/[^"]+)"/i);
-    if (!linkMatch) continue;
-
-    const lifeUrl   = linkMatch[1].startsWith('http')
-      ? linkMatch[1]
-      : 'https://www.oca.org' + linkMatch[1];
+    const lifeUrl   = link.href.startsWith('http')
+      ? link.href
+      : 'https://www.oca.org' + link.href;
     const slugMatch = lifeUrl.match(/\/saints\/lives\/\d{4}\/\d{2}\/\d{2}\/(.+)$/);
     const slug      = slugMatch ? slugMatch[1] : '';
-    const name      = clean(stripTags(h2Inner));
+
+    // The block of HTML between the previous life link and this one
+    const blockStart = prevLink ? prevLink.index + prevLink.fullLen : 0;
+    const blockEnd   = link.index;
+    const block      = content.slice(blockStart, blockEnd);
+
+    // ── Name: last <h2> in this block ────────────────────────────────────────
+    const h2s  = [...block.matchAll(/<h2[^>]*>([\s\S]*?)<\/h2>/gi)];
+    const name = h2s.length > 0 ? clean(stripTags(h2s[h2s.length - 1][1])) : '';
     if (!name) continue;
 
-    // ── Look backward from this h2 for the nearest <img> ─────────────────────
-    // Only consider images that appear after the previous h2 (so each saint
-    // gets its own icon, not a neighbour's).
-    const prevH2Match  = [...content.slice(0, h2Match.index).matchAll(/<h2[^>]*>[\s\S]*?<\/h2>/gi)];
-    const searchFrom   = prevH2Match.length > 0
-      ? prevH2Match[prevH2Match.length - 1].index + prevH2Match[prevH2Match.length - 1][0].length
-      : 0;
-    const sliceForImg  = content.slice(searchFrom, h2Match.index);
-    const imgsInSlice  = [...sliceForImg.matchAll(/<img[^>]+>/gi)];
+    // ── Image: last OCA CDN <img> in this block ───────────────────────────────
+    const imgsInSlice  = [...block.matchAll(/<img[^>]+>/gi)];
     let image          = '';
     if (imgsInSlice.length > 0) {
       const lastImg  = imgsInSlice[imgsInSlice.length - 1][0];
@@ -138,9 +146,8 @@ function parseDayPage(html, month, day, url) {
       }
     }
 
-    // ── Look forward from this h2 for the first <p> (excerpt) ────────────────
-    const afterH2    = content.slice(h2Match.index + h2Match[0].length);
-    const pMatch     = afterH2.match(/<p[^>]*>([\s\S]*?)<\/p>/i);
+    // ── Excerpt: first <p> in this block ─────────────────────────────────────
+    const pMatch     = block.match(/<p[^>]*>([\s\S]*?)<\/p>/i);
     const excerptRaw = pMatch ? clean(stripTags(pMatch[1])) : '';
     // Trim to ~300 chars at a sentence boundary
     let excerpt = excerptRaw;
