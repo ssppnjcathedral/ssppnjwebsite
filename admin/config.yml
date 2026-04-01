@@ -143,7 +143,7 @@ collections:
                 widget: image
                 required: false
                 media_folder: "/images/bulletins"
-                hint: "Cover image for page 1. BEFORE uploading, crop to exactly 1358 x 810 pixels (landscape). Use Photopea.com — open image, press C for crop, set W:1358 H:810, adjust to subject, export as JPEG."
+                hint: "Cover image for page 1. BEFORE uploading, crop to exactly 1358 x 810 pixels (landscape). Use Figma: (1) Drag your image into the pre-created 1358x810 frame. (2) Resize the image to fill the frame. (3) Hold Cmd and drag the image border to crop to your subject. (4) Press Export."
 
               - name: featured_image_caption
                 label: Cover Image Caption
@@ -156,7 +156,7 @@ collections:
                 widget: image
                 required: false
                 media_folder: "/images/bulletins"
-                hint: "Saint icon for page 2 right rail. BEFORE uploading, crop to exactly 480 x 650 pixels (portrait). Use Photopea.com — open image, press C for crop, set W:480 H:650, center on the saint's face, export as JPEG."
+                hint: "Saint icon for page 2 right rail. BEFORE uploading, crop to exactly 480 x 650 pixels (portrait). Use Figma: (1) Drag your image into the pre-created 480x650 frame. (2) Resize the image to fill the frame. (3) Hold Cmd and drag the image border to center on the saint's face. (4) Press Export."
 
               - name: saint_icon_caption
                 label: Saint Icon Caption
