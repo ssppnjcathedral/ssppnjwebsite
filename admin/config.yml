@@ -136,7 +136,7 @@ collections:
               - name: reflection_body
                 label: Reflection Body
                 widget: markdown
-                hint: "Fr. Solomon's reflection article for page 1. Appears in two columns with a drop cap on the first letter."
+                hint: "Fr. Solomon's reflection article for page 1. Appears in two columns with a drop cap on the first letter. Please keep under 850 characters. Longer reflections will be automatically trimmed."
 
               - name: featured_image
                 label: "Cover Image (Page 1)"
@@ -180,6 +180,24 @@ collections:
                 label: Second Image Caption
                 widget: string
                 required: false
+
+              - name: show_epistle
+                label: "Show Epistle Reading"
+                widget: boolean
+                default: true
+                hint: "Toggle off to hide the Epistle reading on page 2."
+
+              - name: show_gospel
+                label: "Show Gospel Reading"
+                widget: boolean
+                default: true
+                hint: "Toggle off to hide the Gospel reading on page 2."
+
+              - name: show_troparia
+                label: "Show Troparia"
+                widget: boolean
+                default: true
+                hint: "Toggle off to hide the Troparia section on page 2."
 
               - name: troparia_text
                 label: "Troparia (Page 2 — right rail)"
