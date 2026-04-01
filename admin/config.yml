@@ -143,7 +143,7 @@ collections:
                 widget: image
                 required: false
                 media_folder: "/images/bulletins"
-                hint: "Full-width image on the cover page. The system will automatically scale or hide it based on how much space the article text leaves."
+                hint: "Cover image for page 1. BEFORE uploading, crop to exactly 1358 x 810 pixels (landscape). Use Photopea.com — open image, press C for crop, set W:1358 H:810, adjust to subject, export as JPEG."
 
               - name: featured_image_caption
                 label: Cover Image Caption
@@ -156,7 +156,7 @@ collections:
                 widget: image
                 required: false
                 media_folder: "/images/bulletins"
-                hint: "Icon image shown in the Troparia column on page 2. Automatically sized to fill remaining space after the troparia text."
+                hint: "Saint icon for page 2 right rail. BEFORE uploading, crop to exactly 480 x 650 pixels (portrait). Use Photopea.com — open image, press C for crop, set W:480 H:650, center on the saint's face, export as JPEG."
 
               - name: saint_icon_caption
                 label: Saint Icon Caption
