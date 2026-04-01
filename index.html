@@ -316,7 +316,7 @@ img{display:block;max-width:100%}
 .hero-bg,.hero-bg2{position:absolute;inset:0;background-size:cover;background-position:center center;background-repeat:no-repeat;background-color:#3B0F18;transition:opacity 1.8s ease-in-out}
 .hero-bg2{opacity:0;z-index:1}
 .hero-bg{z-index:0}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.25) 0%,rgba(0,0,0,.30) 40%,rgba(0,0,0,.50) 70%,rgba(0,0,0,.65) 100%);z-index:2;pointer-events:none}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.38) 0%,rgba(0,0,0,.42) 40%,rgba(0,0,0,.58) 70%,rgba(0,0,0,.72) 100%);z-index:2;pointer-events:none}
 .hero-fallback{position:absolute;inset:0;background:linear-gradient(150deg,#2E0D14 0%,#7B1D2A 45%,#B88328 100%);z-index:-1}
 
 
@@ -325,14 +325,14 @@ img{display:block;max-width:100%}
 
 
 .hero-content{position:relative;z-index:3;padding:2rem;max-width:920px}
-.hero-eyebrow{font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.20em;text-transform:uppercase;color:rgba(232,201,122,.70);margin-bottom:2rem;animation:fu 1s .20s both}
-.hero-title{font-family:var(--f-display);font-weight:300;font-size:clamp(4rem,10vw,8.5rem);line-height:.88;color:#fff;letter-spacing:.01em;animation:fu 1s .35s both;text-shadow:0 2px 24px rgba(0,0,0,.75),0 1px 6px rgba(0,0,0,.5);}
+.hero-eyebrow{font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.20em;text-transform:uppercase;color:rgba(232,201,122,.80);margin-bottom:2rem;animation:fu 1s .20s both;text-shadow:0 2px 20px rgba(0,0,0,.7)}
+.hero-title{font-family:var(--f-display);font-weight:300;font-size:clamp(4rem,10vw,8.5rem);line-height:.88;color:#fff;letter-spacing:.01em;animation:fu 1s .35s both;text-shadow:0 4px 40px rgba(0,0,0,.85),0 1px 8px rgba(0,0,0,.6);}
 .hero-title em{font-style:italic}
 
 
 
-.hero-loc{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(255,255,255,.75);margin-bottom:.5rem;animation:fu 1s .65s both;text-shadow:0 2px 24px rgba(0,0,0,.75),0 1px 6px rgba(0,0,0,.5);}
-.hero-tag{font-family:var(--f-display);font-style:italic;font-weight:300;font-size:clamp(1rem,2vw,1.45rem);color:rgba(255,255,255,.75);margin-bottom:2.5rem;animation:fu 1s .72s both;text-shadow:0 2px 24px rgba(0,0,0,.75),0 1px 6px rgba(0,0,0,.5);}
+.hero-loc{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(255,255,255,.85);margin-bottom:.5rem;animation:fu 1s .65s both;text-shadow:0 4px 40px rgba(0,0,0,.85),0 1px 8px rgba(0,0,0,.6);}
+.hero-tag{font-family:var(--f-display);font-style:italic;font-weight:300;font-size:clamp(1rem,2vw,1.45rem);color:rgba(255,255,255,.85);margin-bottom:2.5rem;animation:fu 1s .72s both;text-shadow:0 4px 40px rgba(0,0,0,.85),0 1px 8px rgba(0,0,0,.6);}
 .hero-cta{animation:fu 1s .88s both}
 
 
@@ -1086,6 +1086,22 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
       </div>
     </div>
 
+    <div class="dr-section" data-photo="sspp-interior" data-label="Worship" data-quote="The living tradition of the Church.">
+      <div class="dr-section-head" onclick="drToggle(this)">
+        <span class="dr-section-name">Worship</span>
+        <span class="dr-section-toggle">+</span>
+      </div>
+      <div class="dr-section-links">
+        <a href="/divine-liturgy" class="dr-link"><span class="dr-link-name">Divine Liturgy</span><span class="dr-link-sub">The central act of Christian worship</span></a>
+        <a href="/vespers" class="dr-link"><span class="dr-link-name">Vespers</span><span class="dr-link-sub">Saturday evening prayer</span></a>
+        <a href="/liturgy-book" class="dr-link"><span class="dr-link-name">Liturgy Book</span><span class="dr-link-sub">Follow along at the Divine Liturgy</span></a>
+        <a href="/readings" class="dr-link"><span class="dr-link-name">Daily Readings</span><span class="dr-link-sub">Scripture appointed for each day</span></a>
+        <a href="/saints" class="dr-link"><span class="dr-link-name">Saints</span><span class="dr-link-sub">The saints commemorated today</span></a>
+        <a href="/prologue" class="dr-link"><span class="dr-link-name">The Prologue</span><span class="dr-link-sub">Daily lives of the saints</span></a>
+        <a href="/prayers" class="dr-link"><span class="dr-link-name">Prayers</span><span class="dr-link-sub">Daily prayers of the Orthodox Church</span></a>
+      </div>
+    </div>
+
     <div class="dr-section" data-photo="sspp-welcome" data-label="Inquirers" data-quote="Exploring the ancient Faith?">
       <div class="dr-section-head" onclick="drToggle(this)">
         <span class="dr-section-name">Inquirers</span>
@@ -1107,11 +1123,10 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
         <span class="dr-section-toggle">+</span>
       </div>
       <div class="dr-section-links">
-        <a href="/schedule" class="dr-link"><span class="dr-link-name">Liturgical Calendar</span><span class="dr-link-sub">Feasts, fasts, and the Church year</span></a>
-        <a href="/readings" class="dr-link"><span class="dr-link-name">Daily Readings</span><span class="dr-link-sub">Scripture appointed for each day</span></a>
-        <a href="/saints" class="dr-link"><span class="dr-link-name">Saints</span><span class="dr-link-sub">The saints commemorated today</span></a>
-        <a href="/prologue" class="dr-link"><span class="dr-link-name">The Prologue</span><span class="dr-link-sub">Daily lives of the saints</span></a>
-        <a href="/liturgy-book" class="dr-link"><span class="dr-link-name">Liturgy Book</span><span class="dr-link-sub">Follow along at the Divine Liturgy</span></a>
+        <a href="/divine-liturgy" class="dr-link"><span class="dr-link-name">Divine Liturgy</span><span class="dr-link-sub">Every Sunday, 9:30 AM</span></a>
+        <a href="/vespers" class="dr-link"><span class="dr-link-name">Great Vespers</span><span class="dr-link-sub">Every Saturday, 5:00 PM</span></a>
+        <a href="/schedule" class="dr-link"><span class="dr-link-name">Feast Day Liturgies</span><span class="dr-link-sub">As scheduled, 9:00 AM</span></a>
+        <a href="/schedule" class="dr-link"><span class="dr-link-name">Full Liturgical Calendar</span><span class="dr-link-sub">Feasts, fasts, and the Church year</span></a>
       </div>
     </div>
 
@@ -1127,22 +1142,6 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
         <a href="/videos" class="dr-link"><span class="dr-link-name">Videos</span><span class="dr-link-sub">Lectures, services, and parish life</span></a>
         <a href="/cemeteries" class="dr-link"><span class="dr-link-name">Cemeteries</span><span class="dr-link-sub">Our historic parish cemeteries</span></a>
         <a href="/donate" class="dr-link"><span class="dr-link-name">Donate</span><span class="dr-link-sub">Support the life and work of the cathedral</span></a>
-      </div>
-    </div>
-
-    <div class="dr-section" data-photo="sspp-interior" data-label="Worship" data-quote="The living tradition of the Church.">
-      <div class="dr-section-head" onclick="drToggle(this)">
-        <span class="dr-section-name">Worship</span>
-        <span class="dr-section-toggle">+</span>
-      </div>
-      <div class="dr-section-links">
-        <a href="/divine-liturgy" class="dr-link"><span class="dr-link-name">Divine Liturgy</span><span class="dr-link-sub">The central act of Christian worship</span></a>
-        <a href="/vespers" class="dr-link"><span class="dr-link-name">Vespers</span><span class="dr-link-sub">Saturday evening prayer</span></a>
-        <a href="/liturgy-book" class="dr-link"><span class="dr-link-name">Liturgy Book</span><span class="dr-link-sub">Follow along at the Divine Liturgy</span></a>
-        <a href="/readings" class="dr-link"><span class="dr-link-name">Daily Readings</span><span class="dr-link-sub">Scripture appointed for each day</span></a>
-        <a href="/saints" class="dr-link"><span class="dr-link-name">Saints</span><span class="dr-link-sub">The saints commemorated today</span></a>
-        <a href="/prologue" class="dr-link"><span class="dr-link-name">The Prologue</span><span class="dr-link-sub">Daily lives of the saints</span></a>
-        <a href="/prayers" class="dr-link"><span class="dr-link-name">Prayers</span><span class="dr-link-sub">Daily prayers of the Orthodox Church</span></a>
       </div>
     </div>
 
