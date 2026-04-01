@@ -1,21 +1,18 @@
 {
   "bulletins": [
     {
-      "date": "2026-04-05",
-      "reflection_title": "Palm Sunday: The Triumphal Entry",
-      "reflection_body": "The pagan Roman Emperors tried to obliterate the holy places where our Lord Jesus Christ suffered and rose from the dead, so that they would be forgotten. Emperor Hadrian ordered that Golgotha and the Lord's Sepulchre be buried, and that a temple in honor of Venus and a statue of Jupiter be placed there.\n\nIn 313 Saint Constantine issued the Edict of Milan, by which Christianity was legalized. Only after the defeat of Licinius was St. Helen able to travel to Judea to build churches at Bethlehem, on the Mount of Olives, and at the Garden of Gethsemane.\n\nExcavations under the temple of Venus revealed the empty tomb, three crosses, the inscribed board once attached to the cross by Pilate, and the nails. The cross of Christ was identified by miraculous healings, and Patriarch Makarios held the cross aloft for the people to see.",
-      "featured_image": "",
-      "featured_image_caption": "Entry into Jerusalem",
-      "saint_icon_image": "",
-      "saint_icon_caption": "Entry into Jerusalem Icon",
-      "show_second_image": false,
-      "second_image": "",
-      "second_image_caption": "",
-      "show_epistle": true,
-      "show_gospel": true,
-      "show_troparia": true,
+      "patristic_quotes": [
+        {
+          "quote": "O Christ our God, when Thou didst raise Lazarus from the dead before Thy passion, Thou didst confirm the universal resurrection.",
+          "attribution": "Troparion of Palm Sunday"
+        },
+        {
+          "quote": "The children of the Hebrews, holding branches of olive trees, went to meet Thee, O Lord, crying out and saying: Hosanna in the Highest.",
+          "attribution": "Antiphon of Palm Sunday"
+        }
+      ],
       "troparia_text": "O Christ our God, when Thou didst raise Lazarus from the dead before Thy passion, Thou didst confirm the universal resurrection. Wherefore, we, like the children, carry the symbols of triumph and victory, and cry to Thee, the Conqueror of death: Hosanna in the highest! Blessed is He that cometh in the name of the Lord!\n\nO Lord, save Thy people, and bless Thine inheritance! Grant victories to the Orthodox Christians over their adversaries; and by virtue of Thy Cross, preserve Thy habitation!",
-      "thank_you_line": "Thank you to Team A for Coffee Hour.",
+      "reflection_title": "Palm Sunday: The Triumphal Entry",
       "special_announcements": [
         {
           "title": "Holy Week Services Begin",
@@ -26,33 +23,33 @@
           "body": "Bring your Pascha baskets to the church on Holy Saturday at 11:00 PM for the blessing following the Resurrection Matins service."
         }
       ],
-      "patristic_quotes": [
-        {
-          "quote": "O Christ our God, when Thou didst raise Lazarus from the dead before Thy passion, Thou didst confirm the universal resurrection.",
-          "attribution": "Troparion of Palm Sunday"
-        },
-        {
-          "quote": "The children of the Hebrews, holding branches of olive trees, went to meet Thee, O Lord, crying out and saying: Hosanna in the Highest.",
-          "attribution": "Antiphon of Palm Sunday"
-        }
-      ]
+      "thank_you_line": "Thank you to Team A for Coffee Hour.",
+      "show_troparia": true,
+      "featured_image": "",
+      "show_gospel": true,
+      "date": "2026-04-05",
+      "second_image": "",
+      "featured_image_caption": "Entry into Jerusalem",
+      "show_second_image": false,
+      "saint_icon_image": "",
+      "reflection_body": "The pagan Roman Emperors tried to obliterate the holy places where our Lord Jesus Christ suffered and rose from the dead, so that they would be forgotten. Emperor Hadrian ordered that Golgotha and the Lord's Sepulchre be buried, and that a temple in honor of Venus and a statue of Jupiter be placed there.\n\nIn 313 Saint Constantine issued the Edict of Milan, by which Christianity was legalized. Only after the defeat of Licinius was St. Helen able to travel to Judea to build churches at Bethlehem, on the Mount of Olives, and at the Garden of Gethsemane.\n\nExcavations under the temple of Venus revealed the empty tomb, three crosses, the inscribed board once attached to the cross by Pilate, and the nails. The cross of Christ was identified by miraculous healings, and Patriarch Makarios held the cross aloft for the people to see.",
+      "show_epistle": true,
+      "second_image_caption": "",
+      "saint_icon_caption": "Entry into Jerusalem Icon"
     },
     {
-      "date": "2026-04-12",
-      "reflection_title": "Pascha: The Feast of Feasts",
-      "reflection_body": "Christ is Risen! This proclamation, which has echoed through twenty centuries of Christian life, stands at the very heart of our faith. The Resurrection of our Lord is not merely one event among many in sacred history. It is the event that gives all other events their meaning.\n\nSaint John Chrysostom, in his celebrated Paschal homily, invites all to share in the joy of this day. He who fasted and he who did not fast, he who labored from the first hour and he who came at the eleventh, let all receive equally. Let no one mourn poverty, for the universal kingdom has appeared.\n\nThe tomb is empty. Death has been swallowed up in victory. Let us then keep the feast, not with the old leaven of malice and wickedness, but with the unleavened bread of sincerity and truth.",
-      "featured_image": "",
-      "featured_image_caption": "The Resurrection of Christ",
-      "saint_icon_image": "",
-      "saint_icon_caption": "Resurrection Icon",
-      "show_second_image": false,
-      "second_image": "",
-      "second_image_caption": "",
-      "show_epistle": true,
-      "show_gospel": true,
-      "show_troparia": true,
+      "patristic_quotes": [
+        {
+          "quote": "Let no one mourn their poverty, for the universal kingdom has appeared. Let no one weep for their iniquities, for pardon has shown forth from the grave.",
+          "attribution": "Paschal Homily, St. John Chrysostom"
+        },
+        {
+          "quote": "Yesterday I was crucified with Him; today I am glorified with Him; yesterday I died with Him; today I am quickened with Him; yesterday I was buried with Him; today I rise with Him.",
+          "attribution": "Second Oration on Pascha, St. Gregory the Theologian"
+        }
+      ],
       "troparia_text": "Christ is risen from the dead, trampling down death by death, and upon those in the tombs bestowing life!\n\nHaving beheld the resurrection of Christ, let us worship the holy Lord Jesus, the only sinless one. We venerate Thy cross, O Christ, and Thy holy resurrection we praise and glorify. For Thou art our God, and we know no other than Thee; we call upon Thy name.",
-      "thank_you_line": "Thank you to all who helped prepare our beautiful Pascha celebration.",
+      "reflection_title": "Pascha: The Feast of Feasts",
       "special_announcements": [
         {
           "title": "Paschal Agape Vespers",
@@ -63,33 +60,33 @@
           "body": "Divine Liturgy will be celebrated every day of Bright Week at 9:00 AM. Coffee Hour will follow each service. Come and celebrate the Feast throughout the week."
         }
       ],
-      "patristic_quotes": [
-        {
-          "quote": "Let no one mourn their poverty, for the universal kingdom has appeared. Let no one weep for their iniquities, for pardon has shown forth from the grave.",
-          "attribution": "Paschal Homily, St. John Chrysostom"
-        },
-        {
-          "quote": "Yesterday I was crucified with Him; today I am glorified with Him; yesterday I died with Him; today I am quickened with Him; yesterday I was buried with Him; today I rise with Him.",
-          "attribution": "Second Oration on Pascha, St. Gregory the Theologian"
-        }
-      ]
+      "thank_you_line": "Thank you to all who helped prepare our beautiful Pascha celebration.",
+      "show_troparia": true,
+      "featured_image": "",
+      "show_gospel": true,
+      "date": "2026-04-12",
+      "second_image": "",
+      "featured_image_caption": "The Resurrection of Christ",
+      "show_second_image": false,
+      "saint_icon_image": "",
+      "reflection_body": "Christ is Risen! This proclamation, which has echoed through twenty centuries of Christian life, stands at the very heart of our faith. The Resurrection of our Lord is not merely one event among many in sacred history. It is the event that gives all other events their meaning.\n\nSaint John Chrysostom, in his celebrated Paschal homily, invites all to share in the joy of this day. He who fasted and he who did not fast, he who labored from the first hour and he who came at the eleventh, let all receive equally. Let no one mourn poverty, for the universal kingdom has appeared.\n\nThe tomb is empty. Death has been swallowed up in victory. Let us then keep the feast, not with the old leaven of malice and wickedness, but with the unleavened bread of sincerity and truth.",
+      "show_epistle": true,
+      "second_image_caption": "",
+      "saint_icon_caption": "Resurrection Icon"
     },
     {
-      "date": "2026-04-19",
-      "reflection_title": "Thomas Sunday: Blessed Are Those Who Have Not Seen",
-      "reflection_body": "The Sunday after Pascha is called Thomas Sunday, in memory of the Apostle Thomas who was absent when the Lord first appeared to the disciples, and who declared that he would not believe unless he could touch the wounds of Christ. Eight days later, the Lord appeared again and invited Thomas to do exactly that.\n\nThomas's response, 'My Lord and my God,' is one of the most exalted confessions of faith in all of Scripture. He who had doubted most fervently confessed most completely. There is a mercy in this for us as well. Our doubts do not disqualify us from encounter with the risen Lord.\n\nThe Lord's word to Thomas extends to us across the centuries: blessed are those who have not seen, and yet have believed. We are the recipients of that blessing every time we approach the chalice in faith.",
-      "featured_image": "",
-      "featured_image_caption": "The Incredulity of Thomas",
-      "saint_icon_image": "",
-      "saint_icon_caption": "St. Thomas the Apostle",
-      "show_second_image": false,
-      "second_image": "",
-      "second_image_caption": "",
-      "show_epistle": true,
-      "show_gospel": true,
-      "show_troparia": true,
+      "patristic_quotes": [
+        {
+          "quote": "Thomas, one of the twelve, was not there when Jesus came. The others told him, but he did not believe. Not, however, out of stubbornness, but out of a genuine desire to see.",
+          "attribution": "Commentary on John, St. Augustine of Hippo"
+        },
+        {
+          "quote": "He touched the body and proclaimed the God he could not see. By touching what was visible he came to believe in what was invisible.",
+          "attribution": "On the Gospel of John, St. Gregory the Great"
+        }
+      ],
       "troparia_text": "Christ is risen from the dead, trampling down death by death, and upon those in the tombs bestowing life!\n\nWhilst the tomb was sealed, Thou, O Life, didst shine forth from the grave, O Christ God; and whilst the doors were shut, Thou didst come unto Thy disciples, O Resurrection of all, renewing through them an upright spirit in us, according to Thy great mercy.",
-      "thank_you_line": "Thank you to Team B for Coffee Hour.",
+      "reflection_title": "Thomas Sunday: Blessed Are Those Who Have Not Seen",
       "special_announcements": [
         {
           "title": "Radonitsa Panakhida",
@@ -100,33 +97,33 @@
           "body": "Wednesday Bible Study resumes this week at 8:00 PM via Zoom and in person. We continue our study of the Acts of the Apostles, which is read throughout the Paschal season."
         }
       ],
-      "patristic_quotes": [
-        {
-          "quote": "Thomas, one of the twelve, was not there when Jesus came. The others told him, but he did not believe. Not, however, out of stubbornness, but out of a genuine desire to see.",
-          "attribution": "Commentary on John, St. Augustine of Hippo"
-        },
-        {
-          "quote": "He touched the body and proclaimed the God he could not see. By touching what was visible he came to believe in what was invisible.",
-          "attribution": "On the Gospel of John, St. Gregory the Great"
-        }
-      ]
+      "thank_you_line": "Thank you to Team B for Coffee Hour.",
+      "show_troparia": true,
+      "featured_image": "",
+      "show_gospel": true,
+      "date": "2026-04-19",
+      "second_image": "",
+      "featured_image_caption": "The Incredulity of Thomas",
+      "show_second_image": false,
+      "saint_icon_image": "",
+      "reflection_body": "The Sunday after Pascha is called Thomas Sunday, in memory of the Apostle Thomas who was absent when the Lord first appeared to the disciples, and who declared that he would not believe unless he could touch the wounds of Christ. Eight days later, the Lord appeared again and invited Thomas to do exactly that.\n\nThomas's response, 'My Lord and my God,' is one of the most exalted confessions of faith in all of Scripture. He who had doubted most fervently confessed most completely. There is a mercy in this for us as well. Our doubts do not disqualify us from encounter with the risen Lord.\n\nThe Lord's word to Thomas extends to us across the centuries: blessed are those who have not seen, and yet have believed. We are the recipients of that blessing every time we approach the chalice in faith.",
+      "show_epistle": true,
+      "second_image_caption": "",
+      "saint_icon_caption": "St. Thomas the Apostle"
     },
     {
-      "date": "2026-04-26",
-      "reflection_title": "Sunday of the Myrrh-Bearing Women",
-      "reflection_body": "On this third Sunday of Pascha, the Church commemorates the holy Myrrh-Bearing Women, those faithful disciples who came to the tomb before dawn on the first day of the week to anoint the body of their Lord. They were the first witnesses of the Resurrection, the first to hear the angelic proclamation that Christ had risen.\n\nThe Church also commemorates on this day the righteous Joseph of Arimathea and Nicodemus, who buried the Lord's body with reverence at great personal risk. These were secret disciples who found their courage at the very moment when the twelve had scattered.\n\nWe honor in these men and women a pattern of faithfulness that the Church has always needed. The Myrrh-Bearers did not reason about whether their love was practical. They simply went, bearing what they had, and the Lord met them there.",
-      "featured_image": "",
-      "featured_image_caption": "The Holy Myrrh-Bearing Women",
-      "saint_icon_image": "",
-      "saint_icon_caption": "The Myrrh-Bearing Women at the Tomb",
-      "show_second_image": false,
-      "second_image": "",
-      "second_image_caption": "",
-      "show_epistle": true,
-      "show_gospel": true,
-      "show_troparia": true,
+      "patristic_quotes": [
+        {
+          "quote": "Mary Magdalene stood weeping outside the tomb. As she wept, she stooped to look into the tomb, and she saw two angels in white. They said to her, Woman, why are you weeping?",
+          "attribution": "John 20:11-13"
+        },
+        {
+          "quote": "The Myrrh-Bearers hastened to the tomb with spices, seeking to serve the dead as is fitting. But they found life, not death, and returned bearing glad tidings to the apostles.",
+          "attribution": "Synaxarion of the Sunday of the Myrrh-Bearing Women"
+        }
+      ],
       "troparia_text": "Christ is risen from the dead, trampling down death by death, and upon those in the tombs bestowing life!\n\nThe Angel cried to the Lady full of Grace: Rejoice, O Pure Virgin! Again I say, Rejoice! Your Son is risen from His three days in the tomb! With Himself He has raised all the dead! Rejoice, all ye people!",
-      "thank_you_line": "Thank you to Team C for Coffee Hour.",
+      "reflection_title": "Sunday of the Myrrh-Bearing Women",
       "special_announcements": [
         {
           "title": "Spring Food Drive",
@@ -137,33 +134,33 @@
           "body": "The Parish Council will meet on Thursday, April 30 at 7:00 PM in the downstairs hall. All parishioners are welcome to attend."
         }
       ],
-      "patristic_quotes": [
-        {
-          "quote": "Mary Magdalene stood weeping outside the tomb. As she wept, she stooped to look into the tomb, and she saw two angels in white. They said to her, Woman, why are you weeping?",
-          "attribution": "John 20:11-13"
-        },
-        {
-          "quote": "The Myrrh-Bearers hastened to the tomb with spices, seeking to serve the dead as is fitting. But they found life, not death, and returned bearing glad tidings to the apostles.",
-          "attribution": "Synaxarion of the Sunday of the Myrrh-Bearing Women"
-        }
-      ]
+      "thank_you_line": "Thank you to Team C for Coffee Hour.",
+      "show_troparia": true,
+      "featured_image": "",
+      "show_gospel": true,
+      "date": "2026-04-26",
+      "second_image": "",
+      "featured_image_caption": "The Holy Myrrh-Bearing Women",
+      "show_second_image": false,
+      "saint_icon_image": "",
+      "reflection_body": "On this third Sunday of Pascha, the Church commemorates the holy Myrrh-Bearing Women, those faithful disciples who came to the tomb before dawn on the first day of the week to anoint the body of their Lord. They were the first witnesses of the Resurrection, the first to hear the angelic proclamation that Christ had risen.\n\nThe Church also commemorates on this day the righteous Joseph of Arimathea and Nicodemus, who buried the Lord's body with reverence at great personal risk. These were secret disciples who found their courage at the very moment when the twelve had scattered.\n\nWe honor in these men and women a pattern of faithfulness that the Church has always needed. The Myrrh-Bearers did not reason about whether their love was practical. They simply went, bearing what they had, and the Lord met them there.",
+      "show_epistle": true,
+      "second_image_caption": "",
+      "saint_icon_caption": "The Myrrh-Bearing Women at the Tomb"
     },
     {
-      "date": "2026-05-03",
-      "reflection_title": "Sunday of the Paralytic: Rise and Walk",
-      "reflection_body": "The fourth Sunday of Pascha brings before us the healing of the paralytic at the Pool of Bethesda. For thirty-eight years this man lay waiting, and for thirty-eight years no one helped him into the water when it was stirred. When the Lord asked him, Do you want to be healed, his answer was not a simple yes, but an account of his abandonment.\n\nThe Lord did not require him to step into the pool. He simply said: Rise, take up your bed, and walk. And the man was made whole. The healing required nothing of the paralytic but his willingness to receive.\n\nFr. Solomon often returns to this passage when speaking about our spiritual lives. We can become so accustomed to our infirmities, so habituated to waiting for the right moment or the right conditions, that we forget the Lord is standing before us asking the same question: do you want to be healed?",
-      "featured_image": "",
-      "featured_image_caption": "Healing of the Paralytic",
-      "saint_icon_image": "",
-      "saint_icon_caption": "The Paralytic at Bethesda",
-      "show_second_image": false,
-      "second_image": "",
-      "second_image_caption": "",
-      "show_epistle": true,
-      "show_gospel": true,
-      "show_troparia": true,
+      "patristic_quotes": [
+        {
+          "quote": "The Lord did not ask the paralytic whether he believed, but only whether he wished to be made whole. He who gives the gift of healing does not demand of us anything beyond our desire to receive it.",
+          "attribution": "Homilies on the Gospel of John, St. John Chrysostom"
+        },
+        {
+          "quote": "Thirty-eight years of sickness could not extinguish his hope. Let us not allow a single week of trial to extinguish ours.",
+          "attribution": "Attributed to Fr. Alexander Schmemann"
+        }
+      ],
       "troparia_text": "Christ is risen from the dead, trampling down death by death, and upon those in the tombs bestowing life!\n\nBy Thy cross Thou didst destroy death. To the thief Thou didst open paradise. For the Myrrh-Bearers Thou didst change weeping into joy. And Thou didst command Thy disciples, O Christ God, to proclaim that Thou art risen, granting the world great mercy.",
-      "thank_you_line": "Thank you to Team A for Coffee Hour.",
+      "reflection_title": "Sunday of the Paralytic: Rise and Walk",
       "special_announcements": [
         {
           "title": "Baptism: Natalia Rose Kimura",
@@ -174,33 +171,33 @@
           "body": "Fr. Solomon sends a brief Wednesday reflection by email each week. To be added to the list, fill out the connection card on the back of this bulletin or contact the parish office."
         }
       ],
-      "patristic_quotes": [
-        {
-          "quote": "The Lord did not ask the paralytic whether he believed, but only whether he wished to be made whole. He who gives the gift of healing does not demand of us anything beyond our desire to receive it.",
-          "attribution": "Homilies on the Gospel of John, St. John Chrysostom"
-        },
-        {
-          "quote": "Thirty-eight years of sickness could not extinguish his hope. Let us not allow a single week of trial to extinguish ours.",
-          "attribution": "Attributed to Fr. Alexander Schmemann"
-        }
-      ]
+      "thank_you_line": "Thank you to Team A for Coffee Hour.",
+      "show_troparia": true,
+      "featured_image": "",
+      "show_gospel": true,
+      "date": "2026-05-03",
+      "second_image": "",
+      "featured_image_caption": "Healing of the Paralytic",
+      "show_second_image": false,
+      "saint_icon_image": "",
+      "reflection_body": "The fourth Sunday of Pascha brings before us the healing of the paralytic at the Pool of Bethesda. For thirty-eight years this man lay waiting, and for thirty-eight years no one helped him into the water when it was stirred. When the Lord asked him, Do you want to be healed, his answer was not a simple yes, but an account of his abandonment.\n\nThe Lord did not require him to step into the pool. He simply said: Rise, take up your bed, and walk. And the man was made whole. The healing required nothing of the paralytic but his willingness to receive.\n\nFr. Solomon often returns to this passage when speaking about our spiritual lives. We can become so accustomed to our infirmities, so habituated to waiting for the right moment or the right conditions, that we forget the Lord is standing before us asking the same question: do you want to be healed?",
+      "show_epistle": true,
+      "second_image_caption": "",
+      "saint_icon_caption": "The Paralytic at Bethesda"
     },
     {
-      "date": "2026-05-10",
-      "reflection_title": "Mid-Pentecost: Between Two Great Feasts",
-      "reflection_body": "Mid-Pentecost falls on the Wednesday of this week, at the midpoint between Pascha and Pentecost. The feast takes as its theme the words of Christ spoken at the Feast of Tabernacles: If anyone thirsts, let him come to Me and drink. This image of living water runs through all the services of the Paschal season.\n\nWe are people suspended between two great realities. The Resurrection has already occurred. The fullness of the Kingdom has not yet come. We live in what the theologians call the already and the not yet. The feasts of the Church are not mere remembrances of past events. They are participations in a present and ongoing reality.\n\nWhen we gather each Sunday, we do not simply recall that Christ rose. We enter into His risen life. This is why the Church calls Sunday the Eighth Day, a day outside ordinary time, a foretaste of the Kingdom.",
-      "featured_image": "",
-      "featured_image_caption": "Mid-Pentecost",
-      "saint_icon_image": "",
-      "saint_icon_caption": "",
-      "show_second_image": false,
-      "second_image": "",
-      "second_image_caption": "",
-      "show_epistle": true,
-      "show_gospel": true,
-      "show_troparia": true,
+      "patristic_quotes": [
+        {
+          "quote": "If anyone thirsts, let him come to Me and drink. He who believes in Me, as the Scripture has said, out of his heart will flow rivers of living water.",
+          "attribution": "John 7:37-38"
+        },
+        {
+          "quote": "The whole life of a good Christian is a holy desire. What you long for you do not yet see; but longing makes you capable of being filled when what you seek finally arrives.",
+          "attribution": "Homilies on the First Epistle of John, St. Augustine"
+        }
+      ],
       "troparia_text": "Christ is risen from the dead, trampling down death by death, and upon those in the tombs bestowing life!\n\nAt Mid-Feast give my thirsty soul to drink of the waters of piety, for Thou, O Savior, didst cry to all: whosoever is thirsty, let him come to Me and drink! O Christ God, Fountain of life, glory to Thee!",
-      "thank_you_line": "Thank you to the Kimura family for hosting Coffee Hour in celebration of Natalia's baptism.",
+      "reflection_title": "Mid-Pentecost: Between Two Great Feasts",
       "special_announcements": [
         {
           "title": "Baptism of Natalia Rose Kimura",
@@ -211,33 +208,33 @@
           "body": "Fr. Solomon is beginning to plan the summer schedule. If you have travel plans that will affect your availability to serve, please let the office know by May 24."
         }
       ],
-      "patristic_quotes": [
-        {
-          "quote": "If anyone thirsts, let him come to Me and drink. He who believes in Me, as the Scripture has said, out of his heart will flow rivers of living water.",
-          "attribution": "John 7:37-38"
-        },
-        {
-          "quote": "The whole life of a good Christian is a holy desire. What you long for you do not yet see; but longing makes you capable of being filled when what you seek finally arrives.",
-          "attribution": "Homilies on the First Epistle of John, St. Augustine"
-        }
-      ]
+      "thank_you_line": "Thank you to the Kimura family for hosting Coffee Hour in celebration of Natalia's baptism.",
+      "show_troparia": true,
+      "featured_image": "",
+      "show_gospel": true,
+      "date": "2026-05-10",
+      "second_image": "",
+      "featured_image_caption": "Mid-Pentecost",
+      "show_second_image": false,
+      "saint_icon_image": "",
+      "reflection_body": "Mid-Pentecost falls on the Wednesday of this week, at the midpoint between Pascha and Pentecost. The feast takes as its theme the words of Christ spoken at the Feast of Tabernacles: If anyone thirsts, let him come to Me and drink. This image of living water runs through all the services of the Paschal season.\n\nWe are people suspended between two great realities. The Resurrection has already occurred. The fullness of the Kingdom has not yet come. We live in what the theologians call the already and the not yet. The feasts of the Church are not mere remembrances of past events. They are participations in a present and ongoing reality.\n\nWhen we gather each Sunday, we do not simply recall that Christ rose. We enter into His risen life. This is why the Church calls Sunday the Eighth Day, a day outside ordinary time, a foretaste of the Kingdom.",
+      "show_epistle": true,
+      "second_image_caption": "",
+      "saint_icon_caption": ""
     },
     {
-      "date": "2026-05-17",
-      "reflection_title": "Sunday of the Samaritan Woman: A Drink of Living Water",
-      "reflection_body": "The conversation between Christ and the Samaritan woman at Jacob's Well is one of the longest recorded in the Gospels. It is also one of the most theologically dense. She came at noon to draw water. She left having received something that would quench a thirst far deeper than any well could reach.\n\nWhat strikes me most about this passage is the honesty the Lord requires of her. Before He reveals Himself as the Messiah, He asks her to call her husband. She admits she has none. And He honors that admission by telling her the truth about her life, not to condemn her, but so that she can receive what He is offering.\n\nThe saints teach us that self-knowledge is the beginning of spiritual life. We cannot receive the living water while we are pretending to be something we are not. The Samaritan woman became an apostle because she was willing to be known.",
-      "featured_image": "",
-      "featured_image_caption": "Christ and the Samaritan Woman",
-      "saint_icon_image": "",
-      "saint_icon_caption": "St. Photini the Samaritan Woman",
-      "show_second_image": false,
-      "second_image": "",
-      "second_image_caption": "",
-      "show_epistle": true,
-      "show_gospel": true,
-      "show_troparia": true,
+      "patristic_quotes": [
+        {
+          "quote": "The woman left her water jar. She forgot what she had come for. She was filled with a greater thirst than the one she had brought, and this new thirst was for the salvation of others.",
+          "attribution": "Tractates on the Gospel of John, St. Augustine"
+        },
+        {
+          "quote": "Whoever drinks of the water that I shall give him will never thirst. The water that I shall give him will become in him a spring of water welling up to eternal life.",
+          "attribution": "John 4:14"
+        }
+      ],
       "troparia_text": "Christ is risen from the dead, trampling down death by death, and upon those in the tombs bestowing life!\n\nBy Thy cross Thou didst destroy death. To the thief Thou didst open paradise. For the Myrrh-Bearers Thou didst change weeping into joy. And Thou didst command Thy disciples, O Christ God, to proclaim that Thou art risen, granting the world great mercy.",
-      "thank_you_line": "Thank you to Team B for Coffee Hour.",
+      "reflection_title": "Sunday of the Samaritan Woman: A Drink of Living Water",
       "special_announcements": [
         {
           "title": "Feast of the Ascension",
@@ -248,33 +245,33 @@
           "body": "The parish youth group will hold its end-of-year gathering on Saturday, May 23 at 2:00 PM. Families with children are warmly invited. Contact the office for details."
         }
       ],
-      "patristic_quotes": [
-        {
-          "quote": "The woman left her water jar. She forgot what she had come for. She was filled with a greater thirst than the one she had brought, and this new thirst was for the salvation of others.",
-          "attribution": "Tractates on the Gospel of John, St. Augustine"
-        },
-        {
-          "quote": "Whoever drinks of the water that I shall give him will never thirst. The water that I shall give him will become in him a spring of water welling up to eternal life.",
-          "attribution": "John 4:14"
-        }
-      ]
+      "thank_you_line": "Thank you to Team B for Coffee Hour.",
+      "show_troparia": true,
+      "featured_image": "",
+      "show_gospel": true,
+      "date": "2026-05-17",
+      "second_image": "",
+      "featured_image_caption": "Christ and the Samaritan Woman",
+      "show_second_image": false,
+      "saint_icon_image": "",
+      "reflection_body": "The conversation between Christ and the Samaritan woman at Jacob's Well is one of the longest recorded in the Gospels. It is also one of the most theologically dense. She came at noon to draw water. She left having received something that would quench a thirst far deeper than any well could reach.\n\nWhat strikes me most about this passage is the honesty the Lord requires of her. Before He reveals Himself as the Messiah, He asks her to call her husband. She admits she has none. And He honors that admission by telling her the truth about her life, not to condemn her, but so that she can receive what He is offering.\n\nThe saints teach us that self-knowledge is the beginning of spiritual life. We cannot receive the living water while we are pretending to be something we are not. The Samaritan woman became an apostle because she was willing to be known.",
+      "show_epistle": true,
+      "second_image_caption": "",
+      "saint_icon_caption": "St. Photini the Samaritan Woman"
     },
     {
-      "date": "2026-05-24",
-      "reflection_title": "Sunday of the Blind Man: I Was Blind, Now I See",
-      "reflection_body": "The healing of the man born blind, which we read on this sixth Sunday of Pascha, contains within it a complete portrait of the spiritual life. The man receives his sight, is interrogated by the Pharisees, is cast out, and then encounters Christ again, who reveals Himself to him fully. Each stage is instructive.\n\nNotice that the man's faith deepens precisely through the opposition he faces. He begins by describing his healer simply as a man. When pressed, he calls him a prophet. Thrown out of the synagogue, he falls at the feet of Christ and worships him as the Son of God. Suffering, it seems, has a clarifying effect on faith.\n\nThe blind man's courage in the face of the Pharisees is remarkable. He does not know theology. He knows one thing: I was blind, and now I see. And that is enough. Sometimes that is all that faith requires of us.",
-      "featured_image": "",
-      "featured_image_caption": "Healing of the Blind Man",
-      "saint_icon_image": "",
-      "saint_icon_caption": "The Man Born Blind",
-      "show_second_image": false,
-      "second_image": "",
-      "second_image_caption": "",
-      "show_epistle": true,
-      "show_gospel": true,
-      "show_troparia": true,
+      "patristic_quotes": [
+        {
+          "quote": "One thing I do know: I was blind, and now I see. Whether this man is a sinner I do not know. But that is the very confession of faith. Not argument, not theology. Simply: I was blind, now I see.",
+          "attribution": "Commentary on John 9, St. Cyril of Alexandria"
+        },
+        {
+          "quote": "The mud made from clay and spittle recalls the creation of man. As God formed Adam from the dust of the earth, so now He restores what time and sin had corrupted.",
+          "attribution": "Homilies on John, St. John Chrysostom"
+        }
+      ],
       "troparia_text": "Christ is risen from the dead, trampling down death by death, and upon those in the tombs bestowing life!\n\nThou art the untroubled, most lucid fountain, O Word of God. He that approaches Thee in faith is given to drink of the waters of salvation. Make me worthy of this great gift, O Christ my God, for Thou art the Fountain of our life.",
-      "thank_you_line": "Thank you to Team C for Coffee Hour.",
+      "reflection_title": "Sunday of the Blind Man: I Was Blind, Now I See",
       "special_announcements": [
         {
           "title": "Pentecost Next Sunday",
@@ -285,33 +282,33 @@
           "body": "Fr. Solomon is available for pastoral meetings throughout the week. Whether you have questions about the faith, need to discuss a personal matter, or simply want to talk over coffee, please reach out to the parish office to schedule a time."
         }
       ],
-      "patristic_quotes": [
-        {
-          "quote": "One thing I do know: I was blind, and now I see. Whether this man is a sinner I do not know. But that is the very confession of faith. Not argument, not theology. Simply: I was blind, now I see.",
-          "attribution": "Commentary on John 9, St. Cyril of Alexandria"
-        },
-        {
-          "quote": "The mud made from clay and spittle recalls the creation of man. As God formed Adam from the dust of the earth, so now He restores what time and sin had corrupted.",
-          "attribution": "Homilies on John, St. John Chrysostom"
-        }
-      ]
+      "thank_you_line": "Thank you to Team C for Coffee Hour.",
+      "show_troparia": true,
+      "featured_image": "",
+      "show_gospel": true,
+      "date": "2026-05-24",
+      "second_image": "",
+      "featured_image_caption": "Healing of the Blind Man",
+      "show_second_image": false,
+      "saint_icon_image": "",
+      "reflection_body": "The healing of the man born blind, which we read on this sixth Sunday of Pascha, contains within it a complete portrait of the spiritual life. The man receives his sight, is interrogated by the Pharisees, is cast out, and then encounters Christ again, who reveals Himself to him fully. Each stage is instructive.\n\nNotice that the man's faith deepens precisely through the opposition he faces. He begins by describing his healer simply as a man. When pressed, he calls him a prophet. Thrown out of the synagogue, he falls at the feet of Christ and worships him as the Son of God. Suffering, it seems, has a clarifying effect on faith.\n\nThe blind man's courage in the face of the Pharisees is remarkable. He does not know theology. He knows one thing: I was blind, and now I see. And that is enough. Sometimes that is all that faith requires of us.",
+      "show_epistle": true,
+      "second_image_caption": "",
+      "saint_icon_caption": "The Man Born Blind"
     },
     {
-      "date": "2026-05-31",
-      "reflection_title": "Holy Pentecost: The Birthday of the Church",
-      "reflection_body": "Come, O Holy Spirit, and abide in us. With these words the Church greets the fiftieth day after Pascha, the Feast of Pentecost, the descent of the Holy Spirit upon the Apostles gathered in Jerusalem. What had been a frightened band of disciples was transformed in a moment into the Church of God.\n\nPentecost is sometimes called the birthday of the Church, and rightly so. But it is also something more. It is the fulfillment of the promise the Lord made to His disciples at the Last Supper: I will ask the Father, and He will give you another Comforter, who will be with you forever. That Comforter has come, and He has never left.\n\nThe Kneeling Prayers, which we will offer at Vespers this evening, mark the end of the Paschal season. We will kneel for the first time since Holy Friday. It is a moment of tender solemnity, a returning to the posture of creatures before their Creator, now bathed in resurrection light.",
-      "featured_image": "",
-      "featured_image_caption": "The Descent of the Holy Spirit",
-      "saint_icon_image": "",
-      "saint_icon_caption": "Pentecost Icon",
-      "show_second_image": false,
-      "second_image": "",
-      "second_image_caption": "",
-      "show_epistle": true,
-      "show_gospel": true,
-      "show_troparia": true,
+      "patristic_quotes": [
+        {
+          "quote": "The Holy Spirit is not a gift that is given once and exhausted. He is a Person who takes up His dwelling in us and remains, transforming us from within into the likeness of Christ.",
+          "attribution": "On the Holy Spirit, St. Basil the Great"
+        },
+        {
+          "quote": "Today the grace of the Holy Spirit descended upon the human race in the form of tongues of fire, as St. Luke, the Evangelist and recorder of the Acts of the Apostles, bears witness.",
+          "attribution": "Prologue from Ohrid, St. Nikolai Velimirovic"
+        }
+      ],
       "troparia_text": "Blessed art Thou, O Christ our God, Who hast revealed the fishermen as most wise by sending down upon them the Holy Spirit, and through them didst draw the world into Thy net. O Lover of Man, glory to Thee!\n\nWhen the Most High came down and confused the tongues, He divided the nations; but when He distributed the tongues of fire, He called all to unity. Therefore, with one voice, we glorify the All-Holy Spirit.",
-      "thank_you_line": "Thank you to Team A for Coffee Hour and for the beautiful flowers adorning the church today.",
+      "reflection_title": "Holy Pentecost: The Birthday of the Church",
       "special_announcements": [
         {
           "title": "Kneeling Vespers Today",
@@ -322,16 +319,19 @@
           "body": "Next Sunday, June 7, we celebrate the Sunday of All Saints, the first Sunday after Pentecost. This feast crowns the Paschal season and commemorates all those made holy by the grace of God throughout the ages."
         }
       ],
-      "patristic_quotes": [
-        {
-          "quote": "The Holy Spirit is not a gift that is given once and exhausted. He is a Person who takes up His dwelling in us and remains, transforming us from within into the likeness of Christ.",
-          "attribution": "On the Holy Spirit, St. Basil the Great"
-        },
-        {
-          "quote": "Today the grace of the Holy Spirit descended upon the human race in the form of tongues of fire, as St. Luke, the Evangelist and recorder of the Acts of the Apostles, bears witness.",
-          "attribution": "Prologue from Ohrid, St. Nikolai Velimirovic"
-        }
-      ]
+      "thank_you_line": "Thank you to Team A for Coffee Hour and for the beautiful flowers adorning the church today.",
+      "show_troparia": true,
+      "featured_image": "/images/bulletins/adoration-of-the-holy-cross-icons-orthodox-christian-supply_488_562x-3.png",
+      "show_gospel": true,
+      "date": "2026-05-31",
+      "second_image": "/images/bulletins/saintwenceslaussmall__30694-1.png",
+      "featured_image_caption": "The Descent of the Holy Spirit",
+      "show_second_image": true,
+      "saint_icon_image": "/images/bulletins/saintwenceslaussmall__30694-1.png",
+      "reflection_body": "Come, O Holy Spirit, and abide in us. With these words the Church greets the fiftieth day after Pascha, the Feast of Pentecost, the descent of the Holy Spirit upon the Apostles gathered in Jerusalem. What had been a frightened band of disciples was transformed in a moment into the Church of God.\n\nPentecost is sometimes called the birthday of the Church, and rightly so. But it is also something more. It is the fulfillment of the promise the Lord made to His disciples at the Last Supper: I will ask the Father, and He will give you another Comforter, who will be with you forever. That Comforter has come, and He has never left.\n\nThe Kneeling Prayers, which we will offer at Vespers this evening, mark the end of the Paschal season. We will kneel for the first time since Holy Friday. It is a moment of tender solemnity, a returning to the posture of creatures before their Creator, now bathed in resurrection light.",
+      "show_epistle": true,
+      "second_image_caption": "Good King Wenceslas",
+      "saint_icon_caption": "Pentecost Icon"
     }
   ]
 }
