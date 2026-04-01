@@ -33,7 +33,6 @@ body{background:#8e877e;padding:2rem;font-family:var(--f-body)}
 .bull-page{width:8.5in;height:11in;background:var(--b-bg);margin:0 auto 2rem;padding:var(--b-mt) var(--b-ms) var(--b-mb);position:relative;overflow:hidden;box-shadow:0 6px 40px rgba(0,0,0,.35);font-family:var(--f-body);font-size:10.5pt;color:var(--b-ink);line-height:1.48;-webkit-print-color-adjust:exact;print-color-adjust:exact}
 /* Running head */
 .running-head{display:flex;justify-content:space-between;align-items:baseline;font-family:var(--f-display);color:#9E7A3A;border-bottom:2pt solid var(--b-maroon);padding-bottom:4pt;margin-bottom:.28in}
-.rh-date{font-size:9.5pt;font-weight:400}
 .rh-feast{font-size:12pt;font-weight:600;font-style:normal}
 /* Page numbers */
 .bull-pnum{position:absolute;bottom:var(--b-mb);font-size:8.5pt}
@@ -47,29 +46,28 @@ body{background:#8e877e;padding:2rem;font-family:var(--f-body)}
 .np-logo-pp .amp{font-style:italic;font-weight:300}
 .np-logo-sub{font-family:var(--f-display);font-size:10pt;font-weight:300;display:block;text-align:justify;text-align-last:justify;letter-spacing:.05em;color:#888;width:100%;margin-top:3pt}
 /* Title */
-.p1-title{margin-bottom:.18in}
+.p1-title{margin-top:-21px;margin-bottom:.18in}
 .p1-title-main{display:block;font-family:var(--f-display);font-size:22pt;font-weight:600;line-height:1.05;color:var(--b-maroon);border-left:4pt solid var(--b-maroon);padding-left:.28em}
 .p1-title-sub{display:block;font-family:var(--f-display);font-size:13pt;font-style:normal;color:#9E7A3A;padding-left:calc(.28em + 4pt);margin-top:4pt;line-height:1.4}
 /* Article */
-.p1-article{columns:2;column-gap:.25in;column-fill:balance;font-size:12pt;line-height:1.5;text-align:justify;margin-bottom:.15in;overflow:hidden}
+.p1-article{margin-top:-1px;columns:2;column-gap:.25in;column-fill:balance;font-size:12pt;line-height:1.5;text-align:justify}
 .p1-article p{text-indent:1.4em;margin-bottom:0}
 .p1-article p:first-child{text-indent:0}
 .p1-article p:first-child::first-letter{font-family:var(--f-display);font-size:3.4em;font-weight:600;color:var(--b-maroon);float:left;line-height:.75;padding-right:.05em;padding-top:.05em}
 /* Feature image */
-.p1-img-wrap{width:100%;overflow:hidden;margin-bottom:.15in;display:flex;border:.75pt solid rgba(123,29,42,.35);flex-direction:row-reverse}
-.p1-img-photo{flex:1;overflow:hidden;min-width:0}
-.p1-img-photo img{width:100%;height:100%;object-fit:cover;display:block}
-.p1-img-caption{width:38%;flex-shrink:0;background:var(--b-maroon);color:#fff;font-family:var(--f-display);font-style:normal;font-weight:600;font-size:14pt;padding:.15in .15in;display:flex;align-items:flex-end;justify-content:flex-end;text-align:right;line-height:1.35}
-.p1-bottom{display:grid;grid-template-columns:1fr 3.1in;gap:.2in;align-items:start;position:absolute;bottom:var(--b-mb);left:var(--b-ms);right:var(--b-ms)}
+.p1-img-wrap{width:100%;height:2.7in;overflow:hidden;margin-bottom:.15in;margin-top:-10px;position:relative;border:2.5pt solid var(--b-maroon)}
+.p1-img-photo img{width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block}
+.p1-img-caption{position:absolute;top:0;right:0;bottom:0;width:38%;background:var(--b-maroon);color:#fff;font-family:var(--f-display);font-weight:600;font-size:14pt;padding:.15in .15in;display:flex;align-items:flex-end;justify-content:flex-end;text-align:right;line-height:1.35}
+.p1-bottom{display:grid;grid-template-columns:1fr 3.1in;gap:.2in;align-items:start;position:absolute;bottom:calc(var(--b-mb) - 15px);left:var(--b-ms);right:var(--b-ms)}
 .saints-head{font-family:var(--f-display);font-size:20pt;font-weight:600;line-height:1.0;color:var(--b-maroon);border-left:4pt solid var(--b-maroon);padding-left:.28em;margin-bottom:.14in}
 .saints-list{list-style:none}
-.saint-item{font-size:13.2pt;font-weight:500;line-height:1.55;margin-bottom:.08in}#p3-prayer-list .saint-item{font-size:10.5pt;line-height:1.24;margin-bottom:.06in}
+.saint-item{font-size:12pt;font-weight:500;line-height:1.55;margin-bottom:.08in}#p3-prayer-list .saint-item{font-size:10.5pt;line-height:1.24;margin-bottom:.06in}
 
 .saint-item em{color:#9E7A3A;font-style:italic}
 .saint-item a{color:inherit;text-decoration:none;border-bottom:none}
 .saint-item a:hover{border-bottom:1pt solid var(--b-maroon);cursor:pointer}
 @media print{.saint-item a{color:inherit!important;text-decoration:none!important;border:none!important}}
-.toc-box{background:var(--b-maroon);padding:.18in .2in;margin-bottom:.11in}
+.toc-box{background:var(--b-maroon);padding:calc(.18in - 9px) calc(.2in - 4px);margin-bottom:.11in}
 .toc-head{font-family:var(--f-display);font-size:16pt;font-weight:400;color:#fff;display:block;margin-bottom:.1in;line-height:1.05;white-space:nowrap}
 .toc-row{display:flex;align-items:flex-end;font-size:10pt;line-height:1.2;font-family:var(--f-display);font-weight:400;color:#fff;margin-bottom:.05in}
 .toc-row span:first-child{white-space:nowrap;padding-bottom:2pt}
@@ -81,7 +79,7 @@ body{background:#8e877e;padding:2rem;font-family:var(--f-body)}
 .contact-logo-pp{font-family:var(--f-display);font-size:28pt;font-weight:500;display:block;line-height:1;color:var(--b-ink)}
 .contact-logo-pp .amp{font-style:italic;font-weight:300}
 .contact-logo-sub{font-family:var(--f-display);font-size:12pt;font-weight:400;display:block;color:var(--b-ink);margin-top:2pt}
-.contact-details{font-size:12pt;line-height:1.75;color:#3a3530}
+.contact-details{font-size:9.6pt;line-height:1.75;color:#3a3530}
 .contact-parish{font-family:var(--f-display);font-size:9.5pt;font-weight:500;line-height:1.15;display:block;margin-bottom:3pt}
 /* PAGE 2 */
 .p2-layout{display:grid;grid-template-columns:1fr 1.6in;gap:.18in;align-items:start}
@@ -196,8 +194,9 @@ body{background:#8e877e;padding:2rem;font-family:var(--f-body)}
         <span class="p1-title-main" id="p1-sunday-title"></span>
         <span class="p1-title-sub" id="p1-feast-sub"></span>
       </div>
-      <div id="p1-article" class="p1-article"></div>
       <div id="p1-img-wrap" class="p1-img-wrap" style="display:none"><div class="p1-img-photo"><img id="p1-img" src="" alt="" onerror="this.parentElement.parentElement.style.display='none'"/></div><div id="p1-img-caption" class="p1-img-caption"></div></div>
+      <div id="p1-article" class="p1-article"></div>
+      
       <div class="p1-bottom">
         <div>
           <div class="saints-head">Venerated Saints</div>
@@ -347,8 +346,8 @@ function renderPage1(cal){
   var saints=cal.saints||[];
   document.getElementById('p1-feast-sub').textContent=saints.slice(0,3).join(' \u00b7 ');
   var artEl=document.getElementById('p1-article');
-  if(_bulletinData.reflection_body)artEl.innerHTML=simpleMarkdown(_bulletinData.reflection_body);
-  if(_bulletinData.featured_image){document.getElementById('p1-img').src=_bulletinData.featured_image;document.getElementById('p1-img-caption').textContent=_bulletinData.featured_image_caption||'';document.getElementById('p1-img-wrap').dataset.hasImage='true'}
+  var _body=_bulletinData.reflection_body||'';if(_body.length>850)_body=_body.slice(0,847)+'...';if(_body)artEl.innerHTML=simpleMarkdown(_body);
+  var _imgWrap=document.getElementById('p1-img-wrap');if(_bulletinData.featured_image){document.getElementById('p1-img').src=_bulletinData.featured_image;document.getElementById('p1-img-caption').textContent=_bulletinData.featured_image_caption||'';_imgWrap.style.display='block';}else{_imgWrap.style.display='none';}
   var all=(cal.feasts||[]).concat(cal.saints||[]);
   var calDate=new Date(_currentDate+'T12:00:00');
   var ocaY=calDate.getFullYear(),ocaM=calDate.getMonth()+1,ocaD=calDate.getDate();
@@ -422,15 +421,7 @@ function computeImageLayout(){computePage1Image();computePage2Images()}
 function computePage1Image(){
   var imgWrap=document.getElementById('p1-img-wrap');
   if(!_bulletinData||!_bulletinData.featured_image){imgWrap.style.display='none';return}
-  var page=document.getElementById('bull-p1'),cs=getComputedStyle(page),padT=parseFloat(cs.paddingTop),padB=parseFloat(cs.paddingBottom);
-  var usable=page.getBoundingClientRect().height-padT-padB;
-  imgWrap.style.display='none';imgWrap.style.height='0';
-  var fixedH=elH(page.querySelector('.running-head'))+elH(page.querySelector('.p1-title'))+elH(document.getElementById('p1-article'))+elH(page.querySelector('.p1-bottom'));
-  var gaps=pxIn(.28)+pxIn(.18)+pxIn(.15)+pxIn(.15)+pxIn(.3);
-  var rem=usable-fixedH-gaps;
-  if(rem>=pxIn(1.0)){imgWrap.style.display='flex';imgWrap.style.height=rem+'px';document.getElementById('p1-img-caption').style.display=''}
-  else if(rem>=pxIn(.75)){imgWrap.style.display='flex';imgWrap.style.height=rem+'px';document.getElementById('p1-img-caption').style.display='none'}
-  else imgWrap.style.display='none';
+  imgWrap.style.display='block';
 }
 function computePage2Images(){
   var w1=document.getElementById('p2-icon-wrap-1'),w2=document.getElementById('p2-icon-wrap-2'),rail=document.getElementById('p2-trop-rail');
