@@ -1164,7 +1164,7 @@ function openSheet(){
 function closeSheet(){
   document.getElementById('sheet-overlay').classList.remove('open');
   document.getElementById('mob-sheet').classList.remove('open');
-  setTimeout(function(){document.getElementById('sheet-overlay').style.display='none';},320);
+  setTimeout(function(){document.getElementById('sheet-overlay').style.display='none';document.getElementById('mob-sheet').style.display='none';},320);
   document.body.style.overflow='';
 }
 function sheetJump(id){closeSheet();setTimeout(function(){jumpTo(id);},340);}

@@ -2674,12 +2674,12 @@ footer .btn-outline:hover{background:rgba(246,241,232,.15);color:#fff;border-col
 </div>
 <!-- FLOATING PILL -->
 <div class="mob-pill" id="mob-pill">
-  <button class="mob-pill-arrow" id="pill-prev" onclick="pillNav(-1)" aria-label="Previous section">&#8593;</button>
+  <button class="mob-pill-arrow" id="pill-prev" onclick="pillNav(-1)" aria-label="Previous section"><svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 7.5L5.5 4L9 7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
   <div class="mob-pill-label" onclick="openSheet()">
     <svg width="12" height="12" viewBox="0 0 24 24" fill="rgba(184,131,40,.8)"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
     <span id="pill-label">Guidance</span>
   </div>
-  <button class="mob-pill-arrow" id="pill-next" onclick="pillNav(1)" aria-label="Next section">&#8595;</button>
+  <button class="mob-pill-arrow" id="pill-next" onclick="pillNav(1)" aria-label="Next section"><svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 3.5L5.5 7L9 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
   <button class="mob-pill-dark" id="pill-dark" onclick="toggleDark()" aria-label="Toggle dark mode">&#9790;</button>
 </div>
 <!-- BOTTOM SHEET -->
@@ -2894,7 +2894,8 @@ window.addEventListener('load',onScroll);
 // ── PILL NAVIGATION ──
 function pillNav(dir){
   const idx=Math.max(0,Math.min(SECTIONS.length-1,getCurrentIdx()+dir));
-  const el=document.getElementById(SECTIONS[idx].id);
+  const id=SECTIONS[idx].id;
+  const el=document.getElementById(id)||document.querySelector('.sb-mid[data-section="'+id+'"]');
   if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
 }
 
@@ -2916,6 +2917,10 @@ function closeSheet(){
   sheet.classList.remove('open');
   overlay.classList.remove('open');
   document.body.style.overflow='';
+  setTimeout(()=>{
+    sheet.style.display='none';
+    overlay.style.display='none';
+  },320);
 }
 function sheetJump(id){
   closeSheet();
