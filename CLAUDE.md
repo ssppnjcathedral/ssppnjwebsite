@@ -25,6 +25,25 @@ reflect his warm, first-person voice where appropriate.
 - Custom JSON-based liturgical calendar: `calendar-2026.json` (served from repo root)
 - Parish events: `parish-events.json` (repo root)
 - No npm, no build pipeline — changes are live on push to main
+- All CSS is inline per page (`<style>` tags) — there are no external `.css` files
+- External APIs: OrthoCal (orthocal.info) for daily readings, Wikimedia Commons for liturgical images, Tithe.ly for online giving
+
+---
+
+## Netlify configuration
+
+`netlify.toml` at repo root. Publish root is `.`. Security headers on all pages:
+`X-Frame-Options: DENY`, `X-Content-Type-Options: nosniff`, `Referrer-Policy: strict-origin-when-cross-origin`.
+Explicit MIME type headers for `*.js` and `*.json` files.
+
+---
+
+## Decap CMS
+
+Admin UI at `/admin/index.html`. Config at `/admin/config.yml`.
+Backend: git-gateway, branch main. Uses Netlify Identity for auth.
+Currently manages **one collection only**: parish events (`_data/parish-events.json`).
+Media uploads go to `/images/events/`.
 
 ---
 
@@ -61,6 +80,26 @@ cemeteries.html
 bylaws.html
 videos.html
 ```
+
+---
+
+## JavaScript architecture
+
+Three browser-side scripts, loaded in this order on the homepage:
+1. `index-scripts.js` — date utilities, `getCalendar()` with caching, `tagReveal()`, `init()` chain
+2. `hero-rotator.js` — Ken Burns rotating hero backgrounds
+3. `enhancements.js` — scroll reveal animations (fade-up, slide, scale), hero parallax
+
+Other pages load only `enhancements.js` for scroll animations.
+
+Three Node.js scrapers (run via GitHub Actions, not in browser):
+- `fetch-oca-saints-daily.js` — 366 daily saint JSON files (800ms polite delay, ~90 min)
+- `fetch-oca-saints.js` — monthly saint aggregates (legacy)
+- `fetch-prologue.js` — Prologue of Ohrid monthly + combined JSON
+
+### Gallery management
+
+To add a photo: edit the `PHOTOS` array in `gallery.html`. Categories: `community`, `cathedral`, `events`. Years: `2026`, `2025`, `2024`, `pre2023`. Place image files in `/images/gallery/`.
 
 ---
 
