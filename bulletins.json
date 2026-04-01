@@ -332,6 +332,36 @@
       "show_epistle": true,
       "second_image_caption": "Good King Wenceslas",
       "saint_icon_caption": "Pentecost Icon"
+    },
+    {
+      "patristic_quotes": [
+        {
+          "quote": " Saint Constantine issued the Edict of Milan, by which Christianity was legalized. Only after the defeat of Licinius was St. Helen able to travel to Judea to build churches at Bethlehem, on the Mount of Olives, and at the Garden of Gethsemane.\n\nExcavations under the temple of Venus revealed the empty tomb, three crosses, the inscribed board once attached to the cross by Pilate, and the nails. The cross of Christ was identified by miraculous healings, and Patriarch Makarios held the cross aloft for the people to see.",
+          "attribution": "St Yakub"
+        }
+      ],
+      "reflection_title": "That We Should Care for our Brethren",
+      "special_announcements": [
+        {
+          "title": "Fr. Solomon on Vacation",
+          "body": " Saint Constantine issued the Edict of Milan, by which Christianity was legalized. Only after the defeat of Licinius was St. Helen able to travel to Judea to build churches at Bethlehem, on the Mount of Olives, and at the Garden of Gethsemane.\n\nExcavations under the temple of Venus revealed the empty tomb, three crosses, the inscribed board once attached to the cross by Pilate, and the nails. The cross of Christ was identified by miraculous healings, and Patriarch Makarios held the cross aloft for the people to see."
+        },
+        {
+          "body": " Saint Constantine issued the Edict of Milan, by which Christianity was legalized. Only after the defeat of Licinius was St. Helen able to travel to Judea to build churches at Bethlehem, on the Mount of Olives, and at the Garden of Gethsemane.\n\nExcavations under the temple of Venus revealed the empty tomb, three crosses, the inscribed board once attached to the cross by Pilate, and the nails. The cross of Christ was identified by miraculous healings, and Patriarch Makarios held the cross aloft for the people to see.",
+          "title": "I'm Cool"
+        }
+      ],
+      "thank_you_line": "Thank you Team B for Coffee Hour",
+      "show_troparia": true,
+      "featured_image": "/images/bulletins/home-3.png",
+      "show_gospel": true,
+      "date": "2026-06-21",
+      "featured_image_caption": "Test Caption",
+      "show_second_image": false,
+      "saint_icon_image": "/images/bulletins/1ma90__06022-3.png",
+      "reflection_body": "The pagan Roman Emperors tried to obliterate the holy places where our Lord Jesus Christ suffered and rose from the dead, so that they would be forgotten. Emperor Hadrian ordered that Golgotha and the Lord's Sepulchre be buried, and that a temple in honor of Venus and a statue of Jupiter be placed there.\n\nIn 313 Saint Constantine issued the Edict of Milan, by which Christianity was legalized. Only after the defeat of Licinius was St. Helen able to travel to Judea to build churches at Bethlehem, on the Mount of Olives, and at the Garden of Gethsemane.",
+      "show_epistle": true,
+      "saint_icon_caption": "Test Saint"
     }
   ]
 }
