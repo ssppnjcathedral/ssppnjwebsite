@@ -12,7 +12,92 @@
 <style>
 :root{--vellum:#F6F1E8;--vellum-mid:#EDE7DC;--text:#1E1510;--ink:#2C1F16;--maroon:#7B1D2A;--maroon-deep:#5C1520;--gold:#B88328;--gold-lt:#E8C97A;--stone:#7A6648;--apse:#3B0F18;--f-display:'Cormorant Garamond',Georgia,serif;--f-body:'EB Garamond',Georgia,serif;--f-ui:'Cinzel',Georgia,serif;--rule-faint:1px solid rgba(123,29,42,.14)}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{background:var(--vellum);color:var(--text);font-family:var(--f-body);font-size:21px;line-height:1.75;overflow-x:hidden;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}
-.nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(246,241,232,.97);backdrop-filter:blur(10px);border-bottom:var(--rule-faint)}.nav-inner{max-width:1380px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px;padding:0 3rem}.nav-logo-name{font-family:var(--f-display);font-weight:500;font-size:1.25rem;color:var(--text);display:block}.nav-logo-sub{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);display:block}.nav-links{display:flex;align-items:center;list-style:none}.nav-links>li{position:relative}.nav-links>li>a{font-family:var(--f-ui);font-size:.78rem;letter-spacing:.10em;text-transform:uppercase;color:var(--text);padding:1.1rem .85rem;display:block;transition:color .18s}.nav-links>li:hover>a,.nav-links .nav-active,.nav-drop a:hover{color:var(--maroon)}.nav-links .nav-active-parent>a{color:var(--maroon);border-bottom:2px solid var(--gold)}.nav-drop .nav-active{font-weight:600}.nav-drop{position:absolute;top:100%;left:0;background:var(--vellum);border-top:2px solid var(--maroon);border-bottom:var(--rule-faint);border-left:var(--rule-faint);border-right:var(--rule-faint);min-width:200px;padding:.5rem 0;opacity:0;pointer-events:none;transform:translateY(-4px);transition:all .16s;box-shadow:0 8px 28px rgba(28,20,16,.10)}.nav-links>li:hover .nav-drop{opacity:1;pointer-events:all;transform:none}.nav-drop a{display:block;font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text);padding:.5rem 1.4rem;transition:color .14s}.nav-give{font-family:var(--f-ui);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--vellum);background:var(--maroon);padding:.5rem 1.1rem;transition:background .2s}.nav-give:hover{background:var(--maroon-deep)}.nav-hamburger{display:none;flex-direction:column;justify-content:space-between;width:28px;height:20px;cursor:pointer;padding:0;background:none;border:none;z-index:400}.nav-hamburger span{display:block;width:100%;height:2px;background:var(--maroon);transition:all .28s ease;transform-origin:center}.nav-hamburger.open span:nth-child(1){transform:translateY(9px) rotate(45deg)}.nav-hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}.nav-hamburger.open span:nth-child(3){transform:translateY(-9px) rotate(-45deg)}.nav-drawer{position:fixed;top:0;right:0;width:300px;max-width:85vw;height:100vh;background:var(--apse);z-index:350;transform:translateX(100%);transition:transform .32s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;overflow-y:auto}.nav-drawer.open{transform:translateX(0)}.nav-drawer-overlay{position:fixed;inset:0;background:rgba(21,8,4,.65);z-index:340;opacity:0;pointer-events:none;transition:opacity .32s}.nav-drawer-overlay.open{opacity:1;pointer-events:all}.nav-drawer-head{padding:1.5rem 1.75rem 1rem;border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:space-between}.nav-drawer-logo{font-family:var(--f-display);font-weight:500;font-size:1.1rem;color:#fff}.nav-drawer-logo span{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);display:block;margin-top:2px}.nav-drawer-close{width:32px;height:32px;background:rgba(255,255,255,.08);border:none;color:rgba(255,255,255,.65);cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center}.nav-drawer-links{padding:1rem 0;flex:1}.nav-drawer-links a{display:block;font-family:var(--f-ui);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,232,.70);padding:.9rem 1.75rem;border-bottom:1px solid rgba(255,255,255,.05);transition:all .18s}.nav-drawer-links a:hover{color:#fff;background:rgba(255,255,255,.05)}.nav-drawer-links .drawer-section{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(184,131,40,.55);padding:.85rem 1.75rem .35rem;display:block}.nav-drawer-give{margin:1.25rem 1.75rem;display:block;text-align:center;font-family:var(--f-ui);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;padding:.85rem;background:var(--maroon);color:var(--vellum);transition:background .2s}
+/* === NAV === */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(246,241,232,.97);backdrop-filter:blur(10px);border-bottom:var(--rule-faint)}
+.nav-inner{max-width:1380px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px;padding:0 3rem}
+.nav-logo-img{height:38px;width:auto;display:block}
+.footer-logo-img{height:44px;width:auto;display:block;margin-bottom:1.75rem;filter:brightness(0) invert(1);opacity:.85}
+.footer-name{font-family:var(--f-display);font-weight:400;font-size:1.2rem;color:rgba(246,241,232,.88);line-height:1.3;margin-bottom:.75rem}
+.nav-mega-group{height:100%;display:flex;align-items:center}
+.nav-links{display:flex;align-items:center;list-style:none;height:100%}
+.nav-links>li{height:100%;display:flex;align-items:center}
+.nav-links>li>a{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);padding:0 .85rem;height:100%;display:flex;align-items:center;transition:color .18s;border-bottom:2px solid transparent;white-space:nowrap}
+.nav-links>li>a:hover{color:var(--maroon)}
+.nav-mega-group:hover .nav-links>li>a{color:var(--maroon)}
+.nav-links>li>a:hover{border-bottom-color:var(--gold)}
+
+/* MEGA PANEL */
+.mega-panel{position:absolute;top:60px;left:0;right:0;background:var(--vellum);border-top:2px solid var(--maroon);border-bottom:var(--rule-faint);box-shadow:0 16px 48px rgba(28,20,16,.13);opacity:0;pointer-events:none;transform:translateY(-8px);transition:opacity .22s ease,transform .22s ease;z-index:100;display:grid;grid-template-columns:420px 1fr}
+.mega-panel.mega-visible{opacity:1;pointer-events:all;transform:translateY(0)}
+.mega-photo{position:relative;overflow:hidden;background-color:var(--apse)}
+.mega-photo-bg{position:absolute;inset:0;background-size:cover;background-position:center;transform:scale(1);transition:transform 11s ease}
+.mega-panel.mega-visible .mega-photo-bg{transform:scale(1.18)}
+.mega-photo-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(59,15,24,.88) 0%,rgba(59,15,24,.72) 100%)}
+.mega-photo-content{position:relative;z-index:1;padding:2rem 2rem;display:flex;flex-direction:column;height:100%;min-height:220px}
+.mega-photo-cross{display:none}
+.mega-photo-label{font-family:var(--f-ui);font-size:.5rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(232,201,122,.65);display:block;margin-bottom:.4rem}
+.mega-photo-quote{font-family:var(--f-display);font-style:italic;font-weight:300;font-size:1.45rem;color:rgba(246,241,232,.92);line-height:1.25}
+.mega-content{border-left:2px solid var(--maroon)}
+.mega-inner{padding:2rem 2.25rem;display:grid;gap:0;height:100%}
+.mega-col{padding:0 1.5rem;border-right:1px solid rgba(123,29,42,.07)}
+.mega-col:first-child{padding-left:0}
+.mega-col:last-child{border-right:none;padding-right:0}
+.mega-col-head{font-family:var(--f-ui);font-size:.55rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.85rem;padding-bottom:.45rem;border-bottom:1px solid rgba(184,131,40,.22)}
+.mega-link{display:block;font-family:var(--f-body);font-size:1.13rem;color:var(--ink);padding:.22rem 0;transition:color .15s,padding-left .15s;line-height:1.4}
+.mega-link:hover{color:var(--maroon);padding-left:.4rem}
+.mega-sub{display:block;font-family:var(--f-body);font-style:italic;font-size:.88rem;color:var(--stone);margin-bottom:.2rem;line-height:1.3}
+.mega-info-line{font-family:var(--f-body);font-size:.95rem;color:var(--ink);line-height:1.7;margin:0}
+.mega-info-line strong{font-weight:500;color:var(--text)}
+.mega-section-gap{margin-top:1.25rem;padding-top:1rem;border-top:var(--rule-hair);display:block}
+.mega-cta{margin-top:1.5rem;padding-top:1.25rem;border-top:var(--rule-faint)}
+.mega-cta-btn{font-family:var(--f-ui);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);border:1px solid rgba(123,29,42,.28);padding:.48rem .9rem;display:block;text-align:center;transition:all .2s}
+.mega-cta-btn:hover{background:var(--maroon);color:var(--vellum)}
+.nav-links>li.tab-active>a{color:var(--maroon);border-bottom-color:var(--gold)}
+.nav-links .nav-active>a{color:var(--maroon);border-bottom-color:var(--gold)}
+.nav-give{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--vellum);background:var(--maroon);padding:.5rem 1.1rem;transition:background .2s;white-space:nowrap;margin-left:1rem}
+.nav-give:hover{background:var(--maroon-deep)}
+/* ── MOBILE NAV DRAWER ── */
+.nav-hamburger{display:none;flex-direction:column;justify-content:space-between;width:28px;height:20px;cursor:pointer;padding:0;background:none;border:none;z-index:400}
+.nav-hamburger span{display:block;width:100%;height:2px;background:var(--maroon);transition:all .28s ease;transform-origin:center}
+.nav-hamburger.open span:nth-child(1){transform:translateY(9px) rotate(45deg)}
+.nav-hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-9px) rotate(-45deg)}
+.nav-drawer{position:fixed;top:0;right:0;width:300px;max-width:85vw;height:100vh;background:var(--apse);z-index:350;transform:translateX(100%);transition:transform .32s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;overflow-y:auto}
+.nav-drawer.open{transform:translateX(0)}
+.nav-drawer-overlay{position:fixed;inset:0;background:rgba(21,8,4,.65);z-index:340;opacity:0;pointer-events:none;transition:opacity .32s}
+.nav-drawer-overlay.open{opacity:1;pointer-events:all}
+.nav-drawer-head{padding:1.5rem 1.75rem 1rem;border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:space-between}
+.nav-drawer-logo{font-family:var(--f-display);font-weight:500;font-size:1.2rem;color:rgba(246,241,232,.95)}
+.nav-drawer-logo span{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,241,232,.6);display:block;margin-top:2px}
+.nav-drawer-close{width:32px;height:32px;background:rgba(255,255,255,.08);border:none;color:rgba(255,255,255,.65);cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.nav-drawer-close:hover{background:rgba(255,255,255,.15)}
+.nav-drawer-links{display:none}
+.dr-photo{height:140px;position:relative;overflow:hidden;background:#3B0F18;flex-shrink:0}
+.dr-photo-bg{position:absolute;inset:0;background-size:cover;background-position:center;transform:scale(1);opacity:0;transition:opacity .4s ease,transform 11s ease}
+.dr-photo-bg.active{opacity:1;transform:scale(1.18)}
+.dr-photo-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(59,15,24,.88),rgba(59,15,24,.65))}
+.dr-photo-content{position:absolute;inset:0;padding:1rem 1.25rem;display:flex;flex-direction:column;justify-content:flex-end}
+.dr-photo-cross{font-size:.75rem;color:rgba(184,131,40,.22);letter-spacing:.2em;position:absolute;top:.75rem;left:50%;transform:translateX(-50%)}
+.dr-photo-lbl{font-family:var(--f-ui);font-size:.45rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(232,201,122,.6);display:block;margin-bottom:.22rem;transition:opacity .25s}
+.dr-photo-quote{font-family:var(--f-display);font-style:italic;font-weight:300;font-size:1.1rem;color:rgba(246,241,232,.92);line-height:1.2;transition:opacity .25s}
+.dr-accordion{flex:1;overflow-y:auto}
+.dr-section{border-bottom:1px solid rgba(255,255,255,.06)}
+.dr-section-head{display:flex;align-items:center;justify-content:space-between;padding:1.1rem 1.25rem;cursor:pointer;transition:background .18s;user-select:none}
+.dr-section-head:hover{background:rgba(255,255,255,.03)}
+.dr-section.open .dr-section-head{background:rgba(184,131,40,.07)}
+.dr-section-name{font-family:var(--f-ui);font-size:.9rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,241,232,.85);transition:color .18s}
+.dr-section.open .dr-section-name{color:rgba(232,201,122,1)}
+.dr-section-toggle{font-family:var(--f-ui);font-size:1rem;color:rgba(184,131,40,.7);line-height:1;transition:color .18s;width:16px;text-align:center;flex-shrink:0}
+.dr-section.open .dr-section-toggle{color:rgba(184,131,40,1)}
+.dr-section-links{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.dr-section.open .dr-section-links{max-height:700px}
+.dr-link{display:block;padding:.85rem 1.25rem .75rem;border-bottom:1px solid rgba(255,255,255,.06);transition:background .15s;text-decoration:none}
+.dr-link:last-child{border-bottom:none}
+.dr-link:hover{background:rgba(255,255,255,.06)}
+.dr-link-name{font-family:var(--f-body);font-size:1.3rem;color:rgba(246,241,232,.92);display:block;line-height:1.25}
+.dr-link-sub{font-family:var(--f-body);font-style:italic;font-size:.88rem;color:rgba(232,201,122,.55);display:block;margin-top:.08rem;line-height:1.25}
+.nav-drawer-give{margin:1.25rem 1.75rem;display:block;text-align:center;font-family:var(--f-ui);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;padding:.85rem;background:var(--maroon);color:var(--vellum);transition:background .2s}
+.nav-drawer-give:hover{background:var(--maroon-deep)}
 .bull-bar{background:var(--vellum);padding:.75rem 3rem;position:relative;display:flex;align-items:center;justify-content:space-between;margin-left:-2rem;margin-right:-2rem;width:calc(100% + 4rem);position:sticky;top:60px;z-index:150;border-bottom:2px solid var(--maroon)}.bull-bar-label{font-family:var(--f-display);font-style:normal;font-weight:700;font-size:1.05rem;color:var(--maroon)}.bull-bar-right{display:flex;align-items:center;gap:1.25rem}
 .bull-bar-center{display:flex;align-items:center;gap:.75rem;position:absolute;left:50%;transform:translateX(-50%)}
 
@@ -21,8 +106,34 @@
 .screen-only{}.print-only{display:none}
 .connect-form-screen{background:rgba(123,29,42,.04);border:.75pt solid rgba(123,29,42,.22);padding:.15in .18in;margin-bottom:.1in}.connect-form-screen label{display:block;font-size:8.5pt;color:var(--b-stone);margin-bottom:1.5pt;margin-top:.12in;font-family:var(--f-body)}.connect-form-screen label:first-of-type{margin-top:0}.connect-form-screen input,.connect-form-screen textarea{width:100%;background:none;border:none;border-bottom:.75pt solid var(--b-ink);font-family:var(--f-body);font-size:10pt;color:var(--b-ink);outline:none;padding:3pt 0 4pt;display:block}.connect-form-screen textarea{resize:vertical;min-height:54pt}.connect-form-submit{font-family:var(--f-ui);font-size:7.5pt;letter-spacing:.14em;text-transform:uppercase;background:var(--b-maroon);color:#fff;border:none;padding:7pt 16pt;cursor:pointer;margin-top:.14in;display:inline-block}
 .reading-loading{font-size:8.5pt;font-style:italic;color:rgba(122,102,72,.5);text-align:center;padding:.08in 0}.reading-placeholder{font-size:9pt;font-style:italic;text-align:center;margin:.06in 0;color:var(--b-stone);padding:.06in;border:.5pt dashed rgba(122,102,72,.35)}.v-num{font-size:6pt;vertical-align:super;font-family:var(--f-ui);color:var(--b-maroon);margin-right:1pt}
-footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);margin-left:-2rem;margin-right:-2rem;width:calc(100% + 4rem);padding:3rem 4.5rem 2rem}.footer-cross{display:block;text-align:center;font-size:1.1rem;color:rgba(184,131,40,.45);letter-spacing:.8em;padding-left:.8em;margin-bottom:2.5rem}.footer-cols{max-width:1380px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:4rem;margin-bottom:2.5rem}.footer-col-head{font-family:var(--f-ui);font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(246,241,232,.82);display:block;margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid rgba(246,241,232,.18)}.footer-name{font-family:var(--f-display);font-weight:400;font-size:1.1rem;color:rgba(246,241,232,.88);line-height:1.3;margin-bottom:.75rem}.footer-meta{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.72);line-height:2.3}.footer-meta a{color:rgba(184,131,40,.85)}.footer-nav{list-style:none;display:flex;flex-direction:column}.footer-nav li{padding:.35rem 0;border-bottom:1px solid rgba(246,241,232,.10)}.footer-nav li:last-child{border-bottom:none}.footer-nav a{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,232,.85)}.footer-blurb{font-family:var(--f-display);font-style:italic;font-size:.95rem;color:rgba(246,241,232,.85);line-height:1.65;margin-bottom:1.5rem}.footer-bottom{max-width:1380px;margin:2rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(246,241,232,.12);display:flex;justify-content:space-between}.footer-copy,.footer-addr{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.60)}
-@media print{@page{size:letter portrait;margin:0}nav,.nav-drawer,.nav-drawer-overlay,.bull-bar,footer,.screen-only,.connect-form-screen{display:none!important}.print-only{display:block!important}body{background:white;margin:0;padding:0;-webkit-print-color-adjust:exact;print-color-adjust:exact}.bull-wrap{background:none;padding:0;min-height:0}#bull-loading{display:none!important}.bull-page{width:100%;min-height:0;height:11in;margin:0;padding:var(--b-mt) var(--b-ms) var(--b-mb);box-shadow:none;page-break-after:always;overflow:hidden}.bull-page:last-child{page-break-after:avoid}}
+footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);margin-left:-2rem;margin-right:-2rem;width:calc(100% + 4rem);padding:3rem 4.5rem 2rem}.footer-cross{display:block;text-align:center;font-size:1.1rem;color:rgba(184,131,40,.45);letter-spacing:.8em;padding-left:.8em;margin-bottom:2.5rem}/* === FOOTER === */
+footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:4.5rem 4.5rem 2.5rem}
+.footer-cross{display:block;text-align:center;font-size:1.1rem;color:rgba(184,131,40,.45);letter-spacing:.8em;padding-left:.8em;margin-bottom:4rem}
+.footer-cols{max-width:1380px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:4rem;margin-bottom:3.5rem}
+.footer-col-head{font-family:var(--f-ui);font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(246,241,232,.82);display:block;margin-bottom:1.2rem;padding-bottom:.5rem;border-bottom:1px solid rgba(246,241,232,.06)}
+.footer-nav-sub{font-family:var(--f-ui);font-size:.62rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(184,131,40,.55);display:block;margin:1.25rem 0 .5rem;padding-bottom:.35rem;border-bottom:1px solid rgba(246,241,232,.04)}
+.footer-name{font-family:var(--f-display);font-weight:400;font-size:1.2rem;color:rgba(246,241,232,.88);line-height:1.3;margin-bottom:.75rem}
+.footer-meta{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.72);line-height:2.3}
+.footer-meta a{color:rgba(184,131,40,.85);transition:color .2s}
+.footer-meta a:hover{color:var(--gold)}
+.footer-socials{display:flex;gap:1.5rem;margin-top:1.5rem}
+.footer-socials a{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,241,232,.65);transition:color .2s}
+.footer-socials a:hover{color:var(--gold)}
+.footer-nav{list-style:none;display:flex;flex-direction:column}
+.footer-nav li{padding:.38rem 0;border-bottom:1px solid rgba(246,241,232,.10)}
+.footer-nav li:last-child{border-bottom:none}
+.footer-nav a{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,232,.85);transition:color .2s}
+.footer-nav a:hover{color:rgba(246,241,232,.95)}
+.footer-blurb{font-family:var(--f-display);font-style:italic;font-size:.95rem;color:rgba(246,241,232,.85);line-height:1.65;margin-bottom:1.5rem}
+.footer-email{display:flex}
+.footer-email input{flex:1;background:rgba(255,255,255,.04);border:1px solid rgba(246,241,232,.12);border-right:none;color:rgba(246,241,232,.80);font-family:var(--f-ui);font-size:.72rem;letter-spacing:.10em;padding:.75rem 1rem;outline:none}
+.footer-email input::placeholder{color:rgba(246,241,232,.60)}
+.footer-email button{background:var(--maroon);border:1px solid var(--maroon);color:rgba(246,241,232,.88);font-family:var(--f-ui);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;padding:.75rem 1rem;cursor:pointer;transition:background .2s}
+.footer-email button:hover{background:var(--maroon-deep)}
+.footer-bottom{max-width:1380px;margin:2.5rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(246,241,232,.12);display:flex;justify-content:space-between;align-items:center}
+.footer-copy,.footer-addr{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.60)}
+.footer-addr{text-align:right}
+
 @media(max-width:900px){
   /* Bull-bar mobile */
   .bull-bar{padding:.5rem 1rem;flex-wrap:nowrap;gap:.4rem}
@@ -197,29 +308,301 @@ body{background:#8e877e;padding:2rem;font-family:var(--f-body)}
 </head>
 <body>
 
+<!-- NAV -->
 <nav class="nav screen-only">
   <div class="nav-inner">
-    <a href="/" style="line-height:1.2"><span class="nav-logo-name">Sts. Peter &amp; Paul</span><span class="nav-logo-sub">Orthodox Cathedral &middot; Jersey City</span></a>
-    <ul class="nav-links">
-      <li><a href="#">About Us &#9662;</a><div class="nav-drop"><a href="/about-our-church">About Our Church</a><a href="/our-beliefs">Our Beliefs</a><a href="/administration">Administration</a><a href="/gallery">Gallery</a></div></li>
-      <li><a href="#">Inquirers &#9662;</a><div class="nav-drop"><a href="/about-orthodoxy">About Orthodoxy</a><a href="/our-beliefs">Our Beliefs</a><a href="/videos">Videos</a></div></li>
-      <li><a href="/schedule">Calendar</a></li>
-      <li class="nav-active-parent"><a href="#">Parish Life &#9662;</a><div class="nav-drop"><a href="/news">News</a><a href="/bulletins" class="nav-active">Bulletins</a><a href="/gallery">Gallery</a></div></li>
-      <li><a href="#">Resources &#9662;</a><div class="nav-drop"><a href="/readings">Readings</a><a href="/videos">Videos</a><a href="/cemeteries">Cemeteries</a></div></li>
-      <li><a href="/contact-us">Contact</a></li>
-    </ul>
+    <a href="/">
+      <img src="/images/logo/logo-2026.svg" alt="Saints Peter &amp; Paul Orthodox Cathedral" class="nav-logo-img">
+    </a>
+    <div class="nav-mega-group" id="nav-mega-group">
+      <ul class="nav-links">
+        <li data-mega="mega-about"><a href="#">About Us</a></li>
+        <li data-mega="mega-inquirers"><a href="#">Inquirers</a></li>
+        <li data-mega="mega-calendar"><a href="#">Calendar</a></li>
+        <li data-mega="mega-parish"><a href="#">Parish Life</a></li>
+        <li data-mega="mega-resources"><a href="#">Resources</a></li>
+      </ul>
+
+      <!-- PANEL: ABOUT US -->
+      <div class="mega-panel" id="mega-about">
+        <div class="mega-photo">
+        <div class="mega-photo-bg" style="background-image:url('https://picsum.photos/seed/sspp-exterior/400/500')"></div>
+          <div class="mega-photo-overlay"></div>
+          <div class="mega-photo-content">
+            <span class="mega-photo-label">About Us</span>
+            <p class="mega-photo-quote">A century of faith on Grand Street.</p>
+          </div>
+        </div>
+        <div class="mega-content">
+          <div class="mega-inner" style="grid-template-columns:repeat(2,1fr)">
+            <div class="mega-col">
+              <span class="mega-col-head">Who We Are</span>
+              <a href="/about-our-church" class="mega-link">About Our Church</a>
+              <span class="mega-sub">Our history, our people, our home</span>
+              <a href="/church-history" class="mega-link">Church History</a>
+              <span class="mega-sub">A century of faith in Jersey City</span>
+              <a href="/our-beliefs" class="mega-link">Our Beliefs</a>
+              <span class="mega-sub">What we confess and why it matters</span>
+            </div>
+            <div class="mega-col">
+              <span class="mega-col-head">Leadership &amp; Governance</span>
+              <a href="/administration" class="mega-link">Administration</a>
+              <span class="mega-sub">Staff and parish leadership</span>
+              <a href="/council" class="mega-link">Parish Council</a>
+              <span class="mega-sub">The elected lay leadership</span>
+              <a href="/bylaws" class="mega-link">Bylaws</a>
+              <span class="mega-sub">Our governing documents</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PANEL: RESOURCES -->
+      <div class="mega-panel" id="mega-resources">
+        <div class="mega-photo">
+        <div class="mega-photo-bg" style="background-image:url('https://picsum.photos/seed/sspp-interior/400/500')"></div>
+          <div class="mega-photo-overlay"></div>
+          <div class="mega-photo-content">
+            <span class="mega-photo-label">Resources</span>
+            <p class="mega-photo-quote">The living tradition of the Church.</p>
+          </div>
+        </div>
+        <div class="mega-content">
+          <div class="mega-inner" style="grid-template-columns:repeat(2,1fr)">
+            <div class="mega-col">
+              <span class="mega-col-head">Services</span>
+              <a href="/divine-liturgy" class="mega-link">Divine Liturgy</a>
+              <span class="mega-sub">The central act of Christian worship</span>
+              <a href="/vespers" class="mega-link">Vespers</a>
+              <span class="mega-sub">Saturday evening prayer</span>
+              <a href="/schedule" class="mega-link">Liturgical Calendar</a>
+              <span class="mega-sub">Feasts, fasts, and the Church year</span>
+            </div>
+            <div class="mega-col">
+              <span class="mega-col-head">Daily Practice</span>
+              <a href="/readings" class="mega-link">Daily Readings</a>
+              <span class="mega-sub">Scripture appointed for each day</span>
+              <a href="/saints" class="mega-link">Lives of the Saints</a>
+              <span class="mega-sub">The saints commemorated today</span>
+              <a href="/prologue" class="mega-link">The Prologue</a>
+              <span class="mega-sub">Daily lives of the saints</span>
+              <a href="/prayers" class="mega-link">Common Prayers</a>
+              <span class="mega-sub">Prayers of the daily cycle</span>
+              <a href="/liturgy-book" class="mega-link">Liturgy Book</a>
+              <span class="mega-sub">Follow along at the Divine Liturgy</span>
+              <a href="/videos" class="mega-link">Videos</a>
+              <span class="mega-sub">Lectures, services, and parish life</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PANEL: INQUIRERS -->
+      <div class="mega-panel" id="mega-inquirers">
+        <div class="mega-photo">
+        <div class="mega-photo-bg" style="background-image:url('https://picsum.photos/seed/sspp-welcome/400/500')"></div>
+          <div class="mega-photo-overlay"></div>
+          <div class="mega-photo-content">
+            <span class="mega-photo-label">Inquirers</span>
+            <p class="mega-photo-quote">Exploring the ancient Faith?</p>
+          </div>
+        </div>
+        <div class="mega-content">
+          <div class="mega-inner" style="grid-template-columns:repeat(2,1fr)">
+            <div class="mega-col">
+              <span class="mega-col-head">The Faith</span>
+              <a href="/about-orthodoxy" class="mega-link">About Orthodoxy</a>
+              <span class="mega-sub">The ancient Christian faith, its history and teachings</span>
+              <a href="/our-beliefs" class="mega-link">Our Beliefs</a>
+              <span class="mega-sub">What we confess and why it matters</span>
+              <a href="/about-our-church" class="mega-link">About Our Church</a>
+              <span class="mega-sub">Who we are before you show up</span>
+              <a href="/church-history" class="mega-link">Church History</a>
+              <span class="mega-sub">The community you'd be joining</span>
+              <a href="/catechesis" class="mega-link">Catechesis</a>
+              <span class="mega-sub">An introduction to the Orthodox Faith</span>
+              <a href="/catechesis-series" class="mega-link">2026 Catechesis Series</a>
+              <span class="mega-sub">Current lecture series</span>
+            </div>
+            <div class="mega-col">
+              <span class="mega-col-head">Resources</span>
+              <a href="/videos" class="mega-link">Videos</a>
+              <span class="mega-sub">Lectures and explainers for those exploring</span>
+              <span class="mega-col-head" style="margin-top:1.25rem;display:block">Visit Us</span>
+              <a href="/visit" class="mega-link">Visitor Guide</a>
+              <span class="mega-sub">Everything you need before you arrive</span>
+              <a href="/contact-us" class="mega-link">Contact Us</a>
+              <span class="mega-sub">Reach the parish office</span>
+              <span class="mega-sub" style="margin-top:.5rem;display:block">Vespers — Saturday 5:00 PM</span>
+              <span class="mega-sub">Divine Liturgy — Sunday 9:30 AM</span>
+              <div class="mega-cta">
+                <a href="https://tithe.ly/give?c=5004259" target="_blank" class="mega-cta-btn">Give to the Cathedral →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PANEL: CALENDAR -->
+      <div class="mega-panel" id="mega-calendar">
+        <div class="mega-photo">
+        <div class="mega-photo-bg" style="background-image:url('https://picsum.photos/seed/sspp-calendar/400/500')"></div>
+          <div class="mega-photo-overlay"></div>
+          <div class="mega-photo-content">
+            <span class="mega-photo-label">Calendar</span>
+            <p class="mega-photo-quote">The rhythm of the Church's year.</p>
+          </div>
+        </div>
+        <div class="mega-content">
+          <div class="mega-inner" style="grid-template-columns:repeat(2,1fr)">
+            <div class="mega-col">
+              <span class="mega-col-head">Regular Services</span>
+              <span class="mega-link" style="cursor:default">Great Vespers</span>
+              <span class="mega-sub">Every Saturday · 5:00 PM</span>
+              <span class="mega-link" style="cursor:default">Divine Liturgy</span>
+              <span class="mega-sub">Every Sunday · 9:30 AM · Coffee hour follows</span>
+              <span class="mega-link" style="cursor:default">Feast Day Liturgies</span>
+              <span class="mega-sub">As scheduled · 9:00 AM</span>
+              <div class="mega-cta">
+                <a href="/schedule" class="mega-cta-btn">Full Liturgical Calendar →</a>
+              </div>
+            </div>
+            <div class="mega-col">
+              <span class="mega-col-head">This Week</span>
+              <div id="mega-cal-week"><span class="mega-sub">Loading…</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PANEL: PARISH LIFE -->
+      <div class="mega-panel" id="mega-parish">
+        <div class="mega-photo">
+        <div class="mega-photo-bg" style="background-image:url('https://picsum.photos/seed/sspp-community/400/500')"></div>
+          <div class="mega-photo-overlay"></div>
+          <div class="mega-photo-content">
+            <span class="mega-photo-label">Parish Life</span>
+            <p class="mega-photo-quote">A family that shares a life.</p>
+          </div>
+        </div>
+        <div class="mega-content">
+          <div class="mega-inner" style="grid-template-columns:repeat(2,1fr)">
+            <div class="mega-col">
+              <span class="mega-col-head">News &amp; Publications</span>
+              <a href="/news" class="mega-link">News &amp; Announcements</a>
+              <span class="mega-sub">What's happening at the parish</span>
+              <a href="/bulletins" class="mega-link">Parish Bulletins</a>
+              <span class="mega-sub">Weekly reflections from Fr. Solomon</span>
+            </div>
+            <div class="mega-col">
+              <span class="mega-col-head">Community</span>
+              <a href="/gallery" class="mega-link">Gallery</a>
+              <span class="mega-sub">Photos from parish life and worship</span>
+              <a href="/cemeteries" class="mega-link">Cemeteries</a>
+              <span class="mega-sub">Our historic parish cemeteries</span>
+              <a href="/donate" class="mega-link">Give to the Parish</a>
+              <span class="mega-sub">Support the cathedral's ministry</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
     <a href="https://tithe.ly/give?c=5004259" target="_blank" class="nav-give">Give</a>
-    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" onclick="openDrawer()"><span></span><span></span><span></span></button>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" onclick="openDrawer()">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+
+<!-- MOBILE NAV DRAWER -->
 <div class="nav-drawer-overlay screen-only" id="nav-overlay" onclick="closeDrawer()"></div>
 <div class="nav-drawer screen-only" id="nav-drawer">
-  <div class="nav-drawer-head"><div class="nav-drawer-logo">Sts. Peter &amp; Paul<span>Orthodox Cathedral &middot; Jersey City</span></div><button class="nav-drawer-close" onclick="closeDrawer()">&#10005;</button></div>
-  <div class="nav-drawer-links">
-    <span class="drawer-section">About</span><a href="/about-our-church">About Our Church</a><a href="/our-beliefs">Our Beliefs</a><a href="/administration">Administration</a><a href="/about-orthodoxy">About Orthodoxy</a>
-    <span class="drawer-section">Visit &amp; Worship</span><a href="/schedule">Liturgical Calendar</a><a href="/readings">Daily Readings</a><a href="/saint-of-the-day">Saint of the Day</a><a href="/videos">Videos</a>
-    <span class="drawer-section">Parish Life</span><a href="/gallery">Gallery</a><a href="/bulletins">Bulletins</a><a href="/news">News &amp; Announcements</a><a href="/donate">Give Online</a>
-    <span class="drawer-section">Contact</span><a href="/contact-us">Contact Us</a>
+  <div class="nav-drawer-head">
+    <div class="nav-drawer-logo">Sts. Peter &amp; Paul<span>Orthodox Cathedral · Jersey City</span></div>
+    <button class="nav-drawer-close" onclick="closeDrawer()">✕</button>
+  </div>
+  <div class="dr-accordion" id="dr-accordion">
+
+    <div class="dr-section" data-photo="sspp-exterior" data-label="About Us" data-quote="A century of faith on Grand Street.">
+      <div class="dr-section-head" onclick="drToggle(this)">
+        <span class="dr-section-name">About Us</span>
+        <span class="dr-section-toggle">+</span>
+      </div>
+      <div class="dr-section-links">
+        <a href="/about-our-church" class="dr-link"><span class="dr-link-name">About Our Church</span><span class="dr-link-sub">Our history, our people, our home</span></a>
+        <a href="/church-history" class="dr-link"><span class="dr-link-name">Church History</span><span class="dr-link-sub">A century of faith in Jersey City</span></a>
+        <a href="/our-beliefs" class="dr-link"><span class="dr-link-name">Our Beliefs</span><span class="dr-link-sub">What we confess and why it matters</span></a>
+        <a href="/administration" class="dr-link"><span class="dr-link-name">Administration</span><span class="dr-link-sub">Staff and parish leadership</span></a>
+        <a href="/council" class="dr-link"><span class="dr-link-name">Parish Council</span><span class="dr-link-sub">The elected lay leadership</span></a>
+        <a href="/bylaws" class="dr-link"><span class="dr-link-name">Bylaws</span><span class="dr-link-sub">Our governing documents</span></a>
+      </div>
+    </div>
+
+    <div class="dr-section" data-photo="sspp-welcome" data-label="Inquirers" data-quote="Exploring the ancient Faith?">
+      <div class="dr-section-head" onclick="drToggle(this)">
+        <span class="dr-section-name">Inquirers</span>
+        <span class="dr-section-toggle">+</span>
+      </div>
+      <div class="dr-section-links">
+        <a href="/about-orthodoxy" class="dr-link"><span class="dr-link-name">About Orthodoxy</span><span class="dr-link-sub">The ancient Christian faith and its teachings</span></a>
+        <a href="/our-beliefs" class="dr-link"><span class="dr-link-name">Our Beliefs</span><span class="dr-link-sub">What we confess and why it matters</span></a>
+        <a href="/about-our-church" class="dr-link"><span class="dr-link-name">About Our Church</span><span class="dr-link-sub">Who we are before you show up</span></a>
+        <a href="/church-history" class="dr-link"><span class="dr-link-name">Church History</span><span class="dr-link-sub">The community you'd be joining</span></a>
+        <a href="/catechesis" class="dr-link"><span class="dr-link-name">Catechesis</span><span class="dr-link-sub">An introduction to the Orthodox Faith</span></a>
+        <a href="/catechesis-series" class="dr-link"><span class="dr-link-name">2026 Catechesis Series</span><span class="dr-link-sub">Current lecture series</span></a>
+        <a href="/videos" class="dr-link"><span class="dr-link-name">Videos</span><span class="dr-link-sub">Lectures and explainers for those exploring</span></a>
+        <a href="/visit" class="dr-link"><span class="dr-link-name">Visitor Guide</span><span class="dr-link-sub">Everything you need before you arrive</span></a>
+        <a href="/contact-us" class="dr-link"><span class="dr-link-name">Contact Us</span><span class="dr-link-sub">Reach the parish office</span></a>
+      </div>
+    </div>
+
+    <div class="dr-section" data-photo="sspp-calendar" data-label="Calendar" data-quote="The rhythm of the Church's year.">
+      <div class="dr-section-head" onclick="drToggle(this)">
+        <span class="dr-section-name">Calendar</span>
+        <span class="dr-section-toggle">+</span>
+      </div>
+      <div class="dr-section-links">
+        <a href="/schedule" class="dr-link"><span class="dr-link-name">Liturgical Calendar</span><span class="dr-link-sub">Feasts, fasts, and the Church year</span></a>
+        <a href="/readings" class="dr-link"><span class="dr-link-name">Daily Readings</span><span class="dr-link-sub">Scripture appointed for each day</span></a>
+        <a href="/saints" class="dr-link"><span class="dr-link-name">Lives of the Saints</span><span class="dr-link-sub">The saints commemorated today</span></a>
+        <a href="/prologue" class="dr-link"><span class="dr-link-name">The Prologue</span><span class="dr-link-sub">Daily lives of the saints</span></a>
+        <a href="/prayers" class="dr-link"><span class="dr-link-name">Common Prayers</span><span class="dr-link-sub">Prayers of the daily cycle</span></a>
+        <a href="/liturgy-book" class="dr-link"><span class="dr-link-name">Liturgy Book</span><span class="dr-link-sub">Follow along at the Divine Liturgy</span></a>
+      </div>
+    </div>
+
+    <div class="dr-section" data-photo="sspp-community" data-label="Parish Life" data-quote="A family that shares a life.">
+      <div class="dr-section-head" onclick="drToggle(this)">
+        <span class="dr-section-name">Parish Life</span>
+        <span class="dr-section-toggle">+</span>
+      </div>
+      <div class="dr-section-links">
+        <a href="/news" class="dr-link"><span class="dr-link-name">News &amp; Announcements</span><span class="dr-link-sub">What's happening at the parish</span></a>
+        <a href="/bulletins" class="dr-link"><span class="dr-link-name">Parish Bulletins</span><span class="dr-link-sub">Weekly reflections from Fr. Solomon</span></a>
+        <a href="/gallery" class="dr-link"><span class="dr-link-name">Gallery</span><span class="dr-link-sub">Photos from parish life and worship</span></a>
+        <a href="/cemeteries" class="dr-link"><span class="dr-link-name">Cemeteries</span><span class="dr-link-sub">Our historic parish cemeteries</span></a>
+        <a href="/donate" class="dr-link"><span class="dr-link-name">Give to the Parish</span><span class="dr-link-sub">Support the cathedral's ministry</span></a>
+      </div>
+    </div>
+
+    <div class="dr-section" data-photo="sspp-interior" data-label="Resources" data-quote="The living tradition of the Church.">
+      <div class="dr-section-head" onclick="drToggle(this)">
+        <span class="dr-section-name">Resources</span>
+        <span class="dr-section-toggle">+</span>
+      </div>
+      <div class="dr-section-links">
+        <a href="/divine-liturgy" class="dr-link"><span class="dr-link-name">Divine Liturgy</span><span class="dr-link-sub">The central act of Christian worship</span></a>
+        <a href="/vespers" class="dr-link"><span class="dr-link-name">Vespers</span><span class="dr-link-sub">Saturday evening prayer</span></a>
+        <a href="/readings" class="dr-link"><span class="dr-link-name">Daily Readings</span><span class="dr-link-sub">Scripture appointed for each day</span></a>
+        <a href="/saints" class="dr-link"><span class="dr-link-name">Lives of the Saints</span><span class="dr-link-sub">The saints commemorated today</span></a>
+        <a href="/prologue" class="dr-link"><span class="dr-link-name">The Prologue</span><span class="dr-link-sub">Daily lives of the saints</span></a>
+        <a href="/prayers" class="dr-link"><span class="dr-link-name">Common Prayers</span><span class="dr-link-sub">Prayers of the daily cycle</span></a>
+        <a href="/liturgy-book" class="dr-link"><span class="dr-link-name">Liturgy Book</span><span class="dr-link-sub">Follow along at the Divine Liturgy</span></a>
+        <a href="/videos" class="dr-link"><span class="dr-link-name">Videos</span><span class="dr-link-sub">Lectures, services, and parish life</span></a>
+      </div>
+    </div>
+
   </div>
   <a href="https://tithe.ly/give?c=5004259" target="_blank" class="nav-drawer-give">Give Online</a>
 </div>
@@ -307,24 +690,100 @@ body{background:#8e877e;padding:2rem;font-family:var(--f-body)}
   </div>
 </div>
 
+<!-- FOOTER -->
 <footer class="screen-only">
-  <span class="footer-cross">&#10022;  &#10022;</span>
   <div class="footer-cols">
-    <div><span class="footer-col-head">Saints Peter &amp; Paul Orthodox Cathedral</span><p class="footer-name">Sts. Peter &amp; Paul<br>Orthodox Cathedral</p><p class="footer-meta">Diocese of New York &amp; New Jersey<br><a href="https://nynjoca.org" target="_blank">nynjoca.org</a><br>Orthodox Church in America<br><a href="https://oca.org" target="_blank">oca.org</a></p></div>
-    <div><span class="footer-col-head">Navigate</span><ul class="footer-nav"><li><a href="/about-our-church">About Our Church</a></li><li><a href="/schedule">Liturgical Calendar</a></li><li><a href="/readings">Daily Readings</a></li><li><a href="/bulletins">Bulletins</a></li><li><a href="/gallery">Gallery</a></li><li><a href="/donate">Give Online</a></li><li><a href="/contact-us">Contact Us</a></li></ul></div>
-    <div><span class="footer-col-head">Visit Us</span><p class="footer-blurb">Whether you are visiting for the first time or looking to become part of our parish family, you are welcome here.</p><p class="footer-meta">Vespers &middot; Saturdays 5:00 PM<br>Divine Liturgy &middot; Sundays 9:30 AM<br>109 Grand Street &middot; Jersey City, NJ</p></div>
+
+    <!-- COL 1: Cathedral info + newsletter -->
+    <div>
+      <img src="/images/logo/logo-2026.svg" alt="Saints Peter &amp; Paul Orthodox Cathedral" class="footer-logo-img">
+      <p class="footer-meta">
+        Diocese of New York &amp; New Jersey<br>
+        <a href="https://nynjoca.org" target="_blank">nynjoca.org</a><br>
+        Orthodox Church in America<br>
+        <a href="https://oca.org" target="_blank">oca.org</a>
+      </p>
+      <div class="footer-socials">
+        <a href="#" target="_blank">Facebook</a>
+        <a href="#" target="_blank">Instagram</a>
+      </div>
+      <span class="footer-col-head" style="margin-top:2rem">Newsletter</span>
+      <div class="footer-email">
+        <input type="email" placeholder="Your email address"/>
+        <button type="button">Subscribe</button>
+      </div>
+    </div>
+
+    <!-- COL 2: About Us + Inquirers -->
+    <div>
+      <span class="footer-col-head">About Us</span>
+      <ul class="footer-nav">
+        <li><a href="/about-our-church">About Our Church</a></li>
+        <li><a href="/church-history">Church History</a></li>
+        <li><a href="/our-beliefs">Our Beliefs</a></li>
+        <li><a href="/administration">Administration</a></li>
+        <li><a href="/council">Parish Council</a></li>
+        <li><a href="/bylaws">Bylaws</a></li>
+      </ul>
+      <span class="footer-nav-sub">Inquirers</span>
+      <ul class="footer-nav">
+        <li><a href="/about-orthodoxy">About Orthodoxy</a></li>
+        <li><a href="/visit">Visitor Guide</a></li>
+        <li><a href="/videos">Videos</a></li>
+        <li><a href="/contact-us">Contact Us</a></li>
+      </ul>
+    </div>
+
+    <!-- COL 3: Worship + Daily Practice -->
+    <div>
+      <span class="footer-col-head">Worship</span>
+      <ul class="footer-nav">
+        <li><a href="/divine-liturgy">Divine Liturgy</a></li>
+        <li><a href="/vespers">Vespers</a></li>
+        <li><a href="/schedule">Liturgical Calendar</a></li>
+      </ul>
+      <span class="footer-nav-sub">Daily Practice</span>
+      <ul class="footer-nav">
+        <li><a href="/readings">Daily Readings</a></li>
+        <li><a href="/saints">Saint of the Day</a></li>
+        <li><a href="/prologue">The Prologue</a></li>
+        <li><a href="/liturgy-book">Liturgy Book</a></li>
+      </ul>
+    </div>
+
+    <!-- COL 4: Parish Life + Connect -->
+    <div>
+      <span class="footer-col-head">Parish Life</span>
+      <ul class="footer-nav">
+        <li><a href="/news">News &amp; Announcements</a></li>
+        <li><a href="/bulletins">Parish Bulletins</a></li>
+        <li><a href="/gallery">Gallery</a></li>
+        <li><a href="/cemeteries">Cemeteries</a></li>
+      </ul>
+      <span class="footer-nav-sub">Connect</span>
+      <ul class="footer-nav">
+        <li><a href="/contact-us">Contact Us</a></li>
+        <li><a href="https://tithe.ly/give?c=5004259" target="_blank">Give Online</a></li>
+        <li><a href="/donate">Donate</a></li>
+      </ul>
+      <p class="footer-blurb" style="margin-top:1.5rem">Whether you're visiting for the first time or looking to become part of our parish family — you are welcome here.</p>
+      <a href="/contact-us" class="btn btn-outline" style="display:inline-block">Contact Us</a>
+    </div>
+
   </div>
-  <div class="footer-bottom"><p class="footer-copy">&copy; Saints Peter &amp; Paul Orthodox Cathedral. All Rights Reserved.</p><p class="footer-addr">109 Grand Street &middot; Jersey City, NJ 07302 &middot; (201) 434-1986</p></div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© Saints Peter &amp; Paul Orthodox Cathedral. All Rights Reserved.</p>
+    <p class="footer-addr"><a href="https://maps.google.com/?q=109+Grand+Street+Jersey+City+NJ+07302" target="_blank" rel="noopener" style="color:inherit;border-bottom:1px solid rgba(246,241,232,.25)">109 Grand Street · Jersey City, NJ 07302</a><br>(201) 434-1986 · <a href="mailto:office@peterandpaulcathedral.com">office@peterandpaulcathedral.com</a></p>
+  </div>
 </footer>
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+
 var MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
 var IN_PX=96;
 var _bulletins=[],_bulletinData=null,_calCache={},_prayerList=null,_events=null,_currentDate=null,_currentIdx=-1;
 function pxIn(i){return i*IN_PX}
 function fmtDate(d){return MONTHS[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear()}
-function openDrawer(){document.getElementById('nav-drawer').classList.add('open');document.getElementById('nav-overlay').classList.add('open');document.getElementById('nav-hamburger').classList.add('open');document.body.style.overflow='hidden'}
-function closeDrawer(){document.getElementById('nav-drawer').classList.remove('open');document.getElementById('nav-overlay').classList.remove('open');document.getElementById('nav-hamburger').classList.remove('open');document.body.style.overflow=''}
-document.addEventListener('keydown',function(e){if(e.key==='Escape')closeDrawer()});
+
 
 /* Simple markdown — no external CDN */
 function simpleMarkdown(md){
@@ -559,6 +1018,155 @@ document.addEventListener('click',function(e){
 });
 
 initBulletin();
+
 </script>
+
+<script>
+function openDrawer(){
+  document.getElementById('nav-drawer').classList.add('open');
+  document.getElementById('nav-overlay').classList.add('open');
+  document.getElementById('nav-hamburger').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeDrawer(){
+  document.getElementById('nav-drawer').classList.remove('open');
+  document.getElementById('nav-overlay').classList.remove('open');
+  document.getElementById('nav-hamburger').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeDrawer();});
+
+function drToggle(head){
+  var section=head.parentElement;
+  var isOpen=section.classList.contains('open');
+  document.querySelectorAll('.dr-section').forEach(function(s){
+    s.classList.remove('open');
+    s.querySelector('.dr-section-toggle').textContent='+';
+  });
+  if(!isOpen){
+    section.classList.add('open');
+    section.querySelector('.dr-section-toggle').textContent='−';
+  }
+}
+
+function drUpdatePhoto(seed,label,quote){
+  var bg=document.getElementById('dr-photo-bg');
+  var lbl=document.getElementById('dr-photo-lbl');
+  var q=document.getElementById('dr-photo-quote');
+  lbl.style.opacity='0'; q.style.opacity='0';
+  setTimeout(function(){
+    bg.classList.remove('active');
+    bg.style.transition='none';
+    bg.style.transform='scale(1)';
+    bg.style.backgroundImage="url('https://picsum.photos/seed/"+seed+"/400/300')";
+    void bg.offsetWidth;
+    bg.style.transition='opacity .4s ease,transform 11s ease';
+    bg.classList.add('active');
+    lbl.textContent=label; q.textContent=quote;
+    lbl.style.opacity='1'; q.style.opacity='1';
+  },150);
+}
+
+function drResetPhoto(){
+  var bg=document.getElementById('dr-photo-bg');
+  var lbl=document.getElementById('dr-photo-lbl');
+  var q=document.getElementById('dr-photo-quote');
+  lbl.style.opacity='0'; q.style.opacity='0';
+  setTimeout(function(){
+    bg.classList.remove('active');
+    lbl.textContent='Orthodox Cathedral';
+    q.textContent='Jersey City, New Jersey';
+    lbl.style.opacity='1'; q.style.opacity='1';
+  },150);
+}
+
+// MEGA MENU
+(function(){
+  var tabs = document.querySelectorAll('.nav-links > li[data-mega]');
+  var group = document.getElementById('nav-mega-group');
+  var activePanel = null;
+  var activeTab = null;
+  var calInited = false;
+
+  function showPanel(tab){
+    var id = tab.getAttribute('data-mega');
+    var panel = document.getElementById(id);
+    if(activePanel && activePanel !== panel){
+      activePanel.classList.remove('mega-visible');
+    }
+    if(activeTab) activeTab.classList.remove('tab-active');
+    if(panel){ panel.classList.add('mega-visible'); activePanel = panel; }
+    tab.classList.add('tab-active');
+    activeTab = tab;
+    if(id === 'mega-calendar' && !calInited){ calInited = true; initMegaCalWeek(); }
+  }
+
+  function hideAll(){
+    if(activePanel){ activePanel.classList.remove('mega-visible'); activePanel = null; }
+    if(activeTab){ activeTab.classList.remove('tab-active'); activeTab = null; }
+  }
+
+  tabs.forEach(function(tab){
+    tab.addEventListener('mouseenter', function(){ showPanel(tab); });
+  });
+
+  group.addEventListener('mouseleave', function(){ hideAll(); });
+})();
+
+async function initMegaCalWeek(){
+  var container = document.getElementById('mega-cal-week');
+  if(!container) return;
+
+  var DAYS = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+  var today = new Date();
+  var dow = today.getDay();
+  var monday = new Date(today);
+  monday.setDate(today.getDate() - (dow === 0 ? 6 : dow - 1));
+
+  var year = today.getFullYear();
+  var cal = (typeof getCalendar === 'function') ? await getCalendar(year) : null;
+
+  var parishEvents = [];
+  try{
+    var r = await fetch('/parish-events.json');
+    if(r.ok){ var pe = await r.json(); parishEvents = (pe.events||[]).filter(function(e){ return e.active; }); }
+  }catch(e){}
+
+  function dateKey(d){
+    return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+  }
+  var todayKey = dateKey(today);
+
+  var html = '';
+  for(var i = 0; i < 7; i++){
+    var d = new Date(monday);
+    d.setDate(monday.getDate() + i);
+    var key = dateKey(d);
+    var isToday = key === todayKey;
+    var calDay = cal && cal.days && cal.days[key];
+    var feast = calDay ? (calDay.feast||'') : '';
+    var feastLevel = calDay ? (calDay.feastLevel||0) : 0;
+    var isMajor = feastLevel >= 5;
+    if(feast.length > 42) feast = feast.substring(0,40)+'…';
+
+    html += '<div class="mc-week-row'+(isToday?' mc-today':'')+'">';
+    html += '<span class="mc-day-lbl">'+DAYS[i]+'</span>';
+    html += '<span class="mc-day-feast'+(isMajor?' mc-major':'')+'">'+( feast||'—')+(isMajor?'<span class="mc-dot"></span>':'')+' </span>';
+    html += '</div>';
+
+    var dayEvents = parishEvents.filter(function(e){ return e.date === key; });
+    dayEvents.forEach(function(ev){
+      var typeMap = {liturgy:'Liturgy',vespers:'Vespers',community:'Parish',social:'Social',concert:'Concert',music:'Music',announcement:'Notice'};
+      var badge = typeMap[ev.type]||'Event';
+      html += '<div class="mc-event-row">';
+      html += '<span class="mc-event-badge mc-badge-'+(ev.type||'announcement')+'">'+badge+'</span>';
+      html += '<span class="mc-event-name">'+ev.title+' · '+ev.time+'</span>';
+      html += '</div>';
+    });
+  }
+  container.innerHTML = html;
+}
+</script>
+
 </body>
 </html>
