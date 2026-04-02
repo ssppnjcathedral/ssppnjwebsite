@@ -87,7 +87,7 @@ a{color:inherit;text-decoration:none}
 .mg-cell.sunday .mg-num{color:rgba(212,168,75,.60)}
 .mg-cell:hover:not(.other) .mg-num{color:#fff}
 .mg-num{font-family:var(--f-display);font-weight:300;font-size:1.15rem;line-height:1;color:rgba(255,255,255,.65);transition:color .15s}
-.mg-dot{width:4px;height:4px;border-radius:50%;margin-top:1px}
+.mg-dot{width:5px;height:5px;border-radius:50%;margin-top:2px;display:block;margin-left:auto;margin-right:auto}
 .dot-great{background:#E8C97A}
 .dot-major{background:rgba(184,131,40,.60)}
 .dot-theotokos{background:#4A7AAC}
@@ -857,7 +857,7 @@ async function buildMiniGrid(){
     const c=document.createElement('div');
     c.className=cls;
     c.id='mgc-'+y+'-'+m+'-'+d;
-    c.innerHTML='<span class="mg-num">'+d+'</span><span class="mg-dot dot-none" id="mgd-'+y+'-'+m+'-'+d+'"></span>'+(isSun(date)||isSat(date)?'<span class="mg-svc-pip"></span>':'')+(_scheduleEventMap[y+'-'+String(m+1).padStart(2,'0')+'-'+String(d).padStart(2,'0')]?'<span class="mg-svc-pip" style="background:rgba(184,131,40,.7)"></span>':'');
+    c.innerHTML='<span class="mg-num">'+d+'</span><span class="mg-dot dot-none" id="mgd-'+y+'-'+m+'-'+d+'"></span>';
     c.onclick=(function(dt){return function(){selectDateF(dt);};})(new Date(date));
     cells.appendChild(c);
   }
