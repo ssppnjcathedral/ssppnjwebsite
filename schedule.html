@@ -1072,8 +1072,8 @@ function renderViewC(){buildClassic();}
 
 function setCvView(v){
   cvSubView=v;
-  document.getElementById('cvt-month').classList.toggle('on',v==='month');
-  document.getElementById('cvt-list').classList.toggle('on',v==='list');
+  document.getElementById('vbtn-cm').classList.toggle('on',v==='month');
+  document.getElementById('vbtn-cl').classList.toggle('on',v==='list');
   document.getElementById('cv-month').style.display=v==='month'?'block':'none';
   document.getElementById('cv-list').style.display=v==='list'?'block':'none';
   buildClassic();
