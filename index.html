@@ -860,21 +860,20 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 @media(max-width:1100px){.rector-inner{grid-template-columns:1fr}}
 @media(max-width:768px){.rector-photo{min-height:280px}.rector-text{padding:3rem 1.5rem}.rector-name{font-size:1.7rem}}
 .visit-section{background:var(--apse);padding:5rem 0;border-top:2px solid rgba(184,131,40,.18)}
-.visit-inner{max-width:1380px;margin:0 auto;padding:0 4.5rem;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
-.visit-left h2{font-family:var(--f-display);font-weight:300;font-size:clamp(2rem,3.5vw,2.8rem);color:rgba(246,241,232,.95);margin:.5rem 0 1.5rem;line-height:1.1}
-.visit-left p{font-family:var(--f-body);font-size:1rem;line-height:1.82;color:rgba(246,241,232,.7);margin-bottom:1.5rem}
-.visit-detail{margin-bottom:2rem;padding-bottom:2rem;border-bottom:1px solid rgba(246,241,232,.08)}
-.visit-detail:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
-.visit-detail-head{font-family:var(--f-ui);font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(184,131,40,.85);margin-bottom:.5rem}
-.visit-detail-body{font-family:var(--f-body);font-size:.96rem;line-height:1.78;color:rgba(246,241,232,.72)}
-.visit-detail-body strong{color:rgba(246,241,232,.92);font-weight:500}
-.visit-btns{display:flex;gap:1rem;margin-top:2.5rem;flex-wrap:wrap}
-.btn-gold{font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;padding:.85rem 2.2rem;border:1px solid rgba(184,131,40,.6);color:rgba(184,131,40,.9);background:none;cursor:pointer;transition:all .22s;display:inline-block}
-.btn-gold:hover{background:rgba(184,131,40,.12);border-color:rgba(184,131,40,.9)}
-.btn-vellum{font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;padding:.85rem 2.2rem;border:1px solid rgba(246,241,232,.25);color:rgba(246,241,232,.7);background:none;cursor:pointer;transition:all .22s;display:inline-block}
-.btn-vellum:hover{background:rgba(246,241,232,.08);border-color:rgba(246,241,232,.5);color:rgba(246,241,232,.95)}
-@media(max-width:1100px){.visit-inner{grid-template-columns:1fr;gap:3rem}}
-@media(max-width:768px){.visit-inner{padding:0 1.5rem}.visit-section{padding:3.5rem 0}}
+.visit-inner{max-width:1380px;margin:0 auto;padding:0 4.5rem}
+.visit-header{text-align:center;margin-bottom:3.5rem}
+.visit-header h2{font-family:var(--f-display);font-weight:300;font-size:clamp(2rem,3.5vw,2.8rem);color:rgba(246,241,232,.95);margin:.5rem 0 1rem;line-height:1.1}
+.visit-header p{font-family:var(--f-body);font-size:1.05rem;line-height:1.82;color:rgba(246,241,232,.6);max-width:540px;margin:0 auto}
+.pathway-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
+.pathway-card{border:1px solid rgba(184,131,40,.2);padding:2.5rem 2rem 2rem;display:flex;flex-direction:column;transition:border-color .3s,background .3s;text-decoration:none;position:relative}
+.pathway-card:hover{border-color:rgba(184,131,40,.5);background:rgba(184,131,40,.06)}
+.pathway-label{font-family:var(--f-ui);font-size:.62rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(184,131,40,.75);margin-bottom:.75rem}
+.pathway-title{font-family:var(--f-display);font-weight:300;font-size:1.35rem;color:rgba(246,241,232,.95);line-height:1.2;margin-bottom:.85rem}
+.pathway-body{font-family:var(--f-body);font-size:.92rem;line-height:1.72;color:rgba(246,241,232,.58);flex:1}
+.pathway-arrow{font-family:var(--f-ui);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(184,131,40,.7);margin-top:1.5rem;transition:color .3s,padding-left .3s}
+.pathway-card:hover .pathway-arrow{color:rgba(184,131,40,1);padding-left:.3rem}
+@media(max-width:1100px){.pathway-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:768px){.visit-inner{padding:0 1.5rem}.visit-section{padding:3.5rem 0}.pathway-grid{grid-template-columns:1fr}.pathway-card{padding:2rem 1.5rem}}
 .mega-link{display:block;font-family:var(--f-body);font-size:1.13rem;color:var(--ink);padding:.22rem 0;transition:color .15s,padding-left .15s;line-height:1.4}
 .mega-link:hover{color:var(--maroon);padding-left:.4rem}
 .mega-sub{display:block;font-family:var(--f-body);font-style:italic;font-size:.88rem;color:var(--stone);margin-bottom:.2rem;line-height:1.3}
@@ -1434,36 +1433,40 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   </div>
 </section>
 
-<!-- PLAN YOUR VISIT -->
+<!-- YOUR NEXT STEP -->
 <section class="visit-section reveal">
   <div class="visit-inner">
-    <div class="visit-left">
-      <span class="rubric light">First Time Here?</span>
-      <div class="rubric-rule gold" style="margin:.5rem 0 1rem"></div>
-      <h2>Plan Your<br><em>Visit</em></h2>
-      <p>Everything you need to know before you arrive. No experience with Orthodox Christianity is required. Simply come.</p>
-      <div class="visit-btns">
-        <a href="/visit" class="btn-gold">Full Visitor Guide</a>
-        <a href="/contact-us" class="btn-vellum">Get in Touch</a>
-      </div>
+    <div class="visit-header">
+      <span class="rubric light">Your Next Step</span>
+      <div class="rubric-rule gold" style="margin:.5rem auto 1rem"></div>
+      <h2>However you found us, you are welcome here.</h2>
+      <p>No experience with Orthodox Christianity is required. Simply come.</p>
     </div>
-    <div class="visit-right">
-      <div class="visit-detail">
-        <p class="visit-detail-head">Address</p>
-        <p class="visit-detail-body"><a href="https://maps.google.com/?q=109+Grand+Street+Jersey+City+NJ+07302" target="_blank" rel="noopener" style="color:inherit;border-bottom:1px solid rgba(246,241,232,.3)"><strong>109 Grand Street</strong><br>Jersey City, NJ 07302</a><br>Corner of Grand &amp; Marin Boulevard</p>
-      </div>
-      <div class="visit-detail">
-        <p class="visit-detail-head">Sunday Services</p>
-        <p class="visit-detail-body"><strong>Vespers:</strong> Saturday at 5:00 PM<br><strong>Divine Liturgy:</strong> Sunday at 9:30 AM<br>Coffee hour follows every Sunday Liturgy</p>
-      </div>
-      <div class="visit-detail">
-        <p class="visit-detail-head">Parking</p>
-        <p class="visit-detail-body">Parking is available on Sundays in the gated lot directly across from the church on Grand Street. Street parking is also available in the surrounding neighborhood.</p>
-      </div>
-      <div class="visit-detail">
-        <p class="visit-detail-head">What to Wear</p>
-        <p class="visit-detail-body">Modest, respectful attire. Come as you are — you will be welcomed warmly regardless. Women traditionally cover their heads inside the church, though visitors are not expected to do so.</p>
-      </div>
+    <div class="pathway-grid">
+      <a href="/visit" class="pathway-card">
+        <span class="pathway-label">This Sunday</span>
+        <p class="pathway-title">Visiting for the First Time</p>
+        <p class="pathway-body">Service times, directions, parking, and what to expect when you walk through the doors.</p>
+        <span class="pathway-arrow">Visitor Guide &rarr;</span>
+      </a>
+      <a href="/about-orthodoxy" class="pathway-card">
+        <span class="pathway-label">Curious</span>
+        <p class="pathway-title">New to Orthodoxy?</p>
+        <p class="pathway-body">The ancient Christian faith, preserved and lived for two thousand years. A brief introduction to what we believe and practice.</p>
+        <span class="pathway-arrow">Learn More &rarr;</span>
+      </a>
+      <a href="/videos" class="pathway-card">
+        <span class="pathway-label">From Home</span>
+        <p class="pathway-title">Watch a Service</p>
+        <p class="pathway-body">Not ready to visit in person? Watch a Divine Liturgy or Vespers from wherever you are, at your own pace.</p>
+        <span class="pathway-arrow">Watch Now &rarr;</span>
+      </a>
+      <a href="/about-our-church" class="pathway-card">
+        <span class="pathway-label">Our Rector</span>
+        <p class="pathway-title">Meet Fr. Solomon</p>
+        <p class="pathway-body">Fr. Solomon Longo has served as rector since 2023. He would love to meet you, answer your questions, or simply say hello.</p>
+        <span class="pathway-arrow">About Our Parish &rarr;</span>
+      </a>
     </div>
   </div>
 </section>
