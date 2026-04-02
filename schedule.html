@@ -204,6 +204,7 @@ a{color:inherit;text-decoration:none}
 .cg-cell.sun-c .cg-num{color:var(--maroon)}
 .cg-num{font-family:var(--f-display);font-weight:300;font-size:1.5rem;line-height:1;color:var(--text);display:block;margin-bottom:.2rem}
 .cg-num.today-n{color:var(--maroon);font-weight:400}
+.cg-dot{width:6px;height:6px;border-radius:50%;display:none;margin:2px auto 0}
 .cg-feast-txt{font-family:var(--f-ui);font-size:.62rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);line-height:1.3;display:block;margin-bottom:2px}
 .cg-feast-txt.cg-major{color:var(--maroon);font-weight:500}
 .cg-feast-txt.cg-saint{color:var(--stone);font-style:normal}
@@ -352,11 +353,13 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   .cv-ctrl{display:none}.cv-toggle{display:none}
   .cv-month-label{font-size:.72rem}
   .cv-month{padding:.75rem 1rem}
-  .cg-cell{min-height:52px;padding:.3rem .25rem}
-  .cg-num{font-size:.9rem;margin-bottom:1px}
-  .cg-feast-txt{font-size:.48rem;letter-spacing:.02em;line-height:1.2;display:block}
-  .cg-feast-txt.cg-saint{display:none}
-  .cg-svc-lbl,.cg-fast-lbl,.cg-event-pip{display:none}
+  .cg-num{font-size:1rem}
+  .cg-feast-txt{display:none}
+  .cg-svc-lbl{display:none}
+  .cg-fast-lbl{display:none}
+  .cg-event-pip{display:none}
+  .cg-dot{display:block}
+  .cg-cell{min-height:auto;aspect-ratio:1;align-items:center;justify-content:center}
   .cv-list{padding:0 1rem 1rem}
   .lv-row{grid-template-columns:82px 1fr;min-height:64px}.lv-tappable{cursor:pointer}
   .lv-dn{font-size:1.4rem}
@@ -1106,6 +1109,9 @@ function buildClassicMonth(){
     const ev=_scheduleEventMap[evKey];
     html+='<div class="cg-cell'+(isToday(date)?' today-c':'')+(sun?' sun-c':'')+'" onclick="cellClick(\'' +k+ '\')">';
     html+='<span class="cg-num'+(isToday(date)?' today-n':'')+'">'+d+'</span>';
+    var cellDot=dotClassForDate(date,data);
+    var cellDotColor=cellDot==='dot-great'?'var(--gold)':cellDot==='dot-major'?'rgba(184,131,40,.55)':cellDot==='dot-fast'?'var(--verdigris)':'transparent';
+    if(cellDot!=='dot-none') html+='<span class="cg-dot" style="background:'+cellDotColor+'"></span>';
     if(short) html+='<span class="cg-feast-txt'+(isMajor?' cg-major':isSaint?' cg-saint':'')+'">'+(isMajor?'&#9830; ':'')+short+'</span>';
     if(sun) html+='<span class="cg-svc-lbl">Liturgy 9:30</span>';
     if(sat&&!sun) html+='<span class="cg-svc-lbl">Vespers 5:00</span>';
