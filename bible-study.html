@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Bible Study · Saints Peter &amp; Paul Orthodox Cathedral</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{--vellum:#F6F1E8;--vellum-mid:#EDE7DC;--vellum-alt:#E8E0D0;--text:#1E1510;--ink:#2C1F16;--maroon:#7B1D2A;--maroon-deep:#5C1520;--gold:#B88328;--gold-lt:#E8C97A;--verdigris:#3D6B5E;--stone:#7A6648;--stone-lt:#A89070;--apse:#3B0F18;--f-display:'Cormorant Garamond',Georgia,serif;--f-body:'EB Garamond',Georgia,serif;--f-ui:'Cinzel',Georgia,serif;--rule:1px solid var(--maroon);--rule-faint:1px solid rgba(123,29,42,0.14);--rule-hair:1px solid rgba(123,29,42,0.07);--rule-gold:1px solid rgba(184,131,40,.30)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--vellum);color:var(--text);font-family:var(--f-body);font-size:21px;line-height:1.75;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+
+/* PRIMITIVES */
+.rubric{display:block;font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.20em;text-transform:uppercase;color:var(--stone);margin-bottom:.5rem}
+.rubric.light{color:rgba(246,241,232,.55)}
+.rubric-rule{display:block;height:1px;background:var(--maroon);margin-bottom:1rem;width:48px}
+.rubric-rule.gold{background:var(--gold)}
+.btn{display:inline-block;font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;padding:.85rem 2.2rem;border:1px solid currentColor;cursor:pointer;transition:all .22s;white-space:nowrap}
+.btn-maroon{color:var(--vellum);background:var(--maroon);border-color:var(--maroon)}
+.btn-maroon:hover{background:var(--maroon-deep);border-color:var(--maroon-deep)}
+.btn-outline{color:var(--maroon);border-color:var(--maroon)}
+.btn-outline:hover{background:var(--maroon);color:var(--vellum)}
+footer .btn-outline{color:rgba(246,241,232,.92);border-color:rgba(246,241,232,.55)}
+footer .btn-outline:hover{background:rgba(246,241,232,.15);color:#fff;border-color:rgba(246,241,232,.80)}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(246,241,232,.97);backdrop-filter:blur(10px);border-bottom:var(--rule-faint)}
+.nav-inner{max-width:1380px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px;padding:0 3rem}
+.nav-logo-name{font-family:var(--f-display);font-weight:500;font-size:1.25rem;color:var(--text);display:block}
+.nav-logo-sub{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);display:block}
+.nav-links{display:flex;align-items:center;list-style:none}
+.nav-links>li{position:relative}
+.nav-links>li>a{font-family:var(--f-ui);font-size:.78rem;letter-spacing:.10em;text-transform:uppercase;color:var(--ink);padding:1.1rem .85rem;display:block;transition:color .18s}
+.nav-links>li:hover>a{color:var(--maroon)}
+.nav-drop{position:absolute;top:100%;left:0;background:var(--vellum);border-top:2px solid var(--maroon);border-bottom:var(--rule-faint);border-left:var(--rule-faint);border-right:var(--rule-faint);min-width:200px;padding:.5rem 0;opacity:0;pointer-events:none;transform:translateY(-4px);transition:all .16s;box-shadow:0 8px 28px rgba(28,20,16,.10)}
+.nav-links>li:hover .nav-drop{opacity:1;pointer-events:all;transform:none}
+.nav-drop a{display:block;font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);padding:.5rem 1.4rem;transition:color .14s}
+.nav-drop a:hover{color:var(--maroon)}
+.nav-links .nav-active{color:var(--maroon)}
+.nav-links .nav-active-parent>a{color:var(--maroon);border-bottom:2px solid var(--gold)}
+.nav-drop .nav-active{color:var(--maroon);font-weight:600}
+.nav-give{font-family:var(--f-ui);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--vellum);background:var(--maroon);padding:.5rem 1.1rem;transition:background .2s}
+.nav-give:hover{background:var(--maroon-deep)}
+.nav-hamburger{display:none;flex-direction:column;justify-content:space-between;width:28px;height:20px;cursor:pointer;padding:0;background:none;border:none;z-index:400}
+.nav-hamburger span{display:block;width:100%;height:2px;background:var(--maroon);transition:all .28s ease;transform-origin:center}
+.nav-hamburger.open span:nth-child(1){transform:translateY(9px) rotate(45deg)}
+.nav-hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-9px) rotate(-45deg)}
+.nav-drawer{position:fixed;top:0;right:0;width:300px;max-width:85vw;height:100vh;background:var(--apse);z-index:350;transform:translateX(100%);transition:transform .32s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;overflow-y:auto}
+.nav-drawer.open{transform:translateX(0)}
+.nav-drawer-overlay{position:fixed;inset:0;background:rgba(21,8,4,.65);z-index:340;opacity:0;pointer-events:none;transition:opacity .32s}
+.nav-drawer-overlay.open{opacity:1;pointer-events:all}
+.nav-drawer-head{padding:1.5rem 1.75rem 1rem;border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:space-between}
+.nav-drawer-logo{font-family:var(--f-display);font-weight:500;font-size:1.1rem;color:#fff}
+.nav-drawer-logo span{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);display:block;margin-top:2px}
+.nav-drawer-close{width:32px;height:32px;background:rgba(255,255,255,.08);border:none;color:rgba(255,255,255,.65);cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.nav-drawer-close:hover{background:rgba(255,255,255,.15)}
+.nav-drawer-links{padding:1rem 0;flex:1}
+.nav-drawer-links a{display:block;font-family:var(--f-ui);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,232,.70);padding:.9rem 1.75rem;border-bottom:1px solid rgba(255,255,255,.05);transition:all .18s}
+.nav-drawer-links a:hover{color:#fff;background:rgba(255,255,255,.05)}
+.nav-drawer-links .drawer-section{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(184,131,40,.55);padding:.85rem 1.75rem .35rem;display:block}
+.nav-drawer-give{margin:1.25rem 1.75rem;display:block;text-align:center;font-family:var(--f-ui);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;padding:.85rem;background:var(--maroon);color:var(--vellum);transition:background .2s}
+.nav-drawer-give:hover{background:var(--maroon-deep)}
+
+/* PAGE HERO */
+.page-hero{padding-top:60px;background:linear-gradient(to right,rgba(59,15,24,1) 0%,rgba(59,15,24,.96) 38%,rgba(59,15,24,.72) 65%,rgba(59,15,24,.30) 100%),url('https://picsum.photos/id/1024/1600/500') center/cover no-repeat;background-color:var(--apse);min-height:380px;display:flex;align-items:flex-end;position:relative;overflow:hidden}
+.page-hero-inner{max-width:1380px;margin:0 auto;padding:3rem 4.5rem 3.5rem;width:100%}
+.page-title{font-family:var(--f-display);font-weight:300;font-size:clamp(2.4rem,5vw,4.2rem);line-height:.95;color:#fff;margin:.5rem 0 .75rem}
+.page-title em{font-style:italic}
+.page-subtitle{font-family:var(--f-display);font-style:italic;font-size:1.1rem;color:rgba(255,255,255,.62);margin-top:.5rem;max-width:520px}
+.breadcrumb{font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:.75rem}
+.breadcrumb a{color:rgba(232,201,122,.70)}
+.breadcrumb a:hover{color:var(--gold-lt)}
+
+/* CHAPTER BAR */
+.chapter-bar{background:var(--maroon);padding:.65rem 4rem;display:flex;align-items:center;justify-content:space-between}
+.cbar-text{font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:rgba(246,241,232,.60)}
+.cbar-text.bright{color:rgba(246,241,232,.90)}
+
+/* YEAR BAR */
+.year-bar{background:var(--vellum-mid);border-bottom:1px solid rgba(123,29,42,.10);padding:.6rem 4rem}
+.year-bar-inner{max-width:1520px;margin:0 auto;display:flex;align-items:center;gap:1rem}
+.year-bar-label{font-family:var(--f-ui);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone)}
+.yr-btns{display:flex}
+.yr-btn{font-family:var(--f-ui);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;padding:.38rem .9rem;border:1px solid rgba(123,29,42,.22);border-right:none;background:transparent;color:var(--stone);cursor:pointer;transition:all .18s}
+.yr-btn:last-child{border-right:1px solid rgba(123,29,42,.22)}
+.yr-btn.on{background:var(--maroon);border-color:var(--maroon);color:var(--vellum)}
+.yr-btn:first-child{border-radius:2px 0 0 2px}
+.yr-btn:last-child{border-radius:0 2px 2px 0}
+
+/* PAGE BODY GRID */
+.track-body{background:var(--vellum)}
+.page-body{max-width:1520px;margin:0 auto;padding:2.5rem 3rem 5rem;display:grid;grid-template-columns:72px 1fr 280px;gap:0 3.5rem}
+.main-col{min-width:0}
+.side-col{border-left:var(--rule-faint);padding-left:2.5rem}
+
+/* NAV PILL + BOTTOM SHEET */
+.nav-pill{display:none;position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);background:var(--apse);border:1px solid rgba(184,131,40,.20);border-radius:100px;padding:.5rem .85rem;z-index:150;align-items:center;gap:.5rem;box-shadow:0 6px 30px rgba(21,8,4,.38);opacity:0;pointer-events:none;transition:opacity .4s}
+.nav-pill.pill-visible{opacity:1;pointer-events:all}
+.pill-arrow{background:rgba(255,255,255,.06);border:none;color:rgba(246,241,232,.60);cursor:pointer;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:all .18s;flex-shrink:0;font-size:1.05rem}
+.pill-arrow:hover:not(:disabled){background:rgba(255,255,255,.14);color:#fff}
+.pill-arrow:disabled{opacity:.22;cursor:default}
+.pill-center{font-family:var(--f-ui);font-size:.56rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.80);padding:.3rem .75rem;display:flex;align-items:center;gap:.4rem;min-width:130px;justify-content:center;cursor:pointer;transition:color .18s;border:none;background:none}
+.pill-center:hover{color:#fff}
+.pill-center svg{flex-shrink:0}
+.sheet-overlay{display:none;position:fixed;inset:0;background:rgba(21,8,4,.60);z-index:300;opacity:0;transition:opacity .28s}
+.sheet-overlay.open{opacity:1;display:block}
+.era-sheet{position:fixed;bottom:0;left:0;right:0;background:var(--apse);z-index:310;border-top:1px solid rgba(184,131,40,.18);border-radius:18px 18px 0 0;transform:translateY(100%);transition:transform .32s cubic-bezier(.4,0,.2,1);max-height:78vh;display:none;flex-direction:column}
+.era-sheet.open{transform:translateY(0);display:flex}
+.sheet-handle{width:36px;height:4px;background:rgba(246,241,232,.18);border-radius:2px;margin:1rem auto .5rem;flex-shrink:0}
+.sheet-head{padding:.5rem 1.5rem 1rem;border-bottom:1px solid rgba(255,255,255,.06);flex-shrink:0;display:flex;align-items:center;justify-content:space-between}
+.sheet-title{font-family:var(--f-display);font-size:1.25rem;font-weight:500;color:#fff}
+.sheet-close{background:rgba(255,255,255,.06);border:none;color:rgba(246,241,232,.55);width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:.85rem;display:flex;align-items:center;justify-content:center;transition:background .18s}
+.sheet-close:hover{background:rgba(255,255,255,.14);color:#fff}
+.sheet-list{overflow-y:auto;flex:1;padding:.5rem 0 2.5rem;-webkit-overflow-scrolling:touch}
+.sheet-item{display:flex;align-items:center;gap:.85rem;padding:.75rem 1.5rem;border:none;background:none;width:100%;text-align:left;cursor:pointer;transition:background .16s;border-bottom:1px solid rgba(255,255,255,.04)}
+.sheet-item:hover{background:rgba(255,255,255,.05)}
+.sheet-item.sheet-active{background:rgba(123,29,42,.35)}
+.sheet-num{font-family:var(--f-ui);font-size:.55rem;letter-spacing:.10em;color:rgba(184,131,40,.55);width:28px;flex-shrink:0;text-align:right}
+.sheet-item.sheet-active .sheet-num{color:rgba(184,131,40,.90)}
+.sheet-name{font-family:var(--f-display);font-weight:400;font-size:1.05rem;color:rgba(246,241,232,.75);line-height:1.2}
+.sheet-item.sheet-active .sheet-name{color:#fff}
+.sheet-date{font-family:var(--f-ui);font-size:.55rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.30);display:block;margin-top:.15rem}
+
+/* LEFT RAIL */
+.left-col{border-right:var(--rule-faint);padding-right:0;display:flex;justify-content:center}
+.left-rail{position:sticky;top:80px;height:calc(100vh - 100px);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1rem 0;opacity:0;transition:opacity .4s;width:100%}
+.left-rail.rail-visible{opacity:1}
+.lr-connector{width:1px;background:rgba(123,29,42,.12);flex:1}
+.lr-item{display:flex;flex-direction:column;align-items:center;cursor:pointer;position:relative;padding:.18rem 0}
+.lr-dot-wrap{width:44px;display:flex;flex-direction:column;align-items:center;gap:6px}
+.lr-dot{width:6px;height:6px;border-radius:50%;border:1.5px solid rgba(123,29,42,.28);background:transparent;transition:all .28s cubic-bezier(.22,1,.36,1);flex-shrink:0}
+.lr-item.lr-active .lr-dot{background:var(--maroon);border-color:var(--maroon);width:8px;height:8px;box-shadow:0 0 0 3px rgba(123,29,42,.12)}
+.lr-num{font-family:var(--f-ui);font-size:.55rem;font-weight:600;letter-spacing:.04em;color:rgba(123,29,42,.28);display:block;transition:color .28s;line-height:1;text-align:center}
+.lr-item.lr-active .lr-num{color:var(--maroon)}
+.lr-label{position:absolute;left:calc(100% + 12px);top:50%;transform:translateY(-50%);background:var(--vellum);border:var(--rule-faint);border-left:2px solid var(--maroon);padding:.28rem .75rem;font-family:var(--f-ui);font-size:.58rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--maroon);white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .18s;box-shadow:0 2px 10px rgba(28,20,16,.08);z-index:50}
+.lr-item:hover .lr-label{opacity:1}
+
+/* STICKY SIDEBAR */
+.side-sticky{position:sticky;top:80px}
+
+/* SECTION HEADINGS */
+.era-head{display:flex;align-items:baseline;gap:1.25rem;margin:4rem 0 .5rem;flex-wrap:wrap}
+.era-date{font-family:var(--f-ui);font-size:.68rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--vellum);background:var(--maroon);padding:.25rem .75rem;white-space:nowrap;flex-shrink:0}
+.era-num{font-family:var(--f-display);font-weight:300;font-size:1rem;color:rgba(123,29,42,.40);flex-shrink:0}
+.section-head{font-family:var(--f-display);font-weight:400;font-size:clamp(1.6rem,2.5vw,2.3rem);color:var(--text);line-height:1.1;margin-bottom:.5rem}
+.section-rule{height:1px;background:var(--maroon);width:48px;margin:0 0 1.25rem}
+.book-desc{font-family:var(--f-body);font-size:.95rem;line-height:1.75;color:var(--stone);margin-bottom:1.25rem}
+
+/* SECTION DIVIDER */
+.sec-rule{border:none;border-top:var(--rule-faint);margin:3.5rem 0}
+
+/* YEAR ANCHOR */
+.year-anchor{display:block;height:0;visibility:hidden}
+
+/* SESSION TABLE */
+.session-table{width:100%;border-collapse:collapse;margin:1.5rem 0 2.5rem;font-size:1rem}
+.session-table thead tr{border-bottom:2px solid rgba(123,29,42,.18)}
+.session-table th{font-family:var(--f-ui);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);padding:.5rem .75rem .5rem 0;text-align:left;white-space:nowrap}
+.session-table tbody tr{border-bottom:var(--rule-hair);transition:background .14s}
+.session-table tbody tr:hover{background:var(--vellum-mid)}
+.session-table td{font-family:var(--f-body);font-size:.92rem;color:var(--ink);padding:.65rem .75rem .65rem 0;vertical-align:top;line-height:1.5}
+.sess-num{font-family:var(--f-ui);font-size:.62rem;color:var(--stone-lt);width:24px;white-space:nowrap}
+.sess-date{white-space:nowrap;min-width:110px;font-family:var(--f-ui);font-size:.68rem;letter-spacing:.06em;color:var(--stone)}
+.sess-content{color:var(--ink)}
+.sess-rec a{font-family:var(--f-ui);font-size:.60rem;letter-spacing:.10em;text-transform:uppercase;color:var(--maroon);border-bottom:1px solid rgba(123,29,42,.25);white-space:nowrap}
+.sess-rec a:hover{border-color:var(--maroon)}
+.sess-rec .rec-pass{display:block;font-family:var(--f-ui);font-size:.56rem;letter-spacing:.08em;color:var(--stone);margin-top:.2rem}
+.sess-rec .no-rec{color:var(--stone-lt);font-family:var(--f-ui);font-size:.60rem;letter-spacing:.06em}
+.book-zoom{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--f-ui);font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--maroon);border:1px solid rgba(123,29,42,.28);padding:.4rem 1rem;margin-bottom:1.5rem;transition:all .18s}
+.book-zoom:hover{background:var(--maroon);color:var(--vellum)}
+
+/* SIDEBAR */
+.side-section{margin-bottom:2.5rem;padding-bottom:2.5rem;border-bottom:var(--rule-faint)}
+.side-section:last-child{border-bottom:none}
+.side-head{font-family:var(--f-ui);font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.75rem}
+.side-list{list-style:none}
+.side-list li{font-family:var(--f-body);font-size:.94rem;color:var(--ink);padding:.4rem 0;border-bottom:var(--rule-hair)}
+.side-list li:last-child{border-bottom:none}
+.side-list strong{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--maroon);display:block;margin-bottom:.1rem}
+.era-mini{display:flex;align-items:center;gap:.65rem;padding:.55rem 0;border-bottom:var(--rule-hair);cursor:pointer;transition:color .18s}
+.era-mini:last-child{border-bottom:none}
+.era-mini:hover .era-mini-name{color:var(--maroon)}
+.era-mini-num{font-family:var(--f-display);font-weight:400;font-size:1rem;color:rgba(123,29,42,.38);width:22px;flex-shrink:0}
+.era-mini-name{font-family:var(--f-ui);font-size:.60rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--maroon);line-height:1.35;transition:color .18s}
+.era-mini:hover .era-mini-name{color:var(--maroon-deep)}
+.era-mini-date{font-family:var(--f-ui);font-size:.62rem;letter-spacing:.10em;text-transform:uppercase;color:var(--stone);display:block;margin-top:.15rem}
+.side-zoom-btn{display:block;text-align:center;font-family:var(--f-ui);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--vellum);background:var(--maroon);padding:.75rem 1rem;margin-bottom:1rem;transition:background .2s}
+.side-zoom-btn:hover{background:var(--maroon-deep)}
+.side-meta{font-family:var(--f-ui);font-size:.68rem;letter-spacing:.10em;text-transform:uppercase;color:var(--stone);line-height:2.1}
+.side-note{font-family:var(--f-body);font-size:.88rem;line-height:1.7;color:var(--stone)}
+
+/* FOOTER */
+footer{background:var(--apse);padding:4rem 4.5rem 2rem}
+.footer-cross{display:block;text-align:center;font-size:1.1rem;color:rgba(184,131,40,.45);letter-spacing:.8em;padding-left:.8em;margin-bottom:2.5rem}
+.footer-cols{max-width:1380px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:4rem;margin-bottom:2.5rem}
+.footer-col-head{font-family:var(--f-ui);font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(246,241,232,.82);display:block;margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid rgba(246,241,232,.18)}
+.footer-name{font-family:var(--f-display);font-weight:400;font-size:1.1rem;color:rgba(246,241,232,.88);line-height:1.3;margin-bottom:.75rem}
+.footer-meta{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.72);line-height:2.3}
+.footer-meta a{color:rgba(184,131,40,.85);transition:color .2s}
+.footer-meta a:hover{color:var(--gold)}
+.footer-nav{list-style:none;display:flex;flex-direction:column}
+.footer-nav li{padding:.35rem 0;border-bottom:1px solid rgba(246,241,232,.10)}
+.footer-nav li:last-child{border-bottom:none}
+.footer-nav a{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,232,.85);transition:color .2s}
+.footer-nav a:hover{color:rgba(246,241,232,.95)}
+.footer-blurb{font-family:var(--f-display);font-style:italic;font-size:.95rem;color:rgba(246,241,232,.85);line-height:1.65;margin-bottom:1.25rem}
+.footer-socials{display:flex;gap:1.5rem;margin-top:1.5rem}
+.footer-socials a{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,241,232,.65);transition:color .2s}
+.footer-socials a:hover{color:var(--gold)}
+.footer-bottom{max-width:1380px;margin:2rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(246,241,232,.12);display:flex;justify-content:space-between;align-items:center}
+.footer-copy,.footer-addr{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.60)}
+.footer-addr{text-align:right}
+
+/* RESPONSIVE */
+@media(max-width:1100px){
+  .nav-hamburger{display:flex}
+  .nav-links,.nav-give{display:none}
+  .page-body{grid-template-columns:1fr;gap:3rem;padding:3.5rem 2.5rem}
+  .left-col{display:none}
+  .side-col{border-left:none;border-top:var(--rule-faint);padding-left:0;padding-top:2.5rem}
+  .side-sticky{position:static}
+}
+@media(max-width:768px){
+  .page-hero-inner{padding:3rem 1.75rem}
+  .chapter-bar{padding:.65rem 1.75rem}
+  .page-body{padding:3rem 1.75rem}
+  .year-bar{padding:.5rem 1.75rem}
+  footer{padding:3rem 1.75rem 1.5rem}
+  .footer-cols{grid-template-columns:1fr;gap:2rem}
+  .footer-bottom{flex-direction:column;gap:.75rem;text-align:center}
+  .footer-addr{text-align:center}
+}
+</style>
+<link rel="stylesheet" href="/styles/typography.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" style="line-height:1.2"><span class="nav-logo-name">Sts. Peter &amp; Paul</span><span class="nav-logo-sub">Orthodox Cathedral · Jersey City</span></a>
+    <ul class="nav-links">
+      <li><a href="#">About Us &#9662;</a>
+        <div class="nav-drop">
+          <a href="/about-our-church">About Our Church</a>
+          <a href="/church-history">Church History</a>
+          <a href="/our-beliefs">Our Beliefs</a>
+          <a href="/administration">Administration</a>
+          <a href="/gallery">Gallery</a>
+        </div>
+      </li>
+      <li><a href="#">Inquirers &#9662;</a>
+        <div class="nav-drop">
+          <a href="/about-orthodoxy">About Orthodoxy</a>
+          <a href="/catechesis">Orthodox Catechesis</a>
+          <a href="/our-beliefs">Our Beliefs</a>
+          <a href="/videos">Videos</a>
+        </div>
+      </li>
+      <li><a href="/schedule">Calendar</a></li>
+      <li><a href="#">Bulletins &#9662;</a>
+        <div class="nav-drop">
+          <a href="/news">News</a>
+          <a href="/bulletins">Bulletins</a>
+        </div>
+      </li>
+      <li class="nav-active-parent"><a href="#">Resources &#9662;</a>
+        <div class="nav-drop">
+          <a href="/readings">Readings</a>
+          <a href="/videos">Videos</a>
+          <a href="/bible-study" class="nav-active" aria-current="page">Bible Study</a>
+          <a href="/cemeteries">Cemeteries</a>
+        </div>
+      </li>
+      <li><a href="/contact-us">Contact</a></li>
+    </ul>
+    <a href="https://tithe.ly/give?c=5004259" target="_blank" class="nav-give">Give</a>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" onclick="openDrawer()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<div class="nav-drawer-overlay" id="nav-overlay" onclick="closeDrawer()"></div>
+<div class="nav-drawer" id="nav-drawer">
+  <div class="nav-drawer-head">
+    <div class="nav-drawer-logo">Sts. Peter &amp; Paul<span>Orthodox Cathedral · Jersey City</span></div>
+    <button class="nav-drawer-close" onclick="closeDrawer()">&#10005;</button>
+  </div>
+  <div class="nav-drawer-links">
+    <span class="drawer-section">About</span>
+    <a href="/about-our-church">About Our Church</a>
+    <a href="/church-history">Church History</a>
+    <a href="/our-beliefs">Our Beliefs</a>
+    <a href="/administration">Administration</a>
+    <span class="drawer-section">Inquirers</span>
+    <a href="/about-orthodoxy">About Orthodoxy</a>
+    <a href="/catechesis">Orthodox Catechesis</a>
+    <a href="/our-beliefs">Our Beliefs</a>
+    <span class="drawer-section">Visit &amp; Worship</span>
+    <a href="/schedule">Liturgical Calendar</a>
+    <a href="/readings">Daily Readings</a>
+    <a href="/videos">Videos</a>
+    <span class="drawer-section">Resources</span>
+    <a href="/bible-study">Bible Study</a>
+    <a href="/cemeteries">Cemeteries</a>
+    <span class="drawer-section">Parish Life</span>
+    <a href="/gallery">Gallery</a>
+    <a href="/bulletins">Bulletins</a>
+    <a href="/news">News &amp; Announcements</a>
+    <span class="drawer-section">Contact</span>
+    <a href="/contact-us">Contact Us</a>
+  </div>
+  <a href="https://tithe.ly/give?c=5004259" target="_blank" class="nav-drawer-give">Give Online</a>
+</div>
+
+<!-- NAV PILL -->
+<div class="nav-pill" id="navPill">
+  <button class="pill-arrow" id="pillPrev" onclick="pillNav(-1)" aria-label="Previous book"><svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 7.5L5.5 4L9 7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  <button class="pill-center" onclick="openSheet()">
+    <svg width="11" height="11" viewBox="0 0 24 24" fill="rgba(184,131,40,.75)"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+    <span id="pillLabel">1 Peter</span>
+  </button>
+  <button class="pill-arrow" id="pillNext" onclick="pillNav(1)" aria-label="Next book"><svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 3.5L5.5 7L9 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+</div>
+
+<!-- BOTTOM SHEET -->
+<div class="sheet-overlay" id="sheetOverlay" onclick="closeSheet()"></div>
+<div class="era-sheet" id="eraSheet">
+  <div class="sheet-handle"></div>
+  <div class="sheet-head">
+    <span class="sheet-title">Books Studied</span>
+    <button class="sheet-close" onclick="closeSheet()">&#10005;</button>
+  </div>
+  <div class="sheet-list">
+    <button class="sheet-item sheet-active" data-sheet-id="book-1" onclick="sheetJump('book-1')"><span class="sheet-num">I</span><span class="sheet-name">1 Peter<span class="sheet-date">Aug – Dec 2024</span></span></button>
+    <button class="sheet-item" data-sheet-id="book-2" onclick="sheetJump('book-2')"><span class="sheet-num">II</span><span class="sheet-name">Wisdom of Solomon<span class="sheet-date">Jan – Apr 2025</span></span></button>
+    <button class="sheet-item" data-sheet-id="book-3" onclick="sheetJump('book-3')"><span class="sheet-num">III</span><span class="sheet-name">Galatians<span class="sheet-date">Apr – Jul 2025</span></span></button>
+    <button class="sheet-item" data-sheet-id="book-4" onclick="sheetJump('book-4')"><span class="sheet-num">IV</span><span class="sheet-name">2 John<span class="sheet-date">Aug – Sep 2025</span></span></button>
+    <button class="sheet-item" data-sheet-id="book-5" onclick="sheetJump('book-5')"><span class="sheet-num">V</span><span class="sheet-name">Genesis<span class="sheet-date">Oct – Dec 2025</span></span></button>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <p class="breadcrumb"><a href="/">Home</a> &middot; <a href="/readings">Resources</a> &middot; Bible Study</p>
+    <span class="rubric light">Wednesday Evening</span>
+    <div class="rubric-rule gold"></div>
+    <h1 class="page-title">Bible<br><em>Study</em></h1>
+    <p class="page-subtitle">A weekly study of Scripture with Fr. Solomon, open to all adults and teens. Wednesdays at 8:00 PM.</p>
+  </div>
+</div>
+
+<div id="track-study" class="track-body">
+  <!-- CHAPTER BAR -->
+  <div class="chapter-bar">
+    <span class="cbar-text bright">Wednesday Bible Study</span>
+    <span class="cbar-text">2024 &ndash; 2025 &middot; Five Books Studied</span>
+  </div>
+
+  <!-- YEAR BAR -->
+  <div class="year-bar">
+    <div class="year-bar-inner">
+      <span class="year-bar-label">Jump to year:</span>
+      <div class="yr-btns">
+        <button class="yr-btn on" id="yr-2024" onclick="scrollToYear('year-2024','yr-2024')">2024</button>
+        <button class="yr-btn" id="yr-2025" onclick="scrollToYear('year-2025','yr-2025')">2025</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-body">
+
+    <!-- LEFT RAIL -->
+    <div class="left-col">
+      <nav class="left-rail" id="leftRail" aria-label="Books studied">
+        <div class="lr-connector"></div>
+        <div class="lr-item lr-active" onclick="scrollToSection('book-1')">
+          <div class="lr-dot-wrap"><span class="lr-dot"></span><span class="lr-num">I</span></div>
+          <span class="lr-label">1 Peter</span>
+        </div>
+        <div class="lr-connector"></div>
+        <div class="lr-item" onclick="scrollToSection('book-2')">
+          <div class="lr-dot-wrap"><span class="lr-dot"></span><span class="lr-num">II</span></div>
+          <span class="lr-label">Wisdom of Solomon</span>
+        </div>
+        <div class="lr-connector"></div>
+        <div class="lr-item" onclick="scrollToSection('book-3')">
+          <div class="lr-dot-wrap"><span class="lr-dot"></span><span class="lr-num">III</span></div>
+          <span class="lr-label">Galatians</span>
+        </div>
+        <div class="lr-connector"></div>
+        <div class="lr-item" onclick="scrollToSection('book-4')">
+          <div class="lr-dot-wrap"><span class="lr-dot"></span><span class="lr-num">IV</span></div>
+          <span class="lr-label">2 John</span>
+        </div>
+        <div class="lr-connector"></div>
+        <div class="lr-item" onclick="scrollToSection('book-5')">
+          <div class="lr-dot-wrap"><span class="lr-dot"></span><span class="lr-num">V</span></div>
+          <span class="lr-label">Genesis</span>
+        </div>
+        <div class="lr-connector"></div>
+      </nav>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-col">
+
+      <!-- BOOK I: 1 PETER -->
+      <span class="year-anchor" id="year-2024"></span>
+      <div id="book-1">
+        <div class="era-head">
+          <span class="era-date">Aug &ndash; Dec 2024</span>
+          <span class="era-num">I</span>
+        </div>
+        <h2 class="section-head">1 Peter</h2>
+        <div class="section-rule"></div>
+        <p class="book-desc">The First Epistle of Peter addresses Christians living as strangers in the world, calling them to holy conduct, patient suffering, and hope in the resurrection. Studied verse by verse with patristic commentary.</p>
+        <a class="book-zoom" href="https://us06web.zoom.us/j/85142689768?pwd=iUltr8RBPhOKncAxl6aAht3iNg7Ssp.1" target="_blank">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17 10.5V7a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+          Join on Zoom
+        </a>
+        <table class="session-table">
+          <thead>
+            <tr>
+              <th class="sess-num">#</th>
+              <th class="sess-date">Date</th>
+              <th>Content</th>
+              <th>Recording</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="sess-num">1</td><td class="sess-date">Aug 7, 2024</td><td class="sess-content">1 Peter: beginning of study</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
+            <tr><td class="sess-num">2</td><td class="sess-date">Aug 14, 2024</td><td class="sess-content">1 Peter (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
+            <tr><td class="sess-num">3</td><td class="sess-date">Aug 21, 2024</td><td class="sess-content">1 Peter (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
+            <tr><td class="sess-num">4</td><td class="sess-date">Aug 28, 2024</td><td class="sess-content">1 Peter (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
+            <tr><td class="sess-num">5</td><td class="sess-date">Sep 11, 2024</td><td class="sess-content">1 Peter, chapter 2</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
+            <tr><td class="sess-num">6</td><td class="sess-date">Sep 18, 2024</td><td class="sess-content">1 Peter (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
+            <tr><td class="sess-num">7</td><td class="sess-date">Sep 25, 2024</td><td class="sess-content">1 Peter (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
+            <tr><td class="sess-num">8</td><td class="sess-date">Oct 10, 2024</td><td class="sess-content">1 Peter, chapter 3: Marriage</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
+            <tr>
+              <td class="sess-num">9</td>
+              <td class="sess-date">Oct 16, 2024</td>
+              <td class="sess-content">1 Peter, chapter 3: Marriage</td>
+              <td class="sess-rec">
+                <a href="https://us06web.zoom.us/rec/share/W5678p_L8QByNBlGBA-wHLMFVMZyD987AB2sXEjFlmdLE0V1RZe4crFJsE257wfv.k0pBzmONOGGun2v7?startTime=1729123594000" target="_blank">Watch Recording</a>
+                <span class="rec-pass">Passcode: 0T+MEG!1</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="sess-num">10</td>
+              <td class="sess-date">Oct 23, 2024</td>
+              <td class="sess-content">1 Peter (continued)</td>
+              <td class="sess-rec">
+                <a href="https://us06web.zoom.us/rec/play/FBhfrQTPWKYtpeCNGbeEfVBz7PXhHPa2ifw5S45q10DhjLStqrlYss2_L8SgmlhYYBCDmOqRgwhTE5nj.YQ3kdiuR5i70QvYF" target="_blank">Watch Recording</a>
+                <span class="rec-pass">Passcode: 7Z%g@&amp;x*</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="sess-num">11</td>
+              <td class="sess-date">Oct 30, 2024</td>
+              <td class="sess-content">1 Peter (continued)</td>
+              <td class="sess-rec">
+                <a href="https://us06web.zoom.us/rec/share/mrKfv0kea2kKYg5I7aSj5HqH6-6D5AoywR2HK5ZwTehoj7HE6ivsvAzAsOpHH9Om.yjdEWjnhIIQxvKmG?startTime=1730332919000" target="_blank">Watch Recording</a>
+                <span class="rec-pass">Passcode: *!Mc5DPa</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="sess-num">12</td>
+              <td class="sess-date">Nov 6, 2024</td>
+              <td class="sess-content">1 Peter (continued): Baptism</td>
+              <td class="sess-rec">
+                <a href="https://us06web.zoom.us/rec/share/zZj1BVuthZuCf7YDtOEmuosSgRHqdQcrDkwDB3YtuQyKN9ok-M0jQJQeAXBWNkoa.SJGb7J2BVm3Rm1FO?startTime=1730941474000" target="_blank">Watch Recording</a>
+                <span class="rec-pass">Passcode: y&amp;E.y7$4</span>
+              </td>
+            </tr>
+            <tr><td class="sess-num">13</td><td class="sess-date">Nov 13, 2024</td><td class="sess-content">1 Peter (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
+            <tr><td class="sess-num">14</td><td class="sess-date">Nov 20, 2024</td><td class="sess-content">1 Peter (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
+            <tr><td class="sess-num">15</td><td class="sess-date">Dec 9, 2024</td><td class="sess-content">1 Peter: final session</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
+          </tbody>
+        </table>
+      </div><!-- end book-1 -->
+
+      <hr class="sec-rule">
+
+      <!-- BOOK II: WISDOM OF SOLOMON -->
+      <span class="year-anchor" id="year-2025"></span>
+      <div id="book-2">
+        <div class="era-head">
+          <span class="era-date">Jan &ndash; Apr 2025</span>
+          <span class="era-num">II</span>
+        </div>
+        <h2 class="section-head">Wisdom of Solomon</h2>
+        <div class="section-rule"></div>
+        <p class="book-desc">A deuterocanonical book of the Old Testament, the Wisdom of Solomon meditates on divine wisdom, the nature of the righteous soul, and God's guidance of Israel. Cherished by the Church Fathers and read at many Orthodox services.</p>
+        <a class="book-zoom" href="https://us06web.zoom.us/j/85142689768?pwd=iUltr8RBPhOKncAxl6aAht3iNg7Ssp.1" target="_blank">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17 10.5V7a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+          Join on Zoom
+        </a>
+        <table class="session-table">
+          <thead>
+            <tr>
+              <th class="sess-num">#</th>
+              <th class="sess-date">Date</th>
+              <th>Content</th>
+              <th>Recording</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="sess-num">1</td>
+              <td class="sess-date">Jan 15, 2025</td>
+              <td class="sess-content">Wisdom of Solomon: beginning of study</td>
+              <td class="sess-rec">
+                <a href="https://us06web.zoom.us/rec/share/RvomEGTIktQG9TtKbhU7kfVaol2UYC3OJRjSAREEZ6UPvJjs1IfFGrQUXG--Ajtr.6-oSRssJSR147uCt?startTime=1736989410000" target="_blank">Watch Recording</a>
+                <span class="rec-pass">Passcode: %fpcy14h</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="sess-num">2</td>
+              <td class="sess-date">Jan 22, 2025</td>
+              <td class="sess-content">Wisdom of Solomon, chapters 1–2</td>
+              <td class="sess-rec">
+                <a href="https://us06web.zoom.us/rec/share/tysw84ePtna16dXGNnbONjjj-aQfKxhZWcqgOaBSmthXQRp-fNQerPhSeagaiape.bgAAn9EhrYEb8XXX?startTime=1737594198000" target="_blank">Watch Recording</a>
+                <span class="rec-pass">Passcode: z=0B6=kE</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="sess-num">3</td>
+              <td class="sess-date">Jan 29, 2025</td>
+              <td class="sess-content">Wisdom of Solomon, chapters 1–2</td>
+              <td class="sess-rec">
+                <a href="https://us06web.zoom.us/rec/share/KF7v1RphjybkCoWblAsCnhHCcsmQYcBR3r3GIROnEPO0UiznrDy55crVi9eXFOMg.u-9o3Y78C8yMnlZP?startTime=1738199789000" target="_blank">Watch Recording</a>
+                <span class="rec-pass">Passcode: zj373h=5</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="sess-num">4</td>
+              <td class="sess-date">Feb 5, 2025</td>
+              <td class="sess-content">Wisdom of Solomon (continued)</td>
+              <td class="sess-rec">
+                <a href="https://us06web.zoom.us/rec/share/3qn8oW5O3y6RaBWENWqIuAu9P3iMQlhukGeGG9zCX9a_-u383h9hJiIzyW5LWqR-.Vb_X9i9SfS1oKttd?startTime=1738803826000" target="_blank">Watch Recording</a>
+                <span class="rec-pass">Passcode: *w3?bK#r</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="sess-num">5</td>
+              <td class="sess-date">Feb 12, 2025</td>
+              <td class="sess-content">Wisdom of Solomon (continued)</td>
+              <td class="sess-rec">
+                <a href="https://us06web.zoom.us/rec/share/zYZ7JTBglKgKxJlD1mNVcidstbJhrQsNKfnlkT2C-JCxNfbMEQ5KLFJ-m3WLAGnS.DnGguh5QH5LiZPiz?startTime=1739408677000" target="_blank">Watch Recording</a>
+                <span class="rec-pass">Passcode: @G2wE.5=</span>
+              </td>
+            </tr>
+            <tr><td class="sess-num">6</td><td class="sess-date">Feb 19, 2025</td><td class="sess-content">Wisdom of Solomon (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
+            <tr><td class="sess-num">7</td><td class="sess-date">Mar 5, 2025</td><td class="sess-content">Wisdom of Solomon, chapters 10–11</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
+            <tr><td class="sess-num">8</td><td class="sess-date">Mar 12, 2025</td><td class="sess-content">Wisdom of Solomon, chapters 12–14</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
+            <tr><td class="sess-num">9</td><td class="sess-date">Mar 19, 2025</td><td class="sess-content">Wisdom of Solomon (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
+            <tr><td class="sess-num">10</td><td class="sess-date">Mar 26, 2025</td><td class="sess-content">Wisdom of Solomon (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
+            <tr><td class="sess-num">11</td><td class="sess-date">Apr 2, 2025</td><td class="sess-content">Wisdom of Solomon: final session</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
+          </tbody>
+        </table>
+      </div><!-- end book-2 -->
+
+      <hr class="sec-rule">
+
+      <!-- BOOK III: GALATIANS -->
+      <div id="book-3">
+        <div class="era-head">
+          <span class="era-date">Apr &ndash; Jul 2025</span>
+          <span class="era-num">III</span>
+        </div>
+        <h2 class="section-head">Galatians</h2>
+        <div class="section-rule"></div>
+        <p class="book-desc">St. Paul's letter to the Galatians defends the Gospel of grace against those who would add legal requirements to faith, and sets out the fruit of the Holy Spirit as the mark of life in Christ. A foundational text for understanding Paul's theology.</p>
+        <a class="book-zoom" href="https://us06web.zoom.us/j/85142689768?pwd=iUltr8RBPhOKncAxl6aAht3iNg7Ssp.1" target="_blank">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17 10.5V7a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+          Join on Zoom
+        </a>
+        <table class="session-table">
+          <thead>
+            <tr>
+              <th class="sess-num">#</th>
+              <th class="sess-date">Date</th>
+              <th>Content</th>
+              <th>Recording</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="sess-num">1</td><td class="sess-date">Apr 30, 2025</td><td class="sess-content">Galatians: beginning of study</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
+            <tr><td class="sess-num">2</td><td class="sess-date">May 28, 2025</td><td class="sess-content">Galatians (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
+            <tr><td class="sess-num">3</td><td class="sess-date">May 31, 2025</td><td class="sess-content">Galatians (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
+            <tr><td class="sess-num">4</td><td class="sess-date">Jun 18, 2025</td><td class="sess-content">Galatians (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
+            <tr><td class="sess-num">5</td><td class="sess-date">Jun 25, 2025</td><td class="sess-content">Galatians (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
+            <tr><td class="sess-num">6</td><td class="sess-date">Jul 2, 2025</td><td class="sess-content">Galatians (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
+            <tr><td class="sess-num">7</td><td class="sess-date">Jul 10, 2025</td><td class="sess-content">Galatians, chapter 4</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
+            <tr><td class="sess-num">8</td><td class="sess-date">Jul 17, 2025</td><td class="sess-content">Galatians (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
+            <tr><td class="sess-num">9</td><td class="sess-date">Jul 23, 2025</td><td class="sess-content">Galatians (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
+            <tr><td class="sess-num">10</td><td class="sess-date">Jul 30, 2025</td><td class="sess-content">Galatians (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
+          </tbody>
+        </table>
+      </div><!-- end book-3 -->
+
+      <hr class="sec-rule">
+
+      <!-- BOOK IV: 2 JOHN -->
+      <div id="book-4">
+        <div class="era-head">
+          <span class="era-date">Aug &ndash; Sep 2025</span>
+          <span class="era-num">IV</span>
+        </div>
+        <h2 class="section-head">2 John</h2>
+        <div class="section-rule"></div>
+        <p class="book-desc">The Second Epistle of John is one of the shortest books in the New Testament: thirteen verses addressed to the "elect lady" and her children. The group spent several sessions working through every verse, drawing on patristic commentary.</p>
+        <a class="book-zoom" href="https://us06web.zoom.us/j/85142689768?pwd=iUltr8RBPhOKncAxl6aAht3iNg7Ssp.1" target="_blank">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17 10.5V7a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+          Join on Zoom
+        </a>
+        <table class="session-table">
+          <thead>
+            <tr>
+              <th class="sess-num">#</th>
+              <th class="sess-date">Date</th>
+              <th>Content</th>
+              <th>Recording</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="sess-num">1</td><td class="sess-date">Aug 6, 2025</td><td class="sess-content">2 John: beginning of study</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
+            <tr><td class="sess-num">2</td><td class="sess-date">Aug 20, 2025</td><td class="sess-content">2 John, all 13 verses</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
+            <tr><td class="sess-num">3</td><td class="sess-date">Aug 27, 2025</td><td class="sess-content">2 John: finishing</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
+            <tr><td class="sess-num">4</td><td class="sess-date">Sep 11, 2025</td><td class="sess-content">2 John (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
+          </tbody>
+        </table>
+      </div><!-- end book-4 -->
+
+      <hr class="sec-rule">
+
+      <!-- BOOK V: GENESIS -->
+      <div id="book-5">
+        <div class="era-head">
+          <span class="era-date">Oct &ndash; Dec 2025</span>
+          <span class="era-num">V</span>
+        </div>
+        <h2 class="section-head">Genesis</h2>
+        <div class="section-rule"></div>
+        <p class="book-desc">The book of beginnings: creation, the fall, the flood, and the call of Abraham. The group approaches Genesis with the Church Fathers as guides, reading it alongside Orthodox patristic commentary on creation and human nature.</p>
+        <a class="book-zoom" href="https://us06web.zoom.us/j/85142689768?pwd=iUltr8RBPhOKncAxl6aAht3iNg7Ssp.1" target="_blank">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17 10.5V7a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+          Join on Zoom
+        </a>
+        <table class="session-table">
+          <thead>
+            <tr>
+              <th class="sess-num">#</th>
+              <th class="sess-date">Date</th>
+              <th>Content</th>
+              <th>Recording</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="sess-num">1</td><td class="sess-date">Oct 1, 2025</td><td class="sess-content">Genesis: beginning of study</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
+            <tr><td class="sess-num">2</td><td class="sess-date">Oct 8, 2025</td><td class="sess-content">Genesis (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
+            <tr><td class="sess-num">3</td><td class="sess-date">Oct 15, 2025</td><td class="sess-content">Genesis (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
+            <tr><td class="sess-num">4</td><td class="sess-date">Nov 5, 2025</td><td class="sess-content">Genesis, chapters 1–2</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
+            <tr><td class="sess-num">5</td><td class="sess-date">Nov 12, 2025</td><td class="sess-content">Genesis, chapter 2</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
+            <tr><td class="sess-num">6</td><td class="sess-date">Nov 19, 2025</td><td class="sess-content">Genesis (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
+            <tr><td class="sess-num">7</td><td class="sess-date">Dec 3, 2025</td><td class="sess-content">Genesis (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
+            <tr><td class="sess-num">8</td><td class="sess-date">Dec 10, 2025</td><td class="sess-content">Genesis, chapters 4–5</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
+            <tr><td class="sess-num">9</td><td class="sess-date">Dec 17, 2025</td><td class="sess-content">Genesis (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
+          </tbody>
+        </table>
+      </div><!-- end book-5 -->
+
+      <div style="margin-top:3rem;background:var(--apse);padding:2.25rem 2.5rem;border-top:2px solid var(--gold)">
+        <span style="font-family:var(--f-ui);font-size:.65rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:rgba(184,131,40,.85);display:block;margin-bottom:.6rem">During Catechesis Season</span>
+        <p style="font-family:var(--f-body);font-size:.96rem;line-height:1.78;color:rgba(246,241,232,.82);margin-bottom:1.25rem">Bible Study pauses each year when the Catechesis series begins, typically in January and running through Holy Week. During that period, Wednesday evenings shift to formal instruction for those entering the Church and anyone who wishes to join. Bible Study resumes after Pascha.</p>
+        <a href="/catechesis-series" style="font-family:var(--f-ui);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--vellum);background:rgba(184,131,40,.18);border:1px solid rgba(184,131,40,.40);padding:.5rem 1.2rem;display:inline-block;transition:background .2s">View the Catechesis Series &rsaquo;</a>
+      </div>
+
+    </main>
+
+    <!-- SIDEBAR -->
+    <aside class="side-col">
+      <div class="side-sticky">
+
+        <div class="side-section">
+          <span class="side-head">Books Studied</span>
+          <div style="list-style:none;padding:0">
+            <div class="era-mini" onclick="scrollToSection('book-1')">
+              <span class="era-mini-num">I</span>
+              <div><span class="era-mini-name">1 Peter</span><span class="era-mini-date">Aug – Dec 2024</span></div>
+            </div>
+            <div class="era-mini" onclick="scrollToSection('book-2')">
+              <span class="era-mini-num">II</span>
+              <div><span class="era-mini-name">Wisdom of Solomon</span><span class="era-mini-date">Jan – Apr 2025</span></div>
+            </div>
+            <div class="era-mini" onclick="scrollToSection('book-3')">
+              <span class="era-mini-num">III</span>
+              <div><span class="era-mini-name">Galatians</span><span class="era-mini-date">Apr – Jul 2025</span></div>
+            </div>
+            <div class="era-mini" onclick="scrollToSection('book-4')">
+              <span class="era-mini-num">IV</span>
+              <div><span class="era-mini-name">2 John</span><span class="era-mini-date">Aug – Sep 2025</span></div>
+            </div>
+            <div class="era-mini" onclick="scrollToSection('book-5')">
+              <span class="era-mini-num">V</span>
+              <div><span class="era-mini-name">Genesis</span><span class="era-mini-date">Oct – Dec 2025</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="side-section">
+          <span class="side-head">Join Bible Study</span>
+          <a class="side-zoom-btn" href="https://us06web.zoom.us/j/85142689768?pwd=iUltr8RBPhOKncAxl6aAht3iNg7Ssp.1" target="_blank">Join on Zoom</a>
+          <p class="side-note">Open to all. No registration required. Use the link above each Wednesday evening.</p>
+        </div>
+
+        <div class="side-section">
+          <span class="side-head">Session Time</span>
+          <p class="side-meta">Wednesdays &middot; 8:00 PM<br>Via Zoom</p>
+        </div>
+
+        <div class="side-section">
+          <span class="side-head">About</span>
+          <p class="side-note">Open to all adults and teens. No preparation required. Each book is studied verse by verse with patristic commentary.</p>
+        </div>
+
+        <div class="side-section">
+          <span class="side-head">During Catechesis Season</span>
+          <p class="side-note">Bible Study pauses each year while the Catechesis series is in session, typically January through April. The two programs run in alternating seasons.</p>
+          <a href="/catechesis-series" style="display:inline-block;margin-top:.75rem;font-family:var(--f-ui);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--maroon);border-bottom:1px solid rgba(123,29,42,.28);padding-bottom:.1rem;transition:border-color .18s">View Catechesis Series &rsaquo;</a>
+        </div>
+
+      </div>
+    </aside>
+
+  </div><!-- end page-body -->
+</div><!-- end track-study -->
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-cross">+ + +</span>
+  <div class="footer-cols">
+    <div>
+      <span class="footer-col-head">Saints Peter &amp; Paul Orthodox Cathedral</span>
+      <p class="footer-name">Sts. Peter &amp; Paul<br>Orthodox Cathedral</p>
+      <p class="footer-meta">
+        Diocese of New York &amp; New Jersey<br>
+        <a href="https://nynjoca.org" target="_blank">nynjoca.org</a><br>
+        Orthodox Church in America<br>
+        <a href="https://oca.org" target="_blank">oca.org</a>
+      </p>
+      <div class="footer-socials">
+        <a href="#" target="_blank">Facebook</a>
+        <a href="#" target="_blank">Instagram</a>
+      </div>
+    </div>
+    <div>
+      <span class="footer-col-head">Navigate</span>
+      <ul class="footer-nav">
+        <li><a href="/about-our-church">About Our Church</a></li>
+        <li><a href="/church-history">Church History</a></li>
+        <li><a href="/about-orthodoxy">About Orthodoxy</a></li>
+        <li><a href="/catechesis">Orthodox Catechesis</a></li>
+        <li><a href="/our-beliefs">Our Beliefs</a></li>
+        <li><a href="/schedule">Liturgical Calendar</a></li>
+        <li><a href="/readings">Daily Readings</a></li>
+        <li><a href="/bible-study">Bible Study</a></li>
+        <li><a href="/bulletins">Bulletins</a></li>
+        <li><a href="/contact-us">Contact Us</a></li>
+      </ul>
+    </div>
+    <div>
+      <span class="footer-col-head">Visit Us</span>
+      <p class="footer-blurb">Whether you are visiting for the first time or wondering about taking the next step in the faith, you are welcome here.</p>
+      <a href="/contact-us" class="btn btn-outline" style="margin-bottom:2rem;display:inline-block">Contact the Parish</a>
+      <span class="footer-col-head" style="margin-top:.5rem">Service Times</span>
+      <p class="footer-meta" style="line-height:2.4">
+        Vespers · Saturdays 5:00 PM<br>
+        Divine Liturgy · Sundays 9:30 AM<br>
+        Bible Study · Wednesdays 8:00 PM
+      </p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">&copy; Saints Peter &amp; Paul Orthodox Cathedral. All Rights Reserved.</p>
+    <p class="footer-addr">109 Grand Street &middot; Jersey City, NJ 07302 &middot; (201) 434-1986</p>
+  </div>
+</footer>
+
+<script>
+/* ── MOBILE DRAWER ─────────────────────────────────── */
+function openDrawer(){document.getElementById('nav-drawer').classList.add('open');document.getElementById('nav-overlay').classList.add('open');document.getElementById('nav-hamburger').classList.add('open')}
+function closeDrawer(){document.getElementById('nav-drawer').classList.remove('open');document.getElementById('nav-overlay').classList.remove('open');document.getElementById('nav-hamburger').classList.remove('open')}
+
+/* ── SECTIONS ─────────────────────────────────────── */
+var SECTIONS = [
+  { id: 'book-1', label: '1 Peter' },
+  { id: 'book-2', label: 'Wisdom of Solomon' },
+  { id: 'book-3', label: 'Galatians' },
+  { id: 'book-4', label: '2 John' },
+  { id: 'book-5', label: 'Genesis' },
+];
+
+var activeIdx = 0;
+
+function scrollToSection(id) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  var top = el.getBoundingClientRect().top + window.scrollY - 84;
+  window.scrollTo({ top: top, behavior: 'smooth' });
+}
+
+function pillNav(dir) {
+  var next = Math.max(0, Math.min(SECTIONS.length - 1, activeIdx + dir));
+  scrollToSection(SECTIONS[next].id);
+}
+
+function setActive(idx) {
+  activeIdx = idx;
+  /* Left rail */
+  document.querySelectorAll('.lr-item').forEach(function(el, i){ el.classList.toggle('lr-active', i === idx); });
+  /* Pill label + arrows */
+  var lbl = document.getElementById('pillLabel');
+  if (lbl) lbl.textContent = SECTIONS[idx].label;
+  var prev = document.getElementById('pillPrev');
+  var next = document.getElementById('pillNext');
+  if (prev) prev.disabled = idx === 0;
+  if (next) next.disabled = idx === SECTIONS.length - 1;
+  /* Sheet active row */
+  document.querySelectorAll('.sheet-item').forEach(function(btn){
+    btn.classList.toggle('sheet-active', btn.dataset.sheetId === SECTIONS[idx].id);
+  });
+  /* Year picker active state */
+  var yr2025Idx = 1; /* book-2 is the first 2025 book */
+  var isIn2025 = idx >= yr2025Idx;
+  document.querySelectorAll('.yr-btn').forEach(function(b){ b.classList.remove('on'); });
+  var activeYrBtn = document.getElementById(isIn2025 ? 'yr-2025' : 'yr-2024');
+  if (activeYrBtn) activeYrBtn.classList.add('on');
+}
+
+function updateNav() {
+  var leftRail = document.getElementById('leftRail');
+  var pill = document.getElementById('navPill');
+  var trackEl = document.getElementById('track-study');
+  if (!trackEl) return;
+
+  var heroEl = document.querySelector('.page-hero');
+  var inTrack = !heroEl || heroEl.getBoundingClientRect().bottom < window.innerHeight * 0.6;
+  if (leftRail) leftRail.classList.toggle('rail-visible', inTrack);
+
+  var footer = document.querySelector('footer');
+  var nearFooter = footer && footer.getBoundingClientRect().top < window.innerHeight - 20;
+  if (pill) {
+    pill.style.display = 'flex';
+    pill.classList.toggle('pill-visible', inTrack && !nearFooter);
+  }
+
+  if (!inTrack) return;
+
+  /* Active section */
+  var viewMid = window.innerHeight * 0.38;
+  var bestIdx = 0;
+  SECTIONS.forEach(function(s, i) {
+    var el = document.getElementById(s.id);
+    if (el && el.getBoundingClientRect().top - viewMid <= 0) bestIdx = i;
+  });
+  setActive(bestIdx);
+}
+
+window.addEventListener('scroll', updateNav, { passive: true });
+window.addEventListener('resize', updateNav, { passive: true });
+updateNav();
+
+/* ── YEAR PICKER ──────────────────────────────────── */
+function scrollToYear(anchorId, btnId) {
+  var anchor = document.getElementById(anchorId);
+  if (!anchor) return;
+  anchor.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  document.querySelectorAll('.yr-btn').forEach(function(b){ b.classList.remove('on'); });
+  var btn = document.getElementById(btnId);
+  if (btn) btn.classList.add('on');
+}
+
+/* ── BOTTOM SHEET ──────────────────────────────────── */
+function openSheet() {
+  var sheet   = document.getElementById('eraSheet');
+  var overlay = document.getElementById('sheetOverlay');
+  sheet.style.display = 'flex';
+  overlay.style.display = 'block';
+  requestAnimationFrame(function(){
+    sheet.classList.add('open');
+    overlay.classList.add('open');
+  });
+  document.body.style.overflow = 'hidden';
+}
+function closeSheet() {
+  var sheet   = document.getElementById('eraSheet');
+  var overlay = document.getElementById('sheetOverlay');
+  sheet.classList.remove('open');
+  overlay.classList.remove('open');
+  setTimeout(function(){
+    if (!sheet.classList.contains('open')) sheet.style.display = 'none';
+    overlay.style.display = 'none';
+  }, 340);
+  document.body.style.overflow = '';
+}
+function sheetJump(id) {
+  closeSheet();
+  setTimeout(function(){ scrollToSection(id); }, 240);
+}
+</script>
+</body>
+</html>
