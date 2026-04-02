@@ -345,6 +345,8 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   .sb-nav{order:2;flex:1;justify-content:flex-end;gap:.3rem}
   #vbtn-f{display:none}
   #vbtn-g{display:none}
+  #vbtn-cm{border-radius:2px 0 0 2px}
+  #vbtn-cl{border-right:1px solid rgba(123,29,42,.18);border-radius:0 2px 2px 0}
   .vbtn-full{display:none}
   .vbtn-icon-mob{display:inline-block}
   .sb-month{font-size:.6rem;min-width:auto;color:var(--ink);letter-spacing:.1em}
@@ -541,17 +543,6 @@ footer .btn-outline{color:rgba(246,241,232,.92);border-color:rgba(246,241,232,.5
 
   <div class="view" id="view-c">
     <div class="classic-view">
-      <div class="cv-ctrl">
-        <div class="cv-month-label">
-          <button class="cv-nav" onclick="navAll(-1)">‹</button>
-          <span id="cv-month-lbl">Loading…</span>
-          <button class="cv-nav" onclick="navAll(1)">›</button>
-        </div>
-        <div class="cv-toggle">
-          <button class="cvt on" id="cvt-month" onclick="setCvView('month')">Month</button>
-          <button class="cvt" id="cvt-list" onclick="setCvView('list')">8-Day List</button>
-        </div>
-      </div>
       <div class="cv-month" id="cv-month"></div>
       <div class="cv-list" id="cv-list"></div>
     </div>
@@ -959,10 +950,10 @@ async function renderDetailF(date){
   const fast=getFast(data,date);
   const readings=getReadings(data);
   let svcBadges='';
-  if(sun) svcBadges+='<span class="svc-bdg">Divine Liturgy \u00b7 9:30 AM</span>';
-  if(sat) svcBadges+='<span class="svc-bdg">Vespers \u00b7 5:00 PM</span>';
+  if(sun) svcBadges+='<a href="/divine-liturgy" class="svc-bdg">Divine Liturgy \u00b7 9:30 AM</a>';
+  if(sat) svcBadges+='<a href="/vespers" class="svc-bdg">Vespers \u00b7 5:00 PM</a>';
   if(!svcBadges) svcBadges='<span class="svc-bdg alt">No parish service today</span>';
-  const saintsHtml=saints.length?saints.map(function(s){return '<li class="saint-item">'+s+'</li>';}).join(''):'<li class="saint-item" style="color:var(--stone-lt);font-style:italic;font-family:var(--f-body)">No commemorations listed</li>';
+  const saintsHtml=saints.length?saints.map(function(s){return '<li class="saint-item"><a href="/saints" style="color:inherit;border-bottom:1px solid rgba(123,29,42,.18)">'+s+'</a></li>';}).join(''):'<li class="saint-item" style="color:var(--stone-lt);font-style:italic;font-family:var(--f-body)">No commemorations listed</li>';
   const toneHtml=tone?'<div class="ic gold-b"><span class="ic-lbl">Liturgical Tone</span><div class="ic-val">'+tone+'</div></div>':'';
   const fastHtml='<div class="ic'+(fast&&fast.toLowerCase().includes('strict')?' green-b':'')+'"><span class="ic-lbl">Fasting Rule</span><div class="ic-val" style="font-size:.88rem">'+(fast||'No fast')+'</div></div>';
   const readingsHtml=readings.length?'<div class="rdg-bar"><div><span class="rdg-lbl">Appointed Readings</span><div class="rdg-refs">'+readings.join('<br>')+'</div></div><a href="/readings" class="rdg-link">Read Today \u2192</a></div>':'<div class="rdg-bar"><div><span class="rdg-lbl">Appointed Readings</span><div class="rdg-refs" style="color:var(--stone-lt);font-style:italic;font-family:var(--f-body)">See <a href="https://www.oca.org/readings" target="_blank" style="color:var(--maroon)">OCA Calendar</a></div></div></div>';
@@ -1066,9 +1057,9 @@ function selectSeasDate(date,data,rowEl){
   const readings=getReadings(data);
   const sun=isSun(date),sat=isSat(date);
   let svc='';
-  if(sun) svc+='<span class="svc-bdg" style="font-size:.68rem;padding:.30rem .8rem">Liturgy \u00b7 9:30 AM</span>';
-  if(sat) svc+='<span class="svc-bdg" style="font-size:.68rem;padding:.30rem .8rem">Vespers \u00b7 5:00 PM</span>';
-  document.getElementById('season-detail').innerHTML='<span style="font-family:var(--f-ui);font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--stone-lt);display:block;margin-bottom:.5rem">'+DAYS_L[date.getDay()]+', '+MONTHS[date.getMonth()]+' '+date.getDate()+'</span><div style="font-family:var(--f-display);font-weight:300;font-size:1.6rem;line-height:1.08;color:var(--text);margin-bottom:.6rem">'+feastHtml+'</div>'+(svc?'<div style="display:flex;gap:.4rem;margin-bottom:.75rem;flex-wrap:wrap">'+svc+'</div>':'')+(saints.length?'<div style="margin-bottom:.85rem"><span style="font-family:var(--f-ui);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone-lt);display:block;margin-bottom:.35rem;padding-bottom:.3rem;border-bottom:var(--rule-hair)">Commemorations</span><ul style="list-style:none">'+saints.map(function(s){return '<li style="font-family:var(--f-display);font-size:1.15rem;color:var(--ink);padding:.2rem 0;display:flex;align-items:baseline;gap:.4rem"><span style="color:var(--gold);font-size:.60rem">\u2726</span>'+s+'</li>';}).join('')+'</ul></div>':'')+'<div style="background:var(--vellum);padding:.75rem .9rem;border-left:2px solid '+(fast&&fast.toLowerCase().includes('strict')?'var(--verdigris)':'rgba(123,29,42,.15)')+';margin-bottom:.75rem"><span style="font-family:var(--f-ui);font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;color:var(--stone-lt);display:block;margin-bottom:.2rem">Fasting Rule</span><span style="font-family:var(--f-display);font-size:.90rem;color:var(--ink)">'+(fast||'No fast')+'</span></div>'+(tone?'<div style="font-family:var(--f-ui);font-size:.60rem;letter-spacing:.13em;text-transform:uppercase;color:var(--stone-lt);margin-bottom:.75rem">'+tone+'</div>':'')+(readings.length?'<div style="border-top:var(--rule-hair);padding-top:.75rem"><span style="font-family:var(--f-ui);font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;color:var(--stone-lt);display:block;margin-bottom:.3rem">Appointed Readings</span><div style="font-family:var(--f-display);font-style:italic;font-size:1.10rem;color:var(--ink);line-height:1.7">'+readings.join('<br>')+'</div><a href="/readings" style="font-family:var(--f-ui);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--maroon);border-bottom:1px solid rgba(123,29,42,.22);margin-top:.5rem;display:inline-block">Read Today \u2192</a></div>':'');
+  if(sun) svc+='<a href="/divine-liturgy" class="svc-bdg" style="font-size:.68rem;padding:.30rem .8rem">Liturgy \u00b7 9:30 AM</a>';
+  if(sat) svc+='<a href="/vespers" class="svc-bdg" style="font-size:.68rem;padding:.30rem .8rem">Vespers \u00b7 5:00 PM</a>';
+  document.getElementById('season-detail').innerHTML='<span style="font-family:var(--f-ui);font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--stone-lt);display:block;margin-bottom:.5rem">'+DAYS_L[date.getDay()]+', '+MONTHS[date.getMonth()]+' '+date.getDate()+'</span><div style="font-family:var(--f-display);font-weight:300;font-size:1.6rem;line-height:1.08;color:var(--text);margin-bottom:.6rem">'+feastHtml+'</div>'+(svc?'<div style="display:flex;gap:.4rem;margin-bottom:.75rem;flex-wrap:wrap">'+svc+'</div>':'')+(saints.length?'<div style="margin-bottom:.85rem"><span style="font-family:var(--f-ui);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone-lt);display:block;margin-bottom:.35rem;padding-bottom:.3rem;border-bottom:var(--rule-hair)">Commemorations</span><ul style="list-style:none">'+saints.map(function(s){return '<li style="font-family:var(--f-display);font-size:1.15rem;color:var(--ink);padding:.2rem 0;display:flex;align-items:baseline;gap:.4rem"><span style="color:var(--gold);font-size:.60rem">\u2726</span><a href="/saints" style="color:inherit;border-bottom:1px solid rgba(123,29,42,.18)">'+s+'</a></li>';}).join('')+'</ul></div>':'')+'<div style="background:var(--vellum);padding:.75rem .9rem;border-left:2px solid '+(fast&&fast.toLowerCase().includes('strict')?'var(--verdigris)':'rgba(123,29,42,.15)')+';margin-bottom:.75rem"><span style="font-family:var(--f-ui);font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;color:var(--stone-lt);display:block;margin-bottom:.2rem">Fasting Rule</span><span style="font-family:var(--f-display);font-size:.90rem;color:var(--ink)">'+(fast||'No fast')+'</span></div>'+(tone?'<div style="font-family:var(--f-ui);font-size:.60rem;letter-spacing:.13em;text-transform:uppercase;color:var(--stone-lt);margin-bottom:.75rem">'+tone+'</div>':'')+(readings.length?'<div style="border-top:var(--rule-hair);padding-top:.75rem"><span style="font-family:var(--f-ui);font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;color:var(--stone-lt);display:block;margin-bottom:.3rem">Appointed Readings</span><div style="font-family:var(--f-display);font-style:italic;font-size:1.10rem;color:var(--ink);line-height:1.7">'+readings.join('<br>')+'</div><a href="/readings" style="font-family:var(--f-ui);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--maroon);border-bottom:1px solid rgba(123,29,42,.22);margin-top:.5rem;display:inline-block">Read Today \u2192</a></div>':'');
 }
 
 /* ═══════════════════════════════════════
@@ -1185,7 +1176,7 @@ async function buildClassicList(){
     var dk=date.getFullYear()+'-'+String(date.getMonth()+1).padStart(2,'0')+'-'+String(date.getDate()).padStart(2,'0');
     const evKeyLv=date.getFullYear()+'-'+String(date.getMonth()+1).padStart(2,'0')+'-'+String(date.getDate()).padStart(2,'0');
     const evLv=_scheduleEventMap[evKeyLv];
-    html+='<div class="lv-row'+(isToday(date)?' lv-today':'')+(sun?' lv-sun':'')+' lv-tappable" data-dk="'+dk+'"><div class="lv-date-col"><span class="lv-dn'+(isToday(date)?' today-n':'')+'">'+date.getDate()+'</span><span class="lv-dl">'+DAYS_L[date.getDay()]+'</span></div><div class="lv-content"><div class="lv-feast'+(isMajor?' lv-major':'')+'">'+dotEl+feast+'</div>'+(saints.length?'<div class="lv-saints">'+saints.join(', ')+'</div>':'')+'<div class="lv-meta">'+(sun?'<span class="lv-svc">Liturgy 9:30 AM</span>':'')+(sat?'<span class="lv-svc">Vespers 5:00 PM</span>':'')+(fast?'<span class="lv-fast">\u2726 '+fast+'</span>':'')+(tone?'<span class="lv-tone">'+tone+'</span>':'')+(evLv?'<span class="lv-svc" style="background:rgba(184,131,40,.12);color:var(--stone)">'+evLv+'</span>':'')+'</div></div></div>';
+    html+='<div class="lv-row'+(isToday(date)?' lv-today':'')+(sun?' lv-sun':'')+' lv-tappable" data-dk="'+dk+'"><div class="lv-date-col"><span class="lv-dn'+(isToday(date)?' today-n':'')+'">'+date.getDate()+'</span><span class="lv-dl">'+DAYS_L[date.getDay()]+'</span></div><div class="lv-content"><div class="lv-feast'+(isMajor?' lv-major':'')+'">'+dotEl+feast+'</div>'+(saints.length?'<div class="lv-saints">'+saints.join(', ')+'</div>':'')+'<div class="lv-meta">'+(sun?'<a href="/divine-liturgy" class="lv-svc" style="color:inherit">Liturgy 9:30 AM</a>':'')+(sat?'<a href="/vespers" class="lv-svc" style="color:inherit">Vespers 5:00 PM</a>':'')+(fast?'<span class="lv-fast">\u2726 '+fast+'</span>':'')+(tone?'<span class="lv-tone">'+tone+'</span>':'')+(evLv?'<span class="lv-svc" style="background:rgba(184,131,40,.12);color:var(--stone)">'+evLv+'</span>':'')+'</div></div></div>';
   });
   listEl.innerHTML=html;
   // Scroll to today within container (desktop) or page (mobile)
@@ -1272,8 +1263,9 @@ function openDayModal(dateKey,dateObj){
   var rows='';
 
   if(sat||sun){
+    var svcHref=sat?'/vespers':'/divine-liturgy';
     var svcLabel=sat?'Vespers · 5:00 PM':'Divine Liturgy · 9:30 AM';
-    rows+='<div class="day-modal-row"><span class="day-modal-lbl">Service</span><span class="day-modal-val"><span class="day-modal-svc">'+svcLabel+'</span></span></div>';
+    rows+='<div class="day-modal-row"><span class="day-modal-lbl">Service</span><span class="day-modal-val"><a href="'+svcHref+'" class="day-modal-svc" style="color:inherit;border-bottom:1px solid rgba(123,29,42,.22)">'+svcLabel+'</a></span></div>';
   }
 
   if(tone){
