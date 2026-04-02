@@ -338,15 +338,20 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   .svc-strip{grid-template-columns:1fr}
   .svc-item{border-right:none;border-bottom:var(--rule-faint)}
   .svc-item:last-child{border-bottom:none}
-  .switcher-bar{padding:.6rem 1rem;flex-wrap:wrap;gap:.4rem .5rem;background:var(--vellum-mid)}
-  .view-btns{order:1;gap:0}
-  .sb-nav{order:2;flex:1;justify-content:flex-end;gap:.4rem}
+  .switcher-bar{padding:.5rem .75rem;flex-wrap:nowrap;gap:.35rem;background:var(--vellum-mid)}
+  .view-btns{order:1;gap:0;flex-shrink:0}
+  .vbtn{padding:.4rem .7rem;font-size:.6rem;letter-spacing:.1em}
+  .sb-nav{order:2;flex:1;justify-content:flex-end;gap:.3rem}
   #vbtn-f{display:none}
   #vbtn-g{display:none}
-  .sb-month{font-size:.68rem;min-width:80px;color:var(--ink)}
-  .sb-nav-btn{color:var(--stone)}
-  .sb-today{color:var(--stone);border-color:rgba(123,29,42,.22);background:transparent}
-  .sb-events-cta{font-size:.62rem;padding:.42rem .8rem}
+  #vbtn-cm .vbtn-full{display:none}
+  #vbtn-cl .vbtn-full{display:none}
+  #vbtn-cm .vbtn-short{display:inline}
+  #vbtn-cl .vbtn-short{display:inline}
+  .sb-month{font-size:.6rem;min-width:auto;color:var(--ink);letter-spacing:.1em}
+  .sb-nav-btn{color:var(--stone);width:24px;height:24px;font-size:.9rem}
+  .sb-today{color:var(--stone);border-color:rgba(123,29,42,.22);background:transparent;font-size:.55rem;padding:.35rem .55rem;letter-spacing:.08em}
+  .sb-events-cta{font-size:.55rem;padding:.35rem .55rem;letter-spacing:.08em}
   .split{grid-template-columns:1fr;min-height:auto}
   .sp-left{display:none}
   .sp-right{min-height:auto}
@@ -487,8 +492,8 @@ footer .btn-outline{color:rgba(246,241,232,.92);border-color:rgba(246,241,232,.5
   <div class="switcher-bar">
     <div class="view-btns">
       <button class="vbtn on" id="vbtn-f" onclick="setView('f')">Split Panel</button>
-      <button class="vbtn" id="vbtn-cm" onclick="setView('cm')">Month</button>
-      <button class="vbtn" id="vbtn-cl" onclick="setView('cl')">List</button>
+      <button class="vbtn" id="vbtn-cm" onclick="setView('cm')"><span class="vbtn-full">Month</span><span class="vbtn-short" style="display:none">Mo</span></button>
+      <button class="vbtn" id="vbtn-cl" onclick="setView('cl')"><span class="vbtn-full">List</span><span class="vbtn-short" style="display:none">Li</span></button>
       <button class="vbtn" id="vbtn-g" onclick="setView('g')">By Season</button>
     </div>
     <div class="sb-nav">
