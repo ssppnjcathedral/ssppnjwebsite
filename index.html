@@ -725,8 +725,8 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 /* E: Gold ornamental divider */
 
 
-.wl-overlay{display:none;position:fixed;inset:0;background:rgba(21,8,4,.90);z-index:9000;align-items:center;justify-content:center;padding:1.5rem}
-.wl-overlay.open{display:flex}
+.wl-overlay{display:none;position:fixed;inset:0;background:rgba(21,8,4,.90);z-index:9000;align-items:center;justify-content:center;padding:1.5rem;opacity:0;transition:opacity .35s ease}
+.wl-overlay.open{opacity:1}
 .wl-box{background:var(--vellum);max-width:900px;width:100%;max-height:92vh;overflow-y:auto;position:relative}
 .wl-close{position:fixed;top:1.25rem;right:1.5rem;background:none;border:none;font-size:2.5rem;color:rgba(246,241,232,.85);cursor:pointer;line-height:1;padding:.25rem;z-index:10001}
 .wl-close:hover{color:#fff}
@@ -769,8 +769,8 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 .wp-panel-2{background:linear-gradient(160deg,#3B0F18,#7B1D2A)}
 .wp-panel-3{background:linear-gradient(160deg,#3B0F18,#B88328)}
 /* Gallery lightbox */
-.wg-overlay{display:none;position:fixed;inset:0;background:rgba(21,8,4,.96);z-index:9100;flex-direction:column;align-items:center;justify-content:center}
-.wg-overlay.open{display:flex}
+.wg-overlay{display:none;position:fixed;inset:0;background:rgba(21,8,4,.96);z-index:9100;flex-direction:column;align-items:center;justify-content:center;opacity:0;transition:opacity .35s ease}
+.wg-overlay.open{opacity:1}
 .wg-close{position:fixed;top:1.25rem;right:1.5rem;background:none;border:none;font-size:2.5rem;color:rgba(246,241,232,.85);cursor:pointer;z-index:9200;line-height:1}
 .wg-close:hover{color:#fff}
 .wg-photo{width:min(800px,90vw);height:min(480px,55vh);background-size:cover;background-position:center;background-color:rgba(123,29,42,.2);display:flex;align-items:center;justify-content:center;position:relative;margin-bottom:1.5rem;transition:opacity .4s ease}
@@ -2073,12 +2073,18 @@ function openWorship(idx) {
     ctaWrap.appendChild(ctaLink);
     container.appendChild(ctaWrap);
   }
-  document.getElementById("wl-overlay").classList.add("open");
+  var overlay = document.getElementById("wl-overlay");
+  overlay.style.display = "flex";
+  requestAnimationFrame(function(){requestAnimationFrame(function(){
+    overlay.classList.add("open");
+  });});
   document.body.style.overflow = "hidden";
 }
 
 function closeWorshipBtn() {
-  document.getElementById("wl-overlay").classList.remove("open");
+  var overlay = document.getElementById("wl-overlay");
+  overlay.classList.remove("open");
+  setTimeout(function(){ overlay.style.display = ""; }, 350);
   document.body.style.overflow = "";
 }
 
@@ -2136,12 +2142,18 @@ function openGallery(sectionIdx) {
   gSection = sectionIdx;
   gIndex = 0;
   renderGallery();
-  document.getElementById("wg-overlay").classList.add("open");
+  var overlay = document.getElementById("wg-overlay");
+  overlay.style.display = "flex";
+  requestAnimationFrame(function(){requestAnimationFrame(function(){
+    overlay.classList.add("open");
+  });});
   document.body.style.overflow = "hidden";
 }
 
 function closeGallery() {
-  document.getElementById("wg-overlay").classList.remove("open");
+  var overlay = document.getElementById("wg-overlay");
+  overlay.classList.remove("open");
+  setTimeout(function(){ overlay.style.display = ""; }, 350);
   document.body.style.overflow = "";
 }
 
