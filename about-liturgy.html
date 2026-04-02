@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>History of the Divine Liturgy · Saints Peter &amp; Paul Orthodox Cathedral</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{--vellum:#F6F1E8;--vellum-mid:#EDE7DC;--vellum-alt:#E8E0D0;--text:#1E1510;--ink:#2C1F16;--maroon:#7B1D2A;--maroon-deep:#5C1520;--gold:#B88328;--gold-lt:#E8C97A;--verdigris:#3D6B5E;--stone:#7A6648;--stone-lt:#A89070;--apse:#3B0F18;--f-display:'Cormorant Garamond',Georgia,serif;--f-body:'EB Garamond',Georgia,serif;--f-ui:'Cinzel',Georgia,serif;--rule:1px solid var(--maroon);--rule-faint:1px solid rgba(123,29,42,0.14);--rule-hair:1px solid rgba(123,29,42,0.07);--rule-gold:1px solid rgba(184,131,40,0.30)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--vellum);color:var(--text);font-family:var(--f-body);font-size:20px;line-height:1.78;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+
+/* PRIMITIVES */
+.rubric{display:block;font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.20em;text-transform:uppercase;color:var(--stone);margin-bottom:.5rem}
+.rubric.light{color:rgba(246,241,232,.55)}
+.rubric-rule{display:block;height:1px;background:var(--maroon);margin-bottom:1rem;width:48px}
+.rubric-rule.gold{background:var(--gold)}
+.btn{display:inline-block;font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;padding:.85rem 2.2rem;border:1px solid currentColor;cursor:pointer;transition:all .22s;white-space:nowrap}
+.btn-maroon{color:var(--vellum);background:var(--maroon);border-color:var(--maroon)}
+.btn-maroon:hover{background:var(--maroon-deep)}
+.btn-outline{color:var(--maroon);border-color:var(--maroon)}
+.btn-outline:hover{background:var(--maroon);color:var(--vellum)}
+footer .btn-outline{color:rgba(246,241,232,.92);border-color:rgba(246,241,232,.55)}
+footer .btn-outline:hover{background:rgba(246,241,232,.15);color:#fff;border-color:rgba(246,241,232,.80)}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(246,241,232,.97);backdrop-filter:blur(10px);border-bottom:var(--rule-faint)}
+.nav-inner{max-width:1380px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px;padding:0 3rem}
+.nav-logo-name{font-family:var(--f-display);font-weight:500;font-size:1.25rem;color:var(--text);display:block}
+.nav-logo-sub{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);display:block}
+.nav-links{display:flex;align-items:center;list-style:none}
+.nav-links>li{position:relative}
+.nav-links>li>a{font-family:var(--f-ui);font-size:.78rem;letter-spacing:.10em;text-transform:uppercase;color:var(--ink);padding:1.1rem .85rem;display:block;transition:color .18s}
+.nav-links>li:hover>a{color:var(--maroon)}
+.nav-drop{position:absolute;top:100%;left:0;background:var(--vellum);border-top:2px solid var(--maroon);border-bottom:var(--rule-faint);border-left:var(--rule-faint);border-right:var(--rule-faint);min-width:200px;padding:.5rem 0;opacity:0;pointer-events:none;transform:translateY(-4px);transition:all .16s;box-shadow:0 8px 28px rgba(28,20,16,.10)}
+.nav-links>li:hover .nav-drop{opacity:1;pointer-events:all;transform:none}
+.nav-drop a{display:block;font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);padding:.5rem 1.4rem;transition:color .14s}
+.nav-drop a:hover{color:var(--maroon)}
+.nav-links .nav-active-parent>a{color:var(--maroon);border-bottom:2px solid var(--gold)}
+.nav-drop .nav-active{color:var(--maroon);font-weight:600}
+.nav-give{font-family:var(--f-ui);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--vellum);background:var(--maroon);padding:.5rem 1.1rem;transition:background .2s}
+.nav-give:hover{background:var(--maroon-deep)}
+.nav-hamburger{display:none;flex-direction:column;justify-content:space-between;width:28px;height:20px;cursor:pointer;padding:0;background:none;border:none;z-index:400}
+.nav-hamburger span{display:block;width:100%;height:2px;background:var(--maroon);transition:all .28s ease;transform-origin:center}
+.nav-hamburger.open span:nth-child(1){transform:translateY(9px) rotate(45deg)}
+.nav-hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-9px) rotate(-45deg)}
+.nav-drawer{position:fixed;top:0;right:0;width:300px;max-width:85vw;height:100vh;background:var(--apse);z-index:350;transform:translateX(100%);transition:transform .32s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;overflow-y:auto}
+.nav-drawer.open{transform:translateX(0)}
+.nav-drawer-overlay{position:fixed;inset:0;background:rgba(21,8,4,.65);z-index:340;opacity:0;pointer-events:none;transition:opacity .32s}
+.nav-drawer-overlay.open{opacity:1;pointer-events:all}
+.nav-drawer-head{padding:1.5rem 1.75rem 1rem;border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:space-between}
+.nav-drawer-logo{font-family:var(--f-display);font-weight:500;font-size:1.1rem;color:#fff}
+.nav-drawer-logo span{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);display:block;margin-top:2px}
+.nav-drawer-close{width:32px;height:32px;background:rgba(255,255,255,.08);border:none;color:rgba(255,255,255,.65);cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.nav-drawer-close:hover{background:rgba(255,255,255,.15)}
+.nav-drawer-links{padding:1rem 0;flex:1}
+.nav-drawer-links a{display:block;font-family:var(--f-ui);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,232,.70);padding:.9rem 1.75rem;border-bottom:1px solid rgba(255,255,255,.05);transition:all .18s}
+.nav-drawer-links a:hover{color:#fff;background:rgba(255,255,255,.05)}
+.nav-drawer-links .drawer-section{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(184,131,40,.55);padding:.85rem 1.75rem .35rem;display:block}
+.nav-drawer-give{margin:1.25rem 1.75rem;display:block;text-align:center;font-family:var(--f-ui);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;padding:.85rem;background:var(--maroon);color:var(--vellum);transition:background .2s}
+.nav-drawer-give:hover{background:var(--maroon-deep)}
+
+/* HERO */
+.page-hero{padding-top:60px;background:linear-gradient(to right,rgba(59,15,24,.96) 0%,rgba(59,15,24,.82) 55%,rgba(59,15,24,.60) 100%),url('https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Hagia_Sophia_Mars_2013.jpg/1280px-Hagia_Sophia_Mars_2013.jpg') center 40%/cover no-repeat;background-color:var(--apse);min-height:360px;display:flex;align-items:flex-end;position:relative;overflow:hidden}
+.page-hero-inner{max-width:1380px;margin:0 auto;padding:2.5rem 4.5rem 3rem;width:100%}
+.breadcrumb{font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.40);margin-bottom:.75rem;display:block}
+.breadcrumb a{color:rgba(232,201,122,.65);transition:color .2s}
+.breadcrumb a:hover{color:var(--gold-lt)}
+.page-title{font-family:var(--f-display);font-weight:300;font-size:clamp(2.2rem,4.5vw,3.8rem);line-height:1;color:#fff;margin:.5rem 0 .65rem}
+.page-title em{font-style:italic}
+.page-subtitle{font-family:var(--f-display);font-style:italic;font-size:1.05rem;color:rgba(255,255,255,.58);max-width:560px}
+
+/* CHAPTER BAR */
+.chapter-bar{background:var(--maroon);padding:.65rem 4rem;display:flex;align-items:center;justify-content:space-between}
+.cbar-text{font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:rgba(246,241,232,.60)}
+.cbar-text.bright{color:rgba(246,241,232,.90)}
+
+/* NAV PILL + BOTTOM SHEET */
+.nav-pill{display:none;position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);background:var(--apse);border:1px solid rgba(184,131,40,.20);border-radius:100px;padding:.5rem .85rem;z-index:150;align-items:center;gap:.5rem;box-shadow:0 6px 30px rgba(21,8,4,.38);opacity:0;pointer-events:none;transition:opacity .4s}
+.nav-pill.pill-visible{opacity:1;pointer-events:all}
+.pill-arrow{background:rgba(255,255,255,.06);border:none;color:rgba(246,241,232,.60);cursor:pointer;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:all .18s;flex-shrink:0;font-size:1.05rem}
+.pill-arrow:hover:not(:disabled){background:rgba(255,255,255,.14);color:#fff}
+.pill-arrow:disabled{opacity:.22;cursor:default}
+.pill-center{font-family:var(--f-ui);font-size:.56rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.80);padding:.3rem .75rem;display:flex;align-items:center;gap:.4rem;min-width:150px;justify-content:center;cursor:pointer;transition:color .18s;border:none;background:none}
+.pill-center:hover{color:#fff}
+.sheet-overlay{display:none;position:fixed;inset:0;background:rgba(21,8,4,.60);z-index:300;opacity:0;transition:opacity .28s}
+.sheet-overlay.open{opacity:1;display:block}
+.sess-sheet{position:fixed;bottom:0;left:0;right:0;background:var(--apse);z-index:310;border-top:1px solid rgba(184,131,40,.18);border-radius:18px 18px 0 0;transform:translateY(100%);transition:transform .32s cubic-bezier(.4,0,.2,1);max-height:78vh;display:none;flex-direction:column}
+.sess-sheet.open{transform:translateY(0);display:flex}
+.sheet-handle{width:36px;height:4px;background:rgba(246,241,232,.18);border-radius:2px;margin:1rem auto .5rem;flex-shrink:0}
+.sheet-head{padding:.5rem 1.5rem 1rem;border-bottom:1px solid rgba(255,255,255,.06);flex-shrink:0;display:flex;align-items:center;justify-content:space-between}
+.sheet-title{font-family:var(--f-display);font-size:1.25rem;font-weight:500;color:#fff}
+.sheet-close{background:rgba(255,255,255,.06);border:none;color:rgba(246,241,232,.55);width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:.85rem;display:flex;align-items:center;justify-content:center;transition:background .18s}
+.sheet-close:hover{background:rgba(255,255,255,.14);color:#fff}
+.sheet-list{overflow-y:auto;flex:1;padding:.5rem 0 2.5rem;-webkit-overflow-scrolling:touch}
+.sheet-item{display:flex;align-items:center;gap:.85rem;padding:.65rem 1.5rem;border:none;background:none;width:100%;text-align:left;cursor:pointer;transition:background .16s;border-bottom:1px solid rgba(255,255,255,.04)}
+.sheet-item:hover{background:rgba(255,255,255,.05)}
+.sheet-item.sheet-active{background:rgba(123,29,42,.35)}
+.sheet-num{font-family:var(--f-ui);font-size:.55rem;letter-spacing:.10em;color:rgba(184,131,40,.55);width:28px;flex-shrink:0;text-align:right}
+.sheet-item.sheet-active .sheet-num{color:rgba(184,131,40,.90)}
+.sheet-name{font-family:var(--f-display);font-weight:400;font-size:1rem;color:rgba(246,241,232,.75);line-height:1.2}
+.sheet-item.sheet-active .sheet-name{color:#fff}
+
+/* THREE-COLUMN LAYOUT */
+.page-body{max-width:1520px;margin:0 auto;padding:2.5rem 3rem 5rem;display:grid;grid-template-columns:72px 1fr 280px;gap:0 3.5rem}
+.main-col{min-width:0}
+.side-col{border-left:var(--rule-faint);padding-left:2.5rem}
+
+/* LEFT RAIL */
+.left-col{border-right:var(--rule-faint);padding-right:0;display:flex;justify-content:center}
+.left-rail{position:sticky;top:80px;height:calc(100vh - 100px);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1rem 0;opacity:0;transition:opacity .4s;width:100%}
+.left-rail.rail-visible{opacity:1}
+.lr-connector{width:1px;background:rgba(123,29,42,.12);flex:1}
+.lr-item{display:flex;flex-direction:column;align-items:center;cursor:pointer;position:relative;padding:.18rem 0}
+.lr-dot-wrap{width:44px;display:flex;flex-direction:column;align-items:center;gap:6px}
+.lr-dot{width:6px;height:6px;border-radius:50%;border:1.5px solid rgba(123,29,42,.28);background:transparent;transition:all .28s cubic-bezier(.22,1,.36,1);flex-shrink:0}
+.lr-item.lr-active .lr-dot{background:var(--maroon);border-color:var(--maroon);width:8px;height:8px;box-shadow:0 0 0 3px rgba(123,29,42,.12)}
+.lr-num{font-family:var(--f-ui);font-size:.55rem;font-weight:600;letter-spacing:.04em;color:rgba(123,29,42,.28);display:block;transition:color .28s;line-height:1;text-align:center}
+.lr-item.lr-active .lr-num{color:var(--maroon)}
+.lr-label{position:absolute;left:calc(100% + 12px);top:50%;transform:translateY(-50%);background:var(--vellum);border:var(--rule-faint);border-left:2px solid var(--maroon);padding:.28rem .75rem;font-family:var(--f-ui);font-size:.58rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--maroon);white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .18s;box-shadow:0 2px 10px rgba(28,20,16,.08);z-index:50}
+.lr-item:hover .lr-label{opacity:1}
+
+/* SECTION BLOCKS */
+.session{padding:3.5rem 0 3rem;border-bottom:var(--rule-faint);scroll-margin-top:84px}
+.session:first-child{padding-top:0}
+.session:last-child{border-bottom:none}
+.sess-header{margin-bottom:1.5rem}
+.sess-num-row{display:flex;align-items:center;gap:1rem;margin-bottom:.75rem}
+.sess-num-badge{font-family:var(--f-ui);font-size:.65rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--vellum);background:var(--maroon);padding:.22rem .7rem;flex-shrink:0}
+.sess-title{font-family:var(--f-display);font-weight:400;font-size:clamp(1.5rem,2.5vw,2.1rem);color:var(--maroon);line-height:1.15;margin-bottom:.3rem}
+.sess-subtitle{font-family:var(--f-display);font-style:italic;font-size:1rem;color:var(--stone);display:block}
+.sess-divider{height:1px;background:var(--maroon);width:36px;margin:.85rem 0 1.25rem}
+.sess-body{font-family:var(--f-body);font-size:.97rem;line-height:1.85;color:var(--ink)}
+.sess-body p{margin-bottom:1em}
+.sess-body p:last-child{margin-bottom:0}
+.sess-body p:first-child::first-letter{font-family:var(--f-display);font-size:3.4rem;font-weight:500;line-height:.82;float:left;margin-right:.12em;margin-top:.08em;color:var(--maroon)}
+.sess-sub-head{font-family:var(--f-ui);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);display:block;margin:2rem 0 .75rem;padding-top:1.5rem;border-top:var(--rule-hair)}
+.sess-pull{font-family:var(--f-display);font-style:italic;font-weight:300;font-size:clamp(1.1rem,1.8vw,1.4rem);line-height:1.45;color:var(--maroon);border-left:3px solid var(--maroon);padding:.6rem 1.25rem;margin:1.75rem 0;background:rgba(123,29,42,.03)}
+/* FIGURE CHIPS */
+.figures-row{display:flex;flex-wrap:wrap;gap:.5rem;margin:1.25rem 0 1.75rem}
+.figure-chip{font-family:var(--f-ui);font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);border:1px solid rgba(122,102,72,.30);padding:.28rem .7rem;line-height:1.4;text-decoration:none;transition:background .18s,color .18s,border-color .18s,transform .12s;display:inline-block}
+.figure-chip:hover{background:var(--maroon);color:var(--vellum);border-color:var(--maroon)}
+
+/* HIST-NOTE INFO BOX */
+.hist-note{border:var(--rule-faint);border-top:3px solid var(--gold);padding:1.75rem 2rem;margin:2.5rem 0;background:rgba(184,131,40,.04)}
+.hist-note-label{font-family:var(--f-ui);font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:.6rem}
+.hist-note p{font-family:var(--f-body);font-size:.94rem;line-height:1.75;color:var(--ink);margin:0}
+
+/* SOURCES */
+.sources-block{margin:2rem 0 0}
+.sources-label{font-family:var(--f-ui);font-size:.68rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.75rem;padding-bottom:.5rem;border-bottom:var(--rule-faint)}
+.source-list{list-style:none}
+.source-list li{font-family:var(--f-body);font-size:.88rem;line-height:1.65;color:var(--ink);padding:.45rem 0;border-bottom:var(--rule-hair);display:flex;align-items:baseline;gap:.6rem}
+.source-list li:last-child{border-bottom:none}
+.source-tag{font-family:var(--f-ui);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;padding:.15rem .45rem;border:1px solid;flex-shrink:0}
+.source-tag.orthodox{color:var(--maroon);border-color:rgba(123,29,42,.35)}
+.source-tag.academic{color:var(--verdigris);border-color:rgba(61,107,94,.35)}
+.source-tag.primary{color:var(--gold);border-color:rgba(184,131,40,.35)}
+.source-tag.ref{color:var(--stone);border-color:rgba(122,102,72,.35)}
+.source-list a{color:var(--maroon);border-bottom:1px solid rgba(123,29,42,.25);transition:border-color .2s}
+.source-list a:hover{border-color:var(--maroon)}
+
+
+/* SIDEBAR */
+.side-section{margin-bottom:2.5rem;padding-bottom:2.5rem;border-bottom:var(--rule-faint)}
+.side-section:last-child{border-bottom:none}
+.side-head{font-family:var(--f-ui);font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.85rem}
+.side-body{font-family:var(--f-body);font-size:.9rem;line-height:1.75;color:var(--ink)}
+.annot-nav-link{display:flex;align-items:center;justify-content:space-between;font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--text);padding:.6rem 0;border-bottom:var(--rule-hair);transition:color .18s}
+.annot-nav-link:last-child{border-bottom:none}
+.annot-nav-link:hover{color:var(--maroon)}
+.sect-list-item{display:flex;align-items:baseline;gap:.5rem;padding:.45rem 0;border-bottom:var(--rule-hair);cursor:pointer;transition:color .18s}
+.sect-list-item:last-child{border-bottom:none}
+.sect-list-item:hover .sli-name{color:var(--maroon)}
+.sli-num{font-family:var(--f-ui);font-size:.60rem;letter-spacing:.10em;color:rgba(123,29,42,.35);width:18px;flex-shrink:0;font-weight:600}
+.sli-name{font-family:var(--f-ui);font-size:.60rem;font-weight:600;letter-spacing:.10em;text-transform:uppercase;color:var(--maroon);line-height:1.35;transition:color .18s}
+
+/* SIDEBAR DARK BOX */
+.deep-link-box{background:var(--apse);padding:1.75rem;margin-top:2rem}
+@media(max-width:1100px){.deep-link-box{display:none}}
+.dlb-label{font-family:var(--f-ui);font-size:.65rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(184,131,40,.70);display:block;margin-bottom:.6rem}
+.dlb-title{font-family:var(--f-display);font-weight:300;font-size:1.3rem;color:rgba(246,241,232,.90);line-height:1.2;margin-bottom:.75rem}
+.dlb-title em{font-style:italic}
+.dlb-body{font-family:var(--f-body);font-style:italic;font-size:.85rem;color:rgba(246,241,232,.52);line-height:1.65;margin-bottom:1.25rem}
+.dlb-link{display:inline-block;font-family:var(--f-ui);font-size:.65rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(232,201,122,.80);border-bottom:1px solid rgba(232,201,122,.30);padding-bottom:.1rem;transition:color .2s,border-color .2s}
+.dlb-link:hover{color:var(--gold-lt);border-color:rgba(232,201,122,.65)}
+
+/* QUOTE BREAK */
+.quote-break{margin:0;padding:4rem 4.5rem;background:var(--vellum-mid);border-top:var(--rule-faint);border-bottom:var(--rule-faint)}
+.qb-inner{max-width:680px;margin:0 auto;padding-left:2rem;border-left:3px solid var(--maroon)}
+.qb-text{font-family:var(--f-display);font-style:italic;font-weight:300;font-size:clamp(1.4rem,2.5vw,2rem);line-height:1.45;color:var(--text);margin-bottom:.75rem}
+.qb-attr{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.20em;text-transform:uppercase;color:var(--maroon);display:block}
+
+/* FOOTER */
+footer{background:var(--apse);padding:4rem 4.5rem 2rem}
+.footer-cross{display:block;text-align:center;font-size:1.1rem;color:rgba(184,131,40,.45);letter-spacing:.8em;padding-left:.8em;margin-bottom:2.5rem}
+.footer-cols{max-width:1380px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:4rem;margin-bottom:2.5rem}
+.footer-col-head{font-family:var(--f-ui);font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(246,241,232,.82);display:block;margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid rgba(246,241,232,.18)}
+.footer-name{font-family:var(--f-display);font-weight:400;font-size:1.1rem;color:rgba(246,241,232,.88);line-height:1.3;margin-bottom:.75rem}
+.footer-meta{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.72);line-height:2.3}
+.footer-meta a{color:rgba(184,131,40,.85);transition:color .2s}
+.footer-meta a:hover{color:var(--gold)}
+.footer-nav{list-style:none;display:flex;flex-direction:column}
+.footer-nav li{padding:.35rem 0;border-bottom:1px solid rgba(246,241,232,.10)}
+.footer-nav li:last-child{border-bottom:none}
+.footer-nav a{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,232,.85);transition:color .2s}
+.footer-nav a:hover{color:rgba(246,241,232,.95)}
+.footer-blurb{font-family:var(--f-display);font-style:italic;font-size:.95rem;color:rgba(246,241,232,.85);line-height:1.65;margin-bottom:1.25rem}
+.footer-socials{display:flex;gap:1.5rem;margin-top:1.5rem}
+.footer-socials a{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,241,232,.65);transition:color .2s}
+.footer-socials a:hover{color:var(--gold)}
+.footer-bottom{max-width:1380px;margin:2rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(246,241,232,.12);display:flex;justify-content:space-between;align-items:center}
+.footer-copy,.footer-addr{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.60)}
+.footer-addr{text-align:right}
+
+/* RESPONSIVE */
+@media(max-width:1100px){
+  .nav-hamburger{display:flex}
+  .nav-links,.nav-give{display:none}
+  .page-body{grid-template-columns:1fr;gap:3rem;padding:3rem 2.5rem 4rem}
+  .left-col{display:none}
+  .side-col{border-left:none;border-top:var(--rule-faint);padding-left:0;padding-top:2.5rem}
+  .chapter-bar{padding:.65rem 2rem}
+}
+@media(max-width:768px){
+  .page-hero-inner{padding:2rem 1.75rem 2.5rem}
+  .page-body{padding:2.5rem 1.75rem 4rem}
+  .quote-break{padding:2.5rem 1.5rem}
+  .qb-inner{padding-left:1.25rem}
+  footer{padding:3rem 1.75rem 1.5rem}
+  .footer-cols{grid-template-columns:1fr;gap:2rem}
+  .footer-bottom{flex-direction:column;gap:.75rem;text-align:center}
+  .footer-addr{text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" style="line-height:1.2"><span class="nav-logo-name">Sts. Peter &amp; Paul</span><span class="nav-logo-sub">Orthodox Cathedral &middot; Jersey City</span></a>
+    <ul class="nav-links">
+      <li><a href="#">About Us &#9662;</a>
+        <div class="nav-drop">
+          <a href="/about-our-church">About Our Church</a>
+          <a href="/church-history">Church History</a>
+          <a href="/our-beliefs">Our Beliefs</a>
+          <a href="/administration">Administration</a>
+          <a href="/gallery">Gallery</a>
+        </div>
+      </li>
+      <li class="nav-active-parent"><a href="#">Inquirers &#9662;</a>
+        <div class="nav-drop">
+          <a href="/about-orthodoxy">About Orthodoxy</a>
+          <a href="/catechesis">Orthodox Catechesis</a>
+          <a href="/catechesis-series">2026 Series</a>
+          <a href="/our-beliefs">Our Beliefs</a>
+          <a href="/about-liturgy" class="nav-active" aria-current="page">History of the Liturgy</a>
+        </div>
+      </li>
+      <li><a href="/schedule">Calendar</a></li>
+      <li><a href="#">Bulletins &#9662;</a>
+        <div class="nav-drop">
+          <a href="/news">News</a>
+          <a href="/bulletins">Bulletins</a>
+        </div>
+      </li>
+      <li><a href="#">Resources &#9662;</a>
+        <div class="nav-drop">
+          <a href="/divine-liturgy">Divine Liturgy</a>
+          <a href="/vespers">Vespers</a>
+          <a href="/readings">Readings</a>
+          <a href="/saints">Lives of the Saints</a>
+          <a href="/videos">Videos</a>
+        </div>
+      </li>
+      <li><a href="/contact-us">Contact</a></li>
+    </ul>
+    <a href="https://tithe.ly/give?c=5004259" target="_blank" class="nav-give">Give</a>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" onclick="openDrawer()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<div class="nav-drawer-overlay" id="nav-overlay" onclick="closeDrawer()"></div>
+<div class="nav-drawer" id="nav-drawer">
+  <div class="nav-drawer-head">
+    <div class="nav-drawer-logo">Sts. Peter &amp; Paul<span>Orthodox Cathedral &middot; Jersey City</span></div>
+    <button class="nav-drawer-close" onclick="closeDrawer()">&#10005;</button>
+  </div>
+  <div class="nav-drawer-links">
+    <span class="drawer-section">About</span>
+    <a href="/about-our-church">About Our Church</a>
+    <a href="/church-history">Church History</a>
+    <a href="/our-beliefs">Our Beliefs</a>
+    <span class="drawer-section">Inquirers</span>
+    <a href="/about-orthodoxy">About Orthodoxy</a>
+    <a href="/catechesis">Orthodox Catechesis</a>
+    <a href="/catechesis-series">2026 Catechesis Series</a>
+    <a href="/about-liturgy">History of the Liturgy</a>
+    <span class="drawer-section">Worship</span>
+    <a href="/divine-liturgy">Divine Liturgy</a>
+    <a href="/vespers">Vespers</a>
+    <a href="/schedule">Liturgical Calendar</a>
+    <a href="/readings">Daily Readings</a>
+    <span class="drawer-section">Parish Life</span>
+    <a href="/gallery">Gallery</a>
+    <a href="/bulletins">Bulletins</a>
+    <a href="/news">News &amp; Announcements</a>
+    <span class="drawer-section">Contact</span>
+    <a href="/contact-us">Contact Us</a>
+  </div>
+  <a href="https://tithe.ly/give?c=5004259" target="_blank" class="nav-drawer-give">Give Online</a>
+</div>
+
+<!-- NAV PILL -->
+<div class="nav-pill" id="navPill" style="display:none">
+  <button class="pill-arrow" id="pillPrev" onclick="pillNav(-1)" aria-label="Previous chapter"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 7.5L5.5 4L9 7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  <button class="pill-center" onclick="openSheet()">
+    <svg width="11" height="11" viewBox="0 0 24 24" fill="rgba(184,131,40,.75)"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+    <span id="pillLabel">Chapter I</span>
+  </button>
+  <button class="pill-arrow" id="pillNext" onclick="pillNav(1)" aria-label="Next chapter"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 3.5L5.5 7L9 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+</div>
+
+<!-- BOTTOM SHEET -->
+<div class="sheet-overlay" id="sheetOverlay" onclick="closeSheet()"></div>
+<div class="sess-sheet" id="sessSheet">
+  <div class="sheet-handle"></div>
+  <div class="sheet-head">
+    <span class="sheet-title">History of the Divine Liturgy</span>
+    <button class="sheet-close" onclick="closeSheet()">&#10005;</button>
+  </div>
+  <div class="sheet-list">
+    <button class="sheet-item sheet-active" data-sheet-id="sect-1" onclick="sheetJump('sect-1')"><span class="sheet-num">I</span><span class="sheet-name">Jewish Roots</span></button>
+    <button class="sheet-item" data-sheet-id="sect-2" onclick="sheetJump('sect-2')"><span class="sheet-num">II</span><span class="sheet-name">The Apostolic Era</span></button>
+    <button class="sheet-item" data-sheet-id="sect-3" onclick="sheetJump('sect-3')"><span class="sheet-num">III</span><span class="sheet-name">Liturgical Families</span></button>
+    <button class="sheet-item" data-sheet-id="sect-4" onclick="sheetJump('sect-4')"><span class="sheet-num">IV</span><span class="sheet-name">St. Basil the Great</span></button>
+    <button class="sheet-item" data-sheet-id="sect-5" onclick="sheetJump('sect-5')"><span class="sheet-num">V</span><span class="sheet-name">St. John Chrysostom</span></button>
+    <button class="sheet-item" data-sheet-id="sect-6" onclick="sheetJump('sect-6')"><span class="sheet-num">VI</span><span class="sheet-name">The Byzantine Synthesis</span></button>
+    <button class="sheet-item" data-sheet-id="sect-7" onclick="sheetJump('sect-7')"><span class="sheet-num">VII</span><span class="sheet-name">The Slavic Mission</span></button>
+    <button class="sheet-item" data-sheet-id="sect-8" onclick="sheetJump('sect-8')"><span class="sheet-num">VIII</span><span class="sheet-name">Orthodoxy in America</span></button>
+    <button class="sheet-item" data-sheet-id="sect-9" onclick="sheetJump('sect-9')"><span class="sheet-num">IX</span><span class="sheet-name">The Living Liturgy</span></button>
+    <button class="sheet-item" data-sheet-id="sect-10" onclick="sheetJump('sect-10')"><span class="sheet-num">X</span><span class="sheet-name">Conclusion</span></button>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <span class="breadcrumb"><a href="/">Home</a> &middot; <a href="/about-orthodoxy">Inquirers</a> &middot; History of the Liturgy</span>
+    <span class="rubric light">Saints Peter &amp; Paul Cathedral</span>
+    <div class="rubric-rule gold"></div>
+    <h1 class="page-title">The Living<br><em>Sacrifice</em></h1>
+    <p class="page-subtitle">A history of the Divine Liturgy in the Orthodox Christian Church, from the Temple of Jerusalem to the parishes of North America</p>
+  </div>
+</div>
+
+<!-- CHAPTER BAR -->
+<div class="chapter-bar">
+  <span class="cbar-text bright">History of the Divine Liturgy</span>
+  <span class="cbar-text">Ten chapters &middot; From the Temple sacrifice to the present day</span>
+</div>
+
+<!-- BODY -->
+<div class="page-body">
+
+  <!-- LEFT RAIL -->
+  <div class="left-col">
+    <nav class="left-rail" id="leftRail" aria-label="Chapters">
+      <div class="lr-connector"></div>
+      <div class="lr-item lr-active" onclick="scrollToSection('sect-1')"><div class="lr-dot-wrap"><span class="lr-dot"></span><span class="lr-num">I</span></div><span class="lr-label">Jewish Roots</span></div>
+      <div class="lr-connector"></div>
+      <div class="lr-item" onclick="scrollToSection('sect-2')"><div class="lr-dot-wrap"><span class="lr-dot"></span><span class="lr-num">II</span></div><span class="lr-label">Apostolic Era</span></div>
+      <div class="lr-connector"></div>
+      <div class="lr-item" onclick="scrollToSection('sect-3')"><div class="lr-dot-wrap"><span class="lr-dot"></span><span class="lr-num">III</span></div><span class="lr-label">Liturgical Families</span></div>
+      <div class="lr-connector"></div>
+      <div class="lr-item" onclick="scrollToSection('sect-4')"><div class="lr-dot-wrap"><span class="lr-dot"></span><span class="lr-num">IV</span></div><span class="lr-label">St. Basil</span></div>
+      <div class="lr-connector"></div>
+      <div class="lr-item" onclick="scrollToSection('sect-5')"><div class="lr-dot-wrap"><span class="lr-dot"></span><span class="lr-num">V</span></div><span class="lr-label">St. Chrysostom</span></div>
+      <div class="lr-connector"></div>
+      <div class="lr-item" onclick="scrollToSection('sect-6')"><div class="lr-dot-wrap"><span class="lr-dot"></span><span class="lr-num">VI</span></div><span class="lr-label">Byzantine Synthesis</span></div>
+      <div class="lr-connector"></div>
+      <div class="lr-item" onclick="scrollToSection('sect-7')"><div class="lr-dot-wrap"><span class="lr-dot"></span><span class="lr-num">VII</span></div><span class="lr-label">Slavic Mission</span></div>
+      <div class="lr-connector"></div>
+      <div class="lr-item" onclick="scrollToSection('sect-8')"><div class="lr-dot-wrap"><span class="lr-dot"></span><span class="lr-num">VIII</span></div><span class="lr-label">American Orthodoxy</span></div>
+      <div class="lr-connector"></div>
+      <div class="lr-item" onclick="scrollToSection('sect-9')"><div class="lr-dot-wrap"><span class="lr-dot"></span><span class="lr-num">IX</span></div><span class="lr-label">The Living Liturgy</span></div>
+      <div class="lr-connector"></div>
+      <div class="lr-item" onclick="scrollToSection('sect-10')"><div class="lr-dot-wrap"><span class="lr-dot"></span><span class="lr-num">X</span></div><span class="lr-label">Conclusion</span></div>
+      <div class="lr-connector"></div>
+    </nav>
+  </div>
+
+  <!-- MAIN ARTICLE -->
+  <main class="main-col">
+
+    <!-- CHAPTER I -->
+    <div class="session" id="sect-1">
+      <div class="sess-header">
+        <div class="sess-num-row">
+          <span class="sess-num-badge">Chapter I</span>
+        </div>
+        <h2 class="sess-title">Jewish Roots</h2>
+        <span class="sess-subtitle">The Liturgical Matrix of Christian Worship</span>
+        <div class="sess-divider"></div>
+      </div>
+      <div class="sess-body">
+        <p>The Divine Liturgy did not appear from nothing. The Holy Spirit, who has always been present and active in the worship of God's people, prepared a vessel over many centuries before filling it with the fullness of Christ. To understand what the Liturgy is, one must first understand what it received, for the worship of the earliest Christians was not an invention but an inheritance, dense, ancient, and structurally formative.</p>
+
+        <span class="sess-sub-head">The Temple Sacrificial System</span>
+        <p>The Jerusalem Temple was, in the centuries bracketing the birth of Christ, the center of an elaborate sacrificial cosmos. The daily Tamid offering, the perpetual burnt offering prescribed in Numbers 28, structured the Temple day. The Mishnah tractate Tamid records in meticulous detail the morning and evening offerings: a fixed sequence of priestly lots, preparation of the altar fire, slaughter and arrangement of the lamb, the incense offering, and the priestly benediction over the people, all coordinated with the singing of the Levitical Psalms assigned to each day of the week. This sacrificial architecture, with its carefully maintained hierarchy of holy space, its ritual purification requirements, its division between priestly action and lay attendance, and its orientation toward the divine Presence dwelling in the inner sanctuary, left permanent marks on Christian eucharistic practice.</p>
+        <p>The Dead Sea Scrolls have added a further dimension to this picture. The "Songs of the Sabbath Sacrifice" from the Qumran community reveal a form of heavenly worship imagined as simultaneous with earthly Temple liturgy, in which the angelic priests and the earthly priests offer praise together in an integrated cosmic act. This material provides the most vivid pre-Christian analogue to what would become the Christian Sanctus, the angelic hymn embedded in every ancient anaphora: the community on earth joining its voice to the unceasing praise of the heavenly host. The theological conviction that Christian Eucharistic worship participates in, and is continuous with, the liturgy of heaven, a conviction central to Orthodox liturgical theology from the Fathers to Alexander Schmemann, has roots reaching into precisely this inter-testamental Jewish soil.</p>
+
+        <span class="sess-sub-head">The Synagogue Service</span>
+        <p>If the Temple provided the sacrificial and spatial categories of later Christian worship, the synagogue provided its verbal and structural skeleton. The synagogue service centered on three elements: the recitation of the Shema with its accompanying blessings, the Amidah or Eighteen Benedictions, and the reading and exposition of Torah. The Amidah already exhibited the structural logic that would govern Christian eucharistic prayer: praise of God for who he is, thanksgiving for his mighty acts in history, petition for present and eschatological needs, and a concluding doxology. The Jewish <em>berakah</em> (blessing) form, blessing God by recounting the history of salvation, is the direct structural ancestor of the Christian eucharistic prayer.</p>
+        <p>The reading of Torah and the Prophets, followed by an expository homily, passed directly into Christian practice as the Liturgy of the Word: the reading of the Apostle and Gospel, followed by the sermon. Justin Martyr, writing around 155 AD, describes a Sunday assembly in which "the memoirs of the apostles or the writings of the prophets are read, as long as time permits," after which the presider gives an address of instruction and exhortation. The continuity is unmistakable, and it is not accidental: the same Spirit who spoke through Moses and the Prophets is the Spirit who guides the Church into all truth.</p>
+
+        <div class="sess-pull">The Church does not begin with Pentecost. It begins with Abraham. The Liturgy does not begin with the Upper Room. It begins at the altar of the morning sacrifice.</div>
+
+        <p>The Passover Seder, finally, provides the most theologically charged Jewish matrix for the Christian Eucharist. The Last Supper unfolded within a ritual context saturated with exodus typology: unleavened bread recalling the haste of departure, the cup of wine interpreted through the blood of the covenant, the narrative recital of God's saving action interpreted by the presider in the company of the assembled community. Paul's account in 1 Corinthians 11 frames the Eucharistic action as an ongoing proclamation of the Lord's death "until he comes," a phrase that imports the Jewish eschatological horizon of the Passover into the Christian memorial, and that has never ceased to govern how the Church understands what it does at the altar.</p>
+        <div class="figures-row">
+          <a href="https://en.wikipedia.org/wiki/Temple_in_Jerusalem" target="_blank" rel="noopener" class="figure-chip">Jerusalem Temple</a>
+          <a href="https://en.wikipedia.org/wiki/Korban_Tamid" target="_blank" rel="noopener" class="figure-chip">Korban Tamid</a>
+          <a href="https://en.wikipedia.org/wiki/Shema_Yisrael" target="_blank" rel="noopener" class="figure-chip">The Shema</a>
+          <a href="https://en.wikipedia.org/wiki/Passover_Seder" target="_blank" rel="noopener" class="figure-chip">Passover Seder</a>
+          <a href="https://en.wikipedia.org/wiki/Songs_of_the_Sabbath_Sacrifice" target="_blank" rel="noopener" class="figure-chip">Songs of the Sabbath Sacrifice</a>
+          <a href="https://en.wikipedia.org/wiki/Berakhah" target="_blank" rel="noopener" class="figure-chip">Berakah (blessing form)</a>
+        </div>
+
+        <div class="hist-note">
+          <span class="hist-note-label">The Songs of the Sabbath Sacrifice</span>
+          <p>Among the Dead Sea Scrolls discovered at Qumran are thirteen liturgical poems known as the Songs of the Sabbath Sacrifice (<em>Shirot Olat HaShabbat</em>), composed for the first thirteen Sabbaths of the year. They describe angelic priests offering heavenly worship in the celestial temple, praising God together with the earthly congregation in a single integrated act. Scholars date the composition to the late Second Temple period and identify these texts as the most vivid pre-Christian evidence for the belief that earthly liturgy participates in the unceasing worship of heaven. This conviction passed directly into Christian Eucharistic theology and is expressed in the Sanctus, sung at every Divine Liturgy: "Holy, holy, holy Lord of Sabaoth; heaven and earth are full of Thy glory."</p>
+        </div>
+
+        <div class="sources-block">
+          <span class="sources-label">Sources</span>
+          <ul class="source-list">
+            <li><span class="source-tag ref">Encyclopedia</span><span>Korban Tamid &#xB7; <a href="https://en.wikipedia.org/wiki/Korban_Tamid" target="_blank">Wikipedia: the daily Temple burnt offering</a></span></li>
+            <li><span class="source-tag ref">Encyclopedia</span><span>Songs of the Sabbath Sacrifice &#xB7; <a href="https://en.wikipedia.org/wiki/Songs_of_the_Sabbath_Sacrifice" target="_blank">Wikipedia: Qumran heavenly liturgy texts</a></span></li>
+            <li><span class="source-tag ref">Encyclopedia</span><span>Passover Seder &#xB7; <a href="https://en.wikipedia.org/wiki/Passover_Seder" target="_blank">Wikipedia: structure, order, and Eucharistic precedents</a></span></li>
+            <li><span class="source-tag primary">Primary</span><span>The Jewish Background of Christian Worship &#xB7; <a href="https://orthodoxwiki.org/Divine_Liturgy" target="_blank">OrthodoxWiki overview of liturgical origins</a></span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHAPTER II -->
+    <div class="session" id="sect-2">
+      <div class="sess-header">
+        <div class="sess-num-row">
+          <span class="sess-num-badge">Chapter II</span>
+        </div>
+        <h2 class="sess-title">The Apostolic Era</h2>
+        <span class="sess-subtitle">Breaking of Bread &middot; The New Testament Witness</span>
+        <div class="sess-divider"></div>
+      </div>
+      <div class="sess-body">
+        <p>From the day of Pentecost forward, the Church gathered in the name of the risen Lord, and at the center of that gathering was the breaking of bread. The New Testament witnesses to a practice of communal Christian worship that is already, from the earliest texts, distinctively Eucharistic in character: not invented by the community, but received from the Lord himself and transmitted with the care reserved for the most sacred things.</p>
+
+        <span class="sess-sub-head">The Breaking of Bread</span>
+        <p>Acts 2:42 names four coordinates of the Jerusalem community's life: devotion to the apostles' teaching, fellowship, the breaking of bread, and prayer. The "breaking of bread" is almost certainly a reference to the Eucharistic meal, distinguished from ordinary table fellowship by its connection to the Lord's command and his resurrection appearances. Acts 20:7 places this breaking of bread specifically on "the first day of the week," already establishing the Sunday Eucharist as the normative rhythm of Christian assembly, a rhythm the Church has kept without interruption for two thousand years.</p>
+        <p>Paul's treatment in 1 Corinthians 10 and 11 is the most theologically developed New Testament witness to early Eucharistic practice. Paul names the Eucharistic cup "a participation in the blood of Christ" and the bread "a participation in the body of Christ," deploying the language of cultic communion that his Jewish-educated readers would have understood at once. In chapter 11, the dominical words "the Lord Jesus on the night when he was betrayed took bread" are explicitly framed as a received tradition, indicating a fixed liturgical formula already in circulation by the time Paul writes around 54 AD, itself received from a still earlier source. The Liturgy was already old by the time the New Testament was written.</p>
+
+        <span class="sess-sub-head">The Didache and Justin Martyr</span>
+        <p>The Didache, dateable to the late first or early second century and likely of Syrian provenance, provides the earliest extant eucharistic prayers outside the New Testament. Its prayers over the cup and the bread, concluding with the Aramaic acclamation <em>Maranatha</em> ("Come, Lord!"), demonstrate that by the late first century, Christians were already developing fixed prayer-forms structured by Jewish berakah conventions. The assembly concluded with an eschatological cry: "Let grace come, and let this world pass away. Hosanna to the God of David." From the very beginning, the Liturgy has been the community's confession that the Kingdom is not merely awaited, but already present.</p>
+        <p>Justin Martyr's First Apology, written around 155 AD, contains the first detailed description of a Sunday Eucharist recognizable as a predecessor to the classical Divine Liturgy. The sequence he describes, assembly of the community, readings from the apostolic writings and prophets, homily, common prayers, the kiss of peace, presentation of bread and wine, the president's prayer of thanksgiving to which the people respond "Amen," and distribution by deacons, maps with remarkable precision onto the shape of the Liturgy the Orthodox Church celebrates today. Justin adds, crucially, that the consecrated food is not "common bread or common drink" but "the flesh and blood of that Jesus who was made flesh": an unambiguous assertion of Eucharistic realism that stands at the headwaters of the Orthodox theology of the Holy Gifts.</p>
+        <div class="figures-row">
+          <a href="https://orthodoxwiki.org/Justin_Martyr" target="_blank" rel="noopener" class="figure-chip">St. Justin Martyr</a>
+          <a href="https://en.wikipedia.org/wiki/Didache" target="_blank" rel="noopener" class="figure-chip">The Didache</a>
+          <a href="https://en.wikipedia.org/wiki/First_Epistle_to_the_Corinthians" target="_blank" rel="noopener" class="figure-chip">1 Corinthians</a>
+          <a href="https://en.wikipedia.org/wiki/Acts_of_the_Apostles" target="_blank" rel="noopener" class="figure-chip">Acts of the Apostles</a>
+          <a href="https://en.wikipedia.org/wiki/Eucharist_in_the_New_Testament" target="_blank" rel="noopener" class="figure-chip">Eucharist in the New Testament</a>
+        </div>
+
+        <div class="hist-note">
+          <span class="hist-note-label">Justin Martyr's First Apology, c. 155 AD</span>
+          <p>Justin Martyr's First Apology, addressed to Emperor Antoninus Pius, contains the earliest surviving description of a Sunday Eucharistic assembly in terms a modern Orthodox Christian would recognize at once. Writing in Rome around 155 AD, Justin describes the gathering: readings from the apostolic writings and prophets, a sermon, common prayers, the kiss of peace, the bringing forward of bread and a cup of wine and water, the president's prayer of thanksgiving "to the best of his ability," the people's Amen, and distribution by deacons to those present and to the absent. His insistence that the consecrated food is "not common bread or common drink" but the body and blood of Christ placed early Christianity firmly in the tradition of Eucharistic realism that the Orthodox Church has never abandoned.</p>
+        </div>
+
+        <div class="sources-block">
+          <span class="sources-label">Sources</span>
+          <ul class="source-list">
+            <li><span class="source-tag primary">Primary</span><span>Didache (full text) &#xB7; <a href="https://www.earlychristianwritings.com/didache.html" target="_blank">Early Christian Writings</a></span></li>
+            <li><span class="source-tag primary">Primary</span><span>Justin Martyr, First Apology &#xB7; <a href="https://www.ccel.org/ccel/schaff/anf01.viii.ii.lxvii.html" target="_blank">CCEL: Chapter 67, the Sunday Eucharist</a></span></li>
+            <li><span class="source-tag ref">Encyclopedia</span><span>Didache &#xB7; <a href="https://en.wikipedia.org/wiki/Didache" target="_blank">Wikipedia: dating, provenance, and contents</a></span></li>
+            <li><span class="source-tag orthodox">OrthodoxWiki</span><span>Justin Martyr &#xB7; <a href="https://orthodoxwiki.org/Justin_Martyr" target="_blank">OrthodoxWiki: life and writings</a></span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHAPTER III -->
+    <div class="session" id="sect-3">
+      <div class="sess-header">
+        <div class="sess-num-row">
+          <span class="sess-num-badge">Chapter III</span>
+        </div>
+        <h2 class="sess-title">Early Liturgical Families</h2>
+        <span class="sess-subtitle">Alexandria &middot; Antioch &middot; Jerusalem &middot; Rome</span>
+        <div class="sess-divider"></div>
+      </div>
+      <div class="sess-body">
+        <p>As the Church spread across the Mediterranean world, the Holy Spirit did not impose a single, uniform liturgical form from above. Instead, the same essential mystery unfolded in diverse cultures and languages, giving rise to distinct families of liturgical prayer, each expressing the same faith in its own voice. These are not competing traditions but harmonious witnesses to the one sacrifice of the one Lord.</p>
+
+        <span class="sess-sub-head">The Alexandrian Rite</span>
+        <p>Egypt has preserved what is arguably the oldest fragmentary eucharistic text in existence: the Strasbourg Papyrus, dated to the fourth century but reflecting a considerably earlier tradition. The Anaphora of St. Mark, the great Alexandrian Eucharistic prayer attributed to the Evangelist and still used by the Coptic Church, exhibits what scholars call the "Alexandrian structure": the intercessions appear before the Sanctus rather than after, the Sanctus leads directly into the post-Sanctus and institution narrative, and the epiclesis follows the anamnesis. This tradition teaches us that the Spirit's guidance of the Church's prayer did not produce uniformity but a living diversity within unity.</p>
+
+        <span class="sess-sub-head">The Antiochene Rite and Addai and Mari</span>
+        <p>The Anaphora of the Apostles Addai and Mari, used by the East Syrian tradition and dated in its core elements to perhaps the second or third century, is remarkable for its antiquity and its directness. Addressed to Christ himself rather than to the Father, it preserves an archaic stratum of Christian prayer that predates the great theological systematization of the fourth century. The Apostolic Constitutions, Book VIII, compiled around 380 AD, preserves the so-called "Clementine" liturgy, the most elaborate early anaphora in the Antiochene tradition. Its anaphora exhibits the West Syrian structure that would become standard in the Byzantine tradition: dialogue, preface with creation-praise, Sanctus, post-Sanctus, institution narrative, anamnesis, epiclesis, and intercessions. This is the structural template from which the Liturgies of Basil and Chrysostom both derive.</p>
+
+        <span class="sess-sub-head">The Jerusalem Rite</span>
+        <p>Cyril of Jerusalem's Mystagogical Catecheses, delivered to the newly baptized during Bright Week around 350 AD, are an incomparable window into fourth-century Eucharistic theology and practice. Cyril walks his hearers through the Eucharistic prayer in sequence: the washing of hands symbolizing the putting away of sin, the kiss of peace, the dialogue, the Sanctus, the epiclesis ("We call upon God, the lover of mankind, to send down the Holy Spirit upon the gifts"), the commemoration of the departed, the Lord's Prayer, and the elevation with "Holy things for the holy." What is most striking is not the description of a ritual but the certainty of a man who has stood at the altar and knows he has stood in the presence of God.</p>
+        <p>The Anaphora of St. James, the Jerusalem liturgy proper, survives in Greek and Syriac recensions and is still celebrated on the feast of St. James each year in many Orthodox churches. It is among the longest of the ancient anaphoras and the most rhetorically elaborate, its post-Sanctus developing into an extended meditation on the divine condescension in the Incarnation before arriving at the institution narrative, as though the prayer cannot reach the Upper Room without first pausing to marvel at Bethlehem and Golgotha.</p>
+
+        <span class="sess-sub-head">The Roman Tradition</span>
+        <p>Any survey of early anaphoral families must reckon with the text known as the Apostolic Tradition, long attributed to Hippolytus of Rome around 215 AD. Modern scholarship has significantly complicated this attribution, concluding that the text is neither a unified document nor from a single author, and cannot be treated as a simple snapshot of early Roman liturgy. The text remains valuable as evidence of early Christian liturgical thought, but it reminds us that the Spirit's work in the Liturgy is not always easy to trace from the outside, and that the certainties of one generation of scholars are often the questions of the next. What is not in question is that the Roman tradition, like the Eastern traditions, was shaped by the same fundamental conviction: that the Church at prayer stands in the presence of the living God.</p>
+        <div class="figures-row">
+          <a href="https://en.wikipedia.org/wiki/Liturgy_of_Saint_Mark" target="_blank" rel="noopener" class="figure-chip">Anaphora of St. Mark</a>
+          <a href="https://en.wikipedia.org/wiki/Anaphora_of_Addai_and_Mari" target="_blank" rel="noopener" class="figure-chip">Addai and Mari</a>
+          <a href="https://en.wikipedia.org/wiki/Apostolic_Constitutions" target="_blank" rel="noopener" class="figure-chip">Apostolic Constitutions</a>
+          <a href="https://orthodoxwiki.org/Cyril_of_Jerusalem" target="_blank" rel="noopener" class="figure-chip">St. Cyril of Jerusalem</a>
+          <a href="https://en.wikipedia.org/wiki/Mystagogical_Catecheses" target="_blank" rel="noopener" class="figure-chip">Mystagogical Catecheses</a>
+          <a href="https://en.wikipedia.org/wiki/Apostolic_Tradition" target="_blank" rel="noopener" class="figure-chip">Apostolic Tradition</a>
+        </div>
+
+        <div class="hist-note">
+          <span class="hist-note-label">Cyril of Jerusalem's Mystagogical Catecheses, c. 350 AD</span>
+          <p>Delivered to the newly baptized during Bright Week in Jerusalem, the Mystagogical Catecheses of Cyril of Jerusalem are among the most precious documents in all of Christian liturgical history. In five lectures, Cyril walks his hearers through the rites of baptism, chrismation, and the Eucharist, explaining their meaning after initiation rather than before, following the ancient practice of <em>disciplina arcani</em>. Lecture V on the Divine Liturgy describes in sequence the handwashing, the kiss of peace, the Sursum corda dialogue, the Sanctus, the epiclesis, the commemorations, the Lord's Prayer, and the elevation with the cry "Holy things for the holy." These lectures remain the primary patristic commentary on fourth-century Eucharistic practice and theology.</p>
+        </div>
+
+        <div class="sources-block">
+          <span class="sources-label">Sources</span>
+          <ul class="source-list">
+            <li><span class="source-tag primary">Primary</span><span>Mystagogical Catecheses (full text) &#xB7; <a href="https://www.ccel.org/ccel/schaff/npnf207.ii.html" target="_blank">CCEL: Cyril of Jerusalem's five lectures</a></span></li>
+            <li><span class="source-tag ref">Encyclopedia</span><span>Liturgy of St. Mark &#xB7; <a href="https://en.wikipedia.org/wiki/Liturgy_of_Saint_Mark" target="_blank">Wikipedia: Alexandrian anaphoral tradition</a></span></li>
+            <li><span class="source-tag ref">Encyclopedia</span><span>Anaphora of Addai and Mari &#xB7; <a href="https://en.wikipedia.org/wiki/Anaphora_of_Addai_and_Mari" target="_blank">Wikipedia: East Syrian tradition and antiquity</a></span></li>
+            <li><span class="source-tag orthodox">OrthodoxWiki</span><span>Cyril of Jerusalem &#xB7; <a href="https://orthodoxwiki.org/Cyril_of_Jerusalem" target="_blank">OrthodoxWiki: life, writings, and feast</a></span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHAPTER IV -->
+    <div class="session" id="sect-4">
+      <div class="sess-header">
+        <div class="sess-num-row">
+          <span class="sess-num-badge">Chapter IV</span>
+        </div>
+        <h2 class="sess-title">St. Basil the Great</h2>
+        <span class="sess-subtitle">The Cappadocian Synthesis &middot; c. 330&ndash;379 AD</span>
+        <div class="sess-divider"></div>
+      </div>
+      <div class="sess-body">
+        <p>Of all the Fathers who have left their mark on the Divine Liturgy, St. Basil the Great stands in a category apart. A bishop, a theologian, a monastic legislator, and a pastor of extraordinary range, Basil was given by the Holy Spirit not only the wisdom to understand the Church's prayer but the capacity to deepen and articulate it in ways that have shaped Orthodox worship to the present day. The Liturgy of St. Basil, celebrated ten times a year in the Orthodox Church, remains among the most sublime acts of Christian worship ever composed.</p>
+
+        <span class="sess-sub-head">Two Recensions of a Single Prayer</span>
+        <p>The Anaphora of St. Basil exists in two principal forms: the longer Byzantine form used in the Orthodox Church today, and the shorter Egyptian form preserved in Coptic and Greek manuscripts, widely regarded as the earlier version. Careful comparison of the two reveals the story of Basil's theological development. The shorter Egyptian form preserves a prayer that Basil substantially worked during his time in Egypt as a young man, around 357 AD. The longer Byzantine form represents his subsequent theological expansion of that earlier text, with elaborate Nicene formulations added precisely at the points that had been contested in the Arian controversy.</p>
+        <p>Basil's liturgical work was not separate from his theological work, but continuous with it. The anaphora was a vehicle for doxological Trinitarian confession, and its expansion was simultaneously a liturgical and a theological act. The Liturgy has always been the Church's most faithful teacher of theology, because it is in the Liturgy that theology is not merely thought but prayed, not by one man in a study but by the whole assembly of the People of God.</p>
+
+        <span class="sess-sub-head">Epiclesis, Anamnesis, and the Theology of Sacrifice</span>
+        <p>Three moments in the Anaphora of St. Basil are of particular theological significance. The anamnesis, that memorial-recital of God's saving acts, is among the most expansive in any ancient anaphora, moving from creation through fall, covenant, and incarnation to passion, resurrection, ascension, and the promised second coming. The text names the Eucharist as the fulfillment of the Lord's command: "Do this in remembrance of me," and interprets the Eucharistic action as a "sacrifice without blood" offered to God in fulfillment of Malachi's prophecy: "from the rising of the sun to its setting, my name will be great among the nations." Every Liturgy of Basil is a liturgy of fulfilled prophecy.</p>
+        <p>The epiclesis of the Byzantine Basil is theologically remarkable: it asks the Father to send the Holy Spirit upon "us and upon these gifts here present," that the Spirit may "make this bread the precious Body of our Lord, God and Savior Jesus Christ" and "this cup the precious Blood of our Lord." The explicit invocation of the Spirit as the agent of Eucharistic transformation stands in continuity with the developing pneumatology of the Cappadocians and reminds us that the Eucharist is not a mechanical act but a living event in the trinitarian life of God: an event in which the Church, through the Spirit, is drawn into the very offering that the Son makes to the Father.</p>
+        <div class="figures-row">
+          <a href="https://orthodoxwiki.org/Basil_the_Great" target="_blank" rel="noopener" class="figure-chip">St. Basil the Great</a>
+          <a href="https://en.wikipedia.org/wiki/Divine_Liturgy_of_Saint_Basil_the_Great" target="_blank" rel="noopener" class="figure-chip">Liturgy of St. Basil</a>
+          <a href="https://en.wikipedia.org/wiki/Cappadocian_Fathers" target="_blank" rel="noopener" class="figure-chip">Cappadocian Fathers</a>
+          <a href="https://en.wikipedia.org/wiki/First_Council_of_Constantinople" target="_blank" rel="noopener" class="figure-chip">Council of Constantinople 381</a>
+          <a href="https://en.wikipedia.org/wiki/Nicene_Creed" target="_blank" rel="noopener" class="figure-chip">Nicene Creed</a>
+        </div>
+
+        <div class="hist-note">
+          <span class="hist-note-label">The Egyptian Basil and the Two Recensions</span>
+          <p>Scholars have identified an earlier, shorter form of the Anaphora of St. Basil preserved in Coptic and Greek manuscripts, now called the "Egyptian Basil." Comparison with the longer Byzantine form reveals Basil's theological hand at work: the shorter text preserves a compact Eucharistic prayer that Basil encountered and reworked during his travels in Egypt as a young man around 357 AD. The Byzantine form shows systematic expansion at precisely the points contested in the Arian controversy, with elaborate Nicene confessions of the Son's full divinity and the Spirit's co-equal lordship inserted throughout the anaphora. This textual history makes the Liturgy of St. Basil a living document of fourth-century Trinitarian theology, in which every expansion is simultaneously a liturgical act and a theological confession.</p>
+        </div>
+
+        <div class="sources-block">
+          <span class="sources-label">Sources</span>
+          <ul class="source-list">
+            <li><span class="source-tag orthodox">OrthodoxWiki</span><span>Basil the Great &#xB7; <a href="https://orthodoxwiki.org/Basil_the_Great" target="_blank">OrthodoxWiki: life, theology, and liturgical legacy</a></span></li>
+            <li><span class="source-tag ref">Encyclopedia</span><span>Divine Liturgy of St. Basil &#xB7; <a href="https://en.wikipedia.org/wiki/Divine_Liturgy_of_Saint_Basil_the_Great" target="_blank">Wikipedia: text, structure, and occasions of use</a></span></li>
+            <li><span class="source-tag primary">Primary</span><span>On the Holy Spirit (De Spiritu Sancto) &#xB7; <a href="https://www.ccel.org/ccel/schaff/npnf208.vii.html" target="_blank">CCEL: Basil's pneumatological treatise</a></span></li>
+            <li><span class="source-tag ref">Encyclopedia</span><span>Cappadocian Fathers &#xB7; <a href="https://en.wikipedia.org/wiki/Cappadocian_Fathers" target="_blank">Wikipedia: theological context and contributions</a></span></li>
+          </ul>
+        </div>
+
+        <div class="sess-pull">The Liturgy of Basil does not describe the divine condescension. It participates in it. Every word of the anaphora is both a confession and an act.</div>
+      </div>
+    </div>
+
+    <!-- CHAPTER V -->
+    <div class="session" id="sect-5">
+      <div class="sess-header">
+        <div class="sess-num-row">
+          <span class="sess-num-badge">Chapter V</span>
+        </div>
+        <h2 class="sess-title">St. John Chrysostom</h2>
+        <span class="sess-subtitle">The Constantinople Synthesis &middot; c. 349&ndash;407 AD</span>
+        <div class="sess-divider"></div>
+      </div>
+      <div class="sess-body">
+        <p>The Liturgy of St. John Chrysostom is the normative Eucharistic rite of the Byzantine Church, celebrated every Sunday and on most feasts throughout the Orthodox world. It is the Liturgy that most Orthodox Christians mean when they say "the Liturgy." That it bears the name of one of the greatest preachers and pastors in the history of Christianity is entirely fitting: the Chrysostomian anaphora achieves, in the economy of its expression, exactly what Chrysostom achieved in his sermons, saying the most with the least, and saying it so memorably that it cannot be forgotten.</p>
+
+        <span class="sess-sub-head">The Historical Question</span>
+        <p>How much of the Liturgy of Chrysostom did Chrysostom actually write? Honest scholarship must acknowledge uncertainty here. The anaphora we celebrate is certainly not a verbatim composition from the late fourth century in its entirety. What can be said with confidence is that by the ninth century, Byzantine liturgical books consistently attribute this anaphora to Chrysostom, and that the structural and theological family resemblance between the Liturgy of Chrysostom and the Liturgy of Basil is so close that they clearly share a common Antiochene ancestor: the prayer tradition that Chrysostom himself celebrated during his ministry in Antioch from 386 to 398 AD and in Constantinople from 398 to 404.</p>
+        <p>The Chrysostomian anaphora is a shorter, more theologically compressed version of the same structural sequence as the Basilean: dialogue, preface, Sanctus, post-Sanctus, institution narrative, anamnesis, epiclesis, intercessions, and concluding doxology. Where Basil expands every moment into elaborate theological meditation, the Chrysostomian tradition achieves an economy of expression that made the prayer more readily memorized and more practically suitable for frequent celebration. The brevity is not poverty but precision: every word carries the weight of the entire tradition.</p>
+
+        <span class="sess-sub-head">Constantinople and the Standardization of Eastern Practice</span>
+        <p>The emergence of the Liturgy of Chrysostom as the standard Byzantine rite is inseparable from the role of Constantinople as the imperial capital of the Christian Roman Empire. The great church of Hagia Sophia, completed in its first form in 360 AD and rebuilt by Justinian in 537 AD, was the ceremonial center of an imperial liturgical culture in which the Bishop of Constantinople occupied a position of unparalleled prestige. The rites celebrated in the Great Church became the standard toward which other Eastern churches oriented themselves, not by compulsion but by the natural authority of a center radiating spiritual and cultural life.</p>
+        <p>Across the fifth through ninth centuries, the Liturgy of Chrysostom gradually prevailed across the Eastern church. The Liturgy of St. Mark, native to Alexandria; the Liturgy of St. James, native to Jerusalem; various local Syrian anaphoras: all gradually gave way to the Chrysostomian form, though they survived in specialized liturgical contexts and in the non-Chalcedonian churches that separated after 451 AD. The Orthodox Church, in its wisdom, has never entirely abandoned these other treasures: the Liturgy of Basil remains in regular use ten times a year, and the Liturgy of St. James is celebrated on his feast day, reminding us that the richness of the Church's prayer is not the property of any single tradition.</p>
+        <div class="figures-row">
+          <a href="https://orthodoxwiki.org/John_Chrysostom" target="_blank" rel="noopener" class="figure-chip">St. John Chrysostom</a>
+          <a href="https://en.wikipedia.org/wiki/Divine_Liturgy_of_John_Chrysostom" target="_blank" rel="noopener" class="figure-chip">Liturgy of St. John Chrysostom</a>
+          <a href="https://en.wikipedia.org/wiki/Hagia_Sophia" target="_blank" rel="noopener" class="figure-chip">Hagia Sophia</a>
+          <a href="https://en.wikipedia.org/wiki/On_the_Priesthood_(Chrysostom)" target="_blank" rel="noopener" class="figure-chip">On the Priesthood</a>
+          <a href="https://en.wikipedia.org/wiki/Council_of_Chalcedon" target="_blank" rel="noopener" class="figure-chip">Council of Chalcedon 451</a>
+        </div>
+
+        <div class="hist-note">
+          <span class="hist-note-label">On the Priesthood (De Sacerdotio), c. 390 AD</span>
+          <p>Chrysostom's treatise <em>On the Priesthood</em>, written in dialogue form around 390 AD as a defense of his reluctance to accept ordination, is the most searching patristic meditation on the nature of the Christian presbyterate. Book III contains his most concentrated theology of the Eucharistic Liturgy, describing the priest standing before the altar at the moment when the Holy Spirit descends upon the gifts. "The very sacrifice is performed by the priest," Chrysostom writes. "But in reality it is God who performs it." He describes the angels standing in attendance, the whole heavenly host present at the offering. This conviction, that the earthly Liturgy and the heavenly liturgy are one single act, is not peripheral to Orthodox Eucharistic theology but its very center.</p>
+        </div>
+
+        <div class="sources-block">
+          <span class="sources-label">Sources</span>
+          <ul class="source-list">
+            <li><span class="source-tag primary">Primary</span><span>On the Priesthood (full text) &#xB7; <a href="https://www.ccel.org/ccel/schaff/npnf109.iii.html" target="_blank">CCEL: Chrysostom's six books on the priesthood</a></span></li>
+            <li><span class="source-tag orthodox">OrthodoxWiki</span><span>John Chrysostom &#xB7; <a href="https://orthodoxwiki.org/John_Chrysostom" target="_blank">OrthodoxWiki: life, exile, and feast</a></span></li>
+            <li><span class="source-tag ref">Encyclopedia</span><span>Divine Liturgy of St. John Chrysostom &#xB7; <a href="https://en.wikipedia.org/wiki/Divine_Liturgy_of_John_Chrysostom" target="_blank">Wikipedia: structure, text, and history</a></span></li>
+            <li><span class="source-tag ref">Encyclopedia</span><span>Hagia Sophia &#xB7; <a href="https://en.wikipedia.org/wiki/Hagia_Sophia" target="_blank">Wikipedia: architectural and liturgical history</a></span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHAPTER VI -->
+    <div class="session" id="sect-6">
+      <div class="sess-header">
+        <div class="sess-num-row">
+          <span class="sess-num-badge">Chapter VI</span>
+        </div>
+        <h2 class="sess-title">The Byzantine Synthesis</h2>
+        <span class="sess-subtitle">Cathedral Rite &middot; Monastic Rite &middot; The Typikon</span>
+        <div class="sess-divider"></div>
+      </div>
+      <div class="sess-body">
+        <p>The Byzantine Liturgy as it has come down to the present is not purely the product of Constantinople's Great Church. It is a fusion, completed over several centuries, of two distinct liturgical streams: the "cathedral rite" of the patriarchal Great Church, characterized by ceremonial splendor, elaborate processions, and the active participation of the laity in antiphonal psalmody; and the "monastic rite" of the Palestinian and later Constantinopolitan monasteries, characterized by an exhaustive cycle of the Psalter, extended readings, and a more austere, contemplative approach to liturgical prayer. In the synthesis of these two streams, the Holy Spirit gave the Church a form of worship that was simultaneously magnificent and intimate, public and personal, kingly and ascetic.</p>
+
+        <span class="sess-sub-head">The Studios Monastery</span>
+        <p>The Studios Monastery in Constantinople, founded in the fifth century and reformed by St. Theodore of Studios in the early ninth century, was the decisive institutional vehicle for this synthesis. Theodore's systematization of the monastic office and his insistence on close conformity to the Palestinian Typikon of St. Sabas gave the monastic tradition an organizational coherence it had previously lacked. The prestige of Studios in post-iconoclast Byzantine Christianity, where the monastery had stood as a center of resistance to the second iconoclasm and a beacon of theological and liturgical fidelity, meant that its customs spread rapidly across the empire and beyond. Theodore was not merely an administrator; he was a man who understood that the form of worship is the form of faith, and that to preserve one was to preserve the other.</p>
+
+        <span class="sess-sub-head">The Typikon and Its Transmission</span>
+        <p>The Typikon of the Great Church and the Typikon of St. Sabas were gradually harmonized across the middle Byzantine period, producing the comprehensive liturgical rule that Orthodox churches use today. This document specifies in exhaustive detail not only the texts of the services but the rubrics governing every ceremonial action: when to bow, when to make the great prostration, which prayers are said silently and which aloud, which melodies are proper to which occasions. The apparent complexity of the Typikon is not bureaucracy but love: the loving precision of a community that has learned, over centuries, exactly how to enter the presence of God.</p>
+        <p>The fall of Constantinople in 1453 disrupted but did not destroy this tradition. Many of the liturgical scholars and manuscript custodians of the Great Church migrated to Mount Athos, which became the primary conservatory of the Byzantine liturgical heritage in the centuries following the Ottoman conquest. The Athonite tradition of the Typikon, shaped by the great hesychast renewal associated with St. Gregory Palamas, became the standard reference for Orthodox liturgical practice across the entire Orthodox world. When you stand in an Orthodox church and hear the Liturgy sung according to the Typikon today, you are standing in a tradition kept alive through persecution, exile, and the patient fidelity of monks who understood that the Liturgy was worth preserving at any cost.</p>
+        <div class="figures-row">
+          <a href="https://orthodoxwiki.org/Theodore_the_Studite" target="_blank" rel="noopener" class="figure-chip">St. Theodore the Studite</a>
+          <a href="https://en.wikipedia.org/wiki/Stoudios_monastery" target="_blank" rel="noopener" class="figure-chip">Studios Monastery</a>
+          <a href="https://en.wikipedia.org/wiki/Typikon" target="_blank" rel="noopener" class="figure-chip">The Typikon</a>
+          <a href="https://en.wikipedia.org/wiki/Mount_Athos" target="_blank" rel="noopener" class="figure-chip">Mount Athos</a>
+          <a href="https://orthodoxwiki.org/Gregory_Palamas" target="_blank" rel="noopener" class="figure-chip">St. Gregory Palamas</a>
+          <a href="https://en.wikipedia.org/wiki/Fall_of_Constantinople" target="_blank" rel="noopener" class="figure-chip">Fall of Constantinople 1453</a>
+        </div>
+
+        <div class="hist-note">
+          <span class="hist-note-label">Mount Athos and the Preservation of Byzantine Liturgy</span>
+          <p>When Constantinople fell to the Ottoman Turks on May 29, 1453, the ceremonial center of Byzantine liturgical civilization was lost. But the Holy Mountain of Athos, which had maintained close liturgical ties with the Great Church for centuries, preserved its heritage through one of the most consequential acts of institutional resilience in Christian history. The great libraries of the Athonite monasteries sheltered the manuscript traditions of the Typikon, the hymnographical collections of the Menaion, Triodion, and Pentecostarion, and the theological inheritance of the Hesychast renewal associated with St. Gregory Palamas. When the Orthodox world reconstituted its ecclesiastical structures after the conquest, the Athonite tradition became the universal reference point. When you stand in an Orthodox church today and hear the Liturgy celebrated according to the Typikon, you are the heir of that preservation.</p>
+        </div>
+
+        <div class="sources-block">
+          <span class="sources-label">Sources</span>
+          <ul class="source-list">
+            <li><span class="source-tag orthodox">OrthodoxWiki</span><span>Theodore the Studite &#xB7; <a href="https://orthodoxwiki.org/Theodore_the_Studite" target="_blank">OrthodoxWiki: monastic reform and iconoclasm</a></span></li>
+            <li><span class="source-tag ref">Encyclopedia</span><span>Typikon &#xB7; <a href="https://en.wikipedia.org/wiki/Typikon" target="_blank">Wikipedia: Orthodox liturgical rule and history</a></span></li>
+            <li><span class="source-tag ref">Encyclopedia</span><span>Mount Athos &#xB7; <a href="https://en.wikipedia.org/wiki/Mount_Athos" target="_blank">Wikipedia: monastic republic and liturgical tradition</a></span></li>
+            <li><span class="source-tag orthodox">OrthodoxWiki</span><span>Gregory Palamas &#xB7; <a href="https://orthodoxwiki.org/Gregory_Palamas" target="_blank">OrthodoxWiki: Hesychasm and divine energies</a></span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHAPTER VII -->
+    <div class="session" id="sect-7">
+      <div class="sess-header">
+        <div class="sess-num-row">
+          <span class="sess-num-badge">Chapter VII</span>
+        </div>
+        <h2 class="sess-title">The Slavic Mission</h2>
+        <span class="sess-subtitle">Cyril &amp; Methodius &middot; The Baptism of Rus &middot; The Nikonian Schism</span>
+        <div class="sess-divider"></div>
+      </div>
+      <div class="sess-body">
+        <p>The Liturgy is the Church's great missionary. When Orthodoxy came to the Slavic peoples in the ninth and tenth centuries, it came first as a song, the sound of the Liturgy in a language the people could understand, and only then as a theology. The Church has always known that you cannot explain what you have not first been allowed to experience, and that the experience of the Liturgy is among the most powerful forces for conversion in the history of religion.</p>
+
+        <span class="sess-sub-head">Cyril and Methodius</span>
+        <p>The brothers Constantine (later Cyril) and Methodius, sent by the Patriarch Photius of Constantinople to evangelize Moravia in 863 AD, made a decision whose consequences are still unfolding: they created a Slavic alphabet and translated the essential liturgical books into the vernacular language of the people they were evangelizing. The Gospels, the Psalter, the Apostolos, and the Euchologion were rendered in Church Slavonic, making this the first time in Christian history that a mission deliberately chose to translate the Liturgy into the vernacular rather than imposing the sacred language of another culture. The Holy Spirit, it seems, is not attached to any particular human language, but is prepared to sanctify every tongue that will praise God in it.</p>
+        <p>Constantine defended the Slavic liturgical books before Pope Adrian II in 867-868 AD and secured their approval, giving the Slavic liturgical tradition canonical legitimacy. Church Slavonic became the sacred liturgical language of the entire Orthodox Slavic world, playing a role analogous to Latin in the Western church: a vehicle of access to the tradition, and a marker of the sacred depth that distinguishes liturgical language from ordinary speech. The linguistic decision made in ninth-century Moravia would eventually make possible the English-language Liturgy in twenty-first-century New Jersey.</p>
+
+        <span class="sess-sub-head">The Baptism of Rus</span>
+        <p>The baptism of Prince Vladimir I of Kiev in 988 AD and the subsequent mass baptism of the Kievan populace is narrated in the Primary Chronicle with a detail that has become one of the most celebrated passages in Orthodox history. Vladimir's ambassadors, returning from Constantinople where they had attended the Liturgy in Hagia Sophia, reported: "We knew not whether we were in heaven or on earth. For on earth there is no such splendor or such beauty, and we are at a loss how to describe it. We only know that God dwells there among men." Whatever its legendary accretions, this narrative accurately captures something historically real: the Byzantine Liturgy, celebrated at its full imperial magnificence in the Great Church, was a primary instrument of evangelization, communicating a theological vision of heaven made present on earth that was inseparable from its aesthetic grandeur. Beauty is not ornament in the Orthodox understanding of the Liturgy. It is evidence.</p>
+
+        <span class="sess-sub-head">The Nikonian Reforms and the Old Believers</span>
+        <p>The seventeenth century brought the most traumatic liturgical crisis in Russian Orthodox history. Patriarch Nikon of Moscow, acting with the support of Tsar Alexis, undertook a comprehensive reform of Russian liturgical books to correct accumulated errors and restore conformity to contemporary Greek practice. The corrections were genuinely necessary: centuries of manuscript transmission had introduced textual variants, and the Russian books differed in numerous particulars from the Greek originals. But the reforms provoked a schism of lasting consequence.</p>
+        <p>A significant portion of the Russian church, led by the Archpriest Avvakum, refused to accept the corrections. For the Old Believers, the Russian liturgical tradition as received was itself the authentic deposit of Apostolic faith. The disputed details (the number of fingers used in making the sign of the cross, the spelling of the name of Jesus, the number of alleluias) were not minor. They were the form through which the faith itself was transmitted, and to alter them was, in the Old Believers' understanding, to alter the faith. The schism has never been formally healed, though the Moscow Patriarchate revoked its anathemas against the old rites in 1971, recognizing both forms as equally valid. The Old Believer communities are a permanent reminder that the question of authentic tradition is never purely academic, and that the form of the Liturgy touches the deepest identity of the people who celebrate it.</p>
+        <div class="figures-row">
+          <a href="https://en.wikipedia.org/wiki/Cyril_and_Methodius" target="_blank" rel="noopener" class="figure-chip">Cyril &amp; Methodius</a>
+          <a href="https://en.wikipedia.org/wiki/Vladimir_the_Great" target="_blank" rel="noopener" class="figure-chip">Vladimir I of Kiev</a>
+          <a href="https://en.wikipedia.org/wiki/Church_Slavonic" target="_blank" rel="noopener" class="figure-chip">Church Slavonic</a>
+          <a href="https://en.wikipedia.org/wiki/Nikon,_Patriarch_of_Moscow" target="_blank" rel="noopener" class="figure-chip">Patriarch Nikon</a>
+          <a href="https://en.wikipedia.org/wiki/Old_Believers" target="_blank" rel="noopener" class="figure-chip">Old Believers</a>
+          <a href="https://en.wikipedia.org/wiki/Primary_Chronicle" target="_blank" rel="noopener" class="figure-chip">The Primary Chronicle</a>
+        </div>
+
+        <div class="hist-note">
+          <span class="hist-note-label">The Primary Chronicle on the Baptism of Rus</span>
+          <p>The Russian Primary Chronicle (<em>Povest' Vremennykh Let</em>), compiled in the early twelfth century, records Vladimir I's legendary dispatch of envoys to investigate the great religions of the world. Their report on the Liturgy at Hagia Sophia became one of the most celebrated passages in the entire history of Christian mission: "We knew not whether we were in heaven or on earth. For on earth there is no such splendor or such beauty, and we are at a loss how to describe it. We only know that God dwells there among men, and their service is fairer than the ceremonies of other nations." Whether historically precise or partly legendary, this account captures something genuinely true: the Byzantine Liturgy, celebrated at its full imperial magnificence, communicated a theological vision of heaven made present on earth that no argument could match. Beauty is not ornament in the Orthodox understanding of the Liturgy. It is evidence.</p>
+        </div>
+
+        <div class="sources-block">
+          <span class="sources-label">Sources</span>
+          <ul class="source-list">
+            <li><span class="source-tag primary">Primary</span><span>The Primary Chronicle (Baptism of Rus account) &#xB7; <a href="https://sourcebooks.fordham.edu/basis/chronicle.asp" target="_blank">Fordham Medieval Sourcebook</a></span></li>
+            <li><span class="source-tag orthodox">OrthodoxWiki</span><span>Cyril and Methodius &#xB7; <a href="https://orthodoxwiki.org/Cyril_and_Methodius" target="_blank">OrthodoxWiki: the Slavic apostles</a></span></li>
+            <li><span class="source-tag ref">Encyclopedia</span><span>Vladimir I &#xB7; <a href="https://en.wikipedia.org/wiki/Vladimir_the_Great" target="_blank">Wikipedia: baptism and Christianization of Rus</a></span></li>
+            <li><span class="source-tag ref">Encyclopedia</span><span>Old Believers &#xB7; <a href="https://en.wikipedia.org/wiki/Old_Believers" target="_blank">Wikipedia: the Raskol and its aftermath</a></span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHAPTER VIII -->
+    <div class="session" id="sect-8">
+      <div class="sess-header">
+        <div class="sess-num-row">
+          <span class="sess-num-badge">Chapter VIII</span>
+        </div>
+        <h2 class="sess-title">Orthodoxy in America</h2>
+        <span class="sess-subtitle">The Russian Mission &middot; Autocephaly &middot; Fr. Alexander Schmemann</span>
+        <div class="sess-divider"></div>
+      </div>
+      <div class="sess-body">
+        <p>The Orthodox Church in America is the youngest chapter in a very old story, and it is the chapter in which this parish on Grand Street in Jersey City finds its immediate home. The question that has shaped the OCA from the beginning is whether Orthodoxy in America is merely an immigrant consolation, a way of preserving the old country in a new land, or whether it is something genuinely new: the full inheritance of the ancient faith planted in a new soil and growing, as the Spirit wills, into a fully indigenous American church.</p>
+
+        <span class="sess-sub-head">From the Russian Mission to Autocephaly</span>
+        <p>The Orthodox Church in America traces its origins to the Russian Orthodox mission to Alaska, established under the extraordinary Bishop Innocent Veniaminov in 1840. Veniaminov, later glorified as St. Innocent of Alaska, translated the liturgical books into the languages of the Aleut and Yup'ik peoples, continuing the tradition of Cyril and Methodius, and established a pattern of genuinely missionary Orthodoxy that the OCA has sought to maintain. The decisive institutional moment came on April 10, 1970, when the Moscow Patriarchate granted autocephaly to the Orthodox Church in America, declaring it a self-governing local church with the right to elect its own primate, ordain its own bishops, and determine its own canonical territory. For the OCA, this grant was a mandate: to become, fully and without apology, an American Orthodox church, celebrating the Liturgy in the English language of its people.</p>
+
+        <span class="sess-sub-head">Fr. Alexander Schmemann</span>
+        <p>No single figure shaped the liturgical and theological identity of the OCA more decisively than Fr. Alexander Schmemann, Dean of St. Vladimir's Orthodox Theological Seminary in Crestwood, New York, from 1962 until his death in 1983. Schmemann was a theologian of the first rank, and his specific genius was to take the technical apparatus of historical liturgical scholarship and place it in the service of a comprehensive theological vision of what Christian worship is and does.</p>
+        <p>His <em>Introduction to Liturgical Theology</em> argued that the history of Christian worship is not merely an antiquarian interest but a theological question: the shape of the Liturgy embodies and transmits the Church's understanding of its own identity, of time, of the cosmos, and of the Kingdom of God. His most widely read work, <em>For the Life of the World</em>, addresses the whole of Christian sacramental life from the starting point of the Eucharist, arguing that the world was created as a Eucharist, a gift to be offered back to God in thanksgiving, and that human beings are irreducibly Eucharistic creatures, priests of creation who find their full humanity only in the act of offering. His final work, <em>The Eucharist: Sacrament of the Kingdom</em>, moves through the Divine Liturgy moment by moment in a meditation that is simultaneously exegetical, historical, and mystical. Against what he called the "reduction" of liturgical theology to a mere explanation of symbols and rubrics, Schmemann insisted on the Liturgy as an event, a passage, a participation in the very life of the Kingdom of God already present in the assembled Church.</p>
+
+        <div class="sess-pull">"The liturgy of the Eucharist is best understood as a journey or procession. It is the journey of the Church into the dimension of the Kingdom." &mdash; Fr. Alexander Schmemann</div>
+
+        <span class="sess-sub-head">English-Language Liturgy and Frequent Communion</span>
+        <p>The practical implementation of Schmemann's theological vision required solving the problem of translation: how to render the Greek texts of the Liturgy of Chrysostom, mediated through centuries of Church Slavonic usage, into an English that was simultaneously theologically accurate, liturgically singable, and comprehensible to American ears. The Greek of the Byzantine Liturgy is a highly compressed theological language in which every word carries freight accumulated across centuries of theological controversy and devotional use. The OCA's translation reflects careful stewardship of this inheritance: retaining Greek doxological terms where they are untranslatable, rendering the epiclesis with pneumatological precision, preserving the theological weight of formulations hammered out in the councils of the early Church.</p>
+        <p>Schmemann also argued vigorously for the recovery of frequent communion as the normative Eucharistic participation of the faithful. For much of the pre-modern period, Orthodox Christians communed infrequently, sometimes only once or twice a year, with extensive preparatory requirements that had effectively become barriers. Against this, Schmemann maintained that the Liturgy is the gathering of the whole Church, and that the whole Church is constituted as Church precisely by its participation in the Eucharistic offering. The OCA has progressively moved toward more frequent communion as the norm, with most parishes now expecting communicant members to approach the chalice at every Liturgy for which they are prepared. At Sts. Peter and Paul, this is our practice: the Liturgy is not a performance to attend, but a sacrifice to offer and receive.</p>
+        <div class="figures-row">
+          <a href="https://orthodoxwiki.org/Alexander_Schmemann" target="_blank" rel="noopener" class="figure-chip">Fr. Alexander Schmemann</a>
+          <a href="https://orthodoxwiki.org/Innocent_of_Alaska" target="_blank" rel="noopener" class="figure-chip">St. Innocent of Alaska</a>
+          <a href="https://oca.org" target="_blank" rel="noopener" class="figure-chip">Orthodox Church in America</a>
+          <a href="https://svots.edu" target="_blank" rel="noopener" class="figure-chip">St. Vladimir's Seminary</a>
+          <a href="https://en.wikipedia.org/wiki/Autocephaly" target="_blank" rel="noopener" class="figure-chip">Autocephaly (1970)</a>
+        </div>
+
+        <div class="hist-note">
+          <span class="hist-note-label">For the Life of the World (1963)</span>
+          <p>Schmemann's <em>For the Life of the World</em> began as a study document for a student Christian movement conference. Its opening argument, that "the world was created as the 'matter,' the material of one all-embracing Eucharist, and man was created as the priest of this cosmic sacrament," set the theological program of the entire work. Against the secular tendency to reduce religion to private piety and the ecclesiastical tendency to reduce sacraments to moments of individual grace, Schmemann argued that the Eucharist is the Church's fundamental act of cosmic transformation: the offering of the world to God in Christ, through which the world is declared to be what it truly is. The revised edition of 1973 expanded the argument and extended it to cover all the sacraments of the Church. The book became the most widely read work of Orthodox theology in the English-speaking world and remains the standard introduction to Orthodox sacramental theology for inquirers and seminarians alike.</p>
+        </div>
+
+        <div class="sources-block">
+          <span class="sources-label">Sources</span>
+          <ul class="source-list">
+            <li><span class="source-tag orthodox">OrthodoxWiki</span><span>Alexander Schmemann &#xB7; <a href="https://orthodoxwiki.org/Alexander_Schmemann" target="_blank">OrthodoxWiki: life, writings, and legacy</a></span></li>
+            <li><span class="source-tag orthodox">OrthodoxWiki</span><span>Innocent of Alaska &#xB7; <a href="https://orthodoxwiki.org/Innocent_of_Alaska" target="_blank">OrthodoxWiki: the Apostle to America</a></span></li>
+            <li><span class="source-tag ref">Web</span><span>OCA History and Autocephaly &#xB7; <a href="https://oca.org/history-archives" target="_blank">oca.org: official history and documents</a></span></li>
+            <li><span class="source-tag academic">Academic</span><span>St. Vladimir's Orthodox Theological Seminary &#xB7; <a href="https://svots.edu" target="_blank">svots.edu: Schmemann's academic home</a></span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHAPTER IX -->
+    <div class="session" id="sect-9">
+      <div class="sess-header">
+        <div class="sess-num-row">
+          <span class="sess-num-badge">Chapter IX</span>
+        </div>
+        <h2 class="sess-title">The Living Liturgy</h2>
+        <span class="sess-subtitle">Theosis &middot; The Kingdom &middot; What the Liturgy Does</span>
+        <div class="sess-divider"></div>
+      </div>
+      <div class="sess-body">
+        <p>The history traced in the preceding chapters is not merely the story of a ritual's development. It is the story of a community's attempt, across two millennia, to inhabit a claim that is simultaneously the simplest and the most staggering claim of Christian faith: that in the Eucharistic assembly, the Kingdom of God is not merely anticipated but present; that the Church gathered around the chalice and the diskos is already, here and now, the eschatological community of the age to come. This is not a claim arrived at by theological argument. It is a claim made first in the act of worship itself, and only then articulated by theologians attempting to say accurately what they have experienced in the assembly.</p>
+
+        <span class="sess-sub-head">The Liturgy as Participation in the Kingdom</span>
+        <p>This theological conviction is present in the earliest strata of the tradition. The Didache's <em>Maranatha</em> is not a prayer for a distant future event but an invocation that understands the Eucharist itself as an anticipation and participation in the Lord's coming. Justin Martyr's insistence that the consecrated bread and wine are "not common bread and common drink" stakes a realist claim about the nature of Eucharistic presence. Cyril of Jerusalem wrote plainly: "After sanctification by the Holy Spirit, the bread becomes the Body of Christ and the wine the Blood of Christ." That language articulates a eucharistic realism continuous with the later Orthodox theology of the Holy Gifts. The Church has never wavered on this point. What happens at the altar is real.</p>
+
+        <span class="sess-sub-head">Theosis and the Eucharist</span>
+        <p>The connection between the Eucharist and theosis, the participation of the human person in the divine life, is the deepest theological principle of the Orthodox liturgical tradition. Nicholas Cabasilas' Commentary on the Divine Liturgy, the most sophisticated Byzantine theology of the Eucharist, argues that the Liturgy is the normative context within which the Christian's union with Christ is both enacted and deepened. The Eucharistic prayer is not a description of a transaction completed at a remote distance; it is an event in which the assembled Church is drawn into the trinitarian life through the Body and Blood of the incarnate Son.</p>
+        <p>Gregory Palamas' theology of divine energies provides the metaphysical framework within which the Orthodox theology of theosis and Eucharistic presence is most fully articulated. If God communicates himself to creation not through his essence but through his uncreated energies, which are truly God and not mere effects of God, then the Eucharist is the supreme locus of divine energetic presence: the place where the uncreated Life of God is communicated to human persons through the created elements of bread and wine transformed by the Holy Spirit. You receive the Body and Blood of Christ, and the life that is in them is the life of God himself. This is not metaphor. The tradition insists it is real.</p>
+
+        <span class="sess-sub-head">Rubrics and Theology</span>
+        <p>Any honest liturgical theology must attend to the distinction between the liturgical act itself (the assembly's praying, singing, processing, offering, consuming) and the systematic reflection on that act. The Church does not first develop a doctrine of the Eucharist and then express it in ritual; rather, the Church first prays, and its theology is the disciplined articulation of what it discovers in prayer. <em>Lex orandi, lex credendi</em>: the rule of prayer is the rule of belief.</p>
+        <p>The accumulation of rubrics over the centuries represents not merely ecclesiastical administration but an attempt to preserve the integrity of the primary theological event against the distortions introduced by inattention, haste, or cultural accommodation. But rubrics can also become ends in themselves: when the form of the Liturgy is preserved with perfect technical fidelity while the community's living understanding of its meaning atrophies, the rubrics have become an idol. Schmemann's critique of much pre-conciliar Orthodox liturgical practice was precisely this: that generations of faithful Christians had been formed to attend the Liturgy as an obligation to be discharged rather than as a participation in the life of God to be entered. The ongoing challenge for the Orthodox Church in every age is to hold both dimensions together: to honor the historical tradition in its fullness, with its precise rubrics and its ancient texts, and simultaneously to recover the living theological vision that the tradition exists to transmit.</p>
+        <div class="figures-row">
+          <a href="https://orthodoxwiki.org/Nicholas_Cabasilas" target="_blank" rel="noopener" class="figure-chip">Nicholas Cabasilas</a>
+          <a href="https://orthodoxwiki.org/Gregory_Palamas" target="_blank" rel="noopener" class="figure-chip">St. Gregory Palamas</a>
+          <a href="https://orthodoxwiki.org/Theosis" target="_blank" rel="noopener" class="figure-chip">Theosis</a>
+          <a href="https://orthodoxwiki.org/Divine_energies" target="_blank" rel="noopener" class="figure-chip">Divine Energies</a>
+          <a href="https://en.wikipedia.org/wiki/Lex_orandi,_lex_credendi" target="_blank" rel="noopener" class="figure-chip">Lex orandi, lex credendi</a>
+        </div>
+
+        <div class="hist-note">
+          <span class="hist-note-label">Nicholas Cabasilas: A Commentary on the Divine Liturgy, c. 1350</span>
+          <p>Nicholas Cabasilas (c. 1319–1391) was a Byzantine layman who became one of the greatest liturgical theologians in Orthodox history. His <em>Commentary on the Divine Liturgy</em>, written in the mid-fourteenth century, is a sustained meditation on the meaning of every prayer and action of the Liturgy of St. John Chrysostom, read through the lens of Palamite theology. Unlike earlier liturgical allegories that interpreted the Liturgy as a symbolic drama of salvation history, Cabasilas insists that the Liturgy does not merely represent but actually accomplishes the union of the Church with Christ. His second major work, <em>The Life in Christ</em>, extends this theology to the whole sacramental life, arguing that the Eucharist is the definitive form of the Christian life because it is the place where Christ himself is most fully present and most fully received. Both remain essential reading in Orthodox liturgical theology.</p>
+        </div>
+
+        <div class="sources-block">
+          <span class="sources-label">Sources</span>
+          <ul class="source-list">
+            <li><span class="source-tag orthodox">OrthodoxWiki</span><span>Nicholas Cabasilas &#xB7; <a href="https://orthodoxwiki.org/Nicholas_Cabasilas" target="_blank">OrthodoxWiki: theologian of the Eucharist</a></span></li>
+            <li><span class="source-tag orthodox">OrthodoxWiki</span><span>Gregory Palamas &#xB7; <a href="https://orthodoxwiki.org/Gregory_Palamas" target="_blank">OrthodoxWiki: Hesychasm and uncreated energies</a></span></li>
+            <li><span class="source-tag orthodox">OrthodoxWiki</span><span>Theosis &#xB7; <a href="https://orthodoxwiki.org/Theosis" target="_blank">OrthodoxWiki: deification in Orthodox theology</a></span></li>
+            <li><span class="source-tag ref">Encyclopedia</span><span>Lex orandi, lex credendi &#xB7; <a href="https://en.wikipedia.org/wiki/Lex_orandi,_lex_credendi" target="_blank">Wikipedia: the rule of prayer as rule of belief</a></span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHAPTER X -->
+    <div class="session" id="sect-10">
+      <div class="sess-header">
+        <div class="sess-num-row">
+          <span class="sess-num-badge">Chapter X</span>
+        </div>
+        <h2 class="sess-title">Conclusion</h2>
+        <span class="sess-subtitle">Continuity Within Development &middot; The Journey That Never Ends</span>
+        <div class="sess-divider"></div>
+      </div>
+      <div class="sess-body">
+        <p>The history of the Divine Liturgy is a history of remarkable continuity within genuine development. The structural bones of the Sunday Eucharist (assembly, readings, prayers, offering, thanksgiving, communion, dismissal) are traceable from Justin Martyr's description in the second century to the celebration of the Divine Liturgy in New Jersey this coming Sunday. The anaphoral tradition, despite the immense diversity of its textual forms across the Alexandrian, Antiochene, Byzantine, and Roman families, exhibits a consistent theological grammar: praise, thanksgiving, memorial, invocation, and intercession. The transmission of this tradition through the Slavic world, for all the dislocations of the Nikonian schism and the Soviet suppression, preserved and carried forward a living inheritance that continues to shape the devotional and theological identity of millions. The Church has been faithful to what it received, and the Spirit has been faithful to the Church.</p>
+        <p>What the liturgical theology of Alexander Schmemann recovered, against the reductionist tendencies of both excessive clericalism and excessive individualism, is the corporate and eschatological dimension of the Eucharist that runs through the entire tradition: the sense that when the Church gathers around the Table of the Lord, something genuinely decisive happens, something that cannot be reduced to edification or instruction or the performance of a duty. The bread becomes the Body. The wine becomes the Blood. The assembly becomes the Body of Christ. And the Kingdom, always coming, is already here.</p>
+        <p>The Divine Liturgy is not a museum exhibit, and this history is not meant to make you merely informed. It is meant to make you more fully present to what you do every Sunday morning when you walk through the doors of this church. The Liturgy you attend is the same Liturgy the martyrs attended in the catacombs, the same Liturgy Vladimir's ambassadors heard in Hagia Sophia and thought they were in heaven, the same Liturgy that Basil prayed in Caesarea and Chrysostom prayed in Antioch and Cyril prayed in Jerusalem. You are not observers of this tradition. You are its continuation.</p>
+        <div class="figures-row">
+          <a href="https://orthodoxwiki.org/Divine_Liturgy" target="_blank" rel="noopener" class="figure-chip">Divine Liturgy</a>
+          <a href="https://oca.org" target="_blank" rel="noopener" class="figure-chip">Orthodox Church in America</a>
+          <a href="https://en.wikipedia.org/wiki/Liturgical_theology" target="_blank" rel="noopener" class="figure-chip">Liturgical Theology</a>
+          <a href="https://orthodoxwiki.org/Eucharist" target="_blank" rel="noopener" class="figure-chip">The Eucharist</a>
+        </div>
+
+        <div class="sources-block">
+          <span class="sources-label">Key Works for Further Study</span>
+          <ul class="source-list">
+            <li><span class="source-tag academic">Book</span><span>Alexander Schmemann, <em>The Eucharist: Sacrament of the Kingdom</em> &#xB7; <a href="https://svspress.com/the-eucharist-sacrament-of-the-kingdom/" target="_blank">SVS Press: chapter-by-chapter liturgical theology</a></span></li>
+            <li><span class="source-tag academic">Book</span><span>Alexander Schmemann, <em>For the Life of the World</em> &#xB7; <a href="https://svspress.com/for-the-life-of-the-world-sacraments-and-orthodoxy/" target="_blank">SVS Press: introduction to Orthodox sacramental theology</a></span></li>
+            <li><span class="source-tag academic">Book</span><span>Nicholas Cabasilas, <em>A Commentary on the Divine Liturgy</em> &#xB7; <a href="https://www.svs.edu/product/a-commentary-on-the-divine-liturgy/" target="_blank">SVS Press: patristic Eucharistic theology</a></span></li>
+            <li><span class="source-tag ref">Encyclopedia</span><span>Christian Liturgy &#xB7; <a href="https://en.wikipedia.org/wiki/Christian_liturgy" target="_blank">Wikipedia: survey of liturgical history and traditions</a></span></li>
+          </ul>
+        </div>
+
+        <div class="sess-pull">The priest says quietly in the sanctuary: "It is time for the Lord to act." And it is always time. And the Lord always acts. This is what the whole of this history has been trying to say.</div>
+      </div>
+    </div>
+
+    <!-- GO DEEPER CTA -->
+    <div style="background:var(--apse);padding:2.5rem;margin-top:3.5rem">
+      <span style="font-family:var(--f-ui);font-size:.65rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(184,131,40,.70);display:block;margin-bottom:.75rem">Experience it yourself</span>
+      <p style="font-family:var(--f-display);font-weight:300;font-size:clamp(1.3rem,2vw,1.75rem);color:rgba(246,241,232,.90);line-height:1.2;margin-bottom:.75rem">Follow along at the<br><em>Divine Liturgy</em></p>
+      <p style="font-family:var(--f-body);font-style:italic;font-size:.88rem;color:rgba(246,241,232,.50);line-height:1.65;margin-bottom:1.4rem">The full text of the Liturgy of St. John Chrysostom, with rubrics and musical settings, for use during the service.</p>
+      <a href="/liturgy-book" style="font-family:var(--f-ui);font-size:.68rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(232,201,122,.80);border-bottom:1px solid rgba(232,201,122,.30);padding-bottom:.1rem">Open the Liturgy Book &#8594;</a>
+    </div>
+
+  </main>
+
+  <!-- SIDEBAR -->
+  <aside class="side-col">
+
+    <!-- Panel A: scrolls with page -->
+    <div class="side-section">
+      <span class="side-head">On This Page</span>
+      <div class="sect-list-item" onclick="scrollToSection('sect-1')"><span class="sli-num">I</span><span class="sli-name">Jewish Roots</span></div>
+      <div class="sect-list-item" onclick="scrollToSection('sect-2')"><span class="sli-num">II</span><span class="sli-name">The Apostolic Era</span></div>
+      <div class="sect-list-item" onclick="scrollToSection('sect-3')"><span class="sli-num">III</span><span class="sli-name">Liturgical Families</span></div>
+      <div class="sect-list-item" onclick="scrollToSection('sect-4')"><span class="sli-num">IV</span><span class="sli-name">St. Basil the Great</span></div>
+      <div class="sect-list-item" onclick="scrollToSection('sect-5')"><span class="sli-num">V</span><span class="sli-name">St. John Chrysostom</span></div>
+      <div class="sect-list-item" onclick="scrollToSection('sect-6')"><span class="sli-num">VI</span><span class="sli-name">The Byzantine Synthesis</span></div>
+      <div class="sect-list-item" onclick="scrollToSection('sect-7')"><span class="sli-num">VII</span><span class="sli-name">The Slavic Mission</span></div>
+      <div class="sect-list-item" onclick="scrollToSection('sect-8')"><span class="sli-num">VIII</span><span class="sli-name">Orthodoxy in America</span></div>
+      <div class="sect-list-item" onclick="scrollToSection('sect-9')"><span class="sli-num">IX</span><span class="sli-name">The Living Liturgy</span></div>
+      <div class="sect-list-item" onclick="scrollToSection('sect-10')"><span class="sli-num">X</span><span class="sli-name">Conclusion</span></div>
+    </div>
+
+    <div class="side-section" style="margin-top:2.5rem">
+      <span class="side-head">Further Reading</span>
+      <a href="/divine-liturgy" class="annot-nav-link">The Divine Liturgy <span>&#8594;</span></a>
+      <a href="/about-orthodoxy" class="annot-nav-link">About Orthodoxy <span>&#8594;</span></a>
+      <a href="/our-beliefs" class="annot-nav-link">Our Beliefs <span>&#8594;</span></a>
+      <a href="/catechesis-series" class="annot-nav-link">2026 Catechesis Series <span>&#8594;</span></a>
+      <a href="/vespers" class="annot-nav-link">Vespers Service Book <span>&#8594;</span></a>
+    </div>
+
+    <div class="deep-link-box">
+      <span class="dlb-label">Join us</span>
+      <p class="dlb-title">The Divine Liturgy<br><em>every Sunday</em></p>
+      <p class="dlb-body">Sts. Peter &amp; Paul Orthodox Cathedral, 109 Grand Street, Jersey City. Liturgy at 9:30 AM. All are welcome to attend.</p>
+      <a href="/visit" class="dlb-link">Plan your visit &#8594;</a>
+    </div>
+
+    <!-- Panel B: sticky chapter nav that locks in as you scroll -->
+    <div class="side-section" style="position:sticky;top:84px;margin-top:2.5rem">
+      <span class="side-head">On This Page</span>
+      <div class="sect-list-item" onclick="scrollToSection('sect-1')"><span class="sli-num">I</span><span class="sli-name">Jewish Roots</span></div>
+      <div class="sect-list-item" onclick="scrollToSection('sect-2')"><span class="sli-num">II</span><span class="sli-name">The Apostolic Era</span></div>
+      <div class="sect-list-item" onclick="scrollToSection('sect-3')"><span class="sli-num">III</span><span class="sli-name">Liturgical Families</span></div>
+      <div class="sect-list-item" onclick="scrollToSection('sect-4')"><span class="sli-num">IV</span><span class="sli-name">St. Basil the Great</span></div>
+      <div class="sect-list-item" onclick="scrollToSection('sect-5')"><span class="sli-num">V</span><span class="sli-name">St. John Chrysostom</span></div>
+      <div class="sect-list-item" onclick="scrollToSection('sect-6')"><span class="sli-num">VI</span><span class="sli-name">The Byzantine Synthesis</span></div>
+      <div class="sect-list-item" onclick="scrollToSection('sect-7')"><span class="sli-num">VII</span><span class="sli-name">The Slavic Mission</span></div>
+      <div class="sect-list-item" onclick="scrollToSection('sect-8')"><span class="sli-num">VIII</span><span class="sli-name">Orthodoxy in America</span></div>
+      <div class="sect-list-item" onclick="scrollToSection('sect-9')"><span class="sli-num">IX</span><span class="sli-name">The Living Liturgy</span></div>
+      <div class="sect-list-item" onclick="scrollToSection('sect-10')"><span class="sli-num">X</span><span class="sli-name">Conclusion</span></div>
+    </div>
+
+  </aside>
+</div>
+
+<!-- QUOTE BREAK -->
+<div class="quote-break">
+  <div class="qb-inner">
+    <p class="qb-text">When you see the Lord sacrificed and lying before you, and the High Priest standing over the sacrifice and praying, and all the people purpled with that precious blood, can you think that you are still among men and on earth? Are you not lifted at once to heaven?</p>
+    <span class="qb-attr">St. John Chrysostom &middot; On the Priesthood, Book III</span>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-cross">+ + +</span>
+  <div class="footer-cols">
+    <div>
+      <span class="footer-col-head">Saints Peter &amp; Paul Orthodox Cathedral</span>
+      <p class="footer-name">Sts. Peter &amp; Paul<br>Orthodox Cathedral</p>
+      <p class="footer-meta">
+        Diocese of New York &amp; New Jersey<br>
+        <a href="https://nynjoca.org" target="_blank">nynjoca.org</a><br>
+        Orthodox Church in America<br>
+        <a href="https://oca.org" target="_blank">oca.org</a>
+      </p>
+      <div class="footer-socials">
+        <a href="#" target="_blank">Facebook</a>
+        <a href="#" target="_blank">Instagram</a>
+      </div>
+    </div>
+    <div>
+      <span class="footer-col-head">Navigate</span>
+      <ul class="footer-nav">
+        <li><a href="/about-our-church">About Our Church</a></li>
+        <li><a href="/church-history">Church History</a></li>
+        <li><a href="/about-orthodoxy">About Orthodoxy</a></li>
+        <li><a href="/catechesis">Orthodox Catechesis</a></li>
+        <li><a href="/catechesis-series">2026 Series</a></li>
+        <li><a href="/our-beliefs">Our Beliefs</a></li>
+        <li><a href="/divine-liturgy">Divine Liturgy</a></li>
+        <li><a href="/schedule">Liturgical Calendar</a></li>
+        <li><a href="/readings">Daily Readings</a></li>
+        <li><a href="/bulletins">Bulletins</a></li>
+        <li><a href="/contact-us">Contact Us</a></li>
+      </ul>
+    </div>
+    <div>
+      <span class="footer-col-head">Visit Us</span>
+      <p class="footer-blurb">Whether you are visiting for the first time or preparing to enter the Church, you are welcome here.</p>
+      <a href="/contact-us" class="btn btn-outline" style="margin-bottom:2rem;display:inline-block">Contact the Parish</a>
+      <span class="footer-col-head" style="margin-top:.5rem">Service Times</span>
+      <p class="footer-meta" style="line-height:2.4">
+        Vespers &middot; Saturdays 5:00 PM<br>
+        Divine Liturgy &middot; Sundays 9:30 AM<br>
+        Office &middot; Mon&ndash;Fri 9:00 AM&ndash;5:00 PM
+      </p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">&copy; Saints Peter &amp; Paul Orthodox Cathedral. All Rights Reserved.</p>
+    <p class="footer-addr">109 Grand Street &middot; Jersey City, NJ 07302 &middot; (201) 434-1986</p>
+  </div>
+</footer>
+
+<script>
+/* DRAWER */
+function openDrawer(){document.getElementById('nav-drawer').classList.add('open');document.getElementById('nav-overlay').classList.add('open');document.getElementById('nav-hamburger').classList.add('open');}
+function closeDrawer(){document.getElementById('nav-drawer').classList.remove('open');document.getElementById('nav-overlay').classList.remove('open');document.getElementById('nav-hamburger').classList.remove('open');}
+
+/* SECTIONS */
+const SECTIONS = [
+  {id:'sect-1',  label:'Chapter I: Jewish Roots'},
+  {id:'sect-2',  label:'Chapter II: The Apostolic Era'},
+  {id:'sect-3',  label:'Chapter III: Liturgical Families'},
+  {id:'sect-4',  label:'Chapter IV: St. Basil the Great'},
+  {id:'sect-5',  label:'Chapter V: St. John Chrysostom'},
+  {id:'sect-6',  label:'Chapter VI: Byzantine Synthesis'},
+  {id:'sect-7',  label:'Chapter VII: The Slavic Mission'},
+  {id:'sect-8',  label:'Chapter VIII: Orthodoxy in America'},
+  {id:'sect-9',  label:'Chapter IX: The Living Liturgy'},
+  {id:'sect-10', label:'Chapter X: Conclusion'},
+];
+
+let activeIdx = 0;
+
+function scrollToSection(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const top = el.getBoundingClientRect().top + window.scrollY - 84;
+  window.scrollTo({top, behavior:'smooth'});
+}
+
+function pillNav(dir) {
+  const next = Math.max(0, Math.min(SECTIONS.length - 1, activeIdx + dir));
+  scrollToSection(SECTIONS[next].id);
+}
+
+function setActive(idx) {
+  activeIdx = idx;
+  document.querySelectorAll('.lr-item').forEach((el, i) => el.classList.toggle('lr-active', i === idx));
+  const lbl = document.getElementById('pillLabel');
+  if (lbl) lbl.textContent = SECTIONS[idx].label;
+  const prev = document.getElementById('pillPrev');
+  const next = document.getElementById('pillNext');
+  if (prev) prev.disabled = idx === 0;
+  if (next) next.disabled = idx === SECTIONS.length - 1;
+  document.querySelectorAll('.sheet-item').forEach(btn =>
+    btn.classList.toggle('sheet-active', btn.dataset.sheetId === SECTIONS[idx].id));
+}
+
+function updateNav() {
+  const rail = document.getElementById('leftRail');
+  const pill = document.getElementById('navPill');
+  const hero = document.querySelector('.page-hero');
+  const pastHero = !hero || hero.getBoundingClientRect().bottom < 0;
+  const footer = document.querySelector('footer');
+  const nearFooter = footer && footer.getBoundingClientRect().top < window.innerHeight - 20;
+
+  if (rail) rail.classList.toggle('rail-visible', pastHero);
+  if (pill) {
+    pill.style.display = 'flex';
+    pill.classList.toggle('pill-visible', pastHero && !nearFooter);
+  }
+  if (!pastHero) return;
+
+  const mid = window.innerHeight * 0.38;
+  let best = 0;
+  SECTIONS.forEach((s, i) => {
+    const el = document.getElementById(s.id);
+    if (el && el.getBoundingClientRect().top - mid <= 0) best = i;
+  });
+  setActive(best);
+}
+
+window.addEventListener('scroll', updateNav, {passive:true});
+window.addEventListener('resize', updateNav, {passive:true});
+updateNav();
+
+/* SHEET */
+function openSheet() {
+  const sheet = document.getElementById('sessSheet');
+  const overlay = document.getElementById('sheetOverlay');
+  sheet.style.display = 'flex';
+  overlay.style.display = 'block';
+  requestAnimationFrame(() => {sheet.classList.add('open');overlay.classList.add('open');});
+  document.body.style.overflow = 'hidden';
+}
+function closeSheet() {
+  const sheet = document.getElementById('sessSheet');
+  const overlay = document.getElementById('sheetOverlay');
+  sheet.classList.remove('open');
+  overlay.classList.remove('open');
+  sheet.style.transform = '';
+  setTimeout(() => {if (!sheet.classList.contains('open')) sheet.style.display = 'none'; overlay.style.display = 'none';}, 340);
+  document.body.style.overflow = '';
+}
+
+/* Swipe-to-dismiss */
+(function(){
+  const sheet = document.getElementById('sessSheet');
+  let startY = 0, currentY = 0, dragging = false;
+  sheet.addEventListener('touchstart', e => {startY = e.touches[0].clientY; dragging = true; sheet.style.transition = 'none';}, {passive:true});
+  sheet.addEventListener('touchmove', e => {if (!dragging) return; currentY = e.touches[0].clientY; const dy = Math.max(0, currentY - startY); sheet.style.transform = `translateY(${dy}px)`;}, {passive:true});
+  sheet.addEventListener('touchend', () => {dragging = false; sheet.style.transition = ''; const dy = Math.max(0, currentY - startY); if (dy > 80) {closeSheet();} else {sheet.style.transform = '';}});
+})();
+
+function sheetJump(id) {
+  closeSheet();
+  setTimeout(() => scrollToSection(id), 240);
+}
+</script>
+</body>
+</html>
