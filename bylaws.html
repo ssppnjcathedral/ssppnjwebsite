@@ -148,6 +148,29 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   .footer-copy,.footer-bottom{font-size:.72rem}
   .nav-drawer-links a{font-size:.76rem;padding:1rem 1.75rem}
 }
+/* ── MOBILE PILL NAV ── */
+.mob-pill{display:none;position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);background:var(--apse);border:1px solid rgba(184,131,40,.20);border-radius:100px;padding:.5rem .9rem;z-index:150;align-items:center;gap:.5rem;box-shadow:0 6px 30px rgba(21,8,4,.38)}
+.mob-pill-arrow{background:rgba(255,255,255,.06);border:none;color:rgba(246,241,232,.60);cursor:pointer;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:all .18s;flex-shrink:0;font-size:.95rem}
+.mob-pill-arrow:hover:not(:disabled){background:rgba(255,255,255,.14);color:#fff}
+.mob-pill-arrow:disabled{opacity:.22;cursor:default}
+.mob-pill-label{font-family:var(--f-ui);font-size:.58rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.82);padding:.3rem .65rem;min-width:110px;text-align:center;background:none;border:none;cursor:pointer}
+.mob-sheet-overlay{position:fixed;inset:0;background:rgba(21,8,4,.60);z-index:300;opacity:0;pointer-events:none;transition:opacity .28s}
+.mob-sheet-overlay.open{opacity:1;pointer-events:all}
+.mob-sheet{position:fixed;bottom:0;left:0;right:0;background:var(--apse);z-index:310;border-top:1px solid rgba(184,131,40,.18);border-radius:18px 18px 0 0;transform:translateY(100%);transition:transform .32s cubic-bezier(.4,0,.2,1);max-height:78vh;display:flex;flex-direction:column;pointer-events:none}
+.mob-sheet.open{transform:translateY(0);pointer-events:all}
+.mob-sheet-handle{width:36px;height:4px;background:rgba(246,241,232,.18);border-radius:2px;margin:1rem auto .5rem;flex-shrink:0}
+.mob-sheet-head{padding:.5rem 1.5rem 1rem;border-bottom:1px solid rgba(255,255,255,.06);flex-shrink:0;display:flex;align-items:center;justify-content:space-between}
+.mob-sheet-title{font-family:var(--f-display);font-size:1.25rem;font-weight:500;color:#fff}
+.mob-sheet-close{background:rgba(255,255,255,.06);border:none;color:rgba(246,241,232,.55);width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:.85rem;display:flex;align-items:center;justify-content:center;transition:background .18s}
+.mob-sheet-close:hover{background:rgba(255,255,255,.14);color:#fff}
+.mob-sheet-list{overflow-y:auto;flex:1;padding:.5rem 0 2rem;-webkit-overflow-scrolling:touch}
+.mob-sheet-item{display:flex;align-items:center;gap:.85rem;padding:.72rem 1.5rem;border:none;background:none;width:100%;text-align:left;cursor:pointer;transition:background .16s;border-bottom:1px solid rgba(255,255,255,.04);color:rgba(246,241,232,.75);font-family:var(--f-display);font-weight:400;font-size:1.05rem;line-height:1.2}
+.mob-sheet-item:hover{background:rgba(255,255,255,.05)}
+.mob-sheet-item.sheet-active{background:rgba(123,29,42,.35);color:#fff}
+@media(max-width:768px){
+  .mob-pill{display:flex}
+  .bylaws-main{padding-bottom:5rem}
+}
 </style>
 <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
@@ -560,19 +583,98 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   </div>
 </footer>
 
-<!-- ACTIVE NAV HIGHLIGHT ON SCROLL -->
+<!-- MOBILE PILL NAV -->
+<div class="mob-pill" id="mob-pill">
+  <button class="mob-pill-arrow" id="pill-prev" onclick="pillNav(-1)" disabled><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 7.5L5.5 4L9 7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  <button class="mob-pill-label" id="pill-label" onclick="openSheet()">Preface</button>
+  <button class="mob-pill-arrow" id="pill-next" onclick="pillNav(1)"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 3.5L5.5 7L9 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+</div>
+
+<div class="mob-sheet-overlay" id="mob-sheet-overlay" onclick="closeSheet()"></div>
+<div class="mob-sheet" id="mob-sheet">
+  <div class="mob-sheet-handle"></div>
+  <div class="mob-sheet-head">
+    <span class="mob-sheet-title">Articles</span>
+    <button class="mob-sheet-close" onclick="closeSheet()">&#10005;</button>
+  </div>
+  <div class="mob-sheet-list" id="mob-sheet-list"></div>
+</div>
+
+<!-- ACTIVE NAV HIGHLIGHT ON SCROLL + PILL NAV -->
 <script>
 (function(){
+  var SECTIONS = [
+    {id:'preface', label:'Preface'},
+    {id:'article-i', label:'I. The Parish'},
+    {id:'article-ii', label:'II. Parish Priest'},
+    {id:'article-iii', label:'III. Parishioner'},
+    {id:'article-iv', label:'IV. Music Director'},
+    {id:'article-v', label:'V. Assemblies'},
+    {id:'article-vi', label:'VI. Parish Council'},
+    {id:'article-vii', label:'VII. Officers'},
+    {id:'article-viii', label:'VIII. Effective Dates'},
+    {id:'article-ix', label:'IX. Minutes'},
+    {id:'article-x', label:'X. Voting'},
+    {id:'article-xi', label:'XI. Auditing'},
+    {id:'article-xii', label:'XII. Amendments'},
+    {id:'article-xiii', label:'XIII. Cemetery'},
+    {id:'article-xiv', label:'XIV. Parking'},
+    {id:'article-xv', label:'XV. Canonical'},
+    {id:'article-xvi', label:'XVI. Dissolution'}
+  ];
   var links = document.querySelectorAll('.bylaws-nav-list a');
-  var sections = Array.from(links).map(function(l){ return document.querySelector(l.getAttribute('href')); });
+  var sectionEls = SECTIONS.map(function(s){ return document.getElementById(s.id); });
+  var pillLabel = document.getElementById('pill-label');
+  var pillPrev = document.getElementById('pill-prev');
+  var pillNext = document.getElementById('pill-next');
+  var currentIdx = 0;
+
+  // Build sheet items
+  var sheetList = document.getElementById('mob-sheet-list');
+  SECTIONS.forEach(function(s, i){
+    var btn = document.createElement('button');
+    btn.className = 'mob-sheet-item';
+    btn.textContent = s.label;
+    btn.setAttribute('data-idx', i);
+    btn.onclick = function(){ goToSection(i); closeSheet(); };
+    sheetList.appendChild(btn);
+  });
+
+  function updatePill(idx){
+    currentIdx = idx;
+    pillLabel.textContent = SECTIONS[idx].label;
+    pillPrev.disabled = idx === 0;
+    pillNext.disabled = idx === SECTIONS.length - 1;
+    var items = sheetList.querySelectorAll('.mob-sheet-item');
+    items.forEach(function(item, i){ item.classList.toggle('sheet-active', i === idx); });
+  }
+
   function onScroll(){
-    var scrollY = window.scrollY + 100;
+    var scrollY = window.scrollY + 120;
     var active = 0;
-    sections.forEach(function(s, i){ if(s && s.offsetTop <= scrollY) active = i; });
+    sectionEls.forEach(function(s, i){ if(s && s.offsetTop <= scrollY) active = i; });
     links.forEach(function(l, i){ l.classList.toggle('active', i === active); });
+    updatePill(active);
   }
   window.addEventListener('scroll', onScroll, {passive:true});
   onScroll();
+
+  window.goToSection = function(idx){
+    if(idx < 0 || idx >= SECTIONS.length) return;
+    var el = sectionEls[idx];
+    if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+  };
+  window.pillNav = function(dir){ goToSection(currentIdx + dir); };
+  window.openSheet = function(){
+    document.getElementById('mob-sheet').classList.add('open');
+    document.getElementById('mob-sheet-overlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  };
+  window.closeSheet = function(){
+    document.getElementById('mob-sheet').classList.remove('open');
+    document.getElementById('mob-sheet-overlay').classList.remove('open');
+    document.body.style.overflow = '';
+  };
 })();
 </script>
 
