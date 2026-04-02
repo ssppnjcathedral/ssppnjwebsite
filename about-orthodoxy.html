@@ -280,8 +280,35 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 
 /* Content area background fix */
 .page-body,.main-wrap,.cal-wrap,.giving-wrap,.gallery-wrap,.video-wrap,.bulletin-wrap,.news-wrap,.contact-wrap,.cemetery-wrap{background:var(--vellum)}
+/* NAV PILL */
+.nav-pill{display:flex;position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);background:var(--apse);border:1px solid rgba(184,131,40,.20);border-radius:100px;padding:.5rem .85rem;z-index:150;align-items:center;gap:.5rem;box-shadow:0 6px 30px rgba(21,8,4,.38);opacity:0;pointer-events:none;transition:opacity .4s}
+.nav-pill.pill-visible{opacity:1;pointer-events:all}
+.pill-arrow{background:rgba(255,255,255,.06);border:none;color:rgba(246,241,232,.60);cursor:pointer;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:all .18s;flex-shrink:0}
+.pill-arrow:hover:not(:disabled){background:rgba(255,255,255,.14);color:#fff}
+.pill-arrow:disabled{opacity:.22;cursor:default}
+.pill-center{font-family:var(--f-ui);font-size:.56rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.80);padding:.3rem .65rem;display:flex;align-items:center;gap:.4rem;min-width:100px;justify-content:center;cursor:pointer;transition:color .18s}
+.pill-center:hover{color:#fff}
+/* BOTTOM SHEET */
+.mob-sheet-overlay{display:none;position:fixed;inset:0;background:rgba(21,8,4,.60);z-index:300;opacity:0;transition:opacity .28s}
+.mob-sheet-overlay.open{opacity:1;display:block}
+.mob-sheet{position:fixed;bottom:0;left:0;right:0;background:var(--apse);z-index:310;border-top:1px solid rgba(184,131,40,.18);border-radius:18px 18px 0 0;transform:translateY(100%);transition:transform .32s cubic-bezier(.4,0,.2,1);max-height:78vh;display:none;flex-direction:column}
+.mob-sheet.open{transform:translateY(0);display:flex}
+.mob-sheet-handle{width:36px;height:4px;background:rgba(246,241,232,.18);border-radius:2px;margin:1rem auto .5rem;flex-shrink:0}
+.mob-sheet-head{padding:.5rem 1.5rem 1rem;border-bottom:1px solid rgba(255,255,255,.06);flex-shrink:0;display:flex;align-items:center;justify-content:space-between}
+.mob-sheet-title{font-family:var(--f-display);font-size:1.25rem;font-weight:500;color:#fff}
+.mob-sheet-close{background:rgba(255,255,255,.06);border:none;color:rgba(246,241,232,.55);width:28px;height:28px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .18s}
+.mob-sheet-close:hover{background:rgba(255,255,255,.14);color:#fff}
+.mob-sheet-list{overflow-y:auto;flex:1;padding:.5rem 0 2rem;-webkit-overflow-scrolling:touch}
+.mob-sheet-item{display:flex;align-items:center;gap:.85rem;padding:.75rem 1.5rem;border:none;background:none;width:100%;text-align:left;cursor:pointer;transition:background .16s;border-bottom:1px solid rgba(255,255,255,.04)}
+.mob-sheet-item:hover{background:rgba(255,255,255,.05)}
+.mob-sheet-item.sheet-active{background:rgba(123,29,42,.35)}
+.mob-sheet-num{font-family:var(--f-ui);font-size:.55rem;letter-spacing:.10em;color:rgba(184,131,40,.55);width:22px;flex-shrink:0;text-align:right}
+.mob-sheet-item.sheet-active .mob-sheet-num{color:rgba(184,131,40,.90)}
+.mob-sheet-name{font-family:var(--f-display);font-weight:400;font-size:1.05rem;color:rgba(246,241,232,.75);line-height:1.2}
+.mob-sheet-item.sheet-active .mob-sheet-name{color:#fff}
 </style>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <link rel="stylesheet" href="/styles/typography.css">
 </head>
 <body>
 <nav class="nav">
@@ -388,7 +415,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
       <p class="drop-cap">The Orthodox Church was founded by our Lord Jesus Christ and is the living manifestation of His presence in the history of mankind. The most conspicuous characteristics of Orthodoxy are its rich liturgical life and its faithfulness to the apostolic tradition. It is believed by Orthodox Christians that our Church has preserved the tradition and continuity of the ancient Church in its fullness compared to other Christian denominations which have departed, to smaller or greater degrees, from the common tradition of the Church of the first ten centuries.</p>
     </div>
 
-    <h2 class="section-head">Historical Points</h2>
+    <h2 class="section-head" id="historical-points">Historical Points</h2>
     <div class="rubric-rule"></div>
 
     <div class="enc-wrap">
@@ -494,7 +521,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   <div class="reading-inner">
     <span class="rubric">For Inquirers &amp; Seekers</span>
     <div class="rubric-rule"></div>
-    <h2 class="section-head" style="margin-top:.5rem">Recommended Reading</h2>
+    <h2 class="section-head" id="reading" style="margin-top:.5rem">Recommended Reading</h2>
     <span class="rubric-voice">Books that have guided countless people into the Orthodox Faith</span>
     <div class="reading-cols">
 
@@ -631,7 +658,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   <div class="learn-inner">
     <span class="rubric">Resources</span>
     <div class="rubric-rule"></div>
-    <h2 class="section-head" style="margin-top:.5rem">Learn about the Faith</h2>
+    <h2 class="section-head" id="learn" style="margin-top:.5rem">Learn about the Faith</h2>
     <span class="rubric-voice">Curated resources from the Orthodox Church in America</span>
     <div class="learn-cards">
       <a href="https://www.oca.org/fs" target="_blank" class="learn-card">
@@ -661,7 +688,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   <div class="links-inner">
     <span class="rubric">Useful Websites</span>
     <div class="rubric-rule"></div>
-    <h2 class="section-head" style="margin-top:.5rem">Orthodox resources online</h2>
+    <h2 class="section-head" id="resources" style="margin-top:.5rem">Orthodox resources online</h2>
     <div class="links-grid">
       <a href="https://www.oca.org" target="_blank" class="link-card">
         <span class="link-card-name">Orthodox Church in America</span>
@@ -1036,6 +1063,104 @@ document.addEventListener('keydown', function(e) {
   }, { threshold: 0.15 });
   cards.forEach(function(c) { observer.observe(c); });
 })();
+</script>
+
+<!-- NAV PILL -->
+<div class="nav-pill" id="navPill">
+  <button class="pill-arrow" id="pillPrev" onclick="pillNav(-1)" aria-label="Previous section"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 7.5L5.5 4L9 7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  <div class="pill-center" onclick="openSheet()">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="rgba(184,131,40,.8)"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+    <span id="pillLabel">Introduction</span>
+  </div>
+  <button class="pill-arrow" id="pillNext" onclick="pillNav(1)" aria-label="Next section"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 3.5L5.5 7L9 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+</div>
+<!-- BOTTOM SHEET -->
+<div class="mob-sheet-overlay" id="mob-sheet-overlay" onclick="closeSheet()"></div>
+<div class="mob-sheet" id="mob-sheet">
+  <div class="mob-sheet-handle"></div>
+  <div class="mob-sheet-head">
+    <span class="mob-sheet-title">About Orthodoxy</span>
+    <button class="mob-sheet-close" onclick="closeSheet()">&#10005;</button>
+  </div>
+  <div class="mob-sheet-list">
+    <button class="mob-sheet-item sheet-active" data-sheet-id="history" onclick="sheetJump('history')"><span class="mob-sheet-num">I</span><span class="mob-sheet-name">Introduction</span></button>
+    <button class="mob-sheet-item" data-sheet-id="historical-points" onclick="sheetJump('historical-points')"><span class="mob-sheet-num">II</span><span class="mob-sheet-name">Historical Points</span></button>
+    <button class="mob-sheet-item" data-sheet-id="reading" onclick="sheetJump('reading')"><span class="mob-sheet-num">III</span><span class="mob-sheet-name">Recommended Reading</span></button>
+    <button class="mob-sheet-item" data-sheet-id="learn" onclick="sheetJump('learn')"><span class="mob-sheet-num">IV</span><span class="mob-sheet-name">Learn the Faith</span></button>
+    <button class="mob-sheet-item" data-sheet-id="resources" onclick="sheetJump('resources')"><span class="mob-sheet-num">V</span><span class="mob-sheet-name">Resources Online</span></button>
+  </div>
+</div>
+<script>
+var SECTIONS=[
+  {id:'history',label:'Introduction'},
+  {id:'historical-points',label:'Historical Points'},
+  {id:'reading',label:'Reading'},
+  {id:'learn',label:'Learn the Faith'},
+  {id:'resources',label:'Resources'}
+];
+var activeIdx=0;
+function setActive(idx){
+  activeIdx=idx;
+  var lbl=document.getElementById('pillLabel');
+  if(lbl)lbl.textContent=SECTIONS[idx].label;
+  var prev=document.getElementById('pillPrev');
+  var next=document.getElementById('pillNext');
+  if(prev)prev.disabled=idx===0;
+  if(next)next.disabled=idx===SECTIONS.length-1;
+  var sid=SECTIONS[idx].id;
+  document.querySelectorAll('.mob-sheet-item[data-sheet-id]').forEach(function(btn){
+    btn.classList.toggle('sheet-active',btn.dataset.sheetId===sid);
+  });
+}
+function scrollToSection(id){
+  var el=document.getElementById(id);
+  if(!el)return;
+  var top=el.getBoundingClientRect().top+window.scrollY-80;
+  window.scrollTo({top:top,behavior:'smooth'});
+}
+function pillNav(dir){
+  var next=Math.max(0,Math.min(SECTIONS.length-1,activeIdx+dir));
+  scrollToSection(SECTIONS[next].id);
+}
+function openSheet(){
+  var sheet=document.getElementById('mob-sheet');
+  var overlay=document.getElementById('mob-sheet-overlay');
+  sheet.style.display='flex';
+  overlay.style.display='block';
+  requestAnimationFrame(function(){sheet.classList.add('open');overlay.classList.add('open');});
+  document.body.style.overflow='hidden';
+}
+function closeSheet(){
+  var sheet=document.getElementById('mob-sheet');
+  var overlay=document.getElementById('mob-sheet-overlay');
+  sheet.classList.remove('open');
+  overlay.classList.remove('open');
+  document.body.style.overflow='';
+  setTimeout(function(){sheet.style.display='none';overlay.style.display='none';},320);
+}
+function sheetJump(id){
+  closeSheet();
+  setTimeout(function(){scrollToSection(id);},220);
+}
+function updateNav(){
+  var pill=document.getElementById('navPill');
+  var hero=document.querySelector('.page-hero');
+  var inPage=!hero||hero.getBoundingClientRect().bottom<window.innerHeight*0.6;
+  var footer=document.querySelector('footer');
+  var nearFooter=footer&&footer.getBoundingClientRect().top<window.innerHeight-20;
+  if(pill)pill.classList.toggle('pill-visible',inPage&&!nearFooter);
+  if(!inPage)return;
+  var mid=window.innerHeight*0.38;
+  var best=0;
+  SECTIONS.forEach(function(s,i){
+    var el=document.getElementById(s.id);
+    if(el&&el.getBoundingClientRect().top-mid<=0)best=i;
+  });
+  setActive(best);
+}
+window.addEventListener('scroll',updateNav,{passive:true});
+window.addEventListener('resize',updateNav,{passive:true});
+updateNav();
 </script>
 </body>
 </html>

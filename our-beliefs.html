@@ -133,8 +133,35 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 
 /* Content area background fix */
 .page-body,.main-wrap,.cal-wrap,.giving-wrap,.gallery-wrap,.video-wrap,.bulletin-wrap,.news-wrap,.contact-wrap,.cemetery-wrap{background:var(--vellum)}
+/* NAV PILL */
+.nav-pill{display:flex;position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);background:var(--apse);border:1px solid rgba(184,131,40,.20);border-radius:100px;padding:.5rem .85rem;z-index:150;align-items:center;gap:.5rem;box-shadow:0 6px 30px rgba(21,8,4,.38);opacity:0;pointer-events:none;transition:opacity .4s}
+.nav-pill.pill-visible{opacity:1;pointer-events:all}
+.pill-arrow{background:rgba(255,255,255,.06);border:none;color:rgba(246,241,232,.60);cursor:pointer;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:all .18s;flex-shrink:0}
+.pill-arrow:hover:not(:disabled){background:rgba(255,255,255,.14);color:#fff}
+.pill-arrow:disabled{opacity:.22;cursor:default}
+.pill-center{font-family:var(--f-ui);font-size:.56rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.80);padding:.3rem .65rem;display:flex;align-items:center;gap:.4rem;min-width:100px;justify-content:center;cursor:pointer;transition:color .18s}
+.pill-center:hover{color:#fff}
+/* BOTTOM SHEET */
+.mob-sheet-overlay{display:none;position:fixed;inset:0;background:rgba(21,8,4,.60);z-index:300;opacity:0;transition:opacity .28s}
+.mob-sheet-overlay.open{opacity:1;display:block}
+.mob-sheet{position:fixed;bottom:0;left:0;right:0;background:var(--apse);z-index:310;border-top:1px solid rgba(184,131,40,.18);border-radius:18px 18px 0 0;transform:translateY(100%);transition:transform .32s cubic-bezier(.4,0,.2,1);max-height:78vh;display:none;flex-direction:column}
+.mob-sheet.open{transform:translateY(0);display:flex}
+.mob-sheet-handle{width:36px;height:4px;background:rgba(246,241,232,.18);border-radius:2px;margin:1rem auto .5rem;flex-shrink:0}
+.mob-sheet-head{padding:.5rem 1.5rem 1rem;border-bottom:1px solid rgba(255,255,255,.06);flex-shrink:0;display:flex;align-items:center;justify-content:space-between}
+.mob-sheet-title{font-family:var(--f-display);font-size:1.25rem;font-weight:500;color:#fff}
+.mob-sheet-close{background:rgba(255,255,255,.06);border:none;color:rgba(246,241,232,.55);width:28px;height:28px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .18s}
+.mob-sheet-close:hover{background:rgba(255,255,255,.14);color:#fff}
+.mob-sheet-list{overflow-y:auto;flex:1;padding:.5rem 0 2rem;-webkit-overflow-scrolling:touch}
+.mob-sheet-item{display:flex;align-items:center;gap:.85rem;padding:.75rem 1.5rem;border:none;background:none;width:100%;text-align:left;cursor:pointer;transition:background .16s;border-bottom:1px solid rgba(255,255,255,.04)}
+.mob-sheet-item:hover{background:rgba(255,255,255,.05)}
+.mob-sheet-item.sheet-active{background:rgba(123,29,42,.35)}
+.mob-sheet-num{font-family:var(--f-ui);font-size:.55rem;letter-spacing:.10em;color:rgba(184,131,40,.55);width:22px;flex-shrink:0;text-align:right}
+.mob-sheet-item.sheet-active .mob-sheet-num{color:rgba(184,131,40,.90)}
+.mob-sheet-name{font-family:var(--f-display);font-weight:400;font-size:1.05rem;color:rgba(246,241,232,.75);line-height:1.2}
+.mob-sheet-item.sheet-active .mob-sheet-name{color:#fff}
 </style>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <link rel="stylesheet" href="/styles/typography.css">
 </head>
 <body>
 <nav class="nav">
@@ -201,7 +228,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   <main>
     <span class="rubric">What We Believe</span>
     <div class="rubric-rule"></div>
-    <h2 class="section-head">About the Orthodox Faith</h2>
+    <h2 class="section-head" id="faith">About the Orthodox Faith</h2>
 
     <div class="prose" style="margin-top:2rem">
       <p class="drop-cap">The Orthodox Church continues to live the faith of the early Church, which our ancestors in the faith have died, and lived, to pass on. The two millennia since Christ sent the Holy Spirit on the Church at Pentecost have given us a deep treasury of wisdom from across the world. And our fathers and mothers in the faith have provided us their personal examples of lives lived with Paradise in their hearts.</p>
@@ -209,7 +236,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
       <p>It might seem to some that our Church is "stuck in its ways." We bow, we fast, and our priests wear cassocks and, often, large crosses. It is unusual, granted, but at its healthiest, it stands out in a similar way to how a green mountain stands out in a land where the sand shifts with the wind. Rootedness is a value — not just roots in anything, but particularly roots in the soil that grew the saints that have preceded us. Our Tradition, in all its aspects, grows slowly, losing nothing from the past but bringing all that is good across the centuries and all peoples to the Kingdom, which is the ground from which all good things come and to which they return.</p>
     </div>
 
-    <h2 class="section-head">The Nicene Creed</h2>
+    <h2 class="section-head" id="creed">The Nicene Creed</h2>
     <div class="rubric-rule"></div>
     <span class="rubric-voice">Expressed by the Council of Nicaea, AD 325 — the touchstone of Orthodox faith</span>
 
@@ -218,7 +245,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
       <span class="creed-source">The Nicene-Constantinopolitan Creed · AD 381</span>
     </div>
 
-    <h2 class="section-head">The Orthodox Church in America</h2>
+    <h2 class="section-head" id="oca">The Orthodox Church in America</h2>
     <div class="rubric-rule"></div>
     <div class="prose" style="margin-top:1.5rem">
       <p>The Orthodox Church in America traces its origins to the arrival in Kodiak, Alaska of eight Orthodox missionaries from the Valaamo Monastery in the northern Karelia region of Russia in 1794. The missionaries made a great impact on the native Alaskan population and were responsible for bringing many to the Orthodox Christian faith. Today, the Orthodox Church in America numbers some 700 parishes, missions, communities, monasteries, and institutions throughout the United States, Canada, and Mexico.</p>
@@ -226,7 +253,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
       <p><em>The Mission of The Orthodox Church in America is to be faithful in fulfilling the commandment of Christ to "Go into all the world and make disciples of all nations, baptizing them in the name of the Father, and of the Son and of the Holy Spirit…"</em></p>
     </div>
 
-    <h2 class="section-head">The Holy Mysteries</h2>
+    <h2 class="section-head" id="mysteries">The Holy Mysteries</h2>
     <div class="rubric-rule"></div>
     <span class="rubric-voice">The seven sacraments of the Orthodox Church</span>
 
@@ -599,6 +626,102 @@ document.querySelectorAll('.faq-q').forEach(function(btn){
     if(!isOpen) item.classList.add('open');
   });
 });
+</script>
+
+<!-- NAV PILL -->
+<div class="nav-pill" id="navPill">
+  <button class="pill-arrow" id="pillPrev" onclick="pillNav(-1)" aria-label="Previous section"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 7.5L5.5 4L9 7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  <div class="pill-center" onclick="openSheet()">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="rgba(184,131,40,.8)"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+    <span id="pillLabel">The Faith</span>
+  </div>
+  <button class="pill-arrow" id="pillNext" onclick="pillNav(1)" aria-label="Next section"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 3.5L5.5 7L9 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+</div>
+<!-- BOTTOM SHEET -->
+<div class="mob-sheet-overlay" id="mob-sheet-overlay" onclick="closeSheet()"></div>
+<div class="mob-sheet" id="mob-sheet">
+  <div class="mob-sheet-handle"></div>
+  <div class="mob-sheet-head">
+    <span class="mob-sheet-title">Our Beliefs</span>
+    <button class="mob-sheet-close" onclick="closeSheet()">&#10005;</button>
+  </div>
+  <div class="mob-sheet-list">
+    <button class="mob-sheet-item sheet-active" data-sheet-id="faith" onclick="sheetJump('faith')"><span class="mob-sheet-num">I</span><span class="mob-sheet-name">About the Orthodox Faith</span></button>
+    <button class="mob-sheet-item" data-sheet-id="creed" onclick="sheetJump('creed')"><span class="mob-sheet-num">II</span><span class="mob-sheet-name">The Nicene Creed</span></button>
+    <button class="mob-sheet-item" data-sheet-id="oca" onclick="sheetJump('oca')"><span class="mob-sheet-num">III</span><span class="mob-sheet-name">The Orthodox Church in America</span></button>
+    <button class="mob-sheet-item" data-sheet-id="mysteries" onclick="sheetJump('mysteries')"><span class="mob-sheet-num">IV</span><span class="mob-sheet-name">The Holy Mysteries</span></button>
+  </div>
+</div>
+<script>
+var SECTIONS=[
+  {id:'faith',label:'The Faith'},
+  {id:'creed',label:'Nicene Creed'},
+  {id:'oca',label:'The OCA'},
+  {id:'mysteries',label:'Holy Mysteries'}
+];
+var activeIdx=0;
+function setActive(idx){
+  activeIdx=idx;
+  var lbl=document.getElementById('pillLabel');
+  if(lbl)lbl.textContent=SECTIONS[idx].label;
+  var prev=document.getElementById('pillPrev');
+  var next=document.getElementById('pillNext');
+  if(prev)prev.disabled=idx===0;
+  if(next)next.disabled=idx===SECTIONS.length-1;
+  var sid=SECTIONS[idx].id;
+  document.querySelectorAll('.mob-sheet-item[data-sheet-id]').forEach(function(btn){
+    btn.classList.toggle('sheet-active',btn.dataset.sheetId===sid);
+  });
+}
+function scrollToSection(id){
+  var el=document.getElementById(id);
+  if(!el)return;
+  var top=el.getBoundingClientRect().top+window.scrollY-80;
+  window.scrollTo({top:top,behavior:'smooth'});
+}
+function pillNav(dir){
+  var next=Math.max(0,Math.min(SECTIONS.length-1,activeIdx+dir));
+  scrollToSection(SECTIONS[next].id);
+}
+function openSheet(){
+  var sheet=document.getElementById('mob-sheet');
+  var overlay=document.getElementById('mob-sheet-overlay');
+  sheet.style.display='flex';
+  overlay.style.display='block';
+  requestAnimationFrame(function(){sheet.classList.add('open');overlay.classList.add('open');});
+  document.body.style.overflow='hidden';
+}
+function closeSheet(){
+  var sheet=document.getElementById('mob-sheet');
+  var overlay=document.getElementById('mob-sheet-overlay');
+  sheet.classList.remove('open');
+  overlay.classList.remove('open');
+  document.body.style.overflow='';
+  setTimeout(function(){sheet.style.display='none';overlay.style.display='none';},320);
+}
+function sheetJump(id){
+  closeSheet();
+  setTimeout(function(){scrollToSection(id);},220);
+}
+function updateNav(){
+  var pill=document.getElementById('navPill');
+  var hero=document.querySelector('.page-hero');
+  var inPage=!hero||hero.getBoundingClientRect().bottom<window.innerHeight*0.6;
+  var footer=document.querySelector('footer');
+  var nearFooter=footer&&footer.getBoundingClientRect().top<window.innerHeight-20;
+  if(pill)pill.classList.toggle('pill-visible',inPage&&!nearFooter);
+  if(!inPage)return;
+  var mid=window.innerHeight*0.38;
+  var best=0;
+  SECTIONS.forEach(function(s,i){
+    var el=document.getElementById(s.id);
+    if(el&&el.getBoundingClientRect().top-mid<=0)best=i;
+  });
+  setActive(best);
+}
+window.addEventListener('scroll',updateNav,{passive:true});
+window.addEventListener('resize',updateNav,{passive:true});
+updateNav();
 </script>
 </body>
 </html>

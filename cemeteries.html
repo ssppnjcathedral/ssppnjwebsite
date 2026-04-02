@@ -202,8 +202,10 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 
 /* Content area background fix */
 .page-body,.main-wrap,.cal-wrap,.giving-wrap,.gallery-wrap,.video-wrap,.bulletin-wrap,.news-wrap,.contact-wrap,.cemetery-wrap{background:var(--vellum)}
+
 </style>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <link rel="stylesheet" href="/styles/typography.css">
 </head>
 <body>
 
@@ -302,7 +304,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 </div>
 
 <!-- INTRO -->
-<section class="intro-section">
+<section class="intro-section" id="intro">
   <div class="intro-inner">
     <div>
       <span class="rubric">About Our Burial Grounds</span>
@@ -328,7 +330,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 </section>
 
 <!-- CEMETERY I — GRACELAND -->
-<section class="cemetery-section">
+<section class="cemetery-section" id="graceland">
   <div class="chapter-bar">
     <span class="cbar-text bright">Cemetery I</span>
     <span class="cbar-text">Active · Plots Available</span>
@@ -370,7 +372,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 </section>
 
 <!-- CEMETERY II — HARSIMUS -->
-<section class="cemetery-section">
+<section class="cemetery-section" id="harsimus">
   <div class="chapter-bar">
     <span class="cbar-text bright">Cemetery II</span>
     <span class="cbar-text">National Historic Register</span>
@@ -413,7 +415,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 </section>
 
 <!-- INTERMENT PROCESS -->
-<section class="interment-section">
+<section class="interment-section" id="interment">
   <div class="chapter-bar">
     <span class="cbar-text bright">Arrangements</span>
     <span class="cbar-text">How to Request Burial</span>
@@ -792,5 +794,6 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeDrawer(
 </script>
 
 <script src="/enhancements.js"></script>
+
 </body>
 </html>

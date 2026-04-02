@@ -1,0 +1,40 @@
+/* typography.css — loaded last in <head> to win cascade over embedded styles */
+
+/* Nav & UI */
+.btn                    { font-size: .82rem }
+.rubric                 { font-size: .82rem }
+.sb-link                { font-size: .82rem }
+.nav-links > li > a     { font-size: .82rem }
+.nav-give               { font-size: .82rem }
+.nav-drawer-logo span   { font-size: .82rem }
+.nav-drawer-give        { font-size: .82rem }
+.nav-drawer-links a     { font-size: .82rem }
+.cbar-text              { font-size: .82rem }
+
+/* Mega menu (index only — safe on other pages, classes absent) */
+.mega-photo-label { font-size: .62rem }
+.mega-col-head    { font-size: .65rem }
+.mega-sub         { font-size: .95rem }
+.mega-cta-btn     { font-size: .68rem }
+.dr-photo-lbl     { font-size: .58rem }
+.dr-link-sub      { font-size: .95rem }
+
+/* Footer */
+.footer-col-head             { font-size: .82rem }
+.footer-nav-sub              { font-size: .72rem }
+.footer-meta                 { font-size: .82rem }
+.footer-socials a            { font-size: .82rem }
+.footer-nav a                { font-size: .82rem }
+.footer-email input          { font-size: .82rem }
+.footer-email button         { font-size: .82rem }
+.footer-copy, .footer-addr   { font-size: .82rem }
+.footer-blurb                { font-size: .95rem }
+
+/* Mobile — small labels and utility text */
+@media (max-width: 768px) {
+  [class*="-label"],[class*="-badge"],[class*="-meta"],[class*="-date"],
+  [class*="-lbl"],[class*="-tag"],[class*="-eyebrow"],[class*="-rubric"] { font-size: .95rem !important }
+  .footer-copy,.footer-legal,.footer-bottom                               { font-size: .95rem }
+  [class*="-time"],[class*="-day"],[class*="-ui"],[class*="-kicker"]     { font-size: .92rem !important }
+  .btn,.sb-link,.footer-nav a,.footer-col-head                           { font-size: .92rem !important }
+}
