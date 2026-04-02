@@ -92,10 +92,10 @@ a{color:inherit;text-decoration:none}
 .mg-cell:hover:not(.other) .mg-num{color:#fff}
 .mg-num{font-family:'Spectral',Georgia,serif;font-weight:300;font-size:1.05rem;line-height:1;color:rgba(255,255,255,.65);transition:color .15s}
 .mg-dot{width:5px;height:5px;border-radius:50%;margin-top:5px;display:block;margin-left:auto;margin-right:auto}
-.dot-great{background:#E8C97A}
-.dot-major{background:rgba(184,131,40,.60)}
+.dot-great{background:var(--maroon)}
+.dot-major{background:var(--gold)}
 .dot-theotokos{background:#4A7AAC}
-.dot-fast{background:rgba(61,107,94,.75)}
+.dot-fast{background:var(--verdigris)}
 .dot-none{opacity:0}
 .mg-svc-pip{width:3px;height:3px;border-radius:50%;background:rgba(184,131,40,.40);margin-top:1px}
 .sp-today-btn{margin:.35rem 1.1rem .75rem;font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;padding:.42rem;border:1px solid rgba(255,255,255,.28);color:rgba(255,255,255,.55);background:transparent;cursor:pointer;transition:all .18s;width:calc(100% - 2.2rem)}
@@ -229,7 +229,7 @@ a{color:inherit;text-decoration:none}
 .lv-fast{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--verdigris)}
 .lv-tone{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--stone)}
 .legend-bar{background:var(--vellum-mid);border-top:var(--rule-faint);border-bottom:var(--rule-faint);padding:.65rem 2rem;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap}
-.leg-item{display:flex;align-items:center;gap:.4rem;font-family:var(--f-ui);font-size:.72rem;letter-spacing:.09em;text-transform:uppercase;color:var(--stone-lt)}
+.leg-item{display:flex;align-items:center;gap:.4rem;font-family:var(--f-ui);font-size:.58rem;letter-spacing:.09em;text-transform:uppercase;color:var(--stone-lt)}
 .ldot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
 /* ── PARISH EVENTS HUB ── */
 .pe-hub-bar{background:var(--vellum-mid);border-bottom:var(--rule-faint);padding:1.5rem 2.5rem;display:flex;align-items:flex-start;justify-content:space-between;gap:1.5rem;flex-wrap:wrap}
@@ -352,11 +352,11 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   .cv-ctrl{display:none}.cv-toggle{display:none}
   .cv-month-label{font-size:.72rem}
   .cv-month{padding:.75rem 1rem}
-  .cg-cell{min-height:68px;padding:.35rem .3rem}
-  .cg-num{font-size:1rem}
-  .cg-feast-txt{font-size:.58rem;letter-spacing:.04em}
-  .cg-svc-lbl{font-size:.58rem}
-  .cg-event-pip{font-size:.50rem}
+  .cg-cell{min-height:52px;padding:.3rem .25rem}
+  .cg-num{font-size:.9rem;margin-bottom:1px}
+  .cg-feast-txt{font-size:.48rem;letter-spacing:.02em;line-height:1.2;display:block}
+  .cg-feast-txt.cg-saint{display:none}
+  .cg-svc-lbl,.cg-fast-lbl,.cg-event-pip{display:none}
   .cv-list{padding:0 1rem 1rem}
   .lv-row{grid-template-columns:82px 1fr;min-height:64px}.lv-tappable{cursor:pointer}
   .lv-dn{font-size:1.4rem}
@@ -405,10 +405,10 @@ footer .btn-outline{color:rgba(246,241,232,.92);border-color:rgba(246,241,232,.5
 .day-modal-feast{font-family:var(--f-display);font-size:1.3rem;color:var(--text);margin:.75rem 0 .25rem;line-height:1.2}
 .day-modal-feast.major{color:var(--maroon)}
 .day-modal-body{padding:1rem 1.5rem}
-.day-modal-row{display:flex;align-items:baseline;gap:.75rem;padding:.55rem 0;border-bottom:var(--rule-faint)}
+.day-modal-row{display:flex;align-items:baseline;gap:.75rem;padding:1rem 0;border-bottom:var(--rule-faint)}
 .day-modal-row:last-child{border-bottom:none}
-.day-modal-lbl{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--stone);flex-shrink:0;width:72px}
-.day-modal-val{font-family:var(--f-body);font-size:.95rem;color:var(--ink);line-height:1.4}
+.day-modal-lbl{font-family:var(--f-ui);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);flex-shrink:0;width:82px}
+.day-modal-val{font-family:var(--f-body);font-size:.95rem;color:var(--ink);line-height:1.55}
 .day-modal-svc{display:inline-block;font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;background:rgba(123,29,42,.09);color:var(--maroon);margin:.25rem .25rem 0 0}
 .day-modal-fast{color:var(--verdigris);font-family:var(--f-ui);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase}
 .day-modal-tone{color:var(--stone);font-family:var(--f-ui);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase}
@@ -1007,7 +1007,7 @@ async function buildSeasonList(season){
       const fast=getFast(data,date);
       const isMajor=data&&(data.feast_level||0)>=5;
       const dot=dotClassForDate(date,data);
-      const dotColor=dot==='dot-great'?'var(--gold)':dot==='dot-major'?'rgba(184,131,40,.55)':dot==='dot-fast'?'var(--verdigris)':'transparent';
+      const dotColor=dot==='dot-great'?'var(--maroon)':dot==='dot-major'?'var(--gold)':dot==='dot-fast'?'var(--verdigris)':'transparent';
       const dotEl=dot!=='dot-none'?'<span class="gdot" style="background:'+dotColor+'"></span>':'';
       const pillsHtml=[
         isSun(date)?'<span class="sl-pill">Liturgy 9:30</span>':'',
@@ -1126,10 +1126,18 @@ function buildClassicMonth(){
 function cellClick(k){
   var parts=k.split('-');
   var date=new Date(parseInt(parts[0]),parseInt(parts[1])-1,parseInt(parts[2]));
-  cur=new Date(date.getFullYear(),date.getMonth(),date.getDate());
-  updateHeaders();
-  setView('cl');
-  document.querySelector('.switcher-bar').scrollIntoView({behavior:'smooth',block:'start'});
+  if(window.innerWidth<=768){
+    // Mobile: open day detail drawer directly
+    var data=CACHE[k]||null;
+    _modalData[k]=data;
+    _modalDates[k]=date;
+    openDayModal(k,date);
+  } else {
+    cur=new Date(date.getFullYear(),date.getMonth(),date.getDate());
+    updateHeaders();
+    setView('cl');
+    document.querySelector('.switcher-bar').scrollIntoView({behavior:'smooth',block:'start'});
+  }
 }
 
 
@@ -1156,7 +1164,7 @@ async function buildClassicList(){
     const sun=isSun(date),sat=isSat(date);
     const isMajor=data&&(data.feast_level||0)>=5;
     const dot=dotClassForDate(date,data);
-    const dotColor=dot==='dot-great'?'var(--gold)':dot==='dot-major'?'rgba(184,131,40,.50)':dot==='dot-fast'?'var(--verdigris)':'transparent';
+    const dotColor=dot==='dot-great'?'var(--maroon)':dot==='dot-major'?'var(--gold)':dot==='dot-fast'?'var(--verdigris)':'transparent';
     const dotEl=dot!=='dot-none'?'<span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:'+dotColor+';flex-shrink:0"></span>':'';
     var dk=date.getFullYear()+'-'+String(date.getMonth()+1).padStart(2,'0')+'-'+String(date.getDate()).padStart(2,'0');
     const evKeyLv=date.getFullYear()+'-'+String(date.getMonth()+1).padStart(2,'0')+'-'+String(date.getDate()).padStart(2,'0');
@@ -1261,11 +1269,11 @@ function openDayModal(dateKey,dateObj){
   }
 
   if(saints.length){
-    rows+='<div class="day-modal-row"><span class="day-modal-lbl">Saints</span><span class="day-modal-val">'+saints.join('<br>')+'</span></div>';
+    rows+='<div class="day-modal-row"><span class="day-modal-lbl">Saints</span><span class="day-modal-val">'+saints.map(function(s){return '<a href="/saints" style="color:var(--maroon);border-bottom:1px solid rgba(123,29,42,.22);display:inline">'+s+'</a>';}).join('<br>')+'</span></div>';
   }
 
   if(readings.length){
-    rows+='<div class="day-modal-row"><span class="day-modal-lbl">Readings</span><span class="day-modal-val">'+readings.join('<br>')+'</span></div>';
+    rows+='<div class="day-modal-row"><span class="day-modal-lbl">Readings</span><span class="day-modal-val">'+readings.map(function(r){return '<a href="/readings" style="color:var(--ink);border-bottom:1px solid rgba(44,31,22,.18);display:inline">'+r+'</a>';}).join('<br>')+'</span></div>';
   }
 
   if(!rows){
