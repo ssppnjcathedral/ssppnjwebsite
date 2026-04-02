@@ -1164,16 +1164,22 @@ async function buildClassicList(){
     html+='<div class="lv-row'+(isToday(date)?' lv-today':'')+(sun?' lv-sun':'')+' lv-tappable" data-dk="'+dk+'"><div class="lv-date-col"><span class="lv-dn'+(isToday(date)?' today-n':'')+'">'+date.getDate()+'</span><span class="lv-dl">'+DAYS_L[date.getDay()]+'</span></div><div class="lv-content"><div class="lv-feast'+(isMajor?' lv-major':'')+'">'+dotEl+feast+'</div>'+(saints.length?'<div class="lv-saints">'+saints.join(', ')+'</div>':'')+'<div class="lv-meta">'+(sun?'<span class="lv-svc">Liturgy 9:30 AM</span>':'')+(sat?'<span class="lv-svc">Vespers 5:00 PM</span>':'')+(fast?'<span class="lv-fast">\u2726 '+fast+'</span>':'')+(tone?'<span class="lv-tone">'+tone+'</span>':'')+(evLv?'<span class="lv-svc" style="background:rgba(184,131,40,.12);color:var(--stone)">'+evLv+'</span>':'')+'</div></div></div>';
   });
   listEl.innerHTML=html;
-  // Scroll container to today's row without affecting page scroll
+  // Scroll to today within container (desktop) or page (mobile)
   var todayRow=listEl.querySelector('.lv-today');
-  if(todayRow) setTimeout(function(){listEl.scrollTop=todayRow.offsetTop-listEl.offsetTop;},80);
-  // Wire tap handlers via event delegation (avoids inline onclick quote issues)
-  listEl.addEventListener('click',function(e){
+  if(todayRow) setTimeout(function(){
+    if(listEl.scrollHeight>listEl.clientHeight){
+      listEl.scrollTop=todayRow.offsetTop-listEl.offsetTop;
+    } else {
+      todayRow.scrollIntoView({block:'nearest'});
+    }
+  },80);
+  // Wire tap handler once via onclick (avoids stacking listeners on re-render)
+  listEl.onclick=function(e){
     var row=e.target.closest('.lv-tappable');
     if(!row) return;
     var dk=row.getAttribute('data-dk');
     if(dk && _modalDates[dk]) openDayModal(dk,_modalDates[dk]);
-  });
+  };
 }
 
 /* ═══════════════════════════════════════
@@ -1184,12 +1190,14 @@ async function buildClassicList(){
 (function(){
   updateHeaders();
   if(window.innerWidth<=768){
-    // Mobile: go straight to 14-day list — most readable on small screens
-    currentView='c';
+    // Mobile: go straight to list view
+    currentView='cl';
     cvSubView='list';
     ['f','g','c'].forEach(function(x){
       document.getElementById('view-'+x).classList.toggle('active',x==='c');
-      document.getElementById('vbtn-'+x).classList.toggle('on',x==='c');
+    });
+    ['f','g','cm','cl'].forEach(function(x){
+      document.getElementById('vbtn-'+x).classList.toggle('on',x==='cl');
     });
     // Show list div, hide month div
     var listEl=document.getElementById('cv-list');
@@ -1201,6 +1209,15 @@ async function buildClassicList(){
     buildMiniGrid();
     setTimeout(function(){selectDateF(new Date(today));},300);
   }
+  // On orientation change, reinitialize if crossing the 768px boundary
+  window.addEventListener('resize',function(){
+    if(window.innerWidth>768 && (currentView==='cl'||currentView==='cm'||currentView==='c')){
+      if(!document.getElementById('sp-right').querySelector('.dh')){
+        buildMiniGrid();
+        setTimeout(function(){selectDateF(new Date(today));},300);
+      }
+    }
+  });
 })();
 
 /* ── DAY DETAIL MODAL ── */
