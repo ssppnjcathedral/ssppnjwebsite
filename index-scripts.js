@@ -310,13 +310,20 @@ async function openEventDetail(id) {
     +   '<button class="btn btn-outline" onclick="closeEventDetail()">Back to Calendar</button>'
     + '</div>';
 
-  overlay.classList.add('open');
+  // Two-frame delay so display:flex is applied before transform transition starts
+  overlay.style.display = 'flex';
+  requestAnimationFrame(function(){requestAnimationFrame(function(){
+    overlay.classList.add('open');
+  });});
   document.body.style.overflow = 'hidden';
 }
 
 function closeEventDetail() {
   var overlay = document.getElementById('pe-overlay');
-  if (overlay) overlay.classList.remove('open');
+  if (overlay) {
+    overlay.classList.remove('open');
+    setTimeout(function(){ overlay.style.display = ''; }, 350);
+  }
   document.body.style.overflow = '';
 }
 
