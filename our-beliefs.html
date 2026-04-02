@@ -2,179 +2,369 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Our Beliefs · Saints Peter & Paul Orthodox Cathedral</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<title>Our Beliefs · Saints Peter &amp; Paul Orthodox Cathedral</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet"/>
 <style>
-:root{--vellum:#F6F1E8;--vellum-mid:#EDE7DC;--text:#1E1510;--ink:#2C1F16;--maroon:#7B1D2A;--maroon-deep:#5C1520;--gold:#B88328;--gold-lt:#E8C97A;--verdigris:#3D6B5E;--stone:#7A6648;--stone-lt:#A89070;--apse:#3B0F18;--f-display:'Cormorant Garamond',Georgia,serif;--f-body:'EB Garamond',Georgia,serif;--f-ui:'Cinzel',Georgia,serif;--rule:1px solid var(--maroon);--rule-faint:1px solid rgba(123,29,42,0.14);--rule-hair:1px solid rgba(123,29,42,0.07)}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{background:var(--vellum);color:var(--text);font-family:var(--f-body);font-size:21px;line-height:1.75;overflow-x:hidden;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}
+:root{--vellum:#F6F1E8;--vellum-mid:#EDE7DC;--vellum-alt:#E8E0D0;--text:#1E1510;--ink:#2C1F16;--maroon:#7B1D2A;--maroon-deep:#5C1520;--gold:#B88328;--gold-lt:#E8C97A;--verdigris:#3D6B5E;--stone:#7A6648;--stone-lt:#A89070;--apse:#3B0F18;--f-display:'Cormorant Garamond',Georgia,serif;--f-body:'EB Garamond',Georgia,serif;--f-ui:'Cinzel',Georgia,serif;--rule:1px solid var(--maroon);--rule-faint:1px solid rgba(123,29,42,0.14);--rule-hair:1px solid rgba(123,29,42,0.07);--rule-gold:1px solid rgba(184,131,40,.30)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--vellum);color:var(--text);font-family:var(--f-body);font-size:20px;line-height:1.78;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+
+/* PRIMITIVES */
 .rubric{display:block;font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.20em;text-transform:uppercase;color:var(--stone);margin-bottom:.5rem}
 .rubric.light{color:rgba(246,241,232,.55)}
 .rubric-rule{display:block;height:1px;background:var(--maroon);margin-bottom:1rem;width:48px}
-.rubric-voice{display:block;font-family:var(--f-display);font-style:italic;font-size:1.15rem;color:var(--maroon);margin-top:.4rem;line-height:1.4}
+.rubric-rule.gold{background:var(--gold)}
+.rubric-voice{display:block;font-family:var(--f-display);font-style:italic;font-weight:400;font-size:1.1rem;color:var(--stone);margin-bottom:1.5rem;line-height:1.4}
+.btn{display:inline-block;font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;padding:.85rem 2.2rem;border:1px solid currentColor;cursor:pointer;transition:all .22s;white-space:nowrap}
+.btn-maroon{color:var(--vellum);background:var(--maroon);border-color:var(--maroon)}
+.btn-maroon:hover{background:var(--maroon-deep)}
+.btn-outline{color:var(--maroon);border-color:var(--maroon)}
+.btn-outline:hover{background:var(--maroon);color:var(--vellum)}
+footer .btn-outline{color:rgba(246,241,232,.92);border-color:rgba(246,241,232,.55)}
+footer .btn-outline:hover{background:rgba(246,241,232,.15);color:#fff;border-color:rgba(246,241,232,.80)}
+
+/* NAV — MEGA MENU */
 .nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(246,241,232,.97);backdrop-filter:blur(10px);border-bottom:var(--rule-faint)}
 .nav-inner{max-width:1380px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px;padding:0 3rem}
 .nav-logo-name{font-family:var(--f-display);font-weight:500;font-size:1.25rem;color:var(--text);display:block}
 .nav-logo-sub{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);display:block}
-.nav-links{display:flex;align-items:center;list-style:none}
-.nav-links>li{position:relative}
-.nav-links>li>a{font-family:var(--f-ui);font-size:.78rem;letter-spacing:.10em;text-transform:uppercase;color:var(--text);padding:1.1rem .85rem;display:block;transition:color .18s}
-.nav-links>li:hover>a{color:var(--maroon)}
-.nav-drop{position:absolute;top:100%;left:0;background:var(--vellum);border-top:2px solid var(--maroon);border-bottom:var(--rule-faint);border-left:var(--rule-faint);border-right:var(--rule-faint);min-width:200px;padding:.5rem 0;opacity:0;pointer-events:none;transform:translateY(-4px);transition:all .16s;box-shadow:0 8px 28px rgba(28,20,16,.10)}
-.nav-links>li:hover .nav-drop{opacity:1;pointer-events:all;transform:none}
-.nav-drop a{display:block;font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text);padding:.5rem 1.4rem;transition:color .14s}
-.nav-drop a:hover{color:var(--maroon)}.nav-links .nav-active{color:var(--maroon)}.nav-links .nav-active-parent>a{color:var(--maroon);border-bottom:2px solid var(--gold)}.nav-drop .nav-active{color:var(--maroon);font-weight:600}
-.nav-give{font-family:var(--f-ui);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--vellum);background:var(--maroon);padding:.5rem 1.1rem;transition:background .2s}
+.nav-logo-img{height:36px;width:auto;display:block}
+.nav-mega-group{height:100%;display:flex;align-items:center}
+.nav-links{display:flex;align-items:center;list-style:none;height:100%}
+.nav-links>li{height:100%;display:flex;align-items:center}
+.nav-links>li>a{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);padding:0 .85rem;height:100%;display:flex;align-items:center;transition:color .18s;border-bottom:2px solid transparent;white-space:nowrap}
+.nav-links>li>a:hover,.nav-mega-group:hover .nav-links>li>a{color:var(--maroon)}
+.nav-links>li>a:hover{border-bottom-color:var(--gold)}
+.mega-panel{position:absolute;top:60px;left:0;right:0;background:var(--vellum);border-top:2px solid var(--maroon);border-bottom:var(--rule-faint);box-shadow:0 16px 48px rgba(28,20,16,.13);opacity:0;pointer-events:none;transform:translateY(-8px);transition:opacity .22s ease,transform .22s ease;z-index:100;display:grid;grid-template-columns:420px 1fr}
+.mega-panel.mega-visible{opacity:1;pointer-events:all;transform:translateY(0)}
+.mega-photo{position:relative;overflow:hidden;background-color:var(--apse)}
+.mega-photo-bg{position:absolute;inset:0;background-size:cover;background-position:center;transform:scale(1);transition:transform 11s ease}
+.mega-panel.mega-visible .mega-photo-bg{transform:scale(1.18)}
+.mega-photo-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(59,15,24,.88) 0%,rgba(59,15,24,.72) 100%)}
+.mega-photo-content{position:relative;z-index:1;padding:2rem;display:flex;flex-direction:column;height:100%;min-height:220px}
+.mega-photo-label{font-family:var(--f-ui);font-size:.5rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(232,201,122,.65);display:block;margin-bottom:.4rem}
+.mega-photo-quote{font-family:var(--f-display);font-style:italic;font-weight:300;font-size:1.45rem;color:rgba(246,241,232,.92);line-height:1.25}
+.mega-content{border-left:2px solid var(--maroon)}
+.mega-inner{padding:2rem 2.25rem;display:grid;gap:0;height:100%}
+.mega-col{padding:0 1.5rem;border-right:1px solid rgba(123,29,42,.07)}
+.mega-col:first-child{padding-left:0}
+.mega-col:last-child{border-right:none;padding-right:0}
+.mega-col-head{font-family:var(--f-ui);font-size:.55rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.85rem;padding-bottom:.45rem;border-bottom:1px solid rgba(184,131,40,.22)}
+.mega-link{display:block;font-family:var(--f-body);font-size:1.13rem;color:var(--ink);padding:.22rem 0;transition:color .15s,padding-left .15s;line-height:1.4}
+.mega-link:hover{color:var(--maroon);padding-left:.4rem}
+.mega-sub{display:block;font-family:var(--f-body);font-style:italic;font-size:.88rem;color:var(--stone);margin-bottom:.2rem;line-height:1.3}
+.mega-cta{margin-top:1.5rem;padding-top:1.25rem;border-top:var(--rule-faint)}
+.mega-cta-btn{font-family:var(--f-ui);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);border:1px solid rgba(123,29,42,.28);padding:.48rem .9rem;display:block;text-align:center;transition:all .2s}
+.mega-cta-btn:hover{background:var(--maroon);color:var(--vellum)}
+.nav-links>li.tab-active>a{color:var(--maroon);border-bottom-color:var(--gold)}
+.nav-give{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--vellum);background:var(--maroon);padding:.5rem 1.1rem;transition:background .2s;white-space:nowrap;margin-left:1rem}
 .nav-give:hover{background:var(--maroon-deep)}
-.page-hero{padding-top:60px;background:linear-gradient(to right,rgba(59,15,24,.88) 0%,rgba(59,15,24,.62) 55%,rgba(59,15,24,.38) 100%),url('/images/heroes/our-beliefs.webp') center/cover no-repeat;background-color:var(--apse);min-height:420px;display:flex;align-items:center;position:relative;overflow:hidden}}
-.page-hero-inner{max-width:1380px;margin:0 auto;padding:5rem 6rem 4rem}
-
-.page-title{font-family:var(--f-display);font-weight:300;font-size:clamp(2.5rem,5vw,4.5rem);line-height:.95;color:#fff;margin:.5rem 0 .75rem}
-.page-title em{font-style:italic}
-.breadcrumb{font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.70);margin-bottom:1.5rem}
-.breadcrumb a{color:rgba(232,201,122,.70)}
-.chapter-bar{background:var(--maroon);padding:.65rem 4rem;display:flex;align-items:center;justify-content:space-between}
-.cbar-text{font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:rgba(246,241,232,.60)}
-.cbar-text.bright{color:rgba(246,241,232,.90)}
-.page-body{background:var(--vellum);max-width:1380px;margin:0 auto;padding:5rem 4.5rem;display:grid;grid-template-columns:1fr 300px;gap:5rem}
-.prose{font-family:var(--f-body);font-size:1rem;line-height:1.82;color:var(--ink);text-align:justify;hyphens:auto;max-width:60ch}
-.prose p{margin-bottom:1.2em}
-.section-head{font-family:var(--f-display);font-weight:400;font-size:clamp(1.6rem,2.5vw,2.2rem);color:var(--text);margin:3rem 0 .5rem;line-height:1.15}
-.drop-cap::first-letter{font-family:var(--f-display);font-style:italic;font-weight:300;font-size:4.5em;line-height:.78;float:left;margin-right:.07em;margin-top:.07em;color:var(--maroon)}
-.belief-card{border:var(--rule-faint);border-left:3px solid var(--maroon);padding:1.5rem 1.75rem;margin-bottom:1.5rem}
-.belief-card-title{font-family:var(--f-display);font-weight:500;font-size:1.2rem;color:var(--text);margin-bottom:.5rem}
-.belief-card-body{font-family:var(--f-body);font-size:.95rem;line-height:1.75;color:var(--ink);text-align:justify;hyphens:auto}
-.creed-block{background:var(--vellum-mid);border:var(--rule-faint);border-top:2px solid var(--maroon);padding:2.5rem;margin:3rem 0}
-.creed-text{font-family:var(--f-display);font-style:italic;font-size:1.05rem;line-height:1.9;color:var(--ink)}
-.creed-source{font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);margin-top:1rem;display:block}
-.side-col{border-left:var(--rule-faint);padding-left:2.5rem}
-.side-section{margin-bottom:2.5rem;padding-bottom:2.5rem;border-bottom:var(--rule-faint)}
-.side-section:last-child{border-bottom:none}
-.side-head{font-family:var(--f-ui);font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.75rem}
-.annot-nav-link{display:flex;align-items:center;justify-content:space-between;font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--text);padding:.6rem 0;border-bottom:var(--rule-hair);transition:color .18s}
-.annot-nav-link:last-child{border-bottom:none}
-.annot-nav-link:hover{color:var(--maroon)}
-.annot-nav-link::after{content:'→';color:var(--maroon)}
-.btn{display:inline-block;font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;padding:.85rem 2.2rem;border:1px solid currentColor;cursor:pointer;transition:all .22s}
-.btn-maroon{color:var(--vellum);background:var(--maroon);border-color:var(--maroon)}
-.btn-maroon:hover{background:var(--maroon-deep)}
-.btn-outline{color:var(--maroon);border-color:var(--maroon)}
-.btn-outline:hover{background:var(--maroon);color:var(--vellum)}footer .btn-outline{color:rgba(246,241,232,.92);border-color:rgba(246,241,232,.55)}footer .btn-outline:hover{background:rgba(246,241,232,.15);color:#fff;border-color:rgba(246,241,232,.80)}
-footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:4.5rem 4.5rem 2.5rem}
-.footer-cross{display:block;text-align:center;font-size:1.1rem;color:rgba(184,131,40,.45);letter-spacing:.8em;padding-left:.8em;margin-bottom:2.5rem}
-.footer-bottom{max-width:1380px;margin:2rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(246,241,232,.12);display:flex;justify-content:space-between}
-.footer-copy,.footer-addr{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.60)}
 .nav-hamburger{display:none;flex-direction:column;justify-content:space-between;width:28px;height:20px;cursor:pointer;padding:0;background:none;border:none;z-index:400}
-@media(max-width:1024px){.page-body{grid-template-columns:1fr}.side-col{border-left:none;border-top:var(--rule-faint);padding-left:0;padding-top:2.5rem;margin-top:2.5rem}}
-@media(max-width:768px){.nav-links{display:none}.nav-hamburger{display:flex}.nav-give{display:none}.page-hero-inner{padding:3.5rem 1.5rem 3rem}.page-body{padding:3rem 1.5rem}.chapter-bar{padding:.65rem 1.5rem}}
-
-.footer-cols{max-width:1380px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:5rem;margin-bottom:3.5rem}
-.footer-col-head{font-family:var(--f-ui);font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(246,241,232,.82);display:block;margin-bottom:1.2rem;padding-bottom:.5rem;border-bottom:1px solid rgba(246,241,232,.06)}
-.footer-name{font-family:var(--f-display);font-weight:400;font-size:1.2rem;color:rgba(246,241,232,.88);line-height:1.3;margin-bottom:.75rem}
-.footer-meta{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.72);line-height:2.3}
-.footer-meta a{color:rgba(184,131,40,.85);transition:color .2s}
-.footer-meta a:hover{color:var(--gold)}
-.footer-socials{display:flex;gap:1.5rem;margin-top:1.5rem}
-.footer-socials a{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,241,232,.65);transition:color .2s}
-.footer-socials a:hover{color:var(--gold)}
-.footer-nav{list-style:none;display:flex;flex-direction:column}
-.footer-nav li{padding:.38rem 0;border-bottom:1px solid rgba(246,241,232,.10)}
-.footer-nav li:last-child{border-bottom:none}
-.footer-nav a{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,232,.85);transition:color .2s}
-.footer-nav a:hover{color:rgba(246,241,232,.95)}
-.footer-blurb{font-family:var(--f-display);font-style:italic;font-size:.95rem;color:rgba(246,241,232,.85);line-height:1.65;margin-bottom:1.5rem}
-.btn{display:inline-block;font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;padding:.85rem 2.2rem;border:1px solid currentColor;cursor:pointer;transition:all .22s;white-space:nowrap}
-.btn-outline{color:rgba(246,241,232,.70);border-color:rgba(246,241,232,.35)}
-.btn-outline:hover{color:#fff;border-color:#fff}
-@media(max-width:1100px){.footer-cols{grid-template-columns:1fr 1fr;gap:3rem}}
-@media(max-width:768px){.footer-cols{grid-template-columns:1fr;gap:2.5rem}footer{padding:4rem 1.5rem 2rem}.footer-bottom{flex-direction:column;gap:.75rem;text-align:center}
-  /* ── MOBILE FONT BUMPS ── */
-  body{font-size:18px;line-height:1.8}
-  [class*="-over"],[class*="-cat"],[class*="-sub"],[class*="-label"],[class*="-tag"],[class*="-kicker"],[class*="-lbl"],[class*="-badge"],[class*="-date"],[class*="-meta"]{font-size:.72rem!important;letter-spacing:.12em}
-  [class*="-title"]{line-height:1.2}
-  [class*="hero-title"],[class*="page-title"]{line-height:1.1}
-  [class*="-name"],[class*="-head"]{line-height:1.25}
-  .footer-copy,.footer-legal,.footer-bottom{font-size:.72rem}
-  .nav-drawer-links a{font-size:.76rem;padding:1rem 1.75rem}.footer-addr{text-align:center}}
-
-
-/* ── MOBILE NAV DRAWER ── */
-
 .nav-hamburger span{display:block;width:100%;height:2px;background:var(--maroon);transition:all .28s ease;transform-origin:center}
 .nav-hamburger.open span:nth-child(1){transform:translateY(9px) rotate(45deg)}
 .nav-hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
 .nav-hamburger.open span:nth-child(3){transform:translateY(-9px) rotate(-45deg)}
+
+/* MOBILE DRAWER — ACCORDION */
 .nav-drawer{position:fixed;top:0;right:0;width:300px;max-width:85vw;height:100vh;background:var(--apse);z-index:350;transform:translateX(100%);transition:transform .32s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;overflow-y:auto}
 .nav-drawer.open{transform:translateX(0)}
 .nav-drawer-overlay{position:fixed;inset:0;background:rgba(21,8,4,.65);z-index:340;opacity:0;pointer-events:none;transition:opacity .32s}
 .nav-drawer-overlay.open{opacity:1;pointer-events:all}
 .nav-drawer-head{padding:1.5rem 1.75rem 1rem;border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:space-between}
-.nav-drawer-logo{font-family:var(--f-display);font-weight:500;font-size:1.1rem;color:#fff}
-.nav-drawer-logo span{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);display:block;margin-top:2px}
+.nav-drawer-logo{font-family:var(--f-display);font-weight:500;font-size:1.2rem;color:rgba(246,241,232,.95)}
+.nav-drawer-logo span{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,241,232,.6);display:block;margin-top:2px}
 .nav-drawer-close{width:32px;height:32px;background:rgba(255,255,255,.08);border:none;color:rgba(255,255,255,.65);cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:background .2s}
 .nav-drawer-close:hover{background:rgba(255,255,255,.15)}
-.nav-drawer-links{padding:1rem 0;flex:1}
-.nav-drawer-links a{display:block;font-family:var(--f-ui);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,232,.70);padding:.9rem 1.75rem;border-bottom:1px solid rgba(255,255,255,.05);transition:all .18s}
-.nav-drawer-links a:hover{color:#fff;background:rgba(255,255,255,.05)}
-.nav-drawer-links .drawer-section{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(184,131,40,.55);padding:.85rem 1.75rem .35rem;display:block}
+.dr-accordion{flex:1;overflow-y:auto}
+.dr-section{border-bottom:1px solid rgba(255,255,255,.06)}
+.dr-section-head{display:flex;align-items:center;justify-content:space-between;padding:1.1rem 1.25rem;cursor:pointer;transition:background .18s;user-select:none}
+.dr-section-head:hover{background:rgba(255,255,255,.03)}
+.dr-section.open .dr-section-head{background:rgba(184,131,40,.07)}
+.dr-section-name{font-family:var(--f-ui);font-size:.9rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,241,232,.85);transition:color .18s}
+.dr-section.open .dr-section-name{color:rgba(232,201,122,1)}
+.dr-section-toggle{font-family:var(--f-ui);font-size:1rem;color:rgba(184,131,40,.7);line-height:1;width:16px;text-align:center;flex-shrink:0}
+.dr-section.open .dr-section-toggle{color:rgba(184,131,40,1)}
+.dr-section-links{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.dr-section.open .dr-section-links{max-height:700px}
+.dr-link{display:block;padding:.85rem 1.25rem .75rem;border-bottom:1px solid rgba(255,255,255,.06);transition:background .15s}
+.dr-link:last-child{border-bottom:none}
+.dr-link:hover{background:rgba(255,255,255,.06)}
+.dr-link-name{font-family:var(--f-body);font-size:1.3rem;color:rgba(246,241,232,.92);display:block;line-height:1.25}
+.dr-link-sub{font-family:var(--f-body);font-style:italic;font-size:.88rem;color:rgba(232,201,122,.55);display:block;margin-top:.08rem;line-height:1.25}
 .nav-drawer-give{margin:1.25rem 1.75rem;display:block;text-align:center;font-family:var(--f-ui);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;padding:.85rem;background:var(--maroon);color:var(--vellum);transition:background .2s}
 .nav-drawer-give:hover{background:var(--maroon-deep)}
 
-/* ── QUOTE INTERSTITIAL ───────────────────────────── */
-.quote-break{margin:0;padding:4rem 4.5rem;background:var(--vellum);position:relative}
-.qb-inner{max-width:680px;margin:0 auto;padding-left:2rem;border-left:3px solid var(--maroon);position:relative}
-.qb-cross{display:none}
-.qb-rule{display:none}
-.qb-text{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-weight:300;font-size:clamp(1.5rem,3vw,2.2rem);line-height:1.4;color:var(--text);margin-bottom:.75rem}
-.qb-attr{font-family:'Cinzel',Georgia,serif;font-size:.72rem;letter-spacing:.20em;text-transform:uppercase;color:var(--maroon);display:block}
-@media(max-width:768px){
-  .quote-break{padding:2.5rem 1.5rem}.qb-inner{padding-left:1.25rem}.qb-text{font-size:1.3rem}
-}
+/* MEGA CALENDAR WEEK */
+.mc-week-row{display:flex;align-items:baseline;gap:.6rem;padding:.32rem 0;border-bottom:1px solid rgba(123,29,42,.06)}
+.mc-week-row:last-of-type{border-bottom:none}
+.mc-week-row.mc-today .mc-day-lbl{color:var(--maroon)}
+.mc-week-row.mc-today .mc-day-feast{color:var(--maroon);font-weight:500}
+.mc-day-lbl{font-family:var(--f-ui);font-size:.48rem;letter-spacing:.1em;text-transform:uppercase;color:var(--stone);min-width:26px;flex-shrink:0}
+.mc-day-feast{font-family:var(--f-body);font-size:.88rem;color:var(--ink);line-height:1.25;flex:1}
+.mc-day-feast.mc-major{color:var(--maroon);font-style:italic}
+.mc-dot{display:inline-block;width:4px;height:4px;border-radius:50%;background:var(--gold);margin-left:.3rem;margin-bottom:1px;vertical-align:middle}
+.mc-event-row{display:flex;align-items:center;gap:.5rem;padding:.2rem 0 .2rem 26px;margin-bottom:.1rem}
+.mc-event-badge{font-family:var(--f-ui);font-size:.42rem;letter-spacing:.09em;text-transform:uppercase;padding:.1rem .32rem;white-space:nowrap;flex-shrink:0}
+.mc-badge-liturgy{background:rgba(123,29,42,.1);color:var(--maroon)}
+.mc-badge-vespers{background:rgba(184,131,40,.12);color:#6b4f12}
+.mc-badge-community,.mc-badge-social{background:rgba(61,107,94,.1);color:#2a5044}
+.mc-badge-announcement{background:rgba(184,131,40,.1);color:#6b4f12}
+.mc-event-name{font-family:var(--f-body);font-style:italic;font-size:.8rem;color:var(--stone);line-height:1.2}
 
-/* Content area background fix */
-.page-body,.main-wrap,.cal-wrap,.giving-wrap,.gallery-wrap,.video-wrap,.bulletin-wrap,.news-wrap,.contact-wrap,.cemetery-wrap{background:var(--vellum)}
-/* NAV PILL */
+/* HERO */
+.page-hero{padding-top:60px;background:linear-gradient(to right,rgba(59,15,24,.96) 0%,rgba(59,15,24,.82) 55%,rgba(59,15,24,.60) 100%),url('/images/heroes/our-beliefs.webp') center/cover no-repeat;background-color:var(--apse);min-height:360px;display:flex;align-items:flex-end;position:relative;overflow:hidden}
+.page-hero-inner{max-width:1380px;margin:0 auto;padding:2.5rem 4.5rem 3rem;width:100%}
+.breadcrumb{font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.40);margin-bottom:.75rem;display:block}
+.breadcrumb a{color:rgba(232,201,122,.65);transition:color .2s}
+.breadcrumb a:hover{color:var(--gold-lt)}
+.page-title{font-family:var(--f-display);font-weight:300;font-size:clamp(2.2rem,4.5vw,3.8rem);line-height:1;color:#fff;margin:.5rem 0 .65rem}
+.page-title em{font-style:italic}
+.page-subtitle{font-family:var(--f-display);font-style:italic;font-size:1.05rem;color:rgba(255,255,255,.58);max-width:500px}
+
+/* CHAPTER BAR */
+.chapter-bar{background:var(--maroon);padding:.65rem 4rem;display:flex;align-items:center;justify-content:space-between}
+.cbar-text{font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:rgba(246,241,232,.60)}
+.cbar-text.bright{color:rgba(246,241,232,.90)}
+
+/* NAV PILL + BOTTOM SHEET */
 .nav-pill{display:flex;position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);background:var(--apse);border:1px solid rgba(184,131,40,.20);border-radius:100px;padding:.5rem .85rem;z-index:150;align-items:center;gap:.5rem;box-shadow:0 6px 30px rgba(21,8,4,.38);opacity:0;pointer-events:none;transition:opacity .4s}
 .nav-pill.pill-visible{opacity:1;pointer-events:all}
-.pill-arrow{background:rgba(255,255,255,.06);border:none;color:rgba(246,241,232,.60);cursor:pointer;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:all .18s;flex-shrink:0}
+.pill-arrow{background:rgba(255,255,255,.06);border:none;color:rgba(246,241,232,.60);cursor:pointer;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:all .18s;flex-shrink:0;font-size:1.05rem}
 .pill-arrow:hover:not(:disabled){background:rgba(255,255,255,.14);color:#fff}
 .pill-arrow:disabled{opacity:.22;cursor:default}
-.pill-center{font-family:var(--f-ui);font-size:.56rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.80);padding:.3rem .65rem;display:flex;align-items:center;gap:.4rem;min-width:100px;justify-content:center;cursor:pointer;transition:color .18s}
+.pill-center{font-family:var(--f-ui);font-size:.56rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.80);padding:.3rem .75rem;display:flex;align-items:center;gap:.4rem;min-width:120px;justify-content:center;cursor:pointer;transition:color .18s;border:none;background:none}
 .pill-center:hover{color:#fff}
-/* BOTTOM SHEET */
-.mob-sheet-overlay{display:none;position:fixed;inset:0;background:rgba(21,8,4,.60);z-index:300;opacity:0;transition:opacity .28s}
-.mob-sheet-overlay.open{opacity:1;display:block}
-.mob-sheet{position:fixed;bottom:0;left:0;right:0;background:var(--apse);z-index:310;border-top:1px solid rgba(184,131,40,.18);border-radius:18px 18px 0 0;transform:translateY(100%);transition:transform .32s cubic-bezier(.4,0,.2,1);max-height:78vh;display:none;flex-direction:column}
-.mob-sheet.open{transform:translateY(0);display:flex}
-.mob-sheet-handle{width:36px;height:4px;background:rgba(246,241,232,.18);border-radius:2px;margin:1rem auto .5rem;flex-shrink:0}
-.mob-sheet-head{padding:.5rem 1.5rem 1rem;border-bottom:1px solid rgba(255,255,255,.06);flex-shrink:0;display:flex;align-items:center;justify-content:space-between}
-.mob-sheet-title{font-family:var(--f-display);font-size:1.25rem;font-weight:500;color:#fff}
-.mob-sheet-close{background:rgba(255,255,255,.06);border:none;color:rgba(246,241,232,.55);width:28px;height:28px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .18s}
-.mob-sheet-close:hover{background:rgba(255,255,255,.14);color:#fff}
-.mob-sheet-list{overflow-y:auto;flex:1;padding:.5rem 0 2rem;-webkit-overflow-scrolling:touch}
-.mob-sheet-item{display:flex;align-items:center;gap:.85rem;padding:.75rem 1.5rem;border:none;background:none;width:100%;text-align:left;cursor:pointer;transition:background .16s;border-bottom:1px solid rgba(255,255,255,.04)}
-.mob-sheet-item:hover{background:rgba(255,255,255,.05)}
-.mob-sheet-item.sheet-active{background:rgba(123,29,42,.35)}
-.mob-sheet-num{font-family:var(--f-ui);font-size:.55rem;letter-spacing:.10em;color:rgba(184,131,40,.55);width:22px;flex-shrink:0;text-align:right}
-.mob-sheet-item.sheet-active .mob-sheet-num{color:rgba(184,131,40,.90)}
-.mob-sheet-name{font-family:var(--f-display);font-weight:400;font-size:1.05rem;color:rgba(246,241,232,.75);line-height:1.2}
-.mob-sheet-item.sheet-active .mob-sheet-name{color:#fff}
+.sheet-overlay{display:none;position:fixed;inset:0;background:rgba(21,8,4,.60);z-index:300;opacity:0;transition:opacity .28s}
+.sheet-overlay.open{opacity:1;display:block}
+.sess-sheet{position:fixed;bottom:0;left:0;right:0;background:var(--apse);z-index:310;border-top:1px solid rgba(184,131,40,.18);border-radius:18px 18px 0 0;transform:translateY(100%);transition:transform .32s cubic-bezier(.4,0,.2,1);max-height:78vh;display:none;flex-direction:column}
+.sess-sheet.open{transform:translateY(0);display:flex}
+.sheet-handle{width:36px;height:4px;background:rgba(246,241,232,.18);border-radius:2px;margin:1rem auto .5rem;flex-shrink:0}
+.sheet-head{padding:.5rem 1.5rem 1rem;border-bottom:1px solid rgba(255,255,255,.06);flex-shrink:0;display:flex;align-items:center;justify-content:space-between}
+.sheet-title{font-family:var(--f-display);font-size:1.25rem;font-weight:500;color:#fff}
+.sheet-close{background:rgba(255,255,255,.06);border:none;color:rgba(246,241,232,.55);width:28px;height:28px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .18s}
+.sheet-close:hover{background:rgba(255,255,255,.14);color:#fff}
+.sheet-list{overflow-y:auto;flex:1;padding:.5rem 0 2.5rem;-webkit-overflow-scrolling:touch}
+.sheet-item{display:flex;align-items:center;gap:.85rem;padding:.65rem 1.5rem;border:none;background:none;width:100%;text-align:left;cursor:pointer;transition:background .16s;border-bottom:1px solid rgba(255,255,255,.04)}
+.sheet-item:hover{background:rgba(255,255,255,.05)}
+.sheet-item.sheet-active{background:rgba(123,29,42,.35)}
+.sheet-num{font-family:var(--f-ui);font-size:.55rem;letter-spacing:.10em;color:rgba(184,131,40,.55);width:28px;flex-shrink:0;text-align:right}
+.sheet-item.sheet-active .sheet-num{color:rgba(184,131,40,.90)}
+.sheet-name{font-family:var(--f-display);font-weight:400;font-size:1rem;color:rgba(246,241,232,.75);line-height:1.2}
+.sheet-item.sheet-active .sheet-name{color:#fff}
+
+/* THREE-COLUMN LAYOUT */
+.page-body{max-width:1520px;margin:0 auto;padding:2.5rem 3rem 5rem;display:grid;grid-template-columns:72px 1fr 280px;gap:0 3.5rem}
+.main-col{min-width:0}
+.side-col{border-left:var(--rule-faint);padding-left:2.5rem}
+
+/* LEFT RAIL */
+.left-col{border-right:var(--rule-faint);padding-right:0;display:flex;justify-content:center}
+.left-rail{position:sticky;top:80px;height:calc(100vh - 100px);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1rem 0;opacity:0;transition:opacity .4s;width:100%}
+.left-rail.rail-visible{opacity:1}
+.lr-connector{width:1px;background:rgba(123,29,42,.12);flex:1}
+.lr-item{display:flex;flex-direction:column;align-items:center;cursor:pointer;position:relative;padding:.18rem 0}
+.lr-dot-wrap{width:44px;display:flex;flex-direction:column;align-items:center;gap:6px}
+.lr-dot{width:6px;height:6px;border-radius:50%;border:1.5px solid rgba(123,29,42,.28);background:transparent;transition:all .28s cubic-bezier(.22,1,.36,1);flex-shrink:0}
+.lr-item.lr-active .lr-dot{background:var(--maroon);border-color:var(--maroon);width:8px;height:8px;box-shadow:0 0 0 3px rgba(123,29,42,.12)}
+.lr-num{font-family:var(--f-ui);font-size:.55rem;font-weight:600;letter-spacing:.04em;color:rgba(123,29,42,.28);display:block;transition:color .28s;line-height:1;text-align:center}
+.lr-item.lr-active .lr-num{color:var(--maroon)}
+.lr-label{position:absolute;left:calc(100% + 12px);top:50%;transform:translateY(-50%);background:var(--vellum);border:var(--rule-faint);border-left:2px solid var(--maroon);padding:.28rem .75rem;font-family:var(--f-ui);font-size:.58rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--maroon);white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .18s;box-shadow:0 2px 10px rgba(28,20,16,.08);z-index:50}
+.lr-item:hover .lr-label{opacity:1}
+
+/* SECTION BLOCKS */
+.section-block{padding:3.5rem 0 3rem;border-bottom:var(--rule-faint);scroll-margin-top:84px}
+.section-block:first-child{padding-top:0}
+.section-block:last-child{border-bottom:none}
+.sect-header{margin-bottom:1.5rem}
+.sect-num-row{display:flex;align-items:center;gap:1rem;margin-bottom:.75rem}
+.sect-num-badge{font-family:var(--f-ui);font-size:.65rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--vellum);background:var(--maroon);padding:.22rem .7rem;flex-shrink:0}
+.sect-title{font-family:var(--f-display);font-weight:400;font-size:clamp(1.5rem,2.5vw,2.1rem);color:var(--maroon);line-height:1.15;margin-bottom:.3rem}
+.sect-divider{height:1px;background:var(--maroon);width:36px;margin:.85rem 0 1.25rem}
+.sect-body{font-family:var(--f-body);font-size:.97rem;line-height:1.85;color:var(--ink)}
+.sect-body p{margin-bottom:1em}
+.sect-body p:last-child{margin-bottom:0}
+.drop-cap::first-letter{font-family:var(--f-display);font-style:italic;font-weight:300;font-size:4.5em;line-height:.78;float:left;margin-right:.07em;margin-top:.07em;color:var(--maroon)}
+
+/* CREED BLOCK */
+.creed-block{background:var(--vellum-mid);border:var(--rule-faint);border-top:2px solid var(--maroon);padding:2.5rem;margin:.5rem 0 1rem}
+.creed-text{font-family:var(--f-display);font-style:italic;font-size:1.05rem;line-height:1.9;color:var(--ink)}
+.creed-source{font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);margin-top:1rem;display:block}
+
+/* HOLY MYSTERIES ITEMS */
+.mystery-item{margin-bottom:1.75rem;padding-bottom:1.75rem;border-bottom:var(--rule-hair)}
+.mystery-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.mystery-name{font-family:var(--f-ui);font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);display:block;margin-bottom:.55rem}
+.mystery-body{font-family:var(--f-body);font-size:.97rem;line-height:1.85;color:var(--ink)}
+
+/* SIDEBAR */
+.side-section{margin-bottom:2.5rem;padding-bottom:2.5rem;border-bottom:var(--rule-faint)}
+.side-section:last-child{border-bottom:none}
+.side-head{font-family:var(--f-ui);font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.85rem}
+.side-body{font-family:var(--f-body);font-size:.9rem;line-height:1.75;color:var(--ink)}
+.side-body p{margin-bottom:.75em}
+.side-body p:last-child{margin-bottom:0}
+.annot-nav-link{display:flex;align-items:center;justify-content:space-between;font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--text);padding:.6rem 0;border-bottom:var(--rule-hair);transition:color .18s}
+.annot-nav-link:last-child{border-bottom:none}
+.annot-nav-link:hover{color:var(--maroon)}
+.annot-nav-link::after{content:'→';color:var(--maroon)}
+.sect-list-item{display:flex;align-items:baseline;gap:.5rem;padding:.45rem 0;border-bottom:var(--rule-hair);cursor:pointer;transition:color .18s}
+.sect-list-item:last-child{border-bottom:none}
+.sect-list-item:hover .sli-name{color:var(--maroon)}
+.sli-num{font-family:var(--f-ui);font-size:.60rem;letter-spacing:.10em;color:rgba(123,29,42,.35);width:18px;flex-shrink:0;font-weight:600}
+.sli-name{font-family:var(--f-ui);font-size:.60rem;font-weight:600;letter-spacing:.10em;text-transform:uppercase;color:var(--maroon);line-height:1.35;transition:color .18s}
+
+/* QUOTE BREAK */
+.quote-break{margin:0;padding:4rem 4.5rem;background:var(--vellum-mid);border-top:var(--rule-faint);border-bottom:var(--rule-faint)}
+.qb-inner{max-width:680px;margin:0 auto;padding-left:2rem;border-left:3px solid var(--maroon)}
+.qb-text{font-family:var(--f-display);font-style:italic;font-weight:300;font-size:clamp(1.4rem,2.5vw,2rem);line-height:1.45;color:var(--text);margin-bottom:.75rem}
+.qb-attr{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.20em;text-transform:uppercase;color:var(--maroon);display:block}
+
+/* FOOTER */
+footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:4rem 4.5rem 2rem}
+.footer-cross{display:block;text-align:center;font-size:1.1rem;color:rgba(184,131,40,.45);letter-spacing:.8em;padding-left:.8em;margin-bottom:2.5rem}
+.footer-cols{max-width:1380px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:4rem;margin-bottom:2.5rem}
+.footer-col-head{font-family:var(--f-ui);font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(246,241,232,.82);display:block;margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid rgba(246,241,232,.18)}
+.footer-name{font-family:var(--f-display);font-weight:400;font-size:1.1rem;color:rgba(246,241,232,.88);line-height:1.3;margin-bottom:.75rem}
+.footer-meta{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.72);line-height:2.3}
+.footer-meta a{color:rgba(184,131,40,.85);transition:color .2s}
+.footer-meta a:hover{color:var(--gold)}
+.footer-nav{list-style:none;display:flex;flex-direction:column}
+.footer-nav li{padding:.35rem 0;border-bottom:1px solid rgba(246,241,232,.10)}
+.footer-nav li:last-child{border-bottom:none}
+.footer-nav a{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,232,.85);transition:color .2s}
+.footer-nav a:hover{color:rgba(246,241,232,.95)}
+.footer-blurb{font-family:var(--f-display);font-style:italic;font-size:.95rem;color:rgba(246,241,232,.85);line-height:1.65;margin-bottom:1.25rem}
+.footer-socials{display:flex;gap:1.5rem;margin-top:1.5rem}
+.footer-socials a{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,241,232,.65);transition:color .2s}
+.footer-socials a:hover{color:var(--gold)}
+.footer-bottom{max-width:1380px;margin:2rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(246,241,232,.12);display:flex;justify-content:space-between;align-items:center}
+.footer-copy,.footer-addr{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.60)}
+.footer-addr{text-align:right}
+
+/* RESPONSIVE */
+@media(max-width:1100px){
+  .nav-mega-group{display:none}.nav-hamburger{display:flex}.nav-give{display:none}
+  .page-body{grid-template-columns:1fr 280px;gap:0 2.5rem;padding:2.5rem 2.5rem 4rem}
+  .left-col{display:none}
+  .footer-cols{grid-template-columns:1fr 1fr;gap:2.5rem}
+}
+@media(max-width:768px){
+  .page-hero-inner{padding:2rem 1.75rem 2.5rem}
+  .page-body{grid-template-columns:1fr;padding:2.5rem 1.75rem 4rem}
+  .side-col{border-left:none;border-top:var(--rule-faint);padding-left:0;padding-top:2.5rem;margin-top:2.5rem}
+  .chapter-bar{padding:.65rem 1.5rem}
+  .quote-break{padding:2.5rem 1.5rem}
+  .qb-inner{padding-left:1.25rem}
+  footer{padding:3rem 1.75rem 1.5rem}
+  .footer-cols{grid-template-columns:1fr;gap:2rem}
+  .footer-bottom{flex-direction:column;gap:.75rem;text-align:center}
+  .footer-addr{text-align:center}
+  body{font-size:18px;line-height:1.8}
+}
 </style>
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-  <link rel="stylesheet" href="/styles/typography.css">
+<link rel="stylesheet" href="/styles/typography.css">
 </head>
 <body>
+
+<!-- NAV -->
 <nav class="nav">
   <div class="nav-inner">
-    <a href="/" style="line-height:1.2"><span class="nav-logo-name">Sts. Peter &amp; Paul</span><span class="nav-logo-sub">Orthodox Cathedral · Jersey City</span></a>
-    <ul class="nav-links">
-      <li class="nav-active-parent"><a href="#">About Us ▾</a><div class="nav-drop"><a href="/about-our-church">About Our Church</a><a href="/our-beliefs" class="nav-active" aria-current="page">Our Beliefs</a><a href="/administration">Administration</a><a href="/gallery">Gallery</a></div></li>
-      <li><a href="#">Inquirers ▾</a><div class="nav-drop"><a href="/about-orthodoxy">About Orthodoxy</a><a href="/our-beliefs">Our Beliefs</a><a href="/videos">Videos</a></div></li>
-      <li><a href="/schedule">Calendar</a></li>
-      <li><a href="#">Bulletins ▾</a><div class="nav-drop"><a href="/news">News</a><a href="/bulletins">Bulletins</a></div></li>
-      <li><a href="#">Resources ▾</a><div class="nav-drop"><a href="/readings">Readings</a><a href="/videos">Videos</a><a href="/cemeteries">Cemeteries</a></div></li>
-      <li><a href="/contact-us">Contact</a></li>
-    </ul>
+    <a href="/"><img src="/images/logo/logo-2026.svg" alt="Saints Peter &amp; Paul Orthodox Cathedral" class="nav-logo-img" onerror="this.style.display='none'"></a>
+    <div class="nav-mega-group" id="nav-mega-group">
+      <ul class="nav-links">
+        <li data-mega="mega-about"><a href="#">About Us</a></li>
+        <li data-mega="mega-inquirers"><a href="#">Inquirers</a></li>
+        <li data-mega="mega-calendar"><a href="#">Calendar</a></li>
+        <li data-mega="mega-parish"><a href="#">Parish Life</a></li>
+        <li data-mega="mega-resources"><a href="#">Resources</a></li>
+      </ul>
+      <!-- ABOUT US -->
+      <div class="mega-panel" id="mega-about">
+        <div class="mega-photo"><div class="mega-photo-bg" style="background-image:url('https://picsum.photos/seed/sspp-exterior/400/500')"></div><div class="mega-photo-overlay"></div><div class="mega-photo-content"><span class="mega-photo-label">About Us</span><p class="mega-photo-quote">A century of faith on Grand Street.</p></div></div>
+        <div class="mega-content"><div class="mega-inner" style="grid-template-columns:repeat(2,1fr)">
+          <div class="mega-col"><span class="mega-col-head">Who We Are</span>
+            <a href="/about-our-church" class="mega-link">About Our Church</a><span class="mega-sub">Our history, our people, our home</span>
+            <a href="/church-history" class="mega-link">Church History</a><span class="mega-sub">A century of faith in Jersey City</span>
+            <a href="/our-beliefs" class="mega-link" style="color:var(--maroon)" aria-current="page">Our Beliefs</a><span class="mega-sub">What we confess and why it matters</span>
+          </div>
+          <div class="mega-col"><span class="mega-col-head">Leadership &amp; Governance</span>
+            <a href="/administration" class="mega-link">Administration</a><span class="mega-sub">Staff and parish leadership</span>
+            <a href="/council" class="mega-link">Parish Council</a><span class="mega-sub">The elected lay leadership</span>
+            <a href="/bylaws" class="mega-link">Bylaws</a><span class="mega-sub">Our governing documents</span>
+          </div>
+        </div></div>
+      </div>
+      <!-- INQUIRERS -->
+      <div class="mega-panel" id="mega-inquirers">
+        <div class="mega-photo"><div class="mega-photo-bg" style="background-image:url('https://picsum.photos/seed/sspp-welcome/400/500')"></div><div class="mega-photo-overlay"></div><div class="mega-photo-content"><span class="mega-photo-label">Inquirers</span><p class="mega-photo-quote">Exploring the ancient Faith?</p></div></div>
+        <div class="mega-content"><div class="mega-inner" style="grid-template-columns:repeat(2,1fr)">
+          <div class="mega-col"><span class="mega-col-head">The Faith</span>
+            <a href="/about-orthodoxy" class="mega-link">About Orthodoxy</a><span class="mega-sub">The ancient Christian faith, its history and teachings</span>
+            <a href="/our-beliefs" class="mega-link" style="color:var(--maroon)" aria-current="page">Our Beliefs</a><span class="mega-sub">What we confess and why it matters</span>
+            <a href="/about-our-church" class="mega-link">About Our Church</a><span class="mega-sub">Who we are before you show up</span>
+            <a href="/church-history" class="mega-link">Church History</a><span class="mega-sub">The community you would be joining</span>
+            <a href="/catechesis-series" class="mega-link">2026 Catechesis Series</a><span class="mega-sub">Current lecture series</span>
+          </div>
+          <div class="mega-col"><span class="mega-col-head">Resources</span>
+            <a href="/videos" class="mega-link">Videos</a><span class="mega-sub">Lectures and explainers for those exploring</span>
+            <span class="mega-col-head" style="margin-top:1.25rem;display:block">Visit Us</span>
+            <a href="/visit" class="mega-link">Visitor Guide</a><span class="mega-sub">Everything you need before you arrive</span>
+            <a href="/contact-us" class="mega-link">Contact Us</a><span class="mega-sub">Reach the parish office</span>
+            <div class="mega-cta"><a href="https://tithe.ly/give?c=5004259" target="_blank" class="mega-cta-btn">Give to the Cathedral &#8594;</a></div>
+          </div>
+        </div></div>
+      </div>
+      <!-- CALENDAR -->
+      <div class="mega-panel" id="mega-calendar">
+        <div class="mega-photo"><div class="mega-photo-bg" style="background-image:url('https://picsum.photos/seed/sspp-calendar/400/500')"></div><div class="mega-photo-overlay"></div><div class="mega-photo-content"><span class="mega-photo-label">Calendar</span><p class="mega-photo-quote">The rhythm of the Church's year.</p></div></div>
+        <div class="mega-content"><div class="mega-inner" style="grid-template-columns:repeat(2,1fr)">
+          <div class="mega-col"><span class="mega-col-head">Regular Services</span>
+            <span class="mega-link" style="cursor:default">Great Vespers</span><span class="mega-sub">Every Saturday &middot; 5:00 PM</span>
+            <span class="mega-link" style="cursor:default">Divine Liturgy</span><span class="mega-sub">Every Sunday &middot; 9:30 AM &middot; Coffee hour follows</span>
+            <div class="mega-cta"><a href="/schedule" class="mega-cta-btn">Full Liturgical Calendar &#8594;</a></div>
+          </div>
+          <div class="mega-col"><span class="mega-col-head">This Week</span><div id="mega-cal-week"><span class="mega-sub">Loading&hellip;</span></div></div>
+        </div></div>
+      </div>
+      <!-- PARISH LIFE -->
+      <div class="mega-panel" id="mega-parish">
+        <div class="mega-photo"><div class="mega-photo-bg" style="background-image:url('https://picsum.photos/seed/sspp-community/400/500')"></div><div class="mega-photo-overlay"></div><div class="mega-photo-content"><span class="mega-photo-label">Parish Life</span><p class="mega-photo-quote">A family that shares a life.</p></div></div>
+        <div class="mega-content"><div class="mega-inner" style="grid-template-columns:repeat(2,1fr)">
+          <div class="mega-col"><span class="mega-col-head">News &amp; Publications</span>
+            <a href="/news" class="mega-link">News &amp; Announcements</a><span class="mega-sub">What's happening at the parish</span>
+            <a href="/bulletins" class="mega-link">Parish Bulletins</a><span class="mega-sub">Weekly reflections from Fr. Solomon</span>
+          </div>
+          <div class="mega-col"><span class="mega-col-head">Community</span>
+            <a href="/gallery" class="mega-link">Gallery</a><span class="mega-sub">Photos from parish life and worship</span>
+            <a href="/cemeteries" class="mega-link">Cemeteries</a><span class="mega-sub">Our historic parish cemeteries</span>
+            <a href="/donate" class="mega-link">Give to the Parish</a><span class="mega-sub">Support the cathedral's ministry</span>
+          </div>
+        </div></div>
+      </div>
+      <!-- RESOURCES -->
+      <div class="mega-panel" id="mega-resources">
+        <div class="mega-photo"><div class="mega-photo-bg" style="background-image:url('https://picsum.photos/seed/sspp-interior/400/500')"></div><div class="mega-photo-overlay"></div><div class="mega-photo-content"><span class="mega-photo-label">Resources</span><p class="mega-photo-quote">The living tradition of the Church.</p></div></div>
+        <div class="mega-content"><div class="mega-inner" style="grid-template-columns:repeat(2,1fr)">
+          <div class="mega-col"><span class="mega-col-head">Services</span>
+            <a href="/divine-liturgy" class="mega-link">Divine Liturgy</a><span class="mega-sub">The central act of Christian worship</span>
+            <a href="/vespers" class="mega-link">Vespers</a><span class="mega-sub">Saturday evening prayer</span>
+            <a href="/schedule" class="mega-link">Liturgical Calendar</a><span class="mega-sub">Feasts, fasts, and the Church year</span>
+          </div>
+          <div class="mega-col"><span class="mega-col-head">Daily Practice</span>
+            <a href="/readings" class="mega-link">Daily Readings</a><span class="mega-sub">Scripture appointed for each day</span>
+            <a href="/saints" class="mega-link">Lives of the Saints</a><span class="mega-sub">The saints commemorated today</span>
+            <a href="/prologue" class="mega-link">The Prologue</a><span class="mega-sub">Daily lives of the saints</span>
+            <a href="/liturgy-book" class="mega-link">Liturgy Book</a><span class="mega-sub">Follow along at the Divine Liturgy</span>
+            <a href="/videos" class="mega-link">Videos</a><span class="mega-sub">Lectures, services, and parish life</span>
+          </div>
+        </div></div>
+      </div>
+    </div>
     <a href="https://tithe.ly/give?c=5004259" target="_blank" class="nav-give">Give</a>
     <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" onclick="openDrawer()">
       <span></span><span></span><span></span>
@@ -186,148 +376,283 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 <div class="nav-drawer-overlay" id="nav-overlay" onclick="closeDrawer()"></div>
 <div class="nav-drawer" id="nav-drawer">
   <div class="nav-drawer-head">
-    <div class="nav-drawer-logo">Sts. Peter &amp; Paul<span>Orthodox Cathedral · Jersey City</span></div>
-    <button class="nav-drawer-close" onclick="closeDrawer()">✕</button>
+    <div class="nav-drawer-logo">Sts. Peter &amp; Paul<span>Orthodox Cathedral &middot; Jersey City</span></div>
+    <button class="nav-drawer-close" onclick="closeDrawer()">&#10005;</button>
   </div>
-  <div class="nav-drawer-links">
-    <span class="drawer-section">About</span>
-    <a href="/about-our-church">About Our Church</a>
-    <a href="/our-beliefs">Our Beliefs</a>
-    <a href="/administration">Administration</a>
-    <a href="/about-orthodoxy">About Orthodoxy</a>
-    <span class="drawer-section">Visit &amp; Worship</span>
-    <a href="/schedule">Liturgical Calendar</a>
-    <a href="/readings">Daily Readings</a>
-    <a href="/saint-of-the-day">Saint of the Day</a>
-    <a href="/prologue">Prologue of Ohrid</a>
-    <a href="/videos">Videos</a>
-    <span class="drawer-section">Parish Life</span>
-    <a href="/gallery">Gallery</a>
-    <a href="/bulletins">Bulletins</a>
-    <a href="/news">News &amp; Announcements</a>
-    <a href="/cemeteries">Cemeteries</a>
-    <a href="/donate">Give Online</a>
-    <span class="drawer-section">Contact</span>
-    <a href="/contact-us">Contact Us</a>
+  <div class="dr-accordion" id="dr-accordion">
+    <div class="dr-section open">
+      <div class="dr-section-head" onclick="drToggle(this)"><span class="dr-section-name">About Us</span><span class="dr-section-toggle">&#8722;</span></div>
+      <div class="dr-section-links">
+        <a href="/about-our-church" class="dr-link"><span class="dr-link-name">About Our Church</span><span class="dr-link-sub">Our history, our people, our home</span></a>
+        <a href="/church-history" class="dr-link"><span class="dr-link-name">Church History</span><span class="dr-link-sub">A century of faith in Jersey City</span></a>
+        <a href="/our-beliefs" class="dr-link"><span class="dr-link-name">Our Beliefs</span><span class="dr-link-sub">What we confess and why it matters</span></a>
+        <a href="/administration" class="dr-link"><span class="dr-link-name">Administration</span><span class="dr-link-sub">Staff and parish leadership</span></a>
+        <a href="/council" class="dr-link"><span class="dr-link-name">Parish Council</span><span class="dr-link-sub">The elected lay leadership</span></a>
+        <a href="/bylaws" class="dr-link"><span class="dr-link-name">Bylaws</span><span class="dr-link-sub">Our governing documents</span></a>
+      </div>
+    </div>
+    <div class="dr-section">
+      <div class="dr-section-head" onclick="drToggle(this)"><span class="dr-section-name">Inquirers</span><span class="dr-section-toggle">+</span></div>
+      <div class="dr-section-links">
+        <a href="/about-orthodoxy" class="dr-link"><span class="dr-link-name">About Orthodoxy</span><span class="dr-link-sub">The ancient Christian faith and its teachings</span></a>
+        <a href="/our-beliefs" class="dr-link"><span class="dr-link-name">Our Beliefs</span><span class="dr-link-sub">What we confess and why it matters</span></a>
+        <a href="/about-our-church" class="dr-link"><span class="dr-link-name">About Our Church</span><span class="dr-link-sub">Who we are before you show up</span></a>
+        <a href="/church-history" class="dr-link"><span class="dr-link-name">Church History</span><span class="dr-link-sub">The community you would be joining</span></a>
+        <a href="/catechesis-series" class="dr-link"><span class="dr-link-name">2026 Catechesis Series</span><span class="dr-link-sub">Current lecture series</span></a>
+        <a href="/videos" class="dr-link"><span class="dr-link-name">Videos</span><span class="dr-link-sub">Lectures and explainers for those exploring</span></a>
+        <a href="/visit" class="dr-link"><span class="dr-link-name">Visitor Guide</span><span class="dr-link-sub">Everything you need before you arrive</span></a>
+        <a href="/contact-us" class="dr-link"><span class="dr-link-name">Contact Us</span><span class="dr-link-sub">Reach the parish office</span></a>
+      </div>
+    </div>
+    <div class="dr-section">
+      <div class="dr-section-head" onclick="drToggle(this)"><span class="dr-section-name">Calendar</span><span class="dr-section-toggle">+</span></div>
+      <div class="dr-section-links">
+        <a href="/schedule" class="dr-link"><span class="dr-link-name">Liturgical Calendar</span><span class="dr-link-sub">Feasts, fasts, and the Church year</span></a>
+        <a href="/readings" class="dr-link"><span class="dr-link-name">Daily Readings</span><span class="dr-link-sub">Scripture appointed for each day</span></a>
+        <a href="/saints" class="dr-link"><span class="dr-link-name">Lives of the Saints</span><span class="dr-link-sub">The saints commemorated today</span></a>
+        <a href="/prologue" class="dr-link"><span class="dr-link-name">The Prologue</span><span class="dr-link-sub">Daily lives of the saints</span></a>
+        <a href="/liturgy-book" class="dr-link"><span class="dr-link-name">Liturgy Book</span><span class="dr-link-sub">Follow along at the Divine Liturgy</span></a>
+      </div>
+    </div>
+    <div class="dr-section">
+      <div class="dr-section-head" onclick="drToggle(this)"><span class="dr-section-name">Parish Life</span><span class="dr-section-toggle">+</span></div>
+      <div class="dr-section-links">
+        <a href="/news" class="dr-link"><span class="dr-link-name">News &amp; Announcements</span><span class="dr-link-sub">What's happening at the parish</span></a>
+        <a href="/bulletins" class="dr-link"><span class="dr-link-name">Parish Bulletins</span><span class="dr-link-sub">Weekly reflections from Fr. Solomon</span></a>
+        <a href="/gallery" class="dr-link"><span class="dr-link-name">Gallery</span><span class="dr-link-sub">Photos from parish life and worship</span></a>
+        <a href="/cemeteries" class="dr-link"><span class="dr-link-name">Cemeteries</span><span class="dr-link-sub">Our historic parish cemeteries</span></a>
+        <a href="/donate" class="dr-link"><span class="dr-link-name">Give to the Parish</span><span class="dr-link-sub">Support the cathedral's ministry</span></a>
+      </div>
+    </div>
+    <div class="dr-section">
+      <div class="dr-section-head" onclick="drToggle(this)"><span class="dr-section-name">Resources</span><span class="dr-section-toggle">+</span></div>
+      <div class="dr-section-links">
+        <a href="/divine-liturgy" class="dr-link"><span class="dr-link-name">Divine Liturgy</span><span class="dr-link-sub">The central act of Christian worship</span></a>
+        <a href="/vespers" class="dr-link"><span class="dr-link-name">Vespers</span><span class="dr-link-sub">Saturday evening prayer</span></a>
+        <a href="/readings" class="dr-link"><span class="dr-link-name">Daily Readings</span><span class="dr-link-sub">Scripture appointed for each day</span></a>
+        <a href="/saints" class="dr-link"><span class="dr-link-name">Lives of the Saints</span><span class="dr-link-sub">The saints commemorated today</span></a>
+        <a href="/liturgy-book" class="dr-link"><span class="dr-link-name">Liturgy Book</span><span class="dr-link-sub">Follow along at the Divine Liturgy</span></a>
+        <a href="/videos" class="dr-link"><span class="dr-link-name">Videos</span><span class="dr-link-sub">Lectures, services, and parish life</span></a>
+      </div>
+    </div>
   </div>
   <a href="https://tithe.ly/give?c=5004259" target="_blank" class="nav-drawer-give">Give Online</a>
 </div>
 
-<div class="page-hero">
-  <div class="page-hero-inner" style="padding-left:75px;padding-top:calc(5rem + 5px);padding-bottom:calc(4rem + 20px)">
-    <p class="breadcrumb"><a href="/">Home</a> · Our Beliefs</p>
-    <span class="rubric light">The Faith</span>
-    <div class="rubric-rule" style="background:rgba(232,201,122,.6)"></div>
-    <h1 class="page-title">What We<br><em>Believe</em></h1>
-    <p style="font-family:var(--f-display);font-style:italic;font-size:1.1rem;color:rgba(255,255,255,.65);margin-top:.5rem">The Orthodox Christian Faith, unchanged since the Apostles</p>
+<!-- NAV PILL -->
+<div class="nav-pill" id="navPill">
+  <button class="pill-arrow" id="pillPrev" onclick="pillNav(-1)" aria-label="Previous section"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 7.5L5.5 4L9 7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  <button class="pill-center" onclick="openSheet()">
+    <svg width="11" height="11" viewBox="0 0 24 24" fill="rgba(184,131,40,.75)"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+    <span id="pillLabel">The Faith</span>
+  </button>
+  <button class="pill-arrow" id="pillNext" onclick="pillNav(1)" aria-label="Next section"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 3.5L5.5 7L9 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+</div>
+
+<!-- BOTTOM SHEET -->
+<div class="sheet-overlay" id="sheetOverlay" onclick="closeSheet()"></div>
+<div class="sess-sheet" id="sessSheet">
+  <div class="sheet-handle"></div>
+  <div class="sheet-head">
+    <span class="sheet-title">Our Beliefs</span>
+    <button class="sheet-close" onclick="closeSheet()">&#10005;</button>
+  </div>
+  <div class="sheet-list">
+    <button class="sheet-item sheet-active" data-sheet-id="sect-faith" onclick="sheetJump('sect-faith')"><span class="sheet-num">I</span><span class="sheet-name">About the Orthodox Faith</span></button>
+    <button class="sheet-item" data-sheet-id="sect-creed" onclick="sheetJump('sect-creed')"><span class="sheet-num">II</span><span class="sheet-name">The Nicene Creed</span></button>
+    <button class="sheet-item" data-sheet-id="sect-oca" onclick="sheetJump('sect-oca')"><span class="sheet-num">III</span><span class="sheet-name">The Orthodox Church in America</span></button>
+    <button class="sheet-item" data-sheet-id="sect-mysteries" onclick="sheetJump('sect-mysteries')"><span class="sheet-num">IV</span><span class="sheet-name">The Holy Mysteries</span></button>
   </div>
 </div>
-<div class="chapter-bar"><span class="cbar-text bright">Orthodox Christian Faith</span><span class="cbar-text">One Holy Catholic and Apostolic Church</span></div>
 
+<!-- HERO -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <span class="breadcrumb"><a href="/">Home</a> &middot; Our Beliefs</span>
+    <span class="rubric light">The Orthodox Faith</span>
+    <div class="rubric-rule gold"></div>
+    <h1 class="page-title">What We<br><em>Believe</em></h1>
+    <p class="page-subtitle">The Orthodox Christian Faith, unchanged since the Apostles</p>
+  </div>
+</div>
+
+<!-- CHAPTER BAR -->
+<div class="chapter-bar">
+  <span class="cbar-text bright">Orthodox Christian Faith</span>
+  <span class="cbar-text">One Holy Catholic and Apostolic Church</span>
+</div>
+
+<!-- BODY -->
 <div class="page-body">
-  <main>
-    <span class="rubric">What We Believe</span>
-    <div class="rubric-rule"></div>
-    <h2 class="section-head" id="faith">About the Orthodox Faith</h2>
 
-    <div class="prose" style="margin-top:2rem">
-      <p class="drop-cap">The Orthodox Church continues to live the faith of the early Church, which our ancestors in the faith have died, and lived, to pass on. The two millennia since Christ sent the Holy Spirit on the Church at Pentecost have given us a deep treasury of wisdom from across the world. And our fathers and mothers in the faith have provided us their personal examples of lives lived with Paradise in their hearts.</p>
-      <p>To be "Orthodox" refers to "rightly believing in" or "rightly praising" God, and those actions are inseparable. The Orthodox Church maintains that our rich Tradition, with its theology, art, and worship, guides us on the path of these past Christians; God wants each person to become His child, His friend, His coworker in making a good world, and on that path toward becoming like Christ, the Son of God, our steps are guided over and around pitfalls and hazards by the heritage of the Church's teachings — its memory.</p>
-      <p>It might seem to some that our Church is "stuck in its ways." We bow, we fast, and our priests wear cassocks and, often, large crosses. It is unusual, granted, but at its healthiest, it stands out in a similar way to how a green mountain stands out in a land where the sand shifts with the wind. Rootedness is a value — not just roots in anything, but particularly roots in the soil that grew the saints that have preceded us. Our Tradition, in all its aspects, grows slowly, losing nothing from the past but bringing all that is good across the centuries and all peoples to the Kingdom, which is the ground from which all good things come and to which they return.</p>
+  <!-- LEFT RAIL -->
+  <div class="left-col">
+    <nav class="left-rail" id="leftRail" aria-label="Page sections">
+      <div class="lr-connector"></div>
+      <div class="lr-item lr-active" onclick="scrollToSection('sect-faith')">
+        <div class="lr-dot-wrap"><span class="lr-dot"></span><span class="lr-num">I</span></div>
+        <span class="lr-label">The Faith</span>
+      </div>
+      <div class="lr-connector"></div>
+      <div class="lr-item" onclick="scrollToSection('sect-creed')">
+        <div class="lr-dot-wrap"><span class="lr-dot"></span><span class="lr-num">II</span></div>
+        <span class="lr-label">Nicene Creed</span>
+      </div>
+      <div class="lr-connector"></div>
+      <div class="lr-item" onclick="scrollToSection('sect-oca')">
+        <div class="lr-dot-wrap"><span class="lr-dot"></span><span class="lr-num">III</span></div>
+        <span class="lr-label">The OCA</span>
+      </div>
+      <div class="lr-connector"></div>
+      <div class="lr-item" onclick="scrollToSection('sect-mysteries')">
+        <div class="lr-dot-wrap"><span class="lr-dot"></span><span class="lr-num">IV</span></div>
+        <span class="lr-label">Holy Mysteries</span>
+      </div>
+      <div class="lr-connector"></div>
+    </nav>
+  </div>
+
+  <!-- MAIN -->
+  <main class="main-col">
+
+    <!-- SECTION I -->
+    <div class="section-block" id="sect-faith">
+      <div class="sect-header">
+        <div class="sect-num-row">
+          <span class="sect-num-badge">I</span>
+        </div>
+        <h2 class="sect-title">About the Orthodox Faith</h2>
+        <div class="sect-divider"></div>
+      </div>
+      <div class="sect-body">
+        <p class="drop-cap">The Orthodox Church continues to live the faith of the early Church, which our ancestors in the faith have died, and lived, to pass on. The two millennia since Christ sent the Holy Spirit on the Church at Pentecost have given us a deep treasury of wisdom from across the world. And our fathers and mothers in the faith have provided us their personal examples of lives lived with Paradise in their hearts.</p>
+        <p>To be "Orthodox" refers to "rightly believing in" or "rightly praising" God, and those actions are inseparable. The Orthodox Church maintains that our rich Tradition, with its theology, art, and worship, guides us on the path of these past Christians; God wants each person to become His child, His friend, His coworker in making a good world, and on that path toward becoming like Christ, the Son of God, our steps are guided over and around pitfalls and hazards by the heritage of the Church's teachings — its memory.</p>
+        <p>It might seem to some that our Church is "stuck in its ways." We bow, we fast, and our priests wear cassocks and, often, large crosses. It is unusual, granted, but at its healthiest, it stands out in a similar way to how a green mountain stands out in a land where the sand shifts with the wind. Rootedness is a value — not just roots in anything, but particularly roots in the soil that grew the saints that have preceded us. Our Tradition, in all its aspects, grows slowly, losing nothing from the past but bringing all that is good across the centuries and all peoples to the Kingdom, which is the ground from which all good things come and to which they return.</p>
+      </div>
     </div>
 
-    <h2 class="section-head" id="creed">The Nicene Creed</h2>
-    <div class="rubric-rule"></div>
-    <span class="rubric-voice">Expressed by the Council of Nicaea, AD 325 — the touchstone of Orthodox faith</span>
-
-    <div class="creed-block" style="margin-top:2rem">
-      <p class="creed-text">We believe in one God, the Father Almighty, Maker of Heaven and Earth and of all things visible and invisible. And in one Lord Jesus Christ, the Son of God, the only-begotten, begotten of the Father before all ages. Light of light; true God of true God; begotten, not made; of one essence with the Father, by Whom all things were made; Who for us men and for our salvation came down from Heaven, and was incarnate of the Holy Spirit and the Virgin Mary, and became man. And He was crucified for us under Pontius Pilate, and suffered, and was buried. And the third day He arose again, according to the Scriptures, and ascended into Heaven, and sits at the right hand of the Father; and He shall come again with glory to judge the living and the dead; Whose Kingdom shall have no end. And in the Holy Spirit, the Lord, the Giver of Life, Who proceeds from the Father; Who with the Father and the Son together is worshipped and glorified; Who spoke by the prophets. In one Holy, Catholic, and Apostolic Church. We acknowledge one baptism for the remission of sins. We look for the resurrection of the dead and the life of the world to come. Amen.</p>
-      <span class="creed-source">The Nicene-Constantinopolitan Creed · AD 381</span>
+    <!-- SECTION II -->
+    <div class="section-block" id="sect-creed">
+      <div class="sect-header">
+        <div class="sect-num-row">
+          <span class="sect-num-badge">II</span>
+        </div>
+        <h2 class="sect-title">The Nicene Creed</h2>
+        <div class="sect-divider"></div>
+      </div>
+      <p class="rubric-voice">Expressed by the Council of Nicaea, AD 325 — the touchstone of Orthodox faith</p>
+      <div class="creed-block">
+        <p class="creed-text">We believe in one God, the Father Almighty, Maker of Heaven and Earth and of all things visible and invisible. And in one Lord Jesus Christ, the Son of God, the only-begotten, begotten of the Father before all ages. Light of light; true God of true God; begotten, not made; of one essence with the Father, by Whom all things were made; Who for us men and for our salvation came down from Heaven, and was incarnate of the Holy Spirit and the Virgin Mary, and became man. And He was crucified for us under Pontius Pilate, and suffered, and was buried. And the third day He arose again, according to the Scriptures, and ascended into Heaven, and sits at the right hand of the Father; and He shall come again with glory to judge the living and the dead; Whose Kingdom shall have no end. And in the Holy Spirit, the Lord, the Giver of Life, Who proceeds from the Father; Who with the Father and the Son together is worshipped and glorified; Who spoke by the prophets. In one Holy, Catholic, and Apostolic Church. We acknowledge one baptism for the remission of sins. We look for the resurrection of the dead and the life of the world to come. Amen.</p>
+        <span class="creed-source">The Nicene-Constantinopolitan Creed &middot; AD 381</span>
+      </div>
     </div>
 
-    <h2 class="section-head" id="oca">The Orthodox Church in America</h2>
-    <div class="rubric-rule"></div>
-    <div class="prose" style="margin-top:1.5rem">
-      <p>The Orthodox Church in America traces its origins to the arrival in Kodiak, Alaska of eight Orthodox missionaries from the Valaamo Monastery in the northern Karelia region of Russia in 1794. The missionaries made a great impact on the native Alaskan population and were responsible for bringing many to the Orthodox Christian faith. Today, the Orthodox Church in America numbers some 700 parishes, missions, communities, monasteries, and institutions throughout the United States, Canada, and Mexico.</p>
-      <p>The bishops of the Orthodox Church in America take part in the Assembly of Canonical Orthodox Bishops of the United States of America. Distinguished by the different immigrant communities by which they were founded, these jurisdictions are all a part of the Orthodox Churches, and their faithful and clergy have unity in all sacraments. With other jurisdictions such as the Antiochian and Greek Orthodox, the Orthodox Church in America shares a single witness to the Orthodox faith, and forms part of the wider Orthodox communion throughout the world.</p>
-      <p><em>The Mission of The Orthodox Church in America is to be faithful in fulfilling the commandment of Christ to "Go into all the world and make disciples of all nations, baptizing them in the name of the Father, and of the Son and of the Holy Spirit…"</em></p>
+    <!-- SECTION III -->
+    <div class="section-block" id="sect-oca">
+      <div class="sect-header">
+        <div class="sect-num-row">
+          <span class="sect-num-badge">III</span>
+        </div>
+        <h2 class="sect-title">The Orthodox Church in America</h2>
+        <div class="sect-divider"></div>
+      </div>
+      <div class="sect-body">
+        <p>The Orthodox Church in America traces its origins to the arrival in Kodiak, Alaska of eight Orthodox missionaries from the Valaamo Monastery in the northern Karelia region of Russia in 1794. The missionaries made a great impact on the native Alaskan population and were responsible for bringing many to the Orthodox Christian faith. Today, the Orthodox Church in America numbers some 700 parishes, missions, communities, monasteries, and institutions throughout the United States, Canada, and Mexico.</p>
+        <p>The bishops of the Orthodox Church in America take part in the Assembly of Canonical Orthodox Bishops of the United States of America. Distinguished by the different immigrant communities by which they were founded, these jurisdictions are all a part of the Orthodox Churches, and their faithful and clergy have unity in all sacraments. With other jurisdictions such as the Antiochian and Greek Orthodox, the Orthodox Church in America shares a single witness to the Orthodox faith, and forms part of the wider Orthodox communion throughout the world.</p>
+        <p>The Mission of The Orthodox Church in America is to be faithful in fulfilling the commandment of Christ to "Go into all the world and make disciples of all nations, baptizing them in the name of the Father, and of the Son and of the Holy Spirit&hellip;"</p>
+      </div>
     </div>
 
-    <h2 class="section-head" id="mysteries">The Holy Mysteries</h2>
-    <div class="rubric-rule"></div>
-    <span class="rubric-voice">The seven sacraments of the Orthodox Church</span>
+    <!-- SECTION IV -->
+    <div class="section-block" id="sect-mysteries">
+      <div class="sect-header">
+        <div class="sect-num-row">
+          <span class="sect-num-badge">IV</span>
+        </div>
+        <h2 class="sect-title">The Holy Mysteries</h2>
+        <div class="sect-divider"></div>
+      </div>
+      <p class="rubric-voice">The seven sacraments of the Orthodox Church</p>
 
-    <div style="margin-top:2rem">
-
-      <div class="faq-item open">
-        <div class="faq-q">Baptism &amp; Chrismation</div>
-        <div class="faq-a">The entrance rites into membership in the body of Christ are regularly offered for both adults and infants who have prepared to enter into the Church. The Orthodox Church maintains the apostolic and biblical understanding of the reality of the sacraments. Baptism and chrismation constitute the prayerful use of the physical creation to embody the acts of God. Christ told the Church to baptize all nations in the name of the Father, and of the Son, and of the Holy Spirit. The laying on of hands and the act of Chrismation is as old as the Old Testament and the anointing of prophets, priests, and kings. Children are baptized, chrismated, and given communion — full members of the Church from the beginning.</div>
+      <div class="mystery-item">
+        <span class="mystery-name">Baptism &amp; Chrismation</span>
+        <p class="mystery-body">The entrance rites into membership in the body of Christ are regularly offered for both adults and infants who have prepared to enter into the Church. The Orthodox Church maintains the apostolic and biblical understanding of the reality of the sacraments. Baptism and chrismation constitute the prayerful use of the physical creation to embody the acts of God. Christ told the Church to baptize all nations in the name of the Father, and of the Son, and of the Holy Spirit. The laying on of hands and the act of Chrismation is as old as the Old Testament and the anointing of prophets, priests, and kings. Children are baptized, chrismated, and given communion — full members of the Church from the beginning.</p>
       </div>
 
-      <div class="faq-item">
-        <div class="faq-q">Confession</div>
-        <div class="faq-a">Confession is offered following evening services, as time allows prior to Liturgy on Sunday, and by appointment. The priest, as representative of the Church, hears the confession and binds or looses — witnessing the confession of the repentant person and admitting them to the communion of the table of Christ. Everything said to a priest in confession is under the seal of confession. The priest will not reveal your confessions. Confession is healthy for the soul. In confession we admit our faults out loud to another, and receive the assuring and healing words that what we have confessed is forgiven in Christ.</div>
+      <div class="mystery-item">
+        <span class="mystery-name">Confession</span>
+        <p class="mystery-body">Confession is offered following evening services, as time allows prior to Liturgy on Sunday, and by appointment. The priest, as representative of the Church, hears the confession and binds or looses — witnessing the confession of the repentant person and admitting them to the communion of the table of Christ. Everything said to a priest in confession is under the seal of confession. The priest will not reveal your confessions. Confession is healthy for the soul. In confession we admit our faults out loud to another, and receive the assuring and healing words that what we have confessed is forgiven in Christ.</p>
       </div>
 
-      <div class="faq-item">
-        <div class="faq-q">Communion (Eucharist)</div>
-        <div class="faq-a">The Divine Liturgy, at which we partake of the body and blood and divinity of Christ, is offered every Sunday and on feast days. As Saint Ignatius of Antioch wrote on his way to martyrdom in AD 108, the Eucharist is "the medicine of immortality, and the antidote to prevent us from dying, but which causes that we should live for ever in Jesus Christ." Communion is for Orthodox Christians who have prepared themselves through fasting, prayer, and the sacrament of confession.</div>
+      <div class="mystery-item">
+        <span class="mystery-name">Communion (Eucharist)</span>
+        <p class="mystery-body">The Divine Liturgy, at which we partake of the body and blood and divinity of Christ, is offered every Sunday and on feast days. As Saint Ignatius of Antioch wrote on his way to martyrdom in AD 108, the Eucharist is "the medicine of immortality, and the antidote to prevent us from dying, but which causes that we should live for ever in Jesus Christ." Communion is for Orthodox Christians who have prepared themselves through fasting, prayer, and the sacrament of confession.</p>
       </div>
 
-      <div class="faq-item">
-        <div class="faq-q">Marriage</div>
-        <div class="faq-a">The celebration of a marriage in the church is determined by the Church's liturgical calendar and the parish calendar. The service consists of the Office of Betrothal — at which rings are blessed and exchanged, symbolizing that each spouse will constantly be complementing and enriching the other — followed by the Office of Crowning, in which the heads of the bridegroom and bride are crowned. The crowns are crowns of joy and Edenic vassalage, but also crowns of martyrdom, since marriage involves a self-sacrifice on both sides. At the end of the service the newly married couple drink from the same cup of wine, a symbol that after this they share a common life with one another.</div>
+      <div class="mystery-item">
+        <span class="mystery-name">Marriage</span>
+        <p class="mystery-body">The celebration of a marriage in the church is determined by the Church's liturgical calendar and the parish calendar. The service consists of the Office of Betrothal — at which rings are blessed and exchanged, symbolizing that each spouse will constantly be complementing and enriching the other — followed by the Office of Crowning, in which the heads of the bridegroom and bride are crowned. The crowns are crowns of joy and Edenic vassalage, but also crowns of martyrdom, since marriage involves a self-sacrifice on both sides. At the end of the service the newly married couple drink from the same cup of wine, a symbol that after this they share a common life with one another.</p>
       </div>
 
-      <div class="faq-item">
-        <div class="faq-q">Ordination</div>
-        <div class="faq-a">The apostles of Christ ordained the first seven deacons, including the protomartyr St. Stephen. They also ordained men to be presbyteroi ("elders") or episkopoi ("overseers") — words that would later give the words "priest" and "bishop" in English. The three main offices of the clergy are deacon, priest, and bishop. Ordination to any of the offices of the clergy is a calling to service to the body of Christ.</div>
+      <div class="mystery-item">
+        <span class="mystery-name">Ordination</span>
+        <p class="mystery-body">The apostles of Christ ordained the first seven deacons, including the protomartyr St. Stephen. They also ordained men to be presbyteroi ("elders") or episkopoi ("overseers") — words that would later give the words "priest" and "bishop" in English. The three main offices of the clergy are deacon, priest, and bishop. Ordination to any of the offices of the clergy is a calling to service to the body of Christ.</p>
       </div>
 
-      <div class="faq-item">
-        <div class="faq-q">Unction</div>
-        <div class="faq-a">The sacrament of unction involves the prayerful anointing of the sick with oil. Its prayers ask for the healing of soul and body, the restoration of both physical and spiritual health, as St. James describes and as the apostles practiced (Mark 6:13; James 5:14–16).</div>
+      <div class="mystery-item">
+        <span class="mystery-name">Unction</span>
+        <p class="mystery-body">The sacrament of unction involves the prayerful anointing of the sick with oil. Its prayers ask for the healing of soul and body, the restoration of both physical and spiritual health, as St. James describes and as the apostles practiced (Mark 6:13; James 5:14&ndash;16).</p>
       </div>
-
     </div>
 
+    <!-- CTA -->
     <div style="margin-top:3rem;display:flex;gap:1rem;flex-wrap:wrap">
       <a href="/about-orthodoxy" class="btn btn-maroon">Learn More About Orthodoxy</a>
       <a href="/contact-us" class="btn btn-outline">Speak With Our Priest</a>
     </div>
+
   </main>
 
+  <!-- SIDEBAR -->
   <aside class="side-col">
-    <div class="side-section">
+
+    <div class="side-section" style="position:sticky;top:84px">
       <span class="side-head">On This Page</span>
-      <a href="#" class="annot-nav-link">The Orthodox Faith</a>
-      <a href="#" class="annot-nav-link">Core Beliefs</a>
-      <a href="#" class="annot-nav-link">The Nicene Creed</a>
+      <div class="sect-list-item" onclick="scrollToSection('sect-faith')"><span class="sli-num">I</span><span class="sli-name">About the Orthodox Faith</span></div>
+      <div class="sect-list-item" onclick="scrollToSection('sect-creed')"><span class="sli-num">II</span><span class="sli-name">The Nicene Creed</span></div>
+      <div class="sect-list-item" onclick="scrollToSection('sect-oca')"><span class="sli-num">III</span><span class="sli-name">The Orthodox Church in America</span></div>
+      <div class="sect-list-item" onclick="scrollToSection('sect-mysteries')"><span class="sli-num">IV</span><span class="sli-name">The Holy Mysteries</span></div>
     </div>
-    <div class="side-section">
+
+    <div class="side-section" style="margin-top:2rem">
       <span class="side-head">For Inquirers</span>
       <a href="/about-orthodoxy" class="annot-nav-link">History of Orthodoxy</a>
+      <a href="/catechesis-series" class="annot-nav-link">2026 Catechesis Series</a>
       <a href="/videos" class="annot-nav-link">Videos &amp; Lectures</a>
       <a href="/contact-us" class="annot-nav-link">Contact the Parish</a>
     </div>
-    <div class="side-section" style="background:var(--vellum-mid);padding:1.25rem;border:var(--rule-faint)">
-      <span class="side-head">Questions?</span>
-      <p style="font-family:var(--f-display);font-style:italic;font-size:.95rem;color:var(--ink);line-height:1.65;margin-bottom:1rem">We welcome all sincere questions about the Orthodox Faith. Fr. Solomon is glad to speak with you.</p>
-      <a href="/contact-us" style="font-family:var(--f-ui);font-size:.70rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);border-bottom:1px solid rgba(123,29,42,.28)">Get in Touch →</a>
+
+    <div class="side-section" style="background:var(--apse);padding:1.75rem;border-top:2px solid rgba(184,131,40,.35)">
+      <span style="font-family:var(--f-ui);font-size:.65rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(184,131,40,.70);display:block;margin-bottom:.6rem">Questions?</span>
+      <p style="font-family:var(--f-display);font-weight:300;font-size:1.2rem;color:rgba(246,241,232,.92);line-height:1.3;margin-bottom:.65rem">We welcome all sincere questions about the Orthodox Faith.</p>
+      <p style="font-family:var(--f-body);font-style:italic;font-size:.85rem;color:rgba(246,241,232,.52);line-height:1.65;margin-bottom:1.25rem">Fr. Solomon is glad to speak with anyone who wants to learn more about what we believe.</p>
+      <a href="/contact-us" style="font-family:var(--f-ui);font-size:.65rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(232,201,122,.80);border-bottom:1px solid rgba(232,201,122,.30);padding-bottom:.1rem;transition:color .2s,border-color .2s">Get in Touch &#8594;</a>
     </div>
+
   </aside>
-</div>
+</div><!-- end page-body -->
 
-
-<div class="quote-break reveal">
+<!-- QUOTE BREAK -->
+<div class="quote-break">
   <div class="qb-inner">
     <p class="qb-text">Our heart is restless, O Lord, until it repose in Thee.</p>
     <span class="qb-attr">St. Augustine of Hippo</span>
   </div>
 </div>
 
+<!-- FOOTER -->
 <footer>
-  <span class="footer-cross">&#10022; &#10013; &#10022;</span>
+  <span class="footer-cross">+ + +</span>
   <div class="footer-cols">
     <div>
       <span class="footer-col-head">Saints Peter &amp; Paul Orthodox Cathedral</span>
@@ -353,7 +678,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
         <li><a href="/about-orthodoxy">About Orthodoxy</a></li>
         <li><a href="/schedule">Liturgical Calendar</a></li>
         <li><a href="/readings">Daily Readings</a></li>
-        <li><a href="/saint-of-the-day">Saint of the Day</a></li>
+        <li><a href="/saints">Saint of the Day</a></li>
         <li><a href="/prologue">Prologue of Ohrid</a></li>
         <li><a href="/news">News &amp; Announcements</a></li>
         <li><a href="/bulletins">Bulletins</a></li>
@@ -382,286 +707,87 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   </div>
 </footer>
 
-<!-- Hero Image Rotator -->
 <script>
-/* ═══════════════════════════════════════════════════════
-   SSPP HERO IMAGE ROTATOR
-   Curated Wikimedia Commons Orthodox imagery
-   Public domain / CC-licensed — free to use
-   Picks one random image per page load, crossfades on a timer
-═══════════════════════════════════════════════════════ */
+/* DRAWER */
+function openDrawer(){document.getElementById('nav-drawer').classList.add('open');document.getElementById('nav-overlay').classList.add('open');document.getElementById('nav-hamburger').classList.add('open');document.body.style.overflow='hidden';}
+function closeDrawer(){document.getElementById('nav-drawer').classList.remove('open');document.getElementById('nav-overlay').classList.remove('open');document.getElementById('nav-hamburger').classList.remove('open');document.body.style.overflow='';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeDrawer();closeSheet();}});
+function drToggle(head){
+  var section=head.parentElement;
+  var isOpen=section.classList.contains('open');
+  document.querySelectorAll('.dr-section').forEach(function(s){s.classList.remove('open');s.querySelector('.dr-section-toggle').textContent='+';});
+  if(!isOpen){section.classList.add('open');section.querySelector('.dr-section-toggle').textContent='&#8722;';}
+}
 
-(function() {
-
-  /* ── CURATED IMAGE POOL ──────────────────────────────
-     All from Wikimedia Commons. Each has:
-     - url:   Direct image URL (1280px preview — fast load, sharp enough for hero)
-     - label: What it depicts
-     - pos:   CSS background-position for best crop
-  ─────────────────────────────────────────────────────── */
-  var IMAGES = [
-
-    /* CHURCH INTERIORS — NAVES & ICONOSTASES */
-    {
-      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Interior_of_Greek_Orthodox_church_18th_century_section.JPG/1280px-Interior_of_Greek_Orthodox_church_18th_century_section.JPG',
-      label: 'Greek Orthodox church interior, 18th century',
-      pos: 'center center'
-    },
-    {
-      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Romanian_Orthodox_Monastery_%2849074404227%29.jpg/1280px-Romanian_Orthodox_Monastery_%2849074404227%29.jpg',
-      label: 'Romanian Orthodox Monastery interior',
-      pos: 'center center'
-    },
-    {
-      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Saint_Nicholas_Orthodox_church_in_Bangkok_%2810%29.jpg/1280px-Saint_Nicholas_Orthodox_church_in_Bangkok_%2810%29.jpg',
-      label: 'Saint Nicholas Orthodox Church, Bangkok',
-      pos: 'center center'
-    },
-    {
-      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Saint_Nicholas_Orthodox_church_in_Bangkok_%287%29.jpg/1280px-Saint_Nicholas_Orthodox_church_in_Bangkok_%287%29.jpg',
-      label: 'Saint Nicholas Orthodox Church interior, Bangkok',
-      pos: 'center 40%'
-    },
-    {
-      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/St._Michael_the_Archangel_Russian_Orthodox_Church%2C_Kuala_Lumpur_%281%29.jpg/1280px-St._Michael_the_Archangel_Russian_Orthodox_Church%2C_Kuala_Lumpur_%281%29.jpg',
-      label: 'St Michael the Archangel Russian Orthodox Church, Kuala Lumpur',
-      pos: 'center center'
-    },
-    {
-      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/St._Michael_the_Archangel_Russian_Orthodox_Church%2C_Kuala_Lumpur_%282%29.jpg/1280px-St._Michael_the_Archangel_Russian_Orthodox_Church%2C_Kuala_Lumpur_%282%29.jpg',
-      label: 'St Michael the Archangel Orthodox Church interior',
-      pos: 'center center'
-    },
-    {
-      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/St._Michael_the_Archangel_Russian_Orthodox_Church%2C_Kuala_Lumpur_%283%29.jpg/1280px-St._Michael_the_Archangel_Russian_Orthodox_Church%2C_Kuala_Lumpur_%283%29.jpg',
-      label: 'Russian Orthodox Church interior, Kuala Lumpur',
-      pos: 'center center'
-    },
-    {
-      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/St._Michael_the_Archangel_Russian_Orthodox_Church%2C_Kuala_Lumpur_%285%29.jpg/1280px-St._Michael_the_Archangel_Russian_Orthodox_Church%2C_Kuala_Lumpur_%285%29.jpg',
-      label: 'Russian Orthodox Church nave, Kuala Lumpur',
-      pos: 'center 30%'
-    },
-    {
-      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Turku_Orthodox_Church%2C_interior.JPG/1280px-Turku_Orthodox_Church%2C_interior.JPG',
-      label: 'Turku Orthodox Church interior, Finland',
-      pos: 'center center'
-    },
-
-    /* ICONOSTASES */
-    {
-      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Church_of_the_Dormition_of_the_Theotokos_iconostasis.jpg/1280px-Church_of_the_Dormition_of_the_Theotokos_iconostasis.jpg',
-      label: 'Church of the Dormition of the Theotokos iconostasis',
-      pos: 'center center'
-    },
-    {
-      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Russian_Orthodox_iconostasis_Deventer.jpg/1280px-Russian_Orthodox_iconostasis_Deventer.jpg',
-      label: 'Russian Orthodox iconostasis, Deventer',
-      pos: 'center center'
-    },
-    {
-      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Iconostasis%2C_crypt_of_Church_of_Saint_Sava%2C_Belgrade.jpg/1280px-Iconostasis%2C_crypt_of_Church_of_Saint_Sava%2C_Belgrade.jpg',
-      label: 'Iconostasis, crypt of Church of Saint Sava, Belgrade',
-      pos: 'center center'
-    },
-    {
-      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/St_Michael_The_Archangel_Russian_Orthodox_Church_Malaysia_15_May_2022.jpg/1280px-St_Michael_The_Archangel_Russian_Orthodox_Church_Malaysia_15_May_2022.jpg',
-      label: 'Russian Orthodox Church interior, Malaysia',
-      pos: 'center center'
-    },
-
-    /* CATHEDRAL EXTERIORS & DOMES */
-    {
-      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Hagia_Sophia_Mars_2013.jpg/1280px-Hagia_Sophia_Mars_2013.jpg',
-      label: 'Hagia Sophia, Constantinople',
-      pos: 'center 60%'
-    },
-    {
-      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Saint_Basil%27s_Cathedral_in_Moscow_%28pixinn.net%29.jpg/1280px-Saint_Basil%27s_Cathedral_in_Moscow_%28pixinn.net%29.jpg',
-      label: "Saint Basil's Cathedral, Moscow",
-      pos: 'center 40%'
-    },
-    {
-      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Cathedral_of_the_Annunciation_in_Moscow_Kremlin_-_5481.jpg/1280px-Cathedral_of_the_Annunciation_in_Moscow_Kremlin_-_5481.jpg',
-      label: 'Cathedral of the Annunciation, Moscow Kremlin',
-      pos: 'center center'
-    },
-    {
-      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/20100px-Meteora_kloster_Varlaam.jpg/1280px-20100px-Meteora_kloster_Varlaam.jpg',
-      label: 'Varlaam Monastery, Meteora',
-      pos: 'center 40%'
-    },
-
-    /* BYZANTINE MOSAICS & FRESCOES */
-    {
-      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Hagia_Sophia_Interior_Wikimedia_Commons.jpg/1280px-Hagia_Sophia_Interior_Wikimedia_Commons.jpg',
-      label: 'Hagia Sophia interior',
-      pos: 'center center'
-    },
-    {
-      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Hagia_Sophia_altar.jpg/1280px-Hagia_Sophia_altar.jpg',
-      label: 'Hagia Sophia altar and apse',
-      pos: 'center center'
-    },
-
-    /* ICONS */
-    {
-      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Icon_of_Christ_Pantocrator%2C_Sinai%2C_6th_century.jpg/800px-Icon_of_Christ_Pantocrator%2C_Sinai%2C_6th_century.jpg',
-      label: 'Christ Pantocrator, 6th century, Sinai',
-      pos: 'center 30%'
-    },
-    {
-      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Kizhi_church_1.jpg/1280px-Kizhi_church_1.jpg',
-      label: 'Church of the Transfiguration, Kizhi island',
-      pos: 'center 40%'
-    },
-    {
-      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Iglesia_de_la_Natividad%2C_Bet_Sahour%2C_Palestina%2C_2013-09-12%2C_DD_04.jpg/1280px-Iglesia_de_la_Natividad%2C_Bet_Sahour%2C_Palestina%2C_2013-09-12%2C_DD_04.jpg',
-      label: 'Church of the Nativity interior, Bethlehem',
-      pos: 'center center'
-    },
-
-    /* MONASTERIES */
-    {
-      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Monastery_of_Saint_Naum_02.jpg/1280px-Monastery_of_Saint_Naum_02.jpg',
-      label: 'Monastery of Saint Naum, North Macedonia',
-      pos: 'center center'
-    },
-    {
-      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Rila_Monastery_Bulgaria.jpg/1280px-Rila_Monastery_Bulgaria.jpg',
-      label: 'Rila Monastery, Bulgaria',
-      pos: 'center 40%'
-    },
-    {
-      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Mystras_view.jpg/1280px-Mystras_view.jpg',
-      label: 'Byzantine churches, Mystras',
-      pos: 'center center'
-    },
-  ];
-
-  /* ── GRADIENT SCRIM ────────────────────────────────── */
-  var SCRIM = 'linear-gradient(to right, rgba(21,8,4,.88) 0%, rgba(21,8,4,.65) 55%, rgba(21,8,4,.38) 100%)';
-
-  /* ── FIND HERO ELEMENT ─────────────────────────────── */
-  var hero = document.querySelector('.page-hero') || document.querySelector('.giving-hero') || document.querySelector('.hero');
-  if (!hero) return;
-
-  /* ── PICK RANDOM START IMAGE ───────────────────────── */
-  function pick(exclude) {
-    var pool = IMAGES.filter(function(img, i) { return i !== exclude; });
-    return pool[Math.floor(Math.random() * pool.length)];
+/* MEGA MENU */
+(function(){
+  var tabs=document.querySelectorAll('.nav-links>li[data-mega]');
+  var group=document.getElementById('nav-mega-group');
+  var activePanel=null,activeTab=null,calInited=false;
+  function showPanel(tab){
+    var id=tab.getAttribute('data-mega'),panel=document.getElementById(id);
+    if(activePanel&&activePanel!==panel)activePanel.classList.remove('mega-visible');
+    if(activeTab)activeTab.classList.remove('tab-active');
+    if(panel){panel.classList.add('mega-visible');activePanel=panel;}
+    tab.classList.add('tab-active');activeTab=tab;
+    if(id==='mega-calendar'&&!calInited){calInited=true;initMegaCalWeek();}
   }
-
-  var currentIdx = Math.floor(Math.random() * IMAGES.length);
-  var current = IMAGES[currentIdx];
-
-  /* ── APPLY IMAGE ───────────────────────────────────── */
-  function applyImage(img) {
-    hero.style.backgroundImage = SCRIM + ', url("' + img.url + '")';
-    hero.style.backgroundSize = 'cover';
-    hero.style.backgroundPosition = img.pos || 'center center';
-    hero.style.backgroundRepeat = 'no-repeat';
-    hero.style.transition = 'background-image 1.2s ease-in-out';
-  }
-
-  /* ── CROSSFADE TO NEXT ─────────────────────────────── */
-  function advance() {
-    var nextIdx = Math.floor(Math.random() * IMAGES.length);
-    if (nextIdx === currentIdx) nextIdx = (nextIdx + 1) % IMAGES.length;
-    currentIdx = nextIdx;
-    applyImage(IMAGES[currentIdx]);
-  }
-
-  /* ── PRELOAD THEN SHOW ─────────────────────────────── */
-  var img = new Image();
-  img.onload = function() {
-    applyImage(current);
-    setInterval(advance, 8000); /* rotate every 8 seconds */
-  };
-  img.onerror = function() {
-    /* First image failed — try next */
-    currentIdx = (currentIdx + 1) % IMAGES.length;
-    img.src = IMAGES[currentIdx].url;
-  };
-  img.src = current.url;
-
+  function hideAll(){if(activePanel){activePanel.classList.remove('mega-visible');activePanel=null;}if(activeTab){activeTab.classList.remove('tab-active');activeTab=null;}}
+  tabs.forEach(function(tab){tab.addEventListener('mouseenter',function(){showPanel(tab);});});
+  group.addEventListener('mouseleave',hideAll);
 })();
 
-</script>
-<script>
-if (window.netlifyIdentity) {
-  window.netlifyIdentity.on("init", user => {
-    if (!user) {
-      window.netlifyIdentity.on("login", () => {
-        document.location.href = "/admin/";
-      });
-    }
-  });
+async function initMegaCalWeek(){
+  var container=document.getElementById('mega-cal-week');
+  if(!container)return;
+  var DAYS=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+  var today=new Date(),dow=today.getDay();
+  var monday=new Date(today);monday.setDate(today.getDate()-(dow===0?6:dow-1));
+  var cal=(typeof getCalendar==='function')?await getCalendar(today.getFullYear()):null;
+  var pe=[];try{var r=await fetch('/parish-events.json');if(r.ok){var d=await r.json();pe=(d.events||[]).filter(function(e){return e.active;});}}catch(e){}
+  function dk(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+  var todayKey=dk(today),html='';
+  for(var i=0;i<7;i++){
+    var d=new Date(monday);d.setDate(monday.getDate()+i);
+    var key=dk(d),cd=cal&&cal.days&&cal.days[key];
+    var feast=cd?(cd.feast||''):'',fl=cd?(cd.feastLevel||0):0;
+    if(feast.length>42)feast=feast.substring(0,40)+'…';
+    html+='<div class="mc-week-row'+(key===todayKey?' mc-today':'')+'"><span class="mc-day-lbl">'+DAYS[i]+'</span><span class="mc-day-feast'+(fl>=5?' mc-major':'')+'">'+( feast||'—')+(fl>=5?'<span class="mc-dot"></span>':'')+' </span></div>';
+    pe.filter(function(e){return e.date===key;}).forEach(function(ev){
+      var tm={liturgy:'Liturgy',vespers:'Vespers',community:'Parish',social:'Social',concert:'Concert',music:'Music',announcement:'Notice'};
+      html+='<div class="mc-event-row"><span class="mc-event-badge mc-badge-'+(ev.type||'announcement')+'">'+(tm[ev.type]||'Event')+'</span><span class="mc-event-name">'+ev.title+' · '+ev.time+'</span></div>';
+    });
+  }
+  container.innerHTML=html;
 }
-</script>
 
-<script>
-function openDrawer(){
-  document.getElementById('nav-drawer').classList.add('open');
-  document.getElementById('nav-overlay').classList.add('open');
-  document.getElementById('nav-hamburger').classList.add('open');
-  document.body.style.overflow='hidden';
-}
-function closeDrawer(){
-  document.getElementById('nav-drawer').classList.remove('open');
-  document.getElementById('nav-overlay').classList.remove('open');
-  document.getElementById('nav-hamburger').classList.remove('open');
-  document.body.style.overflow='';
-}
-document.addEventListener('keydown',function(e){if(e.key==='Escape')closeDrawer();});
-</script>
-
-<script src="/enhancements.js"></script>
-<script>
-document.querySelectorAll('.faq-q').forEach(function(btn){
-  btn.addEventListener('click', function(){
-    var item = this.closest('.faq-item');
-    var isOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item').forEach(function(i){ i.classList.remove('open'); });
-    if(!isOpen) item.classList.add('open');
-  });
-});
-</script>
-
-<!-- NAV PILL -->
-<div class="nav-pill" id="navPill">
-  <button class="pill-arrow" id="pillPrev" onclick="pillNav(-1)" aria-label="Previous section"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 7.5L5.5 4L9 7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-  <div class="pill-center" onclick="openSheet()">
-    <svg width="12" height="12" viewBox="0 0 24 24" fill="rgba(184,131,40,.8)"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
-    <span id="pillLabel">The Faith</span>
-  </div>
-  <button class="pill-arrow" id="pillNext" onclick="pillNav(1)" aria-label="Next section"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 3.5L5.5 7L9 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-</div>
-<!-- BOTTOM SHEET -->
-<div class="mob-sheet-overlay" id="mob-sheet-overlay" onclick="closeSheet()"></div>
-<div class="mob-sheet" id="mob-sheet">
-  <div class="mob-sheet-handle"></div>
-  <div class="mob-sheet-head">
-    <span class="mob-sheet-title">Our Beliefs</span>
-    <button class="mob-sheet-close" onclick="closeSheet()">&#10005;</button>
-  </div>
-  <div class="mob-sheet-list">
-    <button class="mob-sheet-item sheet-active" data-sheet-id="faith" onclick="sheetJump('faith')"><span class="mob-sheet-num">I</span><span class="mob-sheet-name">About the Orthodox Faith</span></button>
-    <button class="mob-sheet-item" data-sheet-id="creed" onclick="sheetJump('creed')"><span class="mob-sheet-num">II</span><span class="mob-sheet-name">The Nicene Creed</span></button>
-    <button class="mob-sheet-item" data-sheet-id="oca" onclick="sheetJump('oca')"><span class="mob-sheet-num">III</span><span class="mob-sheet-name">The Orthodox Church in America</span></button>
-    <button class="mob-sheet-item" data-sheet-id="mysteries" onclick="sheetJump('mysteries')"><span class="mob-sheet-num">IV</span><span class="mob-sheet-name">The Holy Mysteries</span></button>
-  </div>
-</div>
-<script>
+/* SECTION NAVIGATION */
 var SECTIONS=[
-  {id:'faith',label:'The Faith'},
-  {id:'creed',label:'Nicene Creed'},
-  {id:'oca',label:'The OCA'},
-  {id:'mysteries',label:'Holy Mysteries'}
+  {id:'sect-faith',  label:'The Faith'},
+  {id:'sect-creed',  label:'Nicene Creed'},
+  {id:'sect-oca',    label:'The OCA'},
+  {id:'sect-mysteries', label:'Holy Mysteries'}
 ];
 var activeIdx=0;
+
+function scrollToSection(id){
+  var el=document.getElementById(id);
+  if(!el)return;
+  var top=el.getBoundingClientRect().top+window.scrollY-80;
+  window.scrollTo({top:top,behavior:'smooth'});
+}
+
+function pillNav(dir){
+  var next=Math.max(0,Math.min(SECTIONS.length-1,activeIdx+dir));
+  scrollToSection(SECTIONS[next].id);
+}
+
 function setActive(idx){
+  if(idx===activeIdx&&document.querySelector('.lr-item.lr-active'))return;
   activeIdx=idx;
+  document.querySelectorAll('.lr-item').forEach(function(el,i){
+    el.classList.toggle('lr-active',i===idx);
+  });
   var lbl=document.getElementById('pillLabel');
   if(lbl)lbl.textContent=SECTIONS[idx].label;
   var prev=document.getElementById('pillPrev');
@@ -669,59 +795,59 @@ function setActive(idx){
   if(prev)prev.disabled=idx===0;
   if(next)next.disabled=idx===SECTIONS.length-1;
   var sid=SECTIONS[idx].id;
-  document.querySelectorAll('.mob-sheet-item[data-sheet-id]').forEach(function(btn){
+  document.querySelectorAll('.sheet-item[data-sheet-id]').forEach(function(btn){
     btn.classList.toggle('sheet-active',btn.dataset.sheetId===sid);
   });
 }
-function scrollToSection(id){
-  var el=document.getElementById(id);
-  if(!el)return;
-  var top=el.getBoundingClientRect().top+window.scrollY-80;
-  window.scrollTo({top:top,behavior:'smooth'});
+
+function updateNav(){
+  var rail=document.getElementById('leftRail');
+  var pill=document.getElementById('navPill');
+  var hero=document.querySelector('.page-hero');
+  var heroBottom=hero?hero.getBoundingClientRect().bottom:0;
+  var pastHero=heroBottom<0;
+  if(rail)rail.classList.toggle('rail-visible',pastHero);
+  if(pill)pill.classList.toggle('pill-visible',pastHero);
+  var footer=document.querySelector('footer');
+  if(footer&&pill){
+    if(footer.getBoundingClientRect().top<window.innerHeight-20)pill.classList.remove('pill-visible');
+  }
+  var viewMid=window.innerHeight*0.38;
+  var bestIdx=0;
+  SECTIONS.forEach(function(s,i){
+    var el=document.getElementById(s.id);
+    if(!el)return;
+    if(el.getBoundingClientRect().top-viewMid<=0)bestIdx=i;
+  });
+  setActive(bestIdx);
 }
-function pillNav(dir){
-  var next=Math.max(0,Math.min(SECTIONS.length-1,activeIdx+dir));
-  scrollToSection(SECTIONS[next].id);
-}
+
+window.addEventListener('scroll',updateNav,{passive:true});
+window.addEventListener('resize',updateNav,{passive:true});
+updateNav();
+
+/* BOTTOM SHEET */
 function openSheet(){
-  var sheet=document.getElementById('mob-sheet');
-  var overlay=document.getElementById('mob-sheet-overlay');
+  var sheet=document.getElementById('sessSheet');
+  var overlay=document.getElementById('sheetOverlay');
   sheet.style.display='flex';
   overlay.style.display='block';
   requestAnimationFrame(function(){sheet.classList.add('open');overlay.classList.add('open');});
   document.body.style.overflow='hidden';
 }
 function closeSheet(){
-  var sheet=document.getElementById('mob-sheet');
-  var overlay=document.getElementById('mob-sheet-overlay');
+  var sheet=document.getElementById('sessSheet');
+  var overlay=document.getElementById('sheetOverlay');
   sheet.classList.remove('open');
   overlay.classList.remove('open');
   document.body.style.overflow='';
-  setTimeout(function(){sheet.style.display='none';overlay.style.display='none';},320);
+  setTimeout(function(){if(!sheet.classList.contains('open')){sheet.style.display='none';overlay.style.display='none';}},340);
 }
 function sheetJump(id){
   closeSheet();
   setTimeout(function(){scrollToSection(id);},220);
 }
-function updateNav(){
-  var pill=document.getElementById('navPill');
-  var hero=document.querySelector('.page-hero');
-  var inPage=!hero||hero.getBoundingClientRect().bottom<window.innerHeight*0.6;
-  var footer=document.querySelector('footer');
-  var nearFooter=footer&&footer.getBoundingClientRect().top<window.innerHeight-20;
-  if(pill)pill.classList.toggle('pill-visible',inPage&&!nearFooter);
-  if(!inPage)return;
-  var mid=window.innerHeight*0.38;
-  var best=0;
-  SECTIONS.forEach(function(s,i){
-    var el=document.getElementById(s.id);
-    if(el&&el.getBoundingClientRect().top-mid<=0)best=i;
-  });
-  setActive(best);
-}
-window.addEventListener('scroll',updateNav,{passive:true});
-window.addEventListener('resize',updateNav,{passive:true});
-updateNav();
 </script>
+<script src="/enhancements.js"></script>
 </body>
 </html>
