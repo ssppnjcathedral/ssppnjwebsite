@@ -38,6 +38,11 @@
   to = "/liturgy-history"
   status = 301
 
+[[redirects]]
+  from = "/great-vespers"
+  to = "/vespers-book"
+  status = 301
+
 # Redirect /donate to /give (old page -> new hub)
 [[redirects]]
   from = "/donate"
