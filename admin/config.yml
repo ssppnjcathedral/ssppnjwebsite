@@ -240,6 +240,237 @@ collections:
                     widget: string
                     hint: "Example: On the Veneration of the Cross, St Theodore the Studite"
 
+  - name: "giving-projects"
+    label: "Giving Projects"
+    label_singular: "Project"
+    description: "Manage church giving drives, renovation projects, food drives, and outreach campaigns. Staff can update raised amounts, mark projects complete, add new drives, or place projects on hold."
+    files:
+      - name: "all-projects"
+        label: "All Giving Projects"
+        file: "giving-projects.json"
+        fields:
+          - name: projects
+            label: Projects
+            label_singular: Project
+            widget: list
+            summary: "{{fields.title}} — {{fields.status}}"
+            fields:
+              - name: id
+                label: ID (URL slug)
+                widget: string
+                hint: "Unique identifier, lowercase, hyphens only (e.g. structural-floor). Used in the project URL — do not change after publishing."
+
+              - name: status
+                label: Status
+                widget: select
+                options:
+                  - { label: "Active — currently accepting donations", value: "active" }
+                  - { label: "On Hold — paused, funds held", value: "on-hold" }
+                  - { label: "Completed — goal reached or project finished", value: "completed" }
+                  - { label: "Archived — hidden from site", value: "archived" }
+                default: "active"
+
+              - name: urgent
+                label: Mark as Urgent (shows priority banner at top of Give page)
+                widget: boolean
+                default: false
+                hint: "Only one project should be urgent at a time. The first urgent active project gets the full-width priority banner."
+
+              - name: category
+                label: Category
+                widget: select
+                options:
+                  - { label: "Cathedral — physical sanctuary, structure, nave", value: "temple" }
+                  - { label: "Liturgical Life — choir, vestments, icons, furnishings", value: "liturgical" }
+                  - { label: "Parish Hall & Facilities — hall, classrooms, kitchen, offices", value: "facilities" }
+                  - { label: "Mercy & Outreach — food drives, community support, mission", value: "mercy" }
+                  - { label: "Education & Formation — Sunday school, catechesis, Bible study", value: "education" }
+
+              - name: title
+                label: Project Title
+                widget: string
+                hint: "e.g. Structural Floor Reinforcement, Annual Food Drive"
+
+              - name: subtitle
+                label: Subtitle
+                widget: string
+                required: false
+                hint: "Short tagline shown under the title. e.g. Northeast corner of the nave"
+
+              - name: short_desc
+                label: Short Description (card text)
+                widget: text
+                hint: "1-2 sentences shown on the project card. Plain text only, no HTML."
+
+              - name: body
+                label: Full Project Description
+                widget: markdown
+                hint: "Full narrative shown on the project detail page. Tell the story: what the need is, why it matters, what the funds will accomplish."
+
+              - name: image
+                label: Project Image
+                widget: image
+                required: false
+                media_folder: "/images/giving"
+                hint: "Main image shown on the card and the detail page hero. Landscape crop recommended."
+
+              - name: gallery
+                label: Additional Gallery Images
+                widget: list
+                required: false
+                hint: "Optional extra images shown on the detail page."
+                field:
+                  name: image
+                  label: Image
+                  widget: image
+                  media_folder: "/images/giving"
+
+              - name: raised
+                label: "Amount Raised ($)"
+                widget: number
+                default: 0
+                value_type: int
+                hint: "Update this manually from Tithe.ly or other giving records."
+
+              - name: goal
+                label: "Fundraising Goal ($)"
+                widget: number
+                default: 0
+                value_type: int
+                hint: "Set to 0 if no specific goal (e.g. ongoing funds). Use show_progress to hide the bar."
+
+              - name: show_progress
+                label: Show Progress Bar
+                widget: boolean
+                default: true
+                hint: "Turn off for ongoing funds with no specific goal amount."
+
+              - name: start_date
+                label: Start Date
+                widget: datetime
+                format: "YYYY-MM-DD"
+                date_format: "YYYY-MM-DD"
+                time_format: false
+                required: false
+
+              - name: target_date
+                label: Target / Deadline Date
+                widget: datetime
+                format: "YYYY-MM-DD"
+                date_format: "YYYY-MM-DD"
+                time_format: false
+                required: false
+                hint: "Optional. If set, shown as 'Needed by [Month Year]' on the priority banner."
+
+              - name: completed_date
+                label: Completion Date
+                widget: datetime
+                format: "YYYY-MM-DD"
+                date_format: "YYYY-MM-DD"
+                time_format: false
+                required: false
+                hint: "Set when the project is finished."
+
+              - name: completion_note
+                label: Completion Note
+                widget: string
+                required: false
+                hint: "Thank-you message shown on completed project cards. e.g. Thank you to all who gave — the chandeliers shine again."
+
+              - name: give_link
+                label: Give / Donate Link
+                widget: string
+                default: "https://tithe.ly/give?c=5004259"
+                hint: "Tithe.ly general fund link. Replace with a specific campaign URL if one exists."
+
+              - name: give_label
+                label: Give Button Label
+                widget: string
+                default: "Give Toward This Project"
+                hint: "Text on the give button. e.g. Give to This Fund, Support This Project"
+
+              - name: volunteer_needed
+                label: Volunteers Needed
+                widget: boolean
+                default: false
+
+              - name: volunteer_desc
+                label: Volunteer Description
+                widget: text
+                required: false
+                hint: "What kind of help is needed and how to sign up. Shown as a banner on the detail page."
+
+              - name: contact_name
+                label: Contact Person
+                widget: string
+                default: "Parish Office"
+                required: false
+
+              - name: contact_email
+                label: Contact Email
+                widget: string
+                default: "info@peterandpaulcathedral.com"
+                required: false
+
+              - name: memorial
+                label: Memorial Gift
+                widget: boolean
+                default: false
+                hint: "Toggle on if this project is dedicated in memory of someone."
+
+              - name: memorial_for
+                label: In Memory Of
+                widget: string
+                required: false
+                hint: "e.g. In loving memory of Nicholas and Olga Petrov"
+
+              - name: quote
+                label: Pull Quote (optional)
+                widget: string
+                required: false
+                hint: "A scripture verse or phrase shown on the detail page. e.g. The temple of God is holy."
+
+              - name: quote_attr
+                label: Quote Attribution
+                widget: string
+                required: false
+                hint: "e.g. 1 Corinthians 3:17"
+
+              - name: sort_order
+                label: Sort Order
+                widget: number
+                default: 99
+                value_type: int
+                hint: "Lower numbers appear first within each status group (active, on-hold, completed)."
+
+              - name: featured
+                label: Featured (show on homepage)
+                widget: boolean
+                default: false
+                hint: "Reserved for future use — highlights this project in the Coming Up section on the homepage."
+
+              - name: updates
+                label: Project Updates
+                widget: list
+                required: false
+                hint: "Add entries newest-first. Shown as a timeline on the detail page."
+                summary: "{{fields.date}} — {{fields.title}}"
+                fields:
+                  - name: date
+                    label: Date
+                    widget: datetime
+                    format: "YYYY-MM-DD"
+                    date_format: "YYYY-MM-DD"
+                    time_format: false
+                  - name: title
+                    label: Update Title
+                    widget: string
+                    hint: "Short milestone label. e.g. Engineer Assessment Complete"
+                  - name: body
+                    label: Update Body
+                    widget: text
+                    hint: "A sentence or two describing what happened."
+
   - name: "prayer-list"
     label: "Prayer List"
     description: "The parish prayer list. Carries forward week to week automatically. Only update when names need to be added or removed. The list appears on every bulletin's page 3."
@@ -258,3 +489,104 @@ collections:
               label: Name
               widget: string
               hint: "Example: Nancy, Aidan W.'s mother | Example: Victims of war in Ukraine"
+
+  - name: "news"
+    label: "Parish News"
+    label_singular: "Article"
+    description: "Write and manage parish news articles. Set Pinned to keep an article in the featured Now zone at the top of the news page. Set Featured to make it the lead article in that zone."
+    files:
+      - name: "all-articles"
+        label: "All Articles"
+        file: "news.json"
+        fields:
+          - name: articles
+            label: Articles
+            label_singular: Article
+            widget: list
+            summary: "{{fields.date}} — {{fields.title}}"
+            fields:
+              - name: id
+                label: ID (URL slug)
+                widget: string
+                hint: "Unique identifier, lowercase hyphens only (e.g. 2026-04-01-holy-week). Used in the article URL. Do not change after publishing."
+
+              - name: date
+                label: Date
+                widget: datetime
+                format: "YYYY-MM-DD"
+                date_format: "YYYY-MM-DD"
+                time_format: false
+
+              - name: title
+                label: Title
+                widget: string
+                hint: "No em dashes. Keep under 90 characters."
+
+              - name: category
+                label: Category
+                widget: select
+                options:
+                  - "Liturgical Life"
+                  - "Sacramental Life"
+                  - "Parish News"
+                  - "Diocese & Clergy"
+                  - "Community & Outreach"
+                  - "Education & Retreats"
+                  - "Concerts & Culture"
+                  - "Fundraising"
+                  - "Youth & Ministry"
+
+              - name: featured
+                label: Featured (lead article in Now zone)
+                widget: boolean
+                default: false
+                hint: "Featured articles appear as the large lead article in the dark Now zone at the top of the news page."
+
+              - name: pinned
+                label: Pinned (show in Now zone)
+                widget: boolean
+                default: false
+                hint: "Pinned articles stay in the Now zone regardless of date or category filter. Maximum 3 pinned articles at a time."
+
+              - name: excerpt
+                label: Excerpt
+                widget: text
+                hint: "1-2 sentence summary. No em dashes. Shown on the news index page."
+
+              - name: body
+                label: Body
+                widget: markdown
+                required: false
+                hint: "Full article text. Shown on the article detail page. No em dashes."
+
+              - name: image
+                label: Banner Image
+                widget: image
+                required: false
+                media_folder: "/images/news"
+                public_folder: "/images/news"
+                hint: "Main image shown at the top of the article detail page. Landscape crop recommended."
+
+              - name: gallery
+                label: Gallery Photos (slideshow on article page)
+                widget: list
+                required: false
+                hint: "Additional photos shown as a slideshow on the article detail page."
+                field:
+                  name: image
+                  label: Photo
+                  widget: image
+                  media_folder: "/images/news"
+                  public_folder: "/images/news"
+
+              - name: author
+                label: Author
+                widget: string
+                default: "Parish Office"
+                hint: "e.g. Fr. Solomon Longo, Parish Office"
+
+              - name: readtime
+                label: Read Time
+                widget: string
+                required: false
+                hint: "e.g. 2 min read. Estimate at 200 words per minute."

@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Parish News &middot; Saints Peter &amp; Paul Orthodox Cathedral</title>
+<meta name="description" content="Parish news article."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --vellum:#F6F1E8;--vellum-mid:#EDE7DC;
+  --text:#1E1510;--ink:#2C1F16;
+  --maroon:#7B1D2A;--maroon-deep:#5C1520;
+  --gold:#B88328;--gold-lt:#E8C97A;
+  --verdigris:#3D6B5E;--stone:#7A6648;--stone-lt:#A89070;
+  --apse:#3B0F18;
+  --f-display:'Cormorant Garamond',Georgia,serif;
+  --f-body:'EB Garamond',Georgia,serif;
+  --f-ui:'Cinzel',Georgia,serif;
+  --rule:1px solid rgba(123,29,42,0.18);
+  --rule-faint:1px solid rgba(123,29,42,0.10);
+  --max:1160px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--vellum);color:var(--text);font-family:var(--f-body);font-size:18px;line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+
+/* CATEGORY BADGE COLORS */
+.liturgy{background:var(--maroon);color:rgba(246,241,232,.9)}
+.sacramental{background:#4a2800;color:rgba(232,201,122,.9)}
+.announcement{background:var(--apse);color:rgba(232,201,122,.85)}
+.diocese{background:#1a1f45;color:rgba(232,201,122,.9)}
+.community{background:var(--verdigris);color:rgba(246,241,232,.9)}
+.education{background:#5a3800;color:rgba(232,201,122,.9)}
+.culture{background:#2a1a4a;color:rgba(232,201,122,.9)}
+.fundraise{background:#3a2200;color:rgba(232,201,122,.9)}
+.youth{background:#1e3d1e;color:rgba(246,241,232,.9)}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(246,241,232,.97);backdrop-filter:blur(10px);border-bottom:var(--rule-faint)}
+.nav-inner{max-width:1380px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px;padding:0 3rem}
+.nav-logo-name{font-family:var(--f-display);font-weight:500;font-size:1.25rem;color:var(--text);display:block}
+.nav-logo-sub{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);display:block}
+.nav-links{display:flex;align-items:center;list-style:none}
+.nav-links>li{position:relative}
+.nav-links>li>a{font-family:var(--f-ui);font-size:.78rem;letter-spacing:.10em;text-transform:uppercase;color:var(--ink);padding:1.1rem .85rem;display:block;transition:color .18s}
+.nav-links>li:hover>a{color:var(--maroon)}
+.nav-drop{position:absolute;top:100%;left:0;background:var(--vellum);border-top:2px solid var(--maroon);border-bottom:var(--rule-faint);border-left:var(--rule-faint);border-right:var(--rule-faint);min-width:200px;padding:.5rem 0;opacity:0;pointer-events:none;transform:translateY(-4px);transition:all .16s;box-shadow:0 8px 28px rgba(28,20,16,.10)}
+.nav-links>li:hover .nav-drop{opacity:1;pointer-events:all;transform:none}
+.nav-drop a{display:block;font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);padding:.5rem 1.4rem;transition:color .14s}
+.nav-drop a:hover{color:var(--maroon)}
+.nav-links .nav-active-parent>a{color:var(--maroon);border-bottom:2px solid var(--gold)}
+.nav-drop .nav-active{color:var(--maroon);font-weight:600}
+.nav-give{font-family:var(--f-ui);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--vellum);background:var(--maroon);padding:.5rem 1.1rem;transition:background .2s}
+.nav-give:hover{background:var(--maroon-deep)}
+.nav-hamburger{display:none;flex-direction:column;justify-content:space-between;width:28px;height:20px;cursor:pointer;padding:0;background:none;border:none;z-index:400}
+.nav-hamburger span{display:block;width:100%;height:2px;background:var(--maroon);transition:all .28s ease;transform-origin:center}
+.nav-hamburger.open span:nth-child(1){transform:translateY(9px) rotate(45deg)}
+.nav-hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-9px) rotate(-45deg)}
+.nav-drawer{position:fixed;top:0;right:0;width:300px;max-width:85vw;height:100vh;background:var(--apse);z-index:350;transform:translateX(100%);transition:transform .32s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;overflow-y:auto}
+.nav-drawer.open{transform:translateX(0)}
+.nav-drawer-overlay{position:fixed;inset:0;background:rgba(21,8,4,.65);z-index:340;opacity:0;pointer-events:none;transition:opacity .32s}
+.nav-drawer-overlay.open{opacity:1;pointer-events:all}
+.nav-drawer-head{padding:1.5rem 1.75rem 1rem;border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:space-between}
+.nav-drawer-logo{font-family:var(--f-display);font-weight:500;font-size:1.1rem;color:#fff}
+.nav-drawer-logo span{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);display:block;margin-top:2px}
+.nav-drawer-close{width:32px;height:32px;background:rgba(255,255,255,.08);border:none;color:rgba(255,255,255,.65);cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.nav-drawer-close:hover{background:rgba(255,255,255,.15)}
+.nav-drawer-links{padding:1rem 0;flex:1}
+.nav-drawer-links a{display:block;font-family:var(--f-ui);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,232,.70);padding:.9rem 1.75rem;border-bottom:1px solid rgba(255,255,255,.05);transition:all .18s}
+.nav-drawer-links a:hover{color:#fff;background:rgba(255,255,255,.05)}
+.nav-drawer-links .drawer-section{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(184,131,40,.55);padding:.85rem 1.75rem .35rem;display:block}
+.nav-drawer-give{margin:1.25rem 1.75rem;display:block;text-align:center;font-family:var(--f-ui);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;padding:.85rem;background:var(--maroon);color:var(--vellum);transition:background .2s}
+.nav-drawer-give:hover{background:var(--maroon-deep)}
+
+/* ARTICLE PAGE */
+.article-wrap{padding-top:60px}
+
+/* Hero banner */
+.article-banner{width:100%;max-height:480px;overflow:hidden;background:linear-gradient(175deg,#200610 0%,#3a0c1a 60%,#200610 100%);position:relative}
+.article-banner img{width:100%;max-height:480px;object-fit:cover;filter:brightness(.88)}
+.article-banner-text{position:absolute;bottom:1.5rem;left:2rem;font-family:var(--f-display);font-weight:300;font-size:clamp(2.5rem,5vw,5rem);color:rgba(184,131,40,.12);line-height:1;letter-spacing:-.02em;pointer-events:none}
+.article-banner-imgblock{height:320px;display:flex;align-items:flex-end;padding:2rem}
+
+/* Article body container */
+.article-container{max-width:780px;margin:0 auto;padding:3rem 2rem 4rem}
+
+/* Breadcrumb */
+.breadcrumb{font-family:var(--f-ui);font-size:.68rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(122,102,72,.55);margin-bottom:1.5rem;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+.breadcrumb a{color:var(--maroon);transition:opacity .18s}
+.breadcrumb a:hover{opacity:.75}
+.breadcrumb-sep{color:rgba(122,102,72,.35)}
+
+/* Article header */
+.art-cat-badge{display:inline-block;font-family:var(--f-ui);font-size:.55rem;letter-spacing:.16em;text-transform:uppercase;padding:.18rem .55rem;margin-bottom:.85rem}
+.article-title{font-family:var(--f-display);font-weight:400;font-size:clamp(1.9rem,3.5vw,2.75rem);color:var(--text);line-height:1.12;margin-bottom:1rem}
+.article-meta{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;font-family:var(--f-ui);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(122,102,72,.65);margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:var(--rule)}
+
+/* Body text */
+.article-body{font-family:var(--f-body);font-size:1.05rem;line-height:1.85;color:var(--ink)}
+.article-body p{margin-bottom:1.2em}
+.article-body p:last-child{margin-bottom:0}
+.article-body p:first-child::first-letter{font-family:var(--f-display);font-size:3.4rem;font-weight:500;line-height:.82;float:left;margin-right:.12em;margin-top:.08em;color:var(--maroon)}
+
+/* Gallery slideshow */
+.gallery-section{margin-top:3rem;border-top:var(--rule)}
+.gallery-label{font-family:var(--f-ui);font-size:.65rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);display:block;margin:1.5rem 0 1rem}
+.gallery-viewer{position:relative;background:#1a1010;overflow:hidden}
+.gallery-img{width:100%;max-height:500px;object-fit:contain;display:block}
+.gallery-controls{display:flex;align-items:center;justify-content:space-between;padding:.75rem 1rem;background:rgba(28,8,4,.06);border-top:var(--rule-faint)}
+.gallery-btn{background:none;border:var(--rule-faint);font-family:var(--f-ui);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);cursor:pointer;padding:.42rem .9rem;transition:all .18s;display:flex;align-items:center;gap:.35rem}
+.gallery-btn:hover:not(:disabled){background:var(--maroon);color:var(--vellum);border-color:var(--maroon)}
+.gallery-btn:disabled{opacity:.25;cursor:default}
+.gallery-counter{font-family:var(--f-ui);font-size:.60rem;letter-spacing:.10em;text-transform:uppercase;color:var(--stone)}
+
+/* More in category */
+.more-section{margin-top:4rem;padding-top:2rem;border-top:2px solid var(--maroon)}
+.more-head{font-family:var(--f-ui);font-size:.65rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:1.75rem}
+.more-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+.more-item{padding:0 1.5rem 0 0;border-right:var(--rule-faint);cursor:pointer;transition:opacity .16s}
+.more-item:last-child{border-right:none;padding-right:0}
+.more-item:hover{opacity:.78}
+.more-item-cat{display:inline-block;font-family:var(--f-ui);font-size:.52rem;letter-spacing:.16em;text-transform:uppercase;padding:.14rem .48rem;margin-bottom:.5rem}
+.more-item-title{font-family:var(--f-display);font-weight:400;font-size:1.05rem;color:var(--text);line-height:1.22;margin-bottom:.4rem}
+.more-item-date{font-family:var(--f-ui);font-size:.55rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(122,102,72,.55)}
+
+/* Not found */
+.not-found{max-width:560px;margin:8rem auto;text-align:center;padding:2rem}
+.not-found-title{font-family:var(--f-display);font-size:2rem;color:var(--maroon);margin-bottom:1rem}
+.not-found-body{font-family:var(--f-body);color:var(--stone);margin-bottom:2rem}
+.not-found a{font-family:var(--f-ui);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);border-bottom:1px solid rgba(123,29,42,.30);padding-bottom:.1rem}
+
+/* FOOTER */
+footer{background:var(--apse);padding:4rem 4.5rem 2rem;margin-top:4rem}
+.footer-cross{display:block;text-align:center;font-size:1.1rem;color:rgba(184,131,40,.45);letter-spacing:.8em;padding-left:.8em;margin-bottom:2.5rem}
+.footer-cols{max-width:1380px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:4rem;margin-bottom:2.5rem}
+.footer-col-head{font-family:var(--f-ui);font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(246,241,232,.82);display:block;margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid rgba(246,241,232,.18)}
+.footer-name{font-family:var(--f-display);font-weight:400;font-size:1.1rem;color:rgba(246,241,232,.88);line-height:1.3;margin-bottom:.75rem}
+.footer-meta{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.72);line-height:2.3}
+.footer-meta a{color:rgba(184,131,40,.85);transition:color .2s}
+.footer-meta a:hover{color:var(--gold)}
+.footer-nav{list-style:none;display:flex;flex-direction:column}
+.footer-nav li{padding:.35rem 0;border-bottom:1px solid rgba(246,241,232,.10)}
+.footer-nav li:last-child{border-bottom:none}
+.footer-nav a{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,232,.85);transition:color .2s}
+.footer-nav a:hover{color:rgba(246,241,232,.95)}
+.footer-blurb{font-family:var(--f-display);font-style:italic;font-size:.95rem;color:rgba(246,241,232,.85);line-height:1.65;margin-bottom:1.25rem}
+.footer-socials{display:flex;gap:1.5rem;margin-top:1.5rem}
+.footer-socials a{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,241,232,.65);transition:color .2s}
+.footer-socials a:hover{color:var(--gold)}
+.footer-bottom{max-width:1380px;margin:2rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(246,241,232,.12);display:flex;justify-content:space-between;align-items:center}
+.footer-copy,.footer-addr{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.60)}
+.footer-addr{text-align:right}
+.btn{display:inline-block;font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;padding:.85rem 2.2rem;border:1px solid currentColor;cursor:pointer;transition:all .22s;white-space:nowrap}
+footer .btn{color:rgba(246,241,232,.92);border-color:rgba(246,241,232,.55)}
+footer .btn:hover{background:rgba(246,241,232,.15);color:#fff;border-color:rgba(246,241,232,.80)}
+
+/* RESPONSIVE */
+@media(max-width:1100px){
+  .nav-hamburger{display:flex}
+  .nav-links,.nav-give{display:none}
+  footer{padding:3rem 2.5rem 1.5rem}
+  .footer-cols{gap:2.5rem}
+  .nav-inner{padding:0 1.5rem}
+}
+@media(max-width:768px){
+  .more-grid{grid-template-columns:1fr 1fr}
+  .more-item:last-child{display:none}
+  footer{padding:2.5rem 1.5rem 1.5rem}
+  .footer-cols{grid-template-columns:1fr;gap:2rem}
+  .footer-bottom{flex-direction:column;gap:.75rem;text-align:center}
+  .footer-addr{text-align:center}
+  .article-container{padding:2rem 1.5rem 3rem}
+}
+@media(max-width:520px){
+  .more-grid{grid-template-columns:1fr}
+  .more-item{border-right:none;padding-right:0;padding-bottom:1.25rem;border-bottom:var(--rule-faint);margin-bottom:.25rem}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" style="line-height:1.2"><span class="nav-logo-name">Sts. Peter &amp; Paul</span><span class="nav-logo-sub">Orthodox Cathedral &middot; Jersey City</span></a>
+    <ul class="nav-links">
+      <li><a href="/about-our-church">About Us &#9662;</a>
+        <div class="nav-drop">
+          <a href="/about-our-church">About Our Church</a>
+          <a href="/church-history">Church History</a>
+          <a href="/our-beliefs">Our Beliefs</a>
+          <a href="/administration">Administration</a>
+          <a href="/gallery">Gallery</a>
+        </div>
+      </li>
+      <li><a href="/about-orthodoxy">Inquirers &#9662;</a>
+        <div class="nav-drop">
+          <a href="/about-orthodoxy">About Orthodoxy</a>
+          <a href="/catechesis">Orthodox Catechesis</a>
+          <a href="/catechesis-series">2026 Series</a>
+          <a href="/our-beliefs">Our Beliefs</a>
+          <a href="/about-liturgy">History of the Liturgy</a>
+        </div>
+      </li>
+      <li><a href="/schedule">Calendar</a></li>
+      <li class="nav-active-parent"><a href="/news">Bulletins &#9662;</a>
+        <div class="nav-drop">
+          <a href="/news" class="nav-active">News</a>
+          <a href="/bulletins">Bulletins</a>
+        </div>
+      </li>
+      <li><a href="/divine-liturgy">Resources &#9662;</a>
+        <div class="nav-drop">
+          <a href="/divine-liturgy">Divine Liturgy</a>
+          <a href="/vespers">Vespers</a>
+          <a href="/readings">Readings</a>
+          <a href="/saints">Lives of the Saints</a>
+          <a href="/videos">Videos</a>
+        </div>
+      </li>
+      <li><a href="/contact-us">Contact</a></li>
+    </ul>
+    <a href="https://tithe.ly/give?c=5004259" target="_blank" class="nav-give">Give</a>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" onclick="openDrawer()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<div class="nav-drawer-overlay" id="nav-overlay" onclick="closeDrawer()"></div>
+<div class="nav-drawer" id="nav-drawer">
+  <div class="nav-drawer-head">
+    <div class="nav-drawer-logo">Sts. Peter &amp; Paul<span>Orthodox Cathedral &middot; Jersey City</span></div>
+    <button class="nav-drawer-close" onclick="closeDrawer()">&#10005;</button>
+  </div>
+  <div class="nav-drawer-links">
+    <span class="drawer-section">About</span>
+    <a href="/about-our-church">About Our Church</a>
+    <a href="/church-history">Church History</a>
+    <a href="/our-beliefs">Our Beliefs</a>
+    <span class="drawer-section">Inquirers</span>
+    <a href="/about-orthodoxy">About Orthodoxy</a>
+    <a href="/catechesis">Orthodox Catechesis</a>
+    <a href="/catechesis-series">2026 Catechesis Series</a>
+    <a href="/about-liturgy">History of the Liturgy</a>
+    <span class="drawer-section">Worship</span>
+    <a href="/divine-liturgy">Divine Liturgy</a>
+    <a href="/vespers">Vespers</a>
+    <a href="/schedule">Liturgical Calendar</a>
+    <a href="/readings">Daily Readings</a>
+    <span class="drawer-section">Parish Life</span>
+    <a href="/gallery">Gallery</a>
+    <a href="/bulletins">Bulletins</a>
+    <a href="/news">News &amp; Announcements</a>
+    <span class="drawer-section">Contact</span>
+    <a href="/contact-us">Contact Us</a>
+  </div>
+  <a href="https://tithe.ly/give?c=5004259" target="_blank" class="nav-drawer-give">Give Online</a>
+</div>
+
+<!-- ARTICLE CONTENT — rendered by JS -->
+<div class="article-wrap" id="article-wrap"></div>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-cross">+ + +</span>
+  <div class="footer-cols">
+    <div>
+      <span class="footer-col-head">Saints Peter &amp; Paul Orthodox Cathedral</span>
+      <p class="footer-name">Sts. Peter &amp; Paul<br>Orthodox Cathedral</p>
+      <p class="footer-meta">
+        Diocese of New York &amp; New Jersey<br>
+        <a href="https://nynjoca.org" target="_blank">nynjoca.org</a><br>
+        Orthodox Church in America<br>
+        <a href="https://oca.org" target="_blank">oca.org</a>
+      </p>
+      <div class="footer-socials">
+        <a href="#" target="_blank">Facebook</a>
+        <a href="#" target="_blank">Instagram</a>
+      </div>
+    </div>
+    <div>
+      <span class="footer-col-head">Navigate</span>
+      <ul class="footer-nav">
+        <li><a href="/about-our-church">About Our Church</a></li>
+        <li><a href="/church-history">Church History</a></li>
+        <li><a href="/about-orthodoxy">About Orthodoxy</a></li>
+        <li><a href="/catechesis">Orthodox Catechesis</a></li>
+        <li><a href="/catechesis-series">2026 Series</a></li>
+        <li><a href="/our-beliefs">Our Beliefs</a></li>
+        <li><a href="/divine-liturgy">Divine Liturgy</a></li>
+        <li><a href="/schedule">Liturgical Calendar</a></li>
+        <li><a href="/readings">Daily Readings</a></li>
+        <li><a href="/bulletins">Bulletins</a></li>
+        <li><a href="/contact-us">Contact Us</a></li>
+      </ul>
+    </div>
+    <div>
+      <span class="footer-col-head">Visit Us</span>
+      <p class="footer-blurb">Whether you are visiting for the first time or preparing to enter the Church, you are welcome here.</p>
+      <a href="/contact-us" class="btn" style="margin-bottom:2rem;display:inline-block">Contact the Parish</a>
+      <span class="footer-col-head" style="margin-top:.5rem">Service Times</span>
+      <p class="footer-meta" style="line-height:2.4">
+        Vespers &middot; Saturdays 5:00 PM<br>
+        Divine Liturgy &middot; Sundays 9:30 AM<br>
+        Office &middot; Mon&ndash;Fri 9:00 AM&ndash;5:00 PM
+      </p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">&copy; Saints Peter &amp; Paul Orthodox Cathedral. All Rights Reserved.</p>
+    <p class="footer-addr">109 Grand Street &middot; Jersey City, NJ 07302 &middot; (201) 434-1986</p>
+  </div>
+</footer>
+
+<script>
+var MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+function catSlug(cat) {
+  return {'Liturgical Life':'liturgy','Sacramental Life':'sacramental','Parish News':'announcement','Diocese & Clergy':'diocese','Community & Outreach':'community','Education & Retreats':'education','Concerts & Culture':'culture','Fundraising':'fundraise','Youth & Ministry':'youth'}[cat] || 'announcement';
+}
+
+function fmtDate(d) {
+  var p = d.split('-');
+  return MONTHS[parseInt(p[1],10)-1] + ' ' + parseInt(p[2],10) + ', ' + p[0];
+}
+
+function esc(s) {
+  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+/* Gallery state */
+var galleryImages = [];
+var galleryIdx = 0;
+
+function showGalleryImage(idx) {
+  galleryIdx = idx;
+  var img = document.getElementById('gallery-main-img');
+  var counter = document.getElementById('gallery-counter');
+  var prevBtn = document.getElementById('gallery-prev');
+  var nextBtn = document.getElementById('gallery-next');
+  if (!img) return;
+  img.src = galleryImages[idx];
+  img.alt = 'Photo ' + (idx+1);
+  counter.textContent = (idx+1) + ' / ' + galleryImages.length;
+  prevBtn.disabled = idx === 0;
+  nextBtn.disabled = idx === galleryImages.length - 1;
+}
+
+function galleryPrev() { if (galleryIdx > 0) showGalleryImage(galleryIdx - 1); }
+function galleryNext() { if (galleryIdx < galleryImages.length - 1) showGalleryImage(galleryIdx + 1); }
+
+/* Keyboard nav for gallery */
+document.addEventListener('keydown', function(e){
+  if (!galleryImages.length) return;
+  if (e.key === 'ArrowLeft') galleryPrev();
+  if (e.key === 'ArrowRight') galleryNext();
+});
+
+/* Parse ID from URL */
+function getArticleId() {
+  var params = new URLSearchParams(window.location.search);
+  return params.get('id') || '';
+}
+
+/* Render */
+fetch('/news.json')
+  .then(function(r){ return r.json(); })
+  .then(function(data){
+    var articles = Array.isArray(data) ? data : (data.articles || []);
+    var id = getArticleId();
+    var article = articles.find(function(a){ return a.id === id; });
+    if (!article) {
+      renderNotFound();
+      return;
+    }
+    document.title = esc(article.title) + ' \u00B7 Saints Peter & Paul Orthodox Cathedral';
+    renderArticle(article, articles);
+  })
+  .catch(function(){ renderNotFound(); });
+
+function renderArticle(art, allArticles) {
+  var wrap = document.getElementById('article-wrap');
+  var html = '';
+
+  /* Banner */
+  html += '<div class="article-banner">';
+  if (art.image) {
+    html += '<img src="'+esc(art.image)+'" alt="'+esc(art.title)+'" onerror="this.parentElement.querySelector(\'.article-banner-text\').style.display=\'block\';this.style.display=\'none\'">';
+    html += '<span class="article-banner-text" style="display:none">'+esc(art.category)+'</span>';
+  } else {
+    html += '<div class="article-banner-imgblock"><span class="article-banner-text" style="position:static;font-size:clamp(2.5rem,5vw,5rem)">'+esc(art.category)+'</span></div>';
+  }
+  html += '</div>';
+
+  /* Article container */
+  html += '<div class="article-container">';
+
+  /* Breadcrumb */
+  html += '<nav class="breadcrumb" aria-label="Breadcrumb">';
+  html += '<a href="/news">News</a>';
+  html += '<span class="breadcrumb-sep">&middot;</span>';
+  html += '<a href="/news?cat='+encodeURIComponent(art.category)+'">'+esc(art.category)+'</a>';
+  html += '<span class="breadcrumb-sep">&middot;</span>';
+  html += '<span>'+esc(art.title.length > 60 ? art.title.substring(0,60)+'...' : art.title)+'</span>';
+  html += '</nav>';
+
+  /* Category pill + title */
+  html += '<span class="art-cat-badge '+catSlug(art.category)+'">'+esc(art.category)+'</span>';
+  html += '<h1 class="article-title">'+esc(art.title)+'</h1>';
+
+  /* Meta */
+  html += '<div class="article-meta">';
+  html += '<span>'+fmtDate(art.date)+'</span>';
+  if (art.author) html += '<span>'+esc(art.author)+'</span>';
+  if (art.readtime) html += '<span>'+esc(art.readtime)+'</span>';
+  html += '</div>';
+
+  /* Body */
+  if (art.body && art.body.trim()) {
+    html += '<div class="article-body">';
+    var paras = art.body.trim().split(/\n\n+/);
+    paras.forEach(function(p){
+      if (p.trim()) html += '<p>'+esc(p.trim())+'</p>';
+    });
+    html += '</div>';
+  } else {
+    html += '<div class="article-body"><p>'+esc(art.excerpt)+'</p></div>';
+  }
+
+  /* Gallery */
+  var imgs = [];
+  if (art.gallery && art.gallery.length) {
+    art.gallery.forEach(function(g){ if (g && g.trim()) imgs.push(g.trim()); });
+  }
+  if (imgs.length) {
+    galleryImages = imgs;
+    html += '<div class="gallery-section">';
+    html += '<span class="gallery-label">Photos</span>';
+    html += '<div class="gallery-viewer">';
+    html += '<img id="gallery-main-img" class="gallery-img" src="'+esc(imgs[0])+'" alt="Photo 1" onerror="this.style.display=\'none\'">';
+    html += '</div>';
+    if (imgs.length > 1) {
+      html += '<div class="gallery-controls">';
+      html += '<button class="gallery-btn" id="gallery-prev" onclick="galleryPrev()" disabled>';
+      html += '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg> Prev';
+      html += '</button>';
+      html += '<span class="gallery-counter" id="gallery-counter">1 / '+imgs.length+'</span>';
+      html += '<button class="gallery-btn" id="gallery-next" onclick="galleryNext()">';
+      html += 'Next <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>';
+      html += '</button>';
+      html += '</div>';
+    }
+    html += '</div>';
+  }
+
+  html += '</div>'; /* end article-container */
+
+  /* More in category */
+  var related = allArticles.filter(function(a){ return a.category === art.category && a.id !== art.id; }).slice(0,3);
+  if (related.length) {
+    html += '<div class="article-container" style="padding-top:0">';
+    html += '<div class="more-section">';
+    html += '<span class="more-head">More in '+esc(art.category)+'</span>';
+    html += '<div class="more-grid">';
+    related.forEach(function(rel){
+      html += '<div class="more-item" onclick="location.href=\'/article.html?id='+encodeURIComponent(rel.id)+'\'">';
+      html += '<span class="more-item-cat '+catSlug(rel.category)+'">'+esc(rel.category)+'</span>';
+      html += '<div class="more-item-title">'+esc(rel.title)+'</div>';
+      html += '<div class="more-item-date">'+fmtDate(rel.date)+'</div>';
+      html += '</div>';
+    });
+    html += '</div></div></div>';
+  }
+
+  wrap.innerHTML = html;
+}
+
+function renderNotFound() {
+  document.getElementById('article-wrap').innerHTML =
+    '<div class="not-found">' +
+    '<div class="not-found-title">Article Not Found</div>' +
+    '<p class="not-found-body">The article you are looking for could not be found. It may have been removed or the link may be incorrect.</p>' +
+    '<a href="/news">Back to Parish News</a>' +
+    '</div>';
+}
+
+/* DRAWER */
+function openDrawer(){document.getElementById('nav-drawer').classList.add('open');document.getElementById('nav-overlay').classList.add('open');document.getElementById('nav-hamburger').classList.add('open');}
+function closeDrawer(){document.getElementById('nav-drawer').classList.remove('open');document.getElementById('nav-overlay').classList.remove('open');document.getElementById('nav-hamburger').classList.remove('open');}
+</script>
+</body>
+</html>
