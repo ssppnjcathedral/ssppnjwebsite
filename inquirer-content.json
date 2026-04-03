@@ -1,0 +1,119 @@
+{
+  "version": "1.0",
+  "sections": [
+    {
+      "id": "the-faith",
+      "label": "The Faith",
+      "pages": [
+        {
+          "key": "about-orthodoxy",
+          "title": "About Orthodoxy",
+          "url": "/about-orthodoxy",
+          "description": "The ancient Christian faith, its history and teachings",
+          "readTime": 12,
+          "order": 1
+        },
+        {
+          "key": "our-beliefs",
+          "title": "Our Beliefs",
+          "url": "/our-beliefs",
+          "description": "What we confess and why it matters",
+          "readTime": 8,
+          "order": 2
+        },
+        {
+          "key": "church-history",
+          "title": "Church History",
+          "url": "/church-history",
+          "description": "A century of faith in Jersey City",
+          "readTime": 10,
+          "order": 3
+        },
+        {
+          "key": "fasting",
+          "title": "Fasting",
+          "url": "/fasting",
+          "description": "The history and practice of Orthodox fasting",
+          "readTime": 10,
+          "order": 4
+        },
+        {
+          "key": "catechesis-history",
+          "title": "Catechesis",
+          "url": "/catechesis-history",
+          "description": "Formation for those entering the Church",
+          "readTime": 8,
+          "order": 5
+        }
+      ]
+    },
+    {
+      "id": "worship",
+      "label": "Worship",
+      "pages": [
+        {
+          "key": "divine-liturgy",
+          "title": "About the Divine Liturgy",
+          "url": "/divine-liturgy",
+          "description": "History, structure, and meaning",
+          "readTime": 20,
+          "order": 6
+        },
+        {
+          "key": "vespers",
+          "title": "About Vespers",
+          "url": "/vespers",
+          "description": "The ancient evening prayer of the Church",
+          "readTime": 15,
+          "order": 7
+        },
+        {
+          "key": "liturgy-history",
+          "title": "History of the Liturgy",
+          "url": "/liturgy-history",
+          "description": "How the Divine Liturgy developed over the centuries",
+          "readTime": 12,
+          "order": 8
+        }
+      ]
+    },
+    {
+      "id": "parish-life",
+      "label": "Parish Life",
+      "pages": [
+        {
+          "key": "our-parish",
+          "title": "Our Parish",
+          "url": "/our-parish",
+          "description": "Our history, our people, our home",
+          "readTime": 6,
+          "order": 9
+        },
+        {
+          "key": "catechesis",
+          "title": "Catechesis Series",
+          "url": "/catechesis",
+          "description": "Recorded talks and study materials",
+          "readTime": 5,
+          "order": 10
+        },
+        {
+          "key": "bible-study",
+          "title": "Bible Study",
+          "url": "/bible-study",
+          "description": "Weekly verse-by-verse study, open to all",
+          "readTime": 5,
+          "order": 11
+        }
+      ]
+    }
+  ],
+  "milestones": [
+    { "pct": 0,   "label": "Your journey begins." },
+    { "pct": 20,  "label": "You have entered the narthex." },
+    { "pct": 40,  "label": "You stand before the iconostasis." },
+    { "pct": 60,  "label": "You have kept vigil through the night." },
+    { "pct": 80,  "label": "You approach the Holy Table." },
+    { "pct": 100, "label": "You have completed the journey." }
+  ]
+}

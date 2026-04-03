@@ -270,6 +270,50 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   .footer-addr{text-align:center}
   body{font-size:18px;line-height:1.8}
 }
+
+/* ── JOURNEY WIDGET ── */
+.jw-bar{position:fixed;bottom:0;left:0;right:0;z-index:300;background:var(--apse);border-top:1px solid rgba(184,131,40,.25);padding:.75rem 2rem;display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap;transform:translateY(0);transition:transform .3s cubic-bezier(.22,1,.36,1)}
+.jw-bar.jw-hidden{transform:translateY(100%)}
+.jw-label{font-family:var(--f-ui);font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(184,131,40,.65);white-space:nowrap;flex-shrink:0}
+.jw-check-btn{font-family:var(--f-ui);font-size:.52rem;letter-spacing:.14em;text-transform:uppercase;background:none;border:1px solid rgba(246,241,232,.25);color:rgba(246,241,232,.75);padding:.38rem .85rem;cursor:pointer;transition:all .18s;white-space:nowrap;flex-shrink:0}
+.jw-check-btn:hover{border-color:rgba(246,241,232,.6);color:rgba(246,241,232,1)}
+.jw-check-btn.jw-done{background:rgba(61,107,94,.25);border-color:var(--verdigris);color:var(--verdigris)}
+.jw-note-toggle{font-family:var(--f-ui);font-size:.52rem;letter-spacing:.14em;text-transform:uppercase;background:none;border:none;color:rgba(246,241,232,.45);padding:.38rem .65rem;cursor:pointer;transition:color .18s;white-space:nowrap;flex-shrink:0}
+.jw-note-toggle:hover{color:rgba(246,241,232,.8)}
+.jw-note-toggle.jw-has-note{color:rgba(184,131,40,.75)}
+.jw-spacer{flex:1}
+.jw-journey-link{font-family:var(--f-ui);font-size:.5rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,232,.3);text-decoration:none;transition:color .18s;white-space:nowrap;flex-shrink:0}
+.jw-journey-link:hover{color:rgba(246,241,232,.65)}
+.jw-drawer{position:fixed;bottom:0;left:0;right:0;z-index:299;background:var(--apse);border-top:1px solid rgba(184,131,40,.2);padding:1.25rem 2rem 5rem;transform:translateY(100%);transition:transform .32s cubic-bezier(.22,1,.36,1)}
+.jw-drawer.jw-open{transform:translateY(0)}
+.jw-drawer-label{font-family:var(--f-ui);font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(184,131,40,.65);display:block;margin-bottom:.65rem}
+.jw-textarea{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:rgba(246,241,232,.9);font-family:var(--f-body);font-size:1rem;line-height:1.65;padding:.75rem 1rem;resize:vertical;min-height:80px;max-height:180px;outline:none;transition:border-color .18s}
+.jw-textarea:focus{border-color:rgba(184,131,40,.5)}
+.jw-textarea::placeholder{color:rgba(246,241,232,.3)}
+.jw-drawer-actions{display:flex;gap:.75rem;margin-top:.65rem;align-items:center}
+.jw-save-btn{font-family:var(--f-ui);font-size:.5rem;letter-spacing:.14em;text-transform:uppercase;background:var(--maroon);border:none;color:var(--vellum);padding:.42rem 1rem;cursor:pointer;transition:background .18s}
+.jw-save-btn:hover{background:var(--maroon-deep)}
+.jw-close-btn{font-family:var(--f-ui);font-size:.5rem;letter-spacing:.12em;text-transform:uppercase;background:none;border:none;color:rgba(246,241,232,.4);cursor:pointer;transition:color .18s;padding:.42rem .5rem}
+.jw-close-btn:hover{color:rgba(246,241,232,.75)}
+.jw-saved-msg{font-family:var(--f-body);font-style:italic;font-size:.85rem;color:rgba(61,107,94,.85);opacity:0;transition:opacity .3s}
+.jw-saved-msg.jw-show{opacity:1}
+@media(max-width:680px){.jw-bar{padding:.65rem 1.25rem;gap:.75rem}.jw-journey-link{display:none}.jw-drawer{padding:1rem 1.25rem 5rem}}
+/* Compact mode — pages with floating pill nav */
+.jw-bar.jw-compact{left:auto;right:1.25rem;bottom:1.5rem;width:auto;border-radius:100px;padding:.35rem .5rem;gap:.3rem;border:1px solid rgba(184,131,40,.35);box-shadow:0 4px 24px rgba(21,8,4,.5)}
+.jw-bar.jw-compact .jw-label,.jw-bar.jw-compact .jw-spacer,.jw-bar.jw-compact .jw-journey-link{display:none}
+.jw-bar.jw-compact .jw-check-btn{font-size:0;width:30px;height:30px;padding:0;border-radius:50%;display:flex;align-items:center;justify-content:center;border-color:rgba(246,241,232,.2)}
+.jw-bar.jw-compact .jw-check-btn::before{content:'\2713';font-size:.8rem;font-family:var(--f-ui);letter-spacing:0}
+.jw-bar.jw-compact .jw-note-toggle{font-size:0;width:28px;height:28px;padding:0;display:flex;align-items:center;justify-content:center}
+.jw-bar.jw-compact .jw-note-toggle::before{content:'\270E';font-size:.82rem}
+@media(max-width:680px){.jw-bar.jw-compact{right:1rem;bottom:1.5rem}}
+.jw-bar.jw-compact.jw-hidden{transform:none;opacity:0;pointer-events:none}
+/* Note card — saved state */
+.jw-note-card{display:none;background:var(--vellum);color:var(--ink);font-family:var(--f-body);font-size:1rem;line-height:1.65;padding:.75rem 1rem;min-height:80px;white-space:pre-wrap;word-break:break-word}
+.jw-note-card.jw-card-visible{display:block}
+.jw-hidden-input{display:none}
+.jw-edit-btn{display:none;font-family:var(--f-ui);font-size:.5rem;letter-spacing:.12em;text-transform:uppercase;background:none;border:none;color:rgba(246,241,232,.4);cursor:pointer;transition:color .18s;padding:.42rem .5rem}
+.jw-edit-btn:hover{color:rgba(246,241,232,.75)}
+.jw-edit-btn.jw-visible{display:inline-block}
 </style>
 <link rel="stylesheet" href="/styles/typography.css">
 </head>
@@ -1053,5 +1097,147 @@ function sheetJump(id){
   });
 })();
 </script>
+<script>
+(function() {
+  var PAGE_KEY = 'our-beliefs';
+  var STORE_KEY = 'spp_journey_' + PAGE_KEY;
+
+  function getState() {
+    try { return JSON.parse(localStorage.getItem(STORE_KEY) || '{}'); } catch { return {}; }
+  }
+  function saveState(s) {
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(s)); } catch {}
+  }
+
+  function jwInit() {
+    var s = getState();
+    var btn = document.getElementById('jw-check-btn');
+    var noteToggle = document.getElementById('jw-note-toggle');
+    var textarea = document.getElementById('jw-textarea');
+    if (!btn) return;
+
+    if (s.completed) {
+      btn.classList.add('jw-done');
+      btn.textContent = '\u2713 Read';
+    }
+    if (s.notes && s.notes.trim()) {
+      noteToggle.classList.add('jw-has-note');
+      noteToggle.textContent = 'My Note \u2713';
+      if (textarea) textarea.value = s.notes;
+      jwUpdateCardView(s.notes);
+    }
+  }
+
+  function jwUpdateCardView(notes) {
+    var hasContent = notes && notes.trim();
+    var card = document.getElementById('jw-note-card');
+    var textarea = document.getElementById('jw-textarea');
+    var saveBtn = document.querySelector('.jw-save-btn');
+    var editBtn = document.getElementById('jw-edit-btn');
+    if (hasContent) {
+      if (card) { card.textContent = notes; card.classList.add('jw-card-visible'); }
+      if (textarea) textarea.classList.add('jw-hidden-input');
+      if (saveBtn) saveBtn.style.display = 'none';
+      if (editBtn) editBtn.classList.add('jw-visible');
+    } else {
+      if (card) card.classList.remove('jw-card-visible');
+      if (textarea) textarea.classList.remove('jw-hidden-input');
+      if (saveBtn) saveBtn.style.display = '';
+      if (editBtn) editBtn.classList.remove('jw-visible');
+    }
+  }
+
+  window.jwEditNote = function() {
+    var card = document.getElementById('jw-note-card');
+    var textarea = document.getElementById('jw-textarea');
+    var saveBtn = document.querySelector('.jw-save-btn');
+    var editBtn = document.getElementById('jw-edit-btn');
+    if (card) card.classList.remove('jw-card-visible');
+    if (textarea) { textarea.classList.remove('jw-hidden-input'); }
+    if (saveBtn) saveBtn.style.display = '';
+    if (editBtn) editBtn.classList.remove('jw-visible');
+  };
+
+  window.jwToggleDone = function() {
+    var s = getState();
+    s.completed = !s.completed;
+    if (s.completed) s.completedAt = new Date().toISOString();
+    else delete s.completedAt;
+    saveState(s);
+    var btn = document.getElementById('jw-check-btn');
+    btn.classList.toggle('jw-done', s.completed);
+    btn.textContent = s.completed ? '\u2713 Read' : 'Mark as Read';
+  };
+
+  window.jwToggleDrawer = function() {
+    var drawer = document.getElementById('jw-drawer');
+    var bar = document.getElementById('jw-bar');
+    var isOpen = drawer.classList.contains('jw-open');
+    drawer.classList.toggle('jw-open', !isOpen);
+    bar.classList.toggle('jw-hidden', !isOpen);
+    if (!isOpen) {
+      var textarea = document.getElementById('jw-textarea');
+      if (textarea) textarea.focus();
+    }
+  };
+
+  window.jwCloseDrawer = function() {
+    document.getElementById('jw-drawer').classList.remove('jw-open');
+    document.getElementById('jw-bar').classList.remove('jw-hidden');
+  };
+
+  window.jwSaveNote = function() {
+    var textarea = document.getElementById('jw-textarea');
+    var noteToggle = document.getElementById('jw-note-toggle');
+    var savedMsg = document.getElementById('jw-saved-msg');
+    if (!textarea) return;
+    var s = getState();
+    s.notes = textarea.value;
+    saveState(s);
+    var hasNote = s.notes && s.notes.trim();
+    noteToggle.classList.toggle('jw-has-note', !!hasNote);
+    noteToggle.textContent = hasNote ? 'My Note \u2713' : 'Add a Note';
+    if (savedMsg) {
+      savedMsg.classList.add('jw-show');
+      setTimeout(function() { savedMsg.classList.remove('jw-show'); }, 2000);
+    }
+    jwUpdateCardView(s.notes);
+  };
+
+  document.addEventListener('DOMContentLoaded', function() {
+    jwInit();
+    if (document.querySelector('.nav-pill, .mob-pill')) {
+      var b = document.getElementById('jw-bar');
+      if (b) b.classList.add('jw-compact');
+    }
+    var textarea = document.getElementById('jw-textarea');
+    if (textarea) {
+      textarea.addEventListener('blur', function() {
+        if (textarea.value !== (getState().notes || '')) window.jwSaveNote();
+      });
+    }
+  });
+})();
+</script>
+<!-- ── JOURNEY WIDGET ── -->
+<div class="jw-drawer" id="jw-drawer">
+  <span class="jw-drawer-label">My Reflection &mdash; Our Beliefs</span>
+  <textarea class="jw-textarea" id="jw-textarea" placeholder="What struck you on this page? Any questions that arose? Write as little or as much as you like."></textarea>
+  <div class="jw-note-card" id="jw-note-card"></div>
+  <div class="jw-drawer-actions">
+    <button class="jw-save-btn" onclick="jwSaveNote()">Save Note</button>
+    <button class="jw-edit-btn" id="jw-edit-btn" onclick="jwEditNote()">Edit</button>
+    <button class="jw-close-btn" onclick="jwCloseDrawer()">Close</button>
+    <span class="jw-saved-msg" id="jw-saved-msg">Saved</span>
+  </div>
+</div>
+
+<div class="jw-bar" id="jw-bar">
+  <span class="jw-label">My Journey</span>
+  <button class="jw-check-btn" id="jw-check-btn" onclick="jwToggleDone()">Mark as Read</button>
+  <button class="jw-note-toggle" id="jw-note-toggle" onclick="jwToggleDrawer()">Add a Note</button>
+  <div class="jw-spacer"></div>
+  <a href="/my-journey" class="jw-journey-link">View My Journey &rarr;</a>
+</div>
 </body>
 </html>

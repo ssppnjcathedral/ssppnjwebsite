@@ -401,6 +401,20 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 .nav-drawer-give{margin:1.25rem 1.75rem;display:block;text-align:center;font-family:var(--f-ui);font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;padding:.85rem;background:var(--maroon);color:var(--vellum);transition:background .2s}
 .nav-drawer-give:hover{background:var(--maroon-deep)}
 @media(max-width:1100px){.nav-links{display:none}.nav-hamburger{display:flex}.nav-give{display:none}}
+/* ── PRINT PERSONALIZATION MODAL ── */
+.print-modal-overlay{display:none;position:fixed;inset:0;background:rgba(21,8,4,.75);z-index:500;align-items:center;justify-content:center;padding:1.5rem}
+.print-modal-overlay.open{display:flex}
+.print-modal{background:var(--vellum);max-width:460px;width:100%;padding:2.5rem}
+.print-modal-title{font-family:var(--f-display);font-weight:300;font-size:1.8rem;color:var(--apse);margin-bottom:.25rem}
+.print-modal-sub{font-family:var(--f-display);font-style:italic;font-size:1rem;color:var(--stone);display:block;margin-bottom:1.75rem}
+.print-modal-field{margin-bottom:1.1rem}
+.print-modal-label{font-family:var(--f-ui);font-size:.52rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.4rem}
+.print-modal-input{width:100%;padding:.65rem .85rem;border:1px solid rgba(59,15,24,.2);background:white;font-family:var(--f-body);font-size:1rem;color:var(--ink);outline:none}
+.print-modal-input:focus{border-color:var(--maroon)}
+.print-modal-actions{display:flex;gap:.75rem;margin-top:1.5rem;flex-wrap:wrap}
+.print-modal-btn{font-family:var(--f-ui);font-size:.52rem;letter-spacing:.14em;text-transform:uppercase;padding:.65rem 1.25rem;cursor:pointer;border:none;flex:1}
+.print-modal-btn.primary{background:var(--maroon);color:var(--vellum)}
+.print-modal-btn.secondary{background:none;border:1px solid rgba(59,15,24,.2);color:var(--stone)}
 </style>
   <link rel="stylesheet" href="/styles/typography.css">
 </head>
@@ -738,6 +752,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   <div class="cbar-right">
     <button class="cbar-edit-link" onclick="openRuleModal()">Edit Rule</button>
     <button class="cbar-rule-btn" id="rule-view-btn" onclick="handleRuleViewToggle()">&#9733; My Rule</button>
+    <button class="cbar-rule-btn" onclick="openPrintModal()" id="print-rule-btn" title="Print My Rule">&#128438; Print</button>
     <button class="cbar-dark-btn" id="cbar-dark-btn" onclick="toggleDark()" aria-label="Toggle dark mode">&#9790;</button>
   </div>
 </div>
@@ -1597,7 +1612,8 @@ const SIDEBAR = {
 function renderSidebar(){
   const sidebar=document.getElementById('prayers-sidebar');
   if(!sidebar) return;
-  let html=`<div id="sb-default">
+  let html=`<div id="feast-suggestion" style="display:none;margin-bottom:1.25rem"></div>
+  <div id="sb-default">
     <span class="sb-tag">Orthodox Prayer Life</span>
     <div class="sb-rule"></div>
     <p class="sb-body">Each prayer here carries centuries of theological meaning. Scroll through the prayers and this panel will explain where each one comes from and why the Church has treasured it for generations.</p>
@@ -1697,6 +1713,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   renderSheet();
   initCounters();
   initDark();
+  checkFeastDay();
   showTimeBanner();
   updateProgress();
   initSidebarObserver();
@@ -1706,7 +1723,189 @@ document.addEventListener('DOMContentLoaded',()=>{
     if(e.target===e.currentTarget) closeRuleModal();
   });
 });
+
+// ─────────────────────────────────────────────
+//  FEAST DAY SUGGESTION
+// ─────────────────────────────────────────────
+async function checkFeastDay() {
+  try {
+    var today = new Date();
+    var y = today.getFullYear();
+    var m = String(today.getMonth() + 1).padStart(2, '0');
+    var d = String(today.getDate()).padStart(2, '0');
+    var key = y + '-' + m + '-' + d;
+    var resp = await fetch('/_data/calendar-' + y + '.json');
+    var cal = await resp.json();
+    if (!cal || !cal.days || !cal.days[key]) return;
+    var day = cal.days[key];
+    var level = day.feastLevel || 0;
+    if (level < 4) return;
+    var name = day.feast || (day.saints && day.saints[0]) || '';
+    if (!name) return;
+    var el = document.getElementById('feast-suggestion');
+    if (!el) return;
+    el.innerHTML = `<span class="sb-tag">Today &mdash; Feast Day</span>
+      <div class="sb-rule"></div>
+      <span class="sb-head">${name}</span>
+      <p class="sb-body">Today the Church commemorates ${name}. Consider adding the troparion for this feast to your rule for today.</p>`;
+    el.style.display = 'block';
+  } catch {}
+}
+
+// ─────────────────────────────────────────────
+//  PRAYER RULE PRINT DOCUMENT
+// ─────────────────────────────────────────────
+function openPrintModal() {
+  var rule = getRule();
+  if (rule.length === 0) {
+    alert('Add some prayers to My Rule first, then print.');
+    return;
+  }
+  try {
+    var savedName = localStorage.getItem('spp_rule_name') || '';
+    var savedDate = localStorage.getItem('spp_rule_begun') || '';
+    document.getElementById('print-name').value = savedName;
+    document.getElementById('print-date').value = savedDate;
+  } catch {}
+  document.getElementById('print-modal-overlay').classList.add('open');
+}
+
+function closePrintModal(e) {
+  if (!e || e.target === document.getElementById('print-modal-overlay')) {
+    document.getElementById('print-modal-overlay').classList.remove('open');
+  }
+}
+
+function generatePrint() {
+  var name = document.getElementById('print-name').value.trim();
+  var date = document.getElementById('print-date').value.trim();
+
+  try {
+    localStorage.setItem('spp_rule_name', name);
+    localStorage.setItem('spp_rule_begun', date);
+  } catch {}
+
+  var rule = getRule();
+  var rulePrayers = rule.map(function(id) {
+    return PRAYERS.find(function(p) { return p.id === id; });
+  }).filter(Boolean);
+
+  var html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="color-scheme" content="light only">
+<title>My Rule of Prayer${name ? ' \u2014 ' + name : ''}</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--vellum:#F6F1E8;--maroon:#7B1D2A;--apse:#3B0F18;--gold:#B88328;--stone:#7A6648;--ink:#2C1F16;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{color-scheme:light only;}
+  body{background:var(--vellum);color:var(--ink);font-family:'EB Garamond',Georgia,serif;font-size:12pt;line-height:1.75;padding:0;}
+  .page{max-width:680px;margin:0 auto;padding:2.5cm 2cm;}
+  .header{text-align:center;padding-bottom:1.5rem;border-bottom:1px solid rgba(123,29,42,.25);margin-bottom:2rem;}
+  .header-parish{font-family:'Cinzel',serif;font-size:7pt;letter-spacing:.2em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.75rem;}
+  .header-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:26pt;color:var(--apse);line-height:1.05;margin-bottom:.2rem;}
+  .header-name{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13pt;color:var(--stone);}
+  .rubric-block{background:rgba(184,131,40,.07);border-left:3px solid var(--gold);padding:.9rem 1.1rem;margin-bottom:2rem;}
+  .rubric-label{font-family:'Cinzel',serif;font-size:6.5pt;letter-spacing:.2em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.35rem;}
+  .rubric-text{font-family:'EB Garamond',Georgia,serif;font-style:italic;font-size:10pt;color:var(--ink);line-height:1.65;}
+  .prayer{margin-bottom:2rem;padding-bottom:2rem;border-bottom:1px solid rgba(123,29,42,.12);}
+  .prayer:last-child{border-bottom:none;}
+  .prayer-title{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:14pt;color:var(--maroon);margin-bottom:.3rem;line-height:1.2;}
+  .prayer-rubric{font-family:'EB Garamond',Georgia,serif;font-style:italic;font-size:10pt;color:var(--stone);margin-bottom:.6rem;}
+  .prayer-text{font-family:'EB Garamond',Georgia,serif;font-size:11pt;line-height:1.82;color:var(--ink);}
+  .prayer-text p{margin-bottom:.6rem;}
+  .prayer-text p:last-child{margin-bottom:0;}
+  .group-item{margin-bottom:1rem;padding-bottom:1rem;border-bottom:1px solid rgba(123,29,42,.07);}
+  .group-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+  .group-item-name{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:12pt;color:var(--maroon);margin-bottom:.25rem;}
+  .blessing{margin-top:3rem;padding-top:1.5rem;border-top:1px solid rgba(123,29,42,.18);display:flex;justify-content:space-between;align-items:flex-end;}
+  .blessing-text{font-family:'EB Garamond',Georgia,serif;font-style:italic;font-size:9.5pt;color:var(--stone);}
+  .sig-line{text-align:center;width:180px;}
+  .sig-line-rule{border-top:1px solid rgba(123,29,42,.3);margin-bottom:.3rem;}
+  .sig-line-label{font-family:'Cinzel',serif;font-size:6pt;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);}
+  @media print{body{background:white;}@page{margin:2cm 1.8cm;}}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <span class="header-parish">Saints Peter &amp; Paul Orthodox Cathedral &middot; Jersey City, NJ</span>
+    <div class="header-title">A Rule of Prayer</div>
+    ${name || date ? `<div class="header-name">${name ? 'For ' + name : ''}${name && date ? ' &middot; ' : ''}${date ? 'begun ' + date : ''}</div>` : ''}
+  </div>
+
+  <div class="rubric-block">
+    <span class="rubric-label">Before beginning</span>
+    <div class="rubric-text">Stand facing east if possible. Make the sign of the cross three times. Light a candle before your icon if you are able. Still your mind and heart before you begin to speak.</div>
+  </div>`;
+
+  rulePrayers.forEach(function(p) {
+    html += `<div class="prayer">`;
+    html += `<div class="prayer-title">${p.title}</div>`;
+    if (p.rubric) html += `<div class="prayer-rubric">${p.rubric}</div>`;
+    if (p.isGroup && p.prayers) {
+      p.prayers.forEach(function(gp) {
+        html += `<div class="group-item">`;
+        html += `<div class="group-item-name">${gp.name}</div>`;
+        if (gp.rubric) html += `<div class="prayer-rubric">${gp.rubric}</div>`;
+        var ptext = gp.text.split('\n\n').map(function(para) {
+          return '<p>' + para.trim().replace(/\n/g, '<br>') + '</p>';
+        }).join('');
+        html += `<div class="prayer-text">${ptext}</div>`;
+        html += `</div>`;
+      });
+    } else if (p.text) {
+      var ptext = p.text.split('\n\n').map(function(para) {
+        return '<p>' + para.trim().replace(/\n/g, '<br>') + '</p>';
+      }).join('');
+      html += `<div class="prayer-text">${ptext}</div>`;
+    }
+    html += `</div>`;
+  });
+
+  html += `
+  <div class="blessing">
+    <div class="blessing-text">This rule carries the blessing of:</div>
+    <div class="sig-line">
+      <div class="sig-line-rule"></div>
+      <div class="sig-line-label">Fr. Solomon Longo</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>`;
+
+  var win = window.open('', '_blank');
+  win.document.write(html);
+  win.document.close();
+  win.focus();
+  setTimeout(function() { win.print(); }, 600);
+
+  document.getElementById('print-modal-overlay').classList.remove('open');
+}
 </script>
+<!-- ── PRINT PERSONALIZATION MODAL ── -->
+<div class="print-modal-overlay" id="print-modal-overlay" onclick="closePrintModal(event)">
+  <div class="print-modal">
+    <div class="print-modal-title">Print My Rule</div>
+    <span class="print-modal-sub">Personalize your prayer rule document</span>
+    <div class="print-modal-field">
+      <label class="print-modal-label">Your Name (optional)</label>
+      <input class="print-modal-input" type="text" id="print-name" placeholder="e.g. Catherine">
+    </div>
+    <div class="print-modal-field">
+      <label class="print-modal-label">Beginning This Rule</label>
+      <input class="print-modal-input" type="text" id="print-date" placeholder="e.g. April 2026">
+    </div>
+    <div class="print-modal-actions">
+      <button class="print-modal-btn primary" onclick="generatePrint()">Generate Document</button>
+      <button class="print-modal-btn secondary" onclick="closePrintModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+
 <script>
 function drToggle(head){
   var section=head.parentElement;
