@@ -684,6 +684,95 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   </div>
 </nav>
 
+<div class="nav-drawer-overlay" id="nav-overlay" onclick="closeDrawer()"></div>
+<div class="nav-drawer" id="nav-drawer">
+  <div class="nav-drawer-head">
+    <div class="nav-drawer-logo">Sts. Peter &amp; Paul<span>Orthodox Cathedral &middot; Jersey City</span></div>
+    <button class="nav-drawer-close" onclick="closeDrawer()">&#x2715;</button>
+  </div>
+  <div class="dr-accordion" id="dr-accordion">
+
+    <div class="dr-section" data-photo="sspp-exterior" data-label="About Us" data-quote="A century of faith on Grand Street.">
+      <div class="dr-section-head" onclick="drToggle(this)">
+        <span class="dr-section-name">About Us</span>
+        <span class="dr-section-toggle">+</span>
+      </div>
+      <div class="dr-section-links">
+        <a href="/our-parish" class="dr-link"><span class="dr-link-name">Our Parish</span><span class="dr-link-sub">Our history, our people, our home</span></a>
+        <a href="/church-history" class="dr-link"><span class="dr-link-name">Church History</span><span class="dr-link-sub">A century of faith in Jersey City</span></a>
+        <a href="/our-beliefs" class="dr-link"><span class="dr-link-name">Our Beliefs</span><span class="dr-link-sub">What we confess and why it matters</span></a>
+        <a href="/administration" class="dr-link"><span class="dr-link-name">Administration</span><span class="dr-link-sub">Staff and parish leadership</span></a>
+        <a href="/council" class="dr-link"><span class="dr-link-name">Parish Council</span><span class="dr-link-sub">The elected lay leadership</span></a>
+        <a href="/bylaws" class="dr-link"><span class="dr-link-name">Bylaws</span><span class="dr-link-sub">Our governing documents</span></a>
+      </div>
+    </div>
+
+    <div class="dr-section" data-photo="sspp-welcome" data-label="Inquirers" data-quote="Exploring the ancient Faith?">
+      <div class="dr-section-head" onclick="drToggle(this)">
+        <span class="dr-section-name">Inquirers</span>
+        <span class="dr-section-toggle">+</span>
+      </div>
+      <div class="dr-section-links">
+        <a href="/about-orthodoxy" class="dr-link"><span class="dr-link-name">About Orthodoxy</span><span class="dr-link-sub">The ancient Christian faith and its teachings</span></a>
+        <a href="/our-beliefs" class="dr-link"><span class="dr-link-name">Our Beliefs</span><span class="dr-link-sub">What we confess and why it matters</span></a>
+        <a href="/catechesis" class="dr-link"><span class="dr-link-name">Catechesis Series</span><span class="dr-link-sub">Recorded talks and study materials</span></a>
+        <a href="/catechesis-history" class="dr-link"><span class="dr-link-name">Catechesis History</span><span class="dr-link-sub">Formation for those entering the Church</span></a>
+        <a href="/bible-study" class="dr-link"><span class="dr-link-name">Bible Study</span><span class="dr-link-sub">Weekly verse-by-verse study, open to all</span></a>
+        <a href="/fasting" class="dr-link"><span class="dr-link-name">Fasting</span><span class="dr-link-sub">The history and practice of Orthodox fasting</span></a>
+        <a href="/visit" class="dr-link"><span class="dr-link-name">Visitor Guide</span><span class="dr-link-sub">Everything you need before you arrive</span></a>
+        <a href="/contact-us" class="dr-link"><span class="dr-link-name">Contact Us</span><span class="dr-link-sub">Reach Fr. Solomon and the parish office</span></a>
+      </div>
+    </div>
+
+    <div class="dr-section" data-photo="sspp-calendar" data-label="Calendar" data-quote="The rhythm of the Church's year.">
+      <div class="dr-section-head" onclick="drToggle(this)">
+        <span class="dr-section-name">Calendar</span>
+        <span class="dr-section-toggle">+</span>
+      </div>
+      <div class="dr-section-links">
+        <a href="/divine-liturgy" class="dr-link"><span class="dr-link-name">Divine Liturgy</span><span class="dr-link-sub">Every Sunday, 9:30 AM</span></a>
+        <a href="/vespers" class="dr-link"><span class="dr-link-name">Great Vespers</span><span class="dr-link-sub">Every Saturday, 5:00 PM</span></a>
+        <a href="/schedule" class="dr-link"><span class="dr-link-name">Full Liturgical Calendar</span><span class="dr-link-sub">Feasts, fasts, and the Church year</span></a>
+        <a href="/readings" class="dr-link"><span class="dr-link-name">Daily Readings</span><span class="dr-link-sub">Scripture appointed for each day</span></a>
+        <a href="/saints" class="dr-link"><span class="dr-link-name">Saints of the Day</span><span class="dr-link-sub">Lives of those commemorated today</span></a>
+        <a href="/prologue" class="dr-link"><span class="dr-link-name">The Prologue</span><span class="dr-link-sub">Daily readings from the Prologue of Ohrid</span></a>
+      </div>
+    </div>
+
+    <div class="dr-section" data-photo="sspp-community" data-label="Parish Life" data-quote="A family that shares a life.">
+      <div class="dr-section-head" onclick="drToggle(this)">
+        <span class="dr-section-name">Parish Life</span>
+        <span class="dr-section-toggle">+</span>
+      </div>
+      <div class="dr-section-links">
+        <a href="/news" class="dr-link"><span class="dr-link-name">News &amp; Announcements</span><span class="dr-link-sub">What's happening at the parish</span></a>
+        <a href="/bulletins" class="dr-link"><span class="dr-link-name">Parish Bulletins</span><span class="dr-link-sub">Weekly reflections from Fr. Solomon</span></a>
+        <a href="/gallery" class="dr-link"><span class="dr-link-name">Gallery</span><span class="dr-link-sub">Photos from parish life and worship</span></a>
+        <a href="/videos" class="dr-link"><span class="dr-link-name">Videos</span><span class="dr-link-sub">Lectures, services, and parish life</span></a>
+        <a href="/cemeteries" class="dr-link"><span class="dr-link-name">Cemeteries</span><span class="dr-link-sub">Our historic parish cemeteries</span></a>
+        <a href="/give" class="dr-link"><span class="dr-link-name">Give &amp; Support</span><span class="dr-link-sub">Projects, drives, and ongoing stewardship</span></a>
+      </div>
+    </div>
+
+    <div class="dr-section" data-photo="sspp-interior" data-label="Worship" data-quote="The living tradition of the Church.">
+      <div class="dr-section-head" onclick="drToggle(this)">
+        <span class="dr-section-name">Worship</span>
+        <span class="dr-section-toggle">+</span>
+      </div>
+      <div class="dr-section-links">
+        <a href="/divine-liturgy" class="dr-link"><span class="dr-link-name">About the Divine Liturgy</span><span class="dr-link-sub">History, structure, and meaning</span></a>
+        <a href="/vespers" class="dr-link"><span class="dr-link-name">About Vespers</span><span class="dr-link-sub">The ancient evening prayer of the Church</span></a>
+        <a href="/liturgy-history" class="dr-link"><span class="dr-link-name">History of the Liturgy</span><span class="dr-link-sub">How the Divine Liturgy developed</span></a>
+        <a href="/liturgy-book" class="dr-link"><span class="dr-link-name">Liturgy Book</span><span class="dr-link-sub">Full text for the Divine Liturgy</span></a>
+        <a href="/vespers-book" class="dr-link"><span class="dr-link-name">Vespers Book</span><span class="dr-link-sub">Full text for Great Vespers</span></a>
+        <a href="/prayers" class="dr-link"><span class="dr-link-name">Daily Prayers</span><span class="dr-link-sub">The daily prayer rule of the Orthodox Church</span></a>
+      </div>
+    </div>
+
+  </div>
+  <a href="https://tithe.ly/give?c=5004259" target="_blank" class="nav-drawer-give">Give Online</a>
+</div>
+
 <!-- HERO -->
 <div class="page-hero">
   <div class="page-hero-inner">
