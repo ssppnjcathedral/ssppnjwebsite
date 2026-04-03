@@ -222,13 +222,13 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 .footer-copy,.footer-addr{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.60)}
 .footer-addr{text-align:right}
 /* FLOATING PILL */
-.mob-pill{display:flex;position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);background:var(--apse);border:1px solid rgba(184,131,40,.20);border-radius:100px;padding:.5rem .85rem;z-index:150;align-items:center;gap:.5rem;box-shadow:0 6px 30px rgba(21,8,4,.38);opacity:0;transition:opacity .4s}
+.mob-pill{display:flex;position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);background:var(--apse);border:1px solid rgba(184,131,40,.20);border-radius:100px;padding:.5rem .85rem;z-index:150;align-items:center;gap:.5rem;box-shadow:0 6px 30px rgba(21,8,4,.38);max-width:calc(100vw - 6rem);opacity:0;transition:opacity .4s}
 .mob-pill.pill-visible{opacity:1}
 .mob-pill-arrow,.mob-pill-dark{background:rgba(255,255,255,.06);border:none;color:rgba(246,241,232,.60);cursor:pointer;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:all .18s;flex-shrink:0;font-size:.95rem}
 .mob-pill-arrow{font-size:1.05rem}
 .mob-pill-arrow:hover:not(:disabled),.mob-pill-dark:hover{background:rgba(255,255,255,.14);color:#fff}
 .mob-pill-arrow:disabled{opacity:.22;cursor:default}
-.mob-pill-label{font-family:var(--f-ui);font-size:.56rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.80);padding:.3rem .65rem;display:flex;align-items:center;gap:.4rem;min-width:120px;justify-content:center;cursor:pointer;transition:color .18s}
+.mob-pill-label{font-family:var(--f-ui);font-size:.56rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.80);padding:.3rem .65rem;display:flex;align-items:center;gap:.4rem;min-width:120px;justify-content:center;white-space:nowrap;cursor:pointer;transition:color .18s}
 .mob-pill-label:hover{color:#fff}
 .mob-pill-dark.dm-active{color:var(--gold-lt);background:rgba(184,131,40,.18)}
 /* BOTTOM SHEET */
@@ -3102,6 +3102,7 @@ footer .btn-outline:hover{background:rgba(246,241,232,.15);color:#fff;border-col
       </ul>
       <span class="footer-nav-sub">My Parish</span>
       <a href="/my-journey" class="footer-my-journey">My Journey</a>
+      <a href="/my-profile" class="footer-my-journey" style="margin-left:.5rem">My Profile</a>
       <span class="footer-nav-sub">Connect</span>
       <p class="footer-meta" style="line-height:2.2">
         Vespers &middot; Saturdays 5:00 PM<br>
@@ -3218,7 +3219,7 @@ function onScroll(){
   sbPanels.forEach(panel=>panel.classList.toggle('sb-active',panel.dataset.panel===s.panel));
 
   // Pill label + arrows
-  if(pillLabel)pillLabel.textContent=s.label;
+  if(pillLabel)pillLabel.textContent=s.label.replace(/^[IVXLC]+\.\s*/,'');
   if(pillPrev)pillPrev.disabled=idx===0;
   if(pillNext)pillNext.disabled=idx===SECTIONS.length-1;
 

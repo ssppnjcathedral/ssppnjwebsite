@@ -395,8 +395,45 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 .nav-drawer-give{margin:1.25rem 1.75rem;display:block;text-align:center;font-family:var(--f-ui);font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;padding:.85rem;background:var(--maroon);color:var(--vellum);transition:background .2s}
 .nav-drawer-give:hover{background:var(--maroon-deep)}
 @media(max-width:1100px){.nav-links{display:none}.nav-hamburger{display:flex}.nav-give{display:none}}
+
+/* ── VISITING ORTHODOX MODAL ── */
+.vm-overlay{display:none;position:fixed;inset:0;background:rgba(21,8,4,.75);z-index:500;align-items:center;justify-content:center;padding:1.5rem}
+.vm-overlay.open{display:flex}
+.vm-box{background:var(--vellum);max-width:560px;width:100%;max-height:92vh;overflow-y:auto;position:relative}
+.vm-header{background:var(--apse);padding:1.75rem 2rem 1.5rem;text-align:center}
+.vm-cross{font-size:1.4rem;color:var(--gold);display:block;margin-bottom:.5rem}
+.vm-title{font-family:var(--f-display);font-weight:300;font-size:1.7rem;color:var(--vellum);margin-bottom:.2rem}
+.vm-sub{font-family:var(--f-display);font-style:italic;font-size:.95rem;color:rgba(246,241,232,.55)}
+.vm-body{padding:1.75rem 2rem}
+.vm-close{position:absolute;top:1rem;right:1rem;background:none;border:none;color:rgba(246,241,232,.45);font-size:1.1rem;cursor:pointer;line-height:1;transition:color .14s}
+.vm-close:hover{color:rgba(246,241,232,.85)}
+.vm-section-head{font-family:var(--f-ui);font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;color:var(--maroon);display:block;padding-bottom:.5rem;border-bottom:1px solid rgba(123,29,42,.15);margin:.1rem 0 1rem}
+.vm-row{display:grid;gap:1rem;margin-bottom:1rem}
+.vm-row.col-2{grid-template-columns:1fr 1fr}
+.vm-row.col-1{grid-template-columns:1fr}
+.vm-field{display:flex;flex-direction:column;gap:.35rem}
+.vm-label{font-family:var(--f-ui);font-size:.5rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone)}
+.vm-label span{color:var(--maroon);margin-left:.1rem}
+.vm-input,.vm-select{padding:.65rem .85rem;border:1px solid rgba(59,15,24,.2);background:white;font-family:var(--f-body);font-size:1rem;color:var(--ink);outline:none;width:100%}
+.vm-input:focus,.vm-select:focus{border-color:var(--maroon)}
+.vm-select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237A6648' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .85rem center;background-color:white}
+.vm-radios{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.2rem}
+.vm-radio{display:flex;align-items:center;gap:.4rem;padding:.42rem .8rem;border:1px solid rgba(59,15,24,.18);background:white;cursor:pointer;font-family:var(--f-body);font-size:.9rem;color:var(--ink);transition:all .14s;user-select:none}
+.vm-radio.selected{background:var(--maroon);color:white;border-color:var(--maroon)}
+.vm-footer{padding:1.25rem 2rem 1.5rem;border-top:1px solid rgba(59,15,24,.1);background:var(--vellum-mid)}
+.vm-submit{width:100%;font-family:var(--f-ui);font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;background:var(--maroon);color:var(--vellum);border:none;padding:.85rem;cursor:pointer;margin-bottom:.65rem;transition:background .18s}
+.vm-submit:hover{background:var(--maroon-deep)}
+.vm-privacy{font-family:var(--f-body);font-style:italic;font-size:.8rem;color:var(--stone);text-align:center;line-height:1.55}
+.vm-confirm{text-align:center;padding:2rem 1rem}
+.vm-confirm-icon{font-size:2rem;color:var(--verdigris);display:block;margin-bottom:.75rem}
+.vm-confirm-title{font-family:var(--f-display);font-weight:300;font-size:1.8rem;color:var(--apse);margin-bottom:.4rem}
+.vm-confirm-body{font-family:var(--f-body);font-style:italic;font-size:1rem;color:var(--stone);line-height:1.65}
+@media(max-width:560px){.vm-row.col-2{grid-template-columns:1fr}.vm-body{padding:1.25rem 1.25rem}.vm-footer{padding:1rem 1.25rem 1.25rem}}
 </style>
   <link rel="stylesheet" href="/styles/typography.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="/supabase-client.js"></script>
+<script src="/auth.js"></script>
 </head>
 <body>
 
@@ -1044,7 +1081,8 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
       <div class="rubric-rule gold" style="margin:.5rem 0 1rem"></div>
       <h2 class="vp-contact-title">We would love<br><em>to meet you</em></h2>
       <p class="vp-contact-body">If you are wondering whether this is the right place for you, the best thing to do is simply come on a Sunday. But if you have questions first -- about the faith, about the service, about what to expect -- reach out. Fr. Solomon is glad to talk.</p>
-      <div class="vp-contact-btn" style="margin-top:2rem">
+      <div class="vp-contact-btn" style="margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap">
+        <button class="btn btn-maroon" onclick="openVisitingModal()">Let Fr. Solomon Know You&rsquo;re Coming</button>
         <a href="/contact-us" class="btn btn-outline">Send a message</a>
       </div>
     </div>
@@ -1159,6 +1197,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
       </ul>
       <span class="footer-nav-sub">My Parish</span>
       <a href="/my-journey" class="footer-my-journey">My Journey</a>
+      <a href="/my-profile" class="footer-my-journey" style="margin-left:.5rem">My Profile</a>
       <span class="footer-nav-sub">Connect</span>
       <p class="footer-meta" style="line-height:2.2">
         Vespers &middot; Saturdays 5:00 PM<br>
@@ -1397,6 +1436,166 @@ function updateNav(){
 window.addEventListener('scroll',updateNav,{passive:true});
 window.addEventListener('resize',updateNav,{passive:true});
 updateNav();
+</script>
+
+<!-- ── VISITING ORTHODOX MODAL ── -->
+<div class="vm-overlay" id="vm-overlay" onclick="vmOverlayClick(event)">
+  <div class="vm-box" id="vm-box">
+    <div class="vm-header">
+      <button class="vm-close" onclick="closeVisitingModal()" aria-label="Close">&#x2715;</button>
+      <span class="vm-cross">&#10010;</span>
+      <div class="vm-title">You Are Welcome Here</div>
+      <div class="vm-sub">Let Fr. Solomon know you will be joining us</div>
+    </div>
+    <div id="vm-form-body">
+      <div class="vm-body">
+        <span class="vm-section-head">About You</span>
+        <div class="vm-row col-2">
+          <div class="vm-field"><label class="vm-label">First Name <span>*</span></label><input class="vm-input" type="text" id="vm-first" placeholder="Constantine" required></div>
+          <div class="vm-field"><label class="vm-label">Last Name</label><input class="vm-input" type="text" id="vm-last" placeholder="(optional)"></div>
+        </div>
+        <div class="vm-row col-2">
+          <div class="vm-field"><label class="vm-label">Email <span>*</span></label><input class="vm-input" type="email" id="vm-email" placeholder="your@email.com" required></div>
+          <div class="vm-field"><label class="vm-label">Phone</label><input class="vm-input" type="tel" id="vm-phone" placeholder="(optional)"></div>
+        </div>
+        <span class="vm-section-head" style="margin-top:1.5rem">Your Parish</span>
+        <div class="vm-row col-2">
+          <div class="vm-field"><label class="vm-label">Home Parish <span>*</span></label><input class="vm-input" type="text" id="vm-parish" placeholder="St. Nicholas Orthodox Church"></div>
+          <div class="vm-field"><label class="vm-label">City &amp; State</label><input class="vm-input" type="text" id="vm-city" placeholder="Chicago, IL"></div>
+        </div>
+        <div class="vm-row col-2">
+          <div class="vm-field"><label class="vm-label">Jurisdiction <span>*</span></label>
+            <select class="vm-select" id="vm-jurisdiction">
+              <option value="">-- Select --</option>
+              <option>Antiochian Orthodox</option><option>Greek Orthodox (GOA)</option>
+              <option>OCA (Orthodox Church in America)</option><option>Russian Orthodox (ROCOR)</option>
+              <option>Serbian Orthodox</option><option>Romanian Orthodox</option>
+              <option>Bulgarian Orthodox</option><option>Other Orthodox</option>
+            </select>
+          </div>
+          <div class="vm-field"><label class="vm-label">Your Priest</label><input class="vm-input" type="text" id="vm-priest" placeholder="Fr. Dimitri Antonescu"></div>
+        </div>
+        <span class="vm-section-head" style="margin-top:1.5rem">Your Visit</span>
+        <div class="vm-row col-2">
+          <div class="vm-field"><label class="vm-label">Date of Visit <span>*</span></label><input class="vm-input" type="date" id="vm-date"></div>
+          <div class="vm-field"><label class="vm-label">Service</label>
+            <select class="vm-select" id="vm-service">
+              <option>Divine Liturgy (Sunday, 9:30 AM)</option>
+              <option>Great Vespers (Saturday, 5:00 PM)</option>
+              <option>Weekday Liturgy</option>
+            </select>
+          </div>
+        </div>
+        <div class="vm-row col-1">
+          <div class="vm-field">
+            <label class="vm-label">Do you wish to receive Holy Communion? <span>*</span></label>
+            <div class="vm-radios" id="vm-communion-radios">
+              <div class="vm-radio selected" data-val="yes" onclick="vmSelectRadio(this,'vm-communion-radios')">&#10010; Yes, I wish to commune</div>
+              <div class="vm-radio" data-val="blessing" onclick="vmSelectRadio(this,'vm-communion-radios')">I will receive a blessing</div>
+              <div class="vm-radio" data-val="unsure" onclick="vmSelectRadio(this,'vm-communion-radios')">I am not sure yet</div>
+            </div>
+          </div>
+        </div>
+        <div class="vm-row col-1" style="margin-top:.25rem">
+          <div class="vm-field">
+            <label class="vm-label">Anything Fr. Solomon should know</label>
+            <textarea class="vm-input" id="vm-note" rows="3" style="resize:vertical;line-height:1.65" placeholder="Any questions or particular circumstances -- please share them here."></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="vm-footer">
+        <button class="vm-submit" onclick="submitVisitingForm()">Send to Fr. Solomon &rarr;</button>
+        <p class="vm-privacy">This goes directly to Fr. Solomon and is not shared with anyone else. We look forward to welcoming you.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── VISITING ORTHODOX MODAL ──
+function openVisitingModal() {
+  document.getElementById('vm-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  try {
+    var today = new Date().toISOString().split('T')[0];
+    document.getElementById('vm-date').value = today;
+  } catch(e) {}
+}
+function closeVisitingModal() {
+  document.getElementById('vm-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function vmOverlayClick(e) {
+  if (e.target === document.getElementById('vm-overlay')) closeVisitingModal();
+}
+function vmSelectRadio(el, groupId) {
+  document.getElementById(groupId).querySelectorAll('.vm-radio').forEach(function(r) { r.classList.remove('selected'); });
+  el.classList.add('selected');
+}
+async function submitVisitingForm() {
+  var first = document.getElementById('vm-first').value.trim();
+  var email = document.getElementById('vm-email').value.trim();
+  var parish = document.getElementById('vm-parish').value.trim();
+  var jurisdiction = document.getElementById('vm-jurisdiction').value;
+  var date = document.getElementById('vm-date').value;
+  if (!first || !email || !parish || !jurisdiction || !date) {
+    alert('Please fill in the required fields before submitting.');
+    return;
+  }
+  var communion = document.querySelector('#vm-communion-radios .vm-radio.selected');
+  var data = {
+    form: 'visiting_orthodox',
+    firstName: first,
+    lastName: document.getElementById('vm-last').value.trim(),
+    email: email,
+    phone: document.getElementById('vm-phone').value.trim(),
+    homeParish: parish,
+    city: document.getElementById('vm-city').value.trim(),
+    jurisdiction: jurisdiction,
+    priest: document.getElementById('vm-priest').value.trim(),
+    visitDate: date,
+    service: document.getElementById('vm-service').value,
+    communion: communion ? communion.dataset.val : 'unsure',
+    notes: document.getElementById('vm-note').value.trim(),
+    submittedAt: new Date().toISOString()
+  };
+  try {
+    var result = await _supabase.from('visiting_registrations').insert({
+      first_name: data.firstName,
+      last_name: data.lastName,
+      email: data.email,
+      phone: data.phone,
+      home_parish: data.homeParish,
+      city: data.city,
+      jurisdiction: data.jurisdiction,
+      priest_name: data.priest,
+      visit_date: data.visitDate,
+      service: data.service,
+      communion: data.communion,
+      notes: data.notes
+    });
+    if (result.error) throw result.error;
+  } catch (e) {
+    console.error('[VISITING FORM ERROR]', e);
+  }
+  var dateStr = '';
+  try { dateStr = new Date(date + 'T12:00:00').toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' }); } catch(e) { dateStr = date; }
+  document.getElementById('vm-form-body').innerHTML =
+    '<div class="vm-confirm">' +
+    '<span class="vm-confirm-icon">&#10003;</span>' +
+    '<div class="vm-confirm-title">Fr. Solomon has been notified.</div>' +
+    '<p class="vm-confirm-body">Thank you, ' + first + '. We look forward to welcoming you on ' + dateStr + '.<br><br>May God grant you a blessed visit.</p>' +
+    '</div>';
+  setTimeout(closeVisitingModal, 3500);
+}
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeVisitingModal(); });
+// Auto-open if arriving from welcome overlay
+if (window.location.hash === '#open-visiting-form') {
+  window.addEventListener('load', function() {
+    setTimeout(openVisitingModal, 400);
+    history.replaceState(null, '', window.location.pathname);
+  });
+}
 </script>
 </body>
 </html>

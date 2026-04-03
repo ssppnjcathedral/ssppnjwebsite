@@ -624,6 +624,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   align-items:center;
   gap:.6rem;
   box-shadow:0 6px 30px rgba(21,8,4,.38);
+  max-width:calc(100vw - 6rem);
   opacity:0;
   transition:opacity .4s;
 }
@@ -643,7 +644,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 }
 .mob-pill-arrow:hover:not(:disabled){background:rgba(255,255,255,.14);color:#fff}
 .mob-pill-arrow:disabled{opacity:.22;cursor:default}
-.mob-pill-label{font-family:var(--f-ui);font-size:.58rem;letter-spacing:.11em;text-transform:uppercase;color:rgba(246,241,232,.80);padding:.3rem 1rem;display:flex;align-items:center;justify-content:center;gap:.5rem;min-width:150px;cursor:pointer;transition:color .18s}
+.mob-pill-label{font-family:var(--f-ui);font-size:.58rem;letter-spacing:.11em;text-transform:uppercase;color:rgba(246,241,232,.80);padding:.3rem 1rem;display:flex;align-items:center;justify-content:center;gap:.5rem;min-width:150px;white-space:nowrap;cursor:pointer;transition:color .18s}
 .mob-pill-label:hover{color:#fff}
 .mob-pill-hint{display:flex;align-items:center;flex-shrink:0}
 .mob-pill-hint svg{width:12px;height:12px;flex-shrink:0}
@@ -899,6 +900,10 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 </style>
 <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <link rel="stylesheet" href="/styles/typography.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="/supabase-client.js"></script>
+<script src="/auth.js"></script>
+<script src="/companion-sync.js"></script>
 </head>
 <body>
 
@@ -2088,6 +2093,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
       </ul>
       <span class="footer-nav-sub">My Parish</span>
       <a href="/my-journey" class="footer-my-journey">My Journey</a>
+      <a href="/my-profile" class="footer-my-journey" style="margin-left:.5rem">My Profile</a>
       <span class="footer-nav-sub">Connect</span>
       <p class="footer-meta" style="line-height:2.2">
         Vespers &middot; Saturdays 5:00 PM<br>
@@ -2318,7 +2324,7 @@ function activateSection(idx){
 
   /* Mobile pill */
   var lbl=document.getElementById('pill-label-text');
-  if(lbl) lbl.textContent=s.label;
+  if(lbl) lbl.textContent=s.label.replace(/^[IVXLC]+\.\s*/,'');
   var prev=document.getElementById('pill-prev');
   var next=document.getElementById('pill-next');
   if(prev) prev.disabled=(idx===0);
@@ -2445,6 +2451,9 @@ function drToggle(head){
   }
   function saveState(s) {
     try { localStorage.setItem(STORE_KEY, JSON.stringify(s)); } catch {}
+    if (typeof syncJourneyProgress === 'function') {
+      syncJourneyProgress(PAGE_KEY, s);
+    }
   }
 
   function jwInit() {

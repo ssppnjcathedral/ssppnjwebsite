@@ -473,6 +473,10 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   .action-btn{text-align:center;}
 }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="/supabase-client.js"></script>
+<script src="/auth.js"></script>
+<script src="/companion-sync.js"></script>
 </head>
 <body>
 
@@ -689,6 +693,40 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   </div>
 </div>
 
+
+<!-- ── AUTH LOGIN PROMPT ── -->
+<div id="auth-login-prompt" style="display:none;background:rgba(246,241,232,.6);border-bottom:1px solid rgba(184,131,40,.2);padding:.9rem 2rem;">
+  <div style="max-width:900px;margin:0 auto;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;">
+    <p style="font-family:var(--f-display);font-style:italic;font-size:1rem;color:var(--stone);flex:1;margin:0">
+      Save your progress across devices. Sign in with your email.
+    </p>
+    <div style="display:flex;gap:.5rem;flex-shrink:0;">
+      <input type="email" id="auth-email-input" placeholder="your@email.com"
+        style="padding:.5rem .85rem;border:1px solid rgba(59,15,24,.2);background:white;font-family:var(--f-body);font-size:.95rem;color:var(--ink);outline:none;width:220px;">
+      <button onclick="authSendLink()"
+        style="font-family:var(--f-ui);font-size:.5rem;letter-spacing:.14em;text-transform:uppercase;background:var(--maroon);color:var(--vellum);border:none;padding:.5rem 1rem;cursor:pointer;white-space:nowrap;">
+        Send Me a Link
+      </button>
+    </div>
+    <span id="auth-sent-msg" style="font-family:var(--f-body);font-style:italic;font-size:.85rem;color:var(--verdigris);display:none;">
+      Check your email for a sign-in link.
+    </span>
+  </div>
+</div>
+
+<!-- ── AUTH USER INFO ── -->
+<div id="auth-user-info" style="display:none;background:rgba(246,241,232,.6);border-bottom:1px solid rgba(184,131,40,.15);padding:.6rem 2rem;">
+  <div style="max-width:900px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1rem;">
+    <span style="font-family:var(--f-body);font-style:italic;font-size:.88rem;color:var(--stone);">
+      Signed in as <strong id="auth-user-email" style="font-style:normal;color:var(--ink);font-weight:500;"></strong>, your progress syncs across devices.
+    </span>
+    <button onclick="signOut()"
+      style="font-family:var(--f-ui);font-size:.46rem;letter-spacing:.12em;text-transform:uppercase;background:none;border:1px solid rgba(59,15,24,.15);color:var(--stone);padding:.3rem .7rem;cursor:pointer;">
+      Sign Out
+    </button>
+  </div>
+</div>
+
 <!-- MAIN -->
 <div class="journey-outer">
 
@@ -735,6 +773,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   <div class="actions-row">
     <button class="action-btn primary" onclick="openSummaryPrint()">Generate My Summary &rarr;</button>
     <button class="action-btn secondary" onclick="emailSummary()">Email to Fr. Solomon</button>
+    <a href="/my-profile" class="action-btn ghost">My Parish Profile &rarr;</a>
     <button class="action-btn ghost" onclick="exportBackup()">Export Backup &darr;</button>
     <label class="action-btn ghost" style="cursor:pointer">Import Backup &uarr;<input type="file" accept=".json" onchange="importBackup(event)" style="display:none"></label>
   </div>
@@ -832,6 +871,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
       </ul>
       <span class="footer-nav-sub">My Parish</span>
       <a href="/my-journey" class="footer-my-journey">My Journey</a>
+      <a href="/my-profile" class="footer-my-journey" style="margin-left:.5rem">My Profile</a>
       <span class="footer-nav-sub">Connect</span>
       <p class="footer-meta" style="line-height:2.2">
         Vespers &middot; Saturdays 5:00 PM<br>
@@ -1180,8 +1220,29 @@ function formatDate(d) {
   return d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
 }
 
+
+async function authSendLink() {
+  var email = document.getElementById('auth-email-input').value.trim();
+  if (!email) return;
+  var btn = event.target;
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+  var result = await sendMagicLink(email, window.location.href);
+  if (result.success) {
+    document.getElementById('auth-sent-msg').style.display = 'inline';
+    btn.style.display = 'none';
+  } else {
+    btn.textContent = 'Send Me a Link';
+    btn.disabled = false;
+    alert('Could not send link. Please check your email and try again.');
+  }
+}
+
 // ── INIT ──
-document.addEventListener('DOMContentLoaded', loadManifest);
+document.addEventListener('DOMContentLoaded', async function() {
+  if (typeof loadFromSupabase === 'function') { await loadFromSupabase(); }
+  loadManifest();
+});
 </script>
 
 <script>

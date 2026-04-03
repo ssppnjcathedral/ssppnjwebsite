@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light only">
+<title>My Profile &middot; Saints Peter &amp; Paul Orthodox Cathedral</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--vellum:#F6F1E8;--vellum-mid:#EDE7DC;--text:#1E1510;--ink:#2C1F16;--maroon:#7B1D2A;--maroon-deep:#5C1520;--gold:#B88328;--gold-lt:#E8C97A;--verdigris:#3D6B5E;--stone:#7A6648;--apse:#3B0F18;--f-display:'Cormorant Garamond',Georgia,serif;--f-body:'EB Garamond',Georgia,serif;--f-ui:'Cinzel',Georgia,serif;--rule-faint:1px solid rgba(123,29,42,.14);--rule-hair:1px solid rgba(123,29,42,.07)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--vellum);color:var(--text);font-family:var(--f-body);font-size:19px;line-height:1.75;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+
+/* ── MEGA MENU NAV ── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(246,241,232,.97);backdrop-filter:blur(10px);border-bottom:var(--rule-faint)}
+.nav-inner{max-width:1380px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px;padding:0 3rem}
+.nav-logo-img{height:38px;width:auto;display:block}
+.nav-mega-group{height:100%;display:flex;align-items:center}
+.nav-links{display:flex;align-items:center;list-style:none;height:100%}
+.nav-links>li{height:100%;display:flex;align-items:center}
+.nav-links>li>a{font-family:var(--f-ui);font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);padding:0 .85rem;height:100%;display:flex;align-items:center;transition:color .18s;border-bottom:2px solid transparent;white-space:nowrap}
+.nav-links>li>a:hover{color:var(--maroon)}
+.nav-links>li>a:hover{border-bottom-color:var(--gold)}
+.mega-panel{position:absolute;top:60px;left:0;right:0;background:var(--vellum);border-top:2px solid var(--maroon);border-bottom:var(--rule-faint);box-shadow:0 16px 48px rgba(28,20,16,.13);opacity:0;pointer-events:none;transform:translateY(-8px);transition:opacity .22s ease,transform .22s ease;z-index:100;display:grid;grid-template-columns:420px 1fr}
+.mega-panel.mega-visible{opacity:1;pointer-events:all;transform:translateY(0)}
+.mega-photo{position:relative;overflow:hidden;background-color:var(--apse)}
+.mega-photo-bg{position:absolute;inset:0;background-size:cover;background-position:center;transform:scale(1);transition:transform 11s ease}
+.mega-panel.mega-visible .mega-photo-bg{transform:scale(1.18)}
+.mega-photo-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(59,15,24,.88) 0%,rgba(59,15,24,.72) 100%)}
+.mega-photo-content{position:relative;z-index:1;padding:2rem 2rem;display:flex;flex-direction:column;height:100%;min-height:220px}
+.mega-photo-label{font-family:var(--f-ui);font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(232,201,122,.65);display:block;margin-bottom:.4rem}
+.mega-photo-quote{font-family:var(--f-display);font-style:italic;font-weight:300;font-size:1.45rem;color:rgba(246,241,232,.92);line-height:1.25}
+.mega-content{border-left:2px solid var(--maroon)}
+.mega-inner{padding:2rem 2.25rem;display:grid;gap:0;height:100%}
+.mega-col{padding:0 1.5rem;border-right:1px solid rgba(123,29,42,.07)}
+.mega-col:first-child{padding-left:0}
+.mega-col:last-child{border-right:none;padding-right:0}
+.mega-col-head{font-family:var(--f-ui);font-size:.65rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.85rem;padding-bottom:.45rem;border-bottom:1px solid rgba(184,131,40,.22)}
+.mega-link{display:block;font-family:var(--f-body);font-size:1.13rem;color:var(--ink);padding:.22rem 0;transition:color .15s,padding-left .15s;line-height:1.4}
+.mega-link:hover{color:var(--maroon);padding-left:.4rem}
+.mega-sub{display:block;font-family:var(--f-body);font-style:italic;font-size:.95rem;color:var(--stone);margin-bottom:.2rem;line-height:1.3}
+.mega-cta{margin-top:1.5rem;padding-top:1.25rem;border-top:var(--rule-faint)}
+.mega-cta-btn{font-family:var(--f-ui);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);border:1px solid rgba(123,29,42,.28);padding:.48rem .9rem;display:block;text-align:center;transition:all .2s}
+.mega-cta-btn:hover{background:var(--maroon);color:var(--vellum)}
+.nav-links>li.tab-active>a{color:var(--maroon);border-bottom-color:var(--gold)}
+.nav-give{font-family:var(--f-ui);font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;color:var(--vellum);background:var(--maroon);padding:.5rem 1.1rem;transition:background .2s;white-space:nowrap;margin-left:1rem}
+.nav-give:hover{background:var(--maroon-deep)}
+.nav-hamburger{display:none;flex-direction:column;justify-content:space-between;width:28px;height:20px;cursor:pointer;padding:0;background:none;border:none;z-index:400}
+.nav-hamburger span{display:block;width:100%;height:2px;background:var(--maroon);transition:all .28s ease;transform-origin:center}
+.nav-hamburger.open span:nth-child(1){transform:translateY(9px) rotate(45deg)}
+.nav-hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-9px) rotate(-45deg)}
+.nav-drawer{position:fixed;top:0;right:0;width:300px;max-width:85vw;height:100vh;background:var(--apse);z-index:350;transform:translateX(100%);transition:transform .32s cubic-bezier(.4,0,.2,1),visibility 0s .32s;display:flex;flex-direction:column;overflow-y:auto;visibility:hidden}
+.nav-drawer.open{transform:translateX(0);visibility:visible;transition:transform .32s cubic-bezier(.4,0,.2,1),visibility 0s}
+.nav-drawer-overlay{position:fixed;inset:0;background:rgba(21,8,4,.65);z-index:340;opacity:0;pointer-events:none;transition:opacity .32s}
+.nav-drawer-overlay.open{opacity:1;pointer-events:all}
+.nav-drawer-head{padding:1.5rem 1.75rem 1rem;border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:space-between}
+.nav-drawer-logo{font-family:var(--f-display);font-weight:500;font-size:1.1rem;color:#fff}
+.nav-drawer-logo span{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);display:block;margin-top:2px}
+.nav-drawer-close{width:32px;height:32px;background:rgba(255,255,255,.08);border:none;color:rgba(255,255,255,.65);cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.nav-drawer-close:hover{background:rgba(255,255,255,.15)}
+.dr-section{border-bottom:1px solid rgba(255,255,255,.06)}
+.dr-section-head{display:flex;align-items:center;justify-content:space-between;padding:1.1rem 1.25rem;cursor:pointer;transition:background .18s;user-select:none}
+.dr-section-head:hover{background:rgba(255,255,255,.03)}
+.dr-section.open .dr-section-head{background:rgba(184,131,40,.07)}
+.dr-section-name{font-family:var(--f-ui);font-size:.9rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,241,232,.85);transition:color .18s}
+.dr-section.open .dr-section-name{color:rgba(232,201,122,1)}
+.dr-section-toggle{font-family:var(--f-ui);font-size:1rem;color:rgba(184,131,40,.7);line-height:1;transition:color .18s;width:16px;text-align:center;flex-shrink:0}
+.dr-section-links{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.dr-section.open .dr-section-links{max-height:700px}
+.dr-link{display:flex;flex-direction:column;padding:.85rem 1.25rem;border-bottom:1px solid rgba(255,255,255,.04);transition:background .18s}
+.dr-link:hover{background:rgba(255,255,255,.06)}
+.dr-link-name{font-family:var(--f-body);font-size:1.3rem;color:rgba(246,241,232,.92);display:block;line-height:1.25}
+.dr-link-sub{font-family:var(--f-body);font-style:italic;font-size:.95rem;color:rgba(232,201,122,.55);display:block;margin-top:.08rem;line-height:1.25}
+.nav-drawer-give{margin:1.25rem 1.75rem;display:block;text-align:center;font-family:var(--f-ui);font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;padding:.85rem;background:var(--maroon);color:var(--vellum);transition:background .2s}
+.nav-drawer-give:hover{background:var(--maroon-deep)}
+@media(max-width:1100px){.nav-links{display:none}.nav-hamburger{display:flex}.nav-give{display:none}}
+
+/* ── FOOTER ── */
+footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:4.5rem 4.5rem 2.5rem}
+.footer-cols{max-width:1380px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:5rem;margin-bottom:3.5rem}
+.footer-logo-img{height:44px;width:auto;display:block;margin-bottom:1.75rem;filter:brightness(0) invert(1);opacity:.85}
+.footer-col-head{font-family:var(--f-ui);font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(246,241,232,.82);display:block;margin-bottom:1.2rem;padding-bottom:.5rem;border-bottom:1px solid rgba(246,241,232,.06)}
+.footer-nav{list-style:none;display:flex;flex-direction:column}
+.footer-nav li{padding:.38rem 0;border-bottom:1px solid rgba(246,241,232,.10)}
+.footer-nav li:last-child{border-bottom:none}
+.footer-nav a{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,232,.85);transition:color .2s}
+.footer-nav a:hover{color:rgba(246,241,232,.95)}
+.footer-nav-sub{font-family:var(--f-ui);font-size:.72rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(184,131,40,.55);display:block;margin:1.25rem 0 .5rem;padding-bottom:.35rem;border-bottom:1px solid rgba(246,241,232,.04)}
+.footer-my-journey{display:inline-block;margin-top:.5rem;padding:.42rem 1rem;border:1px solid rgba(246,241,232,.55);color:rgba(246,241,232,.9);font-family:var(--f-ui);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;transition:border-color .2s,color .2s}
+.footer-my-journey:hover{border-color:rgba(246,241,232,1);color:rgba(246,241,232,1)}
+.footer-meta{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.72);line-height:2.3}
+.footer-meta a{color:rgba(184,131,40,.85);transition:color .2s}
+.footer-meta a:hover{color:var(--gold)}
+.footer-socials{display:flex;gap:1.5rem;margin-top:1.5rem}
+.footer-socials a{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,241,232,.65);transition:color .2s}
+.footer-socials a:hover{color:var(--gold)}
+.footer-bottom{max-width:1380px;margin:2rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(246,241,232,.12);display:flex;justify-content:space-between}
+.footer-copy,.footer-addr{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.60)}
+@media(max-width:1100px){.footer-cols{grid-template-columns:1fr 1fr;gap:3rem}}
+@media(max-width:768px){.footer-cols{grid-template-columns:1fr;gap:2.5rem}footer{padding:4rem 1.5rem 2rem}.footer-bottom{flex-direction:column;gap:.75rem;text-align:center}.footer-addr{text-align:center}}
+
+/* ── PAGE HERO ── */
+.page-hero{padding-top:60px;background:linear-gradient(to right,rgba(59,15,24,.92) 0%,rgba(59,15,24,.72) 55%,rgba(59,15,24,.38) 100%),url('https://picsum.photos/id/1040/1600/500') center/cover no-repeat;background-color:var(--apse);min-height:260px;display:flex;align-items:center}
+.page-hero-inner{max-width:1100px;margin:0 auto;padding:4rem 2rem 3rem;width:100%}
+.page-title{font-family:var(--f-display);font-weight:300;font-size:clamp(2.2rem,4vw,3.5rem);line-height:.95;color:#fff;margin:.4rem 0 .4rem}
+.page-title em{font-style:italic}
+.breadcrumb{font-family:var(--f-ui);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:1rem}
+.breadcrumb a{color:rgba(232,201,122,.65)}
+.page-sub{font-family:var(--f-display);font-style:italic;font-size:1.05rem;color:rgba(255,255,255,.5)}
+
+/* ── PROFILE PAGE ── */
+.profile-outer{max-width:780px;margin:0 auto;padding:3rem 2rem 6rem}
+.profile-tabs{display:flex;gap:0;border-bottom:2px solid var(--maroon);margin-bottom:2.5rem}
+.ptab{font-family:var(--f-ui);font-size:.52rem;letter-spacing:.16em;text-transform:uppercase;background:none;border:none;border-bottom:2px solid transparent;margin-bottom:-2px;color:var(--stone);padding:.7rem 1.4rem;cursor:pointer;transition:all .16s}
+.ptab:hover{color:var(--maroon)}
+.ptab.active{color:var(--maroon);border-bottom-color:var(--gold)}
+.ptab-panel{display:none}
+.ptab-panel.active{display:block}
+.pf-section-head{font-family:var(--f-ui);font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:var(--maroon);display:block;padding-bottom:.5rem;border-bottom:1px solid rgba(123,29,42,.15);margin-bottom:1.1rem}
+.pf-row{display:grid;gap:1rem;margin-bottom:1rem}
+.pf-row.col-2{grid-template-columns:1fr 1fr}
+.pf-row.col-3{grid-template-columns:1fr 1fr 1fr}
+.pf-row.col-1{grid-template-columns:1fr}
+.pf-field{display:flex;flex-direction:column;gap:.35rem}
+.pf-label{font-family:var(--f-ui);font-size:.48rem;letter-spacing:.13em;text-transform:uppercase;color:var(--stone)}
+.pf-label span{color:var(--maroon);margin-left:.1rem}
+.pf-input{padding:.65rem .85rem;border:1px solid rgba(59,15,24,.2);background:white;font-family:var(--f-body);font-size:.95rem;color:var(--ink);outline:none;transition:border-color .18s;width:100%}
+.pf-input:focus{border-color:var(--maroon)}
+.pf-select{padding:.65rem .85rem;border:1px solid rgba(59,15,24,.2);background:white;font-family:var(--f-body);font-size:.95rem;color:var(--ink);outline:none;width:100%;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237A6648' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .85rem center}
+.pf-textarea{padding:.65rem .85rem;border:1px solid rgba(59,15,24,.2);background:white;font-family:var(--f-body);font-size:.95rem;color:var(--ink);outline:none;resize:vertical;min-height:100px;line-height:1.65;width:100%;transition:border-color .18s}
+.pf-textarea:focus{border-color:var(--maroon)}
+.pf-hint{font-family:var(--f-body);font-style:italic;font-size:.82rem;color:var(--stone);line-height:1.5}
+.pf-chips{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.25rem}
+.pf-chip{padding:.38rem .8rem;border:1px solid rgba(59,15,24,.18);background:white;cursor:pointer;font-family:var(--f-body);font-size:.88rem;color:var(--ink);transition:all .14s;user-select:none}
+.pf-chip.selected{background:var(--maroon);color:white;border-color:var(--maroon)}
+.pf-child-block{background:var(--vellum-mid);border:1px solid rgba(59,15,24,.1);padding:1.25rem;margin-bottom:.75rem}
+.pf-child-label{font-family:var(--f-ui);font-size:.48rem;letter-spacing:.15em;text-transform:uppercase;color:var(--stone);margin-bottom:.85rem;display:flex;align-items:center;justify-content:space-between}
+.pf-remove-btn{background:none;border:none;color:rgba(123,29,42,.4);cursor:pointer;font-family:var(--f-ui);font-size:.44rem;letter-spacing:.1em;text-transform:uppercase;transition:color .14s}
+.pf-remove-btn:hover{color:var(--maroon)}
+.pf-add-child-btn{width:100%;border:1px dashed rgba(123,29,42,.3);background:none;color:var(--maroon);font-family:var(--f-ui);font-size:.52rem;letter-spacing:.14em;text-transform:uppercase;padding:.65rem;cursor:pointer;margin-top:.25rem;transition:all .18s}
+.pf-add-child-btn:hover{background:rgba(123,29,42,.04)}
+.pf-tab-actions{display:flex;justify-content:space-between;align-items:center;margin-top:2rem;padding-top:1.5rem;border-top:var(--rule-faint);gap:.75rem}
+.pf-next-btn{font-family:var(--f-ui);font-size:.52rem;letter-spacing:.14em;text-transform:uppercase;background:var(--maroon);color:var(--vellum);border:none;padding:.72rem 1.4rem;cursor:pointer;margin-left:auto;transition:background .18s}
+.pf-next-btn:hover{background:var(--maroon-deep)}
+.pf-back-btn{font-family:var(--f-ui);font-size:.52rem;letter-spacing:.14em;text-transform:uppercase;background:none;border:1px solid rgba(59,15,24,.2);color:var(--stone);padding:.65rem 1.1rem;cursor:pointer;transition:all .18s}
+.pf-back-btn:hover{border-color:var(--maroon);color:var(--maroon)}
+.pf-submit-btn{font-family:var(--f-ui);font-size:.52rem;letter-spacing:.14em;text-transform:uppercase;background:var(--maroon);color:var(--vellum);border:none;padding:.72rem 1.4rem;cursor:pointer;margin-left:auto;transition:background .18s}
+.pf-submit-btn:hover{background:var(--maroon-deep)}
+.pf-privacy{font-family:var(--f-body);font-style:italic;font-size:.82rem;color:var(--stone);text-align:center;margin-top:1rem;line-height:1.6}
+@media(max-width:680px){.pf-row.col-2,.pf-row.col-3{grid-template-columns:1fr}.profile-outer{padding:2rem 1.25rem 5rem}.profile-tabs{overflow-x:auto;scrollbar-width:none}.profile-tabs::-webkit-scrollbar{display:none}}
+
+/* mobile font bumps */
+@media(max-width:768px){body{font-size:18px;line-height:1.8}[class*="-over"],[class*="-cat"],[class*="-sub"],[class*="-label"],[class*="-tag"],[class*="-kicker"],[class*="-lbl"],[class*="-badge"],[class*="-date"],[class*="-meta"]{font-size:.72rem!important;letter-spacing:.12em}[class*="-title"]{line-height:1.2}[class*="hero-title"],[class*="page-title"]{line-height:1.1}.footer-copy,.footer-legal,.footer-bottom{font-size:.72rem}}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="/supabase-client.js"></script>
+<script src="/auth.js"></script>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/">
+      <img src="/images/logo/logo-2026.svg" alt="Saints Peter &amp; Paul Orthodox Cathedral" class="nav-logo-img" onerror="this.style.display='none'">
+    </a>
+    <div class="nav-mega-group" id="nav-mega-group">
+      <ul class="nav-links">
+        <li data-mega="mega-about"><a href="#">About Us</a></li>
+        <li data-mega="mega-inquirers"><a href="#">Inquirers</a></li>
+        <li data-mega="mega-calendar"><a href="#">Calendar</a></li>
+        <li data-mega="mega-parish"><a href="#">Parish Life</a></li>
+        <li data-mega="mega-worship"><a href="#">Worship</a></li>
+      </ul>
+
+      <!-- PANEL: ABOUT US -->
+      <div class="mega-panel" id="mega-about">
+        <div class="mega-photo">
+          <div class="mega-photo-bg" style="background-image:url('https://picsum.photos/seed/sspp-exterior/400/500')"></div>
+          <div class="mega-photo-overlay"></div>
+          <div class="mega-photo-content">
+            <span class="mega-photo-label">About Us</span>
+            <p class="mega-photo-quote">A century of faith on Grand Street.</p>
+          </div>
+        </div>
+        <div class="mega-content">
+          <div class="mega-inner" style="grid-template-columns:repeat(2,1fr)">
+            <div class="mega-col">
+              <span class="mega-col-head">Who We Are</span>
+              <a href="/our-parish" class="mega-link">Our Parish</a><span class="mega-sub">Our history, our people, our home</span>
+              <a href="/church-history" class="mega-link">Church History</a><span class="mega-sub">A century of faith in Jersey City</span>
+              <a href="/our-beliefs" class="mega-link">Our Beliefs</a><span class="mega-sub">What we confess and why it matters</span>
+            </div>
+            <div class="mega-col">
+              <span class="mega-col-head">Leadership &amp; Governance</span>
+              <a href="/administration" class="mega-link">Administration</a><span class="mega-sub">Staff and parish leadership</span>
+              <a href="/council" class="mega-link">Parish Council</a><span class="mega-sub">The elected lay leadership</span>
+              <a href="/bylaws" class="mega-link">Bylaws</a><span class="mega-sub">Our governing documents</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PANEL: INQUIRERS -->
+      <div class="mega-panel" id="mega-inquirers">
+        <div class="mega-photo">
+          <div class="mega-photo-bg" style="background-image:url('https://picsum.photos/seed/sspp-welcome/400/500')"></div>
+          <div class="mega-photo-overlay"></div>
+          <div class="mega-photo-content">
+            <span class="mega-photo-label">Inquirers</span>
+            <p class="mega-photo-quote">Exploring the ancient Faith?</p>
+          </div>
+        </div>
+        <div class="mega-content">
+          <div class="mega-inner" style="grid-template-columns:repeat(2,1fr)">
+            <div class="mega-col">
+              <span class="mega-col-head">Learning the Faith</span>
+              <a href="/about-orthodoxy" class="mega-link">About Orthodoxy</a><span class="mega-sub">The ancient Christian faith and its teachings</span>
+              <a href="/catechesis" class="mega-link">Catechesis Series</a><span class="mega-sub">Recorded talks and study materials</span>
+              <a href="/bible-study" class="mega-link">Bible Study</a><span class="mega-sub">Weekly verse-by-verse study, open to all</span>
+              <a href="/fasting" class="mega-link">Fasting</a><span class="mega-sub">The history and practice of Orthodox fasting</span>
+            </div>
+            <div class="mega-col">
+              <span class="mega-col-head">Come Visit</span>
+              <a href="/visit" class="mega-link">Visitor Guide</a><span class="mega-sub">Everything you need before you arrive</span>
+              <a href="/contact-us" class="mega-link">Contact Us</a><span class="mega-sub">Reach Fr. Solomon and the parish office</span>
+              <div class="mega-cta"><a href="https://tithe.ly/give?c=5004259" target="_blank" class="mega-cta-btn">Give to the Cathedral &rarr;</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PANEL: CALENDAR -->
+      <div class="mega-panel" id="mega-calendar">
+        <div class="mega-photo">
+          <div class="mega-photo-bg" style="background-image:url('https://picsum.photos/seed/sspp-calendar/400/500')"></div>
+          <div class="mega-photo-overlay"></div>
+          <div class="mega-photo-content">
+            <span class="mega-photo-label">Calendar</span>
+            <p class="mega-photo-quote">The rhythm of the Church's year.</p>
+          </div>
+        </div>
+        <div class="mega-content">
+          <div class="mega-inner" style="grid-template-columns:repeat(2,1fr)">
+            <div class="mega-col">
+              <span class="mega-col-head">Services</span>
+              <a href="/divine-liturgy" class="mega-link">Divine Liturgy</a><span class="mega-sub">Every Sunday &middot; 9:30 AM</span>
+              <a href="/vespers" class="mega-link">Great Vespers</a><span class="mega-sub">Every Saturday &middot; 5:00 PM</span>
+              <div class="mega-cta"><a href="/schedule" class="mega-cta-btn">Full Liturgical Calendar &rarr;</a></div>
+            </div>
+            <div class="mega-col">
+              <span class="mega-col-head">Daily</span>
+              <a href="/readings" class="mega-link">Daily Readings</a><span class="mega-sub">Scripture appointed for each day</span>
+              <a href="/saints" class="mega-link">Saints of the Day</a><span class="mega-sub">Lives of those commemorated today</span>
+              <a href="/prologue" class="mega-link">The Prologue</a><span class="mega-sub">Daily readings from the Prologue of Ohrid</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PANEL: PARISH LIFE -->
+      <div class="mega-panel" id="mega-parish">
+        <div class="mega-photo">
+          <div class="mega-photo-bg" style="background-image:url('https://picsum.photos/seed/sspp-community/400/500')"></div>
+          <div class="mega-photo-overlay"></div>
+          <div class="mega-photo-content">
+            <span class="mega-photo-label">Parish Life</span>
+            <p class="mega-photo-quote">A family that shares a life.</p>
+          </div>
+        </div>
+        <div class="mega-content">
+          <div class="mega-inner" style="grid-template-columns:repeat(2,1fr)">
+            <div class="mega-col">
+              <span class="mega-col-head">News &amp; Publications</span>
+              <a href="/news" class="mega-link">News &amp; Announcements</a><span class="mega-sub">What's happening at the parish</span>
+              <a href="/bulletins" class="mega-link">Parish Bulletins</a><span class="mega-sub">Weekly reflections from Fr. Solomon</span>
+            </div>
+            <div class="mega-col">
+              <span class="mega-col-head">Community</span>
+              <a href="/gallery" class="mega-link">Gallery</a><span class="mega-sub">Photos from parish life and worship</span>
+              <a href="/videos" class="mega-link">Videos</a><span class="mega-sub">Lectures, services, and parish life</span>
+              <a href="/cemeteries" class="mega-link">Cemeteries</a><span class="mega-sub">Our historic parish cemeteries</span>
+              <a href="/give" class="mega-link">Give &amp; Support</a><span class="mega-sub">Projects, drives, and ongoing stewardship</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PANEL: WORSHIP -->
+      <div class="mega-panel" id="mega-worship">
+        <div class="mega-photo">
+          <div class="mega-photo-bg" style="background-image:url('https://picsum.photos/seed/sspp-interior/400/500')"></div>
+          <div class="mega-photo-overlay"></div>
+          <div class="mega-photo-content">
+            <span class="mega-photo-label">Worship</span>
+            <p class="mega-photo-quote">The living tradition of the Church.</p>
+          </div>
+        </div>
+        <div class="mega-content">
+          <div class="mega-inner" style="grid-template-columns:repeat(2,1fr)">
+            <div class="mega-col">
+              <span class="mega-col-head">Service Guides</span>
+              <a href="/divine-liturgy" class="mega-link">About the Divine Liturgy</a><span class="mega-sub">History, structure, and meaning</span>
+              <a href="/vespers" class="mega-link">About Vespers</a><span class="mega-sub">The ancient evening prayer of the Church</span>
+              <a href="/liturgy-history" class="mega-link">History of the Liturgy</a><span class="mega-sub">How the Divine Liturgy developed</span>
+            </div>
+            <div class="mega-col">
+              <span class="mega-col-head">Follow Along</span>
+              <a href="/liturgy-book" class="mega-link">Liturgy Book</a><span class="mega-sub">Full text for the Divine Liturgy</span>
+              <a href="/vespers-book" class="mega-link">Vespers Book</a><span class="mega-sub">Full text for Great Vespers</span>
+              <a href="/prayers" class="mega-link">Daily Prayers</a><span class="mega-sub">The daily prayer rule of the Orthodox Church</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <a href="/give" class="nav-give">Give</a>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" onclick="openDrawer()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<div class="nav-drawer-overlay" id="nav-overlay" onclick="closeDrawer()"></div>
+<div class="nav-drawer" id="nav-drawer">
+  <div class="nav-drawer-head">
+    <div class="nav-drawer-logo">Sts. Peter &amp; Paul<span>Orthodox Cathedral &middot; Jersey City</span></div>
+    <button class="nav-drawer-close" onclick="closeDrawer()">&#x2715;</button>
+  </div>
+  <div class="dr-accordion" id="dr-accordion">
+    <div class="dr-section">
+      <div class="dr-section-head" onclick="drToggle(this)"><span class="dr-section-name">About Us</span><span class="dr-section-toggle">+</span></div>
+      <div class="dr-section-links">
+        <a href="/our-parish" class="dr-link"><span class="dr-link-name">Our Parish</span><span class="dr-link-sub">Our history, our people, our home</span></a>
+        <a href="/church-history" class="dr-link"><span class="dr-link-name">Church History</span><span class="dr-link-sub">A century of faith in Jersey City</span></a>
+        <a href="/our-beliefs" class="dr-link"><span class="dr-link-name">Our Beliefs</span></a>
+        <a href="/administration" class="dr-link"><span class="dr-link-name">Administration</span></a>
+        <a href="/council" class="dr-link"><span class="dr-link-name">Parish Council</span></a>
+      </div>
+    </div>
+    <div class="dr-section">
+      <div class="dr-section-head" onclick="drToggle(this)"><span class="dr-section-name">Inquirers</span><span class="dr-section-toggle">+</span></div>
+      <div class="dr-section-links">
+        <a href="/about-orthodoxy" class="dr-link"><span class="dr-link-name">About Orthodoxy</span></a>
+        <a href="/catechesis" class="dr-link"><span class="dr-link-name">Catechesis Series</span></a>
+        <a href="/visit" class="dr-link"><span class="dr-link-name">Visitor Guide</span></a>
+        <a href="/contact-us" class="dr-link"><span class="dr-link-name">Contact Us</span></a>
+      </div>
+    </div>
+    <div class="dr-section">
+      <div class="dr-section-head" onclick="drToggle(this)"><span class="dr-section-name">Calendar</span><span class="dr-section-toggle">+</span></div>
+      <div class="dr-section-links">
+        <a href="/schedule" class="dr-link"><span class="dr-link-name">Liturgical Calendar</span></a>
+        <a href="/readings" class="dr-link"><span class="dr-link-name">Daily Readings</span></a>
+        <a href="/saints" class="dr-link"><span class="dr-link-name">Saints of the Day</span></a>
+      </div>
+    </div>
+    <div class="dr-section">
+      <div class="dr-section-head" onclick="drToggle(this)"><span class="dr-section-name">Parish Life</span><span class="dr-section-toggle">+</span></div>
+      <div class="dr-section-links">
+        <a href="/news" class="dr-link"><span class="dr-link-name">News &amp; Announcements</span></a>
+        <a href="/bulletins" class="dr-link"><span class="dr-link-name">Parish Bulletins</span></a>
+        <a href="/give" class="dr-link"><span class="dr-link-name">Give &amp; Support</span></a>
+      </div>
+    </div>
+    <div class="dr-section">
+      <div class="dr-section-head" onclick="drToggle(this)"><span class="dr-section-name">Worship</span><span class="dr-section-toggle">+</span></div>
+      <div class="dr-section-links">
+        <a href="/divine-liturgy" class="dr-link"><span class="dr-link-name">Divine Liturgy</span></a>
+        <a href="/vespers" class="dr-link"><span class="dr-link-name">Vespers</span></a>
+        <a href="/prayers" class="dr-link"><span class="dr-link-name">Daily Prayers</span></a>
+      </div>
+    </div>
+  </div>
+  <a href="https://tithe.ly/give?c=5004259" target="_blank" class="nav-drawer-give">Give Online</a>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <p class="breadcrumb"><a href="/">Home</a> &middot; My Profile</p>
+    <h1 class="page-title">My <em>Profile</em></h1>
+    <p class="page-sub">Help Fr. Solomon serve your family well</p>
+  </div>
+</div>
+
+
+<!-- ── AUTH LOGIN PROMPT ── -->
+<div id="auth-login-prompt" style="display:none;background:rgba(246,241,232,.6);border-bottom:1px solid rgba(184,131,40,.2);padding:.9rem 2rem;">
+  <div style="max-width:900px;margin:0 auto;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;">
+    <p style="font-family:var(--f-display);font-style:italic;font-size:1rem;color:var(--stone);flex:1;margin:0">
+      Sign in to save your profile and access it from any device.
+    </p>
+    <div style="display:flex;gap:.5rem;flex-shrink:0;">
+      <input type="email" id="auth-email-input" placeholder="your@email.com"
+        style="padding:.5rem .85rem;border:1px solid rgba(59,15,24,.2);background:white;font-family:var(--f-body);font-size:.95rem;color:var(--ink);outline:none;width:220px;">
+      <button onclick="authSendLink()"
+        style="font-family:var(--f-ui);font-size:.5rem;letter-spacing:.14em;text-transform:uppercase;background:var(--maroon);color:var(--vellum);border:none;padding:.5rem 1rem;cursor:pointer;white-space:nowrap;">
+        Send Me a Link
+      </button>
+    </div>
+    <span id="auth-sent-msg" style="font-family:var(--f-body);font-style:italic;font-size:.85rem;color:var(--verdigris);display:none;">
+      Check your email for a sign-in link.
+    </span>
+  </div>
+</div>
+
+<!-- ── AUTH USER INFO ── -->
+<div id="auth-user-info" style="display:none;background:rgba(246,241,232,.6);border-bottom:1px solid rgba(184,131,40,.15);padding:.6rem 2rem;">
+  <div style="max-width:900px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1rem;">
+    <span style="font-family:var(--f-body);font-style:italic;font-size:.88rem;color:var(--stone);">
+      Signed in as <strong id="auth-user-email" style="font-style:normal;color:var(--ink);font-weight:500;"></strong>, your profile syncs across devices.
+    </span>
+    <button onclick="signOut()"
+      style="font-family:var(--f-ui);font-size:.46rem;letter-spacing:.12em;text-transform:uppercase;background:none;border:1px solid rgba(59,15,24,.15);color:var(--stone);padding:.3rem .7rem;cursor:pointer;">
+      Sign Out
+    </button>
+  </div>
+</div>
+
+<!-- PROFILE CONTENT -->
+<div class="profile-outer" id="profile-outer">
+
+  <div class="profile-tabs">
+    <button class="ptab active" onclick="switchTab('household',this)">Household</button>
+    <button class="ptab" onclick="switchTab('family',this)">Family</button>
+    <button class="ptab" onclick="switchTab('parish',this)">Parish Life</button>
+  </div>
+
+  <!-- TAB: HOUSEHOLD -->
+  <div class="ptab-panel active" id="tab-household">
+    <div class="pf-section-head">Head of Household</div>
+    <div class="pf-row col-2">
+      <div class="pf-field"><label class="pf-label">First Name <span>*</span></label><input class="pf-input" type="text" id="pf-first" placeholder="Nikolaos"></div>
+      <div class="pf-field"><label class="pf-label">Last Name <span>*</span></label><input class="pf-input" type="text" id="pf-last" placeholder="Andreou"></div>
+    </div>
+    <div class="pf-row col-3">
+      <div class="pf-field"><label class="pf-label">Email <span>*</span></label><input class="pf-input" type="email" id="pf-email" placeholder="your@email.com"></div>
+      <div class="pf-field"><label class="pf-label">Phone</label><input class="pf-input" type="tel" id="pf-phone" placeholder="(201) 555-0100"></div>
+      <div class="pf-field"><label class="pf-label">Preferred Contact</label>
+        <select class="pf-select" id="pf-contact-pref">
+          <option>Email</option><option>Phone</option><option>Either</option>
+        </select>
+      </div>
+    </div>
+    <div class="pf-row col-1">
+      <div class="pf-field">
+        <label class="pf-label">Home Address</label>
+        <input class="pf-input" type="text" id="pf-address" placeholder="Street address, Jersey City, NJ">
+        <span class="pf-hint">Used only for parish records and pastoral visits. Never shared.</span>
+      </div>
+    </div>
+    <div class="pf-row col-3">
+      <div class="pf-field"><label class="pf-label">Date of Birth</label><input class="pf-input" type="date" id="pf-dob"></div>
+      <div class="pf-field"><label class="pf-label">Name Day Saint</label><input class="pf-input" type="text" id="pf-nameday-saint" placeholder="St. Nicholas"></div>
+      <div class="pf-field"><label class="pf-label">Name Day Date</label><input class="pf-input" type="text" id="pf-nameday-date" placeholder="Dec 6"></div>
+    </div>
+
+    <div class="pf-section-head" style="margin-top:2rem">Sacramental</div>
+    <div class="pf-row col-3">
+      <div class="pf-field"><label class="pf-label">Date of Baptism</label><input class="pf-input" type="date" id="pf-baptism"></div>
+      <div class="pf-field"><label class="pf-label">Date of Chrismation</label><input class="pf-input" type="date" id="pf-chrismation"></div>
+      <div class="pf-field"><label class="pf-label">Godparent(s)</label><input class="pf-input" type="text" id="pf-godparents" placeholder="Name(s)"></div>
+    </div>
+    <div class="pf-row col-1">
+      <div class="pf-field">
+        <label class="pf-label">Status in the Church</label>
+        <div class="pf-chips" id="pf-status-chips">
+          <div class="pf-chip selected" data-val="baptized" onclick="pfSelectChip(this,'pf-status-chips')">Baptized &amp; Chrismated Orthodox</div>
+          <div class="pf-chip" data-val="catechumen" onclick="pfSelectChip(this,'pf-status-chips')">Catechumen</div>
+          <div class="pf-chip" data-val="inquirer" onclick="pfSelectChip(this,'pf-status-chips')">Inquirer</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pf-tab-actions">
+      <button class="pf-next-btn" onclick="switchTab('family',document.querySelectorAll('.ptab')[1])">Next: Family &rarr;</button>
+    </div>
+  </div>
+
+  <!-- TAB: FAMILY -->
+  <div class="ptab-panel" id="tab-family">
+    <div class="pf-section-head">Spouse (if applicable)</div>
+    <div class="pf-row col-2">
+      <div class="pf-field"><label class="pf-label">Spouse's Name</label><input class="pf-input" type="text" id="pf-spouse-name" placeholder="Full name"></div>
+      <div class="pf-field"><label class="pf-label">Spouse's Name Day</label><input class="pf-input" type="text" id="pf-spouse-nameday" placeholder="Saint &middot; Date"></div>
+    </div>
+    <div class="pf-row col-2">
+      <div class="pf-field"><label class="pf-label">Spouse's Date of Birth</label><input class="pf-input" type="date" id="pf-spouse-dob"></div>
+      <div class="pf-field"><label class="pf-label">Wedding Anniversary</label><input class="pf-input" type="date" id="pf-anniversary"></div>
+    </div>
+
+    <div class="pf-section-head" style="margin-top:2rem">Children</div>
+    <p class="pf-hint" style="margin-bottom:1rem">Add each child. Include name day information if they are baptized.</p>
+    <div id="pf-children-wrap"></div>
+    <button class="pf-add-child-btn" onclick="addChild()">+ Add a Child</button>
+
+    <div class="pf-tab-actions">
+      <button class="pf-back-btn" onclick="switchTab('household',document.querySelectorAll('.ptab')[0])">&larr; Back</button>
+      <button class="pf-next-btn" onclick="switchTab('parish',document.querySelectorAll('.ptab')[2])">Next: Parish Life &rarr;</button>
+    </div>
+  </div>
+
+  <!-- TAB: PARISH LIFE -->
+  <div class="ptab-panel" id="tab-parish">
+    <div class="pf-section-head">Your History With Us</div>
+    <div class="pf-row col-1">
+      <div class="pf-field">
+        <label class="pf-label">How long have you been attending?</label>
+        <select class="pf-select" id="pf-attending">
+          <option value="">-- Select --</option>
+          <option>Just started</option><option>Less than a year</option>
+          <option>1-3 years</option><option>3-10 years</option>
+          <option>More than 10 years</option><option>My whole life</option>
+        </select>
+      </div>
+    </div>
+    <div class="pf-row col-1">
+      <div class="pf-field">
+        <label class="pf-label">Anything you would like Fr. Solomon to know about your family</label>
+        <textarea class="pf-textarea" id="pf-notes" placeholder="Health concerns for prayer, recent life changes, ways you would like to be involved, anything at all&hellip;"></textarea>
+      </div>
+    </div>
+
+    <div class="pf-tab-actions">
+      <button class="pf-back-btn" onclick="switchTab('family',document.querySelectorAll('.ptab')[1])">&larr; Back</button>
+      <button class="pf-submit-btn" onclick="submitProfile()">Submit to Fr. Solomon &rarr;</button>
+    </div>
+    <p class="pf-privacy">This information is held in strict pastoral confidence. It is used only to help Fr. Solomon serve your family. You can return and update it at any time.</p>
+  </div>
+
+  <!-- CONFIRMATION (hidden until submit) -->
+  <div id="pf-confirm" style="display:none;text-align:center;padding:4rem 2rem">
+    <div style="font-size:2rem;color:var(--verdigris);margin-bottom:1rem">&#10003;</div>
+    <div style="font-family:var(--f-display);font-weight:300;font-size:2rem;color:var(--apse);margin-bottom:.5rem">Thank you.</div>
+    <p style="font-family:var(--f-display);font-style:italic;font-size:1.1rem;color:var(--stone);line-height:1.65">Your profile has been saved. Fr. Solomon is glad to know your family better.<br>You may return to update this at any time.</p>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-cols">
+    <div>
+      <img src="/images/logo/logo-2026.svg" alt="Saints Peter &amp; Paul Orthodox Cathedral" class="footer-logo-img" onerror="this.style.display='none'">
+      <p class="footer-meta">
+        Diocese of New York &amp; New Jersey<br>
+        <a href="https://nynjoca.org" target="_blank" rel="noopener">nynjoca.org</a><br>
+        Orthodox Church in America<br>
+        <a href="https://oca.org" target="_blank" rel="noopener">oca.org</a>
+      </p>
+      <div class="footer-socials">
+        <a href="#" target="_blank" rel="noopener">Facebook</a>
+        <a href="#" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.youtube.com/@SSPPJC" target="_blank" rel="noopener">YouTube</a>
+      </div>
+    </div>
+    <div>
+      <span class="footer-col-head">About Us</span>
+      <ul class="footer-nav">
+        <li><a href="/our-parish">Our Parish</a></li>
+        <li><a href="/church-history">Church History</a></li>
+        <li><a href="/our-beliefs">Our Beliefs</a></li>
+        <li><a href="/administration">Administration</a></li>
+        <li><a href="/council">Parish Council</a></li>
+        <li><a href="/bylaws">Bylaws</a></li>
+      </ul>
+      <span class="footer-nav-sub">Inquirers</span>
+      <ul class="footer-nav">
+        <li><a href="/about-orthodoxy">About Orthodoxy</a></li>
+        <li><a href="/catechesis">Catechesis Series</a></li>
+        <li><a href="/bible-study">Bible Study</a></li>
+        <li><a href="/fasting">Fasting</a></li>
+        <li><a href="/visit">Visitor Guide</a></li>
+        <li><a href="/contact-us">Contact Us</a></li>
+      </ul>
+    </div>
+    <div>
+      <span class="footer-col-head">Worship</span>
+      <ul class="footer-nav">
+        <li><a href="/divine-liturgy">About the Divine Liturgy</a></li>
+        <li><a href="/vespers">About Vespers</a></li>
+        <li><a href="/liturgy-book">Liturgy Book</a></li>
+        <li><a href="/vespers-book">Vespers Book</a></li>
+        <li><a href="/liturgy-history">History of the Liturgy</a></li>
+      </ul>
+      <span class="footer-nav-sub">Daily</span>
+      <ul class="footer-nav">
+        <li><a href="/readings">Daily Readings</a></li>
+        <li><a href="/saints">Saints of the Day</a></li>
+        <li><a href="/prologue">The Prologue</a></li>
+        <li><a href="/prayers">Daily Prayers</a></li>
+      </ul>
+    </div>
+    <div>
+      <span class="footer-col-head">Parish Life</span>
+      <ul class="footer-nav">
+        <li><a href="/news">News &amp; Announcements</a></li>
+        <li><a href="/bulletins">Parish Bulletins</a></li>
+        <li><a href="/gallery">Gallery</a></li>
+        <li><a href="/videos">Videos</a></li>
+        <li><a href="/cemeteries">Cemeteries</a></li>
+        <li><a href="/give">Give &amp; Support</a></li>
+      </ul>
+      <span class="footer-nav-sub">My Parish</span>
+      <a href="/my-journey" class="footer-my-journey">My Journey</a>
+      <a href="/my-profile" class="footer-my-journey" style="margin-left:.5rem">My Profile</a>
+      <span class="footer-nav-sub">Connect</span>
+      <p class="footer-meta" style="line-height:2.2">
+        Vespers &middot; Saturdays 5:00 PM<br>
+        Divine Liturgy &middot; Sundays 9:30 AM
+      </p>
+      <p class="footer-meta" style="margin-top:.75rem">
+        <a href="https://maps.google.com/?q=109+Grand+Street+Jersey+City+NJ+07302" target="_blank" rel="noopener">109 Grand Street &middot; Jersey City, NJ</a><br>
+        <a href="tel:+12014341986">(201) 434-1986</a><br>
+        <a href="mailto:ssppnj@gmail.com">ssppnj@gmail.com</a>
+      </p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">&copy; Saints Peter &amp; Paul Orthodox Cathedral. All Rights Reserved.</p>
+    <p class="footer-addr">
+      <a href="https://maps.google.com/?q=109+Grand+Street+Jersey+City+NJ+07302" target="_blank" rel="noopener" style="color:inherit;border-bottom:1px solid rgba(246,241,232,.25)">109 Grand Street &middot; Jersey City, NJ 07302</a><br>
+      (201) 434-1986 &middot; <a href="mailto:ssppnj@gmail.com" style="color:inherit">ssppnj@gmail.com</a>
+    </p>
+  </div>
+</footer>
+
+<script>
+var childCount = 0;
+
+function switchTab(id, el) {
+  document.querySelectorAll('.ptab-panel').forEach(function(p) { p.classList.remove('active'); });
+  document.querySelectorAll('.ptab').forEach(function(b) { b.classList.remove('active'); });
+  document.getElementById('tab-' + id).classList.add('active');
+  if (el) el.classList.add('active');
+}
+
+function pfSelectChip(el, groupId) {
+  document.getElementById(groupId).querySelectorAll('.pf-chip').forEach(function(c) { c.classList.remove('selected'); });
+  el.classList.add('selected');
+}
+
+function addChild() {
+  childCount++;
+  var n = childCount;
+  var wrap = document.getElementById('pf-children-wrap');
+  var div = document.createElement('div');
+  div.className = 'pf-child-block';
+  div.id = 'child-' + n;
+  div.innerHTML =
+    '<div class="pf-child-label">Child ' + n +
+    ' <button class="pf-remove-btn" onclick="removeChild(' + n + ')">Remove</button></div>' +
+    '<div class="pf-row col-3">' +
+    '<div class="pf-field"><label class="pf-label">Name</label><input class="pf-input" type="text" id="child-name-' + n + '" placeholder="Sophia"></div>' +
+    '<div class="pf-field"><label class="pf-label">Date of Birth</label><input class="pf-input" type="date" id="child-dob-' + n + '"></div>' +
+    '<div class="pf-field"><label class="pf-label">Name Day</label><input class="pf-input" type="text" id="child-nameday-' + n + '" placeholder="St. Sophia &middot; Sep 17"></div>' +
+    '</div>' +
+    '<div class="pf-row col-2" style="margin-bottom:1.5rem">' +
+    '<div class="pf-field"><label class="pf-label">Baptized?</label>' +
+    '<div class="pf-chips" id="child-baptized-chips-' + n + '">' +
+    '<div class="pf-chip" data-val="yes" onclick="pfSelectChip(this,\'child-baptized-chips-' + n + '\')">Yes</div>' +
+    '<div class="pf-chip" data-val="no" onclick="pfSelectChip(this,\'child-baptized-chips-' + n + '\')">Not yet</div>' +
+    '</div></div>' +
+    '<div class="pf-field"><label class="pf-label">Date of Baptism</label><input class="pf-input" type="date" id="child-baptism-' + n + '"></div>' +
+    '</div>';
+  wrap.appendChild(div);
+}
+
+function removeChild(n) {
+  var el = document.getElementById('child-' + n);
+  if (el) el.remove();
+}
+
+async function submitProfile() {
+  var first = document.getElementById('pf-first').value.trim();
+  var last = document.getElementById('pf-last').value.trim();
+  var email = document.getElementById('pf-email').value.trim();
+  if (!first || !last || !email) {
+    alert('Please fill in your name and email before submitting.');
+    switchTab('household', document.querySelectorAll('.ptab')[0]);
+    return;
+  }
+
+  var status = document.querySelector('#pf-status-chips .pf-chip.selected');
+  var children = [];
+  for (var i = 1; i <= childCount; i++) {
+    if (document.getElementById('child-' + i)) {
+      var baptized = document.querySelector('#child-baptized-chips-' + i + ' .pf-chip.selected');
+      children.push({
+        name: (document.getElementById('child-name-' + i) || {}).value || '',
+        dob: (document.getElementById('child-dob-' + i) || {}).value || '',
+        nameDay: (document.getElementById('child-nameday-' + i) || {}).value || '',
+        baptized: baptized ? baptized.dataset.val : '',
+        baptismDate: (document.getElementById('child-baptism-' + i) || {}).value || ''
+      });
+    }
+  }
+
+  var data = {
+    form: 'parishioner_profile',
+    firstName: first, lastName: last, email: email,
+    phone: document.getElementById('pf-phone').value.trim(),
+    contactPref: document.getElementById('pf-contact-pref').value,
+    address: document.getElementById('pf-address').value.trim(),
+    dob: document.getElementById('pf-dob').value,
+    nameDaySaint: document.getElementById('pf-nameday-saint').value.trim(),
+    nameDayDate: document.getElementById('pf-nameday-date').value.trim(),
+    baptism: document.getElementById('pf-baptism').value,
+    chrismation: document.getElementById('pf-chrismation').value,
+    godparents: document.getElementById('pf-godparents').value.trim(),
+    status: status ? status.dataset.val : '',
+    spouseName: document.getElementById('pf-spouse-name').value.trim(),
+    spouseNameDay: document.getElementById('pf-spouse-nameday').value.trim(),
+    spouseDob: document.getElementById('pf-spouse-dob').value,
+    anniversary: document.getElementById('pf-anniversary').value,
+    children: children,
+    attending: document.getElementById('pf-attending').value,
+    notes: document.getElementById('pf-notes').value.trim(),
+    submittedAt: new Date().toISOString()
+  };
+
+  try {
+    var user = await getCurrentUser();
+    if (!user) {
+      localStorage.setItem('spp_profile', JSON.stringify(data));
+    } else {
+      var result = await _supabase.from('parishioners').upsert({
+        user_id: user.id,
+        first_name: data.firstName,
+        last_name: data.lastName,
+        email: data.email,
+        phone: data.phone || null,
+        contact_pref: data.contactPref,
+        address: data.address || null,
+        date_of_birth: data.dob || null,
+        nameday_saint: data.nameDaySaint || null,
+        nameday_date: data.nameDayDate || null,
+        baptism_date: data.baptism || null,
+        chrismation_date: data.chrismation || null,
+        godparents: data.godparents || null,
+        status: data.status,
+        spouse_name: data.spouseName || null,
+        spouse_nameday: data.spouseNameDay || null,
+        spouse_dob: data.spouseDob || null,
+        anniversary: data.anniversary || null,
+        children: data.children,
+        attending: data.attending || null,
+        notes: data.notes || null,
+        updated_at: new Date().toISOString()
+      }, { onConflict: 'user_id' });
+      if (result.error) throw result.error;
+      localStorage.setItem('spp_profile', JSON.stringify(data));
+    }
+  } catch (e) {
+    console.error('[PROFILE ERROR]', e);
+    try { localStorage.setItem('spp_profile', JSON.stringify(data)); } catch(ex) {}
+  }
+
+  var outer = document.getElementById('profile-outer');
+  outer.innerHTML = document.getElementById('pf-confirm').outerHTML;
+  outer.querySelector('#pf-confirm').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+
+async function authSendLink() {
+  var email = document.getElementById('auth-email-input').value.trim();
+  if (!email) return;
+  var btn = event.target;
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+  var result = await sendMagicLink(email, window.location.href);
+  if (result.success) {
+    document.getElementById('auth-sent-msg').style.display = 'inline';
+    btn.style.display = 'none';
+  } else {
+    btn.textContent = 'Send Me a Link';
+    btn.disabled = false;
+    alert('Could not send link. Please check your email and try again.');
+  }
+}
+
+// Restore saved profile on load
+document.addEventListener('DOMContentLoaded', function() {
+  try {
+    var saved = JSON.parse(localStorage.getItem('spp_profile') || 'null');
+    if (!saved) return;
+    var fields = {
+      'pf-first': 'firstName', 'pf-last': 'lastName', 'pf-email': 'email',
+      'pf-phone': 'phone', 'pf-address': 'address', 'pf-dob': 'dob',
+      'pf-nameday-saint': 'nameDaySaint', 'pf-nameday-date': 'nameDayDate',
+      'pf-baptism': 'baptism', 'pf-chrismation': 'chrismation',
+      'pf-godparents': 'godparents', 'pf-spouse-name': 'spouseName',
+      'pf-spouse-nameday': 'spouseNameDay', 'pf-spouse-dob': 'spouseDob',
+      'pf-anniversary': 'anniversary', 'pf-attending': 'attending',
+      'pf-notes': 'notes'
+    };
+    Object.keys(fields).forEach(function(id) {
+      var el = document.getElementById(id);
+      var val = saved[fields[id]];
+      if (el && val) el.value = val;
+    });
+    if (saved.status) {
+      var chip = document.querySelector('#pf-status-chips [data-val="' + saved.status + '"]');
+      if (chip) pfSelectChip(chip, 'pf-status-chips');
+    }
+    if (saved.children && saved.children.length) {
+      saved.children.forEach(function(child) {
+        addChild();
+        var n = childCount;
+        if (child.name) document.getElementById('child-name-' + n).value = child.name;
+        if (child.dob) document.getElementById('child-dob-' + n).value = child.dob;
+        if (child.nameDay) document.getElementById('child-nameday-' + n).value = child.nameDay;
+        if (child.baptismDate) document.getElementById('child-baptism-' + n).value = child.baptismDate;
+        if (child.baptized) {
+          var bChip = document.querySelector('#child-baptized-chips-' + n + ' [data-val="' + child.baptized + '"]');
+          if (bChip) pfSelectChip(bChip, 'child-baptized-chips-' + n);
+        }
+      });
+    }
+  } catch(e) {}
+});
+</script>
+
+<script>
+function openDrawer() {
+  document.getElementById('nav-drawer').classList.add('open');
+  document.getElementById('nav-overlay').classList.add('open');
+  document.getElementById('nav-hamburger').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeDrawer() {
+  document.getElementById('nav-drawer').classList.remove('open');
+  document.getElementById('nav-overlay').classList.remove('open');
+  document.getElementById('nav-hamburger').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeDrawer(); });
+function drToggle(head) {
+  var section = head.parentElement;
+  var isOpen = section.classList.contains('open');
+  document.querySelectorAll('.dr-section').forEach(function(s) {
+    s.classList.remove('open');
+    s.querySelector('.dr-section-toggle').textContent = '+';
+  });
+  if (!isOpen) {
+    section.classList.add('open');
+    section.querySelector('.dr-section-toggle').textContent = '\u2212';
+  }
+}
+(function() {
+  var tabs = document.querySelectorAll('.nav-links > li[data-mega]');
+  var group = document.getElementById('nav-mega-group');
+  var activePanel = null, activeTab = null;
+  function showPanel(tab) {
+    var id = tab.getAttribute('data-mega');
+    var panel = document.getElementById(id);
+    if (activePanel && activePanel !== panel) activePanel.classList.remove('mega-visible');
+    if (activeTab) activeTab.classList.remove('tab-active');
+    if (panel) { panel.classList.add('mega-visible'); activePanel = panel; }
+    tab.classList.add('tab-active'); activeTab = tab;
+  }
+  function hideAll() {
+    if (activePanel) { activePanel.classList.remove('mega-visible'); activePanel = null; }
+    if (activeTab) { activeTab.classList.remove('tab-active'); activeTab = null; }
+  }
+  tabs.forEach(function(tab) { tab.addEventListener('mouseenter', function() { showPanel(tab); }); });
+  group.addEventListener('mouseleave', function() { hideAll(); });
+})();
+</script>
+
+<script>
+(function() {
+  var path = window.location.pathname.replace(/\/$/, '') || '/';
+  var map = {
+    'mega-about':    ['/our-parish','/church-history','/our-beliefs','/administration','/council','/bylaws'],
+    'mega-inquirers':['/about-orthodoxy','/catechesis','/catechesis-history','/bible-study','/fasting','/visit','/contact-us'],
+    'mega-calendar': ['/schedule','/readings','/saints','/prologue','/saint-of-the-day'],
+    'mega-parish':   ['/news','/bulletins','/gallery','/videos','/cemeteries','/give','/giving-project'],
+    'mega-worship':  ['/divine-liturgy','/vespers','/liturgy-history','/liturgy-book','/vespers-book','/prayers']
+  };
+  Object.keys(map).forEach(function(panelId) {
+    if (map[panelId].some(function(p) { return path === p || path.startsWith(p + '/'); })) {
+      var li = document.querySelector('[data-mega="' + panelId + '"]');
+      if (li) li.classList.add('tab-active');
+    }
+  });
+})();
+</script>
+</body>
+</html>

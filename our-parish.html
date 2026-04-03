@@ -281,6 +281,10 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 </style>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <link rel="stylesheet" href="/styles/typography.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="/supabase-client.js"></script>
+<script src="/auth.js"></script>
+<script src="/companion-sync.js"></script>
 </head>
 <body>
 <!-- ═══════════════════════════════════════════
@@ -795,6 +799,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
       </ul>
       <span class="footer-nav-sub">My Parish</span>
       <a href="/my-journey" class="footer-my-journey">My Journey</a>
+      <a href="/my-profile" class="footer-my-journey" style="margin-left:.5rem">My Profile</a>
       <span class="footer-nav-sub">Connect</span>
       <p class="footer-meta" style="line-height:2.2">
         Vespers &middot; Saturdays 5:00 PM<br>
@@ -1096,6 +1101,9 @@ function drToggle(head){
   }
   function saveState(s) {
     try { localStorage.setItem(STORE_KEY, JSON.stringify(s)); } catch {}
+    if (typeof syncJourneyProgress === 'function') {
+      syncJourneyProgress(PAGE_KEY, s);
+    }
   }
 
   function jwInit() {
