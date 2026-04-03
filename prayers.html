@@ -278,8 +278,12 @@ body.dark-mode .sb-head{color:var(--ink)}
 
 /* ── FOOTER ── */
 footer{background:var(--apse);padding:4rem 2rem 2rem}
-.footer-cross{display:block;font-family:var(--f-ui);font-size:.72rem;letter-spacing:.5em;color:rgba(232,201,122,.40);text-align:center;margin-bottom:2.5rem}
-.footer-cols{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:3rem;padding-bottom:2.5rem;border-bottom:1px solid rgba(255,255,255,.08)}
+.footer-cols{max-width:1380px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:4rem;margin-bottom:2.5rem}
+.footer-my-journey{display:inline-block;margin-top:.5rem;padding:.42rem 1rem;border:1px solid rgba(246,241,232,.55);color:rgba(246,241,232,.9);font-family:var(--f-ui);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;transition:border-color .2s,color .2s}
+.footer-my-journey:hover{border-color:rgba(246,241,232,1);color:rgba(246,241,232,1)}
+.footer-logo-img{height:44px;width:auto;display:block;margin-bottom:1.75rem;filter:brightness(0) invert(1);opacity:.85}
+.footer-nav-sub{font-family:var(--f-ui);font-size:.72rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(184,131,40,.55);display:block;margin:1.25rem 0 .5rem;padding-bottom:.35rem;border-bottom:1px solid rgba(246,241,232,.04)}
+.footer-socials{display:flex;gap:1.5rem;margin-top:1.5rem}
 .footer-col-head{font-family:var(--f-ui);font-size:.65rem;letter-spacing:.20em;text-transform:uppercase;color:rgba(232,201,122,.55);display:block;margin-bottom:1rem}
 .footer-name{font-family:var(--f-display);font-weight:300;font-size:1.35rem;color:rgba(246,241,232,.92);margin-bottom:.5rem;line-height:1.2}
 .footer-blurb{font-family:var(--f-body);font-size:.88rem;color:rgba(246,241,232,.42);line-height:1.6;margin-bottom:.85rem}
@@ -770,44 +774,107 @@ footer{background:var(--apse);padding:4rem 2rem 2rem}
 </div>
 
 <!-- FOOTER -->
+<!-- ═══════════════════════════════════════════
+     FOOTER — standard version (all pages except index)
+     ═══════════════════════════════════════════ -->
 <footer>
-  <span class="footer-cross">+ + +</span>
   <div class="footer-cols">
+
+    <!-- COL 1: Identity -->
     <div>
-      <span class="footer-col-head">Saints Peter &amp; Paul</span>
-      <p class="footer-name">Orthodox Cathedral<br>Jersey City, New Jersey</p>
-      <p class="footer-blurb">A parish of the Orthodox Church in America, Diocese of New York and New Jersey.</p>
-      <div class="footer-meta">
-        723 Madison Ave, Jersey City, NJ 07306<br>
-        <a href="tel:+12015551234">(201) 555-1234</a>
+      <img src="/images/logo/logo-2026.svg" alt="Saints Peter &amp; Paul Orthodox Cathedral" class="footer-logo-img" onerror="this.style.display='none'">
+      <p class="footer-meta">
+        Diocese of New York &amp; New Jersey<br>
+        <a href="https://nynjoca.org" target="_blank" rel="noopener">nynjoca.org</a><br>
+        Orthodox Church in America<br>
+        <a href="https://oca.org" target="_blank" rel="noopener">oca.org</a>
+      </p>
+      <div class="footer-socials">
+        <a href="#" target="_blank" rel="noopener">Facebook</a>
+        <a href="#" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.youtube.com/@SSPPJC" target="_blank" rel="noopener">YouTube</a>
       </div>
     </div>
+
+    <!-- COL 2: About Us + Inquirers -->
     <div>
-      <span class="footer-col-head">Worship</span>
+      <span class="footer-col-head">About Us</span>
       <ul class="footer-nav">
-        <li><a href="/schedule">Liturgical Calendar</a></li>
-        <li><a href="/divine-liturgy">The Divine Liturgy</a></li>
-        <li><a href="/vespers">Vespers</a></li>
-        <li><a href="/liturgy-book">Service Book</a></li>
-        <li><a href="/prayers">Common Prayers</a></li>
-      </ul>
-    </div>
-    <div>
-      <span class="footer-col-head">Parish</span>
-      <ul class="footer-nav">
-        <li><a href="/our-parish">About Our Church</a></li>
+        <li><a href="/our-parish">Our Parish</a></li>
+        <li><a href="/church-history">Church History</a></li>
         <li><a href="/our-beliefs">Our Beliefs</a></li>
-        <li><a href="/visit">Plan Your Visit</a></li>
-        <li><a href="/bulletins">Bulletins</a></li>
+        <li><a href="/administration">Administration</a></li>
+        <li><a href="/council">Parish Council</a></li>
+        <li><a href="/bylaws">Bylaws</a></li>
+      </ul>
+      <span class="footer-nav-sub">Inquirers</span>
+      <ul class="footer-nav">
+        <li><a href="/about-orthodoxy">About Orthodoxy</a></li>
+        <li><a href="/catechesis">Catechesis Series</a></li>
+        <li><a href="/catechesis-history">Catechesis History</a></li>
+        <li><a href="/bible-study">Bible Study</a></li>
+        <li><a href="/fasting">Fasting</a></li>
+        <li><a href="/visit">Visitor Guide</a></li>
         <li><a href="/contact-us">Contact Us</a></li>
       </ul>
     </div>
+
+    <!-- COL 3: Worship + Daily -->
+    <div>
+      <span class="footer-col-head">Worship</span>
+      <ul class="footer-nav">
+        <li><a href="/divine-liturgy">About the Divine Liturgy</a></li>
+        <li><a href="/vespers">About Vespers</a></li>
+        <li><a href="/liturgy-book">Liturgy Book</a></li>
+        <li><a href="/vespers-book">Vespers Book</a></li>
+        <li><a href="/liturgy-history">History of the Liturgy</a></li>
+      </ul>
+      <span class="footer-nav-sub">Daily</span>
+      <ul class="footer-nav">
+        <li><a href="/readings">Daily Readings</a></li>
+        <li><a href="/saints">Saints of the Day</a></li>
+        <li><a href="/prologue">The Prologue</a></li>
+        <li><a href="/prayers">Daily Prayers</a></li>
+      </ul>
+    </div>
+
+    <!-- COL 4: Parish Life + My Parish + Connect -->
+    <div>
+      <span class="footer-col-head">Parish Life</span>
+      <ul class="footer-nav">
+        <li><a href="/news">News &amp; Announcements</a></li>
+        <li><a href="/bulletins">Parish Bulletins</a></li>
+        <li><a href="/gallery">Gallery</a></li>
+        <li><a href="/videos">Videos</a></li>
+        <li><a href="/cemeteries">Cemeteries</a></li>
+        <li><a href="/give">Give &amp; Support</a></li>
+      </ul>
+      <span class="footer-nav-sub">My Parish</span>
+      <a href="/my-journey" class="footer-my-journey">My Journey</a>
+      <span class="footer-nav-sub">Connect</span>
+      <p class="footer-meta" style="line-height:2.2">
+        Vespers &middot; Saturdays 5:00 PM<br>
+        Divine Liturgy &middot; Sundays 9:30 AM
+      </p>
+      <p class="footer-meta" style="margin-top:.75rem">
+        <a href="https://maps.google.com/?q=109+Grand+Street+Jersey+City+NJ+07302" target="_blank" rel="noopener">109 Grand Street &middot; Jersey City, NJ</a><br>
+        <a href="tel:+12014341986">(201) 434-1986</a><br>
+        <a href="mailto:ssppnj@gmail.com">ssppnj@gmail.com</a>
+      </p>
+    </div>
+
   </div>
   <div class="footer-bottom">
-    <span class="footer-copy">&copy; 2026 Saints Peter &amp; Paul Orthodox Cathedral</span>
-    <span class="footer-addr">Jersey City, New Jersey &middot; OCA Diocese of New York &amp; New Jersey</span>
+    <p class="footer-copy">&copy; Saints Peter &amp; Paul Orthodox Cathedral. All Rights Reserved.</p>
+    <p class="footer-addr">
+      <a href="https://maps.google.com/?q=109+Grand+Street+Jersey+City+NJ+07302" target="_blank" rel="noopener" style="color:inherit;border-bottom:1px solid rgba(246,241,232,.25)">109 Grand Street &middot; Jersey City, NJ 07302</a><br>
+      (201) 434-1986 &middot; <a href="mailto:ssppnj@gmail.com" style="color:inherit">ssppnj@gmail.com</a>
+    </p>
   </div>
 </footer>
+<!-- ═══════════════════════════════════════════
+     FOOTER END
+     ═══════════════════════════════════════════ -->
 
 <!-- BOTTOM SHEET -->
 <div class="mob-sheet-overlay" id="mob-sheet-overlay" onclick="closeSheet()"></div>
