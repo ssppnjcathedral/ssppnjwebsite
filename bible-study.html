@@ -1218,5 +1218,38 @@ function sheetJump(id) {
   setTimeout(function(){ scrollToSection(id); }, 240);
 }
 </script>
+<script>
+function drToggle(head){
+  var section=head.parentElement;
+  var isOpen=section.classList.contains('open');
+  document.querySelectorAll('.dr-section').forEach(function(s){
+    s.classList.remove('open');
+    s.querySelector('.dr-section-toggle').textContent='+';
+  });
+  if(!isOpen){
+    section.classList.add('open');
+    section.querySelector('.dr-section-toggle').textContent='−';
+  }
+}
+(function(){
+  var tabs=document.querySelectorAll('.nav-links > li[data-mega]');
+  var group=document.getElementById('nav-mega-group');
+  var activePanel=null,activeTab=null;
+  function showPanel(tab){
+    var id=tab.getAttribute('data-mega');
+    var panel=document.getElementById(id);
+    if(activePanel&&activePanel!==panel)activePanel.classList.remove('mega-visible');
+    if(activeTab)activeTab.classList.remove('tab-active');
+    if(panel){panel.classList.add('mega-visible');activePanel=panel;}
+    tab.classList.add('tab-active');activeTab=tab;
+  }
+  function hideAll(){
+    if(activePanel){activePanel.classList.remove('mega-visible');activePanel=null;}
+    if(activeTab){activeTab.classList.remove('tab-active');activeTab=null;}
+  }
+  tabs.forEach(function(tab){tab.addEventListener('mouseenter',function(){showPanel(tab);});});
+  group.addEventListener('mouseleave',function(){hideAll();});
+})();
+</script>
 </body>
 </html>
