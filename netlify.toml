@@ -33,6 +33,11 @@
   to = "/catechesis"
   status = 301
 
+[[redirects]]
+  from = "/about-liturgy"
+  to = "/liturgy-history"
+  status = 301
+
 # Redirect /donate to /give (old page -> new hub)
 [[redirects]]
   from = "/donate"
