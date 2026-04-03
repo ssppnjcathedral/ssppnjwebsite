@@ -44,22 +44,32 @@ liturgy-book.html       Service book — same layout
 visit.html              Visit page — hero, practical cards, map embed, photo mosaic, calendar pull
 schedule.html           Full liturgical calendar with month/list toggle and event map
 church-history.html     Editorial page — chapter rail, stats row, lightbox gallery, dual nav
-about-our-church.html
+our-parish.html
 about-orthodoxy.html
 our-beliefs.html
 administration.html
 council.html
+bylaws.html
+catechesis.html
+catechesis-history.html
+bible-study.html
+fasting.html
 contact-us.html
-donate.html
+give.html
+giving-project.html
 gallery.html
 bulletins.html
+bulletin.html           Single bulletin viewer — fetches bulletins.json; footer is <footer class="screen-only">
 news.html
+article.html            Single news article viewer
 readings.html
 saints.html             Lives of the Saints — fetches _data/oca-saints-YYYY-MM-DD.json
 prologue.html           Prologue of Ohrid readings — fetches _data/prologue.json
 cemeteries.html
-bylaws.html
 videos.html
+liturgy-history.html
+vespers-book.html
+prayers.html
 ```
 
 ---
@@ -99,7 +109,9 @@ Five tabs: About Us, Inquirers, Calendar, Parish Life, Resources.
 Each tab has a 420px photo strip with Ken Burns zoom, italic quote, two-column link layout.
 Mobile: dark accordion drawer with gold italic descriptors.
 
-**Footer:** Four columns mirroring nav taxonomy.
+**Footer:** Four columns (`1.4fr 1fr 1fr 1fr`), canonical sitewide. Col 1: parish logo SVG + diocese info + socials (YouTube `@SSPPJC`). Col 2: About Us + Inquirers nav. Col 3: Worship + Daily nav. Col 4: Parish Life nav + My Journey pill + Connect (service times, address, phone, email). Footer bottom: copyright + address (109 Grand Street) + phone (201) 434-1986 + email (ssppnj@gmail.com).
+
+**My Journey pill (footer):** `border:1px solid rgba(246,241,232,.55)` — white outlined pill, class `.footer-my-journey`. Defined in CSS on every page alongside `.footer-logo-img`, `.footer-nav-sub`, `.footer-cols`.
 
 **Chapter rail (church-history):**
 Desktop rail positioned dynamically to the right of `.main-col`.
@@ -221,3 +233,4 @@ To re-run the saints scraper: trigger `oca-saints-daily.yml` manually via GitHub
 - Swap Wikimedia sidebar image URLs with real parish assets when available
 - Complete scroll animations: staggered fade-up for service strip cards and Ken Burns + text
   fade-up for worship cards (may be partially implemented — check before adding)
+- Footer standardization complete — do not revert to 3-column or re-add `.footer-cross`
