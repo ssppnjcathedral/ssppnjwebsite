@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Give · Saints Peter &amp; Paul Orthodox Cathedral</title>
+<meta name="description" content="Support the life of Saints Peter and Paul Orthodox Cathedral through targeted giving projects, ongoing drives, and general stewardship."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{--vellum:#F6F1E8;--vellum-mid:#EDE7DC;--ink:#2C1F16;--maroon:#7B1D2A;--maroon-deep:#5C1520;--gold:#B88328;--gold-lt:#E8C97A;--verdigris:#3D6B5E;--stone:#7A6648;--apse:#3B0F18;--f-display:'Cormorant Garamond',Georgia,serif;--f-body:'EB Garamond',Georgia,serif;--f-ui:'Cinzel',Georgia,serif;--rule-faint:1px solid rgba(123,29,42,0.14);--rule-hair:1px solid rgba(123,29,42,0.07)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{background:var(--vellum);color:var(--ink);font-family:var(--f-body);font-size:18px;line-height:1.75;overflow-x:hidden;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}
+
+/* ── RUBRIC ── */
+.rubric{display:block;font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.20em;text-transform:uppercase;color:var(--stone);margin-bottom:.5rem}
+.rubric.light{color:rgba(246,241,232,.55)}
+.rubric-rule{display:block;height:1px;background:var(--maroon);margin-bottom:1rem;width:48px}
+.rubric-rule.gold{background:var(--gold)}
+.rubric-rule.centered{margin-left:auto;margin-right:auto}
+
+/* ── NAV ── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(246,241,232,.97);backdrop-filter:blur(10px);border-bottom:var(--rule-faint)}
+.nav-inner{max-width:1380px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px;padding:0 3rem}
+.nav-logo-name{font-family:var(--f-display);font-weight:500;font-size:1.25rem;color:var(--ink);display:block}
+.nav-logo-sub{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);display:block}
+.nav-links{display:flex;align-items:center;list-style:none}
+.nav-links>li{position:relative}
+.nav-links>li>a{font-family:var(--f-ui);font-size:.78rem;letter-spacing:.10em;text-transform:uppercase;color:var(--ink);padding:1.1rem .85rem;display:block;transition:color .18s}
+.nav-links>li:hover>a,.nav-links>li>a.active{color:var(--maroon)}
+.nav-drop{position:absolute;top:100%;left:0;background:var(--vellum);border-top:2px solid var(--maroon);border-bottom:var(--rule-faint);border-left:var(--rule-faint);border-right:var(--rule-faint);min-width:200px;padding:.5rem 0;opacity:0;pointer-events:none;transform:translateY(-4px);transition:all .16s;box-shadow:0 8px 28px rgba(28,20,16,.10)}
+.nav-links>li:hover .nav-drop{opacity:1;pointer-events:all;transform:none}
+.nav-drop a{display:block;font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);padding:.5rem 1.4rem;transition:color .14s}
+.nav-drop a:hover{color:var(--maroon)}
+.nav-give{font-family:var(--f-ui);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--vellum);background:var(--maroon);padding:.5rem 1.1rem;transition:background .2s}
+.nav-give:hover{background:var(--maroon-deep)}
+.nav-hamburger{display:none;flex-direction:column;justify-content:space-between;width:28px;height:20px;cursor:pointer;padding:0;background:none;border:none;z-index:400}
+.nav-hamburger span{display:block;width:100%;height:2px;background:var(--maroon);transition:all .28s ease;transform-origin:center}
+.nav-hamburger.open span:nth-child(1){transform:translateY(9px) rotate(45deg)}
+.nav-hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-9px) rotate(-45deg)}
+
+/* ── MOBILE DRAWER (nav) ── */
+.nav-drawer{position:fixed;top:0;right:0;width:300px;max-width:85vw;height:100vh;background:var(--apse);z-index:350;transform:translateX(100%);transition:transform .32s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;overflow-y:auto}
+.nav-drawer.open{transform:translateX(0)}
+.nav-drawer-overlay{position:fixed;inset:0;background:rgba(21,8,4,.65);z-index:340;opacity:0;pointer-events:none;transition:opacity .32s}
+.nav-drawer-overlay.open{opacity:1;pointer-events:all}
+.nav-drawer-head{padding:1.5rem 1.75rem 1rem;border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:space-between}
+.nav-drawer-logo{font-family:var(--f-display);font-weight:500;font-size:1.1rem;color:#fff}
+.nav-drawer-logo span{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);display:block;margin-top:2px}
+.nav-drawer-close{width:32px;height:32px;background:rgba(255,255,255,.08);border:none;color:rgba(255,255,255,.65);cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.nav-drawer-close:hover{background:rgba(255,255,255,.15)}
+.nav-drawer-links{padding:1rem 0;flex:1}
+.nav-drawer-links a{display:block;font-family:var(--f-ui);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,232,.70);padding:.9rem 1.75rem;border-bottom:1px solid rgba(255,255,255,.05);transition:all .18s}
+.nav-drawer-links a:hover{color:#fff;background:rgba(255,255,255,.05)}
+.nav-drawer-links .drawer-section{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(184,131,40,.55);padding:.85rem 1.75rem .35rem;display:block}
+.nav-drawer-give{margin:1.25rem 1.75rem;display:block;text-align:center;font-family:var(--f-ui);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;padding:.85rem;background:var(--maroon);color:var(--vellum);transition:background .2s}
+.nav-drawer-give:hover{background:var(--maroon-deep)}
+
+/* ── HERO ── */
+.giving-hero{padding-top:60px;background:linear-gradient(rgba(21,8,4,.82),rgba(21,8,4,.82)),url('/images/heroes/donate.webp') center/cover no-repeat;background-color:var(--apse);min-height:380px;display:flex;align-items:center}
+.giving-hero-inner{max-width:1380px;width:100%;margin:0 auto;padding:5rem 4.5rem 4rem}
+.giving-hero-eyebrow{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(184,131,40,.70);display:block;margin-bottom:.75rem}
+.giving-hero-title{font-family:var(--f-display);font-weight:300;font-size:clamp(2.6rem,5vw,4.2rem);line-height:1;color:#fff;margin-bottom:1rem}
+.giving-hero-title em{font-style:italic;color:var(--gold-lt)}
+.giving-hero-rule{width:56px;height:1px;background:rgba(184,131,40,.40);margin:.75rem 0 1rem}
+.giving-hero-sub{font-family:var(--f-display);font-style:italic;font-size:1.1rem;color:rgba(255,255,255,.55);max-width:44ch;line-height:1.5}
+
+/* ── JUMP BAR ── */
+.jump-bar{background:var(--apse);border-bottom:1px solid rgba(184,131,40,.18);position:sticky;top:60px;z-index:190}
+.jump-bar-inner{max-width:1380px;margin:0 auto;padding:0 4.5rem;display:flex;align-items:stretch;gap:0}
+.jump-link{font-family:var(--f-ui);font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(246,241,232,.82);padding:.85rem 1.5rem .85rem 0;margin-right:1.5rem;border-bottom:2px solid transparent;transition:color .18s,border-color .18s;white-space:nowrap}
+.jump-link:hover,.jump-link.active{color:rgba(184,131,40,.95);border-bottom-color:var(--gold)}
+.jump-link:first-child{padding-left:0}
+
+/* ── STEWARDSHIP STRIP ── */
+.stewardship-strip{background:var(--vellum-mid);border-bottom:var(--rule-faint);padding:3rem 4.5rem}
+.stewardship-strip-inner{max-width:1380px;margin:0 auto;display:grid;grid-template-columns:auto 1fr;gap:4rem;align-items:center}
+.impact-row{display:flex;gap:0}
+.impact-cell{padding:0 2.5rem;border-right:var(--rule-faint);text-align:center}
+.impact-cell:first-child{padding-left:0}
+.impact-cell:last-child{border-right:none}
+.impact-num{font-family:var(--f-display);font-weight:300;font-size:2.8rem;color:var(--maroon);display:block;line-height:1}
+.impact-lbl{font-family:var(--f-ui);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);display:block;margin-top:.4rem}
+.stewardship-prose{font-family:var(--f-body);font-size:.975rem;line-height:1.85;color:var(--ink);max-width:52ch}
+.stewardship-prose p{margin-bottom:.85em}
+.stewardship-prose p:last-child{margin-bottom:0}
+
+/* ── PRIORITY BANNER ── */
+.priority-wrap{background:var(--apse);border-top:3px solid var(--gold);padding:3.5rem 4.5rem}
+.priority-inner{max-width:1380px;margin:0 auto;display:grid;grid-template-columns:1fr 360px;gap:4rem;align-items:center}
+.priority-tag{font-family:var(--f-ui);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(232,201,122,.65);display:inline-block;border:1px solid rgba(232,201,122,.30);padding:.25rem .75rem;margin-bottom:1rem}
+.priority-title{font-family:var(--f-display);font-weight:300;font-size:clamp(1.8rem,3vw,2.8rem);color:#fff;line-height:1.05;margin:.35rem 0 .5rem}
+.priority-sub{font-family:var(--f-ui);font-size:.70rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,241,232,.38);margin-bottom:1.25rem}
+.priority-desc{font-family:var(--f-body);font-size:.95rem;line-height:1.78;color:rgba(246,241,232,.68);max-width:52ch;margin-bottom:2rem}
+.priority-actions{display:flex;gap:1rem;flex-wrap:wrap;align-items:center}
+.priority-progress-box{background:rgba(21,8,4,.45);padding:2rem;border:1px solid rgba(255,255,255,.10)}
+.priority-progress-label{font-family:var(--f-ui);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,241,232,.38);display:block;margin-bottom:1.25rem}
+.priority-amounts{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.5rem;flex-wrap:wrap;gap:.25rem}
+.priority-raised{font-family:var(--f-display);font-weight:400;font-size:2rem;color:rgba(246,241,232,.94);line-height:1}
+.priority-goal{font-family:var(--f-ui);font-size:.68rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.35)}
+.priority-track{background:rgba(255,255,255,.12);height:5px;border-radius:3px;overflow:hidden;margin-bottom:1.5rem}
+.priority-fill{height:100%;width:0%;background:var(--gold);border-radius:3px;transition:width .95s cubic-bezier(.4,0,.2,1)}
+.priority-target{font-family:var(--f-ui);font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,232,.35);margin-bottom:1.5rem;display:block}
+.priority-donor-count{font-family:var(--f-ui);font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,232,.32);margin-top:.35rem;display:block}
+
+/* ── BUTTONS ── */
+.btn-gold-solid{display:inline-block;font-family:var(--f-ui);font-size:.70rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;padding:.8rem 1.8rem;background:var(--gold);color:#fff;border:1px solid var(--gold);transition:background .2s;white-space:nowrap;cursor:pointer}
+.btn-gold-solid:hover{background:#9a6d20}
+.btn-gold-block{display:block;width:100%;text-align:center;font-family:var(--f-ui);font-size:.70rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;padding:.95rem 2rem;background:var(--gold);color:#fff;border:1px solid var(--gold);transition:background .2s;margin-bottom:.8rem;cursor:pointer}
+.btn-gold-block:hover{background:#9a6d20}
+.btn-ghost-light{display:inline-block;font-family:var(--f-ui);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;padding:.8rem 1.8rem;border:1px solid rgba(255,255,255,.32);color:rgba(255,255,255,.78);background:transparent;transition:all .2s;white-space:nowrap;cursor:pointer}
+.btn-ghost-light:hover{border-color:#fff;color:#fff}
+.btn-ghost-light-block{display:block;width:100%;text-align:center;font-family:var(--f-ui);font-size:.68rem;letter-spacing:.20em;text-transform:uppercase;padding:.85rem 2rem;border:1px solid rgba(255,255,255,.28);color:rgba(255,255,255,.72);background:transparent;transition:all .2s;cursor:pointer}
+.btn-ghost-light-block:hover{border-color:#fff;color:#fff}
+
+/* ── STICKY FILTER BAR ── */
+.projects-section{max-width:1380px;margin:0 auto;padding:5rem 4.5rem 3rem}
+.section-head-row{margin-bottom:1.75rem}
+.section-head-row h2{font-family:var(--f-display);font-weight:400;font-size:clamp(1.6rem,2.5vw,2.1rem);color:var(--ink);line-height:1.15;margin:.35rem 0 .25rem}
+.section-lead{font-family:var(--f-body);font-size:.9rem;color:var(--stone);margin-top:.35rem}
+.filter-pills-wrap{position:sticky;top:60px;z-index:90;background:var(--vellum);padding:.75rem 4.5rem;margin:0 -4.5rem;border-bottom:var(--rule-faint);border-top:var(--rule-hair);display:flex;gap:.5rem;flex-wrap:wrap;align-items:center}
+.filter-label{font-family:var(--f-ui);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(123,29,42,.30);margin-right:.25rem;white-space:nowrap}
+.filter-pill{font-family:var(--f-ui);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;padding:.38rem .9rem;border:1px solid rgba(123,29,42,.20);background:transparent;color:var(--stone);cursor:pointer;transition:all .18s}
+.filter-pill.active,.filter-pill:hover{background:var(--maroon);color:var(--vellum);border-color:var(--maroon)}
+.project-grid-wrap{padding-top:1.75rem}
+
+/* ── PROJECT CARD ── */
+.project-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.75rem}
+.project-card{background:#fff;border:var(--rule-faint);border-top:3px solid transparent;display:flex;flex-direction:column;cursor:pointer;transition:border-color .25s,box-shadow .22s,transform .22s}
+.project-card:hover{border-top-color:var(--cat-accent,var(--maroon));box-shadow:0 8px 32px rgba(28,20,16,.12);transform:translateY(-2px)}
+
+/* Card image + quote overlay */
+.project-card-img-wrap{position:relative;height:190px;overflow:hidden;background:var(--vellum-mid)}
+.project-card-img-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .45s ease}
+.project-card:hover .project-card-img-wrap img{transform:scale(1.05)}
+.card-quote-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(59,15,24,.94) 0%,rgba(59,15,24,.55) 55%,transparent 100%);display:flex;align-items:flex-end;padding:1rem 1.1rem;opacity:0;transition:opacity .32s ease;pointer-events:none}
+.project-card:hover .card-quote-overlay{opacity:1}
+.card-quote-text{font-family:var(--f-display);font-style:italic;font-size:.88rem;color:rgba(246,241,232,.92);line-height:1.42;max-height:3.8em;overflow:hidden}
+.project-card-img-placeholder{width:100%;height:100%}
+.project-card-cat-badge{position:absolute;top:.8rem;left:.8rem;font-family:var(--f-ui);font-size:.60rem;letter-spacing:.14em;text-transform:uppercase;padding:.2rem .6rem;color:#fff;z-index:1}
+.cat-temple{background:var(--maroon)}
+.cat-liturgical{background:var(--gold)}
+.cat-facilities{background:var(--stone)}
+.cat-mercy{background:var(--verdigris)}
+.cat-education{background:var(--ink)}
+
+/* Card body */
+.project-card-body{padding:1.4rem;flex:1;display:flex;flex-direction:column}
+.project-card-title{font-family:var(--f-display);font-weight:500;font-size:1.15rem;color:var(--ink);line-height:1.2;margin-bottom:.2rem}
+.project-card-sub{font-family:var(--f-ui);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);margin-bottom:.8rem}
+.project-card-desc{font-family:var(--f-body);font-size:.875rem;line-height:1.72;color:var(--ink);flex:1;margin-bottom:.9rem;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+
+/* Badges */
+.project-badges{display:flex;gap:.35rem;flex-wrap:wrap;margin-bottom:.75rem}
+.project-badge{font-family:var(--f-ui);font-size:.60rem;letter-spacing:.12em;text-transform:uppercase;padding:.18rem .55rem;border:1px solid currentColor}
+.badge-volunteer{color:var(--verdigris)}
+.badge-memorial{color:var(--gold)}
+
+/* Progress bar */
+.progress-track{background:rgba(123,29,42,.10);height:5px;border-radius:3px;overflow:hidden;margin-bottom:.45rem}
+.progress-fill{height:100%;width:0%;background:var(--gold);border-radius:3px;transition:width .85s cubic-bezier(.4,0,.2,1)}
+.progress-meta{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:.25rem;margin-bottom:.5rem}
+.progress-label{font-family:var(--f-ui);font-size:.63rem;letter-spacing:.08em;text-transform:uppercase;color:var(--stone)}
+.progress-ongoing{font-family:var(--f-ui);font-size:.63rem;letter-spacing:.10em;text-transform:uppercase;color:var(--stone);margin-bottom:.5rem}
+.days-remaining{font-family:var(--f-ui);font-size:.62rem;letter-spacing:.10em;text-transform:uppercase;color:var(--gold);background:rgba(184,131,40,.10);padding:.18rem .5rem;border:1px solid rgba(184,131,40,.25)}
+.days-urgent{font-family:var(--f-ui);font-size:.62rem;letter-spacing:.10em;text-transform:uppercase;color:var(--maroon);background:rgba(123,29,42,.07);padding:.18rem .5rem;border:1px solid rgba(123,29,42,.20)}
+.donor-count{display:block;font-family:var(--f-ui);font-size:.60rem;letter-spacing:.10em;text-transform:uppercase;color:var(--stone);opacity:.70;margin-bottom:.6rem}
+
+/* Card CTA */
+.project-card-cta{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:.75rem;border-top:var(--rule-hair)}
+.project-card-cta-label{font-family:var(--f-ui);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);transition:color .18s}
+.project-card:hover .project-card-cta-label{color:var(--maroon-deep)}
+.project-card-cta-arrow{font-size:.7rem;color:var(--maroon);transition:transform .22s}
+.project-card:hover .project-card-cta-arrow{transform:translateX(4px)}
+
+/* ── ON HOLD ── */
+.hold-section{background:var(--vellum-mid);border-top:var(--rule-faint);border-bottom:var(--rule-faint);padding:4rem 4.5rem}
+.hold-section-inner{max-width:1380px;margin:0 auto}
+.hold-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.75rem;margin-top:2rem}
+.hold-card{background:var(--vellum);border:var(--rule-faint);border-top:2px solid var(--stone);display:grid;grid-template-columns:200px 1fr;overflow:hidden;cursor:pointer;transition:box-shadow .22s,transform .22s}
+.hold-card:hover{box-shadow:0 6px 24px rgba(28,20,16,.09);transform:translateY(-1px)}
+.hold-card-img{overflow:hidden;background:var(--vellum-mid);position:relative;min-height:160px}
+.hold-card-img img{width:100%;height:100%;object-fit:cover;opacity:.60;filter:grayscale(30%);transition:opacity .3s}
+.hold-card:hover .hold-card-img img{opacity:.75}
+.hold-card-img-placeholder{width:100%;min-height:160px;background:var(--vellum-mid)}
+.hold-status-badge{position:absolute;top:.75rem;left:.75rem;font-family:var(--f-ui);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;padding:.18rem .55rem;background:var(--stone);color:#fff}
+.hold-card-body{padding:1.5rem}
+.hold-card-title{font-family:var(--f-display);font-weight:500;font-size:1.05rem;color:var(--ink);margin-bottom:.2rem;line-height:1.2}
+.hold-card-sub{font-family:var(--f-ui);font-size:.60rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);margin-bottom:.75rem}
+.hold-card-desc{font-family:var(--f-body);font-size:.875rem;line-height:1.70;color:var(--stone);margin-bottom:.85rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.hold-card-link{font-family:var(--f-ui);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon)}
+
+/* ── COMPLETED ── */
+.completed-section{padding:5rem 4.5rem;background:var(--vellum)}
+.completed-section-inner{max-width:1380px;margin:0 auto}
+.completed-header{text-align:center;margin-bottom:3rem}
+.completed-header h2{font-family:var(--f-display);font-weight:400;font-size:clamp(1.6rem,2.5vw,2.1rem);color:var(--ink);line-height:1.15;margin:.35rem 0 .75rem}
+.completed-note{font-family:var(--f-display);font-style:italic;font-size:1rem;color:var(--stone);max-width:44ch;margin:0 auto}
+.completed-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.completed-card{border:var(--rule-faint);border-top:2px solid var(--verdigris);overflow:hidden;cursor:pointer;transition:box-shadow .22s,transform .22s}
+.completed-card:hover{box-shadow:0 6px 22px rgba(28,20,16,.09);transform:translateY(-1px)}
+.completed-card-img{height:140px;overflow:hidden;background:var(--vellum-mid)}
+.completed-card-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.completed-card:hover .completed-card-img img{transform:scale(1.04)}
+.completed-card-img-placeholder{width:100%;height:100%;background:var(--vellum-mid)}
+.completed-card-body{padding:1.25rem}
+.completed-badge{font-family:var(--f-ui);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;padding:.18rem .55rem;background:var(--verdigris);color:#fff;display:inline-block;margin-bottom:.6rem}
+.completed-card-title{font-family:var(--f-display);font-weight:500;font-size:1rem;color:var(--ink);line-height:1.2;margin-bottom:.2rem}
+.completed-card-note{font-family:var(--f-body);font-style:italic;font-size:.85rem;color:var(--stone);line-height:1.60;margin:.5rem 0}
+.completed-amounts{font-family:var(--f-ui);font-size:.62rem;letter-spacing:.10em;text-transform:uppercase;color:var(--verdigris);margin-top:.5rem}
+
+/* ── RECENT UPDATES FEED ── */
+.updates-feed-section{background:var(--vellum-mid);border-top:var(--rule-faint);border-bottom:var(--rule-faint);padding:5rem 4.5rem}
+.updates-feed-inner{max-width:1380px;margin:0 auto}
+.updates-feed-title{font-family:var(--f-display);font-weight:400;font-size:clamp(1.5rem,2.3vw,2rem);color:var(--ink);line-height:1.15;margin:.35rem 0 2.5rem}
+.uf-timeline{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border:var(--rule-faint)}
+.uf-entry{padding:1.75rem 2rem;border-right:var(--rule-faint);border-bottom:var(--rule-faint);position:relative;transition:background .18s;cursor:pointer}
+.uf-entry:hover{background:rgba(123,29,42,.03)}
+.uf-entry:nth-child(2n){border-right:none}
+.uf-entry:nth-last-child(-n+2){border-bottom:none}
+.uf-entry-top{display:flex;align-items:baseline;gap:.75rem;margin-bottom:.5rem;flex-wrap:wrap}
+.uf-date{font-family:var(--f-ui);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone)}
+.uf-project-name{font-family:var(--f-ui);font-size:.60rem;letter-spacing:.12em;text-transform:uppercase;padding:.18rem .5rem;color:#fff}
+.uf-update-title{font-family:var(--f-display);font-weight:500;font-size:1rem;color:var(--ink);margin-bottom:.3rem;line-height:1.25}
+.uf-update-body{font-family:var(--f-body);font-size:.875rem;line-height:1.68;color:var(--stone);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
+/* ── GENERAL FUND CTA ── */
+.general-cta{background:var(--apse);padding:5rem 4.5rem;text-align:center}
+.general-cta-inner{max-width:680px;margin:0 auto}
+.general-cta h2{font-family:var(--f-display);font-weight:300;font-size:clamp(1.8rem,3vw,2.6rem);color:#fff;line-height:1.1;margin:.5rem 0 1rem}
+.general-cta h2 em{font-style:italic;color:var(--gold-lt)}
+.general-cta-body{font-family:var(--f-body);font-size:.975rem;line-height:1.82;color:rgba(246,241,232,.60);margin-bottom:2.5rem;max-width:44ch;margin-left:auto;margin-right:auto}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:2.5rem}
+.give-methods-strip{display:flex;gap:0;justify-content:center;border-top:1px solid rgba(255,255,255,.10);padding-top:2rem;flex-wrap:wrap}
+.give-method-item{font-family:var(--f-ui);font-size:.63rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,241,232,.38);padding:.25rem 1.25rem;border-right:1px solid rgba(255,255,255,.10)}
+.give-method-item:last-child{border-right:none}
+
+/* ── QUOTE BREAK ── */
+.quote-break{padding:4rem 4.5rem}
+.qb-inner{max-width:640px;margin:0 auto;padding-left:2rem;border-left:3px solid var(--maroon)}
+.qb-text{font-family:var(--f-display);font-style:italic;font-weight:300;font-size:clamp(1.4rem,2.5vw,2rem);line-height:1.45;color:var(--ink);margin-bottom:.65rem}
+.qb-attr{font-family:var(--f-ui);font-size:.68rem;letter-spacing:.20em;text-transform:uppercase;color:var(--maroon);display:block}
+
+/* ── PROJECT DETAIL DRAWER ── */
+.pdrawer-overlay{position:fixed;inset:0;background:rgba(21,8,4,.60);z-index:500;opacity:0;pointer-events:none;transition:opacity .30s}
+.pdrawer-overlay.open{opacity:1;pointer-events:all}
+.pdrawer{position:fixed;top:0;right:0;width:580px;max-width:95vw;height:100vh;background:var(--vellum);z-index:510;transform:translateX(100%);transition:transform .36s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;overflow:hidden;box-shadow:-8px 0 48px rgba(21,8,4,.28)}
+.pdrawer.open{transform:translateX(0)}
+.pdrawer-head{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 1.75rem;border-bottom:var(--rule-faint);background:rgba(246,241,232,.98);flex-shrink:0}
+.pdrawer-head-left{display:flex;align-items:center;gap:.75rem}
+.pdrawer-cat-chip{font-family:var(--f-ui);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;padding:.2rem .6rem;color:#fff}
+.pdrawer-close{width:32px;height:32px;background:rgba(123,29,42,.08);border:none;color:var(--stone);cursor:pointer;font-size:.9rem;display:flex;align-items:center;justify-content:center;transition:background .2s;flex-shrink:0}
+.pdrawer-close:hover{background:rgba(123,29,42,.16);color:var(--maroon)}
+.pdrawer-body{flex:1;overflow-y:auto;padding:0}
+
+/* Drawer hero */
+.pdrawer-hero{height:220px;overflow:hidden;position:relative;background:var(--apse)}
+.pdrawer-hero img{width:100%;height:100%;object-fit:cover;opacity:.85}
+.pdrawer-hero-placeholder{width:100%;height:100%;background:var(--apse)}
+.pdrawer-hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(21,8,4,.75) 0%,transparent 60%)}
+.pdrawer-hero-title{position:absolute;bottom:1.25rem;left:1.5rem;right:1.5rem}
+.pdrawer-hero-title h2{font-family:var(--f-display);font-weight:300;font-size:1.6rem;color:#fff;line-height:1.1;margin-bottom:.2rem}
+.pdrawer-hero-title p{font-family:var(--f-ui);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,232,.45)}
+
+/* Drawer progress strip */
+.pdrawer-progress{background:var(--maroon);padding:1.1rem 1.5rem}
+.pdrawer-prog-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.45rem;flex-wrap:wrap;gap:.25rem}
+.pdrawer-raised{font-family:var(--f-display);font-weight:400;font-size:1.5rem;color:rgba(246,241,232,.95)}
+.pdrawer-goal{font-family:var(--f-ui);font-size:.62rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.38)}
+.pdrawer-pct{font-family:var(--f-display);font-size:.9rem;color:var(--gold-lt)}
+.pdrawer-track{background:rgba(255,255,255,.15);height:4px;border-radius:2px;overflow:hidden;margin-bottom:.5rem}
+.pdrawer-fill{height:100%;width:0%;background:var(--gold);border-radius:2px;transition:width .85s cubic-bezier(.4,0,.2,1)}
+.pdrawer-prog-meta{display:flex;gap:1.5rem;flex-wrap:wrap}
+.pdrawer-prog-meta span{font-family:var(--f-ui);font-size:.60rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.35)}
+.pdrawer-prog-meta strong{color:rgba(246,241,232,.65);font-weight:400}
+
+/* Drawer content */
+.pdrawer-content{padding:1.75rem 1.5rem}
+.pdrawer-badges{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1.25rem}
+.pdrawer-prose{font-family:var(--f-body);font-size:.9rem;line-height:1.82;color:var(--ink)}
+.pdrawer-prose p{margin-bottom:1em}
+.pdrawer-prose p:last-child{margin-bottom:0}
+.pdrawer-quote{margin:1.5rem 0;padding-left:1.25rem;border-left:2px solid var(--maroon)}
+.pdrawer-quote p{font-family:var(--f-display);font-style:italic;font-size:1.05rem;line-height:1.45;color:var(--ink);margin:0 0 .3rem}
+.pdrawer-quote cite{font-family:var(--f-ui);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--maroon)}
+
+/* Drawer updates */
+.pdrawer-updates{margin-top:1.75rem;padding-top:1.5rem;border-top:var(--rule-faint)}
+.pdrawer-updates-label{font-family:var(--f-ui);font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);margin-bottom:1.25rem;display:block}
+.pdrawer-timeline{position:relative;padding-left:1.25rem}
+.pdrawer-timeline::before{content:'';position:absolute;left:0;top:.3rem;bottom:0;width:1px;background:rgba(123,29,42,.16)}
+.pdrawer-tl-entry{position:relative;margin-bottom:1.25rem}
+.pdrawer-tl-dot{position:absolute;left:-1.25rem;top:.3rem;width:7px;height:7px;border-radius:50%;background:var(--maroon);transform:translateX(-3px)}
+.pdrawer-tl-date{font-family:var(--f-ui);font-size:.60rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.15rem}
+.pdrawer-tl-title{font-family:var(--f-display);font-weight:500;font-size:.95rem;color:var(--ink);margin-bottom:.2rem}
+.pdrawer-tl-body{font-family:var(--f-body);font-size:.85rem;line-height:1.68;color:var(--stone)}
+
+/* Drawer footer */
+.pdrawer-footer{border-top:var(--rule-faint);padding:1.25rem 1.5rem;background:rgba(246,241,232,.98);flex-shrink:0}
+.pdrawer-footer-give{margin-bottom:.75rem}
+.pdrawer-full-link{display:block;text-align:center;font-family:var(--f-ui);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);transition:color .18s;padding:.5rem}
+.pdrawer-full-link:hover{color:var(--maroon)}
+
+/* ── FOOTER ── */
+footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:4.5rem 4.5rem 2.5rem}
+.footer-cols{max-width:1380px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:5rem;margin-bottom:3.5rem}
+.footer-col-head{font-family:var(--f-ui);font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(246,241,232,.82);display:block;margin-bottom:1.2rem;padding-bottom:.5rem;border-bottom:1px solid rgba(246,241,232,.06)}
+.footer-name{font-family:var(--f-display);font-weight:400;font-size:1.2rem;color:rgba(246,241,232,.88);line-height:1.3;margin-bottom:.75rem}
+.footer-meta{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.72);line-height:2.3}
+.footer-meta a{color:rgba(184,131,40,.85);transition:color .2s}
+.footer-meta a:hover{color:var(--gold)}
+.footer-socials{display:flex;gap:1.5rem;margin-top:1.5rem}
+.footer-socials a{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,241,232,.65);transition:color .2s}
+.footer-socials a:hover{color:var(--gold)}
+.footer-nav{list-style:none;display:flex;flex-direction:column}
+.footer-nav li{padding:.38rem 0;border-bottom:1px solid rgba(246,241,232,.10)}
+.footer-nav li:last-child{border-bottom:none}
+.footer-nav a{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,232,.85);transition:color .2s}
+.footer-nav a:hover{color:rgba(246,241,232,.95)}
+.footer-blurb{font-family:var(--f-display);font-style:italic;font-size:.95rem;color:rgba(246,241,232,.85);line-height:1.65;margin-bottom:1.5rem}
+.btn{display:inline-block;font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;padding:.85rem 2.2rem;border:1px solid currentColor;cursor:pointer;transition:all .22s;white-space:nowrap}
+.btn-outline{color:rgba(246,241,232,.70);border-color:rgba(246,241,232,.35)}
+.btn-outline:hover{color:#fff;border-color:#fff}
+.footer-bottom{max-width:1380px;margin:2rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(246,241,232,.12);display:flex;justify-content:space-between}
+.footer-copy,.footer-addr{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.60)}
+
+/* ── SCROLL REVEAL ── */
+@keyframes heroUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.giving-hero-eyebrow{animation:heroUp .65s cubic-bezier(.4,0,.2,1) .25s both}
+.giving-hero-title{animation:heroUp .80s cubic-bezier(.4,0,.2,1) .42s both}
+.giving-hero-rule{animation:heroUp .65s cubic-bezier(.4,0,.2,1) .64s both}
+.giving-hero-sub{animation:heroUp .65s cubic-bezier(.4,0,.2,1) .78s both}
+.rv{opacity:0;transform:translateY(24px);transition:opacity .62s cubic-bezier(.4,0,.2,1),transform .62s cubic-bezier(.4,0,.2,1);transition-delay:var(--d,0s);will-change:transform,opacity}
+.rv.in{opacity:1;transform:translateY(0)}
+.rv-scale{opacity:0;transform:scale(.97) translateY(14px);transition:opacity .72s cubic-bezier(.4,0,.2,1),transform .72s cubic-bezier(.4,0,.2,1);transition-delay:var(--d,0s);will-change:transform,opacity}
+.rv-scale.in{opacity:1;transform:none}
+.rv-slide{opacity:0;transform:translateY(52px);transition:opacity .75s cubic-bezier(.4,0,.2,1),transform .75s cubic-bezier(.4,0,.2,1);transition-delay:var(--d,0s);will-change:transform,opacity}
+.rv-slide.in{opacity:1;transform:none}
+.rv-right{opacity:0;transform:translateX(28px);transition:opacity .65s cubic-bezier(.4,0,.2,1),transform .65s cubic-bezier(.4,0,.2,1);transition-delay:var(--d,0s);will-change:transform,opacity}
+.rv-right.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  .giving-hero-eyebrow,.giving-hero-title,.giving-hero-rule,.giving-hero-sub{animation:none;opacity:1}
+  .rv,.rv-scale,.rv-slide,.rv-right{opacity:1;transform:none;transition:none}
+}
+
+/* ── EMPTY + LOADING STATES ── */
+.state-msg{text-align:center;padding:4rem 2rem;color:var(--stone);font-family:var(--f-display);font-style:italic;font-size:1.05rem;grid-column:1/-1}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1100px){
+  .priority-inner{grid-template-columns:1fr;gap:2rem}
+  .footer-cols{grid-template-columns:1fr 1fr;gap:3rem}
+  .completed-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:900px){
+  .stewardship-strip-inner{grid-template-columns:1fr;gap:2rem}
+  .impact-row{justify-content:flex-start;gap:2rem}
+  .impact-cell{border-right:none;padding:0}
+  .project-grid{grid-template-columns:repeat(2,1fr)}
+  .hold-card{grid-template-columns:1fr}
+  .uf-timeline{grid-template-columns:1fr}
+  .uf-entry:nth-child(2n){border-right:none}
+  .uf-entry{border-right:none}
+  .uf-entry:nth-last-child(-n+2){border-bottom:var(--rule-faint)}
+  .uf-entry:last-child{border-bottom:none}
+}
+@media(max-width:768px){
+  .nav-links{display:none}.nav-hamburger{display:flex}.nav-give{display:none}
+  .giving-hero-inner{padding:4rem 1.5rem 3rem}
+  .jump-bar-inner{padding:0 1.5rem;overflow-x:auto}
+  .jump-link{padding:.75rem .75rem .75rem 0;margin-right:.75rem;font-size:.60rem}
+  .stewardship-strip{padding:2.5rem 1.5rem}
+  .priority-wrap{padding:2.5rem 1.5rem}
+  .priority-actions{flex-direction:column}
+  .priority-actions a{text-align:center}
+  .projects-section{padding:3rem 1.5rem}
+  .filter-pills-wrap{padding:.65rem 1.5rem;margin:0 -1.5rem}
+  .hold-section{padding:2.5rem 1.5rem}
+  .completed-section{padding:3rem 1.5rem}
+  .updates-feed-section{padding:3rem 1.5rem}
+  .general-cta{padding:3.5rem 1.5rem}
+  .quote-break{padding:2.5rem 1.5rem}.qb-inner{padding-left:1.25rem}
+  footer{padding:4rem 1.5rem 2rem}
+  .footer-cols{grid-template-columns:1fr;gap:2.5rem}
+  .footer-bottom{flex-direction:column;gap:.75rem;text-align:center}
+  .project-grid{grid-template-columns:1fr}
+  .hold-grid{grid-template-columns:1fr}
+  .completed-grid{grid-template-columns:1fr}
+  .cta-btns{flex-direction:column;align-items:center}
+  .give-methods-strip{flex-direction:column;align-items:center}
+  .give-method-item{border-right:none}
+  .pdrawer{width:100%;max-width:100%}
+}
+</style>
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<link rel="stylesheet" href="/styles/typography.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" style="line-height:1.2"><span class="nav-logo-name">Sts. Peter &amp; Paul</span><span class="nav-logo-sub">Orthodox Cathedral &middot; Jersey City</span></a>
+    <ul class="nav-links">
+      <li><a href="#">About Us &#9662;</a><div class="nav-drop"><a href="/about-our-church">About Our Church</a><a href="/our-beliefs">Our Beliefs</a><a href="/administration">Administration</a><a href="/gallery">Gallery</a></div></li>
+      <li><a href="#">Inquirers &#9662;</a><div class="nav-drop"><a href="/about-orthodoxy">About Orthodoxy</a><a href="/our-beliefs">Our Beliefs</a><a href="/videos">Videos</a></div></li>
+      <li><a href="/schedule">Calendar</a></li>
+      <li><a href="#">Bulletins &#9662;</a><div class="nav-drop"><a href="/news">News</a><a href="/bulletins">Bulletins</a></div></li>
+      <li><a href="#">Resources &#9662;</a><div class="nav-drop"><a href="/readings">Readings</a><a href="/videos">Videos</a><a href="/cemeteries">Cemeteries</a></div></li>
+      <li><a href="/contact-us">Contact</a></li>
+    </ul>
+    <a href="https://tithe.ly/give?c=5004259" target="_blank" rel="noopener" class="nav-give">Give</a>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" onclick="openNavDrawer()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE NAV DRAWER -->
+<div class="nav-drawer-overlay" id="nav-overlay" onclick="closeNavDrawer()"></div>
+<div class="nav-drawer" id="nav-drawer">
+  <div class="nav-drawer-head">
+    <div class="nav-drawer-logo">Sts. Peter &amp; Paul<span>Orthodox Cathedral &middot; Jersey City</span></div>
+    <button class="nav-drawer-close" onclick="closeNavDrawer()">&#10005;</button>
+  </div>
+  <div class="nav-drawer-links">
+    <span class="drawer-section">About</span>
+    <a href="/about-our-church">About Our Church</a>
+    <a href="/our-beliefs">Our Beliefs</a>
+    <a href="/administration">Administration</a>
+    <a href="/about-orthodoxy">About Orthodoxy</a>
+    <span class="drawer-section">Visit &amp; Worship</span>
+    <a href="/schedule">Liturgical Calendar</a>
+    <a href="/readings">Daily Readings</a>
+    <a href="/videos">Videos</a>
+    <span class="drawer-section">Parish Life</span>
+    <a href="/gallery">Gallery</a>
+    <a href="/bulletins">Bulletins</a>
+    <a href="/news">News &amp; Announcements</a>
+    <a href="/cemeteries">Cemeteries</a>
+    <a href="/give">Give &amp; Support</a>
+    <span class="drawer-section">Contact</span>
+    <a href="/contact-us">Contact Us</a>
+  </div>
+  <a href="https://tithe.ly/give?c=5004259" target="_blank" rel="noopener" class="nav-drawer-give">Give Online</a>
+</div>
+
+<!-- HERO -->
+<div class="giving-hero">
+  <div class="giving-hero-inner">
+    <span class="giving-hero-eyebrow">Stewardship &amp; Giving</span>
+    <h1 class="giving-hero-title">Give to<br><em>Saints Peter &amp; Paul</em></h1>
+    <div class="giving-hero-rule"></div>
+    <p class="giving-hero-sub">Sustaining 115 years of worship, community, and open doors</p>
+  </div>
+</div>
+
+<!-- JUMP BAR -->
+<div class="jump-bar">
+  <div class="jump-bar-inner">
+    <a href="#active-anchor" class="jump-link" id="jl-active">Active Projects</a>
+    <a href="#completed-anchor" class="jump-link" id="jl-completed">Completed</a>
+    <a href="#hold-anchor" class="jump-link" id="jl-hold">On Hold</a>
+    <a href="#updates-anchor" class="jump-link">Recent Updates</a>
+    <a href="#give-anchor" class="jump-link">General Fund</a>
+  </div>
+</div>
+
+<!-- STEWARDSHIP STRIP -->
+<div class="stewardship-strip">
+  <div class="stewardship-strip-inner">
+    <div class="impact-row">
+      <div class="impact-cell rv" style="--d:.05s"><span class="impact-num">115</span><span class="impact-lbl">Years of Witness</span></div>
+      <div class="impact-cell rv" style="--d:.18s"><span class="impact-num">1907</span><span class="impact-lbl">Year Founded</span></div>
+      <div class="impact-cell rv" style="--d:.31s"><span class="impact-num">52</span><span class="impact-lbl">Sundays of Liturgy</span></div>
+    </div>
+    <div class="stewardship-prose rv-right" style="--d:.28s">
+      <p>This parish has kept its doors open through two world wars, a century of change in Jersey City, and a Cathedral designation none of its founders could have imagined. It has done so not through endowments, but through the faithfulness of ordinary people who gave what they could, generation after generation.</p>
+      <p>The projects below represent specific needs of our parish family today. Click any card to read the full story.</p>
+    </div>
+  </div>
+</div>
+
+<!-- PRIORITY BANNER (JS) -->
+<div id="priority-section"></div>
+
+<!-- ACTIVE PROJECTS -->
+<section class="projects-section" id="active-anchor">
+  <div class="section-head-row rv">
+    <span class="rubric">Active Giving Drives</span>
+    <div class="rubric-rule"></div>
+    <h2>Current Projects &amp; Campaigns</h2>
+    <p class="section-lead">Click any project to read the full story and give.</p>
+  </div>
+  <div class="filter-pills-wrap" id="filter-pills-wrap">
+    <span class="filter-label">Filter:</span>
+    <button class="filter-pill active" data-filter="all" onclick="filterProjects('all')">All</button>
+  </div>
+  <div class="project-grid-wrap">
+    <div class="project-grid" id="active-grid">
+      <div class="state-msg">Loading projects...</div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPLETED (JS) -->
+<div id="completed-anchor"></div>
+<div id="completed-section"></div>
+
+<!-- ON HOLD (JS) -->
+<div id="hold-anchor"></div>
+<div id="hold-section"></div>
+
+<!-- RECENT UPDATES FEED (JS) -->
+<div id="updates-anchor"></div>
+<div id="updates-feed"></div>
+
+<!-- GENERAL FUND CTA -->
+<section class="general-cta" id="give-anchor">
+  <div class="general-cta-inner rv">
+    <span class="rubric light" style="text-align:center;display:block;margin-bottom:.75rem">General Stewardship</span>
+    <div class="rubric-rule gold centered"></div>
+    <h2>Support the <em>life of the parish</em></h2>
+    <p class="general-cta-body">Every Sunday, every service, every open door depends on the regular giving of parishioners. Your gift to the general fund sustains the clergy, the building, the music, and the welcome we offer to all who come.</p>
+    <div class="cta-btns">
+      <a href="https://tithe.ly/give?c=5004259" target="_blank" rel="noopener" class="btn-gold-solid">Give to the General Fund</a>
+      <a href="https://tithe.ly/give?c=5004259" target="_blank" rel="noopener" class="btn-ghost-light">Set Up Recurring Giving</a>
+    </div>
+    <div class="give-methods-strip">
+      <span class="give-method-item">Tithe.ly Online</span>
+      <span class="give-method-item">Check by Mail</span>
+      <span class="give-method-item">Offering at Liturgy</span>
+      <span class="give-method-item">(201) 434-1986</span>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE BREAK -->
+<div class="quote-break">
+  <div class="qb-inner rv-scale">
+    <p class="qb-text">Each one must give as he has decided in his heart, not reluctantly or under compulsion, for God loves a cheerful giver.</p>
+    <span class="qb-attr">2 Corinthians 9:7</span>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-cols">
+    <div>
+      <span class="footer-col-head">Saints Peter &amp; Paul Orthodox Cathedral</span>
+      <p class="footer-name">Sts. Peter &amp; Paul<br>Orthodox Cathedral</p>
+      <p class="footer-meta">Diocese of New York &amp; New Jersey<br><a href="https://nynjoca.org" target="_blank">nynjoca.org</a><br>Orthodox Church in America<br><a href="https://oca.org" target="_blank">oca.org</a></p>
+      <div class="footer-socials"><a href="#" target="_blank">Facebook</a><a href="#" target="_blank">Instagram</a><a href="https://www.youtube.com/@ssppnj" target="_blank">YouTube</a></div>
+    </div>
+    <div>
+      <span class="footer-col-head">Navigate</span>
+      <ul class="footer-nav">
+        <li><a href="/about-our-church">About Our Church</a></li>
+        <li><a href="/our-beliefs">Our Beliefs</a></li>
+        <li><a href="/administration">Administration</a></li>
+        <li><a href="/about-orthodoxy">About Orthodoxy</a></li>
+        <li><a href="/schedule">Liturgical Calendar</a></li>
+        <li><a href="/readings">Daily Readings</a></li>
+        <li><a href="/news">News &amp; Announcements</a></li>
+        <li><a href="/bulletins">Bulletins</a></li>
+        <li><a href="/gallery">Gallery</a></li>
+        <li><a href="/give">Give &amp; Support</a></li>
+        <li><a href="/contact-us">Contact Us</a></li>
+      </ul>
+    </div>
+    <div>
+      <span class="footer-col-head">Visit Us</span>
+      <p class="footer-blurb">Whether you are visiting for the first time or looking to become part of our parish family, you are welcome here.</p>
+      <a href="/contact-us" class="btn btn-outline" style="margin-bottom:2rem;display:inline-block">Contact the Parish</a>
+      <span class="footer-col-head" style="margin-top:.5rem">Service Times</span>
+      <p class="footer-meta" style="line-height:2.4">Vespers &middot; Saturdays 5:00 PM<br>Divine Liturgy &middot; Sundays 9:30 AM<br>Office &middot; Mon&ndash;Fri 9:00 AM&ndash;5:00 PM</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">&copy; Saints Peter &amp; Paul Orthodox Cathedral. All Rights Reserved.</p>
+    <p class="footer-addr">109 Grand Street &middot; Jersey City, NJ 07302 &middot; (201) 434-1986</p>
+  </div>
+</footer>
+
+<!-- PROJECT DETAIL DRAWER -->
+<div class="pdrawer-overlay" id="pdrawer-overlay" onclick="closeProjectDrawer()"></div>
+<div class="pdrawer" id="pdrawer" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="pdrawer-head">
+    <div class="pdrawer-head-left">
+      <span class="pdrawer-cat-chip" id="pdrawer-cat-chip"></span>
+      <span id="pdrawer-status-chip"></span>
+    </div>
+    <button class="pdrawer-close" onclick="closeProjectDrawer()" aria-label="Close">&#10005;</button>
+  </div>
+  <div class="pdrawer-body" id="pdrawer-body"></div>
+  <div class="pdrawer-footer" id="pdrawer-footer"></div>
+</div>
+
+<script>
+// ── CONSTANTS ────────────────────────────────────────────
+var CAT_LABELS={temple:'Cathedral',liturgical:'Liturgical Life',facilities:'Parish Hall & Facilities',mercy:'Mercy & Outreach',education:'Education & Formation'};
+var CAT_CSS={temple:'cat-temple',liturgical:'cat-liturgical',facilities:'cat-facilities',mercy:'cat-mercy',education:'cat-education'};
+var CAT_ACCENT={temple:'var(--maroon)',liturgical:'var(--gold)',facilities:'var(--stone)',mercy:'var(--verdigris)',education:'var(--ink)'};
+var CAT_BG={temple:'#5C1520',liturgical:'#8a6220',facilities:'#5d4e34',mercy:'#2c5045',education:'#1e1510'};
+
+// ── NAV DRAWER ───────────────────────────────────────────
+function openNavDrawer(){document.getElementById('nav-drawer').classList.add('open');document.getElementById('nav-overlay').classList.add('open');document.getElementById('nav-hamburger').classList.add('open')}
+function closeNavDrawer(){document.getElementById('nav-drawer').classList.remove('open');document.getElementById('nav-overlay').classList.remove('open');document.getElementById('nav-hamburger').classList.remove('open')}
+
+// ── ESC KEY ──────────────────────────────────────────────
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeProjectDrawer();closeNavDrawer()}});
+
+// ── HELPERS ──────────────────────────────────────────────
+function fmtMoney(n){return '$'+Number(n).toLocaleString()}
+function fmtDate(s){if(!s)return '';var d=new Date(s+'T12:00:00');return d.toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})}
+function fmtMonthYear(s){if(!s)return '';var d=new Date(s+'T12:00:00');return d.toLocaleDateString('en-US',{month:'long',year:'numeric'})}
+function pct(raised,goal){if(!goal||goal<=0)return 0;return Math.min(100,Math.round((raised/goal)*100))}
+
+function daysRemaining(target_date){
+  if(!target_date)return null;
+  var now=new Date();now.setHours(0,0,0,0);
+  var t=new Date(target_date+'T00:00:00');
+  return Math.ceil((t-now)/86400000);
+}
+
+function buildDaysBadge(p){
+  if(!p.target_date)return '';
+  var d=daysRemaining(p.target_date);
+  if(d===null||d<=0)return '';
+  var cls=d<=14?'days-urgent':'days-remaining';
+  return '<span class="'+cls+'">'+(d===1?'1 day remaining':d+' days remaining')+'</span>';
+}
+
+function buildDonorLine(p){
+  if(!p.donor_count||p.donor_count<=0)return '';
+  var s=p.donor_count===1?'parishioner has given':p.donor_count+' parishioners have given';
+  return '<span class="donor-count">'+s+'</span>';
+}
+
+function buildProgressBar(p,prefix){
+  prefix=prefix||'';
+  if(!p.show_progress||!p.goal||p.goal<=0)return '';
+  var p_pct=pct(p.raised,p.goal);
+  var label=p.goal_desc
+    ? p_pct+'% toward '+p.goal_desc
+    : fmtMoney(p.raised)+' raised of '+fmtMoney(p.goal);
+  var daysBadge=buildDaysBadge(p);
+  return '<div class="progress-track" data-target="'+p_pct+'" style="--target:'+p_pct+'%"><div class="progress-fill" style="width:0%"></div></div>'
+    +'<div class="progress-meta"><span class="progress-label">'+label+'</span>'+daysBadge+'</div>';
+}
+
+function buildBadges(p){
+  var b='';
+  if(p.volunteer_needed)b+='<span class="project-badge badge-volunteer">Volunteers Needed</span>';
+  if(p.memorial)b+='<span class="project-badge badge-memorial">In Memoriam</span>';
+  return b?'<div class="project-badges">'+b+'</div>':'';
+}
+
+function buildCardImg(p){
+  var badge='<span class="project-card-cat-badge '+CAT_CSS[p.category]+'">'+CAT_LABELS[p.category]+'</span>';
+  var overlay=p.image&&p.quote?'<div class="card-quote-overlay"><p class="card-quote-text">'+p.quote+'</p></div>':'';
+  if(p.image){
+    return '<div class="project-card-img-wrap"><img src="'+p.image+'" alt="'+p.title+'" loading="lazy" onerror="this.style.display=\'none\'">'+badge+overlay+'</div>';
+  }
+  return '<div class="project-card-img-wrap"><div class="project-card-img-placeholder" style="background:'+CAT_BG[p.category]+';opacity:.5"></div>'+badge+'</div>';
+}
+
+// ── ACTIVE CARD ──────────────────────────────────────────
+function buildActiveCard(p,i){
+  var progress=p.show_progress&&p.goal>0
+    ?buildProgressBar(p)
+    :'<div class="progress-ongoing">Ongoing</div>';
+  return '<div class="project-card rv" data-category="'+p.category+'" style="--d:'+(i*0.07)+'s;--cat-accent:'+CAT_ACCENT[p.category]+'" onclick="openProjectDrawer(\''+p.id+'\')" role="button" tabindex="0" onkeydown="if(event.key===\'Enter\'||event.key===\' \')openProjectDrawer(\''+p.id+'\')">'
+    +buildCardImg(p)
+    +'<div class="project-card-body">'
+    +'<div class="project-card-title">'+p.title+'</div>'
+    +'<div class="project-card-sub">'+p.subtitle+'</div>'
+    +'<div class="project-card-desc">'+p.short_desc+'</div>'
+    +buildBadges(p)
+    +progress
+    +buildDonorLine(p)
+    +'<div class="project-card-cta"><span class="project-card-cta-label">Explore project</span><span class="project-card-cta-arrow">&#8594;</span></div>'
+    +'</div>'
+    +'</div>';
+}
+
+// ── ON HOLD CARD ─────────────────────────────────────────
+function buildHoldCard(p,i){
+  var img=p.image
+    ?'<div class="hold-card-img"><img src="'+p.image+'" alt="'+p.title+'" loading="lazy" onerror="this.style.display=\'none\'"><span class="hold-status-badge">On Hold</span></div>'
+    :'<div class="hold-card-img"><div class="hold-card-img-placeholder"></div><span class="hold-status-badge">On Hold</span></div>';
+  var prog=p.show_progress&&p.goal>0?buildProgressBar(p):'';
+  return '<div class="hold-card rv" style="--d:'+(i*0.12)+'s" onclick="openProjectDrawer(\''+p.id+'\')" role="button" tabindex="0" onkeydown="if(event.key===\'Enter\'||event.key===\' \')openProjectDrawer(\''+p.id+'\')">'
+    +img
+    +'<div class="hold-card-body">'
+    +'<div class="hold-card-title">'+p.title+'</div>'
+    +'<div class="hold-card-sub">'+CAT_LABELS[p.category]+'</div>'
+    +'<div class="hold-card-desc">'+p.short_desc+'</div>'
+    +prog
+    +(p.volunteer_needed?'<span class="project-badge badge-volunteer" style="margin-bottom:.5rem">Volunteers Needed</span>':'')
+    +'<span class="hold-card-link">Explore project &#8594;</span>'
+    +'</div>'
+    +'</div>';
+}
+
+// ── COMPLETED CARD ───────────────────────────────────────
+function buildCompletedCard(p,i){
+  var img=p.image
+    ?'<div class="completed-card-img"><img src="'+p.image+'" alt="'+p.title+'" loading="lazy" onerror="this.style.display=\'none\'"></div>'
+    :'<div class="completed-card-img"><div class="completed-card-img-placeholder"></div></div>';
+  var amounts=p.show_progress&&p.goal>0?'<div class="completed-amounts">'+fmtMoney(p.raised)+' raised &middot; Goal reached</div>':'';
+  return '<div class="completed-card rv" style="--d:'+(i*0.07)+'s" onclick="openProjectDrawer(\''+p.id+'\')" role="button" tabindex="0" onkeydown="if(event.key===\'Enter\'||event.key===\' \')openProjectDrawer(\''+p.id+'\')">'
+    +img
+    +'<div class="completed-card-body">'
+    +'<span class="completed-badge">Completed</span>'
+    +'<div class="completed-card-title">'+p.title+'</div>'
+    +(p.completion_note?'<div class="completed-card-note">'+p.completion_note+'</div>':'')
+    +amounts
+    +'</div>'
+    +'</div>';
+}
+
+// ── PRIORITY BANNER ──────────────────────────────────────
+function renderPriorityBanner(p){
+  var p_pct=pct(p.raised,p.goal);
+  var targetLine=p.target_date?'<span class="priority-target">Needed by '+fmtMonthYear(p.target_date)+'</span>':'';
+  var donorLine=p.donor_count&&p.donor_count>0?'<span class="priority-donor-count">'+p.donor_count+(p.donor_count===1?' parishioner has given':' parishioners have given')+'</span>':'';
+  var html='<div class="priority-wrap rv-slide">'
+    +'<div class="priority-inner">'
+    +'<div>'
+    +'<span class="priority-tag">Urgent Need &middot; '+CAT_LABELS[p.category]+'</span>'
+    +'<h2 class="priority-title">'+p.title+'</h2>'
+    +'<div class="priority-sub">'+p.subtitle+'</div>'
+    +'<p class="priority-desc">'+p.short_desc+'</p>'
+    +'<div class="priority-actions">'
+    +'<a href="'+p.give_link+'" target="_blank" rel="noopener" class="btn-gold-solid">'+p.give_label+'</a>'
+    +'<button class="btn-ghost-light" onclick="openProjectDrawer(\''+p.id+'\')">Read the Full Story</button>'
+    +'</div>'
+    +'</div>'
+    +'<div class="priority-progress-box">'
+    +'<span class="priority-progress-label">Project Progress</span>'
+    +'<div class="priority-amounts"><span class="priority-raised" id="pb-counter" data-target="'+p.raised+'">$0</span><span class="priority-goal">of '+fmtMoney(p.goal)+' goal</span></div>'
+    +'<div class="priority-track"><div class="priority-fill" id="pb-fill" data-target="'+p_pct+'"></div></div>'
+    +targetLine+donorLine
+    +'<a href="'+p.give_link+'" target="_blank" rel="noopener" class="btn-gold-block" style="margin-top:1.25rem">'+p.give_label+'</a>'
+    +'<button class="btn-ghost-light-block" onclick="openProjectDrawer(\''+p.id+'\')">Learn More</button>'
+    +'</div>'
+    +'</div>'
+    +'</div>';
+  document.getElementById('priority-section').innerHTML=html;
+
+  // Observe for counter animation
+  var banner=document.querySelector('.priority-wrap');
+  if(banner&&window.IntersectionObserver){
+    new IntersectionObserver(function(entries,obs){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          animateCounter(document.getElementById('pb-counter'),p.raised,1400);
+          var fill=document.getElementById('pb-fill');
+          if(fill){setTimeout(function(){fill.style.width=p_pct+'%'},80)}
+          obs.disconnect();
+        }
+      });
+    },{threshold:.4}).observe(banner);
+  } else {
+    // Fallback: set immediately
+    var c=document.getElementById('pb-counter');
+    var f=document.getElementById('pb-fill');
+    if(c)c.textContent=fmtMoney(p.raised);
+    if(f)f.style.width=p_pct+'%';
+  }
+}
+
+// ── COUNTER ANIMATION ────────────────────────────────────
+function animateCounter(el,target,duration){
+  if(!el||target===0){if(el)el.textContent='$0';return}
+  var start=null;
+  function step(ts){
+    if(!start)start=ts;
+    var prog=Math.min((ts-start)/duration,1);
+    var eased=1-Math.pow(1-prog,3);
+    el.textContent=fmtMoney(Math.floor(eased*target));
+    if(prog<1)requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+// ── PROGRESS BAR OBSERVER ────────────────────────────────
+function observeProgressBars(){
+  if(!window.IntersectionObserver)return;
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        var fill=e.target.querySelector('.progress-fill');
+        var target=e.target.dataset.target;
+        if(fill&&target){setTimeout(function(){fill.style.width=target+'%'},60)}
+        obs.unobserve(e.target);
+      }
+    });
+  },{threshold:.3});
+  document.querySelectorAll('.progress-track[data-target]').forEach(function(t){obs.observe(t)});
+}
+
+// ── FILTER ───────────────────────────────────────────────
+function filterProjects(cat){
+  document.querySelectorAll('.project-card').forEach(function(c){
+    c.style.display=(cat==='all'||c.dataset.category===cat)?'':'none';
+  });
+  document.querySelectorAll('.filter-pill').forEach(function(p){
+    p.classList.toggle('active',p.dataset.filter===cat);
+  });
+  var grid=document.getElementById('active-grid');
+  var visible=grid.querySelectorAll('.project-card:not([style*="none"])').length;
+  var msg=grid.querySelector('.state-msg');
+  if(msg)msg.style.display=visible===0?'block':'none';
+}
+
+// ── PROJECT DRAWER ───────────────────────────────────────
+var ALL_PROJECTS=[];
+
+function openProjectDrawer(id){
+  var p=ALL_PROJECTS.find(function(x){return x.id===id});
+  if(!p)return;
+  var body=document.getElementById('pdrawer-body');
+  var footer=document.getElementById('pdrawer-footer');
+  var catChip=document.getElementById('pdrawer-cat-chip');
+  var statusChip=document.getElementById('pdrawer-status-chip');
+
+  catChip.textContent=CAT_LABELS[p.category];
+  catChip.className='pdrawer-cat-chip '+CAT_CSS[p.category];
+
+  var statusMap={active:'Active','on-hold':'On Hold',completed:'Completed'};
+  var statusColor={active:p.urgent?'background:var(--maroon);color:#fff;':'background:var(--verdigris);color:#fff;','on-hold':'background:var(--stone);color:#fff;',completed:'background:var(--verdigris);color:#fff;'};
+  statusChip.innerHTML='<span style="font-family:var(--f-ui);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;padding:.2rem .6rem;'+statusColor[p.status]+'">'+(p.urgent?'Urgent':statusMap[p.status]||p.status)+'</span>';
+
+  // Hero
+  var heroContent=p.image
+    ?'<img src="'+p.image+'" alt="'+p.title+'" onerror="this.style.display=\'none\'">'
+    :'<div class="pdrawer-hero-placeholder"></div>';
+  var heroHtml='<div class="pdrawer-hero">'+heroContent
+    +'<div class="pdrawer-hero-overlay"></div>'
+    +'<div class="pdrawer-hero-title"><h2>'+p.title+'</h2><p>'+p.subtitle+'</p></div>'
+    +'</div>';
+
+  // Progress strip
+  var progHtml='';
+  if(p.show_progress&&p.goal>0){
+    var pp=pct(p.raised,p.goal);
+    var tl=p.target_date?'<span>Needed by <strong>'+fmtMonthYear(p.target_date)+'</strong></span>':'';
+    var dc=p.donor_count&&p.donor_count>0?'<span><strong>'+p.donor_count+'</strong> '+(p.donor_count===1?'parishioner':'parishioners')+' have given</span>':'';
+    progHtml='<div class="pdrawer-progress">'
+      +'<div class="pdrawer-prog-row"><span class="pdrawer-raised">'+fmtMoney(p.raised)+'</span>'
+      +'<span class="pdrawer-pct">'+pp+'%</span>'
+      +'<span class="pdrawer-goal">of '+fmtMoney(p.goal)+'</span></div>'
+      +'<div class="pdrawer-track"><div class="pdrawer-fill" data-target="'+pp+'"></div></div>'
+      +'<div class="pdrawer-prog-meta">'+tl+dc+'</div>'
+      +'</div>';
+  }
+
+  // Badges
+  var badges='';
+  if(p.volunteer_needed)badges+='<span class="project-badge badge-volunteer">Volunteers Needed</span>';
+  if(p.memorial)badges+='<span class="project-badge badge-memorial">'+p.memorial_for+'</span>';
+  var badgesHtml=badges?'<div class="pdrawer-badges">'+badges+'</div>':'';
+
+  // Prose + quote
+  var quoteHtml=p.quote?'<div class="pdrawer-quote"><p>'+p.quote+'</p>'+(p.quote_attr?'<cite>'+p.quote_attr+'</cite>':'')+'</div>':'';
+
+  // On hold / completed notices
+  var noticeHtml='';
+  if(p.status==='on-hold'){
+    noticeHtml='<div style="background:rgba(122,102,72,.08);border-left:3px solid var(--stone);padding:1rem 1.25rem;margin-bottom:1.25rem;font-family:var(--f-body);font-size:.875rem;color:var(--ink);line-height:1.70"><strong style="font-family:var(--f-ui);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone)">On Hold</strong><br>This project is temporarily paused. Funds already raised are held for when it resumes.</div>';
+  } else if(p.status==='completed'&&p.completion_note){
+    noticeHtml='<div style="background:rgba(61,107,94,.08);border-left:3px solid var(--verdigris);padding:1rem 1.25rem;margin-bottom:1.25rem;font-family:var(--f-body);font-size:.875rem;color:var(--ink);line-height:1.70"><strong style="font-family:var(--f-ui);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--verdigris)">Completed</strong><br>'+p.completion_note+'</div>';
+  }
+
+  // Updates
+  var updatesHtml='';
+  if(p.updates&&p.updates.length){
+    var sorted=p.updates.slice().sort(function(a,b){return b.date.localeCompare(a.date)});
+    var items=sorted.map(function(u){
+      return '<div class="pdrawer-tl-entry"><div class="pdrawer-tl-dot"></div>'
+        +'<span class="pdrawer-tl-date">'+fmtDate(u.date)+'</span>'
+        +'<div class="pdrawer-tl-title">'+u.title+'</div>'
+        +'<div class="pdrawer-tl-body">'+u.body+'</div>'
+        +'</div>';
+    }).join('');
+    updatesHtml='<div class="pdrawer-updates"><span class="pdrawer-updates-label">Project Updates</span><div class="pdrawer-timeline">'+items+'</div></div>';
+  }
+
+  body.innerHTML=heroHtml+progHtml
+    +'<div class="pdrawer-content">'+noticeHtml+badgesHtml
+    +'<div class="pdrawer-prose">'+p.body+'</div>'
+    +quoteHtml+updatesHtml+'</div>';
+
+  // Footer buttons
+  var giveBtn=p.status==='completed'
+    ?'<a href="'+p.give_link+'" target="_blank" rel="noopener" class="btn-gold-block">Give to the General Fund</a>'
+    :'<a href="'+p.give_link+'" target="_blank" rel="noopener" class="btn-gold-block">'+(p.give_label||'Give Toward This Project')+'</a>';
+  footer.innerHTML='<div class="pdrawer-footer-give">'+giveBtn+'</div>'
+    +'<a href="/giving-project?id='+p.id+'" class="pdrawer-full-link">View full project page &#8594;</a>';
+
+  // Open
+  document.getElementById('pdrawer').classList.add('open');
+  document.getElementById('pdrawer').setAttribute('aria-hidden','false');
+  document.getElementById('pdrawer-overlay').classList.add('open');
+  document.body.style.overflow='hidden';
+
+  // Animate drawer's progress bar
+  setTimeout(function(){
+    body.querySelectorAll('.pdrawer-fill').forEach(function(f){
+      f.style.width=(f.dataset.target||'0')+'%';
+    });
+  },120);
+}
+
+function closeProjectDrawer(){
+  document.getElementById('pdrawer').classList.remove('open');
+  document.getElementById('pdrawer').setAttribute('aria-hidden','true');
+  document.getElementById('pdrawer-overlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+// ── RECENT UPDATES FEED ──────────────────────────────────
+function buildUpdatesFeed(projects){
+  var all=[];
+  projects.forEach(function(p){
+    if(p.updates&&p.updates.length){
+      p.updates.forEach(function(u){
+        all.push({date:u.date,title:u.title,body:u.body,project:p,id:p.id});
+      });
+    }
+  });
+  all.sort(function(a,b){return b.date.localeCompare(a.date)});
+  var recent=all.slice(0,6);
+  if(!recent.length)return;
+
+  var items=recent.map(function(u,i){
+    return '<div class="uf-entry rv" style="--d:'+(i*0.07)+'s" onclick="openProjectDrawer(\''+u.id+'\')" role="button" tabindex="0" onkeydown="if(event.key===\'Enter\')openProjectDrawer(\''+u.id+'\')">'
+      +'<div class="uf-entry-top">'
+      +'<span class="uf-date">'+fmtDate(u.date)+'</span>'
+      +'<span class="uf-project-name '+CAT_CSS[u.project.category]+'">'+u.project.title+'</span>'
+      +'</div>'
+      +'<div class="uf-update-title">'+u.title+'</div>'
+      +'<div class="uf-update-body">'+u.body+'</div>'
+      +'</div>';
+  }).join('');
+
+  document.getElementById('updates-feed').innerHTML=
+    '<section class="updates-feed-section">'
+    +'<div class="updates-feed-inner">'
+    +'<span class="rubric">Across All Projects</span>'
+    +'<div class="rubric-rule"></div>'
+    +'<div class="updates-feed-title">Recent Updates</div>'
+    +'<div class="uf-timeline">'+items+'</div>'
+    +'</div></section>';
+}
+
+// ── SCROLL REVEAL ────────────────────────────────────────
+function initReveal(){
+  if(!window.IntersectionObserver){
+    document.querySelectorAll('.rv,.rv-scale').forEach(function(el){el.classList.add('in')});
+    return;
+  }
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target)}
+    });
+  },{threshold:.10,rootMargin:'0px 0px -32px 0px'});
+  document.querySelectorAll('.rv,.rv-scale,.rv-slide,.rv-right').forEach(function(el){obs.observe(el)});
+}
+
+// ── IMPACT COUNTERS ───────────────────────────────────────
+function initImpactCounters(){
+  var strip=document.querySelector('.stewardship-strip');
+  if(!strip||!window.IntersectionObserver) return;
+  new IntersectionObserver(function(entries,obs){
+    if(!entries[0].isIntersecting) return;
+    document.querySelectorAll('.impact-num').forEach(function(el){
+      var target=parseInt(el.textContent.replace(/\D/g,''),10);
+      if(!isNaN(target)&&target>0){
+        var s=null,orig=el.textContent;
+        (function go(ts){
+          if(!s)s=ts;
+          var p=Math.min((ts-s)/1100,1),e=1-Math.pow(1-p,3);
+          el.textContent=Math.round(e*target).toLocaleString();
+          if(p<1)requestAnimationFrame(go);
+        })(performance.now());
+      }
+    });
+    obs.disconnect();
+  },{threshold:.45}).observe(strip);
+}
+
+// ── MAIN ─────────────────────────────────────────────────
+fetch('/giving-projects.json')
+  .then(function(r){return r.json()})
+  .then(function(data){
+    ALL_PROJECTS=(data.projects||[]).sort(function(a,b){return (a.sort_order||99)-(b.sort_order||99)});
+
+    var active=ALL_PROJECTS.filter(function(p){return p.status==='active'});
+    var onHold=ALL_PROJECTS.filter(function(p){return p.status==='on-hold'});
+    var completed=ALL_PROJECTS.filter(function(p){return p.status==='completed'});
+
+    // Update jump bar counts
+    document.getElementById('jl-active').textContent='Active ('+active.length+')';
+    document.getElementById('jl-hold').textContent='On Hold ('+onHold.length+')';
+    document.getElementById('jl-completed').textContent='Completed ('+completed.length+')';
+
+    // Priority banner
+    var urgent=active.find(function(p){return p.urgent});
+    if(urgent)renderPriorityBanner(urgent);
+
+    // Filter pills
+    var cats={};
+    active.forEach(function(p){cats[p.category]=true});
+    var pillsEl=document.getElementById('filter-pills-wrap');
+    Object.keys(cats).forEach(function(cat){
+      var btn=document.createElement('button');
+      btn.className='filter-pill';
+      btn.dataset.filter=cat;
+      btn.textContent=CAT_LABELS[cat]||cat;
+      btn.onclick=function(){filterProjects(cat)};
+      pillsEl.appendChild(btn);
+    });
+
+    // Active grid
+    var activeGrid=document.getElementById('active-grid');
+    activeGrid.innerHTML=active.length
+      ?active.map(buildActiveCard).join('')
+      :'<div class="state-msg">No active projects at this time. Check back soon, or give to the general fund below.</div>';
+
+    // On hold
+    if(onHold.length){
+      document.getElementById('hold-section').innerHTML=
+        '<div class="hold-section"><div class="hold-section-inner">'
+        +'<span class="rubric rv">On Hold</span><div class="rubric-rule rv" style="--d:.1s"></div>'
+        +'<h2 class="rv" style="--d:.15s;font-family:var(--f-display);font-weight:400;font-size:clamp(1.4rem,2vw,1.9rem);color:var(--ink);line-height:1.15;margin:.35rem 0 .25rem">Paused Projects</h2>'
+        +'<p class="rv" style="--d:.22s;font-family:var(--f-body);font-size:.875rem;color:var(--stone);margin-top:.35rem">These projects are temporarily paused. Funds raised are held and will be applied when each resumes.</p>'
+        +'<div class="hold-grid">'+onHold.map(buildHoldCard).join('')+'</div>'
+        +'</div></div>';
+    }
+
+    // Completed
+    if(completed.length){
+      document.getElementById('completed-section').innerHTML=
+        '<section class="completed-section"><div class="completed-section-inner">'
+        +'<div class="completed-header">'
+        +'<span class="rubric rv" style="display:block;text-align:center;margin-bottom:.5rem">Completed with Gratitude</span>'
+        +'<div class="rubric-rule centered gold rv" style="--d:.12s"></div>'
+        +'<h2 class="rv" style="--d:.2s">What Your Giving Has Built</h2>'
+        +'<p class="completed-note rv" style="--d:.28s">These projects are finished because this parish gave.</p>'
+        +'</div>'
+        +'<div class="completed-grid">'+completed.map(buildCompletedCard).join('')+'</div>'
+        +'</div></section>';
+    }
+
+    // Recent updates feed
+    buildUpdatesFeed(ALL_PROJECTS);
+
+    // Observe all progress bars
+    observeProgressBars();
+    // Scroll reveal + impact counters
+    initReveal();
+    initImpactCounters();
+  })
+  .catch(function(){
+    document.getElementById('active-grid').innerHTML='<div class="state-msg">Unable to load projects. Please try again or contact the parish office.</div>';
+  });
+</script>
+</body>
+</html>
