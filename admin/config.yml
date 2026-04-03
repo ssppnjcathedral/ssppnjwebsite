@@ -78,7 +78,7 @@ collections:
               - name: location
                 label: Location
                 widget: string
-                default: "Cathedral Nave · 111 Grand Street"
+                default: "Cathedral Nave · 109 Grand Street"
                 hint: "Where the event takes place."
 
               - name: contact
