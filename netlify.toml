@@ -23,3 +23,9 @@
   [headers.values]
     Content-Type = "application/json; charset=utf-8"
 
+# Redirect /donate to /give (old page -> new hub)
+[[redirects]]
+  from = "/donate"
+  to = "/give"
+  status = 301
+
