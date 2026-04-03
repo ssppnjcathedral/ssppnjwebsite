@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Orthodox Catechesis · Saints Peter &amp; Paul Orthodox Cathedral</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{--vellum:#F6F1E8;--vellum-mid:#EDE7DC;--vellum-alt:#E8E0D0;--text:#1E1510;--ink:#2C1F16;--maroon:#7B1D2A;--maroon-deep:#5C1520;--gold:#B88328;--gold-lt:#E8C97A;--verdigris:#3D6B5E;--stone:#7A6648;--stone-lt:#A89070;--apse:#3B0F18;--f-display:'Cormorant Garamond',Georgia,serif;--f-body:'EB Garamond',Georgia,serif;--f-ui:'Cinzel',Georgia,serif;--rule:1px solid var(--maroon);--rule-faint:1px solid rgba(123,29,42,0.14);--rule-hair:1px solid rgba(123,29,42,0.07);--rule-gold:1px solid rgba(184,131,40,.30)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--vellum);color:var(--text);font-family:var(--f-body);font-size:21px;line-height:1.75;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+
+/* PRIMITIVES */
+.rubric{display:block;font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.20em;text-transform:uppercase;color:var(--stone);margin-bottom:.5rem}
+.rubric.light{color:rgba(246,241,232,.55)}
+.rubric-rule{display:block;height:1px;background:var(--maroon);margin-bottom:1rem;width:48px}
+.rubric-rule.gold{background:var(--gold)}
+.btn{display:inline-block;font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;padding:.85rem 2.2rem;border:1px solid currentColor;cursor:pointer;transition:all .22s;white-space:nowrap}
+.btn-maroon{color:var(--vellum);background:var(--maroon);border-color:var(--maroon)}
+.btn-maroon:hover{background:var(--maroon-deep);border-color:var(--maroon-deep)}
+.btn-outline{color:var(--maroon);border-color:var(--maroon)}
+.btn-outline:hover{background:var(--maroon);color:var(--vellum)}
+footer .btn-outline{color:rgba(246,241,232,.92);border-color:rgba(246,241,232,.55)}
+footer .btn-outline:hover{background:rgba(246,241,232,.15);color:#fff;border-color:rgba(246,241,232,.80)}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(246,241,232,.97);backdrop-filter:blur(10px);border-bottom:var(--rule-faint)}
+.nav-inner{max-width:1380px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px;padding:0 3rem}
+.nav-logo-name{font-family:var(--f-display);font-weight:500;font-size:1.25rem;color:var(--text);display:block}
+.nav-logo-sub{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);display:block}
+.nav-links{display:flex;align-items:center;list-style:none}
+.nav-links>li{position:relative}
+.nav-links>li>a{font-family:var(--f-ui);font-size:.78rem;letter-spacing:.10em;text-transform:uppercase;color:var(--ink);padding:1.1rem .85rem;display:block;transition:color .18s}
+.nav-links>li:hover>a{color:var(--maroon)}
+.nav-drop{position:absolute;top:100%;left:0;background:var(--vellum);border-top:2px solid var(--maroon);border-bottom:var(--rule-faint);border-left:var(--rule-faint);border-right:var(--rule-faint);min-width:200px;padding:.5rem 0;opacity:0;pointer-events:none;transform:translateY(-4px);transition:all .16s;box-shadow:0 8px 28px rgba(28,20,16,.10)}
+.nav-links>li:hover .nav-drop{opacity:1;pointer-events:all;transform:none}
+.nav-drop a{display:block;font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);padding:.5rem 1.4rem;transition:color .14s}
+.nav-drop a:hover{color:var(--maroon)}
+.nav-links .nav-active{color:var(--maroon)}
+.nav-links .nav-active-parent>a{color:var(--maroon);border-bottom:2px solid var(--gold)}
+.nav-drop .nav-active{color:var(--maroon);font-weight:600}
+.nav-give{font-family:var(--f-ui);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--vellum);background:var(--maroon);padding:.5rem 1.1rem;transition:background .2s}
+.nav-give:hover{background:var(--maroon-deep)}
+.nav-hamburger{display:none;flex-direction:column;justify-content:space-between;width:28px;height:20px;cursor:pointer;padding:0;background:none;border:none;z-index:400}
+.nav-hamburger span{display:block;width:100%;height:2px;background:var(--maroon);transition:all .28s ease;transform-origin:center}
+.nav-hamburger.open span:nth-child(1){transform:translateY(9px) rotate(45deg)}
+.nav-hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-9px) rotate(-45deg)}
+.nav-drawer{position:fixed;top:0;right:0;width:300px;max-width:85vw;height:100vh;background:var(--apse);z-index:350;transform:translateX(100%);transition:transform .32s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;overflow-y:auto}
+.nav-drawer.open{transform:translateX(0)}
+.nav-drawer-overlay{position:fixed;inset:0;background:rgba(21,8,4,.65);z-index:340;opacity:0;pointer-events:none;transition:opacity .32s}
+.nav-drawer-overlay.open{opacity:1;pointer-events:all}
+.nav-drawer-head{padding:1.5rem 1.75rem 1rem;border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:space-between}
+.nav-drawer-logo{font-family:var(--f-display);font-weight:500;font-size:1.1rem;color:#fff}
+.nav-drawer-logo span{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);display:block;margin-top:2px}
+.nav-drawer-close{width:32px;height:32px;background:rgba(255,255,255,.08);border:none;color:rgba(255,255,255,.65);cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.nav-drawer-close:hover{background:rgba(255,255,255,.15)}
+.nav-drawer-links{padding:1rem 0;flex:1}
+.nav-drawer-links a{display:block;font-family:var(--f-ui);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,232,.70);padding:.9rem 1.75rem;border-bottom:1px solid rgba(255,255,255,.05);transition:all .18s}
+.nav-drawer-links a:hover{color:#fff;background:rgba(255,255,255,.05)}
+.nav-drawer-links .drawer-section{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(184,131,40,.55);padding:.85rem 1.75rem .35rem;display:block}
+.nav-drawer-give{margin:1.25rem 1.75rem;display:block;text-align:center;font-family:var(--f-ui);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;padding:.85rem;background:var(--maroon);color:var(--vellum);transition:background .2s}
+.nav-drawer-give:hover{background:var(--maroon-deep)}
+
+/* PAGE HERO */
+.page-hero{padding-top:60px;background:linear-gradient(to right,rgba(59,15,24,.95) 0%,rgba(59,15,24,.78) 55%,rgba(59,15,24,.55) 100%),url('https://picsum.photos/seed/catechesis-hero/1600/500') center/cover no-repeat;background-color:var(--apse);min-height:380px;display:flex;align-items:flex-end;position:relative;overflow:hidden}
+.page-hero-inner{max-width:1380px;margin:0 auto;padding:3rem 4.5rem 3.5rem;width:100%}
+.page-title{font-family:var(--f-display);font-weight:300;font-size:clamp(2.4rem,5vw,4.2rem);line-height:.95;color:#fff;margin:.5rem 0 .75rem}
+.page-title em{font-style:italic}
+.page-subtitle{font-family:var(--f-display);font-style:italic;font-size:1.1rem;color:rgba(255,255,255,.62);margin-top:.5rem;max-width:520px}
+.breadcrumb{font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:.75rem}
+.breadcrumb a{color:rgba(232,201,122,.70)}
+.breadcrumb a:hover{color:var(--gold-lt)}
+
+/* CHAPTER BAR */
+.chapter-bar{background:var(--maroon);padding:.65rem 4rem;display:flex;align-items:center;justify-content:space-between}
+.cbar-text{font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:rgba(246,241,232,.60)}
+.cbar-text.bright{color:rgba(246,241,232,.90)}
+
+/* FULL HISTORY */
+.track2{background:var(--vellum)}
+.page-body{max-width:1520px;margin:0 auto;padding:2.5rem 3rem 5rem;display:grid;grid-template-columns:72px 1fr 280px;gap:0 3.5rem}
+.main-col{min-width:0}
+.side-col{border-left:var(--rule-faint);padding-left:2.5rem}
+
+/* NAV PILL + BOTTOM SHEET */
+.nav-pill{display:none;position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);background:var(--apse);border:1px solid rgba(184,131,40,.20);border-radius:100px;padding:.5rem .85rem;z-index:150;align-items:center;gap:.5rem;box-shadow:0 6px 30px rgba(21,8,4,.38);opacity:0;pointer-events:none;transition:opacity .4s}
+.nav-pill.pill-visible{opacity:1;pointer-events:all}
+.pill-arrow{background:rgba(255,255,255,.06);border:none;color:rgba(246,241,232,.60);cursor:pointer;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:all .18s;flex-shrink:0;font-size:1.05rem}
+.pill-arrow:hover:not(:disabled){background:rgba(255,255,255,.14);color:#fff}
+.pill-arrow:disabled{opacity:.22;cursor:default}
+.pill-center{font-family:var(--f-ui);font-size:.56rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.80);padding:.3rem .75rem;display:flex;align-items:center;gap:.4rem;min-width:130px;justify-content:center;cursor:pointer;transition:color .18s;border:none;background:none}
+.pill-center:hover{color:#fff}
+.pill-center svg{flex-shrink:0}
+.sheet-overlay{display:none;position:fixed;inset:0;background:rgba(21,8,4,.60);z-index:300;opacity:0;transition:opacity .28s}
+.sheet-overlay.open{opacity:1;display:block}
+.era-sheet{position:fixed;bottom:0;left:0;right:0;background:var(--apse);z-index:310;border-top:1px solid rgba(184,131,40,.18);border-radius:18px 18px 0 0;transform:translateY(100%);transition:transform .32s cubic-bezier(.4,0,.2,1);max-height:78vh;display:none;flex-direction:column}
+.era-sheet.open{transform:translateY(0);display:flex}
+.sheet-handle{width:36px;height:4px;background:rgba(246,241,232,.18);border-radius:2px;margin:1rem auto .5rem;flex-shrink:0}
+.sheet-head{padding:.5rem 1.5rem 1rem;border-bottom:1px solid rgba(255,255,255,.06);flex-shrink:0;display:flex;align-items:center;justify-content:space-between}
+.sheet-title{font-family:var(--f-display);font-size:1.25rem;font-weight:500;color:#fff}
+.sheet-close{background:rgba(255,255,255,.06);border:none;color:rgba(246,241,232,.55);width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:.85rem;display:flex;align-items:center;justify-content:center;transition:background .18s}
+.sheet-close:hover{background:rgba(255,255,255,.14);color:#fff}
+.sheet-list{overflow-y:auto;flex:1;padding:.5rem 0 2.5rem;-webkit-overflow-scrolling:touch}
+.sheet-item{display:flex;align-items:center;gap:.85rem;padding:.75rem 1.5rem;border:none;background:none;width:100%;text-align:left;cursor:pointer;transition:background .16s;border-bottom:1px solid rgba(255,255,255,.04)}
+.sheet-item:hover{background:rgba(255,255,255,.05)}
+.sheet-item.sheet-active{background:rgba(123,29,42,.35)}
+.sheet-num{font-family:var(--f-ui);font-size:.55rem;letter-spacing:.10em;color:rgba(184,131,40,.55);width:28px;flex-shrink:0;text-align:right}
+.sheet-item.sheet-active .sheet-num{color:rgba(184,131,40,.90)}
+.sheet-name{font-family:var(--f-display);font-weight:400;font-size:1.05rem;color:rgba(246,241,232,.75);line-height:1.2}
+.sheet-item.sheet-active .sheet-name{color:#fff}
+.sheet-date{font-family:var(--f-ui);font-size:.55rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.30);display:block;margin-top:.15rem}
+
+/* LEFT RAIL (in-grid, sticky) */
+.left-col{border-right:var(--rule-faint);padding-right:0;display:flex;justify-content:center}
+.left-rail{position:sticky;top:80px;height:calc(100vh - 100px);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1rem 0;opacity:0;transition:opacity .4s;width:100%}
+.left-rail.rail-visible{opacity:1}
+.lr-connector{width:1px;background:rgba(123,29,42,.12);flex:1}
+.lr-item{display:flex;flex-direction:column;align-items:center;cursor:pointer;position:relative;padding:.18rem 0}
+.lr-dot-wrap{width:44px;display:flex;flex-direction:column;align-items:center;gap:6px}
+.lr-dot{width:6px;height:6px;border-radius:50%;border:1.5px solid rgba(123,29,42,.28);background:transparent;transition:all .28s cubic-bezier(.22,1,.36,1);flex-shrink:0}
+.lr-item.lr-active .lr-dot{background:var(--maroon);border-color:var(--maroon);width:8px;height:8px;box-shadow:0 0 0 3px rgba(123,29,42,.12)}
+.lr-num{font-family:var(--f-ui);font-size:.55rem;font-weight:600;letter-spacing:.04em;color:rgba(123,29,42,.28);display:block;transition:color .28s;line-height:1;text-align:center}
+.lr-item.lr-active .lr-num{color:var(--maroon)}
+.lr-label{position:absolute;left:calc(100% + 12px);top:50%;transform:translateY(-50%);background:var(--vellum);border:var(--rule-faint);border-left:2px solid var(--maroon);padding:.28rem .75rem;font-family:var(--f-ui);font-size:.58rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--maroon);white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .18s;box-shadow:0 2px 10px rgba(28,20,16,.08);z-index:50}
+.lr-item:hover .lr-label{opacity:1}
+
+/* STICKY SIDEBAR ERA LIST */
+.side-sticky{position:sticky;top:80px}
+
+/* PROSE */
+.prose{font-family:var(--f-body);font-size:1rem;line-height:1.82;color:var(--ink);text-align:justify;hyphens:auto}
+.prose p{margin-bottom:1.25em}
+.prose p::first-line{font-style:italic}
+.drop-cap::first-letter{font-family:var(--f-display);font-style:italic;font-weight:300;font-size:4.5em;line-height:.78;float:left;margin-right:.07em;margin-top:.07em;color:var(--maroon)}
+.era-head{display:flex;align-items:baseline;gap:1.25rem;margin:4rem 0 .5rem;flex-wrap:wrap}
+.era-date{font-family:var(--f-ui);font-size:.68rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--vellum);background:var(--maroon);padding:.25rem .75rem;white-space:nowrap;flex-shrink:0}
+.era-num{font-family:var(--f-display);font-weight:300;font-size:1rem;color:rgba(123,29,42,.40);flex-shrink:0}
+.section-head{font-family:var(--f-display);font-weight:400;font-size:clamp(1.6rem,2.5vw,2.3rem);color:var(--text);line-height:1.1;margin-bottom:.5rem}
+.section-rule{height:1px;background:var(--maroon);width:48px;margin:0 0 1.75rem}
+
+/* PULL QUOTE */
+.pull-quote{margin:3rem 0;padding:2.5rem 2.5rem 2.5rem 3rem;border-left:3px solid var(--maroon);background:var(--vellum-mid)}
+.pull-quote p{font-family:var(--f-display);font-style:italic;font-weight:300;font-size:clamp(1.3rem,2vw,1.65rem);line-height:1.5;color:var(--text);margin-bottom:.75rem}
+.pull-quote cite{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--maroon);font-style:normal}
+
+/* HIST NOTE */
+.hist-note{border:var(--rule-faint);border-top:3px solid var(--gold);padding:1.75rem 2rem;margin:2.5rem 0;background:rgba(184,131,40,.04)}
+.hist-note-label{font-family:var(--f-ui);font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:.6rem}
+.hist-note p{font-family:var(--f-body);font-size:.94rem;line-height:1.75;color:var(--ink);margin:0}
+
+/* FIGURES LIST */
+.figures-row{display:flex;flex-wrap:wrap;gap:.5rem;margin:1.25rem 0 2rem}
+.figure-chip{font-family:var(--f-ui);font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);border:1px solid rgba(122,102,72,.30);padding:.28rem .7rem;line-height:1.4;text-decoration:none;transition:background .18s,color .18s,border-color .18s,transform .12s;display:inline-block;cursor:pointer}
+.figure-chip:hover{background:var(--maroon);color:var(--vellum);border-color:var(--maroon);transform:translateY(-1px)}
+
+/* SOURCES */
+.sources-block{margin:2rem 0 0}
+.sources-label{font-family:var(--f-ui);font-size:.68rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.75rem;padding-bottom:.5rem;border-bottom:var(--rule-faint)}
+.source-list{list-style:none}
+.source-list li{font-family:var(--f-body);font-size:.88rem;line-height:1.65;color:var(--ink);padding:.45rem 0;border-bottom:var(--rule-hair);display:flex;align-items:baseline;gap:.6rem}
+.source-list li:last-child{border-bottom:none}
+.source-tag{font-family:var(--f-ui);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;padding:.15rem .45rem;border:1px solid;flex-shrink:0}
+.source-tag.orthodox{color:var(--maroon);border-color:rgba(123,29,42,.35)}
+.source-tag.academic{color:var(--verdigris);border-color:rgba(61,107,94,.35)}
+.source-tag.primary{color:var(--gold);border-color:rgba(184,131,40,.35)}
+.source-tag.ref{color:var(--stone);border-color:rgba(122,102,72,.35)}
+.source-list a{color:var(--maroon);border-bottom:1px solid rgba(123,29,42,.25);transition:border-color .2s}
+.source-list a:hover{border-color:var(--maroon)}
+
+/* SECTION DIVIDER LINE */
+.sec-rule{border:none;border-top:var(--rule-faint);margin:3.5rem 0}
+
+/* SIDEBAR */
+.side-section{margin-bottom:2.5rem;padding-bottom:2.5rem;border-bottom:var(--rule-faint)}
+.side-section:last-child{border-bottom:none}
+.side-head{font-family:var(--f-ui);font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.75rem}
+.side-list{list-style:none}
+.side-list li{font-family:var(--f-body);font-size:.94rem;color:var(--ink);padding:.4rem 0;border-bottom:var(--rule-hair)}
+.side-list li:last-child{border-bottom:none}
+.side-list strong{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--maroon);display:block;margin-bottom:.1rem}
+.annot-nav-link{display:flex;align-items:center;justify-content:space-between;font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--text);padding:.6rem 0;border-bottom:var(--rule-hair);transition:color .18s}
+.annot-nav-link:last-child{border-bottom:none}
+.annot-nav-link:hover{color:var(--maroon)}
+.era-mini{display:flex;align-items:center;gap:.65rem;padding:.55rem 0;border-bottom:var(--rule-hair);cursor:pointer;transition:color .18s}
+.era-mini:last-child{border-bottom:none}
+.era-mini:hover .era-mini-name{color:var(--maroon)}
+.era-mini-num{font-family:var(--f-display);font-weight:400;font-size:1rem;color:rgba(123,29,42,.38);width:22px;flex-shrink:0}
+.era-mini-name{font-family:var(--f-ui);font-size:.60rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--maroon);line-height:1.35;transition:color .18s}
+.era-mini:hover .era-mini-name{color:var(--maroon-deep)}
+.era-mini-date{font-family:var(--f-ui);font-size:.62rem;letter-spacing:.10em;text-transform:uppercase;color:var(--stone);display:block;margin-top:.15rem}
+
+/* SUBTLE CTA */
+.cta-heading em{font-style:italic}
+
+/* REFS SECTION */
+.refs-section{margin-top:3.5rem;padding-top:3rem;border-top:2px solid rgba(123,29,42,.14)}
+.refs-head{font-family:var(--f-display);font-weight:400;font-size:1.6rem;color:var(--text);margin-bottom:.35rem}
+.refs-sub{font-family:var(--f-body);font-style:italic;font-size:.9rem;color:var(--stone);margin-bottom:2rem}
+.ref-list{list-style:none}
+.ref-list li{font-family:var(--f-body);font-size:.88rem;line-height:1.75;color:var(--stone);padding:.45rem 0;border-bottom:var(--rule-hair);display:flex;gap:.75rem}
+.ref-list li:last-child{border-bottom:none}
+.ref-list a{color:var(--maroon);border-bottom:1px solid rgba(123,29,42,.22);transition:border-color .2s}
+.ref-list a:hover{border-color:var(--maroon)}
+
+/* QUOTE BREAK */
+.quote-break{margin:0;padding:4rem 4.5rem;background:var(--vellum-mid);position:relative;border-top:var(--rule-faint);border-bottom:var(--rule-faint)}
+.qb-inner{max-width:680px;margin:0 auto;padding-left:2rem;border-left:3px solid var(--maroon)}
+.qb-text{font-family:var(--f-display);font-style:italic;font-weight:300;font-size:clamp(1.5rem,3vw,2.2rem);line-height:1.4;color:var(--text);margin-bottom:.75rem}
+.qb-attr{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.20em;text-transform:uppercase;color:var(--maroon);display:block}
+
+/* FOOTER */
+footer{background:var(--apse);padding:4rem 4.5rem 2rem}
+.footer-cross{display:block;text-align:center;font-size:1.1rem;color:rgba(184,131,40,.45);letter-spacing:.8em;padding-left:.8em;margin-bottom:2.5rem}
+.footer-cols{max-width:1380px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:4rem;margin-bottom:2.5rem}
+.footer-col-head{font-family:var(--f-ui);font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(246,241,232,.82);display:block;margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid rgba(246,241,232,.18)}
+.footer-name{font-family:var(--f-display);font-weight:400;font-size:1.1rem;color:rgba(246,241,232,.88);line-height:1.3;margin-bottom:.75rem}
+.footer-meta{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.72);line-height:2.3}
+.footer-meta a{color:rgba(184,131,40,.85);transition:color .2s}
+.footer-meta a:hover{color:var(--gold)}
+.footer-nav{list-style:none;display:flex;flex-direction:column}
+.footer-nav li{padding:.35rem 0;border-bottom:1px solid rgba(246,241,232,.10)}
+.footer-nav li:last-child{border-bottom:none}
+.footer-nav a{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,232,.85);transition:color .2s}
+.footer-nav a:hover{color:rgba(246,241,232,.95)}
+.footer-blurb{font-family:var(--f-display);font-style:italic;font-size:.95rem;color:rgba(246,241,232,.85);line-height:1.65;margin-bottom:1.25rem}
+.footer-socials{display:flex;gap:1.5rem;margin-top:1.5rem}
+.footer-socials a{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,241,232,.65);transition:color .2s}
+.footer-socials a:hover{color:var(--gold)}
+.footer-bottom{max-width:1380px;margin:2rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(246,241,232,.12);display:flex;justify-content:space-between;align-items:center}
+.footer-copy,.footer-addr{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.60)}
+.footer-addr{text-align:right}
+
+/* RESPONSIVE */
+@media(max-width:1100px){
+  .nav-hamburger{display:flex}
+  .nav-links,.nav-give{display:none}
+  .page-body{grid-template-columns:1fr;gap:3rem;padding:3.5rem 2.5rem}
+  .left-col{display:none}
+  .side-col{border-left:none;border-top:var(--rule-faint);padding-left:0;padding-top:2.5rem}
+  .side-sticky{position:static}
+}
+@media(max-width:768px){
+  .page-hero-inner{padding:3rem 1.75rem}
+  .page-body{padding:3rem 1.75rem}
+  .quote-break{padding:2.5rem 1.5rem}
+  .qb-inner{padding-left:1.25rem}
+  footer{padding:3rem 1.75rem 1.5rem}
+  .footer-cols{grid-template-columns:1fr;gap:2rem}
+  .footer-bottom{flex-direction:column;gap:.75rem;text-align:center}
+  .footer-addr{text-align:center}
+}
+</style>
+  <link rel="stylesheet" href="/styles/typography.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" style="line-height:1.2"><span class="nav-logo-name">Sts. Peter &amp; Paul</span><span class="nav-logo-sub">Orthodox Cathedral · Jersey City</span></a>
+    <ul class="nav-links">
+      <li><a href="#">About Us ▾</a>
+        <div class="nav-drop">
+          <a href="/our-parish">About Our Church</a>
+          <a href="/church-history">Church History</a>
+          <a href="/our-beliefs">Our Beliefs</a>
+          <a href="/administration">Administration</a>
+          <a href="/gallery">Gallery</a>
+        </div>
+      </li>
+      <li class="nav-active-parent"><a href="#">Inquirers ▾</a>
+        <div class="nav-drop">
+          <a href="/about-orthodoxy">About Orthodoxy</a>
+          <a href="/catechesis-history" class="nav-active" aria-current="page">Orthodox Catechesis</a>
+          <a href="/our-beliefs">Our Beliefs</a>
+          <a href="/videos">Videos</a>
+        </div>
+      </li>
+      <li><a href="/schedule">Calendar</a></li>
+      <li><a href="#">Bulletins ▾</a>
+        <div class="nav-drop">
+          <a href="/news">News</a>
+          <a href="/bulletins">Bulletins</a>
+        </div>
+      </li>
+      <li><a href="#">Resources ▾</a>
+        <div class="nav-drop">
+          <a href="/readings">Readings</a>
+          <a href="/videos">Videos</a>
+          <a href="/cemeteries">Cemeteries</a>
+        </div>
+      </li>
+      <li><a href="/contact-us">Contact</a></li>
+    </ul>
+    <a href="https://tithe.ly/give?c=5004259" target="_blank" class="nav-give">Give</a>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" onclick="openDrawer()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<div class="nav-drawer-overlay" id="nav-overlay" onclick="closeDrawer()"></div>
+<div class="nav-drawer" id="nav-drawer">
+  <div class="nav-drawer-head">
+    <div class="nav-drawer-logo">Sts. Peter &amp; Paul<span>Orthodox Cathedral · Jersey City</span></div>
+    <button class="nav-drawer-close" onclick="closeDrawer()">✕</button>
+  </div>
+  <div class="nav-drawer-links">
+    <span class="drawer-section">About</span>
+    <a href="/our-parish">About Our Church</a>
+    <a href="/church-history">Church History</a>
+    <a href="/our-beliefs">Our Beliefs</a>
+    <a href="/administration">Administration</a>
+    <span class="drawer-section">Inquirers</span>
+    <a href="/about-orthodoxy">About Orthodoxy</a>
+    <a href="/catechesis-history">Orthodox Catechesis</a>
+    <a href="/our-beliefs">Our Beliefs</a>
+    <span class="drawer-section">Visit &amp; Worship</span>
+    <a href="/schedule">Liturgical Calendar</a>
+    <a href="/readings">Daily Readings</a>
+    <a href="/saint-of-the-day">Saint of the Day</a>
+    <a href="/videos">Videos</a>
+    <span class="drawer-section">Parish Life</span>
+    <a href="/gallery">Gallery</a>
+    <a href="/bulletins">Bulletins</a>
+    <a href="/news">News &amp; Announcements</a>
+    <a href="/cemeteries">Cemeteries</a>
+    <span class="drawer-section">Contact</span>
+    <a href="/contact-us">Contact Us</a>
+  </div>
+  <a href="https://tithe.ly/give?c=5004259" target="_blank" class="nav-drawer-give">Give Online</a>
+</div>
+
+<!-- CHAPTER RAIL now lives inside the 3-column page-body as .left-col -->
+
+<!-- NAV PILL (all screen sizes, Track 2) -->
+<div class="nav-pill" id="navPill">
+  <button class="pill-arrow" id="pillPrev" onclick="pillNav(-1)" aria-label="Previous era"><svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 7.5L5.5 4L9 7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  <button class="pill-center" onclick="openSheet()">
+    <svg width="11" height="11" viewBox="0 0 24 24" fill="rgba(184,131,40,.75)"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+    <span id="pillLabel">Old Testament Roots</span>
+  </button>
+  <button class="pill-arrow" id="pillNext" onclick="pillNav(1)" aria-label="Next era"><svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 3.5L5.5 7L9 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+</div>
+
+<!-- BOTTOM SHEET -->
+<div class="sheet-overlay" id="sheetOverlay" onclick="closeSheet()"></div>
+<div class="era-sheet" id="eraSheet">
+  <div class="sheet-handle"></div>
+  <div class="sheet-head">
+    <span class="sheet-title">History of Catechesis</span>
+    <button class="sheet-close" onclick="closeSheet()">&#10005;</button>
+  </div>
+  <div class="sheet-list">
+    <button class="sheet-item sheet-active" data-sheet-id="era-1" onclick="sheetJump('era-1')"><span class="sheet-num">I</span><span class="sheet-name">Old Testament Roots<span class="sheet-date">c. 1400–400 BCE</span></span></button>
+    <button class="sheet-item" data-sheet-id="era-2" onclick="sheetJump('era-2')"><span class="sheet-num">II</span><span class="sheet-name">New Testament &amp; Apostolic Era<span class="sheet-date">c. 30–100 AD</span></span></button>
+    <button class="sheet-item" data-sheet-id="era-3" onclick="sheetJump('era-3')"><span class="sheet-num">III</span><span class="sheet-name">Catechetical Schools &amp; Early Catechumenate<span class="sheet-date">2nd–3rd Century</span></span></button>
+    <button class="sheet-item" data-sheet-id="era-4" onclick="sheetJump('era-4')"><span class="sheet-num">IV</span><span class="sheet-name">The Golden Age of Catechesis<span class="sheet-date">4th–5th Century</span></span></button>
+    <button class="sheet-item" data-sheet-id="era-5" onclick="sheetJump('era-5')"><span class="sheet-num">V</span><span class="sheet-name">The Byzantine Era<span class="sheet-date">5th–15th Century</span></span></button>
+    <button class="sheet-item" data-sheet-id="era-6" onclick="sheetJump('era-6')"><span class="sheet-num">VI</span><span class="sheet-name">Post-Byzantine &amp; Early Modern<span class="sheet-date">16th–18th Century</span></span></button>
+    <button class="sheet-item" data-sheet-id="era-7" onclick="sheetJump('era-7')"><span class="sheet-num">VII</span><span class="sheet-name">The Russian Catechetical Tradition<span class="sheet-date">19th Century</span></span></button>
+    <button class="sheet-item" data-sheet-id="era-8" onclick="sheetJump('era-8')"><span class="sheet-num">VIII</span><span class="sheet-name">Orthodoxy in America: Immigration Era<span class="sheet-date">Late 19th c.–1960s</span></span></button>
+    <button class="sheet-item" data-sheet-id="era-9" onclick="sheetJump('era-9')"><span class="sheet-num">IX</span><span class="sheet-name">OCA Autocephaly &amp; Theological Renewal<span class="sheet-date">1970–2000</span></span></button>
+    <button class="sheet-item" data-sheet-id="era-10" onclick="sheetJump('era-10')"><span class="sheet-num">X</span><span class="sheet-name">Present Day OCA Catechesis<span class="sheet-date">2000–Present</span></span></button>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <p class="breadcrumb"><a href="/">Home</a> &middot; <a href="/about-orthodoxy">Inquirers</a> &middot; Orthodox Catechesis</p>
+    <span class="rubric light">Formation in the Faith</span>
+    <div class="rubric-rule gold"></div>
+    <h1 class="page-title">Orthodox<br><em>Catechesis</em></h1>
+    <p class="page-subtitle">A 3,000-year scholarly history from the Shema of ancient Israel to the present-day OCA. New to the topic? <a href="/visit#catechesis" style="color:rgba(232,201,122,.80);border-bottom:1px solid rgba(232,201,122,.35);padding-bottom:.05rem;">Begin with the introduction on our Visit page.</a></p>
+  </div>
+</div>
+
+<div id="track-history">
+  <div class="chapter-bar">
+    <span class="cbar-text bright">History of Orthodox Catechesis</span>
+    <span class="cbar-text">Old Testament Roots to the OCA &middot; Compiled March 2026</span>
+  </div>
+
+  <div class="page-body">
+
+    <!-- LEFT RAIL -->
+    <div class="left-col">
+      <nav class="left-rail" id="leftRail" aria-label="History sections">
+        <div class="lr-connector"></div>
+        <div class="lr-item lr-active" onclick="scrollToSection('era-1')">
+          <div class="lr-dot-wrap"><span class="lr-dot"></span><span class="lr-num">I</span></div>
+          <span class="lr-label">Old Testament Roots</span>
+        </div>
+        <div class="lr-connector"></div>
+        <div class="lr-item" onclick="scrollToSection('era-2')">
+          <div class="lr-dot-wrap"><span class="lr-dot"></span><span class="lr-num">II</span></div>
+          <span class="lr-label">New Testament &amp; Apostolic</span>
+        </div>
+        <div class="lr-connector"></div>
+        <div class="lr-item" onclick="scrollToSection('era-3')">
+          <div class="lr-dot-wrap"><span class="lr-dot"></span><span class="lr-num">III</span></div>
+          <span class="lr-label">Early Catechumenate</span>
+        </div>
+        <div class="lr-connector"></div>
+        <div class="lr-item" onclick="scrollToSection('era-4')">
+          <div class="lr-dot-wrap"><span class="lr-dot"></span><span class="lr-num">IV</span></div>
+          <span class="lr-label">Golden Age</span>
+        </div>
+        <div class="lr-connector"></div>
+        <div class="lr-item" onclick="scrollToSection('era-5')">
+          <div class="lr-dot-wrap"><span class="lr-dot"></span><span class="lr-num">V</span></div>
+          <span class="lr-label">Byzantine Era</span>
+        </div>
+        <div class="lr-connector"></div>
+        <div class="lr-item" onclick="scrollToSection('era-6')">
+          <div class="lr-dot-wrap"><span class="lr-dot"></span><span class="lr-num">VI</span></div>
+          <span class="lr-label">Post-Byzantine &amp; Early Modern</span>
+        </div>
+        <div class="lr-connector"></div>
+        <div class="lr-item" onclick="scrollToSection('era-7')">
+          <div class="lr-dot-wrap"><span class="lr-dot"></span><span class="lr-num">VII</span></div>
+          <span class="lr-label">Russian Tradition</span>
+        </div>
+        <div class="lr-connector"></div>
+        <div class="lr-item" onclick="scrollToSection('era-8')">
+          <div class="lr-dot-wrap"><span class="lr-dot"></span><span class="lr-num">VIII</span></div>
+          <span class="lr-label">Orthodoxy in America</span>
+        </div>
+        <div class="lr-connector"></div>
+        <div class="lr-item" onclick="scrollToSection('era-9')">
+          <div class="lr-dot-wrap"><span class="lr-dot"></span><span class="lr-num">IX</span></div>
+          <span class="lr-label">OCA Autocephaly &amp; Renewal</span>
+        </div>
+        <div class="lr-connector"></div>
+        <div class="lr-item" onclick="scrollToSection('era-10')">
+          <div class="lr-dot-wrap"><span class="lr-dot"></span><span class="lr-num">X</span></div>
+          <span class="lr-label">Present Day OCA</span>
+        </div>
+        <div class="lr-connector"></div>
+      </nav>
+    </div>
+    <main class="main-col">
+
+      <!-- ERA 1 -->
+      <div id="era-1">
+        <div class="era-head">
+          <span class="era-date">c. 1400–400 BCE</span>
+          <span class="era-num">I</span>
+        </div>
+        <h2 class="section-head">Old Testament Roots</h2>
+        <div class="section-rule"></div>
+
+        <div class="prose drop-cap">
+          <p>The roots of catechesis reach deep into the Israelite covenant tradition, long before the word itself existed. The Shema, <em>Hear, O Israel: the Lord our God, the Lord is one</em> (Deuteronomy 6:4–9), is arguably the oldest catechetical formula in the Judeo-Christian world, commanding parents to teach the faith diligently to their children: at home, on the road, lying down and rising up. The command was not occasional. It was woven into the fabric of daily life.</p>
+          <p>Deuteronomy itself functions as a sustained act of catechesis. Moses stands before the people and recounts salvation history: the Exodus, the covenant at Sinai, the wilderness years. Not mere historiography, but formation for covenant fidelity. The next generation, born in the desert, had not seen the parting of the sea. Moses was teaching them to receive it as their own story. This narrative mode of instruction, telling what God has done so that those who were not there might live as though they were, would become the structural DNA of Christian catechesis for three thousand years.</p>
+          <p>The synagogue tradition that crystallized after the return from Babylon formalized this instruction through Torah reading, homily, and question-and-answer dialogue. When the early Church was born in Jerusalem, it was born already shaped by these practices. The catechetical instinct was not invented by Christians. It was inherited, baptized, and transformed.</p>
+        </div>
+
+        <div class="pull-quote">
+          <p>And these words that I command you today shall be on your heart. You shall teach them diligently to your children, and shall talk of them when you sit in your house, and when you walk by the way, and when you lie down, and when you rise.</p>
+          <cite>Deuteronomy 6:6–7</cite>
+        </div>
+
+        <div class="prose">
+          <p>The Psalms, too, functioned as catechesis. The great historical psalms (78, 105, 106) rehearsed the mighty acts of God for communities gathered in worship. The wisdom literature of Proverbs and Sirach presented the moral shape of covenant life. Levitical teaching maintained doctrinal continuity within priestly families. Taken together, these streams of instruction constitute the oldest sustained educational project in Western civilization, and the direct ancestor of everything the Orthodox Church does when she receives a catechumen.</p>
+        </div>
+
+        <div class="figures-row">
+          <a href="https://en.wikipedia.org/wiki/Moses" target="_blank" rel="noopener" class="figure-chip">Moses</a>
+          <a href="https://en.wikipedia.org/wiki/Shema_Yisrael" target="_blank" rel="noopener" class="figure-chip">The Shema</a>
+          <a href="https://en.wikipedia.org/wiki/Synagogue" target="_blank" rel="noopener" class="figure-chip">Synagogue instruction</a>
+          <a href="https://en.wikipedia.org/wiki/Levite" target="_blank" rel="noopener" class="figure-chip">Levitical teaching</a>
+          <a href="https://en.wikipedia.org/wiki/Psalms" target="_blank" rel="noopener" class="figure-chip">Psalms as catechesis</a>
+          <a href="https://en.wikipedia.org/wiki/Wisdom_literature" target="_blank" rel="noopener" class="figure-chip">Wisdom literature</a>
+        </div>
+
+        <div class="sources-block">
+          <span class="sources-label">Sources</span>
+          <ul class="source-list">
+            <li><span class="source-tag ref">Web</span><span>What is the Shema?  &#xB7;  <a href="https://bibleproject.com/articles/what-is-the-shema/" target="_blank">BibleProject overview</a></span></li>
+            <li><span class="source-tag ref">Encyclopedia</span><span>Shema Yisrael  &#xB7;  <a href="https://en.wikipedia.org/wiki/Shema" target="_blank">Wikipedia: liturgical and historical background</a></span></li>
+            <li><span class="source-tag ref">Encyclopedia</span><span>Book of Deuteronomy  &#xB7;  <a href="https://en.wikipedia.org/wiki/Book_of_Deuteronomy" target="_blank">Wikipedia: structure and catechetical character</a></span></li>
+            <li><span class="source-tag academic">Article</span><span>Studies in the Shema: Deuteronomy 6:4ff  &#xB7;  <a href="https://torahresource.com/article/studies-in-the-shema-a-look-at-deuteronomy-64ff/" target="_blank">TorahResource: scholarly grammatical analysis</a></span></li>
+          </ul>
+        </div>
+      </div>
+
+      <hr class="sec-rule">
+
+      <!-- ERA 2 -->
+      <div id="era-2">
+        <div class="era-head">
+          <span class="era-date">c. 30–100 AD</span>
+          <span class="era-num">II</span>
+        </div>
+        <h2 class="section-head">New Testament &amp; Apostolic Era</h2>
+        <div class="section-rule"></div>
+
+        <div class="prose drop-cap">
+          <p>The word <em>katechesis</em> appears in the New Testament itself. St. Luke tells Theophilus that he writes so that the man may "know the certainty of the things" in which he has been instructed, <em>katechethes</em> (Luke 1:4). Apollos is described as one who had been instructed (<em>katechemenon</em>) in the way of the Lord (Acts 18:25). St. Paul exhorts the Galatians that those who are taught the word should share in all good things with those who teach (Galatians 6:6). The vocabulary of catechesis was already in place before the ink on the epistles had dried.</p>
+          <p>The Emmaus road narrative in Luke 24 reads in the Orthodox tradition as a catechetical icon: Christ walks with the two disciples, opens the scriptures to them, breaks bread with them, and sends them back to the community. Scripture, fellowship, Eucharist, mission. This fourfold pattern, recognizable in every Orthodox Divine Liturgy to this day, was the template of apostolic formation.</p>
+        </div>
+
+        <div class="hist-note">
+          <span class="hist-note-label">The Didache</span>
+          <p>The Didache (c. 50–120 AD) is the oldest surviving Christian catechetical document. Its opening "Two Ways" instruction, the way of life and the way of death, presents a moral framework for new converts drawn almost entirely from the Sermon on the Mount. It concludes with directives on baptism (by running water if possible, by pouring if necessary), Eucharist, fasting, prayer, and the reception of wandering prophets. It is a window into a Church that understood formation as simultaneously moral, liturgical, and communal.</p>
+        </div>
+
+        <div class="prose">
+          <p>The Acts of the Apostles reveal a consistent pattern across the early communities: proclamation (<em>kerygma</em>) followed by deeper instruction for those who believed. Aquila and Priscilla took Apollos aside and "explained to him the way of God more accurately." Philip sat beside the Ethiopian eunuch in the chariot and, beginning with the prophet Isaiah, proclaimed Jesus. The apostolic model was personal, dialogical, and rooted in the scriptures of Israel. It had not yet been institutionalized. That would come in the century that followed.</p>
+        </div>
+
+        <div class="figures-row">
+          <a href="https://en.wikipedia.org/wiki/Apostle_(Christian)" target="_blank" rel="noopener" class="figure-chip">The Apostles</a>
+          <a href="https://en.wikipedia.org/wiki/Luke_the_Evangelist" target="_blank" rel="noopener" class="figure-chip">St. Luke</a>
+          <a href="https://en.wikipedia.org/wiki/Didache" target="_blank" rel="noopener" class="figure-chip">The Didache</a>
+          <a href="https://en.wikipedia.org/wiki/Paul_the_Apostle" target="_blank" rel="noopener" class="figure-chip">St. Paul</a>
+          <a href="https://en.wikipedia.org/wiki/Aquila_and_Priscilla" target="_blank" rel="noopener" class="figure-chip">Aquila and Priscilla</a>
+          <a href="https://en.wikipedia.org/wiki/Apollos" target="_blank" rel="noopener" class="figure-chip">Apollos</a>
+        </div>
+
+        <div class="sources-block">
+          <span class="sources-label">Sources</span>
+          <ul class="source-list">
+            <li><span class="source-tag ref">Article</span><span>A Very Short History of Catechesis  &#xB7;  <a href="https://blogs.oxford.anglican.org/short-history-catechesis/" target="_blank">Bishop Steven's Blog: New Testament foundations and Emmaus paradigm</a></span></li>
+            <li><span class="source-tag academic">Peer-reviewed</span><span>Early Church Catechesis and New Christians' Classes (JETS 47/1, 2004)  &#xB7;  <a href="https://etsjets.org/wp-content/uploads/2010/06/files_JETS-PDFs_47_47-1_47-1-pp039-054_JETS.pdf" target="_blank">Journal of the Evangelical Theological Society</a></span></li>
+            <li><span class="source-tag ref">Web</span><span>The Story: Context for Catechesis  &#xB7;  <a href="https://acmocia.org/blog/story-context-catechesis/" target="_blank">ACM OCIA: Augustine's narratio and salvation history</a></span></li>
+          </ul>
+        </div>
+      </div>
+
+      <hr class="sec-rule">
+
+      <!-- ERA 3 -->
+      <div id="era-3">
+        <div class="era-head">
+          <span class="era-date">2nd–3rd Century AD</span>
+          <span class="era-num">III</span>
+        </div>
+        <h2 class="section-head">Catechetical Schools &amp; the Early Catechumenate</h2>
+        <div class="section-rule"></div>
+
+        <div class="prose drop-cap">
+          <p>The catechumenate emerged in the 2nd century as the primary institution of Christian formation, and by the time Hippolytus of Rome compiled his Apostolic Tradition around 215 AD, it had been given a remarkably detailed shape. The process unfolded over three years. Sponsors vouched for the moral conduct of candidates. Scrutinies examined their readiness. Exorcisms accompanied their preparation. Admission to the Eucharist came only at the end, following baptism at the Pascha vigil. Formation was not rushed. The Church understood that a human life is not remade in a weekend.</p>
+          <p>Two great catechetical schools shaped the theological content of Christian formation for centuries. The Catechetical School of Alexandria, possibly founded by St. Mark himself and formalized under Pantaenus around 181 AD, became the world's first Christian institution of higher learning. Under Clement of Alexandria and then the prodigious Origen, it championed the allegorical interpretation of scripture, reading the Old Testament as a vast, luminous prefiguration of Christ. The rival School of Antioch, by contrast, emphasized literal-historical exegesis, reading the text with disciplined attention to its human authorship and historical context. The creative tension between these two schools continues to animate Orthodox biblical theology to this day.</p>
+        </div>
+
+        <div class="pull-quote">
+          <p>The school at Alexandria was not merely a place of instruction. It was a community of inquiry, where faith and reason were understood not as rivals but as partners in the one pursuit of the living God.</p>
+          <cite>Adapted from: The Catechetical School in Alexandria, ResearchGate</cite>
+        </div>
+
+        <div class="figures-row">
+          <a href="https://orthodoxwiki.org/Hippolytus_of_Rome" target="_blank" rel="noopener" class="figure-chip">St. Hippolytus of Rome</a>
+          <a href="https://en.wikipedia.org/wiki/Pantaenus" target="_blank" rel="noopener" class="figure-chip">Pantaenus</a>
+          <a href="https://orthodoxwiki.org/Clement_of_Alexandria" target="_blank" rel="noopener" class="figure-chip">Clement of Alexandria</a>
+          <a href="https://en.wikipedia.org/wiki/Origen" target="_blank" rel="noopener" class="figure-chip">Origen</a>
+          <a href="https://orthodoxwiki.org/Catechetical_School_of_Alexandria" target="_blank" rel="noopener" class="figure-chip">School of Alexandria</a>
+          <a href="https://en.wikipedia.org/wiki/Antiochene_school" target="_blank" rel="noopener" class="figure-chip">School of Antioch</a>
+        </div>
+
+        <div class="sources-block">
+          <span class="sources-label">Sources</span>
+          <ul class="source-list">
+            <li><span class="source-tag orthodox">Orthodox</span><span>Catechetical School of Alexandria  &#xB7;  <a href="https://orthodoxwiki.org/Catechetical_School_of_Alexandria" target="_blank">OrthodoxWiki overview</a></span></li>
+            <li><span class="source-tag ref">Encyclopedia</span><span>School of Alexandria  &#xB7;  <a href="https://en.wikipedia.org/wiki/School_of_Alexandria" target="_blank">Wikipedia: Pantaenus, Clement, Origen, allegorical method</a></span></li>
+            <li><span class="source-tag academic">Peer-reviewed</span><span>The Catechetical School in Alexandria  &#xB7;  <a href="https://www.researchgate.net/publication/277965274_The_Catechetical_School_in_Alexandria" target="_blank">ResearchGate: Didaskaleion structure and historical disputes</a></span></li>
+            <li><span class="source-tag academic">Academic</span><span>How Did Early Christians Teach New Members to Know God?  &#xB7;  <a href="https://cambridgeblog.org/2023/12/how-did-early-christians-teach-new-members-to-know-god/" target="_blank">Cambridge University Press Blog</a></span></li>
+            <li><span class="source-tag orthodox">Parish</span><span>Becoming an Orthodox Christian: Apostolic Catechumenate  &#xB7;  <a href="https://st-innocent.org/becomingorthodox" target="_blank">St. Innocent Orthodox Church</a></span></li>
+            <li><span class="source-tag academic">Peer-reviewed</span><span>The Ancient Catechumenate: A Liturgical-Historical Sketch  &#xB7;  <a href="https://scielo.org.za/scielo.php?script=sci_arttext&pid=S2413-94672023000100014" target="_blank">SciELO (2023)</a></span></li>
+          </ul>
+        </div>
+      </div>
+
+      <hr class="sec-rule">
+
+      <!-- ERA 4 -->
+      <div id="era-4">
+        <div class="era-head">
+          <span class="era-date">4th–5th Century AD</span>
+          <span class="era-num">IV</span>
+        </div>
+        <h2 class="section-head">The Golden Age of Catechesis</h2>
+        <div class="section-rule"></div>
+
+        <div class="prose drop-cap">
+          <p>The legalization of Christianity under Constantine in 313 AD transformed the catechumenate dramatically, and paradoxically. As the Church swelled with new adherents, many drawn by social advantage rather than genuine conversion, teachers and bishops redoubled their commitment to serious formation. The 4th century produced the most celebrated catechetical texts in all of Church history.</p>
+          <p>St. Cyril of Jerusalem's Catechetical Lectures, delivered around 350 AD, remain the definitive model. The eighteen pre-baptismal lectures walk candidates through the Creed article by article, with extraordinary pastoral warmth and theological depth. But it is the five Mystagogical Catecheses, delivered in Bright Week to the newly baptized, that represent Cyril's most distinctive contribution. He explained the sacraments only after the candidates had experienced them, leading them from the outer court of preparation into the inner sanctuary of meaning. This is mystagogy: the art of opening a mystery that has already been given, not merely described.</p>
+        </div>
+
+        <div class="hist-note">
+          <span class="hist-note-label">Augustine's De Catechizandis Rudibus</span>
+          <p>Augustine of Hippo's treatise <em>On the Instruction of the Uninstructed</em> (c. 405 AD) is the first systematic catechetical methodology in Christian history. Written for a deacon who felt inadequate to the task, it centers on the <em>narratio</em>, the retelling of salvation history from creation to the present, as the essential act of catechesis. Augustine's insight: you cannot simply hand someone a list of doctrines. You must tell them the story in which those doctrines live.</p>
+        </div>
+
+        <div class="prose">
+          <p>St. John Chrysostom presided over a catechumenate in Antioch and Constantinople lasting up to three years, saturated with liturgical participation. The catechumens were present for the Liturgy of the Word each Sunday, then dismissed before the Liturgy of the Faithful with the still-echoing prayer: "Depart, ye catechumens." This ritual dismissal, preserved in the Divine Liturgy to this day, was not a rebuke. It was an act of love, holding the threshold open until they were ready to cross it fully. St. Ambrose of Milan and St. Gregory of Nyssa rounded out a century of catechetical giants whose works the Church still draws on.</p>
+        </div>
+
+        <div class="figures-row">
+          <a href="https://orthodoxwiki.org/Cyril_of_Jerusalem" target="_blank" rel="noopener" class="figure-chip">St. Cyril of Jerusalem</a>
+          <a href="https://orthodoxwiki.org/John_Chrysostom" target="_blank" rel="noopener" class="figure-chip">St. John Chrysostom</a>
+          <a href="https://en.wikipedia.org/wiki/Ambrose" target="_blank" rel="noopener" class="figure-chip">St. Ambrose of Milan</a>
+          <a href="https://en.wikipedia.org/wiki/Augustine_of_Hippo" target="_blank" rel="noopener" class="figure-chip">St. Augustine of Hippo</a>
+          <a href="https://orthodoxwiki.org/Gregory_of_Nyssa" target="_blank" rel="noopener" class="figure-chip">St. Gregory of Nyssa</a>
+          <a href="https://en.wikipedia.org/wiki/Egeria_(pilgrim)" target="_blank" rel="noopener" class="figure-chip">Egeria (pilgrim)</a>
+        </div>
+
+        <div class="sources-block">
+          <span class="sources-label">Sources</span>
+          <ul class="source-list">
+            <li><span class="source-tag orthodox">Scholarly</span><span>Eastern Orthodoxy: Key Catechetical Texts  &#xB7;  <a href="https://www.catechesisrenewal.com/eastern-orthodoxy" target="_blank">Catechesis Renewal: St. Cyril's Lectures and mystagogy</a></span></li>
+            <li><span class="source-tag academic">Academic</span><span>The Formation of Catechesis in the Patristic Era  &#xB7;  <a href="https://ecsoc.org/the-formation-of-catechesis-in-the-patristic-era/" target="_blank">ECSOC (D.H. Williams, Baylor)</a></span></li>
+            <li><span class="source-tag academic">Peer-reviewed</span><span>The Ancient Catechumenate: A Liturgical-Historical Sketch  &#xB7;  <a href="https://scielo.org.za/scielo.php?script=sci_arttext&pid=S2413-94672023000100014" target="_blank">SciELO (2023): full history from Didache through patristic era</a></span></li>
+            <li><span class="source-tag orthodox">Scholarly</span><span>Patristic Catechism Home  &#xB7;  <a href="https://www.catechesisrenewal.com/patristic-catechism-home" target="_blank">Catechesis Renewal: comprehensive guide to patristic sources</a></span></li>
+          </ul>
+        </div>
+      </div>
+
+      <hr class="sec-rule">
+
+      <!-- ERA 5 -->
+      <div id="era-5">
+        <div class="era-head">
+          <span class="era-date">5th–15th Century</span>
+          <span class="era-num">V</span>
+        </div>
+        <h2 class="section-head">The Byzantine Era</h2>
+        <div class="section-rule"></div>
+
+        <div class="prose drop-cap">
+          <p>As the Roman Empire Christianized, the formal adult catechumenate gradually atrophied. With infant baptism becoming universal by the 5th century, the extended pre-baptismal formation period lost its institutional necessity. There were simply no adults waiting to enter the Church in the same numbers. What had once been a structured multi-year journey became, in most parishes, a ceremony performed over an infant who would receive instruction only in retrospect. The challenge of formation shifted from preparation for initiation to the lifelong deepening of a faith received at birth.</p>
+          <p>But catechesis never disappeared. It migrated. The liturgy itself became the primary catechetical medium of the Byzantine world. The Divine Liturgy, with its scriptural texts, its symbolic actions, its rhythmic repetition of the Creed and the Lord's Prayer, was simultaneously worship and instruction. The great hymnographers. Romanos the Melodist, John of Damascus, Cosmas of Maiuma, wrote kontakia and canons that were theological summaries set to music, capable of forming the faith of illiterate worshippers through beauty rather than argument. The typikon of Hagia Sophia preserved detailed initiation rites for the rare adult convert.</p>
+        </div>
+
+        <div class="pull-quote">
+          <p>The monastery became the great school of the Byzantine world: not because it offered lectures, but because it offered a way of life in which formation was continuous, embodied, and communal.</p>
+          <cite>Adapted from: Catechesis Renewal, on Byzantine monastic formation</cite>
+        </div>
+
+        <div class="prose">
+          <p>The great monastic communities, especially the Studite tradition under St. Theodore the Studite and the hesychast tradition shaped by St. Gregory Palamas on Mt. Athos, developed ongoing spiritual formation as a mode of lifelong catechesis. The relationship between an elder (<em>geron</em>) and a disciple is itself a catechetical form: the transmission of a way of life, person to person, over years of shared prayer and obedience. This tradition of formation through apprenticeship rather than instruction has never left Orthodox Christianity.</p>
+        </div>
+
+        <div class="figures-row">
+          <a href="https://en.wikipedia.org/wiki/Typikon" target="_blank" rel="noopener" class="figure-chip">Hagia Sophia typikon</a>
+          <a href="https://orthodoxwiki.org/Theodore_the_Studite" target="_blank" rel="noopener" class="figure-chip">St. Theodore the Studite</a>
+          <a href="https://orthodoxwiki.org/Symeon_the_New_Theologian" target="_blank" rel="noopener" class="figure-chip">St. Symeon the New Theologian</a>
+          <a href="https://orthodoxwiki.org/Gregory_Palamas" target="_blank" rel="noopener" class="figure-chip">St. Gregory Palamas</a>
+          <a href="https://en.wikipedia.org/wiki/Byzantine_music" target="_blank" rel="noopener" class="figure-chip">Byzantine hymnography</a>
+          <a href="https://en.wikipedia.org/wiki/Mystagogy" target="_blank" rel="noopener" class="figure-chip">Liturgical catechesis</a>
+        </div>
+
+        <div class="sources-block">
+          <span class="sources-label">Sources</span>
+          <ul class="source-list">
+            <li><span class="source-tag orthodox">Scholarly</span><span>What Happened to Catechesis in the Middle Ages?  &#xB7;  <a href="https://www.catechesisrenewal.com/blog/2018/5/16/catechesis-in-the-middle-ages" target="_blank">Catechesis Renewal: decline of catechumenate, infant baptism</a></span></li>
+            <li><span class="source-tag academic">Academic book</span><span>The Initiatory Process in the Byzantine Tradition (Stuhlman, Gorgias Press 2009)  &#xB7;  <a href="https://www.catechesisrenewal.com/eastern-orthodoxy" target="_blank">Texts from Hagia Sophia euchology and typikon</a></span></li>
+            <li><span class="source-tag orthodox">Orthodox</span><span>Catechumen  &#xB7;  <a href="https://orthodoxwiki.org/Catechumen" target="_blank">OrthodoxWiki: historical overview from ancient to present</a></span></li>
+          </ul>
+        </div>
+      </div>
+
+      <hr class="sec-rule">
+
+      <!-- ERA 6 -->
+      <div id="era-6">
+        <div class="era-head">
+          <span class="era-date">16th–18th Century</span>
+          <span class="era-num">VI</span>
+        </div>
+        <h2 class="section-head">Post-Byzantine &amp; Early Modern</h2>
+        <div class="section-rule"></div>
+
+        <div class="prose drop-cap">
+          <p>The Ottoman conquest of Constantinople in 1453 placed Orthodox Christianity under conditions of acute pressure. The Church was no longer the religion of an empire; it was the religion of a subject people, navigating survival under foreign domination while simultaneously fending off the competing missionary advances of Roman Catholicism and, later, Protestantism. In this context, the formal confessional catechism, the kind of document that could define Orthodoxy against rival claims, became a theological necessity.</p>
+          <p>St. Peter Mogila (1597–1646), Metropolitan of Kiev, produced the most significant Orthodox catechetical document of the early modern period. His Orthodox Confession, completed in 1640 and approved by all four Eastern Patriarchs, organized the faith systematically around Faith (the Creed), Hope (the Lord's Prayer), and Love (the Commandments). Critics have noted its debt to Western scholastic categories; Mogila was educated in Paris, and the document does carry the imprint of Counter-Reformation methodology. But it remains one of the most authoritative confessional standards in Orthodox history, and a remarkable achievement of theological clarity under duress.</p>
+        </div>
+
+        <div class="hist-note">
+          <span class="hist-note-label">The Confession of Dositheus (1672)</span>
+          <p>The Synod of Jerusalem in 1672, convened by Patriarch Dositheus II of Jerusalem, produced a confession specifically directed against the Calvinist-leaning positions associated with Patriarch Cyril Lucaris. The Confession of Dositheus, sometimes called the "Shield of Orthodoxy," affirmed the seven sacraments, the real presence in the Eucharist, the authority of tradition alongside scripture, and the veneration of icons. Together with Mogila's Confession, it defines the post-Byzantine doctrinal settlement of Eastern Orthodoxy.</p>
+        </div>
+
+        <div class="figures-row">
+          <a href="https://orthodoxwiki.org/Peter_Mogila" target="_blank" rel="noopener" class="figure-chip">St. Peter Mogila</a>
+          <a href="https://orthodoxwiki.org/Dositheus_II_of_Jerusalem" target="_blank" rel="noopener" class="figure-chip">Metropolitan Dositheus of Jerusalem</a>
+          <a href="https://en.wikipedia.org/wiki/Synod_of_Jerusalem_(1672)" target="_blank" rel="noopener" class="figure-chip">Synod of Jerusalem 1672</a>
+          <a href="https://en.wikipedia.org/wiki/Cyril_Lucaris" target="_blank" rel="noopener" class="figure-chip">Patriarch Cyril Lucaris</a>
+          <a href="https://en.wikipedia.org/wiki/Kyiv-Mohyla_Academy" target="_blank" rel="noopener" class="figure-chip">Slavic theological schools</a>
+        </div>
+
+        <div class="sources-block">
+          <span class="sources-label">Sources</span>
+          <ul class="source-list">
+            <li><span class="source-tag orthodox">Scholarly</span><span>Catechism of St. Peter Mogila  &#xB7;  <a href="https://www.catechesisrenewal.com/eastern-orthodoxy" target="_blank">Catechesis Renewal: overview and four Patriarchs' approval</a></span></li>
+            <li><span class="source-tag ref">Reference</span><span>The Catechism of St. Peter Mogila  &#xB7;  <a href="https://www.abebooks.com/9798550598962/Catechism-Peter-Mogila-Fundamental-Teachings/plp" target="_blank">AbeBooks: publisher description and doctrinal scope</a></span></li>
+            <li><span class="source-tag ref">Article</span><span>Russia: Exercises in Orthodox Catechism in Moscow  &#xB7;  <a href="https://www.asianews.it/news-en/Exercises-in-Orthodox-catechism-in-Moscow-41374.html" target="_blank">AsiaNews: Mogila and Philaret catechisms in context</a></span></li>
+          </ul>
+        </div>
+      </div>
+
+      <hr class="sec-rule">
+
+      <!-- ERA 7 -->
+      <div id="era-7">
+        <div class="era-head">
+          <span class="era-date">19th Century</span>
+          <span class="era-num">VII</span>
+        </div>
+        <h2 class="section-head">The Russian Catechetical Tradition</h2>
+        <div class="section-rule"></div>
+
+        <div class="prose drop-cap">
+          <p>The 19th century produced the Orthodox Church's most widely used modern catechetical text, and the saint who composed it served as the de facto spiritual head of Russian Orthodoxy for nearly fifty years. St. Philaret of Moscow (Metropolitan Filaret Drozdov, 1782–1867) composed both a Shorter and Longer Catechism, the latter approved by the Holy Synod in 1830. The Longer Catechism comprises 611 questions and answers, organized, like Mogila's Confession before it, around the Creed (Faith), the Lord's Prayer (Hope), and the Decalogue (Love).</p>
+          <p>Translated into Greek, German, and English, Philaret's Catechism became the most authoritative doctrinal standard of the Russian Orthodox Church and effectively superseded Mogila's Confession in daily use. Its question-and-answer format made it suitable for classroom instruction, for family catechesis, and for individual study. It would travel with Russian emigrants to America in the great waves of immigration that followed, carried in steamer trunks alongside samovars and embroidered vestments.</p>
+        </div>
+
+        <div class="hist-note">
+          <span class="hist-note-label">St. Theophan the Recluse</span>
+          <p>Bishop Theophan Govorov (1815–1894), who retired to the Vysha Monastery and spent twenty-two years in solitary prayer and writing, produced an enormous body of spiritual instruction that functions as catechesis at its most personal. His letters of spiritual direction to lay Christians, his translations of the Philokalia, and his treatise <em>The Path to Salvation</em> brought the ascetic tradition of the Fathers into the ordinary lives of 19th-century Russian Christians. He was canonized in 1988.</p>
+        </div>
+
+        <div class="figures-row">
+          <a href="https://orthodoxwiki.org/Philaret_(Drozdov)_of_Moscow" target="_blank" rel="noopener" class="figure-chip">St. Philaret (Drozdov) of Moscow</a>
+          <a href="https://en.wikipedia.org/wiki/Holy_Synod" target="_blank" rel="noopener" class="figure-chip">Holy Synod of Moscow</a>
+          <a href="https://orthodoxwiki.org/Theophan_the_Recluse" target="_blank" rel="noopener" class="figure-chip">St. Theophan the Recluse</a>
+          <a href="https://en.wikipedia.org/wiki/Russian_Orthodox_Church" target="_blank" rel="noopener" class="figure-chip">Russian seminary network</a>
+          <a href="https://en.wikipedia.org/wiki/Russian_Orthodox_Church" target="_blank" rel="noopener" class="figure-chip">Russian catechetical schools</a>
+        </div>
+
+        <div class="sources-block">
+          <span class="sources-label">Sources</span>
+          <ul class="source-list">
+            <li><span class="source-tag primary">Primary</span><span>The Longer Catechism of the Orthodox, Catholic, Eastern Church (Philaret)  &#xB7;  <a href="https://www.pravoslavieto.com/docs/eng/Orthodox_Catechism_of_Philaret.htm" target="_blank">Full English translation online</a></span></li>
+            <li><span class="source-tag ref">Reference</span><span>Catechism of St. Philaret  &#xB7;  <a href="https://easternchristiansupply.biz/index.php/cse/the-longer-catechism-of-the-orthodox-catholic-eastern-church-also-known-as-the-catechism-of-st-philaret-drozdov-of-moscow.html" target="_blank">Eastern Christian Supply: publisher notes and scope</a></span></li>
+            <li><span class="source-tag ref">Reference</span><span>The Holy Standards: Creeds, Confessions, and Catechisms of the Eastern Orthodox Church  &#xB7;  <a href="https://www.catechesisrenewal.com/eastern-orthodoxy" target="_blank">St. Theophan the Recluse Press 2020: includes Mogila, Philaret, Dositheus</a></span></li>
+          </ul>
+        </div>
+      </div>
+
+      <hr class="sec-rule">
+
+      <!-- ERA 8 -->
+      <div id="era-8">
+        <div class="era-head">
+          <span class="era-date">Late 19th Century–1960s</span>
+          <span class="era-num">VIII</span>
+        </div>
+        <h2 class="section-head">Orthodoxy in America: The Immigration Era</h2>
+        <div class="section-rule"></div>
+
+        <div class="prose drop-cap">
+          <p>Orthodox Christianity arrived in America not as a missionary project but as a passenger in the hold of immigrant ships. Greeks, Russians, Syrians, Ukrainians, Romanians, Serbs, Albanians, each community reproduced the parish life of the homeland in a new land, gathered around ethnic jurisdictions, celebrating the liturgy in Greek, Arabic, Slavonic, or Romanian. Catechesis in these early parishes was informal, liturgical, and deeply familial. The faith was transmitted not through formal instruction programs but through the rhythms of fasting and feasting, the icons on the wall, the smell of incense, and the insistence of grandmothers.</p>
+          <p>The most deliberate catechetical effort on American soil in this era took place not in New Jersey but in Alaska. St. Herman of Alaska, who arrived on Kodiak Island in 1794 as part of the Russian Orthodox Mission, established schools for indigenous children. St. Innocent Veniaminov, who would later become Metropolitan of Moscow, translated the liturgy and catechetical texts into Aleut and other indigenous languages, understanding that the faith must speak to people in their own tongue. His methods anticipated by a century the principles of inculturation that would later become standard missionary practice.</p>
+        </div>
+
+        <div class="pull-quote">
+          <p>St. Vladimir's Orthodox Theological Seminary was founded in 1938 in a Harlem parish house: a small room, borrowed books, and a determination that American Orthodoxy would not be permanently orphaned from its intellectual tradition.</p>
+          <cite>Adapted from: St. Vladimir's Seminary, Our History</cite>
+        </div>
+
+        <div class="prose">
+          <p>St. Tikhon of Moscow, who served as Bishop of North America from 1898 to 1907, was the first to articulate a vision for a unified, English-speaking American Orthodoxy, a vision largely unrealized in his lifetime but which would bear fruit in the autocephaly of 1970. The founding of St. Vladimir's Orthodox Theological Seminary in 1938 was the institutional turning point: for the first time, American Orthodox clergy could be trained in America, in English, for an American Church.</p>
+        </div>
+
+        <div class="figures-row">
+          <a href="https://orthodoxwiki.org/Herman_of_Alaska" target="_blank" rel="noopener" class="figure-chip">St. Herman of Alaska</a>
+          <a href="https://orthodoxwiki.org/Innocent_of_Alaska" target="_blank" rel="noopener" class="figure-chip">St. Innocent (Veniaminov)</a>
+          <a href="https://orthodoxwiki.org/Tikhon_of_Moscow" target="_blank" rel="noopener" class="figure-chip">St. Tikhon (Bellavin)</a>
+          <a href="https://www.svots.edu/about/our-history" target="_blank" rel="noopener" class="figure-chip">St. Vladimir's Seminary (f. 1938)</a>
+          <a href="https://orthodoxwiki.org/Georges_Florovsky" target="_blank" rel="noopener" class="figure-chip">Fr. Georges Florovsky</a>
+          <a href="https://en.wikipedia.org/wiki/Eastern_Orthodox_Church_in_the_United_States" target="_blank" rel="noopener" class="figure-chip">Ethnic parish networks</a>
+        </div>
+
+        <div class="sources-block">
+          <span class="sources-label">Sources</span>
+          <ul class="source-list">
+            <li><span class="source-tag orthodox">Institutional</span><span>St. Vladimir's Orthodox Theological Seminary: History  &#xB7;  <a href="https://www.svots.edu/about/our-history" target="_blank">svots.edu: founded 1938, Florovsky era, mission to form American Orthodox clergy</a></span></li>
+            <li><span class="source-tag ref">Encyclopedia</span><span>Saint Vladimir's Orthodox Theological Seminary  &#xB7;  <a href="https://en.wikipedia.org/wiki/Saint_Vladimir%27s_Orthodox_Theological_Seminary" target="_blank">Wikipedia: founding, pan-Orthodox character, deans, academic structure</a></span></li>
+          </ul>
+        </div>
+      </div>
+
+      <hr class="sec-rule">
+
+      <!-- ERA 9 -->
+      <div id="era-9">
+        <div class="era-head">
+          <span class="era-date">1970–2000</span>
+          <span class="era-num">IX</span>
+        </div>
+        <h2 class="section-head">OCA Autocephaly &amp; Theological Renewal</h2>
+        <div class="section-rule"></div>
+
+        <div class="prose drop-cap">
+          <p>The granting of autocephaly to the Orthodox Church in America in 1970 by the Moscow Patriarchate created the first fully self-governing Orthodox jurisdiction on American soil, bringing with it a new urgency around the question of what it means to form Orthodox Christians in a pluralist, secular democracy. The man most responsible for answering that question intellectually was Fr. Alexander Schmemann, dean of St. Vladimir's Seminary from 1962 to 1983.</p>
+          <p>Schmemann's liturgical theology , articulated most accessibly in his landmark work <em>For the Life of the World</em> (1963), argued that the Eucharist is not one activity among many in the Church's life, but the very act by which the Church constitutes itself as the Body of Christ. Catechesis, therefore, could not be merely doctrinal instruction. It had to be formation into a eucharistic way of life: an apprenticeship in how to see the world as gift, to receive time as sacred, and to understand the Church's worship as participation in the Kingdom already present. This vision transformed Orthodox catechetical thinking in America.</p>
+        </div>
+
+        <div class="hist-note">
+          <span class="hist-note-label">Fr. Thomas Hopko and the Rainbow Series</span>
+          <p>Fr. Thomas Hopko (1939–2015), who served as dean of St. Vladimir's Seminary from 1992 to 2002, authored <em>The Orthodox Faith</em>, known as the "Rainbow Series" for its four color-coded volumes: Doctrine, Worship, Bible and Church History, and Spirituality. First published in 1971 and updated in 2016, the series became the most widely used catechetical resource in the OCA, translated into multiple languages and used in thousands of parishes worldwide. It remains in print.</p>
+        </div>
+
+        <div class="prose">
+          <p>This era saw massive growth in adult converts to Orthodoxy, a phenomenon without precedent in the Church's American history. Former Evangelicals, former Catholics, former secularists were entering the catechumenate in substantial numbers, bringing with them sophisticated theological questions and a hunger for the intellectual substance of the tradition. The first structured parish catechumenate programs conducted entirely in English were developed in this period, drawing on Hippolytus, Cyril, and the RCIA process in Roman Catholicism as comparative models, while insisting on the distinctively Orthodox character of formation through liturgy and fasting rather than classroom instruction alone.</p>
+        </div>
+
+        <div class="figures-row">
+          <a href="https://orthodoxwiki.org/Alexander_Schmemann" target="_blank" rel="noopener" class="figure-chip">Fr. Alexander Schmemann</a>
+          <a href="https://orthodoxwiki.org/Thomas_Hopko" target="_blank" rel="noopener" class="figure-chip">Fr. Thomas Hopko</a>
+          <a href="https://orthodoxwiki.org/John_Meyendorff" target="_blank" rel="noopener" class="figure-chip">Fr. John Meyendorff</a>
+          <a href="https://orthodoxwiki.org/Tikhon_(Mollard)_of_Washington" target="_blank" rel="noopener" class="figure-chip">Metropolitan Tikhon</a>
+          <a href="https://orthodoxwiki.org/Orthodox_Church_in_America" target="_blank" rel="noopener" class="figure-chip">OCA autocephaly 1970</a>
+          <a href="https://www.svots.edu" target="_blank" rel="noopener" class="figure-chip">St. Vladimir's Seminary</a>
+        </div>
+
+        <div class="sources-block">
+          <span class="sources-label">Sources</span>
+          <ul class="source-list">
+            <li><span class="source-tag orthodox">Institutional</span><span>Commemorating Fr. Thomas Hopko  &#xB7;  <a href="https://www.svots.edu/headlines/commemorating-10-years-repose-dean-emeritus-protopresbyter-thomas-hopko" target="_blank">St. Vladimir's Seminary: life, Rainbow Series legacy</a></span></li>
+            <li><span class="source-tag orthodox">Institutional</span><span>Updated Orthodox Faith Series  &#xB7;  <a href="https://www.svots.edu/headlines/updated-orthodox-faith-series-honors-protopresbyter-thomas-hopkos-memory" target="_blank">St. Vladimir's Seminary: Metropolitan Tikhon's preface, catechetical impact</a></span></li>
+            <li><span class="source-tag primary">Primary</span><span>For the Life of the World  &#xB7;  Fr. Alexander Schmemann (SVS Press)  &#xB7;  <a href="https://www.amazon.com/Life-World-Classics-Vladimirs-Paperback/dp/0881416177" target="_blank">Foundational catechetical-theological text</a></span></li>
+            <li><span class="source-tag orthodox">Scholarly</span><span>Eastern Orthodoxy: Key Catechetical Resources  &#xB7;  <a href="https://www.catechesisrenewal.com/eastern-orthodoxy" target="_blank">Catechesis Renewal: Schmemann, Hopko, Trenham, Parker</a></span></li>
+          </ul>
+        </div>
+      </div>
+
+      <hr class="sec-rule">
+
+      <!-- ERA 10 -->
+      <div id="era-10">
+        <div class="era-head">
+          <span class="era-date">2000–Present</span>
+          <span class="era-num">X</span>
+        </div>
+        <h2 class="section-head">Present Day OCA Catechesis</h2>
+        <div class="section-rule"></div>
+
+        <div class="prose drop-cap">
+          <p>Contemporary Orthodox catechesis in America operates without a single universal standard. This is intentional. The OCA has no mandatory catechism, reflecting the patristic conviction that formation is communal and liturgical before it is doctrinal, and that the character of a parish and its priest shapes formation as much as any curriculum. In practice, a catechumen in an OCA parish today attends the Divine Liturgy regularly, from the very beginning, not as a reward for completion, meets one-on-one with the priest, receives a prayer and fasting rule, and makes a life confession before baptism or Chrismation. The process typically spans six to twelve months, depending on the bishop and the parish's discernment of the individual.</p>
+          <p>In 2023, the OCA published <em>Essential Orthodox Christian Beliefs: A Manual for Adult Instruction</em>: a free, 16-chapter, 250-page catechism available online at oca.org, intended as a resource for parish priests and catechumens rather than a mandated curriculum, and described as a living document open to revision. The OCA Department of Christian Education provides age-graded curricula (FOCUS Units), teacher training, and coordinates with the pan-Orthodox Christian Education Commission. The St. Macrina Orthodox Institute in the Diocese of the Midwest offers formal certification for lay catechists.</p>
+        </div>
+
+        <div class="pull-quote">
+          <p>Catechesis is not a course you complete. It is a life you enter. The Church's task is not to fill heads but to form hearts. That work does not end at Chrismation. It is only beginning.</p>
+          <cite>Fr. John Parker, Radechesis (Ancient Faith Ministries, 2019)</cite>
+        </div>
+
+        <div class="prose">
+          <p>Perhaps the most interesting development in contemporary Orthodox catechetics is the recovery of the ancient catechumenal pattern advocated by figures like Fr. John Parker (whose "Radechesis" framework proposes a radical return to the Hippolytan model) and the growing influence of Ancient Faith Ministries, whose podcasts, books, and films have created an informal but vast catechetical ecosystem accessible to inquirers anywhere in the world. The tradition is alive, still arguing with itself about the best way to hand on the faith, and that argument is itself a sign of health.</p>
+        </div>
+
+        <div class="figures-row">
+          <a href="https://www.oca.org/about/departments/christian-education" target="_blank" rel="noopener" class="figure-chip">OCA Dept. of Christian Education</a>
+          <a href="https://domoca.org/institute/" target="_blank" rel="noopener" class="figure-chip">St. Macrina Orthodox Institute</a>
+          <a href="https://www.ancientfaith.com" target="_blank" rel="noopener" class="figure-chip">Ancient Faith Ministries</a>
+          <a href="https://orthodoxwiki.org/Josiah_Trenham" target="_blank" rel="noopener" class="figure-chip">Fr. Josiah Trenham</a>
+          <a href="https://www.catechesisrenewal.com/eastern-orthodoxy" target="_blank" rel="noopener" class="figure-chip">Fr. John Parker (Radechesis)</a>
+          <a href="https://orthodoxwiki.org/Tikhon_(Mollard)_of_Washington" target="_blank" rel="noopener" class="figure-chip">Metropolitan Tikhon</a>
+        </div>
+
+        <div class="sources-block">
+          <span class="sources-label">Sources</span>
+          <ul class="source-list">
+            <li><span class="source-tag ref">News</span><span>OCA publishes free adult catechism online (2023)  &#xB7;  <a href="https://orthochristian.com/154211.html" target="_blank">OrthoChristian: Essential Orthodox Christian Beliefs, 16 chapters, 250 pages</a></span></li>
+            <li><span class="source-tag orthodox">Institutional</span><span>OCA Dept. of Christian Education  &#xB7;  <a href="https://www.oca.org/about/departments/christian-education" target="_blank">oca.org: mission, FOCUS units, pan-Orthodox OCEC cooperation</a></span></li>
+            <li><span class="source-tag orthodox">Institutional</span><span>St. Macrina Orthodox Institute  &#xB7;  <a href="https://domoca.org/institute/" target="_blank">Diocese of the Midwest OCA: Catechist Certificate program</a></span></li>
+            <li><span class="source-tag orthodox">Institutional</span><span>Orthodox Catechism Project  &#xB7;  <a href="https://www.orthodoxcatechismproject.org/" target="_blank">Greek Orthodox Archdiocese: family-based catechesis, pan-Orthodox model</a></span></li>
+            <li><span class="source-tag orthodox">Institutional</span><span>Orthodox Catechesis Framework  &#xB7;  <a href="https://www.goarch.org/-/orthodox-catechesis" target="_blank">Greek Orthodox Archdiocese of America (1986): Orthodoxia + Orthopraxia</a></span></li>
+            <li><span class="source-tag orthodox">Parish</span><span>What is a Catechumen?  &#xB7;  <a href="https://stmarywichita.org/what-is-a-catechumen/" target="_blank">St. Mary Orthodox Church: modern parish catechumenate explained</a></span></li>
+            <li><span class="source-tag orthodox">Parish</span><span>Catechetical Resources  &#xB7;  <a href="https://saintnicholas-oca.org/catecheticalresources" target="_blank">St. Nicholas OCA: reading list including Hopko, Ware, Schmemann</a></span></li>
+            <li><span class="source-tag orthodox">Scholarly</span><span>Catechesis Renewal: Eastern Orthodox section  &#xB7;  <a href="https://www.catechesisrenewal.com/eastern-orthodoxy" target="_blank">catechesisrenewal.com: comprehensive resources and Radechesis</a></span></li>
+          </ul>
+        </div>
+
+      </div><!-- end era-10 -->
+
+      <!-- REFERENCES -->
+      <div class="refs-section" id="section-references">
+        <h2 class="refs-head">Key Reference Works</h2>
+        <p class="refs-sub">The following monographs are the primary scholarly sources for deeper research on the history of Orthodox catechesis.</p>
+        <ul class="ref-list">
+          <li><span>William Harmless, <em>Augustine and the Catechumenate</em> (Liturgical Press, 1995): the definitive modern study of patristic catechesis</span></li>
+          <li><span>Byron David Stuhlman, <em>The Initiatory Process in the Byzantine Tradition</em> (Gorgias Press, 2009): Byzantine catechetical rites from Hagia Sophia manuscripts</span></li>
+          <li><span><em>The Holy Standards: Creeds, Confessions, and Catechisms of the Eastern Orthodox Church</em> (St. Theophan the Recluse Press, 2020): includes Mogila, Philaret, Dositheus, Nicene Creed</span></li>
+          <li><span>Fr. Thomas Hopko, <em>The Orthodox Faith / Rainbow Series</em>, 4 vols. (SVS Press, 1971 / updated 2016): foundational OCA catechetical text; <a href="https://www.svots.edu/headlines/updated-orthodox-faith-series-honors-protopresbyter-thomas-hopkos-memory" target="_blank">SVS Press</a></span></li>
+          <li><span>Fr. Alexander Schmemann, <em>For the Life of the World</em> (SVS Press, 1963/2018): liturgical-theological foundation for Orthodox catechesis in America; <a href="https://www.amazon.com/Life-World-Classics-Vladimirs-Paperback/dp/0881416177" target="_blank">SVS Press</a></span></li>
+          <li><span>Michel Dujarer, <em>A History of the Catechumenate: The First Six Centuries</em> (Sadlier, 1979): classic historical survey</span></li>
+          <li><span>OCA, <em>Essential Orthodox Christian Beliefs: A Manual for Adult Instruction</em> (2023): free PDF at <a href="https://www.oca.org/about/departments/christian-education" target="_blank">oca.org</a></span></li>
+        </ul>
+      </div>
+
+    </main>
+
+    <!-- SIDEBAR -->
+    <aside class="side-col">
+
+      <div class="side-section" id="ten-eras-sidebar">
+        <span class="side-head">Ten Eras at a Glance</span>
+        <div class="side-list" style="list-style:none;padding:0">
+          <div class="era-mini" onclick="scrollToSection('era-1')">
+            <span class="era-mini-num">I</span>
+            <div><span class="era-mini-name">Old Testament Roots</span><span class="era-mini-date">c. 1400–400 BCE</span></div>
+          </div>
+          <div class="era-mini" onclick="scrollToSection('era-2')">
+            <span class="era-mini-num">II</span>
+            <div><span class="era-mini-name">New Testament &amp; Apostolic Era</span><span class="era-mini-date">c. 30–100 AD</span></div>
+          </div>
+          <div class="era-mini" onclick="scrollToSection('era-3')">
+            <span class="era-mini-num">III</span>
+            <div><span class="era-mini-name">Catechetical Schools</span><span class="era-mini-date">2nd–3rd Century</span></div>
+          </div>
+          <div class="era-mini" onclick="scrollToSection('era-4')">
+            <span class="era-mini-num">IV</span>
+            <div><span class="era-mini-name">Golden Age of Catechesis</span><span class="era-mini-date">4th–5th Century</span></div>
+          </div>
+          <div class="era-mini" onclick="scrollToSection('era-5')">
+            <span class="era-mini-num">V</span>
+            <div><span class="era-mini-name">Byzantine Era</span><span class="era-mini-date">5th–15th Century</span></div>
+          </div>
+          <div class="era-mini" onclick="scrollToSection('era-6')">
+            <span class="era-mini-num">VI</span>
+            <div><span class="era-mini-name">Post-Byzantine &amp; Early Modern</span><span class="era-mini-date">16th–18th Century</span></div>
+          </div>
+          <div class="era-mini" onclick="scrollToSection('era-7')">
+            <span class="era-mini-num">VII</span>
+            <div><span class="era-mini-name">Russian Tradition</span><span class="era-mini-date">19th Century</span></div>
+          </div>
+          <div class="era-mini" onclick="scrollToSection('era-8')">
+            <span class="era-mini-num">VIII</span>
+            <div><span class="era-mini-name">Orthodoxy in America</span><span class="era-mini-date">Late 19th c.–1960s</span></div>
+          </div>
+          <div class="era-mini" onclick="scrollToSection('era-9')">
+            <span class="era-mini-num">IX</span>
+            <div><span class="era-mini-name">OCA Autocephaly &amp; Renewal</span><span class="era-mini-date">1970–2000</span></div>
+          </div>
+          <div class="era-mini" onclick="scrollToSection('era-10')">
+            <span class="era-mini-num">X</span>
+            <div><span class="era-mini-name">Present Day OCA</span><span class="era-mini-date">2000–Present</span></div>
+          </div>
+        </div>
+      </div><!-- end ten-eras-sidebar -->
+
+      <div class="side-section" id="quick-facts-sidebar">
+        <span class="side-head">Quick Facts</span>
+        <ul class="side-list">
+          <li><strong>Word Origin</strong>Greek <em>katechein</em> , "to sound into," to teach orally</li>
+          <li><strong>Oldest Formula</strong>The Shema, Deuteronomy 6:4 (c. 1400 BCE)</li>
+          <li><strong>Oldest Christian Text</strong>The Didache, c. 50–120 AD</li>
+          <li><strong>Defining Model</strong>St. Cyril of Jerusalem's Catechetical Lectures, c. 350 AD</li>
+          <li><strong>Modern Standard</strong>Philaret's Longer Catechism, approved 1830</li>
+          <li><strong>OCA Autocephaly</strong>Granted by Moscow Patriarchate, 1970</li>
+          <li><strong>Free Catechism</strong>OCA publishes <em>Essential Orthodox Beliefs</em>, 2023</li>
+        </ul>
+      </div>
+
+      <div class="side-section">
+        <span class="side-head">Key Online Resources</span>
+        <ul class="side-list">
+          <li><strong>OCA Dept. of Christian Education</strong><a href="https://www.oca.org/about/departments/christian-education" target="_blank" style="color:var(--maroon);font-family:var(--f-ui);font-size:.65rem;letter-spacing:.10em;text-transform:uppercase">oca.org</a></li>
+          <li><strong>Catechesis Renewal</strong><a href="https://www.catechesisrenewal.com/eastern-orthodoxy" target="_blank" style="color:var(--maroon);font-family:var(--f-ui);font-size:.65rem;letter-spacing:.10em;text-transform:uppercase">catechesisrenewal.com</a></li>
+          <li><strong>OrthodoxWiki: Catechumen</strong><a href="https://orthodoxwiki.org/Catechumen" target="_blank" style="color:var(--maroon);font-family:var(--f-ui);font-size:.65rem;letter-spacing:.10em;text-transform:uppercase">orthodoxwiki.org</a></li>
+          <li><strong>Ancient Faith Ministries</strong><a href="https://www.ancientfaith.com" target="_blank" style="color:var(--maroon);font-family:var(--f-ui);font-size:.65rem;letter-spacing:.10em;text-transform:uppercase">ancientfaith.com</a></li>
+          <li><strong>St. Macrina Institute</strong><a href="https://domoca.org/institute/" target="_blank" style="color:var(--maroon);font-family:var(--f-ui);font-size:.65rem;letter-spacing:.10em;text-transform:uppercase">domoca.org</a></li>
+          <li><strong>SVS Press</strong><a href="https://svspress.com" target="_blank" style="color:var(--maroon);font-family:var(--f-ui);font-size:.65rem;letter-spacing:.10em;text-transform:uppercase">svspress.com</a></li>
+        </ul>
+      </div>
+
+      <div class="side-section">
+        <span class="side-head">More from Inquirers</span>
+        <a href="/about-orthodoxy" class="annot-nav-link">About Orthodoxy <span>&#8594;</span></a>
+        <a href="/our-beliefs" class="annot-nav-link">Our Beliefs <span>&#8594;</span></a>
+        <a href="/visit" class="annot-nav-link">Plan Your Visit <span>&#8594;</span></a>
+        <a href="/videos" class="annot-nav-link">Videos <span>&#8594;</span></a>
+        <a href="/contact-us" class="annot-nav-link">Contact the Parish <span>&#8594;</span></a>
+      </div>
+
+      <div class="side-section" style="position:sticky;top:84px">
+        <span class="side-head">Ten Eras at a Glance</span>
+        <div class="side-list" style="list-style:none;padding:0">
+          <div class="era-mini" onclick="scrollToSection('era-1')">
+            <span class="era-mini-num">I</span>
+            <div><span class="era-mini-name">Old Testament Roots</span><span class="era-mini-date">c. 1400–400 BCE</span></div>
+          </div>
+          <div class="era-mini" onclick="scrollToSection('era-2')">
+            <span class="era-mini-num">II</span>
+            <div><span class="era-mini-name">New Testament &amp; Apostolic Era</span><span class="era-mini-date">c. 30–100 AD</span></div>
+          </div>
+          <div class="era-mini" onclick="scrollToSection('era-3')">
+            <span class="era-mini-num">III</span>
+            <div><span class="era-mini-name">Catechetical Schools</span><span class="era-mini-date">2nd–3rd Century</span></div>
+          </div>
+          <div class="era-mini" onclick="scrollToSection('era-4')">
+            <span class="era-mini-num">IV</span>
+            <div><span class="era-mini-name">Golden Age of Catechesis</span><span class="era-mini-date">4th–5th Century</span></div>
+          </div>
+          <div class="era-mini" onclick="scrollToSection('era-5')">
+            <span class="era-mini-num">V</span>
+            <div><span class="era-mini-name">Byzantine Era</span><span class="era-mini-date">5th–15th Century</span></div>
+          </div>
+          <div class="era-mini" onclick="scrollToSection('era-6')">
+            <span class="era-mini-num">VI</span>
+            <div><span class="era-mini-name">Post-Byzantine &amp; Early Modern</span><span class="era-mini-date">16th–18th Century</span></div>
+          </div>
+          <div class="era-mini" onclick="scrollToSection('era-7')">
+            <span class="era-mini-num">VII</span>
+            <div><span class="era-mini-name">Russian Tradition</span><span class="era-mini-date">19th Century</span></div>
+          </div>
+          <div class="era-mini" onclick="scrollToSection('era-8')">
+            <span class="era-mini-num">VIII</span>
+            <div><span class="era-mini-name">Orthodoxy in America</span><span class="era-mini-date">Late 19th c.–1960s</span></div>
+          </div>
+          <div class="era-mini" onclick="scrollToSection('era-9')">
+            <span class="era-mini-num">IX</span>
+            <div><span class="era-mini-name">OCA Autocephaly &amp; Renewal</span><span class="era-mini-date">1970–2000</span></div>
+          </div>
+          <div class="era-mini" onclick="scrollToSection('era-10')">
+            <span class="era-mini-num">X</span>
+            <div><span class="era-mini-name">Present Day OCA</span><span class="era-mini-date">2000–Present</span></div>
+          </div>
+        </div>
+      </div>
+
+    </aside>
+  </div><!-- end page-body -->
+</div>
+
+<!-- CLOSING QUOTE -->
+<div class="quote-break">
+  <div class="qb-inner">
+    <p class="qb-text">The Eucharist is not a reward for the perfect. It is the food of pilgrims. And catechesis is the road.</p>
+    <span class="qb-attr">Drawn from Fr. Alexander Schmemann, <em>For the Life of the World</em></span>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-cross">+ + +</span>
+  <div class="footer-cols">
+    <div>
+      <span class="footer-col-head">Saints Peter &amp; Paul Orthodox Cathedral</span>
+      <p class="footer-name">Sts. Peter &amp; Paul<br>Orthodox Cathedral</p>
+      <p class="footer-meta">
+        Diocese of New York &amp; New Jersey<br>
+        <a href="https://nynjoca.org" target="_blank">nynjoca.org</a><br>
+        Orthodox Church in America<br>
+        <a href="https://oca.org" target="_blank">oca.org</a>
+      </p>
+      <div class="footer-socials">
+        <a href="#" target="_blank">Facebook</a>
+        <a href="#" target="_blank">Instagram</a>
+      </div>
+    </div>
+    <div>
+      <span class="footer-col-head">Navigate</span>
+      <ul class="footer-nav">
+        <li><a href="/our-parish">About Our Church</a></li>
+        <li><a href="/church-history">Church History</a></li>
+        <li><a href="/about-orthodoxy">About Orthodoxy</a></li>
+        <li><a href="/catechesis-history">Orthodox Catechesis</a></li>
+        <li><a href="/our-beliefs">Our Beliefs</a></li>
+        <li><a href="/schedule">Liturgical Calendar</a></li>
+        <li><a href="/readings">Daily Readings</a></li>
+        <li><a href="/gallery">Gallery</a></li>
+        <li><a href="/bulletins">Bulletins</a></li>
+        <li><a href="/contact-us">Contact Us</a></li>
+      </ul>
+    </div>
+    <div>
+      <span class="footer-col-head">Visit Us</span>
+      <p class="footer-blurb">Whether you are visiting for the first time or wondering about taking the next step in the faith, you are welcome here.</p>
+      <a href="/contact-us" class="btn btn-outline" style="margin-bottom:2rem;display:inline-block">Contact the Parish</a>
+      <span class="footer-col-head" style="margin-top:.5rem">Service Times</span>
+      <p class="footer-meta" style="line-height:2.4">
+        Vespers · Saturdays 5:00 PM<br>
+        Divine Liturgy · Sundays 9:30 AM<br>
+        Office · Mon–Fri 9:00 AM–5:00 PM
+      </p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">&copy; Saints Peter &amp; Paul Orthodox Cathedral. All Rights Reserved.</p>
+    <p class="footer-addr">109 Grand Street &middot; Jersey City, NJ 07302 &middot; (201) 434-1986</p>
+  </div>
+</footer>
+
+<script>
+/* ── MOBILE DRAWER ─────────────────────────────────── */
+function openDrawer(){document.getElementById('nav-drawer').classList.add('open');document.getElementById('nav-overlay').classList.add('open');document.getElementById('nav-hamburger').classList.add('open')}
+function closeDrawer(){document.getElementById('nav-drawer').classList.remove('open');document.getElementById('nav-overlay').classList.remove('open');document.getElementById('nav-hamburger').classList.remove('open')}
+
+/* ── ARTICLE NAVIGATION ────────────────────────────── */
+const SECTIONS = [
+  { id: 'era-1',  label: 'Old Testament Roots' },
+  { id: 'era-2',  label: 'New Testament Era' },
+  { id: 'era-3',  label: 'Early Catechumenate' },
+  { id: 'era-4',  label: 'Golden Age' },
+  { id: 'era-5',  label: 'Byzantine Era' },
+  { id: 'era-6',  label: 'Post-Byzantine' },
+  { id: 'era-7',  label: 'Russian Tradition' },
+  { id: 'era-8',  label: 'Orthodoxy in America' },
+  { id: 'era-9',  label: 'OCA Autocephaly' },
+  { id: 'era-10', label: 'Present Day OCA' },
+];
+
+let activeIdx = 0;
+
+function scrollToSection(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const top = el.getBoundingClientRect().top + window.scrollY - 84;
+  window.scrollTo({ top, behavior: 'smooth' });
+}
+
+function pillNav(dir) {
+  const next = Math.max(0, Math.min(SECTIONS.length - 1, activeIdx + dir));
+  scrollToSection(SECTIONS[next].id);
+}
+
+function setActive(idx) {
+  activeIdx = idx;
+  /* Left rail */
+  document.querySelectorAll('.lr-item').forEach((el, i) => el.classList.toggle('lr-active', i === idx));
+  /* Pill label + arrows */
+  const lbl = document.getElementById('pillLabel');
+  if (lbl) lbl.textContent = SECTIONS[idx].label;
+  const prev = document.getElementById('pillPrev');
+  const next = document.getElementById('pillNext');
+  if (prev) prev.disabled = idx === 0;
+  if (next) next.disabled = idx === SECTIONS.length - 1;
+  /* Sheet active row */
+  document.querySelectorAll('.sheet-item').forEach(btn =>
+    btn.classList.toggle('sheet-active', btn.dataset.sheetId === SECTIONS[idx].id));
+}
+
+function updateNav() {
+  const leftRail = document.getElementById('leftRail');
+  const pill     = document.getElementById('navPill');
+  const track2   = document.getElementById('track-history');
+  if (!track2) return;
+
+  const heroEl = document.querySelector('.page-hero');
+  const inTrack2 = !heroEl || heroEl.getBoundingClientRect().bottom < window.innerHeight * 0.6;
+  if (leftRail) leftRail.classList.toggle('rail-visible', inTrack2);
+
+  /* Pill: show when in Track 2 but hide near footer */
+  const footer = document.querySelector('footer');
+  const nearFooter = footer && footer.getBoundingClientRect().top < window.innerHeight - 20;
+  if (pill) {
+    pill.style.display = 'flex';
+    pill.classList.toggle('pill-visible', inTrack2 && !nearFooter);
+  }
+
+  if (!inTrack2) return;
+
+  /* Active section */
+  const viewMid = window.innerHeight * 0.38;
+  let bestIdx = 0;
+  SECTIONS.forEach((s, i) => {
+    const el = document.getElementById(s.id);
+    if (el && el.getBoundingClientRect().top - viewMid <= 0) bestIdx = i;
+  });
+  setActive(bestIdx);
+}
+
+window.addEventListener('scroll', updateNav, { passive: true });
+window.addEventListener('resize', updateNav, { passive: true });
+updateNav();
+
+/* ── BOTTOM SHEET ──────────────────────────────────── */
+function openSheet() {
+  const sheet   = document.getElementById('eraSheet');
+  const overlay = document.getElementById('sheetOverlay');
+  sheet.style.display = 'flex';
+  overlay.style.display = 'block';
+  requestAnimationFrame(() => {
+    sheet.classList.add('open');
+    overlay.classList.add('open');
+  });
+  document.body.style.overflow = 'hidden';
+}
+function closeSheet() {
+  const sheet   = document.getElementById('eraSheet');
+  const overlay = document.getElementById('sheetOverlay');
+  sheet.classList.remove('open');
+  overlay.classList.remove('open');
+  setTimeout(() => {
+    if (!sheet.classList.contains('open')) sheet.style.display = 'none';
+    overlay.style.display = 'none';
+  }, 340);
+  document.body.style.overflow = '';
+}
+function sheetJump(id) {
+  closeSheet();
+  setTimeout(() => scrollToSection(id), 240);
+}
+
+</script>
+</body>
+</html>

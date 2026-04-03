@@ -28,6 +28,11 @@
   to = "/our-parish"
   status = 301
 
+[[redirects]]
+  from = "/catechesis-series"
+  to = "/catechesis"
+  status = 301
+
 # Redirect /donate to /give (old page -> new hub)
 [[redirects]]
   from = "/donate"
