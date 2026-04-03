@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title id="page-title">Giving Project &middot; Saints Peter &amp; Paul Orthodox Cathedral</title>
+<meta name="description" id="page-desc" content="Support a specific giving project at Saints Peter and Paul Orthodox Cathedral, Jersey City."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{--vellum:#F6F1E8;--vellum-mid:#EDE7DC;--ink:#2C1F16;--maroon:#7B1D2A;--maroon-deep:#5C1520;--gold:#B88328;--gold-lt:#E8C97A;--verdigris:#3D6B5E;--stone:#7A6648;--apse:#3B0F18;--f-display:'Cormorant Garamond',Georgia,serif;--f-body:'EB Garamond',Georgia,serif;--f-ui:'Cinzel',Georgia,serif;--rule-faint:1px solid rgba(123,29,42,0.14);--rule-hair:1px solid rgba(123,29,42,0.07)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{background:var(--vellum);color:var(--ink);font-family:var(--f-body);font-size:18px;line-height:1.75;overflow-x:hidden;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}
+
+/* ── RUBRIC ── */
+.rubric{display:block;font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.20em;text-transform:uppercase;color:var(--stone);margin-bottom:.5rem}
+.rubric.light{color:rgba(246,241,232,.55)}
+.rubric.gold{color:rgba(184,131,40,.70)}
+.rubric-rule{display:block;height:1px;background:var(--maroon);margin-bottom:1rem;width:48px}
+.rubric-rule.gold{background:var(--gold)}
+
+/* ── NAV ── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(246,241,232,.97);backdrop-filter:blur(10px);border-bottom:var(--rule-faint)}
+.nav-inner{max-width:1380px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px;padding:0 3rem}
+.nav-logo-name{font-family:var(--f-display);font-weight:500;font-size:1.25rem;color:var(--ink);display:block}
+.nav-logo-sub{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);display:block}
+.nav-links{display:flex;align-items:center;list-style:none}
+.nav-links>li{position:relative}
+.nav-links>li>a{font-family:var(--f-ui);font-size:.78rem;letter-spacing:.10em;text-transform:uppercase;color:var(--ink);padding:1.1rem .85rem;display:block;transition:color .18s}
+.nav-links>li:hover>a{color:var(--maroon)}
+.nav-drop{position:absolute;top:100%;left:0;background:var(--vellum);border-top:2px solid var(--maroon);border-bottom:var(--rule-faint);border-left:var(--rule-faint);border-right:var(--rule-faint);min-width:200px;padding:.5rem 0;opacity:0;pointer-events:none;transform:translateY(-4px);transition:all .16s;box-shadow:0 8px 28px rgba(28,20,16,.10)}
+.nav-links>li:hover .nav-drop{opacity:1;pointer-events:all;transform:none}
+.nav-drop a{display:block;font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);padding:.5rem 1.4rem;transition:color .14s}
+.nav-drop a:hover{color:var(--maroon)}
+.nav-give{font-family:var(--f-ui);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--vellum);background:var(--maroon);padding:.5rem 1.1rem;transition:background .2s}
+.nav-give:hover{background:var(--maroon-deep)}
+.nav-hamburger{display:none;flex-direction:column;justify-content:space-between;width:28px;height:20px;cursor:pointer;padding:0;background:none;border:none;z-index:400}
+.nav-hamburger span{display:block;width:100%;height:2px;background:var(--maroon);transition:all .28s ease;transform-origin:center}
+.nav-hamburger.open span:nth-child(1){transform:translateY(9px) rotate(45deg)}
+.nav-hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-9px) rotate(-45deg)}
+
+/* ── MOBILE DRAWER ── */
+.nav-drawer{position:fixed;top:0;right:0;width:300px;max-width:85vw;height:100vh;background:var(--apse);z-index:350;transform:translateX(100%);transition:transform .32s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;overflow-y:auto}
+.nav-drawer.open{transform:translateX(0)}
+.nav-drawer-overlay{position:fixed;inset:0;background:rgba(21,8,4,.65);z-index:340;opacity:0;pointer-events:none;transition:opacity .32s}
+.nav-drawer-overlay.open{opacity:1;pointer-events:all}
+.nav-drawer-head{padding:1.5rem 1.75rem 1rem;border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:space-between}
+.nav-drawer-logo{font-family:var(--f-display);font-weight:500;font-size:1.1rem;color:#fff}
+.nav-drawer-logo span{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);display:block;margin-top:2px}
+.nav-drawer-close{width:32px;height:32px;background:rgba(255,255,255,.08);border:none;color:rgba(255,255,255,.65);cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.nav-drawer-close:hover{background:rgba(255,255,255,.15)}
+.nav-drawer-links{padding:1rem 0;flex:1}
+.nav-drawer-links a{display:block;font-family:var(--f-ui);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,232,.70);padding:.9rem 1.75rem;border-bottom:1px solid rgba(255,255,255,.05);transition:all .18s}
+.nav-drawer-links a:hover{color:#fff;background:rgba(255,255,255,.05)}
+.nav-drawer-links .drawer-section{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(184,131,40,.55);padding:.85rem 1.75rem .35rem;display:block}
+.nav-drawer-give{margin:1.25rem 1.75rem;display:block;text-align:center;font-family:var(--f-ui);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;padding:.85rem;background:var(--maroon);color:var(--vellum);transition:background .2s}
+.nav-drawer-give:hover{background:var(--maroon-deep)}
+
+/* ── PROJECT HERO ── */
+.project-hero{padding-top:60px;position:relative;min-height:380px;display:flex;align-items:flex-end;overflow:hidden;background-color:var(--apse)}
+.project-hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;background-color:var(--apse)}
+.project-hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(21,8,4,.92) 0%,rgba(21,8,4,.55) 60%,rgba(21,8,4,.30) 100%)}
+.project-hero-inner{position:relative;z-index:1;max-width:1380px;width:100%;margin:0 auto;padding:3rem 4.5rem 2.5rem}
+.project-hero-back{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--f-ui);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,241,232,.45);margin-bottom:1.5rem;transition:color .18s}
+.project-hero-back:hover{color:rgba(246,241,232,.80)}
+.project-hero-cat{font-family:var(--f-ui);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(184,131,40,.75);display:block;margin-bottom:.5rem}
+.project-hero-title{font-family:var(--f-display);font-weight:300;font-size:clamp(2rem,4vw,3.4rem);color:#fff;line-height:1.05;margin-bottom:.4rem}
+.project-hero-sub{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,241,232,.45)}
+.status-pill{display:inline-block;font-family:var(--f-ui);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;padding:.22rem .75rem;margin-left:.75rem;vertical-align:middle}
+.status-active{background:var(--verdigris);color:#fff}
+.status-hold{background:var(--stone);color:#fff}
+.status-completed{background:var(--verdigris);color:#fff}
+.status-urgent{background:var(--maroon);color:#fff}
+
+/* ── PROGRESS STRIP ── */
+.progress-strip{background:var(--maroon);padding:2rem 4.5rem}
+.progress-strip-inner{max-width:1380px;margin:0 auto}
+.ps-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.65rem;flex-wrap:wrap;gap:.5rem}
+.ps-raised{font-family:var(--f-display);font-weight:400;font-size:2rem;color:rgba(246,241,232,.95);line-height:1}
+.ps-goal{font-family:var(--f-ui);font-size:.70rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,241,232,.45)}
+.ps-pct{font-family:var(--f-display);font-weight:300;font-size:1.1rem;color:var(--gold-lt)}
+.ps-track{background:rgba(255,255,255,.15);height:6px;border-radius:3px;overflow:hidden;margin-bottom:.75rem}
+.ps-fill{height:100%;background:var(--gold);border-radius:3px;transition:width .8s ease}
+.ps-meta{display:flex;gap:2rem;flex-wrap:wrap}
+.ps-meta-item{font-family:var(--f-ui);font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,232,.40)}
+.ps-meta-item strong{color:rgba(246,241,232,.70);font-weight:400}
+
+/* ── MAIN BODY ── */
+.project-body{max-width:1380px;margin:0 auto;padding:5rem 4.5rem;display:grid;grid-template-columns:1fr 320px;gap:5rem;align-items:start}
+
+/* Prose */
+.project-prose{font-family:var(--f-body);font-size:1rem;line-height:1.85;color:var(--ink)}
+.project-prose p{margin-bottom:1.25em}
+.project-prose p:last-child{margin-bottom:0}
+.project-prose h2{font-family:var(--f-display);font-weight:400;font-size:1.6rem;color:var(--ink);margin:2rem 0 .5rem;line-height:1.15}
+.drop-cap::first-letter{font-family:var(--f-display);font-style:italic;font-weight:300;font-size:4.2em;line-height:.80;float:left;margin-right:.07em;margin-top:.06em;color:var(--maroon)}
+
+/* Pull quote */
+.project-quote{margin:2.5rem 0;padding-left:1.75rem;border-left:3px solid var(--maroon)}
+.project-quote p{font-family:var(--f-display);font-style:italic;font-size:1.25rem;line-height:1.45;color:var(--ink);margin:0 0 .4rem}
+.project-quote cite{font-family:var(--f-ui);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--maroon)}
+
+/* Volunteer / Memorial banners */
+.volunteer-banner,.memorial-banner{padding:1.25rem 1.5rem;margin:2rem 0;border-left:3px solid}
+.volunteer-banner{border-color:var(--verdigris);background:rgba(61,107,94,.06)}
+.memorial-banner{border-color:var(--gold);background:rgba(184,131,40,.06)}
+.banner-label{font-family:var(--f-ui);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;display:block;margin-bottom:.35rem}
+.volunteer-banner .banner-label{color:var(--verdigris)}
+.memorial-banner .banner-label{color:var(--gold)}
+.banner-text{font-family:var(--f-body);font-size:.9rem;line-height:1.70;color:var(--ink)}
+
+/* Before/After Slider */
+.ba-slider{position:relative;overflow:hidden;margin:2.5rem 0;cursor:col-resize;user-select:none;-webkit-user-select:none;line-height:0;touch-action:none}
+.ba-slider img{display:block;width:100%;height:auto;pointer-events:none}
+.ba-after{position:relative;z-index:1}
+.ba-before-wrap{position:absolute;inset:0;z-index:2;overflow:hidden;clip-path:inset(0 50% 0 0)}
+.ba-before-wrap img{width:100%;height:100%;object-fit:cover}
+.ba-handle{position:absolute;top:0;bottom:0;left:50%;z-index:3;width:3px;background:#fff;transform:translateX(-50%);cursor:col-resize;box-shadow:0 0 8px rgba(0,0,0,.35)}
+.ba-handle::before,.ba-handle::after{content:'';position:absolute;left:50%;transform:translateX(-50%);border:7px solid transparent}
+.ba-handle::before{top:calc(50% - 28px);border-bottom-color:#fff}
+.ba-handle::after{top:calc(50% + 14px);border-top-color:#fff}
+.ba-knob{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:40px;height:40px;background:#fff;border-radius:50%;box-shadow:0 2px 12px rgba(0,0,0,.30);display:flex;align-items:center;justify-content:center}
+.ba-knob svg{width:18px;height:18px;fill:var(--ink)}
+.ba-label{position:absolute;top:.85rem;font-family:var(--f-ui);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;padding:.28rem .65rem;background:rgba(21,8,4,.62);color:rgba(246,241,232,.85);pointer-events:none;z-index:4}
+.ba-label-before{left:.85rem}
+.ba-label-after{right:.85rem}
+.ba-caption{font-family:var(--f-ui);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);text-align:center;margin-top:.5rem;line-height:1.4;display:block}
+
+/* Gallery */
+.project-gallery{margin:2.5rem 0}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem}
+.gallery-grid img{width:100%;aspect-ratio:4/3;object-fit:cover;cursor:pointer;transition:opacity .2s}
+.gallery-grid img:hover{opacity:.88}
+
+/* Updates timeline */
+.updates-section{margin-top:3rem;padding-top:2.5rem;border-top:var(--rule-faint)}
+.updates-section h3{font-family:var(--f-display);font-weight:400;font-size:1.4rem;color:var(--ink);margin-bottom:1.75rem;line-height:1.15}
+.timeline{position:relative;padding-left:1.5rem}
+.timeline::before{content:'';position:absolute;left:0;top:.35rem;bottom:0;width:1px;background:rgba(123,29,42,.18)}
+.timeline-entry{position:relative;margin-bottom:2rem}
+.timeline-entry:last-child{margin-bottom:0}
+.timeline-dot{position:absolute;left:-1.5rem;top:.35rem;width:9px;height:9px;border-radius:50%;background:var(--maroon);transform:translateX(-4px)}
+.timeline-date{font-family:var(--f-ui);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.25rem}
+.timeline-title{font-family:var(--f-display);font-weight:500;font-size:1.05rem;color:var(--ink);margin-bottom:.35rem;line-height:1.2}
+.timeline-body{font-family:var(--f-body);font-size:.9rem;line-height:1.72;color:var(--stone)}
+
+/* ── SIDEBAR GIVE BOX ── */
+.give-box{background:var(--apse);padding:2.5rem;border-top:3px solid var(--gold);position:sticky;top:80px}
+.give-box-eyebrow{font-family:var(--f-ui);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(232,201,122,.55);display:block;margin-bottom:.5rem}
+.give-box-rule{display:block;height:1px;background:var(--gold);width:36px;margin-bottom:1.25rem;opacity:.45}
+.give-box-title{font-family:var(--f-display);font-weight:300;font-size:1.55rem;color:rgba(246,241,232,.94);line-height:1.1;margin-bottom:.6rem}
+.give-box-title em{font-style:italic;color:var(--gold-lt)}
+.give-box-body{font-family:var(--f-body);font-size:.875rem;line-height:1.75;color:rgba(246,241,232,.55);margin-bottom:1.75rem}
+.btn-gold-block{display:block;width:100%;text-align:center;font-family:var(--f-ui);font-size:.72rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;padding:1rem 2rem;background:var(--gold);color:#fff;border:1px solid var(--gold);transition:background .2s;margin-bottom:.85rem}
+.btn-gold-block:hover{background:#9a6d20}
+.btn-ghost-block{display:block;width:100%;text-align:center;font-family:var(--f-ui);font-size:.70rem;letter-spacing:.20em;text-transform:uppercase;padding:.9rem 2rem;border:1px solid rgba(255,255,255,.28);color:rgba(255,255,255,.72);transition:all .2s}
+.btn-ghost-block:hover{border-color:#fff;color:#fff}
+.give-box-divider{border:none;border-top:1px solid rgba(255,255,255,.12);margin:1.5rem 0}
+.give-methods{margin-top:0}
+.give-method-lbl{font-family:var(--f-ui);font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(246,241,232,.25);display:block;margin-bottom:.6rem}
+.give-method{font-family:var(--f-body);font-size:.85rem;color:rgba(246,241,232,.62);padding:.35rem 0;border-bottom:1px solid rgba(255,255,255,.08);display:block}
+.give-method:last-child{border-bottom:none}
+.contact-block{margin-top:1.75rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.10)}
+.contact-lbl{font-family:var(--f-ui);font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(246,241,232,.28);display:block;margin-bottom:.6rem}
+.contact-name{font-family:var(--f-display);font-weight:400;font-size:.95rem;color:rgba(246,241,232,.72);display:block;margin-bottom:.2rem}
+.contact-email{font-family:var(--f-ui);font-size:.65rem;letter-spacing:.08em;color:rgba(184,131,40,.70);transition:color .18s}
+.contact-email:hover{color:var(--gold)}
+.back-link-box{margin-top:1.75rem;padding-top:1.25rem;border-top:1px solid rgba(255,255,255,.10);text-align:center}
+.back-link-box a{font-family:var(--f-ui);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,241,232,.40);transition:color .18s}
+.back-link-box a:hover{color:rgba(246,241,232,.80)}
+
+/* ── COMPLETED NOTICE ── */
+.completed-notice{background:rgba(61,107,94,.12);border:1px solid rgba(61,107,94,.30);padding:1.25rem 1.5rem;margin-bottom:1.5rem}
+.completed-notice-label{font-family:var(--f-ui);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--verdigris);display:block;margin-bottom:.35rem}
+.completed-notice-text{font-family:var(--f-body);font-style:italic;font-size:.9rem;color:var(--ink);line-height:1.65}
+
+/* ── ERROR STATE ── */
+.error-state{max-width:600px;margin:8rem auto;text-align:center;padding:0 2rem}
+.error-state h1{font-family:var(--f-display);font-weight:300;font-size:2rem;color:var(--ink);margin-bottom:.75rem}
+.error-state p{font-family:var(--f-body);font-size:.95rem;color:var(--stone);line-height:1.75;margin-bottom:1.5rem}
+.error-state a{font-family:var(--f-ui);font-size:.70rem;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);border-bottom:1px solid rgba(123,29,42,.30);padding-bottom:1px}
+
+/* ── FOOTER ── */
+footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:4.5rem 4.5rem 2.5rem}
+.footer-cols{max-width:1380px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:5rem;margin-bottom:3.5rem}
+.footer-col-head{font-family:var(--f-ui);font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(246,241,232,.82);display:block;margin-bottom:1.2rem;padding-bottom:.5rem;border-bottom:1px solid rgba(246,241,232,.06)}
+.footer-name{font-family:var(--f-display);font-weight:400;font-size:1.2rem;color:rgba(246,241,232,.88);line-height:1.3;margin-bottom:.75rem}
+.footer-meta{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.72);line-height:2.3}
+.footer-meta a{color:rgba(184,131,40,.85);transition:color .2s}
+.footer-meta a:hover{color:var(--gold)}
+.footer-socials{display:flex;gap:1.5rem;margin-top:1.5rem}
+.footer-socials a{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,241,232,.65);transition:color .2s}
+.footer-socials a:hover{color:var(--gold)}
+.footer-nav{list-style:none;display:flex;flex-direction:column}
+.footer-nav li{padding:.38rem 0;border-bottom:1px solid rgba(246,241,232,.10)}
+.footer-nav li:last-child{border-bottom:none}
+.footer-nav a{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,232,.85);transition:color .2s}
+.footer-nav a:hover{color:rgba(246,241,232,.95)}
+.footer-blurb{font-family:var(--f-display);font-style:italic;font-size:.95rem;color:rgba(246,241,232,.85);line-height:1.65;margin-bottom:1.5rem}
+.btn{display:inline-block;font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;padding:.85rem 2.2rem;border:1px solid currentColor;cursor:pointer;transition:all .22s;white-space:nowrap}
+.btn-outline{color:rgba(246,241,232,.70);border-color:rgba(246,241,232,.35)}
+.btn-outline:hover{color:#fff;border-color:#fff}
+.footer-bottom{max-width:1380px;margin:2rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(246,241,232,.12);display:flex;justify-content:space-between}
+.footer-copy,.footer-addr{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.60)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  .project-body{grid-template-columns:1fr;gap:3rem}
+  .give-box{position:static}
+}
+@media(max-width:768px){
+  .nav-links{display:none}.nav-hamburger{display:flex}.nav-give{display:none}
+  .project-hero-inner{padding:2.5rem 1.5rem 2rem}
+  .progress-strip{padding:1.75rem 1.5rem}
+  .ps-top{flex-direction:column;gap:.25rem}
+  .project-body{padding:3rem 1.5rem}
+  .give-box{padding:1.75rem}
+  footer{padding:4rem 1.5rem 2rem}
+  .footer-cols{grid-template-columns:1fr;gap:2.5rem}
+  .footer-bottom{flex-direction:column;gap:.75rem;text-align:center}
+  .gallery-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:480px){
+  .project-body{padding:2rem 1.25rem}
+  .drop-cap::first-letter{font-size:3em}
+  .gallery-grid{grid-template-columns:1fr}
+  .ba-label{font-size:.58rem;padding:.2rem .5rem}
+}
+</style>
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<link rel="stylesheet" href="/styles/typography.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" style="line-height:1.2"><span class="nav-logo-name">Sts. Peter &amp; Paul</span><span class="nav-logo-sub">Orthodox Cathedral &middot; Jersey City</span></a>
+    <ul class="nav-links">
+      <li><a href="#">About Us &#9662;</a><div class="nav-drop"><a href="/our-parish">About Our Church</a><a href="/our-beliefs">Our Beliefs</a><a href="/administration">Administration</a><a href="/gallery">Gallery</a></div></li>
+      <li><a href="#">Inquirers &#9662;</a><div class="nav-drop"><a href="/about-orthodoxy">About Orthodoxy</a><a href="/our-beliefs">Our Beliefs</a><a href="/videos">Videos</a></div></li>
+      <li><a href="/schedule">Calendar</a></li>
+      <li><a href="#">Bulletins &#9662;</a><div class="nav-drop"><a href="/news">News</a><a href="/bulletins">Bulletins</a></div></li>
+      <li><a href="#">Resources &#9662;</a><div class="nav-drop"><a href="/readings">Readings</a><a href="/videos">Videos</a><a href="/cemeteries">Cemeteries</a></div></li>
+      <li><a href="/contact-us">Contact</a></li>
+    </ul>
+    <a href="https://tithe.ly/give?c=5004259" target="_blank" rel="noopener" class="nav-give">Give</a>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" onclick="openDrawer()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<div class="nav-drawer-overlay" id="nav-overlay" onclick="closeDrawer()"></div>
+<div class="nav-drawer" id="nav-drawer">
+  <div class="nav-drawer-head">
+    <div class="nav-drawer-logo">Sts. Peter &amp; Paul<span>Orthodox Cathedral &middot; Jersey City</span></div>
+    <button class="nav-drawer-close" onclick="closeDrawer()">&#10005;</button>
+  </div>
+  <div class="nav-drawer-links">
+    <span class="drawer-section">About</span>
+    <a href="/our-parish">About Our Church</a>
+    <a href="/our-beliefs">Our Beliefs</a>
+    <a href="/administration">Administration</a>
+    <a href="/about-orthodoxy">About Orthodoxy</a>
+    <span class="drawer-section">Visit &amp; Worship</span>
+    <a href="/schedule">Liturgical Calendar</a>
+    <a href="/readings">Daily Readings</a>
+    <a href="/videos">Videos</a>
+    <span class="drawer-section">Parish Life</span>
+    <a href="/gallery">Gallery</a>
+    <a href="/bulletins">Bulletins</a>
+    <a href="/news">News &amp; Announcements</a>
+    <a href="/cemeteries">Cemeteries</a>
+    <a href="/give">Give &amp; Support</a>
+    <span class="drawer-section">Contact</span>
+    <a href="/contact-us">Contact Us</a>
+  </div>
+  <a href="https://tithe.ly/give?c=5004259" target="_blank" rel="noopener" class="nav-drawer-give">Give Online</a>
+</div>
+
+<!-- PAGE CONTENT (JS rendered) -->
+<div id="page-root"></div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-cols">
+    <div>
+      <span class="footer-col-head">Saints Peter &amp; Paul Orthodox Cathedral</span>
+      <p class="footer-name">Sts. Peter &amp; Paul<br>Orthodox Cathedral</p>
+      <p class="footer-meta">
+        Diocese of New York &amp; New Jersey<br>
+        <a href="https://nynjoca.org" target="_blank">nynjoca.org</a><br>
+        Orthodox Church in America<br>
+        <a href="https://oca.org" target="_blank">oca.org</a>
+      </p>
+      <div class="footer-socials">
+        <a href="#" target="_blank">Facebook</a>
+        <a href="#" target="_blank">Instagram</a>
+        <a href="https://www.youtube.com/@ssppnj" target="_blank">YouTube</a>
+      </div>
+    </div>
+    <div>
+      <span class="footer-col-head">Navigate</span>
+      <ul class="footer-nav">
+        <li><a href="/our-parish">About Our Church</a></li>
+        <li><a href="/our-beliefs">Our Beliefs</a></li>
+        <li><a href="/about-orthodoxy">About Orthodoxy</a></li>
+        <li><a href="/schedule">Liturgical Calendar</a></li>
+        <li><a href="/readings">Daily Readings</a></li>
+        <li><a href="/news">News &amp; Announcements</a></li>
+        <li><a href="/bulletins">Bulletins</a></li>
+        <li><a href="/give">Give &amp; Support</a></li>
+        <li><a href="/contact-us">Contact Us</a></li>
+      </ul>
+    </div>
+    <div>
+      <span class="footer-col-head">Visit Us</span>
+      <p class="footer-blurb">Whether you are visiting for the first time or looking to become part of our parish family, you are welcome here.</p>
+      <a href="/contact-us" class="btn btn-outline" style="margin-bottom:2rem;display:inline-block">Contact the Parish</a>
+      <span class="footer-col-head" style="margin-top:.5rem">Service Times</span>
+      <p class="footer-meta" style="line-height:2.4">
+        Vespers &middot; Saturdays 5:00 PM<br>
+        Divine Liturgy &middot; Sundays 9:30 AM<br>
+        Office &middot; Mon&ndash;Fri 9:00 AM&ndash;5:00 PM
+      </p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">&copy; Saints Peter &amp; Paul Orthodox Cathedral. All Rights Reserved.</p>
+    <p class="footer-addr">109 Grand Street &middot; Jersey City, NJ 07302 &middot; (201) 434-1986</p>
+  </div>
+</footer>
+
+<script>
+// ── NAV DRAWER ───────────────────────────────────────────
+function openDrawer(){document.getElementById('nav-drawer').classList.add('open');document.getElementById('nav-overlay').classList.add('open');document.getElementById('nav-hamburger').classList.add('open')}
+function closeDrawer(){document.getElementById('nav-drawer').classList.remove('open');document.getElementById('nav-overlay').classList.remove('open');document.getElementById('nav-hamburger').classList.remove('open')}
+
+// ── HELPERS ──────────────────────────────────────────────
+var CAT_LABELS={temple:'Cathedral',liturgical:'Liturgical Life',facilities:'Parish Hall & Facilities',mercy:'Mercy & Outreach',education:'Education & Formation'};
+
+function fmtMoney(n){return '$'+Number(n).toLocaleString()}
+function fmtDate(s){
+  if(!s) return '';
+  var d=new Date(s+'T12:00:00');
+  return d.toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
+}
+function fmtMonthYear(s){
+  if(!s) return '';
+  var d=new Date(s+'T12:00:00');
+  return d.toLocaleDateString('en-US',{month:'long',year:'numeric'});
+}
+function pct(raised,goal){
+  if(!goal||goal<=0) return 0;
+  return Math.min(100,Math.round((raised/goal)*100));
+}
+
+// ── RENDER PROJECT ───────────────────────────────────────
+function renderProject(p){
+  var root=document.getElementById('page-root');
+
+  // Page title
+  document.title=p.title+' &middot; Give &middot; Saints Peter & Paul Orthodox Cathedral';
+  document.getElementById('page-title').textContent=p.title+' · Give · Saints Peter & Paul Orthodox Cathedral';
+  if(document.getElementById('page-desc')) document.getElementById('page-desc').setAttribute('content',p.short_desc);
+
+  // Status pill
+  var statusPill='';
+  if(p.urgent) statusPill='<span class="status-pill status-urgent">Urgent</span>';
+  else if(p.status==='active') statusPill='<span class="status-pill status-active">Active</span>';
+  else if(p.status==='on-hold') statusPill='<span class="status-pill status-hold">On Hold</span>';
+  else if(p.status==='completed') statusPill='<span class="status-pill status-completed">Completed</span>';
+
+  // Hero bg
+  var heroBg=p.image?'background-image:url(\''+p.image+'\')':'';
+
+  // Progress strip
+  var progressStrip='';
+  if(p.show_progress && p.goal>0){
+    var p_pct=pct(p.raised,p.goal);
+    var targetMeta=p.target_date?'<div class="ps-meta-item">Needed by <strong>'+fmtMonthYear(p.target_date)+'</strong></div>':'';
+    var startMeta=p.start_date?'<div class="ps-meta-item">Started <strong>'+fmtMonthYear(p.start_date)+'</strong></div>':'';
+    progressStrip='<div class="progress-strip">'
+      +'<div class="progress-strip-inner">'
+      +'<div class="ps-top">'
+      +'<span class="ps-raised">'+fmtMoney(p.raised)+'<span class="ps-goal" style="font-size:1rem;margin-left:.75rem"> raised of '+fmtMoney(p.goal)+'</span></span>'
+      +'<span class="ps-pct">'+p_pct+'% of goal</span>'
+      +'</div>'
+      +'<div class="ps-track"><div class="ps-fill" style="width:'+p_pct+'%"></div></div>'
+      +'<div class="ps-meta">'+startMeta+targetMeta+'</div>'
+      +'</div>'
+      +'</div>';
+  }
+
+  // Completed notice
+  var completedNotice='';
+  if(p.status==='completed'&&p.completion_note){
+    completedNotice='<div class="completed-notice">'
+      +'<span class="completed-notice-label">Project Complete</span>'
+      +'<p class="completed-notice-text">'+p.completion_note+'</p>'
+      +'</div>';
+  }
+
+  // On-hold notice
+  var holdNotice='';
+  if(p.status==='on-hold'){
+    holdNotice='<div class="volunteer-banner" style="border-color:var(--stone);background:rgba(122,102,72,.06)">'
+      +'<span class="banner-label" style="color:var(--stone)">Project On Hold</span>'
+      +'<p class="banner-text">This project is temporarily paused. Any funds raised are held and will be applied when the project resumes. You are still welcome to give toward it.</p>'
+      +'</div>';
+  }
+
+  // Volunteer banner
+  var volunteerBanner='';
+  if(p.volunteer_needed&&p.volunteer_desc){
+    volunteerBanner='<div class="volunteer-banner">'
+      +'<span class="banner-label">Volunteers Needed</span>'
+      +'<p class="banner-text">'+p.volunteer_desc+'</p>'
+      +'</div>';
+  }
+
+  // Memorial banner
+  var memorialBanner='';
+  if(p.memorial&&p.memorial_for){
+    memorialBanner='<div class="memorial-banner">'
+      +'<span class="banner-label">In Memoriam</span>'
+      +'<p class="banner-text">'+p.memorial_for+'</p>'
+      +'</div>';
+  }
+
+  // Before/After slider
+  var baSlider='';
+  if(p.image_before&&p.image){
+    baSlider='<div class="ba-slider" id="ba-slider" data-pct="50">'
+      +'<div class="ba-after"><img src="'+p.image+'" alt="After" onerror="this.style.display=\'none\'"></div>'
+      +'<div class="ba-before-wrap" id="ba-before-wrap"><img src="'+p.image_before+'" alt="Before" onerror="this.style.display=\'none\'"></div>'
+      +'<div class="ba-handle" id="ba-handle"><div class="ba-knob"><svg viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg"><path d="M5.5 3L1 9l4.5 6M12.5 3L17 9l-4.5 6" stroke="var(--ink)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></div></div>'
+      +'<span class="ba-label ba-label-before">Before</span>'
+      +'<span class="ba-label ba-label-after">After</span>'
+      +'</div>'
+      +'<span class="ba-caption">Drag to compare before and after</span>';
+  }
+
+  // Pull quote
+  var pullQuote='';
+  if(p.quote){
+    pullQuote='<div class="project-quote">'
+      +'<p>'+p.quote+'</p>'
+      +(p.quote_attr?'<cite>'+p.quote_attr+'</cite>':'')
+      +'</div>';
+  }
+
+  // Gallery
+  var gallery='';
+  if(p.gallery&&p.gallery.length){
+    var imgs=p.gallery.map(function(src){
+      return '<img src="'+src+'" loading="lazy" onerror="this.parentNode.removeChild(this)">';
+    }).join('');
+    gallery='<div class="project-gallery"><div class="gallery-grid">'+imgs+'</div></div>';
+  }
+
+  // Updates timeline
+  var updates='';
+  if(p.updates&&p.updates.length){
+    var entries=p.updates.slice().sort(function(a,b){return b.date.localeCompare(a.date)});
+    var items=entries.map(function(u){
+      return '<div class="timeline-entry">'
+        +'<div class="timeline-dot"></div>'
+        +'<span class="timeline-date">'+fmtDate(u.date)+'</span>'
+        +'<div class="timeline-title">'+u.title+'</div>'
+        +'<div class="timeline-body">'+u.body+'</div>'
+        +'</div>';
+    }).join('');
+    updates='<div class="updates-section"><h3>Project Updates</h3><div class="timeline">'+items+'</div></div>';
+  }
+
+  // Sidebar give box
+  var giveBoxBtn='';
+  if(p.status==='completed'){
+    giveBoxBtn='<a href="'+p.give_link+'" target="_blank" rel="noopener" class="btn-gold-block">Give to the General Fund</a>'
+      +'<a href="/give" class="btn-ghost-block">See All Projects</a>';
+  } else {
+    giveBoxBtn='<a href="'+p.give_link+'" target="_blank" rel="noopener" class="btn-gold-block">'+(p.give_label||'Give Toward This Project')+'</a>'
+      +'<a href="'+p.give_link+'" target="_blank" rel="noopener" class="btn-ghost-block">Set Up Recurring Giving</a>';
+  }
+
+  var contactBlock='';
+  if(p.contact_name){
+    contactBlock='<div class="contact-block">'
+      +'<span class="contact-lbl">Questions?</span>'
+      +'<span class="contact-name">'+p.contact_name+'</span>'
+      +(p.contact_email?'<a href="mailto:'+p.contact_email+'" class="contact-email">'+p.contact_email+'</a>':'')
+      +'</div>';
+  }
+
+  var html=
+    // HERO
+    '<div class="project-hero">'
+    +'<div class="project-hero-bg" style="'+heroBg+'"></div>'
+    +'<div class="project-hero-overlay"></div>'
+    +'<div class="project-hero-inner">'
+    +'<a href="/give" class="project-hero-back">&#8592; Back to All Projects</a>'
+    +'<span class="project-hero-cat">'+CAT_LABELS[p.category]+statusPill+'</span>'
+    +'<h1 class="project-hero-title">'+p.title+'</h1>'
+    +'<p class="project-hero-sub">'+p.subtitle+'</p>'
+    +'</div>'
+    +'</div>'
+
+    // PROGRESS STRIP
+    +progressStrip
+
+    // BODY
+    +'<div class="project-body">'
+
+    // LEFT: main content
+    +'<main>'
+    +completedNotice
+    +holdNotice
+    +volunteerBanner
+    +memorialBanner
+    +'<div class="project-prose drop-cap">'+p.body+'</div>'
+    +baSlider
+    +pullQuote
+    +gallery
+    +updates
+    +'</main>'
+
+    // RIGHT: give box
+    +'<aside>'
+    +'<div class="give-box">'
+    +'<span class="give-box-eyebrow">Give Now</span>'
+    +'<span class="give-box-rule"></span>'
+    +'<div class="give-box-title">Support<br><em>'+p.title+'</em></div>'
+    +'<p class="give-box-body">Your gift goes directly toward this project. Secure online giving through Tithe.ly.</p>'
+    +giveBoxBtn
+    +'<hr class="give-box-divider">'
+    +'<div class="give-methods">'
+    +'<span class="give-method-lbl">Also Accepted</span>'
+    +'<span class="give-method">Check by Mail</span>'
+    +'<span class="give-method">Offering at Liturgy</span>'
+    +'<span class="give-method">By Phone: (201) 434-1986</span>'
+    +'</div>'
+    +contactBlock
+    +'<div class="back-link-box"><a href="/give">&#8592; All Giving Projects</a></div>'
+    +'</div>'
+    +'</aside>'
+
+    +'</div>'; // .project-body
+
+  root.innerHTML=html;
+}
+
+function renderError(msg){
+  document.getElementById('page-root').innerHTML=
+    '<div class="error-state" style="padding-top:60px">'
+    +'<h1>Project Not Found</h1>'
+    +'<p>'+msg+'</p>'
+    +'<a href="/give">View all giving projects</a>'
+    +'</div>';
+}
+
+// ── BEFORE/AFTER SLIDER ──────────────────────────────────
+function initBASlider(){
+  var slider=document.getElementById('ba-slider');
+  if(!slider) return;
+  var wrap=document.getElementById('ba-before-wrap');
+  var handle=document.getElementById('ba-handle');
+  var dragging=false;
+
+  function setPos(pct){
+    pct=Math.max(2,Math.min(98,pct));
+    wrap.style.clipPath='inset(0 '+(100-pct)+'% 0 0)';
+    handle.style.left=pct+'%';
+  }
+
+  function getX(e){
+    return e.touches?e.touches[0].clientX:e.clientX;
+  }
+
+  function onMove(e){
+    if(!dragging) return;
+    e.preventDefault();
+    var rect=slider.getBoundingClientRect();
+    var pct=((getX(e)-rect.left)/rect.width)*100;
+    setPos(pct);
+  }
+
+  // Set initial position to near-zero so IntersectionObserver animation starts clean
+  setPos(2);
+
+  slider.addEventListener('mousedown',function(e){dragging=true;onMove(e)});
+  slider.addEventListener('touchstart',function(e){dragging=true;onMove(e)},{passive:false});
+  window.addEventListener('mousemove',onMove);
+  window.addEventListener('touchmove',onMove,{passive:false});
+  window.addEventListener('mouseup',function(){dragging=false});
+  window.addEventListener('touchend',function(){dragging=false});
+
+  // Animate in from left on load
+  var io=new IntersectionObserver(function(entries){
+    if(entries[0].isIntersecting){
+      var pct=50;
+      var start=null;
+      var dur=900;
+      function step(ts){
+        if(!start) start=ts;
+        var p=Math.min(1,(ts-start)/dur);
+        var ease=1-Math.pow(1-p,3);
+        setPos(ease*pct);
+        if(p<1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+      io.disconnect();
+    }
+  },{threshold:0.3});
+  io.observe(slider);
+}
+
+// ── INIT ─────────────────────────────────────────────────
+var params=new URLSearchParams(window.location.search);
+var projectId=params.get('id');
+
+if(!projectId){
+  renderError('No project ID was provided. Please return to the giving page and select a project.');
+} else {
+  fetch('/giving-projects.json')
+    .then(function(r){return r.json()})
+    .then(function(data){
+      var project=(data.projects||[]).find(function(p){return p.id===projectId});
+      if(project){
+        renderProject(project);
+        initBASlider();
+      } else {
+        renderError('The project "'+projectId+'" could not be found. It may have been removed or the link may be incorrect.');
+      }
+    })
+    .catch(function(){
+      renderError('Unable to load project data. Please try again or contact the parish office.');
+    });
+}
+</script>
+</body>
+</html>
