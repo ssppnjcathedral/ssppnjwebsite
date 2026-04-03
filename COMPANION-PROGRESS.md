@@ -83,11 +83,17 @@ Added to `prayers.html`. Preserves all existing functionality.
 
 ## What Remains
 
-### Section 4 — Feast Day Prayer Suggestion
+*All Phase 1 sections complete. See below for Phase 2.*
+
+---
+
+## Completed After Initial Commit
+
+### Section 4 — Feast Day Prayer Suggestion ✅
 Add to `prayers.html` sidebar. Fetches `calendar-2026.json`, checks today's feast level (≥ 4), and renders a suggestion block nudging the user to add the feast troparion to their rule. Hidden on non-feast days.
 
-### Section 5 — My Journey Dashboard (`/my-journey.html`)
-New page. Reads `inquirer-content.json` + all `spp_journey_*` localStorage keys.
+### Section 5 — My Journey Dashboard (`/my-journey.html`) ✅
+Created. Reads `inquirer-content.json` + all `spp_journey_*` localStorage keys.
 
 1. **Progress ring** — SVG arc, percentage complete, milestone language from the manifest
 2. **Article list** — grouped by section, checked/unchecked, completion date, reflection snippet
@@ -98,13 +104,19 @@ New page. Reads `inquirer-content.json` + all `spp_journey_*` localStorage keys.
    - Export Backup → downloads `my-journey-backup-YYYY-MM-DD.json`
    - Import Backup → restores from file; also restores prayer rule
 
-### Section 6 — Final Verification + Commit
-Run the spec's verification script, then:
-```
-git add -A
-git commit -m "Companion system Phase 1 — journey widget, my-journey dashboard, prayer rule print, feast suggestion"
-git push origin main
-```
+**Post-commit fix:** Initial build was missing nav/mega-menu/footer CSS and nav interaction JS (`openDrawer`, mega-menu hover). Without `opacity:0` on `.mega-panel`, all 5 panels rendered as visible block elements making the page appear broken. Fixed by injecting the full shared CSS block and nav JS from `about-orthodoxy.html`.
+
+### Section 6 — Final Verification ✅
+All checks passed. Committed as `ded8ccf`.
+
+---
+
+## Phase 2 (Supabase)
+Defined in `SUPABASE-SETUP.md` (not yet created). When implemented:
+- `getPageState(key)` tries Supabase first, falls back to localStorage
+- `saveState(s)` writes to both in background
+- `my-journey.html` shows login prompt for cross-device sync
+- No HTML/CSS changes required — localStorage layer becomes the offline cache
 
 ---
 
