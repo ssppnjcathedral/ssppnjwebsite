@@ -104,13 +104,14 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 @media(max-width:768px){.footer-cols{grid-template-columns:1fr;gap:2.5rem}footer{padding:4rem 1.5rem 2rem}.footer-bottom{flex-direction:column;gap:.75rem;text-align:center}.footer-addr{text-align:center}}
 
 /* ── RESOURCE BAR ── */
-.resource-bar{position:sticky;top:60px;z-index:150;background:var(--maroon);padding:.6rem 3rem;display:flex;align-items:center;gap:2rem;flex-wrap:wrap}
+.resource-bar{position:sticky;top:60px;z-index:150;background:var(--maroon);padding:.6rem 3rem;display:flex;align-items:center;gap:2rem}
 .resource-bar-label{font-family:var(--f-ui);font-size:.54rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(246,241,232,.5);white-space:nowrap;flex-shrink:0}
-.resource-bar-links{display:flex;gap:0;flex-wrap:wrap;flex:1}
-.resource-bar-link{font-family:var(--f-ui);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,241,232,.92);font-weight:500;padding:.3rem .85rem;transition:color .18s;white-space:nowrap;border-right:1px solid rgba(246,241,232,.18)}
+.resource-bar-links{display:flex;gap:0;flex:1;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.resource-bar-links::-webkit-scrollbar{display:none}
+.resource-bar-link{font-family:var(--f-ui);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,241,232,.92);font-weight:500;padding:.3rem .85rem;transition:color .18s;white-space:nowrap;border-right:1px solid rgba(246,241,232,.18);flex-shrink:0}
 .resource-bar-link:last-child{border-right:none}
 .resource-bar-link:hover{color:var(--gold-lt)}
-@media(max-width:768px){.resource-bar{padding:.6rem 1.25rem;gap:1rem}.resource-bar-label{display:none}.resource-bar-link{font-size:.54rem;padding:.3rem .6rem}}
+@media(max-width:768px){.resource-bar{padding:.55rem 1rem;gap:.75rem}.resource-bar-label{display:none}.resource-bar-link{font-size:.52rem;padding:.3rem .55rem}}
 
 /* ── PAGE HERO ── */
 .page-hero{padding-top:60px;background:linear-gradient(to right,rgba(59,15,24,.92) 0%,rgba(59,15,24,.72) 55%,rgba(59,15,24,.38) 100%),url('https://picsum.photos/id/1040/1600/500') center/cover no-repeat;background-color:var(--apse);min-height:260px;display:flex;align-items:center}

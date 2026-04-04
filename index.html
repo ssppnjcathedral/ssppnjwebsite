@@ -280,9 +280,10 @@ img{display:block;max-width:100%}
 /* === NAV === */
 .nav{position:fixed;top:0;left:0;right:0;z-index:200;background:transparent;backdrop-filter:none;border-bottom:1px solid transparent;transition:background .3s ease,border-color .3s ease,backdrop-filter .3s ease}
 .nav.nav-scrolled{background:rgba(246,241,232,.97);backdrop-filter:blur(10px);border-bottom:var(--rule-faint)}
+.nav:has(.mega-visible){background:rgba(246,241,232,.97);backdrop-filter:blur(10px);border-bottom:var(--rule-faint)}
 .nav-inner{max-width:1380px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px;padding:0 3rem}
 .nav-logo-img{height:38px;width:auto;display:block;filter:brightness(0) invert(1);transition:filter .3s ease}
-.nav-scrolled .nav-logo-img{filter:none}
+.nav-scrolled .nav-logo-img,.nav:has(.mega-visible) .nav-logo-img{filter:none}
 .footer-logo-img{height:44px;width:auto;display:block;margin-bottom:1.75rem;filter:brightness(0) invert(1);opacity:.85}
 .footer-name{font-family:var(--f-display);font-weight:400;font-size:1.2rem;color:rgba(246,241,232,.88);line-height:1.3;margin-bottom:.75rem}
 .nav-mega-group{height:100%;display:flex;align-items:center}
@@ -291,7 +292,7 @@ img{display:block;max-width:100%}
 .nav-links>li>a{font-family:var(--f-ui);font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,232,.88);padding:0 .85rem;height:100%;display:flex;align-items:center;transition:color .18s;border-bottom:2px solid transparent;white-space:nowrap}
 .nav-scrolled .nav-links>li>a{color:var(--ink)}
 .nav-links>li>a:hover{color:var(--maroon)}
-.nav-mega-group:hover .nav-links>li>a{color:var(--maroon)}
+.nav:has(.mega-visible) .nav-links>li>a{color:var(--maroon)}
 .nav-links>li>a:hover{border-bottom-color:var(--gold)}
 
 /* MEGA PANEL */
@@ -522,6 +523,9 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 }
 @media(max-width:768px){
   .nav-links{display:none}.nav-hamburger{display:flex}.nav-give{display:none}
+  .nav:not(.nav-scrolled) .nav-hamburger span{background:rgba(246,241,232,.9)}
+  #my-parish-band{padding:2.5rem 1.25rem}
+  #my-parish-band>div{grid-template-columns:1fr!important;gap:1.25rem!important}
   .hero-logo{width:min(320px,70vw)}
   .ts-right{display:none}
 
@@ -992,7 +996,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 /* ── MY PARISH NAV ── */
 .nav-mega-group{flex:1;justify-content:center}.nav-my-parish{position:relative;margin-right:.35rem}
 .nav-my-parish-btn{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:none;border:1px solid rgba(246,241,232,.45);cursor:pointer;color:rgba(246,241,232,.88);transition:all .2s;padding:0;flex-shrink:0}
-.nav-scrolled .nav-my-parish-btn{border-color:rgba(123,29,42,.35);color:#7B1D2A}
+.nav-scrolled .nav-my-parish-btn,.nav:has(.mega-visible) .nav-my-parish-btn{border-color:rgba(123,29,42,.35);color:#7B1D2A}
 .nav-my-parish-btn:hover{background:#7B1D2A;color:#F6F1E8;border-color:#7B1D2A}
 .nav-my-parish-panel{position:absolute;top:calc(100% + 6px);right:0;width:230px;background:#F6F1E8;border:1px solid rgba(123,29,42,.15);box-shadow:0 8px 32px rgba(28,20,16,.12);opacity:0;pointer-events:none;transform:translateY(-6px);transition:opacity .18s,transform .18s;z-index:500}
 .nav-my-parish-panel.open{opacity:1;pointer-events:all;transform:translateY(0)}
