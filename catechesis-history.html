@@ -359,7 +359,7 @@ footer{background:var(--apse);padding:4rem 4.5rem 2rem}
 /* Compact mode — pages with floating pill nav */
 .jw-bar.jw-compact{left:auto;right:1.25rem;bottom:1.5rem;width:auto;border-radius:100px;padding:.35rem .5rem;gap:.3rem;border:1px solid rgba(184,131,40,.35);box-shadow:0 4px 24px rgba(21,8,4,.5)}
 .jw-bar.jw-compact .jw-label,.jw-bar.jw-compact .jw-spacer,.jw-bar.jw-compact .jw-journey-link{display:none}
-.jw-bar.jw-compact .jw-check-btn{font-size:0;width:30px;height:30px;padding:0;border-radius:50%;display:flex;align-items:center;justify-content:center;border-color:rgba(246,241,232,.2)}
+.jw-bar.jw-compact .jw-check-btn{font-size:0;width:30px;height:30px;padding:0;border-radius:50%;display:flex;align-items:center;justify-content:center;border-color:rgba(246,241,232,.2);position:relative}.jw-bar.jw-compact .jw-check-btn::after{content:'Mark as Read';position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);background:var(--apse);color:rgba(246,241,232,.92);font-family:var(--f-ui);font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;padding:.3rem .65rem;pointer-events:none;opacity:0;transition:opacity .15s;border:1px solid rgba(246,241,232,.12)}.jw-bar.jw-compact .jw-check-btn.jw-done::after{content:'Marked as Read'}.jw-bar.jw-compact .jw-check-btn:hover::after{opacity:1}
 .jw-bar.jw-compact .jw-check-btn::before{content:'\2713';font-size:.8rem;font-family:var(--f-ui);letter-spacing:0}
 .jw-bar.jw-compact .jw-note-toggle{font-size:0;width:28px;height:28px;padding:0;display:flex;align-items:center;justify-content:center}
 .jw-bar.jw-compact .jw-note-toggle::before{content:'\270E';font-size:.82rem}
