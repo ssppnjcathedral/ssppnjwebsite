@@ -405,50 +405,46 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 .page-sub{font-family:var(--f-display);font-style:italic;font-size:1.1rem;color:rgba(255,255,255,.55);}
 
 /* MAIN LAYOUT */
-.journey-outer{max-width:900px;margin:0 auto;padding:3.5rem 2rem 6rem;}
+.journey-outer{max-width:900px;margin:0 auto;padding:3rem 2rem 6rem;}
 
-/* PROGRESS RING */
-.progress-section{text-align:center;padding:3rem 0 2.5rem;border-bottom:var(--rule-faint);margin-bottom:2.5rem;}
-.progress-ring-wrap{position:relative;width:120px;height:120px;margin:0 auto 1.5rem;}
-.progress-ring-wrap svg{transform:rotate(-90deg);}
-.ring-track{fill:none;stroke:rgba(123,29,42,.1);stroke-width:8;}
-.ring-fill{fill:none;stroke:var(--maroon);stroke-width:8;stroke-linecap:round;transition:stroke-dashoffset .6s cubic-bezier(.22,1,.36,1);}
-.ring-label{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
-.ring-pct{font-family:var(--f-display);font-weight:300;font-size:2rem;color:var(--maroon);line-height:1;}
-.ring-pct-label{font-family:var(--f-ui);font-size:.46rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);}
-.milestone-text{font-family:var(--f-display);font-style:italic;font-size:1.25rem;color:var(--apse);margin-bottom:.75rem;}
-.progress-sub{font-family:var(--f-body);font-size:.9rem;color:var(--stone);}
+/* PROGRESS BAR */
+.progress-section{padding:1.75rem 0 1.5rem;border-bottom:var(--rule-faint);margin-bottom:1.5rem;}
+.progress-bar-head{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;margin-bottom:.65rem;}
+.milestone-text{font-family:var(--f-display);font-style:italic;font-size:1.4rem;color:var(--apse);}
+.progress-sub{font-family:var(--f-ui);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);white-space:nowrap;flex-shrink:0;}
+.progress-bar-track{height:4px;background:rgba(123,29,42,.12);border-radius:2px;overflow:hidden;}
+.progress-bar-fill{height:100%;background:var(--maroon);border-radius:2px;width:0%;transition:width .6s cubic-bezier(.22,1,.36,1);}
 
 /* SECTION HEADS */
-.section-label{font-family:var(--f-ui);font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.4rem;}
-.section-title{font-family:var(--f-display);font-weight:300;font-size:1.6rem;color:var(--apse);margin-bottom:1.5rem;}
+.section-label{font-family:var(--f-ui);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.4rem;}
+.section-title{font-family:var(--f-display);font-weight:300;font-size:1.7rem;color:var(--apse);margin-bottom:1.5rem;}
 .section-rule{height:1px;background:rgba(123,29,42,.12);margin:2.5rem 0;}
 
 /* ARTICLE CARDS */
 .section-group{margin-bottom:2rem;}
-.section-group-head{font-family:var(--f-ui);font-size:.5rem;letter-spacing:.18em;text-transform:uppercase;color:var(--maroon);display:block;padding-bottom:.5rem;border-bottom:1px solid rgba(123,29,42,.15);margin-bottom:.85rem;}
-.article-row{display:flex;align-items:flex-start;gap:1rem;padding:.9rem 0;border-bottom:var(--rule-hair);}
+.section-group-head{font-family:var(--f-ui);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--maroon);display:block;padding-bottom:.5rem;border-bottom:1px solid rgba(123,29,42,.15);margin-bottom:.85rem;}
+.article-row{display:flex;align-items:flex-start;gap:1rem;padding:1rem 0;border-bottom:var(--rule-hair);}
 .article-row:last-child{border-bottom:none;}
-.article-check{width:22px;height:22px;border-radius:50%;border:1.5px solid rgba(123,29,42,.3);flex-shrink:0;display:flex;align-items:center;justify-content:center;margin-top:.15rem;}
-.article-check.done{background:var(--maroon);border-color:var(--maroon);color:white;font-size:.7rem;}
+.article-check{width:24px;height:24px;border-radius:50%;border:1.5px solid rgba(123,29,42,.3);flex-shrink:0;display:flex;align-items:center;justify-content:center;margin-top:.2rem;}
+.article-check.done{background:var(--maroon);border-color:var(--maroon);color:white;font-size:.8rem;}
 .article-main{flex:1;min-width:0;}
-.article-title{font-family:var(--f-display);font-weight:500;font-size:1.05rem;color:var(--apse);margin-bottom:.1rem;}
+.article-title{font-family:var(--f-display);font-weight:500;font-size:1.25rem;color:var(--apse);margin-bottom:.1rem;}
 .article-title a{transition:color .14s;}
 .article-title a:hover{color:var(--maroon);}
-.article-desc{font-family:var(--f-body);font-size:.88rem;color:var(--stone);margin-bottom:.3rem;}
-.article-note{font-family:var(--f-body);font-style:italic;font-size:.85rem;color:var(--verdigris);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
-.article-meta{font-family:var(--f-ui);font-size:.46rem;letter-spacing:.1em;text-transform:uppercase;color:var(--stone);text-align:right;flex-shrink:0;}
-.article-read-link{font-family:var(--f-ui);font-size:.48rem;letter-spacing:.1em;text-transform:uppercase;color:var(--maroon);}
+.article-desc{font-family:var(--f-body);font-size:1rem;color:var(--stone);margin-bottom:.3rem;}
+.article-note{font-family:var(--f-body);font-style:italic;font-size:.95rem;color:var(--verdigris);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.article-meta{font-family:var(--f-ui);font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:var(--stone);text-align:right;flex-shrink:0;}
+.article-read-link{font-family:var(--f-ui);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--maroon);}
 
 /* NEXT SUGGESTION */
-.next-suggestion{background:var(--vellum-mid);border-left:3px solid var(--gold);padding:1.1rem 1.4rem;margin:1.5rem 0 2rem;}
-.next-label{font-family:var(--f-ui);font-size:.5rem;letter-spacing:.16em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.3rem;}
-.next-text{font-family:var(--f-display);font-size:1.1rem;color:var(--apse);}
+.next-suggestion{background:var(--vellum-mid);border-left:3px solid var(--gold);padding:1.1rem 1.4rem;margin:1.25rem 0 1.75rem;}
+.next-label{font-family:var(--f-ui);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.3rem;}
+.next-text{font-family:var(--f-display);font-size:1.3rem;color:var(--apse);}
 .next-text a{color:var(--maroon);}
 
 /* ACTIONS */
 .actions-row{display:flex;gap:1rem;flex-wrap:wrap;margin:2.5rem 0;}
-.action-btn{font-family:var(--f-ui);font-size:.54rem;letter-spacing:.14em;text-transform:uppercase;padding:.75rem 1.4rem;cursor:pointer;border:none;transition:all .2s;white-space:nowrap;}
+.action-btn{font-family:var(--f-ui);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;padding:.75rem 1.4rem;cursor:pointer;border:none;transition:all .2s;white-space:nowrap;}
 .action-btn.primary{background:var(--maroon);color:var(--vellum);}
 .action-btn.primary:hover{background:var(--maroon-deep);}
 .action-btn.secondary{background:none;border:1px solid rgba(123,29,42,.3);color:var(--maroon);}
@@ -821,19 +817,13 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 
   <!-- PROGRESS -->
   <div class="progress-section" id="progress-section">
-    <div class="progress-ring-wrap">
-      <svg width="120" height="120" viewBox="0 0 120 120">
-        <circle class="ring-track" cx="60" cy="60" r="52"/>
-        <circle class="ring-fill" cx="60" cy="60" r="52" id="ring-fill"
-          stroke-dasharray="326.73" stroke-dashoffset="326.73"/>
-      </svg>
-      <div class="ring-label">
-        <span class="ring-pct" id="ring-pct">0%</span>
-        <span class="ring-pct-label">Complete</span>
-      </div>
+    <div class="progress-bar-head">
+      <div class="milestone-text" id="milestone-text">Your journey begins.</div>
+      <div class="progress-sub" id="progress-sub">0 of 11 articles read</div>
     </div>
-    <div class="milestone-text" id="milestone-text">Your journey begins.</div>
-    <div class="progress-sub" id="progress-sub">Start reading to track your progress.</div>
+    <div class="progress-bar-track">
+      <div class="progress-bar-fill" id="progress-bar-fill"></div>
+    </div>
   </div>
 
   <!-- NEXT SUGGESTION -->
@@ -1022,12 +1012,9 @@ function render() {
   var completed = allPages.filter(function(p) { return getPageState(p.key).completed; }).length;
   var pct = total > 0 ? Math.round((completed / total) * 100) : 0;
 
-  // Progress ring
-  var circ = 326.73;
-  var offset = circ - (pct / 100) * circ;
-  document.getElementById('ring-fill').style.strokeDashoffset = offset;
-  document.getElementById('ring-pct').textContent = pct + '%';
-  document.getElementById('progress-sub').textContent = completed + ' of ' + total + ' articles read';
+  // Progress bar
+  document.getElementById('progress-bar-fill').style.width = pct + '%';
+  document.getElementById('progress-sub').textContent = pct + '% · ' + completed + ' of ' + total + ' articles read';
 
   // Milestone
   var milestones = MANIFEST.milestones || [];
