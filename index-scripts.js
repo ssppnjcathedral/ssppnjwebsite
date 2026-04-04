@@ -427,7 +427,15 @@ async function initParishEvents() {
 var _origInit = init;
 init = async function() {
   var today = new Date();
+  var sunday = getNextSunday();
   document.getElementById('cbar-date').textContent = displayDate(today);
+  /* Sunday panel */
+  var sundayData = await loadFromLocalCal(sunday);
+  if(sundayData){
+    renderSunday(sundayData, sunday);
+  } else {
+    document.querySelector('.this-sunday').style.display='block';document.getElementById('sunday-panel').innerHTML='<p class="ts-loading">Liturgical data temporarily unavailable.</p>';
+  }
   await initParishEvents();
   /* Calendar already fetched for Sunday's year — also fetch today's if different */
   var cal2 = await getCalendar(today.getFullYear());
