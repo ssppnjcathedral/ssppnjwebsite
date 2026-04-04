@@ -572,6 +572,21 @@ footer .btn-outline{color:rgba(246,241,232,.92);border-color:rgba(246,241,232,.5
 </style>
 <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <link rel="stylesheet" href="/styles/typography.css">
+
+<style>
+/* ── MY PARISH NAV ── */
+.nav-mega-group{flex:1;justify-content:center}.nav-my-parish{position:relative;margin-right:.35rem}
+.nav-my-parish-btn{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:none;border:1px solid rgba(123,29,42,.35);cursor:pointer;color:#7B1D2A;transition:all .2s;padding:0;flex-shrink:0}
+.nav-my-parish-btn:hover{background:#7B1D2A;color:#F6F1E8;border-color:#7B1D2A}
+.nav-my-parish-panel{position:absolute;top:calc(100% + 6px);right:0;width:230px;background:#F6F1E8;border:1px solid rgba(123,29,42,.15);box-shadow:0 8px 32px rgba(28,20,16,.12);opacity:0;pointer-events:none;transform:translateY(-6px);transition:opacity .18s,transform .18s;z-index:500}
+.nav-my-parish-panel.open{opacity:1;pointer-events:all;transform:translateY(0)}
+.nav-mp-link{display:block;padding:.85rem 1.1rem;border-bottom:1px solid rgba(123,29,42,.07);text-decoration:none;transition:background .15s}
+.nav-mp-link:last-child{border-bottom:none}
+.nav-mp-link:hover{background:rgba(123,29,42,.04)}
+.nav-mp-link-name{font-family:'Cinzel',Georgia,serif;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:#7B1D2A;display:block;margin-bottom:.15rem}
+.nav-mp-link-sub{font-family:'EB Garamond',Georgia,serif;font-style:italic;font-size:.88rem;color:#7A6648;display:block}
+@media(max-width:1100px){.nav-my-parish{display:none}}
+</style>
 </head>
 <body>
 
@@ -776,6 +791,19 @@ footer .btn-outline{color:rgba(246,241,232,.92);border-color:rgba(246,241,232,.5
       </div>
 
     </div>
+    <div class="nav-my-parish" id="nav-my-parish">
+  <button class="nav-my-parish-btn" onclick="toggleMyParish(event)" aria-label="My Parish"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="8" r="3.5"/><path d="M4 20c0-3.5 3.6-6 8-6s8 2.5 8 6"/></svg></button>
+  <div class="nav-my-parish-panel" id="nav-mp-panel">
+    <a href="/my-profile" class="nav-mp-link">
+      <span class="nav-mp-link-name">My Profile</span>
+      <span class="nav-mp-link-sub">Help Fr. Solomon know your family</span>
+    </a>
+    <a href="/my-journey" class="nav-mp-link">
+      <span class="nav-mp-link-name">Explore</span>
+      <span class="nav-mp-link-sub">The ancient Orthodox Faith</span>
+    </a>
+  </div>
+</div>
     <a href="/give" class="nav-give">Give</a>
     <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" onclick="openDrawer()">
       <span></span><span></span><span></span>
@@ -870,7 +898,14 @@ footer .btn-outline{color:rgba(246,241,232,.92);border-color:rgba(246,241,232,.5
     </div>
 
   </div>
-  <a href="https://tithe.ly/give?c=5004259" target="_blank" class="nav-drawer-give">Give Online</a>
+      <div class="dr-section">
+      <div class="dr-section-head" onclick="drToggle(this)"><span class="dr-section-name">My Profile</span><span class="dr-section-toggle">+</span></div>
+      <div class="dr-section-links">
+        <a href="/my-profile" class="dr-link"><span class="dr-link-name">My Profile</span><span class="dr-link-sub">Help Fr. Solomon know your family</span></a>
+        <a href="/my-journey" class="dr-link"><span class="dr-link-name">Explore</span><span class="dr-link-sub">The ancient Orthodox Faith</span></a>
+      </div>
+    </div>
+<a href="https://tithe.ly/give?c=5004259" target="_blank" class="nav-drawer-give">Give Online</a>
 </div>
 <!-- ═══════════════════════════════════════════
      NAV END
@@ -2166,5 +2201,17 @@ document.addEventListener('keydown', function(e){if(e.key==='Escape')closeHubDet
 </div>
 
 <script src="/enhancements.js"></script>
+
+<script>
+function toggleMyParish(e) {
+  e.stopPropagation();
+  var p = document.getElementById('nav-mp-panel');
+  if (p) p.classList.toggle('open');
+}
+document.addEventListener('click', function() {
+  var p = document.getElementById('nav-mp-panel');
+  if (p) p.classList.remove('open');
+});
+</script>
 </body>
 </html>

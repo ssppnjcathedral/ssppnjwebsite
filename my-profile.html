@@ -103,6 +103,15 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 @media(max-width:1100px){.footer-cols{grid-template-columns:1fr 1fr;gap:3rem}}
 @media(max-width:768px){.footer-cols{grid-template-columns:1fr;gap:2.5rem}footer{padding:4rem 1.5rem 2rem}.footer-bottom{flex-direction:column;gap:.75rem;text-align:center}.footer-addr{text-align:center}}
 
+/* ── RESOURCE BAR ── */
+.resource-bar{position:sticky;top:60px;z-index:150;background:var(--maroon);padding:.6rem 3rem;display:flex;align-items:center;gap:2rem;flex-wrap:wrap}
+.resource-bar-label{font-family:var(--f-ui);font-size:.54rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(246,241,232,.5);white-space:nowrap;flex-shrink:0}
+.resource-bar-links{display:flex;gap:0;flex-wrap:wrap;flex:1}
+.resource-bar-link{font-family:var(--f-ui);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,241,232,.92);font-weight:500;padding:.3rem .85rem;transition:color .18s;white-space:nowrap;border-right:1px solid rgba(246,241,232,.18)}
+.resource-bar-link:last-child{border-right:none}
+.resource-bar-link:hover{color:var(--gold-lt)}
+@media(max-width:768px){.resource-bar{padding:.6rem 1.25rem;gap:1rem}.resource-bar-label{display:none}.resource-bar-link{font-size:.54rem;padding:.3rem .6rem}}
+
 /* ── PAGE HERO ── */
 .page-hero{padding-top:60px;background:linear-gradient(to right,rgba(59,15,24,.92) 0%,rgba(59,15,24,.72) 55%,rgba(59,15,24,.38) 100%),url('https://picsum.photos/id/1040/1600/500') center/cover no-repeat;background-color:var(--apse);min-height:260px;display:flex;align-items:center}
 .page-hero-inner{max-width:1100px;margin:0 auto;padding:4rem 2rem 3rem;width:100%}
@@ -114,12 +123,31 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 
 /* ── PROFILE PAGE ── */
 .profile-outer{max-width:780px;margin:0 auto;padding:3rem 2rem 6rem}
-.profile-tabs{display:flex;gap:0;border-bottom:2px solid var(--maroon);margin-bottom:2.5rem}
-.ptab{font-family:var(--f-ui);font-size:.52rem;letter-spacing:.16em;text-transform:uppercase;background:none;border:none;border-bottom:2px solid transparent;margin-bottom:-2px;color:var(--stone);padding:.7rem 1.4rem;cursor:pointer;transition:all .16s}
-.ptab:hover{color:var(--maroon)}
-.ptab.active{color:var(--maroon);border-bottom-color:var(--gold)}
+
+/* Step progress */
+.profile-steps{margin-bottom:2.5rem}
+.step-bar-track{height:3px;background:rgba(123,29,42,.1);border-radius:2px;margin-bottom:1.75rem;overflow:hidden}
+.step-bar-fill{height:100%;background:linear-gradient(to right,var(--gold),rgba(184,131,40,.7));border-radius:2px;transition:width .4s cubic-bezier(.4,0,.2,1)}
+.step-indicators{display:flex;align-items:flex-start;justify-content:space-between;position:relative}
+.step-indicators::before{content:'';position:absolute;top:18px;left:calc(16.66% + 8px);right:calc(16.66% + 8px);height:1px;background:rgba(123,29,42,.15);z-index:0}
+.step-btn{display:flex;flex-direction:column;align-items:center;gap:.5rem;background:none;border:none;cursor:pointer;flex:1;padding:0;position:relative;z-index:1}
+.step-num{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--f-ui);font-size:.52rem;letter-spacing:.06em;border:2px solid rgba(123,29,42,.15);background:var(--vellum);color:var(--stone);transition:all .25s}
+.step-label{font-family:var(--f-ui);font-size:.44rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);transition:color .25s;white-space:nowrap}
+.step-btn.active .step-num{background:var(--maroon);border-color:var(--maroon);color:#fff}
+.step-btn.active .step-label{color:var(--maroon)}
+.step-btn.done .step-num{background:var(--vellum);border-color:var(--maroon);color:var(--maroon)}
+.step-btn.done .step-label{color:var(--stone)}
+
+/* Panel animation */
 .ptab-panel{display:none}
 .ptab-panel.active{display:block}
+@keyframes pfSlideInRight{from{opacity:0;transform:translateX(36px)}to{opacity:1;transform:translateX(0)}}
+@keyframes pfSlideInLeft{from{opacity:0;transform:translateX(-36px)}to{opacity:1;transform:translateX(0)}}
+.ptab-panel.anim-forward{animation:pfSlideInRight .3s cubic-bezier(.25,.46,.45,.94) both}
+.ptab-panel.anim-back{animation:pfSlideInLeft .3s cubic-bezier(.25,.46,.45,.94) both}
+
+/* keep .ptab class alive for JS querySelector calls */
+.ptab{display:none}
 .pf-section-head{font-family:var(--f-ui);font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:var(--maroon);display:block;padding-bottom:.5rem;border-bottom:1px solid rgba(123,29,42,.15);margin-bottom:1.1rem}
 .pf-row{display:grid;gap:1rem;margin-bottom:1rem}
 .pf-row.col-2{grid-template-columns:1fr 1fr}
@@ -151,7 +179,56 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 .pf-submit-btn{font-family:var(--f-ui);font-size:.52rem;letter-spacing:.14em;text-transform:uppercase;background:var(--maroon);color:var(--vellum);border:none;padding:.72rem 1.4rem;cursor:pointer;margin-left:auto;transition:background .18s}
 .pf-submit-btn:hover{background:var(--maroon-deep)}
 .pf-privacy{font-family:var(--f-body);font-style:italic;font-size:.82rem;color:var(--stone);text-align:center;margin-top:1rem;line-height:1.6}
+.pf-photo-upload{border:1px dashed rgba(123,29,42,.3);padding:1.5rem;text-align:center;cursor:pointer;transition:border-color .18s;background:white}
+.pf-photo-upload:hover{border-color:var(--maroon)}
+.pf-photo-thumb{width:90px;height:90px;border-radius:50%;object-fit:cover;border:2px solid rgba(123,29,42,.2);display:block;margin:0 auto .75rem}
+.pf-photo-upload-hint{font-family:var(--f-body);font-style:italic;font-size:.9rem;color:var(--stone)}
+.cert-photo-circle{width:90px;height:90px;border-radius:50%;object-fit:cover;border:2px solid rgba(123,29,42,.2);display:block;margin:0 auto .85rem}
 @media(max-width:680px){.pf-row.col-2,.pf-row.col-3{grid-template-columns:1fr}.profile-outer{padding:2rem 1.25rem 5rem}.profile-tabs{overflow-x:auto;scrollbar-width:none}.profile-tabs::-webkit-scrollbar{display:none}}
+
+/* ── CERTIFICATE VIEW ── */
+.cert-wrap{background:var(--vellum);padding:2rem}
+.cert-frame{border:1px solid rgba(123,29,42,.3);box-shadow:inset 0 0 0 5px var(--vellum),inset 0 0 0 7px rgba(123,29,42,.14);padding:2.5rem 2.75rem 2rem}
+.cert-cross{text-align:center;margin-bottom:1rem}
+.cert-cross svg{width:26px;height:34px;fill:none;stroke:var(--gold);stroke-width:1.5;opacity:.7}
+.cert-header{text-align:center;margin-bottom:1.5rem}
+.cert-parish{font-family:var(--f-ui);font-size:.48rem;letter-spacing:.24em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.6rem}
+.cert-family-name{font-family:var(--f-display);font-weight:300;font-size:2.9rem;color:var(--apse);line-height:1;margin-bottom:.25rem}
+.cert-family-name em{font-style:italic}
+.cert-parents{font-family:var(--f-display);font-size:1.25rem;font-weight:300;color:var(--stone);margin-bottom:.2rem}
+.cert-children{font-family:var(--f-display);font-style:italic;font-size:.95rem;color:var(--stone);opacity:.7;margin-bottom:.7rem}
+.cert-record-label{font-family:var(--f-ui);font-size:.44rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(123,29,42,.4)}
+.cert-divider{display:flex;align-items:center;gap:1rem;margin:1.5rem 0}
+.cert-divider-line{flex:1;height:1px;background:linear-gradient(to right,transparent,rgba(184,131,40,.45),transparent)}
+.cert-divider-diamond{width:6px;height:6px;background:rgba(184,131,40,.45);transform:rotate(45deg);flex-shrink:0}
+.cert-body{display:grid;grid-template-columns:1fr 1fr;gap:0 3rem}
+.cert-section{margin-bottom:1.75rem}
+.cert-section-head{font-family:var(--f-ui);font-size:.44rem;letter-spacing:.22em;text-transform:uppercase;color:var(--maroon);padding-bottom:.3rem;border-bottom:1px solid rgba(123,29,42,.15);margin-bottom:.9rem;display:flex;justify-content:space-between;align-items:center}
+.cert-section-edit{font-family:var(--f-ui);font-size:.38rem;letter-spacing:.1em;text-transform:uppercase;color:var(--stone);background:none;border:none;cursor:pointer;padding:0;transition:color .14s}
+.cert-section-edit:hover{color:var(--maroon)}
+.cert-field{display:grid;grid-template-columns:120px 1fr;gap:.15rem .75rem;padding:.35rem 0;border-bottom:1px solid rgba(123,29,42,.06);align-items:baseline}
+.cert-field:last-child{border-bottom:none}
+.cert-field-label{font-family:var(--f-ui);font-size:.4rem;letter-spacing:.13em;text-transform:uppercase;color:var(--stone)}
+.cert-field-value{font-family:var(--f-display);font-size:1.05rem;color:var(--ink);line-height:1.3}
+.cert-field-value.empty{color:rgba(122,100,72,.3);font-style:italic;font-size:.9rem}
+.cert-field-value.highlight{color:var(--maroon)}
+.cert-badge{display:inline-block;font-family:var(--f-ui);font-size:.38rem;letter-spacing:.12em;text-transform:uppercase;background:var(--maroon);color:var(--vellum);padding:.22rem .65rem}
+.cert-child{padding:.55rem 0;border-bottom:1px solid rgba(123,29,42,.07)}
+.cert-child:last-child{border-bottom:none}
+.cert-child-name{font-family:var(--f-display);font-size:1.05rem;color:var(--apse);font-weight:500;margin-bottom:.3rem}
+.cert-child-age{font-family:var(--f-display);font-size:.9rem;color:var(--stone);font-weight:300;margin-left:.3rem}
+.cert-child-fields{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.2rem .75rem}
+.cert-child-item .cert-field-label{font-size:.36rem}
+.cert-child-item .cert-field-value{font-size:.95rem}
+.cert-footer{margin-top:1.5rem;padding-top:1rem;border-top:1px solid rgba(123,29,42,.1);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem}
+.cert-footer-text{font-family:var(--f-body);font-style:italic;font-size:.85rem;color:var(--stone)}
+.cert-footer-date{font-family:var(--f-ui);font-size:.4rem;letter-spacing:.13em;text-transform:uppercase;color:rgba(122,100,72,.5)}
+.cert-edit-btn{font-family:var(--f-ui);font-size:.42rem;letter-spacing:.13em;text-transform:uppercase;color:var(--stone);background:none;border:1px solid rgba(123,29,42,.2);padding:.3rem .75rem;cursor:pointer;transition:all .18s}
+.cert-edit-btn:hover{color:var(--maroon);border-color:var(--maroon)}
+@media(max-width:680px){.cert-body{grid-template-columns:1fr}.cert-frame{padding:1.75rem 1.25rem 1.5rem}.cert-family-name{font-size:2.1rem}.cert-field{grid-template-columns:1fr;gap:.1rem}.cert-child-fields{grid-template-columns:1fr 1fr}}
+
+/* suppress auth bars — sign-in prompt lives inside the certificate instead */
+#auth-login-prompt, #auth-user-info { display: none !important; }
 
 /* mobile font bumps */
 @media(max-width:768px){body{font-size:18px;line-height:1.8}[class*="-over"],[class*="-cat"],[class*="-sub"],[class*="-label"],[class*="-tag"],[class*="-kicker"],[class*="-lbl"],[class*="-badge"],[class*="-date"],[class*="-meta"]{font-size:.72rem!important;letter-spacing:.12em}[class*="-title"]{line-height:1.2}[class*="hero-title"],[class*="page-title"]{line-height:1.1}.footer-copy,.footer-legal,.footer-bottom{font-size:.72rem}}
@@ -159,6 +236,21 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script src="/supabase-client.js"></script>
 <script src="/auth.js"></script>
+
+<style>
+/* ── MY PARISH NAV ── */
+.nav-mega-group{flex:1;justify-content:center}.nav-my-parish{position:relative;margin-right:.35rem}
+.nav-my-parish-btn{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:none;border:1px solid rgba(123,29,42,.35);cursor:pointer;color:#7B1D2A;transition:all .2s;padding:0;flex-shrink:0}
+.nav-my-parish-btn:hover{background:#7B1D2A;color:#F6F1E8;border-color:#7B1D2A}
+.nav-my-parish-panel{position:absolute;top:calc(100% + 6px);right:0;width:230px;background:#F6F1E8;border:1px solid rgba(123,29,42,.15);box-shadow:0 8px 32px rgba(28,20,16,.12);opacity:0;pointer-events:none;transform:translateY(-6px);transition:opacity .18s,transform .18s;z-index:500}
+.nav-my-parish-panel.open{opacity:1;pointer-events:all;transform:translateY(0)}
+.nav-mp-link{display:block;padding:.85rem 1.1rem;border-bottom:1px solid rgba(123,29,42,.07);text-decoration:none;transition:background .15s}
+.nav-mp-link:last-child{border-bottom:none}
+.nav-mp-link:hover{background:rgba(123,29,42,.04)}
+.nav-mp-link-name{font-family:'Cinzel',Georgia,serif;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:#7B1D2A;display:block;margin-bottom:.15rem}
+.nav-mp-link-sub{font-family:'EB Garamond',Georgia,serif;font-style:italic;font-size:.88rem;color:#7A6648;display:block}
+@media(max-width:1100px){.nav-my-parish{display:none}}
+</style>
 </head>
 <body>
 
@@ -318,6 +410,19 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
       </div>
 
     </div>
+    <div class="nav-my-parish" id="nav-my-parish">
+  <button class="nav-my-parish-btn" onclick="toggleMyParish(event)" aria-label="My Parish"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="8" r="3.5"/><path d="M4 20c0-3.5 3.6-6 8-6s8 2.5 8 6"/></svg></button>
+  <div class="nav-my-parish-panel" id="nav-mp-panel">
+    <a href="/my-profile" class="nav-mp-link">
+      <span class="nav-mp-link-name">My Profile</span>
+      <span class="nav-mp-link-sub">Help Fr. Solomon know your family</span>
+    </a>
+    <a href="/my-journey" class="nav-mp-link">
+      <span class="nav-mp-link-name">Explore</span>
+      <span class="nav-mp-link-sub">The ancient Orthodox Faith</span>
+    </a>
+  </div>
+</div>
     <a href="/give" class="nav-give">Give</a>
     <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" onclick="openDrawer()">
       <span></span><span></span><span></span>
@@ -377,7 +482,14 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
       </div>
     </div>
   </div>
-  <a href="https://tithe.ly/give?c=5004259" target="_blank" class="nav-drawer-give">Give Online</a>
+      <div class="dr-section">
+      <div class="dr-section-head" onclick="drToggle(this)"><span class="dr-section-name">My Profile</span><span class="dr-section-toggle">+</span></div>
+      <div class="dr-section-links">
+        <a href="/my-profile" class="dr-link"><span class="dr-link-name">My Profile</span><span class="dr-link-sub">Help Fr. Solomon know your family</span></a>
+        <a href="/my-journey" class="dr-link"><span class="dr-link-name">Explore</span><span class="dr-link-sub">The ancient Orthodox Faith</span></a>
+      </div>
+    </div>
+<a href="https://tithe.ly/give?c=5004259" target="_blank" class="nav-drawer-give">Give Online</a>
 </div>
 
 <!-- PAGE HERO -->
@@ -389,6 +501,21 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   </div>
 </div>
 
+
+<!-- ── RESOURCE BAR ── -->
+<div class="resource-bar">
+  <span class="resource-bar-label">Worship &amp; Prayer</span>
+  <div class="resource-bar-links">
+    <a href="/divine-liturgy" class="resource-bar-link">Liturgy Book</a>
+    <a href="/vespers-book" class="resource-bar-link">Vespers Book</a>
+    <a href="/prayers" class="resource-bar-link">Prayer Rule</a>
+    <a href="/saints" class="resource-bar-link">Saints Today</a>
+    <a href="/readings" class="resource-bar-link">Daily Readings</a>
+    <a href="/schedule" class="resource-bar-link">Calendar</a>
+    <a href="/bible-study" class="resource-bar-link">Bible Study</a>
+    <a href="/catechesis" class="resource-bar-link">Catechesis</a>
+  </div>
+</div>
 
 <!-- ── AUTH LOGIN PROMPT ── -->
 <div id="auth-login-prompt" style="display:none;background:rgba(246,241,232,.6);border-bottom:1px solid rgba(184,131,40,.2);padding:.9rem 2rem;">
@@ -426,10 +553,27 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 <!-- PROFILE CONTENT -->
 <div class="profile-outer" id="profile-outer">
 
-  <div class="profile-tabs">
-    <button class="ptab active" onclick="switchTab('household',this)">Household</button>
-    <button class="ptab" onclick="switchTab('family',this)">Family</button>
-    <button class="ptab" onclick="switchTab('parish',this)">Parish Life</button>
+  <!-- hidden ptab buttons kept for JS compatibility -->
+  <button class="ptab active" data-tab="household" style="display:none"></button>
+  <button class="ptab" data-tab="family" style="display:none"></button>
+  <button class="ptab" data-tab="parish" style="display:none"></button>
+
+  <div class="profile-steps">
+    <div class="step-bar-track"><div class="step-bar-fill" id="step-bar-fill" style="width:33%"></div></div>
+    <div class="step-indicators">
+      <button class="step-btn active" id="step-btn-0" onclick="switchTab('household',0)">
+        <span class="step-num">1</span>
+        <span class="step-label">Household</span>
+      </button>
+      <button class="step-btn" id="step-btn-1" onclick="switchTab('family',1)">
+        <span class="step-num">2</span>
+        <span class="step-label">Family</span>
+      </button>
+      <button class="step-btn" id="step-btn-2" onclick="switchTab('parish',2)">
+        <span class="step-num">3</span>
+        <span class="step-label">Parish Life</span>
+      </button>
+    </div>
   </div>
 
   <!-- TAB: HOUSEHOLD -->
@@ -457,15 +601,15 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
     </div>
     <div class="pf-row col-3">
       <div class="pf-field"><label class="pf-label">Date of Birth</label><input class="pf-input" type="date" id="pf-dob"></div>
-      <div class="pf-field"><label class="pf-label">Name Day Saint</label><input class="pf-input" type="text" id="pf-nameday-saint" placeholder="St. Nicholas"></div>
+      <div class="pf-field"><label class="pf-label">Patron Saint</label><input class="pf-input" type="text" id="pf-nameday-saint" placeholder="St. Nicholas"></div>
       <div class="pf-field"><label class="pf-label">Name Day Date</label><input class="pf-input" type="text" id="pf-nameday-date" placeholder="Dec 6"></div>
     </div>
 
     <div class="pf-section-head" style="margin-top:2rem">Sacramental</div>
     <div class="pf-row col-3">
-      <div class="pf-field"><label class="pf-label">Date of Baptism</label><input class="pf-input" type="date" id="pf-baptism"></div>
-      <div class="pf-field"><label class="pf-label">Date of Chrismation</label><input class="pf-input" type="date" id="pf-chrismation"></div>
+      <div class="pf-field"><label class="pf-label">Baptism/Chrismation (Orthodox)</label><input class="pf-input" type="date" id="pf-baptism"></div>
       <div class="pf-field"><label class="pf-label">Godparent(s)</label><input class="pf-input" type="text" id="pf-godparents" placeholder="Name(s)"></div>
+      <div class="pf-field"></div>
     </div>
     <div class="pf-row col-1">
       <div class="pf-field">
@@ -478,8 +622,20 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
       </div>
     </div>
 
+    <div class="pf-section-head" style="margin-top:2rem">Family Photo</div>
+    <div class="pf-row col-1">
+      <div class="pf-field">
+        <label class="pf-label">Upload a Photo <span style="font-family:var(--f-body);font-style:italic;text-transform:none;letter-spacing:0;font-size:.85rem;color:var(--stone)">— optional</span></label>
+        <div class="pf-photo-upload" id="pf-photo-area" onclick="document.getElementById('pf-photo-input').click()">
+          <img id="pf-photo-thumb" class="pf-photo-thumb" src="" alt="" style="display:none" onerror="this.style.display='none'">
+          <p class="pf-photo-upload-hint" id="pf-photo-hint">Click to choose a photo</p>
+        </div>
+        <input type="file" id="pf-photo-input" accept="image/*" style="display:none" onchange="handlePhotoSelect(this)">
+      </div>
+    </div>
+
     <div class="pf-tab-actions">
-      <button class="pf-next-btn" onclick="switchTab('family',document.querySelectorAll('.ptab')[1])">Next: Family &rarr;</button>
+      <button class="pf-next-btn" onclick="switchTab('family',1)">Next: Family &rarr;</button>
     </div>
   </div>
 
@@ -494,6 +650,11 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
       <div class="pf-field"><label class="pf-label">Spouse's Date of Birth</label><input class="pf-input" type="date" id="pf-spouse-dob"></div>
       <div class="pf-field"><label class="pf-label">Wedding Anniversary</label><input class="pf-input" type="date" id="pf-anniversary"></div>
     </div>
+    <div class="pf-row col-3">
+      <div class="pf-field"><label class="pf-label">Spouse's Patron Saint</label><input class="pf-input" type="text" id="pf-spouse-patron" placeholder="St. Maria"></div>
+      <div class="pf-field"><label class="pf-label">Spouse's Baptism/Chrismation (Orthodox)</label><input class="pf-input" type="date" id="pf-spouse-baptism"></div>
+      <div class="pf-field"><label class="pf-label">Spouse's Godparent(s) / Sponsor</label><input class="pf-input" type="text" id="pf-spouse-godparent" placeholder="Name(s)"></div>
+    </div>
 
     <div class="pf-section-head" style="margin-top:2rem">Children</div>
     <p class="pf-hint" style="margin-bottom:1rem">Add each child. Include name day information if they are baptized.</p>
@@ -501,8 +662,8 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
     <button class="pf-add-child-btn" onclick="addChild()">+ Add a Child</button>
 
     <div class="pf-tab-actions">
-      <button class="pf-back-btn" onclick="switchTab('household',document.querySelectorAll('.ptab')[0])">&larr; Back</button>
-      <button class="pf-next-btn" onclick="switchTab('parish',document.querySelectorAll('.ptab')[2])">Next: Parish Life &rarr;</button>
+      <button class="pf-back-btn" onclick="switchTab('household',0)">&larr; Back</button>
+      <button class="pf-next-btn" onclick="switchTab('parish',2)">Next: Parish Life &rarr;</button>
     </div>
   </div>
 
@@ -528,8 +689,8 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
     </div>
 
     <div class="pf-tab-actions">
-      <button class="pf-back-btn" onclick="switchTab('family',document.querySelectorAll('.ptab')[1])">&larr; Back</button>
-      <button class="pf-submit-btn" onclick="submitProfile()">Submit to Fr. Solomon &rarr;</button>
+      <button class="pf-back-btn" onclick="switchTab('family',1)">&larr; Back</button>
+      <button class="pf-submit-btn" onclick="submitProfile()">Save &rarr;</button>
     </div>
     <p class="pf-privacy">This information is held in strict pastoral confidence. It is used only to help Fr. Solomon serve your family. You can return and update it at any time.</p>
   </div>
@@ -539,6 +700,10 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
     <div style="font-size:2rem;color:var(--verdigris);margin-bottom:1rem">&#10003;</div>
     <div style="font-family:var(--f-display);font-weight:300;font-size:2rem;color:var(--apse);margin-bottom:.5rem">Thank you.</div>
     <p style="font-family:var(--f-display);font-style:italic;font-size:1.1rem;color:var(--stone);line-height:1.65">Your profile has been saved. Fr. Solomon is glad to know your family better.<br>You may return to update this at any time.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;margin-top:2rem;flex-wrap:wrap;">
+      <a href="/my-profile" style="font-family:var(--f-ui);font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;background:var(--maroon);color:var(--vellum);padding:.8rem 2rem;text-decoration:none;">View My Profile &rarr;</a>
+      <a href="/" style="font-family:var(--f-ui);font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;background:none;border:1px solid rgba(123,29,42,.25);color:var(--stone);padding:.8rem 2rem;text-decoration:none;">Return Home</a>
+    </div>
   </div>
 
 </div>
@@ -633,12 +798,72 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 
 <script>
 var childCount = 0;
+var _photoDataUrl = '';
 
-function switchTab(id, el) {
-  document.querySelectorAll('.ptab-panel').forEach(function(p) { p.classList.remove('active'); });
-  document.querySelectorAll('.ptab').forEach(function(b) { b.classList.remove('active'); });
-  document.getElementById('tab-' + id).classList.add('active');
-  if (el) el.classList.add('active');
+function handlePhotoSelect(input) {
+  var file = input.files[0];
+  if (!file) return;
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    var img = new Image();
+    img.onload = function() {
+      var canvas = document.createElement('canvas');
+      var max = 400;
+      var scale = Math.min(max / img.width, max / img.height, 1);
+      canvas.width = Math.round(img.width * scale);
+      canvas.height = Math.round(img.height * scale);
+      canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
+      _photoDataUrl = canvas.toDataURL('image/jpeg', 0.82);
+      var thumb = document.getElementById('pf-photo-thumb');
+      thumb.src = _photoDataUrl;
+      thumb.style.display = 'block';
+      document.getElementById('pf-photo-hint').textContent = 'Click to change photo';
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+var _tabIdx = 0;
+var _tabIds = ['household', 'family', 'parish'];
+
+function switchTab(id, idxOrEl) {
+  var newIdx = typeof idxOrEl === 'number' ? idxOrEl : _tabIds.indexOf(id);
+  if (newIdx < 0) newIdx = _tabIdx;
+  var dir = newIdx >= _tabIdx ? 'forward' : 'back';
+
+  // Hide all panels, show target with animation
+  document.querySelectorAll('.ptab-panel').forEach(function(p) {
+    p.classList.remove('active', 'anim-forward', 'anim-back');
+  });
+  var panel = document.getElementById('tab-' + id);
+  if (panel) {
+    panel.classList.add('active', 'anim-' + dir);
+    panel.addEventListener('animationend', function h() {
+      panel.classList.remove('anim-forward', 'anim-back');
+      panel.removeEventListener('animationend', h);
+    });
+  }
+
+  // Update step indicators
+  _tabIds.forEach(function(tabId, i) {
+    var btn = document.getElementById('step-btn-' + i);
+    if (!btn) return;
+    btn.classList.remove('active', 'done');
+    if (i === newIdx) btn.classList.add('active');
+    else if (i < newIdx) btn.classList.add('done');
+  });
+
+  // Update progress bar
+  var pct = [33, 67, 100][newIdx] || 33;
+  var fill = document.getElementById('step-bar-fill');
+  if (fill) fill.style.width = pct + '%';
+
+  _tabIdx = newIdx;
+
+  // Scroll to top of form
+  var outer = document.getElementById('profile-outer');
+  if (outer) window.scrollTo({ top: outer.getBoundingClientRect().top + window.pageYOffset - 80, behavior: 'smooth' });
 }
 
 function pfSelectChip(el, groupId) {
@@ -661,13 +886,10 @@ function addChild() {
     '<div class="pf-field"><label class="pf-label">Date of Birth</label><input class="pf-input" type="date" id="child-dob-' + n + '"></div>' +
     '<div class="pf-field"><label class="pf-label">Name Day</label><input class="pf-input" type="text" id="child-nameday-' + n + '" placeholder="St. Sophia &middot; Sep 17"></div>' +
     '</div>' +
-    '<div class="pf-row col-2" style="margin-bottom:1.5rem">' +
-    '<div class="pf-field"><label class="pf-label">Baptized?</label>' +
-    '<div class="pf-chips" id="child-baptized-chips-' + n + '">' +
-    '<div class="pf-chip" data-val="yes" onclick="pfSelectChip(this,\'child-baptized-chips-' + n + '\')">Yes</div>' +
-    '<div class="pf-chip" data-val="no" onclick="pfSelectChip(this,\'child-baptized-chips-' + n + '\')">Not yet</div>' +
-    '</div></div>' +
-    '<div class="pf-field"><label class="pf-label">Date of Baptism</label><input class="pf-input" type="date" id="child-baptism-' + n + '"></div>' +
+    '<div class="pf-row col-3" style="margin-bottom:1.5rem">' +
+    '<div class="pf-field"><label class="pf-label">Patron Saint</label><input class="pf-input" type="text" id="child-patron-' + n + '" placeholder="St. Sophia"></div>' +
+    '<div class="pf-field"><label class="pf-label">Baptism/Chrismation (Orthodox)</label><input class="pf-input" type="date" id="child-baptism-' + n + '"></div>' +
+    '<div class="pf-field"><label class="pf-label">Godparent(s) / Sponsor</label><input class="pf-input" type="text" id="child-godparent-' + n + '" placeholder="Name(s)"></div>' +
     '</div>';
   wrap.appendChild(div);
 }
@@ -691,13 +913,13 @@ async function submitProfile() {
   var children = [];
   for (var i = 1; i <= childCount; i++) {
     if (document.getElementById('child-' + i)) {
-      var baptized = document.querySelector('#child-baptized-chips-' + i + ' .pf-chip.selected');
       children.push({
         name: (document.getElementById('child-name-' + i) || {}).value || '',
         dob: (document.getElementById('child-dob-' + i) || {}).value || '',
         nameDay: (document.getElementById('child-nameday-' + i) || {}).value || '',
-        baptized: baptized ? baptized.dataset.val : '',
-        baptismDate: (document.getElementById('child-baptism-' + i) || {}).value || ''
+        patron: (document.getElementById('child-patron-' + i) || {}).value || '',
+        baptismDate: (document.getElementById('child-baptism-' + i) || {}).value || '',
+        godparent: (document.getElementById('child-godparent-' + i) || {}).value || ''
       });
     }
   }
@@ -712,16 +934,19 @@ async function submitProfile() {
     nameDaySaint: document.getElementById('pf-nameday-saint').value.trim(),
     nameDayDate: document.getElementById('pf-nameday-date').value.trim(),
     baptism: document.getElementById('pf-baptism').value,
-    chrismation: document.getElementById('pf-chrismation').value,
     godparents: document.getElementById('pf-godparents').value.trim(),
     status: status ? status.dataset.val : '',
     spouseName: document.getElementById('pf-spouse-name').value.trim(),
     spouseNameDay: document.getElementById('pf-spouse-nameday').value.trim(),
     spouseDob: document.getElementById('pf-spouse-dob').value,
+    spousePatron: document.getElementById('pf-spouse-patron').value.trim(),
+    spouseBaptism: document.getElementById('pf-spouse-baptism').value,
+    spouseGodparent: document.getElementById('pf-spouse-godparent').value.trim(),
     anniversary: document.getElementById('pf-anniversary').value,
     children: children,
     attending: document.getElementById('pf-attending').value,
     notes: document.getElementById('pf-notes').value.trim(),
+    photoUrl: _photoDataUrl || '',
     submittedAt: new Date().toISOString()
   };
 
@@ -742,16 +967,17 @@ async function submitProfile() {
         nameday_saint: data.nameDaySaint || null,
         nameday_date: data.nameDayDate || null,
         baptism_date: data.baptism || null,
-        chrismation_date: data.chrismation || null,
         godparents: data.godparents || null,
         status: data.status,
         spouse_name: data.spouseName || null,
         spouse_nameday: data.spouseNameDay || null,
         spouse_dob: data.spouseDob || null,
+        spouse_godparent: data.spouseGodparent || null,
         anniversary: data.anniversary || null,
         children: data.children,
         attending: data.attending || null,
         notes: data.notes || null,
+        photo_url: data.photoUrl || null,
         updated_at: new Date().toISOString()
       }, { onConflict: 'user_id' });
       if (result.error) throw result.error;
@@ -762,10 +988,179 @@ async function submitProfile() {
     try { localStorage.setItem('spp_profile', JSON.stringify(data)); } catch(ex) {}
   }
 
+  localStorage.setItem('spp_profile_submitted', '1');
+  renderDocumentView(data, user);
+}
+
+function renderDocumentView(data, user) {
+  var last = data.lastName || '';
+  var first = data.firstName || '';
+  var spouseFirst = data.spouseName ? data.spouseName.split(' ')[0] : '';
+  var parentsLine = spouseFirst ? (first + ' &amp; ' + spouseFirst) : first;
+  var childrenNames = (data.children || []).filter(function(c){return c.name;}).map(function(c) {
+    var firstName = c.name.split(' ')[0];
+    if (!c.dob) return firstName;
+    var born = new Date(c.dob);
+    var now = new Date();
+    var age = now.getFullYear() - born.getFullYear();
+    var m = now.getMonth() - born.getMonth();
+    if (m < 0 || (m === 0 && now.getDate() < born.getDate())) age--;
+    return age >= 0 ? firstName + ', ' + age : firstName;
+  });
+  var childrenLine = childrenNames.join(' &nbsp;&middot;&nbsp; ');
+
+  var statusLabels = {baptized:'Baptized &amp; Chrismated', catechumen:'Catechumen', inquirer:'Inquirer'};
+  var statusLabel = statusLabels[data.status] || data.status || '';
+
+  var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  function fmtDate(d) {
+    if (!d) return '';
+    var p = d.split('-');
+    if (p.length < 3) return d;
+    return months[parseInt(p[1],10)-1] + ' ' + parseInt(p[2],10) + ', ' + p[0];
+  }
+  function docField(label, value, cls) {
+    var empty = !value;
+    var vc = 'doc-field-value' + (empty?' empty':'') + (cls?' '+cls:'');
+    return '<div><span class="doc-field-label">' + label + '</span><div class="' + vc + '">' + (value || 'not entered') + '</div></div>';
+  }
+
+  var today = new Date();
+  var todayStr = months[today.getMonth()] + ' ' + today.getDate() + ', ' + today.getFullYear();
+
+  var crossSvg = '<svg viewBox="0 0 26 34" xmlns="http://www.w3.org/2000/svg"><line x1="13" y1="2" x2="13" y2="32"/><line x1="3" y1="10" x2="23" y2="10"/><line x1="7" y1="16" x2="19" y2="16"/></svg>';
+  var divider = '<div class="cert-divider"><div class="cert-divider-line"></div><div class="cert-divider-diamond"></div><div class="cert-divider-line"></div></div>';
+
+  function cField(label, value, cls) {
+    var vc = 'cert-field-value' + (value ? '' : ' empty') + (cls ? ' ' + cls : '');
+    return '<div class="cert-field"><span class="cert-field-label">' + label + '</span><span class="' + vc + '">' + (value || 'not entered') + '</span></div>';
+  }
+
+  var html = '<div class="cert-wrap"><div class="cert-frame">';
+
+  // Cross + header
+  html += '<div class="cert-cross">' + crossSvg + '</div>';
+  html += '<div class="cert-header">';
+  html += '<span class="cert-parish">Saints Peter &amp; Paul Orthodox Cathedral &middot; Jersey City, NJ</span>';
+  if (data.photoUrl) {
+    html += '<div style="text-align:center;margin:.75rem 0 .65rem"><img src="' + data.photoUrl + '" class="cert-photo-circle" alt="Family photo" onerror="this.style.display=\'none\'"></div>';
+  }
+  html += '<div class="cert-family-name">The <em>' + last + '</em> Family</div>';
+  if (parentsLine) html += '<div class="cert-parents">' + parentsLine + '</div>';
+  if (childrenLine) html += '<div class="cert-children">' + childrenLine + '</div>';
+  html += '<div class="cert-record-label">Parish Record &middot; Household Profile</div>';
+  html += '</div>';
+
+  html += divider;
+
+  // Two-column body
+  html += '<div class="cert-body">';
+
+  // ── LEFT COLUMN: Head of Household + Sacramental + Parish Life
+  html += '<div class="cert-col">';
+
+  html += '<div class="cert-section">';
+  html += '<div class="cert-section-head">Head of Household <button class="cert-section-edit" onclick="editProfile(\'household\')">Edit &rsaquo;</button></div>';
+  html += cField('Full Name', (first + ' ' + last).trim());
+  html += cField('Email', data.email);
+  html += cField('Phone', data.phone);
+  html += cField('Address', data.address);
+  html += cField('Patron Saint', data.nameDaySaint, 'highlight');
+  html += cField('Name Day', data.nameDayDate);
+  html += '</div>';
+
+  html += '<div class="cert-section">';
+  html += '<div class="cert-section-head">Sacramental Record <button class="cert-section-edit" onclick="editProfile(\'household\')">Edit &rsaquo;</button></div>';
+  html += '<div class="cert-field"><span class="cert-field-label">Status</span><span class="cert-field-value">' + (statusLabel ? '<span class="cert-badge">' + statusLabel + '</span>' : '<span class="cert-field-value empty">not entered</span>') + '</span></div>';
+  html += cField('Baptism', fmtDate(data.baptism));
+  html += cField('Godparent(s)', data.godparents);
+  html += '</div>';
+
+  html += '<div class="cert-section">';
+  html += '<div class="cert-section-head">Parish Life <button class="cert-section-edit" onclick="editProfile(\'parish\')">Edit &rsaquo;</button></div>';
+  html += cField('Attending Since', data.attending);
+  html += cField('Pref. Contact', data.contactPref);
+  if (data.notes) html += cField('Notes', data.notes);
+  html += '</div>';
+
+  html += '</div>';
+
+  // ── RIGHT COLUMN: Spouse + Children
+  html += '<div class="cert-col">';
+
+  if (data.spouseName) {
+    html += '<div class="cert-section">';
+    html += '<div class="cert-section-head">Spouse <button class="cert-section-edit" onclick="editProfile(\'family\')">Edit &rsaquo;</button></div>';
+    html += cField('Name', data.spouseName);
+    html += cField('Anniversary', fmtDate(data.anniversary));
+    html += cField('Patron Saint', data.spousePatron, 'highlight');
+    html += cField('Baptism', fmtDate(data.spouseBaptism));
+    html += cField('Godparent(s)', data.spouseGodparent);
+    html += '</div>';
+  }
+
+  if (data.children && data.children.some(function(c){return c.name;})) {
+    html += '<div class="cert-section">';
+    html += '<div class="cert-section-head">Children <button class="cert-section-edit" onclick="editProfile(\'family\')">Edit &rsaquo;</button></div>';
+    data.children.forEach(function(c) {
+      if (!c.name) return;
+      var age = '';
+      if (c.dob) {
+        var born = new Date(c.dob), now2 = new Date();
+        var a = now2.getFullYear() - born.getFullYear();
+        var mo = now2.getMonth() - born.getMonth();
+        if (mo < 0 || (mo === 0 && now2.getDate() < born.getDate())) a--;
+        if (a >= 0) age = a;
+      }
+      html += '<div class="cert-child">';
+      html += '<div class="cert-child-name">' + c.name + (age !== '' ? '<span class="cert-child-age">&middot; ' + age + '</span>' : '') + '</div>';
+      html += '<div class="cert-child-fields">';
+      html += '<div class="cert-child-item"><span class="cert-field-label">Patron Saint</span><span class="cert-field-value' + (c.patron ? ' highlight' : ' empty') + '">' + (c.patron || 'not entered') + '</span></div>';
+      html += '<div class="cert-child-item"><span class="cert-field-label">Baptism</span><span class="cert-field-value' + (c.baptismDate ? '' : ' empty') + '">' + (fmtDate(c.baptismDate) || 'not entered') + '</span></div>';
+      html += '<div class="cert-child-item"><span class="cert-field-label">Godparent(s)</span><span class="cert-field-value' + (c.godparent ? '' : ' empty') + '">' + (c.godparent || 'not entered') + '</span></div>';
+      html += '<div></div>';
+      html += '</div></div>';
+    });
+    html += '</div>';
+  }
+
+  html += '</div>';
+  html += '</div>'; // end cert-body
+
+  html += divider;
+
+  // Footer
+  html += '<div class="cert-footer">';
+  html += '<span class="cert-footer-text">Submitted to Fr. Solomon for parish records.</span>';
+  html += '<button class="cert-edit-btn" onclick="editProfile()">Edit Profile</button>';
+  html += '<span class="cert-footer-date">Saved ' + todayStr + '</span>';
+  html += '</div>';
+
+  // Sign-in prompt (not signed in) or synced note (signed in)
+  if (!user) {
+    html += '<div style="margin-top:1.75rem;padding:1.25rem 1.5rem;border:1px solid rgba(184,131,40,.25);background:rgba(184,131,40,.04);text-align:center;">';
+    html += '<p style="font-family:var(--f-display);font-style:italic;font-size:1rem;color:var(--stone);margin-bottom:.85rem;">Sign in to access this profile from any device.</p>';
+    html += '<div style="display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;">';
+    html += '<input type="email" id="auth-email-input" placeholder="your@email.com" style="padding:.5rem .85rem;border:1px solid rgba(59,15,24,.2);background:white;font-family:var(--f-body);font-size:.95rem;color:var(--ink);outline:none;width:220px;">';
+    html += '<button onclick="authSendLink()" style="font-family:var(--f-ui);font-size:.5rem;letter-spacing:.14em;text-transform:uppercase;background:var(--maroon);color:var(--vellum);border:none;padding:.5rem 1rem;cursor:pointer;white-space:nowrap;">Send Me a Link</button>';
+    html += '</div>';
+    html += '<span id="auth-sent-msg" style="display:none;font-family:var(--f-body);font-style:italic;font-size:.85rem;color:var(--verdigris);margin-top:.6rem;display:block">Check your email for a sign-in link.</span>';
+    html += '</div>';
+  } else {
+    html += '<div style="margin-top:1.25rem;text-align:center;font-family:var(--f-body);font-style:italic;font-size:.85rem;color:var(--stone);">Synced to your account &middot; <button onclick="signOut()" style="background:none;border:none;font-family:var(--f-body);font-style:italic;font-size:.85rem;color:var(--stone);cursor:pointer;text-decoration:underline;">Sign out</button></div>';
+  }
+
+  html += '</div></div>'; // end cert-frame + cert-wrap
+
   var outer = document.getElementById('profile-outer');
-  outer.innerHTML = document.getElementById('pf-confirm').outerHTML;
-  outer.querySelector('#pf-confirm').style.display = 'block';
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  outer.innerHTML = html;
+  window.scrollTo({top: 0, behavior:'smooth'});
+}
+
+function editProfile(tab) {
+  localStorage.removeItem('spp_profile_submitted');
+  if (tab) sessionStorage.setItem('spp_profile_tab', tab);
+  window.location.reload();
 }
 
 
@@ -795,9 +1190,11 @@ document.addEventListener('DOMContentLoaded', function() {
       'pf-first': 'firstName', 'pf-last': 'lastName', 'pf-email': 'email',
       'pf-phone': 'phone', 'pf-address': 'address', 'pf-dob': 'dob',
       'pf-nameday-saint': 'nameDaySaint', 'pf-nameday-date': 'nameDayDate',
-      'pf-baptism': 'baptism', 'pf-chrismation': 'chrismation',
+      'pf-baptism': 'baptism',
       'pf-godparents': 'godparents', 'pf-spouse-name': 'spouseName',
       'pf-spouse-nameday': 'spouseNameDay', 'pf-spouse-dob': 'spouseDob',
+      'pf-spouse-patron': 'spousePatron', 'pf-spouse-baptism': 'spouseBaptism',
+      'pf-spouse-godparent': 'spouseGodparent',
       'pf-anniversary': 'anniversary', 'pf-attending': 'attending',
       'pf-notes': 'notes'
     };
@@ -810,6 +1207,13 @@ document.addEventListener('DOMContentLoaded', function() {
       var chip = document.querySelector('#pf-status-chips [data-val="' + saved.status + '"]');
       if (chip) pfSelectChip(chip, 'pf-status-chips');
     }
+    if (saved.photoUrl) {
+      _photoDataUrl = saved.photoUrl;
+      var thumb = document.getElementById('pf-photo-thumb');
+      thumb.src = saved.photoUrl;
+      thumb.style.display = 'block';
+      document.getElementById('pf-photo-hint').textContent = 'Click to change photo';
+    }
     if (saved.children && saved.children.length) {
       saved.children.forEach(function(child) {
         addChild();
@@ -817,14 +1221,25 @@ document.addEventListener('DOMContentLoaded', function() {
         if (child.name) document.getElementById('child-name-' + n).value = child.name;
         if (child.dob) document.getElementById('child-dob-' + n).value = child.dob;
         if (child.nameDay) document.getElementById('child-nameday-' + n).value = child.nameDay;
+        if (child.patron) document.getElementById('child-patron-' + n).value = child.patron;
         if (child.baptismDate) document.getElementById('child-baptism-' + n).value = child.baptismDate;
-        if (child.baptized) {
-          var bChip = document.querySelector('#child-baptized-chips-' + n + ' [data-val="' + child.baptized + '"]');
-          if (bChip) pfSelectChip(bChip, 'child-baptized-chips-' + n);
-        }
+        if (child.godparent) document.getElementById('child-godparent-' + n).value = child.godparent;
       });
     }
   } catch(e) {}
+
+  if (localStorage.getItem('spp_profile_submitted') === '1' && !sessionStorage.getItem('spp_profile_tab')) {
+    var saved2 = JSON.parse(localStorage.getItem('spp_profile') || 'null');
+    if (saved2) { renderDocumentView(saved2, null); return; }
+  }
+
+  var pendingTab = sessionStorage.getItem('spp_profile_tab');
+  if (pendingTab) {
+    sessionStorage.removeItem('spp_profile_tab');
+    var tabMap = {household: 0, family: 1, parish: 2};
+    var tabIdx = tabMap[pendingTab] !== undefined ? tabMap[pendingTab] : 0;
+    switchTab(pendingTab, tabIdx);
+  }
 });
 </script>
 
@@ -892,6 +1307,18 @@ function drToggle(head) {
     }
   });
 })();
+</script>
+
+<script>
+function toggleMyParish(e) {
+  e.stopPropagation();
+  var p = document.getElementById('nav-mp-panel');
+  if (p) p.classList.toggle('open');
+}
+document.addEventListener('click', function() {
+  var p = document.getElementById('nav-mp-panel');
+  if (p) p.classList.remove('open');
+});
 </script>
 </body>
 </html>

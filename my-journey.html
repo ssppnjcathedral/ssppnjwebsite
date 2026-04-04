@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="light only">
-<title>My Journey &middot; Saints Peter &amp; Paul Orthodox Cathedral</title>
+<title>Explore the Faith &middot; Saints Peter &amp; Paul Orthodox Cathedral</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -483,12 +483,29 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   .journey-outer{padding:2.5rem 1.25rem 5rem;}
   .actions-row{flex-direction:column;}
   .action-btn{text-align:center;}
+  .article-grid{grid-template-columns:1fr;}
+  .rule-grid{grid-template-columns:1fr;}
 }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script src="/supabase-client.js"></script>
 <script src="/auth.js"></script>
 <script src="/companion-sync.js"></script>
+
+<style>
+/* ── MY PARISH NAV ── */
+.nav-mega-group{flex:1;justify-content:center}.nav-my-parish{position:relative;margin-right:.35rem}
+.nav-my-parish-btn{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:none;border:1px solid rgba(123,29,42,.35);cursor:pointer;color:#7B1D2A;transition:all .2s;padding:0;flex-shrink:0}
+.nav-my-parish-btn:hover{background:#7B1D2A;color:#F6F1E8;border-color:#7B1D2A}
+.nav-my-parish-panel{position:absolute;top:calc(100% + 6px);right:0;width:230px;background:#F6F1E8;border:1px solid rgba(123,29,42,.15);box-shadow:0 8px 32px rgba(28,20,16,.12);opacity:0;pointer-events:none;transform:translateY(-6px);transition:opacity .18s,transform .18s;z-index:500}
+.nav-my-parish-panel.open{opacity:1;pointer-events:all;transform:translateY(0)}
+.nav-mp-link{display:block;padding:.85rem 1.1rem;border-bottom:1px solid rgba(123,29,42,.07);text-decoration:none;transition:background .15s}
+.nav-mp-link:last-child{border-bottom:none}
+.nav-mp-link:hover{background:rgba(123,29,42,.04)}
+.nav-mp-link-name{font-family:'Cinzel',Georgia,serif;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:#7B1D2A;display:block;margin-bottom:.15rem}
+.nav-mp-link-sub{font-family:'EB Garamond',Georgia,serif;font-style:italic;font-size:.88rem;color:#7A6648;display:block}
+@media(max-width:1100px){.nav-my-parish{display:none}}
+</style>
 </head>
 <body>
 
@@ -689,6 +706,19 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
       </div>
 
     </div>
+    <div class="nav-my-parish" id="nav-my-parish">
+  <button class="nav-my-parish-btn" onclick="toggleMyParish(event)" aria-label="My Parish"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="8" r="3.5"/><path d="M4 20c0-3.5 3.6-6 8-6s8 2.5 8 6"/></svg></button>
+  <div class="nav-my-parish-panel" id="nav-mp-panel">
+    <a href="/my-profile" class="nav-mp-link">
+      <span class="nav-mp-link-name">My Profile</span>
+      <span class="nav-mp-link-sub">Help Fr. Solomon know your family</span>
+    </a>
+    <a href="/my-journey" class="nav-mp-link">
+      <span class="nav-mp-link-name">Explore</span>
+      <span class="nav-mp-link-sub">The ancient Orthodox Faith</span>
+    </a>
+  </div>
+</div>
     <a href="/give" class="nav-give">Give</a>
     <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" onclick="openDrawer()">
       <span></span><span></span><span></span>
@@ -782,15 +812,22 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
     </div>
 
   </div>
-  <a href="https://tithe.ly/give?c=5004259" target="_blank" class="nav-drawer-give">Give Online</a>
+      <div class="dr-section">
+      <div class="dr-section-head" onclick="drToggle(this)"><span class="dr-section-name">My Profile</span><span class="dr-section-toggle">+</span></div>
+      <div class="dr-section-links">
+        <a href="/my-profile" class="dr-link"><span class="dr-link-name">My Profile</span><span class="dr-link-sub">Help Fr. Solomon know your family</span></a>
+        <a href="/my-journey" class="dr-link"><span class="dr-link-name">Explore</span><span class="dr-link-sub">The ancient Orthodox Faith</span></a>
+      </div>
+    </div>
+<a href="https://tithe.ly/give?c=5004259" target="_blank" class="nav-drawer-give">Give Online</a>
 </div>
 
 <!-- HERO -->
 <div class="page-hero">
   <div class="page-hero-inner">
-    <p class="breadcrumb"><a href="/">Home</a> &middot; My Journey</p>
-    <h1 class="page-title">My <em>Journey</em></h1>
-    <p class="page-sub">Your path through the Faith, at your own pace</p>
+    <p class="breadcrumb"><a href="/">Home</a> &middot; Explore</p>
+    <h1 class="page-title"><em>Explore</em> the Faith</h1>
+    <p class="page-sub">The history, theology, and worship of Orthodox Christianity</p>
   </div>
 </div>
 
@@ -799,7 +836,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 <div id="auth-login-prompt" style="display:none;background:rgba(246,241,232,.6);border-bottom:1px solid rgba(184,131,40,.2);padding:.9rem 2rem;">
   <div style="max-width:900px;margin:0 auto;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;">
     <p style="font-family:var(--f-display);font-style:italic;font-size:1rem;color:var(--stone);flex:1;margin:0">
-      Save your progress across devices. Sign in with your email.
+      Create a profile to save your progress across devices and join our parish newsletter.
     </p>
     <div style="display:flex;gap:.5rem;flex-shrink:0;">
       <input type="email" id="auth-email-input" placeholder="your@email.com"
@@ -834,7 +871,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   <!-- PROGRESS -->
   <div class="progress-section" id="progress-section">
     <div class="progress-bar-head">
-      <div class="milestone-text" id="milestone-text">Your journey begins.</div>
+      <div class="milestone-text" id="milestone-text">Begin exploring.</div>
       <div class="progress-sub" id="progress-sub">0 of 11 articles read</div>
     </div>
     <div class="progress-bar-track">
@@ -868,7 +905,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   <div class="actions-row">
     <button class="action-btn primary" onclick="openSummaryPrint()">Generate My Summary &rarr;</button>
     <button class="action-btn secondary" onclick="emailSummary()">Email to Fr. Solomon</button>
-    <a href="/my-profile" class="action-btn ghost">My Parish Profile &rarr;</a>
+    <a href="/my-profile" class="action-btn ghost">My Profile &rarr;</a>
     <button class="action-btn ghost" onclick="exportBackup()">Export Backup &darr;</button>
     <label class="action-btn ghost" style="cursor:pointer">Import Backup &uarr;<input type="file" accept=".json" onchange="importBackup(event)" style="display:none"></label>
   </div>
@@ -1059,7 +1096,7 @@ function render() {
       var metaClass = isDone ? 'article-grid-meta is-done' : 'article-grid-meta';
       var metaContent = isDone && state.completedAt
         ? formatDate(new Date(state.completedAt))
-        : '<a href="' + page.url + '">Read &rarr;</a>';
+        : '<a href="' + page.url + '" class="article-read-link">Read &rarr;</a>';
       html += '<div class="article-grid-item">';
       html += '<div class="article-check' + (isDone ? ' done' : '') + '">' + (isDone ? '&#10003;' : '') + '</div>';
       html += '<a href="' + page.url + '" class="article-grid-title">' + page.title + '</a>';
@@ -1071,7 +1108,7 @@ function render() {
   });
 
   if (completed === 0) {
-    html = '<div class="empty-state"><div class="empty-state-title">Your journey awaits.</div><div class="empty-state-body">Begin reading any article and mark it complete. Your progress will appear here.</div><a href="/about-orthodoxy" style="font-family:var(--f-ui);font-size:.54rem;letter-spacing:.14em;text-transform:uppercase;padding:.75rem 1.4rem;background:var(--maroon);color:var(--vellum);display:inline-block;">Start with About Orthodoxy &rarr;</a></div>';
+    html = '<div class="empty-state"><div class="empty-state-title">The Faith awaits.</div><div class="empty-state-body">Read any article and mark it complete. Progress will appear here.</div><a href="/about-orthodoxy" style="font-family:var(--f-ui);font-size:.54rem;letter-spacing:.14em;text-transform:uppercase;padding:.75rem 1.4rem;background:var(--maroon);color:var(--vellum);display:inline-block;">Start with About Orthodoxy &rarr;</a></div>';
   }
 
   document.getElementById('article-list').innerHTML = html;
@@ -1213,7 +1250,7 @@ function generateSummary() {
 
   html += '<div class="blessing"><div class="blessing-text">Prepared for conversation with:</div>';
   html += '<div class="sig-line"><div class="sig-line-rule"></div><div class="sig-line-label">Fr. Solomon Longo</div></div></div>';
-  html += '</div></body></html>';
+  html += '</div>\n</body></html>';
 
   var win = window.open('', '_blank');
   win.document.write(html);
