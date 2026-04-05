@@ -217,7 +217,7 @@ function renderParishEvents(events) {
     + '</div>';
 
   panel.innerHTML = '<div class="pe-block">'
-    + '<span class="rubric">At Saints Peter &amp; Paul</span>'
+    + '<span class="rubric">Saints Peter and Paul Orthodox Cathedral</span>'
     + '<div class="rubric-rule"></div>'
     + '<h2 class="pe-headline">Coming Up</h2>'
     + '<span class="pe-sub">Parish services &amp; events</span>'
@@ -382,7 +382,7 @@ async function initParishEvents() {
     var panel = document.getElementById('sunday-panel');
     if (!panel) return;
     panel.innerHTML = '<div class="pe-block">'
-      + '<span class="rubric">At Saints Peter &amp; Paul</span>'
+      + '<span class="rubric">Saints Peter and Paul Orthodox Cathedral</span>'
       + '<div class="rubric-rule"></div>'
       + '<h2 class="pe-headline">Coming Up</h2>'
       + '<span class="pe-sub">Parish services &amp; events</span>'

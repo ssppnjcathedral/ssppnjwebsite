@@ -53,7 +53,7 @@ a{color:inherit;text-decoration:none}
 .nav-hamburger.open span:nth-child(1){transform:translateY(9px) rotate(45deg)}
 .nav-hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
 .nav-hamburger.open span:nth-child(3){transform:translateY(-9px) rotate(-45deg)}
-.nav-drawer{position:fixed;top:0;right:0;width:300px;max-width:85vw;height:100vh;background:var(--apse);z-index:350;transform:translateX(100%);transition:transform .32s cubic-bezier(.4,0,.2,1),visibility 0s .32s;display:flex;flex-direction:column;overflow-y:auto;visibility:hidden}
+.nav-drawer{position:fixed;top:0;right:0;width:300px;max-width:85vw;bottom:0;background:var(--apse);z-index:350;transform:translateX(100%);transition:transform .32s cubic-bezier(.4,0,.2,1),visibility 0s .32s;display:flex;flex-direction:column;overflow-y:auto;visibility:hidden}
 .nav-drawer.open{transform:translateX(0);visibility:visible;transition:transform .32s cubic-bezier(.4,0,.2,1),visibility 0s}
 .nav-drawer-overlay{position:fixed;inset:0;background:rgba(21,8,4,.65);z-index:340;opacity:0;pointer-events:none;transition:opacity .32s}
 .nav-drawer-overlay.open{opacity:1;pointer-events:all}
@@ -114,8 +114,8 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 @media(max-width:768px){.resource-bar{padding:.55rem 1rem;gap:.75rem}.resource-bar-label{display:none}.resource-bar-link{font-size:.52rem;padding:.3rem .55rem}}
 
 /* ── PAGE HERO ── */
-.page-hero{padding-top:60px;background:linear-gradient(to right,rgba(59,15,24,.92) 0%,rgba(59,15,24,.72) 55%,rgba(59,15,24,.38) 100%),url('https://picsum.photos/id/1040/1600/500') center/cover no-repeat;background-color:var(--apse);min-height:260px;display:flex;align-items:center}
-.page-hero-inner{max-width:1100px;margin:0 auto;padding:4rem 2rem 3rem;width:100%}
+.page-hero{padding-top:60px;background:linear-gradient(to right,rgba(59,15,24,.92) 0%,rgba(59,15,24,.72) 55%,rgba(59,15,24,.38) 100%),url('https://picsum.photos/id/1040/1600/500') center/cover no-repeat;background-color:var(--apse);min-height:380px;display:flex;align-items:flex-end;position:relative;overflow:hidden}
+.page-hero-inner{max-width:1380px;margin:0 auto;padding:3rem 4.5rem 3.5rem;width:100%}
 .page-title{font-family:var(--f-display);font-weight:300;font-size:clamp(2.2rem,4vw,3.5rem);line-height:.95;color:#fff;margin:.4rem 0 .4rem}
 .page-title em{font-style:italic}
 .breadcrumb{font-family:var(--f-ui);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:1rem}
@@ -292,6 +292,8 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
               <a href="/administration" class="mega-link">Administration</a><span class="mega-sub">Staff and parish leadership</span>
               <a href="/council" class="mega-link">Parish Council</a><span class="mega-sub">The elected lay leadership</span>
               <a href="/bylaws" class="mega-link">Bylaws</a><span class="mega-sub">Our governing documents</span>
+              <a href="/rectors" class="mega-link">Our Rectors</a>
+              <span class="mega-sub">The priests who have served this parish</span>
             </div>
           </div>
         </div>
@@ -342,7 +344,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
               <span class="mega-col-head">Services</span>
               <a href="/divine-liturgy" class="mega-link">Divine Liturgy</a><span class="mega-sub">Every Sunday &middot; 9:30 AM</span>
               <a href="/vespers" class="mega-link">Great Vespers</a><span class="mega-sub">Every Saturday &middot; 5:00 PM</span>
-              <div class="mega-cta"><a href="/schedule" class="mega-cta-btn">Full Liturgical Calendar &rarr;</a></div>
+              <div class="mega-cta"><a href="/schedule" class="mega-cta-btn">View Full Calendar &rarr;</a></div>
             </div>
             <div class="mega-col">
               <span class="mega-col-head">Daily</span>
@@ -735,6 +737,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
         <li><a href="/administration">Administration</a></li>
         <li><a href="/council">Parish Council</a></li>
         <li><a href="/bylaws">Bylaws</a></li>
+        <li><a href="/rectors">Our Rectors</a></li>
       </ul>
       <span class="footer-nav-sub">Inquirers</span>
       <ul class="footer-nav">

@@ -45,8 +45,8 @@ a{color:inherit;text-decoration:none}
 .nav-give:hover{background:var(--maroon-deep)}
 
 /* PAGE HERO */
-.page-hero{padding-top:60px;background:linear-gradient(to right,rgba(59,15,24,.88) 0%,rgba(59,15,24,.62) 55%,rgba(59,15,24,.38) 100%),url('/images/heroes/our-parish.webp') center/cover no-repeat;background-color:var(--apse);min-height:420px;display:flex;align-items:center;position:relative;overflow:hidden}}
-.page-hero-inner{max-width:1380px;margin:0 auto;padding:5rem 6rem 4rem}
+.page-hero{padding-top:60px;background:linear-gradient(to right,rgba(59,15,24,.88) 0%,rgba(59,15,24,.62) 55%,rgba(59,15,24,.38) 100%),url('https://picsum.photos/id/1048/1600/500') center/cover no-repeat;background-color:var(--apse);min-height:380px;display:flex;align-items:flex-end;position:relative;overflow:hidden}
+.page-hero-inner{max-width:1380px;margin:0 auto;padding:3rem 4.5rem 3.5rem;width:100%}
 
 .page-title{font-family:var(--f-display);font-weight:300;font-size:clamp(2.5rem,5vw,4.5rem);line-height:.95;color:#fff;margin:.5rem 0 .75rem}
 .page-title em{font-style:italic}
@@ -134,8 +134,8 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 .nav-hamburger.open span:nth-child(1){transform:translateY(9px) rotate(45deg)}
 .nav-hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
 .nav-hamburger.open span:nth-child(3){transform:translateY(-9px) rotate(-45deg)}
-.nav-drawer{position:fixed;top:0;right:0;width:300px;max-width:85vw;height:100vh;background:var(--apse);z-index:350;transform:translateX(100%);transition:transform .32s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;overflow-y:auto}
-.nav-drawer.open{transform:translateX(0)}
+.nav-drawer{position:fixed;top:0;right:0;bottom:0;width:300px;max-width:85vw;background:var(--apse);z-index:350;transform:translateX(100%);transition:transform .32s cubic-bezier(.4,0,.2,1),visibility 0s .32s;display:flex;flex-direction:column;overflow-y:auto;visibility:hidden}
+.nav-drawer.open{transform:translateX(0);visibility:visible;transition:transform .32s cubic-bezier(.4,0,.2,1),visibility 0s}
 .nav-drawer-overlay{position:fixed;inset:0;background:rgba(21,8,4,.65);z-index:340;opacity:0;pointer-events:none;transition:opacity .32s}
 .nav-drawer-overlay.open{opacity:1;pointer-events:all}
 .nav-drawer-head{padding:1.5rem 1.75rem 1rem;border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:space-between}
@@ -205,7 +205,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 .nav-hamburger.open span:nth-child(1){transform:translateY(9px) rotate(45deg)}
 .nav-hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
 .nav-hamburger.open span:nth-child(3){transform:translateY(-9px) rotate(-45deg)}
-.nav-drawer{position:fixed;top:0;right:0;width:300px;max-width:85vw;height:100vh;background:var(--apse);z-index:350;transform:translateX(100%);transition:transform .32s cubic-bezier(.4,0,.2,1),visibility 0s .32s;display:flex;flex-direction:column;overflow-y:auto;visibility:hidden}
+.nav-drawer{position:fixed;top:0;right:0;width:300px;max-width:85vw;bottom:0;background:var(--apse);z-index:350;transform:translateX(100%);transition:transform .32s cubic-bezier(.4,0,.2,1),visibility 0s .32s;display:flex;flex-direction:column;overflow-y:auto;visibility:hidden}
 .nav-drawer.open{transform:translateX(0);visibility:visible;transition:transform .32s cubic-bezier(.4,0,.2,1),visibility 0s}
 .nav-drawer-overlay{position:fixed;inset:0;background:rgba(21,8,4,.65);z-index:340;opacity:0;pointer-events:none;transition:opacity .32s}
 .nav-drawer-overlay.open{opacity:1;pointer-events:all}
@@ -265,7 +265,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 /* Compact mode — pages with floating pill nav */
 .jw-bar.jw-compact{left:auto;right:1.25rem;bottom:1.5rem;width:auto;border-radius:100px;padding:.35rem .5rem;gap:.3rem;border:1px solid rgba(184,131,40,.35);box-shadow:0 4px 24px rgba(21,8,4,.5)}
 .jw-bar.jw-compact .jw-label,.jw-bar.jw-compact .jw-spacer,.jw-bar.jw-compact .jw-journey-link{display:none}
-.jw-bar.jw-compact .jw-check-btn{font-size:0;width:30px;height:30px;padding:0;border-radius:50%;display:flex;align-items:center;justify-content:center;border-color:rgba(246,241,232,.2)}
+.jw-bar.jw-compact .jw-check-btn{font-size:0;width:30px;height:30px;padding:0;border-radius:50%;display:flex;align-items:center;justify-content:center;border-color:rgba(246,241,232,.2);position:relative}.jw-bar.jw-compact .jw-check-btn::after{content:'Mark as Read';position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);background:var(--apse);color:rgba(246,241,232,.92);font-family:var(--f-ui);font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;padding:.3rem .65rem;pointer-events:none;opacity:0;transition:opacity .15s;border:1px solid rgba(246,241,232,.12)}.jw-bar.jw-compact .jw-check-btn.jw-done::after{content:'Marked as Read'}.jw-bar.jw-compact .jw-check-btn:hover::after{opacity:1}
 .jw-bar.jw-compact .jw-check-btn::before{content:'\2713';font-size:.8rem;font-family:var(--f-ui);letter-spacing:0}
 .jw-bar.jw-compact .jw-note-toggle{font-size:0;width:28px;height:28px;padding:0;display:flex;align-items:center;justify-content:center}
 .jw-bar.jw-compact .jw-note-toggle::before{content:'\270E';font-size:.82rem}
@@ -299,6 +299,83 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 .nav-mp-link-name{font-family:'Cinzel',Georgia,serif;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:#7B1D2A;display:block;margin-bottom:.15rem}
 .nav-mp-link-sub{font-family:'EB Garamond',Georgia,serif;font-style:italic;font-size:.88rem;color:#7A6648;display:block}
 @media(max-width:1100px){.nav-my-parish{display:none}}
+
+/* ── PARISH LIFE CARDS ── */
+.parish-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.25rem}
+.parish-card{display:flex;flex-direction:column;padding:1.75rem 1.5rem;border:1px solid rgba(123,29,42,.1);background:var(--vellum-mid);text-decoration:none;transition:border-color .3s,box-shadow .3s}
+.parish-card:hover{border-color:rgba(123,29,42,.25);box-shadow:0 4px 20px rgba(21,8,4,.06)}
+.parish-card-title{font-family:var(--f-ui);font-size:.7rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--maroon);margin-bottom:.5rem;display:block}
+.parish-card-body{font-family:var(--f-body);font-size:.9rem;line-height:1.65;color:var(--stone);flex:1}
+.parish-card-arrow{font-family:var(--f-ui);font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-top:1rem;display:block;transition:padding-left .3s}
+.parish-card:hover .parish-card-arrow{padding-left:.3rem}
+@media(max-width:768px){.parish-grid{grid-template-columns:1fr 1fr}.parish-card{padding:1.25rem 1rem}}
+
+/* ── THREE-COLUMN PARISH LAYOUT ── */
+.liturgy-layout{display:grid;grid-template-columns:72px 1fr 300px;max-width:1380px;margin:0 auto;background:var(--vellum);position:relative;min-height:80vh}
+.lit-rail{position:sticky;top:60px;height:calc(100vh - 60px);display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:4rem 0;border-right:var(--rule-faint);z-index:10;opacity:0;transition:opacity .5s}
+.lit-rail.rail-visible{opacity:1}
+.rail-connector{width:1px;background:rgba(123,29,42,.10);flex:1}
+.rail-item{display:flex;flex-direction:column;align-items:center;cursor:pointer;position:relative;padding:.18rem 0}
+.rail-dot-wrap{width:36px;height:32px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+.rail-dot{width:7px;height:7px;border-radius:50%;border:1.5px solid rgba(123,29,42,.28);background:transparent;transition:all .28s cubic-bezier(.22,1,.36,1)}
+.rail-item.rail-active .rail-dot{background:var(--maroon);border-color:var(--maroon);width:9px;height:9px;box-shadow:0 0 0 3px rgba(123,29,42,.12)}
+.rail-num{font-family:var(--f-ui);font-size:.52rem;letter-spacing:.05em;color:rgba(123,29,42,.28);display:block;transition:color .28s;line-height:1}
+.rail-item.rail-active .rail-num{color:var(--maroon)}
+.rail-label{position:absolute;left:calc(100% + 10px);top:50%;transform:translateY(-50%);background:var(--vellum);border:var(--rule-faint);border-left:2px solid var(--maroon);padding:.28rem .7rem;font-family:var(--f-ui);font-size:.58rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--maroon);white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .18s;box-shadow:0 2px 10px rgba(28,20,16,.08)}
+.rail-item:hover .rail-label{opacity:1}
+.lit-main{padding:4.5rem 4rem 7rem 3.5rem}
+.lit-section{padding:4.5rem 0 2.5rem;border-top:var(--rule-faint);position:relative;scroll-margin-top:80px}
+.lit-section:first-child{border-top:none;padding-top:0}
+.lit-sidebar{position:sticky;top:60px;height:calc(100vh - 60px);border-left:var(--rule-faint);background:var(--vellum);overflow:hidden}
+.sidebar-track{height:100%;position:relative;overflow:hidden}
+.sb-panel{position:absolute;inset:0;padding:2.25rem 2rem 2.25rem 2.25rem;opacity:0;transform:translateY(10px);transition:opacity .38s cubic-bezier(.22,1,.36,1),transform .38s cubic-bezier(.22,1,.36,1);pointer-events:none;overflow-y:auto;scrollbar-width:thin;scrollbar-color:rgba(123,29,42,.15) transparent}
+.sb-panel.sb-active{opacity:1;transform:none;pointer-events:all}
+.sb-panel-tag{font-family:var(--f-ui);font-size:.60rem;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.5rem}
+.sb-panel-head{font-family:var(--f-display);font-weight:400;font-size:1.15rem;color:var(--text);line-height:1.25;margin-bottom:.5rem;display:block}
+.sb-rule{height:1px;background:rgba(123,29,42,.10);margin:1.1rem 0}
+.sb-icon{width:100%;max-height:170px;object-fit:cover;object-position:center top;margin-bottom:.8rem;display:block;filter:sepia(.08)}
+.sb-icon-cap{font-family:var(--f-ui);font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone-lt);display:block;margin-bottom:.75rem}
+.sb-body{font-family:var(--f-body);font-size:1.05rem;line-height:1.78;color:var(--ink);opacity:.90}
+.sb-list{list-style:none;margin:.5rem 0}
+.sb-list li{font-family:var(--f-body);font-size:.94rem;color:var(--ink);padding:.35rem 0;border-bottom:var(--rule-hair)}
+.sb-list li:last-child{border-bottom:none}
+.sb-list strong{font-family:var(--f-ui);font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--maroon);display:block}
+.sb-cta{display:block;margin-top:1.1rem;font-family:var(--f-ui);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);border:1px solid rgba(123,29,42,.28);padding:.5rem .9rem;text-align:center;transition:all .2s;text-decoration:none}
+.sb-cta:hover{background:var(--maroon);color:var(--vellum)}
+.mob-pill{display:flex;position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);background:var(--apse);border:1px solid rgba(184,131,40,.20);border-radius:100px;padding:.5rem .85rem;z-index:150;align-items:center;gap:.6rem;box-shadow:0 6px 30px rgba(21,8,4,.38);max-width:calc(100vw - 6rem);opacity:0;transition:opacity .4s;pointer-events:none}
+.mob-pill.pill-visible{opacity:1;pointer-events:all}
+.mob-pill-arrow{background:rgba(255,255,255,.06);border:none;color:rgba(246,241,232,.60);font-size:1.05rem;cursor:pointer;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:all .18s;flex-shrink:0}
+.mob-pill-arrow:hover:not(:disabled){background:rgba(255,255,255,.14);color:#fff}
+.mob-pill-arrow:disabled{opacity:.22;cursor:default}
+.mob-pill-label{font-family:var(--f-ui);font-size:.58rem;letter-spacing:.11em;text-transform:uppercase;color:rgba(246,241,232,.80);padding:.3rem 1rem;display:flex;align-items:center;justify-content:center;gap:.5rem;min-width:150px;white-space:nowrap;cursor:default;transition:color .18s}
+.section-img{width:100%;height:260px;object-fit:cover;display:block;margin:2.5rem 0 .5rem;filter:sepia(.06)}
+.section-img-cap{font-family:var(--f-ui);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:2rem}
+.section-cta{border-left:3px solid var(--gold);padding:1rem 1.25rem;background:rgba(184,131,40,.05);margin:2.5rem 0 0;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap}
+.section-cta-text{font-family:var(--f-body);font-size:.95rem;color:var(--ink);line-height:1.5}
+.section-cta-link{font-family:var(--f-ui);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);white-space:nowrap;border-bottom:1px solid rgba(123,29,42,.28);padding-bottom:.1rem;transition:border-color .2s;flex-shrink:0;text-decoration:none}
+.section-cta-link:hover{border-color:var(--maroon)}
+/* ── SECTION SPLIT: prose left, visual right ── */
+.section-body{display:grid;grid-template-columns:minmax(0,58ch) 1fr;gap:3rem;align-items:start;margin-bottom:2.5rem}
+.section-aside-img{width:100%;min-height:380px;max-height:460px;object-fit:cover;display:block;filter:sepia(.06)}
+/* ── SQUARE CTA CARDS (choir) ── */
+.section-aside-ctas{display:flex;flex-direction:column;gap:.75rem}
+.section-sq-cta{display:flex;flex-direction:column;text-decoration:none;overflow:hidden;transition:opacity .22s}
+.section-sq-cta:hover{opacity:.86}
+.section-sq-dark{background:var(--apse)}
+.section-sq-maroon{background:var(--maroon)}
+.section-sq-thumb{position:relative;overflow:hidden;flex-shrink:0}
+.section-sq-thumb img{width:100%;height:150px;object-fit:cover;display:block;filter:brightness(.62)}
+.section-sq-play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.section-sq-body{padding:1rem 1.15rem 1.15rem}
+.section-sq-label{font-family:var(--f-ui);font-size:.68rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(246,241,232,.90);display:block;margin-bottom:.3rem}
+.section-sq-sub{font-family:var(--f-body);font-size:.92rem;color:rgba(246,241,232,.55);display:block;line-height:1.5}
+.section-sq-arrow{font-family:var(--f-ui);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-lt);display:block;margin-top:.65rem}
+/* ── PHOTO MOSAIC (growing) ── */
+.section-mosaic{display:grid;grid-template-columns:1fr 1fr;gap:.35rem}
+.section-mosaic-img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block;filter:sepia(.05);transition:filter .3s}
+.section-mosaic-img:hover{filter:sepia(0)}
+@media(max-width:1024px){.liturgy-layout{grid-template-columns:1fr}.lit-rail{display:none}.lit-sidebar{display:none}.lit-main{padding:3.5rem 2rem 5rem}.section-body{grid-template-columns:1fr}.section-aside-ctas{flex-direction:row}.section-sq-cta{flex:1}}
+@media(max-width:768px){.btn{width:100%;text-align:center;box-sizing:border-box}.lit-main{padding:2.5rem 1.5rem 5rem}.section-img{height:200px}.stats-row{flex-direction:column}.stat-box{border-right:none;border-bottom:var(--rule-faint)}.section-aside-ctas{flex-direction:column}}
 </style>
 </head>
 <body>
@@ -349,6 +426,8 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
               <span class="mega-sub">The elected lay leadership</span>
               <a href="/bylaws" class="mega-link">Bylaws</a>
               <span class="mega-sub">Our governing documents</span>
+              <a href="/rectors" class="mega-link">Our Rectors</a>
+              <span class="mega-sub">The priests who have served this parish</span>
             </div>
           </div>
         </div>
@@ -418,7 +497,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
               <a href="/schedule" class="mega-link">Feast Day Liturgies</a>
               <span class="mega-sub">As scheduled &middot; 9:00 AM</span>
               <div class="mega-cta">
-                <a href="/schedule" class="mega-cta-btn">Full Liturgical Calendar &rarr;</a>
+                <a href="/schedule" class="mega-cta-btn">View Full Calendar &rarr;</a>
               </div>
             </div>
             <div class="mega-col">
@@ -544,6 +623,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
         <a href="/administration" class="dr-link"><span class="dr-link-name">Administration</span><span class="dr-link-sub">Staff and parish leadership</span></a>
         <a href="/council" class="dr-link"><span class="dr-link-name">Parish Council</span><span class="dr-link-sub">The elected lay leadership</span></a>
         <a href="/bylaws" class="dr-link"><span class="dr-link-name">Bylaws</span><span class="dr-link-sub">Our governing documents</span></a>
+        <a href="/rectors" class="dr-link"><span class="dr-link-name">Our Rectors</span><span class="dr-link-sub">The priests who have served this parish</span></a>
       </div>
     </div>
 
@@ -572,7 +652,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
       <div class="dr-section-links">
         <a href="/divine-liturgy" class="dr-link"><span class="dr-link-name">Divine Liturgy</span><span class="dr-link-sub">Every Sunday, 9:30 AM</span></a>
         <a href="/vespers" class="dr-link"><span class="dr-link-name">Great Vespers</span><span class="dr-link-sub">Every Saturday, 5:00 PM</span></a>
-        <a href="/schedule" class="dr-link"><span class="dr-link-name">Full Liturgical Calendar</span><span class="dr-link-sub">Feasts, fasts, and the Church year</span></a>
+        <a href="/schedule" class="dr-link"><span class="dr-link-name">View Full Calendar</span><span class="dr-link-sub">Feasts, fasts, and the Church year</span></a>
         <a href="/readings" class="dr-link"><span class="dr-link-name">Daily Readings</span><span class="dr-link-sub">Scripture appointed for each day</span></a>
         <a href="/saints" class="dr-link"><span class="dr-link-name">Saints of the Day</span><span class="dr-link-sub">Lives of those commemorated today</span></a>
         <a href="/prologue" class="dr-link"><span class="dr-link-name">The Prologue</span><span class="dr-link-sub">Daily readings from the Prologue of Ohrid</span></a>
@@ -625,128 +705,358 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 
 
 <div class="page-hero">
-  <div class="page-hero-inner" style="padding-left:75px;padding-top:calc(5rem + 5px);padding-bottom:calc(4rem + 20px)">
+  <div class="page-hero-inner">
     <p class="breadcrumb"><a href="/">Home</a> · About Our Church</p>
     <span class="rubric light">About Our Church</span>
     <div class="rubric-rule" style="background:rgba(232,201,122,.6)"></div>
-    <h1 class="page-title">A Parish<br><em>One Hundred &amp; Fifteen Years</em><br>in the Making</h1>
-    <p class="page-subtitle">Founded 1907 · Elevated to Cathedral 2020 · Jersey City, New Jersey</p>
+    <h1 class="page-title">Our Parish</h1>
+    <p class="page-subtitle">A place to belong. A life to share.</p>
   </div>
 </div>
 
 <div class="chapter-bar">
-  <span class="cbar-text bright">Parish History</span>
-  <span class="cbar-text">111–113 Grand Street · Est. 1907</span>
+  <span class="cbar-text bright">Our Parish</span>
+  <span class="cbar-text">109 Grand Street · Jersey City, NJ</span>
 </div>
 
-<div class="page-body">
-  <main class="main-col">
+<div class="liturgy-layout">
 
-    <div class="stats-row">
-      <div class="stat-box"><span class="stat-num">1907</span><span class="stat-label">Parish Founded</span></div>
-      <div class="stat-box"><span class="stat-num">115</span><span class="stat-label">Years in Jersey City</span></div>
-      <div class="stat-box"><span class="stat-num">2020</span><span class="stat-label">Became a Cathedral</span></div>
+  <!-- LEFT DOT RAIL -->
+  <nav class="lit-rail" id="lit-rail" aria-label="Section navigation">
+    <div class="rail-item" data-rail="who-we-are" onclick="jumpTo('who-we-are')">
+      <div class="rail-dot-wrap"><div class="rail-dot"></div><span class="rail-label">Who We Are</span></div>
+      <span class="rail-num">&#10013;</span>
     </div>
-
-    <span class="rubric">Parish History</span>
-    <div class="rubric-rule"></div>
-    <h2 class="section-head">A Rich Heritage</h2>
-
-    <div class="timeline" style="margin-top:2rem">
-
-      <div class="tl-entry">
-        <div class="tl-year">1907</div>
-        <div class="tl-body">The Saints Peter and Paul Parish was established in 1907 by immigrants from the Austro-Hungarian and Russian Empires as a parish of the North American Ecclesiastical Mission under the Holy Synod of the Orthodox Church in Russia. On October 15, 1907.</div>
-      </div>
-
-      <div class="tl-entry">
-        <div class="tl-year">1909</div>
-        <div class="tl-body">The temporary "House Church" at 64 Grand Street became inadequate and negotiations began with the Collegiate Reformed Church of New York City, which held the deed to the vacant First Reformed Church of Jersey City at 111–113 Grand Street. The sale price was $35,000 and the purchase was made February 4, 1909.</div>
-      </div>
-
-      <div class="tl-entry">
-        <div class="tl-year">1920</div>
-        <div class="tl-body">Three bells were purchased for $1,705 in November 1920 from the Meneely &amp; Company of West Troy, N.Y. The bells weighed 1,050 lbs. (A), 550 lbs. (C#) and 350 lbs. (E).</div>
-      </div>
-
-      <div class="tl-entry">
-        <div class="tl-year">1941</div>
-        <div class="tl-body">With the blessing and encouragement of Father Michael Dziama the R (Russian) Club was formed. It had a membership of 130. They retained the highest membership for two consecutive years. The national conventions of 1941 and 1942 gave a special award to the chapter. The chapter held this first place for six consecutive years.</div>
-      </div>
-
-      <div class="tl-entry">
-        <div class="tl-year">1964</div>
-        <div class="tl-body">A section of Graceland Memorial Park at Kenilworth, New Jersey, consisting of 3,264 graves with perpetual care, was purchased for $88,000 on October 14, 1964. The three church bells were electrified for $3,500.</div>
-      </div>
-
-      <div class="tl-entry">
-        <div class="tl-year">1987</div>
-        <div class="tl-body">Mitred Protopresbyter Daniel Hubiak, the former Chancellor of the Orthodox Church in America, was appointed rector of the parish in 1987. He established a charitable ministry collecting clothing and sending these to the Soviet Union.</div>
-      </div>
-
-      <div class="tl-entry">
-        <div class="tl-year">1991</div>
-        <div class="tl-body">Very Rev. Joseph Lickwar was appointed as the parish rector on December 1, 1991. The Parish loaned $175,000 to the Holy Annunciation Church, Brick, NJ for the building of a new church. A new iron fence and gates were erected around the church for $10,000.</div>
-      </div>
-
-      <div class="tl-entry">
-        <div class="tl-year">2000</div>
-        <div class="tl-body">Giving the Past a Future was a six-year restoration project, which included negotiations with the New Jersey Historic Trust for grants to assist in acquiring a historic architect and a historic construction company. The parish was awarded three matching grants totaling $586,736.</div>
-      </div>
-
-      <div class="tl-entry">
-        <div class="tl-year">2010</div>
-        <div class="tl-body">His Eminence, Archbishop Michael, was consecrated bishop of the Diocese of New York and New Jersey on May 8th at our parish with an attendance of 800.</div>
-      </div>
-
-      <div class="tl-entry">
-        <div class="tl-year">2023</div>
-        <div class="tl-body">After 32 years of faithful ministry to Ss. Peter and Paul, Mitred Archpriest Joseph Lickwar retired to Connecticut, and continues his work as Chancellor of the Diocese. Father Solomon Longo was appointed the new rector of our parish in June 2023. Gleb Ivanov has recently begun the duties of Director of Music following decades of faithful service by Aleksei Viktorovich Shipovalnikov.</div>
-      </div>
-
+    <div class="rail-connector"></div>
+    <div class="rail-item" data-rail="roots" onclick="jumpTo('roots')">
+      <div class="rail-dot-wrap"><div class="rail-dot"></div><span class="rail-label">A Place to Put Down Roots</span></div>
+      <span class="rail-num">I</span>
     </div>
-
-    <div style="margin-top:3rem;display:flex;gap:1rem;flex-wrap:wrap">
-      <a href="/contact-us" class="btn btn-maroon" style="margin-right:1rem">Visit Us</a>
-      <a href="/schedule" class="btn btn-outline">This Sunday's Schedule</a>
+    <div class="rail-connector"></div>
+    <div class="rail-item" data-rail="parish-life" onclick="jumpTo('parish-life')">
+      <div class="rail-dot-wrap"><div class="rail-dot"></div><span class="rail-label">The Life of the Parish</span></div>
+      <span class="rail-num">II</span>
     </div>
+    <div class="rail-connector"></div>
+    <div class="rail-item" data-rail="choir" onclick="jumpTo('choir')">
+      <div class="rail-dot-wrap"><div class="rail-dot"></div><span class="rail-label">The Choir</span></div>
+      <span class="rail-num">III</span>
+    </div>
+    <div class="rail-connector"></div>
+    <div class="rail-item" data-rail="growing" onclick="jumpTo('growing')">
+      <div class="rail-dot-wrap"><div class="rail-dot"></div><span class="rail-label">Growing Together</span></div>
+      <span class="rail-num">IV</span>
+    </div>
+    <div class="rail-connector"></div>
+    <div class="rail-item" data-rail="history" onclick="jumpTo('history')">
+      <div class="rail-dot-wrap"><div class="rail-dot"></div><span class="rail-label">Our Story</span></div>
+      <span class="rail-num">V</span>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="lit-main">
+
+    <!-- ─── SECTION 1: WHO WE ARE ─── -->
+    <section class="lit-section" id="who-we-are" data-section="who-we-are">
+      <span class="rubric">Who We Are Today</span>
+      <div class="rubric-rule"></div>
+      <h2 class="section-head">A Living Community</h2>
+
+      <div class="section-body">
+        <div class="prose">
+          <p class="drop-cap">Walk in on a Sunday morning and you will hear it before you see it: the sound of children. There are close to thirty of them now, running through the narthex after Liturgy, sharing food at the coffee hour table, learning the hymns alongside their parents. This parish is full of young families, and that fact, more than anything else, tells you what kind of place it is.</p>
+          <p>The people who call this home come from everywhere. Families from Egypt, Ethiopia, Russia, Ukraine, and Romania worship side by side with American converts who found the ancient Faith and never looked back. You will hear different accents in the narthex and see different backgrounds at the coffee hour table. What holds it together is not a shared ethnicity but a shared life in Christ, and the conviction that this life is meant to be lived together.</p>
+          <p>The parish has nearly tripled in size over the past five years, largely through a wave of Americans encountering Orthodoxy for the first time. People arrive as inquirers, spend months or years learning and attending, and are eventually baptized or chrismated here. Last year, five adults entered the Church in a single service. They are still here. So are their families.</p>
+        </div>
+        <div>
+          <img src="https://picsum.photos/id/1029/800/600" alt="Parish community" class="section-aside-img" onerror="this.style.display='none'">
+          <span class="section-img-cap" style="margin-top:.5rem;display:block">The Orthodox Faith, lived in common</span>
+        </div>
+      </div>
+
+      <div class="section-cta">
+        <span class="section-cta-text">Everyone is welcome at our Sunday Liturgy. Come see what this parish is about.</span>
+        <a href="/visit" class="section-cta-link">Plan Your Visit &rarr;</a>
+      </div>
+    </section>
+
+    <!-- ─── SECTION 2: ROOTS ─── -->
+    <section class="lit-section" id="roots" data-section="roots">
+      <span class="rubric">The Heart of It</span>
+      <div class="rubric-rule"></div>
+      <h2 class="section-head">A Place to Put Down Roots</h2>
+
+      <div class="section-body">
+        <div class="prose">
+          <p>This is not a place you attend on Sundays. You baptize your children here. You watch your kids grow up alongside children they have known since birth. You grieve together when there is loss and celebrate together when there is joy. You eat together after every Liturgy. You clean up the park on a Saturday morning and come back that evening to pray Vespers.</p>
+          <p>The family is at the center of everything here, both your own household and the whole church family. Orthodox Christianity has always understood the Faith as something handed down: from parents to children, from one generation to the next, not through argument but through life shared together. The greatest expression of Christian love is the strengthening of the local community. Not only the people under your own roof, but the people you pray with, eat with, and bury.</p>
+          <p>We hope this is the kind of place where your children's children could be baptized. Not a stop along the way, but a home.</p>
+        </div>
+        <div>
+          <img src="https://picsum.photos/id/1043/800/600" alt="Parish life" class="section-aside-img" onerror="this.style.display='none'">
+          <span class="section-img-cap" style="margin-top:.5rem;display:block">The life of the Church, shared in common</span>
+        </div>
+      </div>
+
+      <div class="section-cta">
+        <span class="section-cta-text">Divine Liturgy every Sunday at 9:30 AM. Coffee hour follows. Come as you are.</span>
+        <a href="/schedule" class="section-cta-link">This Week&rsquo;s Schedule &rarr;</a>
+      </div>
+    </section>
+
+    <!-- ─── SECTION 3: PARISH LIFE CARDS ─── -->
+    <section class="lit-section" id="parish-life" data-section="parish-life">
+      <span class="rubric">Parish Life</span>
+      <div class="rubric-rule"></div>
+      <h2 class="section-head" style="margin-bottom:1.5rem">The Life of the Parish</h2>
+
+      <div class="parish-grid">
+        <a href="/schedule" class="parish-card">
+          <span class="parish-card-title">Worship</span>
+          <p class="parish-card-body">Divine Liturgy every Sunday at 9:30 AM, Great Vespers every Saturday at 5:00 PM. Feast day services throughout the year and the full cycle of Holy Week.</p>
+          <span class="parish-card-arrow">Full Calendar &rarr;</span>
+        </a>
+        <a href="/visit" class="parish-card">
+          <span class="parish-card-title">Family &amp; Children</span>
+          <p class="parish-card-body">Nearly 30 children in the parish, with a children's choir beginning at age 2. Monthly Saturday gatherings for teens. The parish is exploring a children's school, with a longer-term hope for an Orthodox classical education academy.</p>
+          <span class="parish-card-arrow">Plan Your Visit &rarr;</span>
+        </a>
+        <a href="/news" class="parish-card">
+          <span class="parish-card-title">Community</span>
+          <p class="parish-card-body">Coffee hour after every Liturgy, potlucks, a men's group, and a young adults group. Neighborhood clean-ups, food giveaways, the rectory party at Christmas, house blessings in January.</p>
+          <span class="parish-card-arrow">News &amp; Announcements &rarr;</span>
+        </a>
+        <a href="/catechesis" class="parish-card">
+          <span class="parish-card-title">Formation</span>
+          <p class="parish-card-body">Wednesday catechism classes and Bible study, open to all. The journey from inquirer to catechumen to baptism. Five adults were baptized or chrismated in a single service last year.</p>
+          <span class="parish-card-arrow">Catechesis &rarr;</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ─── SECTION 4: THE CHOIR ─── -->
+    <section class="lit-section" id="choir" data-section="choir">
+      <span class="rubric">Music &amp; Worship</span>
+      <div class="rubric-rule"></div>
+      <h2 class="section-head">The Choir</h2>
+
+      <div class="section-body">
+        <div class="prose">
+          <p>We are deeply blessed in our music. Gleb Ivanov, a world-renowned classical pianist, serves as our music director, and the choir he leads includes professional opera singers, a Juilliard-trained classical flutist, Byzantine chant specialists, and other gifted musicians and artists who give their talent to the worship of God every week.</p>
+          <p>We say this with quiet pride and genuine gratitude: Saints Peter and Paul has what is, we dare say, one of the finest Orthodox parish choirs in the diocese. It is not an achievement to boast about. It is a gift we did not earn, and we try to hold it that way. Week after week, these people show up and give their best. The congregation is blessed by it every time they walk through the door.</p>
+        </div>
+        <div class="section-aside-ctas">
+          <a href="/videos" class="section-sq-cta section-sq-dark">
+            <div class="section-sq-thumb">
+              <img src="https://picsum.photos/id/1048/600/300" alt="Watch services" onerror="this.style.display='none'">
+              <div class="section-sq-play">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="19" stroke="rgba(246,241,232,.5)" stroke-width="1.5"/><path d="M16 13l14 7-14 7V13z" fill="rgba(246,241,232,.9)"/></svg>
+              </div>
+            </div>
+            <div class="section-sq-body">
+              <span class="section-sq-label">Watch Services</span>
+              <span class="section-sq-sub">Liturgies streamed live and archived on YouTube</span>
+              <span class="section-sq-arrow">Watch Now &rarr;</span>
+            </div>
+          </a>
+          <a href="/liturgy-book" class="section-sq-cta section-sq-maroon">
+            <div class="section-sq-body">
+              <span class="section-sq-label">Liturgy Book</span>
+              <span class="section-sq-sub">Follow along with the full text of the Divine Liturgy, with rubrics and commentary</span>
+              <span class="section-sq-arrow">Open Book &rarr;</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="section-cta">
+        <span class="section-cta-text">Watch services and parish events on our YouTube channel.</span>
+        <a href="/videos" class="section-cta-link">Watch Videos &rarr;</a>
+      </div>
+    </section>
+
+    <!-- ─── SECTION 5: GROWING TOGETHER ─── -->
+    <section class="lit-section" id="growing" data-section="growing">
+      <span class="rubric">Looking Ahead</span>
+      <div class="rubric-rule"></div>
+      <h2 class="section-head">Growing Together</h2>
+
+      <div class="section-body">
+        <div class="prose">
+          <p>Something is happening here. The wave of Americans finding their way to Orthodoxy is not an accident, and it is not slowing down. People in their twenties and thirties, and sometimes much older, are encountering the ancient Faith and choosing to stay. They come curious and leave convinced. Many of them bring their families. The parish is growing not because we are marketing ourselves but because the Faith is true and people are finding that out.</p>
+          <p>The natural next step, for a community that believes the Faith is handed down through families and children, is to ask what that looks like in practice. We are exploring the possibility of a parish preschool and children's school. Nick Rus is leading the working team, consultants have visited, and Archbishop Michael has expressed his support for the vision. God willing, this becomes something real.</p>
+          <p>Further out, we hope to see an Orthodox classical education academy take shape: a school rooted in the Faith, formed by the tradition, and built for the children who are growing up here. These are hopes, not promises. But they are the natural fruit of a community that takes seriously what it means to raise children in the Church.</p>
+        </div>
+        <div class="section-mosaic">
+          <img src="https://picsum.photos/id/200/400/400" alt="Parish life" class="section-mosaic-img" onerror="this.style.display='none'">
+          <img src="https://picsum.photos/id/203/400/400" alt="Parish life" class="section-mosaic-img" onerror="this.style.display='none'">
+          <img src="https://picsum.photos/id/217/400/400" alt="Parish life" class="section-mosaic-img" onerror="this.style.display='none'">
+          <img src="https://picsum.photos/id/219/400/400" alt="Parish life" class="section-mosaic-img" onerror="this.style.display='none'">
+        </div>
+      </div>
+
+      <div class="section-cta">
+        <span class="section-cta-text">Inquirers are welcome at any service. Wednesday catechism classes are open to all.</span>
+        <a href="/catechesis" class="section-cta-link">Begin the Journey &rarr;</a>
+      </div>
+    </section>
+
+    <!-- ─── SECTION 6: OUR STORY ─── -->
+    <section class="lit-section" id="history" data-section="history">
+      <span class="rubric">A Brief History</span>
+      <div class="rubric-rule"></div>
+      <h2 class="section-head">Our Story</h2>
+
+      <div class="stats-row" style="margin:1.5rem 0 3rem">
+        <div class="stat-box"><span class="stat-num">~30</span><span class="stat-label">Children</span></div>
+        <div class="stat-box"><span class="stat-num">3x</span><span class="stat-label">Growth in 5 Years</span></div>
+        <div class="stat-box"><span class="stat-num">1907</span><span class="stat-label">Parish Founded</span></div>
+        <div class="stat-box"><span class="stat-num">2020</span><span class="stat-label">Became Cathedral</span></div>
+      </div>
+
+      <div class="timeline">
+        <div class="tl-entry major">
+          <div class="tl-year">1907</div>
+          <div class="tl-title">Parish Founded</div>
+          <div class="tl-body">Saints Peter and Paul Parish was established by immigrants from the Austro-Hungarian and Russian Empires, on October 15, 1907.</div>
+        </div>
+        <div class="tl-entry">
+          <div class="tl-year">1909</div>
+          <div class="tl-title">109 Grand Street</div>
+          <div class="tl-body">The parish purchased the former First Reformed Church of Jersey City at 111-113 Grand Street for $35,000, giving the community a permanent home.</div>
+        </div>
+        <div class="tl-entry">
+          <div class="tl-year">2000</div>
+          <div class="tl-title">Restoration</div>
+          <div class="tl-body">A six-year restoration effort, supported by three New Jersey Historic Trust matching grants totaling $586,736, preserved the building for another century.</div>
+        </div>
+        <div class="tl-entry major">
+          <div class="tl-year">2020</div>
+          <div class="tl-title">Elevated to Cathedral</div>
+          <div class="tl-body">The parish was elevated to the Cathedral of the Diocese of New York and New Jersey.</div>
+        </div>
+        <div class="tl-entry">
+          <div class="tl-year">2023</div>
+          <div class="tl-title">Fr. Solomon Appointed Rector</div>
+          <div class="tl-body">Father Solomon Longo was appointed rector in June 2023. Gleb Ivanov began serving as Director of Music.</div>
+        </div>
+      </div>
+
+      <div class="section-cta">
+        <span class="section-cta-text">Read the full story of how this parish came to be, and where it is going.</span>
+        <a href="/church-history" class="section-cta-link">Full Church History &rarr;</a>
+      </div>
+    </section>
 
   </main>
 
-  <aside class="side-col">
-    <div class="side-section">
-      <span class="side-head">Parish Leadership</span>
-      <ul class="side-list">
-        <li><strong>Acting Rector</strong>Rev. Solomon Longo</li>
-        <li><strong>Council President</strong>Marius Anghel</li>
-        <li><strong>Music Director (Interim)</strong>Gleb Ivanov</li>
-      </ul>
-    </div>
-    <div class="side-section">
-      <span class="side-head">Diocese &amp; Church</span>
-      <ul class="side-list">
-        <li><strong>Metropolitan</strong>His Beatitude Tikhon, Archbishop of Washington</li>
-        <li><strong>Archbishop</strong>His Eminence Michael, Archbishop of New York &amp; NJ</li>
-        <li><strong>Diocese</strong><a href="https://nynjoca.org" target="_blank" class="sb-link">nynjoca.org</a></li>
-        <li><strong>Church</strong><a href="https://oca.org" target="_blank" class="sb-link">oca.org</a></li>
-      </ul>
-    </div>
-    <div class="side-section">
-      <span class="side-head">Contact</span>
-      <ul class="side-list">
-        <li><strong>Address</strong>109 Grand Street<br>Jersey City, NJ 07302</li>
-        <li><strong>Phone</strong>(201) 434-1986</li>
-        <li><strong>Email</strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2a59595a5a44406a4d474b434604494547">[email&#160;protected]</a></li>
-      </ul>
-    </div>
-    <div class="side-section">
-      <span class="side-head">More from About Us</span>
-      <a href="/our-beliefs" class="annot-nav-link">Our Beliefs</a>
-      <a href="/administration" class="annot-nav-link">Administration</a>
-      <a href="/gallery" class="annot-nav-link">Gallery</a>
-      <a href="/cemeteries" class="annot-nav-link">Cemeteries</a>
+  <!-- RIGHT STICKY SIDEBAR -->
+  <aside class="lit-sidebar" id="lit-sidebar">
+    <div class="sidebar-track">
+
+      <!-- Panel: Who We Are -->
+      <div class="sb-panel sb-active" data-panel="who-we-are">
+        <img src="https://picsum.photos/id/1053/400/250" alt="Christ Pantocrator, Sinai" class="sb-icon" onerror="this.style.display='none'">
+        <span class="sb-icon-cap">Christ Pantocrator &middot; Sinai, 6th century</span>
+        <span class="sb-panel-tag">Parish Leadership</span>
+        <div class="sb-rule"></div>
+        <ul class="sb-list">
+          <li><strong>Rector</strong>Fr. Solomon Longo</li>
+          <li><strong>Council President</strong>Marius Anghel</li>
+          <li><strong>Music Director</strong>Gleb Ivanov</li>
+        </ul>
+        <div class="sb-rule"></div>
+        <p class="sb-body">Saints Peter and Paul is the Cathedral church of the Diocese of New York and New Jersey, Orthodox Church in America.</p>
+        <a href="/contact-us" class="sb-cta">Contact the Parish &rarr;</a>
+      </div>
+
+      <!-- Panel: Roots -->
+      <div class="sb-panel" data-panel="roots">
+        <img src="https://picsum.photos/id/1039/400/250" alt="Orthodox church interior" class="sb-icon" onerror="this.style.display='none'">
+        <span class="sb-panel-tag">Every Sunday Morning</span>
+        <div class="sb-rule"></div>
+        <span class="sb-panel-head">What to Expect</span>
+        <p class="sb-body">The Divine Liturgy lasts about an hour and a half. Afterward, the entire parish stays for coffee hour. There is always food. Everyone is welcome at the table.</p>
+        <div class="sb-rule"></div>
+        <ul class="sb-list">
+          <li><strong>Great Vespers</strong>Saturdays, 5:00 PM</li>
+          <li><strong>Divine Liturgy</strong>Sundays, 9:30 AM</li>
+          <li><strong>Address</strong>109 Grand Street, Jersey City</li>
+        </ul>
+        <a href="/visit" class="sb-cta">Visitor Guide &rarr;</a>
+      </div>
+
+      <!-- Panel: Parish Life -->
+      <div class="sb-panel" data-panel="parish-life">
+        <img src="https://picsum.photos/id/1015/400/250" alt="Orthodox church interior" class="sb-icon" onerror="this.style.display='none'">
+        <span class="sb-panel-tag">This Week at the Cathedral</span>
+        <div class="sb-rule"></div>
+        <ul class="sb-list">
+          <li><strong>Saturday</strong>Great Vespers &middot; 5:00 PM</li>
+          <li><strong>Sunday</strong>Divine Liturgy &middot; 9:30 AM</li>
+          <li><strong>Wednesday</strong>Catechism Class</li>
+          <li><strong>Weekly</strong>Bible Study</li>
+        </ul>
+        <div class="sb-rule"></div>
+        <p class="sb-body">Feast days, special services, and parish events are posted on the full calendar and in the weekly bulletin.</p>
+        <a href="/schedule" class="sb-cta">Full Calendar &rarr;</a>
+        <a href="/bulletins" class="sb-cta" style="margin-top:.5rem">Parish Bulletins &rarr;</a>
+      </div>
+
+      <!-- Panel: Choir -->
+      <div class="sb-panel" data-panel="choir">
+        <img src="https://picsum.photos/id/1044/400/250" alt="Orthodox iconostasis" class="sb-icon" onerror="this.style.display='none'">
+        <span class="sb-panel-tag">Music Director</span>
+        <div class="sb-rule"></div>
+        <span class="sb-panel-head">Gleb Ivanov</span>
+        <p class="sb-body">A world-renowned classical pianist who has performed at Carnegie Hall and on international stages, Gleb Ivanov brings his full gift to the worship of God at Saints Peter and Paul every week.</p>
+        <div class="sb-rule"></div>
+        <p class="sb-body">Services are streamed live and archived on our YouTube channel.</p>
+        <a href="/videos" class="sb-cta">Watch Services &rarr;</a>
+      </div>
+
+      <!-- Panel: Growing Together -->
+      <div class="sb-panel" data-panel="growing">
+        <img src="https://picsum.photos/id/1076/400/250" alt="Orthodox church" class="sb-icon" onerror="this.style.display='none'">
+        <span class="sb-panel-tag">The Catechetical Journey</span>
+        <div class="sb-rule"></div>
+        <span class="sb-panel-head">From Inquirer to Orthodox Christian</span>
+        <p class="sb-body">The journey into Orthodoxy is not a class you take. It is a life you begin to live. Inquirers are welcome at every service. Wednesday catechism classes are open to anyone who wants to learn.</p>
+        <div class="sb-rule"></div>
+        <p class="sb-body">Fr. Solomon is glad to meet with anyone who is curious about the Faith.</p>
+        <a href="/catechesis" class="sb-cta">Learn About Catechesis &rarr;</a>
+        <a href="/contact-us" class="sb-cta" style="margin-top:.5rem">Contact Fr. Solomon &rarr;</a>
+      </div>
+
+      <!-- Panel: History -->
+      <div class="sb-panel" data-panel="history">
+        <img src="https://picsum.photos/id/815/400/250" alt="Orthodox cathedral" class="sb-icon" onerror="this.style.display='none'">
+        <span class="sb-panel-tag">117 Years in Jersey City</span>
+        <div class="sb-rule"></div>
+        <span class="sb-panel-head">Diocese &amp; Church</span>
+        <ul class="sb-list">
+          <li><strong>Metropolitan</strong>His Beatitude Tikhon, Archbishop of Washington</li>
+          <li><strong>Archbishop</strong>His Eminence Michael, Archbishop of New York &amp; NJ</li>
+          <li><strong>Diocese</strong><a href="https://nynjoca.org" target="_blank" style="color:var(--maroon);border-bottom:1px solid rgba(123,29,42,.28)">nynjoca.org</a></li>
+          <li><strong>Church</strong><a href="https://oca.org" target="_blank" style="color:var(--maroon);border-bottom:1px solid rgba(123,29,42,.28)">oca.org</a></li>
+        </ul>
+        <a href="/church-history" class="sb-cta">Full Parish History &rarr;</a>
+        <a href="/rectors" class="sb-cta" style="margin-top:.5rem">Our Rectors &rarr;</a>
+      </div>
+
     </div>
   </aside>
+
+</div>
+
+<!-- FLOATING PILL NAV -->
+<div class="mob-pill" id="mob-pill">
+  <button class="mob-pill-arrow" id="pill-prev" onclick="parishNav(-1)" aria-label="Previous section" disabled>&#8592;</button>
+  <div class="mob-pill-label" id="pill-label">
+    <span id="pill-label-text">Who We Are</span>
+  </div>
+  <button class="mob-pill-arrow" id="pill-next" onclick="parishNav(1)" aria-label="Next section">&#8594;</button>
 </div>
 
 
@@ -789,6 +1099,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
         <li><a href="/administration">Administration</a></li>
         <li><a href="/council">Parish Council</a></li>
         <li><a href="/bylaws">Bylaws</a></li>
+        <li><a href="/rectors">Our Rectors</a></li>
       </ul>
       <span class="footer-nav-sub">Inquirers</span>
       <ul class="footer-nav">
@@ -859,6 +1170,76 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 <!-- ═══════════════════════════════════════════
      FOOTER END
      ═══════════════════════════════════════════ -->
+
+<!-- Section Navigation JS -->
+<script>
+/* ── SECTION REGISTRY — OUR PARISH ── */
+var SECS=[
+  {id:'who-we-are', label:'Who We Are',            panel:'who-we-are'},
+  {id:'roots',      label:'A Place to Put Down Roots', panel:'roots'},
+  {id:'parish-life',label:'The Life of the Parish',panel:'parish-life'},
+  {id:'choir',      label:'The Choir',             panel:'choir'},
+  {id:'growing',    label:'Growing Together',      panel:'growing'},
+  {id:'history',    label:'Our Story',             panel:'history'}
+];
+var activeIdx=0;
+
+function jumpTo(id){
+  var el=document.getElementById(id);
+  if(!el) return;
+  window.scrollTo({top:el.getBoundingClientRect().top+window.pageYOffset-80,behavior:'smooth'});
+}
+
+function activateSection(idx){
+  if(idx<0||idx>=SECS.length) return;
+  activeIdx=idx;
+  var s=SECS[idx];
+  document.querySelectorAll('.rail-item').forEach(function(el){el.classList.remove('rail-active');});
+  var ri=document.querySelector('.rail-item[data-rail="'+s.id+'"]');
+  if(ri) ri.classList.add('rail-active');
+  document.querySelectorAll('.sb-panel').forEach(function(el){el.classList.remove('sb-active');});
+  var sp=document.querySelector('.sb-panel[data-panel="'+s.panel+'"]');
+  if(sp) sp.classList.add('sb-active');
+  var lbl=document.getElementById('pill-label-text');
+  if(lbl) lbl.textContent=s.label;
+  var prev=document.getElementById('pill-prev');
+  var next=document.getElementById('pill-next');
+  if(prev) prev.disabled=(idx===0);
+  if(next) next.disabled=(idx===SECS.length-1);
+}
+
+var sectionObserver=new IntersectionObserver(function(entries){
+  entries.forEach(function(entry){
+    if(!entry.isIntersecting) return;
+    var sid=entry.target.dataset.section||entry.target.id;
+    var idx=SECS.findIndex(function(s){return s.id===sid;});
+    if(idx>-1) activateSection(idx);
+  });
+},{threshold:0.25,rootMargin:'-70px 0px -30% 0px'});
+
+SECS.forEach(function(s){
+  var el=document.getElementById(s.id);
+  if(el) sectionObserver.observe(el);
+});
+
+window.addEventListener('scroll',function(){
+  var y=window.pageYOffset;
+  var rail=document.getElementById('lit-rail');
+  var pill=document.getElementById('mob-pill');
+  if(y>280){
+    if(rail) rail.classList.add('rail-visible');
+    if(pill) pill.classList.add('pill-visible');
+  }
+},{passive:true});
+
+function parishNav(dir){
+  var ni=activeIdx+dir;
+  if(ni<0||ni>=SECS.length) return;
+  jumpTo(SECS[ni].id);
+}
+
+activateSection(0);
+</script>
 
 <!-- Hero Image Rotator -->
 <script>
@@ -1238,10 +1619,8 @@ function drToggle(head){
 
   document.addEventListener('DOMContentLoaded', function() {
     jwInit();
-    if (document.querySelector('.nav-pill, .mob-pill')) {
-      var b = document.getElementById('jw-bar');
-      if (b) b.classList.add('jw-compact');
-    }
+    var b = document.getElementById('jw-bar');
+    if (b) b.classList.add('jw-compact');
     var textarea = document.getElementById('jw-textarea');
     if (textarea) {
       textarea.addEventListener('blur', function() {

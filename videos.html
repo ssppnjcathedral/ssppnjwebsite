@@ -29,8 +29,8 @@
 .nav-give:hover{background:var(--maroon-deep)}
 
 /* PAGE HERO */
-.page-hero{padding-top:60px;background:linear-gradient(to right,rgba(21,8,4,.90) 0%,rgba(21,8,4,.68) 55%,rgba(21,8,4,.42) 100%),url('/images/heroes/videos.webp') center/cover no-repeat;background-color:var(--apse);min-height:420px;display:flex;align-items:center;position:relative;overflow:hidden}}
-.page-hero-inner{max-width:1380px;margin:0 auto;padding:5rem 6rem 4rem}
+.page-hero{padding-top:60px;background:linear-gradient(to right,rgba(21,8,4,.90) 0%,rgba(21,8,4,.68) 55%,rgba(21,8,4,.42) 100%),url('https://picsum.photos/id/1056/1600/500') center/cover no-repeat;background-color:var(--apse);min-height:380px;display:flex;align-items:flex-end;position:relative;overflow:hidden}
+.page-hero-inner{max-width:1380px;margin:0 auto;padding:3rem 4.5rem 3.5rem;width:100%}
 
 .page-title{font-family:var(--f-display);font-weight:300;font-size:clamp(2.5rem,5vw,4.5rem);line-height:.95;color:#fff;margin:.5rem 0 .75rem}
 .page-title em{font-style:italic}
@@ -146,8 +146,8 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 .nav-hamburger.open span:nth-child(1){transform:translateY(9px) rotate(45deg)}
 .nav-hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
 .nav-hamburger.open span:nth-child(3){transform:translateY(-9px) rotate(-45deg)}
-.nav-drawer{position:fixed;top:0;right:0;width:300px;max-width:85vw;height:100vh;background:var(--apse);z-index:350;transform:translateX(100%);transition:transform .32s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;overflow-y:auto}
-.nav-drawer.open{transform:translateX(0)}
+.nav-drawer{position:fixed;top:0;right:0;bottom:0;width:300px;max-width:85vw;background:var(--apse);z-index:350;transform:translateX(100%);transition:transform .32s cubic-bezier(.4,0,.2,1),visibility 0s .32s;display:flex;flex-direction:column;overflow-y:auto;visibility:hidden}
+.nav-drawer.open{transform:translateX(0);visibility:visible;transition:transform .32s cubic-bezier(.4,0,.2,1),visibility 0s}
 .nav-drawer-overlay{position:fixed;inset:0;background:rgba(21,8,4,.65);z-index:340;opacity:0;pointer-events:none;transition:opacity .32s}
 .nav-drawer-overlay.open{opacity:1;pointer-events:all}
 .nav-drawer-head{padding:1.5rem 1.75rem 1rem;border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:space-between}
@@ -217,7 +217,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 .nav-hamburger.open span:nth-child(1){transform:translateY(9px) rotate(45deg)}
 .nav-hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
 .nav-hamburger.open span:nth-child(3){transform:translateY(-9px) rotate(-45deg)}
-.nav-drawer{position:fixed;top:0;right:0;width:300px;max-width:85vw;height:100vh;background:var(--apse);z-index:350;transform:translateX(100%);transition:transform .32s cubic-bezier(.4,0,.2,1),visibility 0s .32s;display:flex;flex-direction:column;overflow-y:auto;visibility:hidden}
+.nav-drawer{position:fixed;top:0;right:0;width:300px;max-width:85vw;bottom:0;background:var(--apse);z-index:350;transform:translateX(100%);transition:transform .32s cubic-bezier(.4,0,.2,1),visibility 0s .32s;display:flex;flex-direction:column;overflow-y:auto;visibility:hidden}
 .nav-drawer.open{transform:translateX(0);visibility:visible;transition:transform .32s cubic-bezier(.4,0,.2,1),visibility 0s}
 .nav-drawer-overlay{position:fixed;inset:0;background:rgba(21,8,4,.65);z-index:340;opacity:0;pointer-events:none;transition:opacity .32s}
 .nav-drawer-overlay.open{opacity:1;pointer-events:all}
@@ -313,6 +313,8 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
               <span class="mega-sub">The elected lay leadership</span>
               <a href="/bylaws" class="mega-link">Bylaws</a>
               <span class="mega-sub">Our governing documents</span>
+              <a href="/rectors" class="mega-link">Our Rectors</a>
+              <span class="mega-sub">The priests who have served this parish</span>
             </div>
           </div>
         </div>
@@ -382,7 +384,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
               <a href="/schedule" class="mega-link">Feast Day Liturgies</a>
               <span class="mega-sub">As scheduled &middot; 9:00 AM</span>
               <div class="mega-cta">
-                <a href="/schedule" class="mega-cta-btn">Full Liturgical Calendar &rarr;</a>
+                <a href="/schedule" class="mega-cta-btn">View Full Calendar &rarr;</a>
               </div>
             </div>
             <div class="mega-col">
@@ -508,6 +510,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
         <a href="/administration" class="dr-link"><span class="dr-link-name">Administration</span><span class="dr-link-sub">Staff and parish leadership</span></a>
         <a href="/council" class="dr-link"><span class="dr-link-name">Parish Council</span><span class="dr-link-sub">The elected lay leadership</span></a>
         <a href="/bylaws" class="dr-link"><span class="dr-link-name">Bylaws</span><span class="dr-link-sub">Our governing documents</span></a>
+        <a href="/rectors" class="dr-link"><span class="dr-link-name">Our Rectors</span><span class="dr-link-sub">The priests who have served this parish</span></a>
       </div>
     </div>
 
@@ -536,7 +539,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
       <div class="dr-section-links">
         <a href="/divine-liturgy" class="dr-link"><span class="dr-link-name">Divine Liturgy</span><span class="dr-link-sub">Every Sunday, 9:30 AM</span></a>
         <a href="/vespers" class="dr-link"><span class="dr-link-name">Great Vespers</span><span class="dr-link-sub">Every Saturday, 5:00 PM</span></a>
-        <a href="/schedule" class="dr-link"><span class="dr-link-name">Full Liturgical Calendar</span><span class="dr-link-sub">Feasts, fasts, and the Church year</span></a>
+        <a href="/schedule" class="dr-link"><span class="dr-link-name">View Full Calendar</span><span class="dr-link-sub">Feasts, fasts, and the Church year</span></a>
         <a href="/readings" class="dr-link"><span class="dr-link-name">Daily Readings</span><span class="dr-link-sub">Scripture appointed for each day</span></a>
         <a href="/saints" class="dr-link"><span class="dr-link-name">Saints of the Day</span><span class="dr-link-sub">Lives of those commemorated today</span></a>
         <a href="/prologue" class="dr-link"><span class="dr-link-name">The Prologue</span><span class="dr-link-sub">Daily readings from the Prologue of Ohrid</span></a>
@@ -589,7 +592,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 
 
 <div class="page-hero">
-  <div class="page-hero-inner" style="padding-left:75px;padding-top:calc(5rem + 5px);padding-bottom:calc(4rem + 20px)">
+  <div class="page-hero-inner">
     <p class="breadcrumb"><a href="/">Home</a> · Videos</p>
     <span class="rubric light">Video Library</span>
     <div class="rubric-rule" style="background:rgba(232,201,122,.6)"></div>
@@ -865,6 +868,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
         <li><a href="/administration">Administration</a></li>
         <li><a href="/council">Parish Council</a></li>
         <li><a href="/bylaws">Bylaws</a></li>
+        <li><a href="/rectors">Our Rectors</a></li>
       </ul>
       <span class="footer-nav-sub">Inquirers</span>
       <ul class="footer-nav">
