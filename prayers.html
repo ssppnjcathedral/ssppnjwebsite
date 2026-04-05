@@ -1191,7 +1191,7 @@ function renderPrayers(){
       subMap[p.sub].push(p);
     });
 
-    html += `<section class="pcat${catIdx===0?' open':''}" id="cat-${cat.id}">
+    html += `<section class="pcat" id="cat-${cat.id}">
       <button class="pcat-hd" onclick="toggleCat('${cat.id}')">
         <div class="pcat-hd-left">
           <div class="pcat-icon">${cat.icon}</div>
