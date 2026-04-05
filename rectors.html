@@ -272,26 +272,59 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   .lit-rail{display:none}
   .rp-body-wrap{grid-template-columns:1fr}
   .rect-grid,.rect-grid.saint-grid{grid-template-columns:1fr}
-  .rect-portrait-col{flex-direction:row;align-items:flex-start;position:static;margin-bottom:1.5rem}
-  .rect-portrait{width:120px;height:150px}
+  .rect-portrait-col{flex-direction:row;align-items:flex-start;position:static;margin-bottom:1.5rem;gap:1.25rem}
+  .rect-portrait{width:110px;height:138px}
   .rect-portrait-wrap.saint::before{inset:-4px}
-  .rectors-body{padding:0 1.5rem 4rem}
-  .rectors-timeline::before{left:-1rem}
-  .rect-quote{padding:2.5rem 1.5rem;margin:0 -1.5rem}
+  .rectors-body{padding:0 1.25rem 4rem}
+  .rectors-timeline::before{display:none}
+  .rect-section{padding:3rem 0}
+  .rect-quote{padding:2rem 1.5rem;margin:0 -1.25rem}
+  .rect-quote-inner{padding-left:1.25rem}
   .rh-hero-inner{padding:4rem 1.5rem 3rem}
   .rh-stats{gap:1.5rem}
   .rh-stat-num{font-size:2rem}
-  .rect-section.is-current{margin:0 -1.5rem;padding:4.5rem 1.5rem}
+  .rect-section.is-current{margin:0 -1.25rem;padding:3rem 1.25rem}
   .interim-grid{grid-template-columns:1fr}
+  .rect-legacy{padding:.85rem 1rem}
+  .source-list li{font-size:.85rem;padding:.35rem 0}
 }
 @media(max-width:600px){
-  .rect-portrait-col{flex-direction:column}
+  .rect-portrait-col{flex-direction:column;align-items:center;width:100%;margin-bottom:1.75rem}
+  .rect-portrait{width:min(88vw,380px);height:auto;aspect-ratio:4/5}
+  .rect-portrait-wrap{display:flex;flex-direction:column;align-items:center}
+  .rect-portrait-wrap.saint::before{inset:-4px}
+  .rect-badge,.rect-years-badge{text-align:center}
   .footer-cols{grid-template-columns:1fr;gap:2rem}
   footer{padding:3rem 1.5rem 1.5rem}
   .footer-bottom{flex-direction:column;gap:.75rem;text-align:center}
   .footer-addr{text-align:center}
   .rh-stats{flex-wrap:wrap;gap:1.25rem}
-  .rp-strip-inner{padding:0 1rem}
+  .rh-stat-num{font-size:1.75rem}
+  .rp-strip-inner{padding:.6rem 1rem 0;height:118px}
+  .rp-portrait{width:46px;height:62px}
+  .rp-btn{padding:.45rem .55rem .3rem}
+  .rp-name{font-size:.5rem;letter-spacing:.08em}
+  .rp-years{font-size:.55rem}
+  .rect-bio p.drop-cap::first-letter{font-size:2.8rem}
+  .rect-name{font-size:clamp(1.5rem,7vw,2rem)}
+}
+@media(max-width:480px){
+  .rectors-body{padding:0 1rem 3rem}
+  .rect-section{padding:2.5rem 0}
+  .rect-section.is-current{margin:0 -1rem;padding:2.5rem 1rem}
+  .rect-quote{margin:0 -1rem;padding:1.75rem 1rem}
+  .rp-strip-inner{height:106px;padding:.5rem .75rem 0}
+  .rp-portrait{width:38px;height:52px}
+  .rp-btn{padding:.35rem .45rem .25rem}
+  .rp-name{display:none}
+  .rp-years{font-size:.52rem;letter-spacing:.04em}
+  .rh-hero-inner{padding:3rem 1rem 2.5rem}
+  .rh-stat-num{font-size:1.5rem}
+  .rh-stat-label{font-size:.58rem}
+  .rect-bio{font-size:.97rem}
+  .rect-bio p.drop-cap::first-letter{font-size:2.4rem}
+  .source-list li{font-size:.82rem}
+  .interim-body{font-size:.93rem}
 }
 </style>
 <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
@@ -368,7 +401,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
     <span class="rubric light">1907 &middot; Present</span>
     <div class="rubric-rule" style="background:rgba(232,201,122,.5)"></div>
     <h1 class="rh-title">Pastors of<br><strong>Grand Street</strong></h1>
-    <p class="rh-sub">Ten men have served as rector of Saints Peter and Paul in Jersey City across one hundred and seventeen years. The first was shot by the Bolsheviks and is now a canonized saint. The second became the Primate of all Orthodox Christianity in North America. The eleventh is with us still.</p>
+    <p class="rh-sub">Ten men have served as rector of Saints Peter and Paul in Jersey City across one hundred and seventeen years. The first was martyred by the Bolsheviks during the Russian Revolution and canonized a New Martyr of the Faith. The second became the Primate of all Orthodox Christianity in North America. The eleventh is with us still.</p>
     <div class="rh-stats">
       <div><span class="rh-stat-num">1907</span><span class="rh-stat-label">Year Founded</span></div>
       <div><span class="rh-stat-num">11</span><span class="rh-stat-label">Rectors</span></div>
@@ -520,9 +553,9 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
           <div class="rect-portrait-wrap saint">
             <img src="/Images/rectors/hotovitzky.jpg" alt="Saint Alexander Hotovitzky" class="rect-portrait" onerror="this.style.display='none'">
           </div>
+          <span class="rect-years-badge">1907–1908</span>
           <span class="rect-badge saint-badge">Glorified Saint</span>
           <span class="rect-badge reposed-badge" style="margin-top:.3rem">Feast: Dec 4</span>
-          <span class="rect-years-badge">1 Year<br>at Grand Street</span>
         </div>
         <div>
           <span class="rect-date-line">October 1907 &middot; 1908</span>
@@ -561,8 +594,8 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
           <div class="rect-portrait-wrap">
             <img src="/Images/rectors/nemolovsky.jpg" alt="Archbishop Alexander Nemolovsky" class="rect-portrait" onerror="this.style.display='none'">
           </div>
+          <span class="rect-years-badge">1908–1909</span>
           <span class="rect-badge reposed-badge">Reposed 1960</span>
-          <span class="rect-years-badge">1 Year<br>at Grand Street</span>
         </div>
         <div>
           <span class="rect-date-line">1908 &middot; 1909</span>
@@ -653,8 +686,8 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
           <div class="rect-portrait-wrap">
             <img src="/Images/rectors/adamiak.png" alt="V. Rev. John J. Adamiak" class="rect-portrait" onerror="this.style.display='none'">
           </div>
+          <span class="rect-years-badge">1920–1940</span>
           <span class="rect-badge reposed-badge">Reposed 1940</span>
-          <span class="rect-years-badge">20 Years<br>at Grand Street</span>
         </div>
         <div>
           <span class="rect-date-line">1920 &middot; December 1940</span>
@@ -690,8 +723,8 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
           <div class="rect-portrait-wrap">
             <img src="/Images/rectors/dziama.png" alt="V. Rev. Michael G. Dziama" class="rect-portrait" onerror="this.style.display='none'">
           </div>
+          <span class="rect-years-badge">1941–1944</span>
           <span class="rect-badge reposed-badge">Reposed 1944</span>
-          <span class="rect-years-badge">3.5 Years<br>at Grand Street</span>
         </div>
         <div>
           <span class="rect-date-line">February 1941 &middot; September 5, 1944</span>
@@ -727,7 +760,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
           <div class="rect-portrait-wrap">
             <img src="/Images/rectors/ressetar.png" alt="V. Rev. Dimitri J. Ressetar" class="rect-portrait" onerror="this.style.display='none'">
           </div>
-          <span class="rect-years-badge">c.6 Years<br>at Grand Street</span>
+          <span class="rect-years-badge">1944–c.1950</span>
         </div>
         <div>
           <span class="rect-date-line">November 1, 1944 &middot; circa 1950</span>
@@ -759,8 +792,8 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
           <div class="rect-portrait-wrap">
             <img src="/Images/rectors/skuby.png" alt="V. Rev. Emelian Skuby" class="rect-portrait" onerror="this.style.display='none'">
           </div>
+          <span class="rect-years-badge">c.1950–1952</span>
           <span class="rect-badge reposed-badge">Reposed 1952</span>
-          <span class="rect-years-badge">Died in Jersey City</span>
         </div>
         <div>
           <span class="rect-date-line">circa 1950 &middot; August 6, 1952</span>
@@ -795,8 +828,8 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
           <div class="rect-portrait-wrap">
             <img src="/Images/rectors/skvir.png" alt="Archpriest John Skvir" class="rect-portrait" onerror="this.style.display='none'">
           </div>
+          <span class="rect-years-badge">1952–1987</span>
           <span class="rect-badge reposed-badge">Reposed 1987</span>
-          <span class="rect-years-badge">35 Years<br>at Grand Street</span>
         </div>
         <div>
           <span class="rect-date-line">1952 &middot; 1987</span>
@@ -835,8 +868,8 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
           <div class="rect-portrait-wrap">
             <img src="/Images/rectors/hubiak.png" alt="Protopresbyter Daniel Hubiak" class="rect-portrait" onerror="this.style.display='none'">
           </div>
+          <span class="rect-years-badge">1988–1991</span>
           <span class="rect-badge reposed-badge">Reposed 2021</span>
-          <span class="rect-years-badge">3 Years<br>at Grand Street</span>
         </div>
         <div>
           <span class="rect-date-line">1988 &middot; 1991</span>
@@ -876,8 +909,8 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
           <div class="rect-portrait-wrap">
             <img src="/Images/rectors/lickwar.png" alt="Mitred Archpriest Joseph Lickwar" class="rect-portrait" onerror="this.style.display='none'">
           </div>
+          <span class="rect-years-badge">1991–2023</span>
           <span class="rect-badge" style="background:var(--maroon);color:#fff;font-family:var(--f-ui);font-size:.52rem;letter-spacing:.16em;text-transform:uppercase;text-align:center;padding:.28rem .75rem;display:block">Mitred Archpriest</span>
-          <span class="rect-years-badge">32 Years<br>at Grand Street</span>
         </div>
         <div>
           <span class="rect-date-line">December 1, 1991 &middot; 2023</span>
@@ -916,8 +949,8 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
           <div class="rect-portrait-wrap current">
             <img src="/Images/rectors/longo.webp" alt="Fr. Solomon Longo" class="rect-portrait" onerror="this.style.display='none'">
           </div>
+          <span class="rect-years-badge">2023–Present</span>
           <span class="rect-badge current-badge">Current Rector</span>
-          <span class="rect-years-badge">2023<br>Present</span>
         </div>
         <div>
           <span class="rect-date-line">June 2023 &middot; Present</span>
