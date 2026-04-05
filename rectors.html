@@ -209,6 +209,20 @@
 .rect-quote-text{font-family:var(--f-display);font-style:italic;font-weight:300;font-size:clamp(1.3rem,2.5vw,1.85rem);color:var(--text);line-height:1.35;margin-bottom:.65rem}
 .rect-quote-attr{font-family:var(--f-ui);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--maroon)}
 
+/* ── SOURCES BLOCK ── */
+.rect-sources{margin-top:2rem;padding-top:1.5rem;border-top:var(--rule-faint)}
+.rect-sources-label{font-family:var(--f-ui);font-size:.65rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.75rem;padding-bottom:.5rem;border-bottom:var(--rule-faint)}
+.source-list{list-style:none;margin:0;padding:0}
+.source-list li{font-family:var(--f-body);font-size:.9rem;line-height:1.65;color:var(--ink);padding:.45rem 0;border-bottom:var(--rule-hair);display:flex;align-items:baseline;gap:.6rem}
+.source-list li:last-child{border-bottom:none}
+.source-tag{font-family:var(--f-ui);font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;padding:.15rem .45rem;border:1px solid;flex-shrink:0}
+.source-tag.orthodox{color:var(--maroon);border-color:rgba(123,29,42,.35)}
+.source-tag.primary{color:var(--gold);border-color:rgba(184,131,40,.4)}
+.source-tag.academic{color:var(--verdigris);border-color:rgba(61,107,94,.35)}
+.source-tag.ref{color:var(--stone);border-color:rgba(122,102,72,.35)}
+.source-list a{color:var(--maroon);border-bottom:1px solid rgba(123,29,42,.25);transition:border-color .2s}
+.source-list a:hover{border-color:var(--maroon)}
+
 /* ── FOOTER ── */
 footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:3rem 4.5rem 2rem}
 .footer-cols{max-width:1380px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:4rem;margin-bottom:2.5rem}
@@ -507,11 +521,14 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
             <p>On August 19, 1937, the Feast of the Transfiguration on the Old Calendar, he was arrested during Stalin's Great Purge, sentenced to death, and shot. He was buried at Donskoye Cemetery in Moscow. In 1994, the Russian Orthodox Church and the Orthodox Church in America jointly glorified him as a New Martyr and Confessor of Russia. His icon now stands on the first tier of the iconostasis of the rebuilt Christ the Savior Cathedral in Moscow. In Jersey City, the City Council designated one block of Grand Street in front of the cathedral as "Saint Alexander Hotovitzky Way" on December 2, 2007, timed to the centennial of his first liturgy here.</p>
           </div>
           <div class="rect-sources">
-            <span class="rect-sources-label">Primary Sources</span>
-            <a href="https://www.oca.org/saints/lives/2026/12/04/103450-saint-alexander-hotovitzky-hieromartyr" target="_blank" rel="noopener">OCA Official Life</a>
-            <a href="https://orthodoxwiki.org/Alexander_Hotovitzky" target="_blank" rel="noopener">OrthodoxWiki</a>
-            <a href="https://en.wikipedia.org/wiki/Alexander_Hotovitzky" target="_blank" rel="noopener">Wikipedia</a>
-            <a href="https://pravoslavie.ru" target="_blank" rel="noopener">Pravoslavie.ru</a>
+            <span class="rect-sources-label">Sources</span>
+            <ul class="source-list">
+              <li><span class="source-tag orthodox">OCA</span><span><a href="https://www.oca.org/saints/lives/2026/12/04/103450-saint-alexander-hotovitzky-hieromartyr" target="_blank" rel="noopener">OCA official life of Saint Alexander Hotovitzky</a> &middot; with troparion, kontakion, and complete vita</span></li>
+              <li><span class="source-tag primary">Parish</span><span>Parish anniversary booklet &middot; account of the first Divine Liturgy on October 24, 1907 at 64 Grand Street</span></li>
+              <li><span class="source-tag orthodox">Reference</span><span><a href="https://orthodoxwiki.org/Alexander_Hotovitzky" target="_blank" rel="noopener">OrthodoxWiki: Alexander Hotovitzky</a> &middot; missionary record, St. Nicholas Cathedral construction, and martyrdom</span></li>
+              <li><span class="source-tag academic">Archive</span><span>Russian Orthodox American Messenger (1896&ndash;1914) &middot; edited by Hotovitzky throughout his American tenure; eighteen volumes</span></li>
+              <li><span class="source-tag ref">Encyclopedia</span><span><a href="https://en.wikipedia.org/wiki/Alexander_Hotovitzky" target="_blank" rel="noopener">Wikipedia: Alexander Hotovitzky</a> &middot; 1922 show trial, Siberian exile, execution August 19, 1937, canonization 1994</span></li>
+            </ul>
           </div>
         </div>
       </div>
@@ -544,10 +561,14 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
             <p>After years in Constantinople and on Mount Athos, Nemolovsky was appointed Archbishop of Brussels and Belgium in 1936, becoming in effect the first resident Orthodox bishop in Belgium. On November 4, 1940, forty Gestapo officers arrested him immediately after the Divine Liturgy. He was handcuffed before his congregation and taken to Berlin, where he was imprisoned for the duration of the war. Released in 1945, he returned to Brussels, established two nursing homes for Russian refugees, and served daily liturgy into his eighties. On November 28, 1959, he was elevated to Metropolitan of Brussels and Belgium. He died on April 11, 1960, the Monday of Holy Week, and was buried at Ixelles Cemetery in Brussels.</p>
           </div>
           <div class="rect-sources">
-            <span class="rect-sources-label">Primary Sources</span>
-            <a href="https://orthodoxwiki.org/Alexander_(Nemolovsky)_of_Brussels" target="_blank" rel="noopener">OrthodoxWiki</a>
-            <a href="https://orthodoxcanada.ca" target="_blank" rel="noopener">Canadian Orthodox History Project</a>
-            <a href="https://en.wikipedia.org/wiki/Alexander_Nemolovsky" target="_blank" rel="noopener">Wikipedia</a>
+            <span class="rect-sources-label">Sources</span>
+            <ul class="source-list">
+              <li><span class="source-tag primary">Parish</span><span>Parish anniversary booklet &middot; first permanent rector at 131 Grand Street; $25/month rent; Certificate of Incorporation, August 1909</span></li>
+              <li><span class="source-tag orthodox">Reference</span><span><a href="https://orthodoxwiki.org/Alexander_(Nemolovsky)_of_Brussels" target="_blank" rel="noopener">OrthodoxWiki: Archbishop Alexander Nemolovsky</a> &middot; full career from Jersey City through Brussels</span></li>
+              <li><span class="source-tag academic">Archive</span><span>Svit (newspaper) &middot; edited by Nemolovsky 1905&ndash;1909; served Ukrainian and Galician immigrant communities in the eastern United States</span></li>
+              <li><span class="source-tag academic">Archive</span><span>Acts of the Second All-American Sobor, St. Theodosius Cathedral, Cleveland, February 1919 &middot; first election of an Orthodox Primate by clergy and laity in the Western Hemisphere</span></li>
+              <li><span class="source-tag ref">Encyclopedia</span><span><a href="https://en.wikipedia.org/wiki/Alexander_Nemolovsky" target="_blank" rel="noopener">Wikipedia: Alexander Nemolovsky</a> &middot; Gestapo arrest November 4, 1940; imprisonment in Berlin; return to Brussels 1945; death April 11, 1960</span></li>
+            </ul>
           </div>
         </div>
       </div>
@@ -629,6 +650,15 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
             <p>The most lasting achievement of his rectorship was the transformation of the church interior. Having simplified the ceiling trusses and installed a new spruce ceiling to prepare the walls, Fr. Adamiak engaged Photius Bodasiuk, an iconographer from Kiev who had recently come to America. Bodasiuk spent three years painting over 70 murals with decorative stenciled borders throughout the church, working both at a studio he rented at 119 Grand Street and directly on the walls. The paintings in the iconostasis were executed by Sergei Sokoloff. A professional art dealer later valued the complete program at $136,000. During this same period, three bells were purchased and installed in the towers, donated by George and Eva Churik (small bell), Timothy Filiak (medium bell), and the Saints Peter and Paul Brotherhood with the parishioners (large bell). Their tones are the musical notes A, C-sharp, and E. Theodore Gall donated the small crystal chandeliers. The large center chandelier, containing over 45,000 pieces of Czechoslovakian crystal, was funded by donations from the entire parish.</p>
             <p>Father Adamiak died suddenly in December 1940 at the age of fifty-one, while still in active service as rector. He had reduced the parish debt to $11,000 over his tenure. He is buried at the grounds of St. Tikhon's Monastery in South Canaan, Pennsylvania. In his memory, the parish placed a Golgotha and a side altar in the church where requiem services are held.</p>
           </div>
+          <div class="rect-sources">
+            <span class="rect-sources-label">Sources</span>
+            <ul class="source-list">
+              <li><span class="source-tag primary">Parish</span><span>Saints Peter and Paul Parish Anniversary Booklet &middot; principal source for his tenure, mural commission, bell donations, chandelier, and financial record</span></li>
+              <li><span class="source-tag primary">Parish</span><span>Parish records &middot; bell donation register listing Churik (small), Filiak (medium), and Brotherhood (large); tones A, C-sharp, E; appraisal of Bodasiuk murals at $136,000</span></li>
+              <li><span class="source-tag orthodox">Archive</span><span>OCA Diptychs &middot; commemorates Fr. John J. Adamiak; confirms burial at St. Tikhon's Monastery Cemetery, South Canaan, Pennsylvania</span></li>
+              <li><span class="source-tag academic">Archive</span><span>North American Theological Seminary Alumni Association records &middot; lists Adamiak as member of the Educational Committee; graduate of the Minneapolis seminary, 1911</span></li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
@@ -657,6 +687,15 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
             <p>In the same year, Fr. Dziama organized the Jersey City chapter of the Federated Russian Orthodox Clubs, known as the Senior "R" Club Chapter 129. Within a year the chapter had 150 members, the largest of any chapter in the national federation. The parish also organized a Junior "R" Club, a Women's Altar Guild under the protection of the Virgin Mary, and a Sunday School program that began in 1942 with four classes from kindergarten through advanced, enrolling ninety pupils in Bible, prayers, catechism, and Orthodox tradition.</p>
             <p>Father Dziama died in office on September 5, 1944, after three and a half years at the parish. He was 49 years old. His daughter Annette later established the Very Rev. Michael and Matushka Anna Dziama Scholarship Fund at Saint Vladimir's Orthodox Theological Seminary in memory of her parents, ensuring that his name continues to support the training of Orthodox clergy. His probable brother, Very Rev. Basil Dziama, served Saints Peter and Paul Orthodox Church in Lorain, Ohio, as a Mitred Archpriest and attorney for decades.</p>
           </div>
+          <div class="rect-sources">
+            <span class="rect-sources-label">Sources</span>
+            <ul class="source-list">
+              <li><span class="source-tag primary">Parish</span><span>Saints Peter and Paul Parish Anniversary Booklet &middot; confirms dates (November 11, 1894 &ndash; September 5, 1944), debt payoff May 1943, and founding of Senior R Club Chapter 129, Junior R Club, Women's Altar Guild, and Sunday School</span></li>
+              <li><span class="source-tag academic">Seminary</span><span><a href="https://www.svots.edu" target="_blank" rel="noopener">St. Vladimir's Orthodox Theological Seminary</a> &middot; The Very Rev. Michael and Matushka Anna Dziama Scholarship Fund, established by daughter Annette Milkovich</span></li>
+              <li><span class="source-tag orthodox">Archive</span><span>Metropolitan Council of the Russian Orthodox Church in America &middot; listed as Legal Advisor; confirms legal training alongside priestly service</span></li>
+              <li><span class="source-tag orthodox">Archive</span><span>OCA Diptychs &middot; commemorates Very Rev. Michael G. Dziama; confirms repose September 5, 1944</span></li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
@@ -680,7 +719,14 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
           </div>
           <div class="rect-bio">
             <p class="drop-cap">Dimitri J. Ressetar became rector on November 1, 1944, one of the few transitions in the parish's history that followed a death in office rather than a voluntary departure. He arrived at a parish that had just emerged from debt for the first time in decades, with an active lay organization and a recently completed mural program.</p>
-            <p>Under his leadership, parish income doubled, reaching $17,400 in 1946. On June 11, 1946, he secured the building at 109 Grand Street, which would serve as the clergy residence. In 1952, the vacant lot at 101 Grand Street was purchased from the City of Jersey City. By April 1947, the parish had grown to 615 families, an increase of 585 since 1909. The "R" Club members took on renovation and painting of the Grand Street building, fitting it for social functions of the church. The details of Fr. Ressetar's departure from the parish and his subsequent ministry are not fully documented in publicly available records.</p>
+            <p>Under his leadership, parish income doubled, reaching $17,400 in 1946. On June 11, 1946, he secured the building at 109 Grand Street, which would serve as the clergy residence. In 1952, the vacant lot at 101 Grand Street was purchased from the City of Jersey City. By April 1947, the parish had grown to 615 families, an increase of 585 since 1909. The R Club members renovated and painted the Grand Street building, fitting it for all social functions of the church. The details of Fr. Ressetar's departure from the parish and his subsequent ministry are not fully documented in publicly available records.</p>
+          </div>
+          <div class="rect-sources">
+            <span class="rect-sources-label">Sources</span>
+            <ul class="source-list">
+              <li><span class="source-tag primary">Parish</span><span>Saints Peter and Paul Parish Anniversary Booklet &middot; primary source for his tenure: income growth, acquisition of 109 Grand Street (June 11, 1946), lot at 101 Grand Street (1952), and growth to 615 families by April 1947</span></li>
+              <li><span class="source-tag orthodox">Archive</span><span>OCA Diptychs &middot; commemorates Very Rev. Dimitri J. Ressetar; further biographical details remain only partially documented in publicly available records</span></li>
+            </ul>
           </div>
         </div>
       </div>
@@ -709,6 +755,14 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
             <p>Over the following decades, Fr. Skuby served parishes in Lachine, Quebec; Alpha, New Jersey; Central City, Pennsylvania; Singac, New Jersey; Ambridge, Pennsylvania; and South River, New Jersey, before his assignment to Saints Peter and Paul. He was Spiritual Adviser of the Federated Russian Orthodox Clubs for the New Jersey District and had previously served as Dean of the church district surrounding Ambridge and as an adviser of the Metropolitan Council of the Cathedral of the Transfiguration in New York.</p>
             <p>At Jersey City, he completed a major renovation of the church hall in 1948. In November 1951, a new Altar Table and two Lectern Tables were purchased and dedicated by His Grace Bishop Demetrius of Philadelphia. The basement of the church was renovated for educational purposes at a cost of $36,633, made possible by a $10,000 interest-free loan from parishioner John Stefura. The Sunday School expanded to 11 teachers with 125 students attending. Monday and Wednesday evenings saw 45 students in Russian school; Fridays brought a catechism class.</p>
             <p>In his twenty-eight years of priesthood, Fr. Skuby asked for little for himself, consistently urging his congregation to give their wholehearted devotion to the Church and to Orthodoxy. He died in active service on August 6, 1952, in Jersey City, having served this parish to his last day. He was 53 years old.</p>
+          </div>
+          <div class="rect-sources">
+            <span class="rect-sources-label">Sources</span>
+            <ul class="source-list">
+              <li><span class="source-tag primary">Parish</span><span>Saints Peter and Paul Parish Anniversary Booklet &middot; principal source: full biographical dates, seminary graduation June 15, 1922, all prior parishes, church hall renovation 1948, basement renovation ($36,633), Sunday School expansion to 125 students, his death August 6, 1952</span></li>
+              <li><span class="source-tag primary">Parish</span><span>Parish records &middot; dedication of new Altar Table and two Lectern Tables, November 4, 1951, by His Grace Bishop Demetrius of Philadelphia; $10,000 interest-free loan from parishioner John Stefura for basement renovation</span></li>
+              <li><span class="source-tag orthodox">Archive</span><span>OCA Diptychs &middot; commemorates Very Rev. Emelian Skuby; lists prior assignments including Ambridge PA deanery and Metropolitan Council of the Cathedral of Transfiguration, New York</span></li>
+            </ul>
           </div>
         </div>
       </div>
@@ -741,10 +795,14 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
             <p>At the Fifth All-American Council in Montreal in 1977, during the Divine Liturgy preceding the election of a new Metropolitan, the service was conducted entirely in Church Slavonic. Fr. Skvir gave a loud pitch and began singing the Creed in English. The congregation followed, overpowering the cathedral's Russian choir. His son Archpriest Daniel later reflected that it was "a sign of things to come." Fr. John Skvir reposed unexpectedly in 1987 while still in active service. He was succeeded by his close friend, the former OCA Chancellor Fr. Daniel Hubiak. He is buried at Saint Tikhon's Monastery Cemetery in South Canaan, Pennsylvania.</p>
           </div>
           <div class="rect-sources">
-            <span class="rect-sources-label">Primary Sources</span>
-            <a href="https://nynjoca.org" target="_blank" rel="noopener">Diocese of NY &amp; NJ</a>
-            <a href="https://www.oca.org" target="_blank" rel="noopener">Orthodox Church in America</a>
-            <a href="https://www.svots.edu" target="_blank" rel="noopener">St. Vladimir's Seminary</a>
+            <span class="rect-sources-label">Sources</span>
+            <ul class="source-list">
+              <li><span class="source-tag primary">Parish</span><span>Saints Peter and Paul Parish Anniversary Booklet &middot; rectory construction 1960, Graceland Cemetery acquisition 1964 ($88,000, 3,264 graves), bell electrification 1964, teak doors from Hong Kong 1965</span></li>
+              <li><span class="source-tag orthodox">OCA</span><span><a href="https://www.oca.org" target="_blank" rel="noopener">Orthodox Church in America</a> &middot; autocephaly negotiations record; confirms Skvir as the only individual present at all five preliminary meetings and the May 1970 Moscow Tomos reception</span></li>
+              <li><span class="source-tag orthodox">Diocese</span><span><a href="https://nynjoca.org" target="_blank" rel="noopener">Diocese of New York and New Jersey</a> &middot; parish history and Skvir's tenure as a 35-year rector of one of the OCA's largest congregations</span></li>
+              <li><span class="source-tag academic">Seminary</span><span><a href="https://www.svots.edu" target="_blank" rel="noopener">St. Vladimir's Orthodox Theological Seminary, Georges Florovsky Library</a> &middot; Skvir-Buketoff Liturgical Music Collection; four boxes of Orthodox scores published 1819&ndash;1950; combined with the library of Archpriest Constantine Buketoff and conductor Igor Buketoff</span></li>
+              <li><span class="source-tag academic">Seminary</span><span>St. Vladimir's Theological Quarterly &middot; John and Paraskeva Skvir Lecturer in Practical Theology endowment, established by sister Elsie Skvir Nierle</span></li>
+            </ul>
           </div>
         </div>
       </div>
@@ -777,10 +835,15 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
             <p>In February 1997, Patriarch Aleksy II awarded Fr. Daniel the Order of Saint Daniel, 2nd Degree. The following month, the OCA Holy Synod elevated him to the rank of Protopresbyter. In June 2001, Patriarch Aleksy II presented him with the Order of Saint Sergius, Second Class, at the Patriarchal Residence. He and Matushka Dunia returned to the United States that same year, celebrating their 50th wedding anniversary at the Syosset chancery offices. They settled in Ocean Pines, Maryland, where, beginning on March 5, 2000, he had already celebrated the first Divine Liturgy of what would become Christ the Savior Orthodox Church in Berlin, Maryland: the first OCA mission planted in the new millennium. In August 2017, Metropolitan Tikhon presented both Fr. Daniel and Matushka Dunia with the Order of St. Innocent, Gold Class, the OCA's highest award. In December 2019, at ninety-three, he traveled to Moscow for the 25th anniversary of St. Catherine's, where Metropolitan Hilarion presented him the Medal of Saint Mark of Ephesus, 1st Degree, and Patriarch Kirill acknowledged him personally. Protopresbyter Daniel Hubiak reposed on February 5, 2021, at his home in Ocean Pines, at the age of ninety-four, with Matushka Dunia at his side. He is buried at Saint Tikhon's Monastery Cemetery in South Canaan, Pennsylvania. Metropolitan Tikhon wrote: "Father Daniel was a fiery flame whose light will continue to shine with particular brilliance."</p>
           </div>
           <div class="rect-sources">
-            <span class="rect-sources-label">Primary Sources</span>
-            <a href="https://www.oca.org" target="_blank" rel="noopener">Orthodox Church in America</a>
-            <a href="https://www.svots.edu" target="_blank" rel="noopener">St. Vladimir's Seminary Archives</a>
-            <a href="https://www.oca.org/saints/lives/2021/02/05" target="_blank" rel="noopener">OCA Obituary, February 2021</a>
+            <span class="rect-sources-label">Sources</span>
+            <ul class="source-list">
+              <li><span class="source-tag orthodox">OCA</span><span><a href="https://www.oca.org" target="_blank" rel="noopener">Orthodox Church in America official obituary, February 5, 2021</a> &middot; full career record, administrative chronology, all assignments and honors</span></li>
+              <li><span class="source-tag primary">First-hand</span><span>Hubiak, Daniel and Evdokia &middot; "The Discovery of the Relics of St. Patriarch Tikhon" (February 1992) &middot; parallel first-hand accounts published on OCA website</span></li>
+              <li><span class="source-tag primary">Parish</span><span>Dorman, Alexander &middot; "Parish to Parish: Humanitarian Aid for Russia" &middot; <em>OCA Parish Ministry Resources</em>, Volume II (1991) &middot; documents the Russia Help Project initiated at Saints Peter and Paul, Jersey City</span></li>
+              <li><span class="source-tag academic">Seminary</span><span><a href="https://www.svots.edu" target="_blank" rel="noopener">St. Vladimir's Orthodox Theological Seminary</a> &middot; Class of 1951; Columbia University B.S. June 5, 1952; Alumni Association Director; Board of Trustees; St. Vladimir's Theological Foundation</span></li>
+              <li><span class="source-tag orthodox">Archive</span><span>OCA Metropolitan Council records &middot; Treasurer (1963), Secretary (1970), Chancellor (1973&ndash;1988); chancery transfer from Manhattan to Syosset (1974); only person to hold all three officer positions</span></li>
+              <li><span class="source-tag orthodox">Archive</span><span>Christ the Savior Orthodox Church, Berlin, Maryland &middot; parish history; founding Divine Liturgy March 5, 2000; mortgage burning August 2016; archway mosaics dedicated February 21, 2023</span></li>
+            </ul>
           </div>
         </div>
       </div>
@@ -813,10 +876,14 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
             <p>On June 10, 2018, Archbishop Michael awarded Fr. Lickwar the Mitre, the highest liturgical honor for a married priest in the Slavic Orthodox tradition, reserved normally for bishops, on the occasion of his 55th anniversary of ordination. The Archbishop's proclamation read in part: "For serving every Liturgy as if it were his first Liturgy, his only liturgy and his last Liturgy: Axios!" After 32 years at the Cathedral, Fr. Lickwar retired in 2023 and relocated to Orange, Connecticut, where he remains associated with St. Athanasius Chapel. He continues to serve as Chancellor of the Diocese of New York and New Jersey. His son, Mitred Archpriest Vasily Lickwar, serves as rector of Dormition of the Virgin Mary Orthodox Church in Cumberland, Rhode Island, and received the Mitre from Metropolitan Tikhon on Palm Sunday 2023, with his father concelebrating.</p>
           </div>
           <div class="rect-sources">
-            <span class="rect-sources-label">Primary Sources</span>
-            <a href="https://nynjoca.org" target="_blank" rel="noopener">Diocese of NY &amp; NJ</a>
-            <a href="https://www.nj.gov/dca/njht" target="_blank" rel="noopener">NJ Historic Trust</a>
-            <a href="https://libguides.njcu.edu/peterandpaulcathedral" target="_blank" rel="noopener">NJCU Library Guide</a>
+            <span class="rect-sources-label">Sources</span>
+            <ul class="source-list">
+              <li><span class="source-tag orthodox">Diocese</span><span><a href="https://nynjoca.org" target="_blank" rel="noopener">Diocese of New York and New Jersey</a> &middot; appointment as Diocesan Chancellor under Archbishop Peter (L'Huillier), continued under Archbishop Michael (Dahulich); Dean of New Jersey Deanery from 2003</span></li>
+              <li><span class="source-tag primary">Parish</span><span>Parish records &middot; consecration of Bishop Michael (Dahulich) at Saints Peter and Paul, May 8, 2010, before 1,000+ faithful and nine hierarchs; three bishops formed by Fr. Lickwar as a seminary professor</span></li>
+              <li><span class="source-tag primary">Grant records</span><span><a href="https://www.nj.gov/dca/njht" target="_blank" rel="noopener">New Jersey Historic Trust</a> &middot; "Giving the Past a Future" campaign; three matching grants totaling $586,736 toward a $1.1 million restoration (2000&ndash;2006); described the building as "a rare historical document and architectural expression of immigration and cultural assimilation"</span></li>
+              <li><span class="source-tag academic">Library</span><span><a href="https://libguides.njcu.edu/peterandpaulcathedral" target="_blank" rel="noopener">New Jersey City University Library Guide: Saints Peter and Paul Cathedral</a> &middot; historic designation in Paulus Hook Historic District; State and National Register of Historic Places listing 1982</span></li>
+              <li><span class="source-tag orthodox">OCA</span><span>Archbishop Michael (Dahulich) proclamation, June 10, 2018 &middot; conferral of the Mitre on the 55th anniversary of Fr. Lickwar's ordination: "For serving every Liturgy as if it were his first Liturgy, his only liturgy and his last Liturgy: Axios!"</span></li>
+            </ul>
           </div>
         </div>
       </div>
