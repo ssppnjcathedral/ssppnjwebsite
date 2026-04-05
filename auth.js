@@ -3,6 +3,14 @@
 
 (function () {
 
+  if (!_supabase) {
+    console.warn('Supabase not available — auth module skipped');
+    window.getCurrentUser = function() { return Promise.resolve(null); };
+    window.sendMagicLink = function() { return Promise.resolve({ error: 'Auth unavailable' }); };
+    window.signOut = function() {};
+    return;
+  }
+
   // ── GET CURRENT USER ──
   async function getCurrentUser() {
     try {
