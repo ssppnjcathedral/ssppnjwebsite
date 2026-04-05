@@ -133,8 +133,24 @@
 .rp-divider{width:1px;height:50px;background:rgba(255,255,255,.06);flex-shrink:0;margin:0 .25rem}
 
 /* ── TIMELINE BODY ── */
-.rp-body-wrap{display:grid;grid-template-columns:60px 1fr;max-width:1160px;margin:0 auto}
+.rp-body-wrap{display:grid;grid-template-columns:60px 1fr 300px;max-width:1500px;margin:0 auto}
 .rectors-body{padding:0 3rem 6rem}
+
+/* ── RIGHT SIDEBAR ── */
+.rect-sidebar{position:sticky;top:198px;height:calc(100vh - 198px);border-left:var(--rule-faint);background:var(--vellum);overflow:hidden;align-self:start}
+.sb-track{height:100%;position:relative;overflow:hidden}
+.sb-panel{position:absolute;inset:0;padding:2rem 1.75rem;opacity:0;transform:translateY(10px);transition:opacity .38s cubic-bezier(.22,1,.36,1),transform .38s cubic-bezier(.22,1,.36,1);pointer-events:none;overflow-y:auto;scrollbar-width:thin;scrollbar-color:rgba(123,29,42,.15) transparent}
+.sb-panel.sb-active{opacity:1;transform:none;pointer-events:all}
+.sb-panel-tag{font-family:var(--f-ui);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.4rem}
+.sb-panel-head{font-family:var(--f-display);font-weight:500;font-size:1.15rem;color:var(--text);line-height:1.2;margin-bottom:.75rem;display:block}
+.sb-rule{height:1px;background:rgba(123,29,42,.10);margin:.9rem 0}
+.sb-img{width:100%;max-height:180px;object-fit:cover;object-position:center top;margin-bottom:.6rem;display:block;filter:sepia(.1) contrast(1.05);border:1px solid rgba(123,29,42,.12)}
+.sb-img-cap{font-family:var(--f-ui);font-size:.54rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.9rem;padding-bottom:.6rem;border-bottom:var(--rule-hair)}
+.sb-list{list-style:none;margin:.5rem 0 0;padding:0}
+.sb-list li{font-family:var(--f-body);font-size:.9rem;line-height:1.55;color:var(--ink);padding:.32rem 0 .32rem 1rem;border-bottom:var(--rule-hair);position:relative}
+.sb-list li:last-child{border-bottom:none}
+.sb-list li::before{content:'·';color:var(--maroon);position:absolute;left:0;font-size:1.1rem;line-height:1.4}
+.sb-note{font-family:var(--f-body);font-size:.88rem;color:var(--stone);line-height:1.6;margin-top:.75rem;font-style:italic}
 
 /* ── YEAR RAIL ── */
 .lit-rail{position:sticky;top:198px;height:calc(100vh - 198px);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1.5rem 0;border-right:var(--rule-faint);z-index:10;opacity:0;transition:opacity .5s;align-self:start}
@@ -248,6 +264,10 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 .footer-addr{text-align:right}
 
 /* ── RESPONSIVE ── */
+@media(max-width:1100px){
+  .rect-sidebar{display:none}
+  .rp-body-wrap{grid-template-columns:60px 1fr}
+}
 @media(max-width:900px){
   .lit-rail{display:none}
   .rp-body-wrap{grid-template-columns:1fr}
@@ -929,6 +949,206 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 
   </div><!-- end rectors-timeline -->
 </div><!-- end rectors-body -->
+
+<!-- ══ RIGHT SIDEBAR ══ -->
+<aside class="rect-sidebar" id="rect-sidebar">
+  <div class="sb-track">
+
+    <!-- HOTOVITZKY -->
+    <div class="sb-panel sb-active" data-panel="hotovitzky">
+      <img src="/Images/rectors/hotovitzky.jpg" alt="St. Alexander Hotovitzky" class="sb-img" onerror="this.style.display='none'">
+      <span class="sb-panel-tag">First Rector &middot; 1907&ndash;1908</span>
+      <span class="sb-panel-head">Canonized New Martyr of Russia</span>
+      <div class="sb-rule"></div>
+      <ul class="sb-list">
+        <li>First Divine Liturgy at 64 Grand Street, October 24, 1907</li>
+        <li>Built St. Nicholas Cathedral, NYC (consecrated November 23, 1902, before 2,000 worshippers)</li>
+        <li>Edited the <em>Russian Orthodox American Messenger</em> for 18 years</li>
+        <li>Survived bomb package and physical assault while preaching in Bayonne, NJ</li>
+        <li>Led thanksgiving service after Treaty of Portsmouth (1905); performed at the White House (1914)</li>
+        <li>Arrested at 1922 show trial prosecuted by Andrey Vishinsky; exiled to Siberia</li>
+        <li>Executed August 19, 1937 &mdash; Feast of the Transfiguration</li>
+        <li>Canonized 1994 jointly by the Russian Orthodox Church and the OCA</li>
+        <li>Feast Day: December 4</li>
+      </ul>
+    </div>
+
+    <!-- NEMOLOVSKY -->
+    <div class="sb-panel" data-panel="nemolovsky">
+      <img src="/Images/rectors/nemolovsky.jpg" alt="Archbishop Alexander Nemolovsky" class="sb-img" onerror="this.style.display='none'">
+      <span class="sb-panel-tag">First Permanent Rector &middot; 1908&ndash;1909</span>
+      <span class="sb-panel-head">He Bought This Building</span>
+      <div class="sb-rule"></div>
+      <ul class="sb-list">
+        <li>First permanent resident rector; rented 131 Grand Street for $25/month</li>
+        <li>Purchased 111&ndash;113 Grand Street for $35,000 (February 1909) &mdash; the building this parish occupies today</li>
+        <li>Obtained hand-carved oak iconostasis for $1,200</li>
+        <li>Signed the parish Certificate of Incorporation, August 1909</li>
+        <li>Consecrated Bishop of Sitka at Alexander Nevsky Lavra, November 1909</li>
+        <li>First Orthodox primate elected by clergy and laity together (Cleveland, February 1919)</li>
+        <li>Arrested by the Gestapo immediately after Divine Liturgy, November 4, 1940; imprisoned in Berlin through the war</li>
+        <li>Elevated Metropolitan of Brussels and Belgium (1959); died April 11, 1960</li>
+      </ul>
+    </div>
+
+    <!-- INTERIM -->
+    <div class="sb-panel" data-panel="interim">
+      <span class="sb-panel-tag">Interim Clergy &middot; 1909&ndash;1920</span>
+      <span class="sb-panel-head">Seven Priests, Eleven Years</span>
+      <div class="sb-rule"></div>
+      <ul class="sb-list">
+        <li>Protopresbyter Peter G. Kohanik &mdash; founding rector of St. John the Baptist, Passaic for 44 years</li>
+        <li>Mitred Archpriest Joseph O. Dzvonchik &mdash; Vice President and Secretary of the Metropolitan Council</li>
+        <li>Archpriest Michael Chervinsky &mdash; physically held the bishop's residence during the 1925 cathedral dispute</li>
+        <li>Archpriest Alexander Chechila &mdash; also served St. Peter and Paul, Manhattan; referenced in the <em>New York Times</em> (1938)</li>
+        <li>Priest John Slunin &mdash; diocesan intermediary; mentioned in <em>Beasts in Cassocks</em> (1923)</li>
+        <li>Archpriest Andrew Murin &mdash; commemorated in OCA Diptychs</li>
+        <li>Archpriest Eugene Krizanovsky &mdash; born 1898; died March 1966 in Passaic, NJ</li>
+      </ul>
+    </div>
+
+    <!-- ADAMIAK -->
+    <div class="sb-panel" data-panel="adamiak">
+      <img src="/Images/rectors/adamiak.png" alt="V. Rev. John J. Adamiak" class="sb-img" onerror="this.style.display='none'">
+      <span class="sb-panel-tag">Third Rector &middot; 1920&ndash;1940</span>
+      <span class="sb-panel-head">The Great Beautification</span>
+      <div class="sb-rule"></div>
+      <ul class="sb-list">
+        <li>Commissioned Photius Bodasiuk of Kiev to paint over 70 murals &mdash; three years of work</li>
+        <li>Murals later valued by an art dealer at $136,000</li>
+        <li>Crystal chandelier donated by all parishioners: 45,000 pieces of Czechoslovakian crystal</li>
+        <li>Three church bells installed (musical notes A, C-sharp, E)</li>
+        <li>Stained glass windows installed; church exterior refinished; Russian cupolas capped on towers</li>
+        <li>Served as Dean of all New Jersey parishes for most of his 20-year rectorship</li>
+        <li>Reduced parish debt from prior balance to $11,000</li>
+        <li>Died in active service, December 1940, age 51</li>
+      </ul>
+    </div>
+
+    <!-- DZIAMA -->
+    <div class="sb-panel" data-panel="dziama">
+      <img src="/Images/rectors/dziama.png" alt="V. Rev. Michael G. Dziama" class="sb-img" onerror="this.style.display='none'">
+      <span class="sb-panel-tag">Fourth Rector &middot; 1941&ndash;1944</span>
+      <span class="sb-panel-head">Debt Free at Last</span>
+      <div class="sb-rule"></div>
+      <ul class="sb-list">
+        <li>Cleared the $11,000 parish debt; mortgage burned publicly in the church hall, May 1943</li>
+        <li>Founded Senior R Club Chapter 129: 150 members, nationally the largest chapter for five consecutive years</li>
+        <li>Founded the Junior R Club, the Women's Altar Guild, and a Sunday School (90 pupils in four classes)</li>
+        <li>Held a law degree; served as Legal Advisor on the Metropolitan Council of the Russian Orthodox Church in America</li>
+        <li>Daughter Annette later endowed the Very Rev. Michael and Matushka Anna Dziama Scholarship Fund at St. Vladimir's Seminary</li>
+        <li>Died in active service, September 5, 1944, age 49</li>
+      </ul>
+    </div>
+
+    <!-- RESSETAR -->
+    <div class="sb-panel" data-panel="ressetar">
+      <img src="/Images/rectors/ressetar.png" alt="V. Rev. Dimitri J. Ressetar" class="sb-img" onerror="this.style.display='none'">
+      <span class="sb-panel-tag">Fifth Rector &middot; 1944&ndash;c.1950</span>
+      <span class="sb-panel-head">Building and Growth</span>
+      <div class="sb-rule"></div>
+      <ul class="sb-list">
+        <li>Parish income doubled to $17,400 by 1946</li>
+        <li>Acquired 109 Grand Street for the clergy residence, June 11, 1946</li>
+        <li>Parish grew to 615 families by April 1947 (up 585 since 1909)</li>
+        <li>Vacant lot at 101 Grand Street purchased from the City of Jersey City (1952)</li>
+        <li>R Club members renovated and painted the Grand Street building for parish social functions</li>
+      </ul>
+    </div>
+
+    <!-- SKUBY -->
+    <div class="sb-panel" data-panel="skuby">
+      <img src="/Images/rectors/skuby.png" alt="V. Rev. Emelian Skuby" class="sb-img" onerror="this.style.display='none'">
+      <span class="sb-panel-tag">Sixth Rector &middot; c.1950&ndash;1952</span>
+      <span class="sb-panel-head">Education and Renewal</span>
+      <div class="sb-rule"></div>
+      <ul class="sb-list">
+        <li>Church hall renovation completed 1948</li>
+        <li>New Altar Table and two Lectern Tables dedicated by Bishop Demetrius of Philadelphia, November 4, 1951</li>
+        <li>Basement renovated for educational use: $36,633 total, including a $10,000 interest-free loan from parishioner John Stefura</li>
+        <li>Sunday School expanded to 11 teachers and 125 students</li>
+        <li>Russian school: 45 students on Monday and Wednesday evenings; Friday catechism class</li>
+        <li>Served 6 prior parishes across two countries before Jersey City; Spiritual Adviser of F.R.O.C. New Jersey District</li>
+        <li>Died in active service, August 6, 1952, age 53</li>
+      </ul>
+    </div>
+
+    <!-- SKVIR -->
+    <div class="sb-panel" data-panel="skvir">
+      <img src="/Images/rectors/skvir.png" alt="Mitred Archpriest John Skvir" class="sb-img" onerror="this.style.display='none'">
+      <span class="sb-panel-tag">Seventh Rector &middot; 1952&ndash;1987</span>
+      <span class="sb-panel-head">35 Years at Grand Street</span>
+      <div class="sb-rule"></div>
+      <ul class="sb-list">
+        <li>Built a Novgorod-style church in Donora, PA (1946&ndash;1952), laying brick in work clothes on weekdays</li>
+        <li>New rectory built 1960 (architect Maurice Kraut)</li>
+        <li>Cemetery at Graceland Memorial Park, Kenilworth, NJ: 3,264 graves acquired for $88,000 (1964)</li>
+        <li>Church bells electrified 1964; carved teak doors imported from Hong Kong, 1965</li>
+        <li>Only person present at all five Tomos negotiations (1969&ndash;1970) <em>and</em> the Moscow Tomos reception (May 1970)</li>
+        <li>Skvir-Buketoff Liturgical Music Collection (scores published 1819&ndash;1950) donated to St. Vladimir's Seminary</li>
+        <li>John and Paraskeva Skvir Lecturer in Practical Theology endowed at St. Vladimir's by sister Elsie Skvir Nierle</li>
+        <li>Reposed unexpectedly in active service, 1987</li>
+      </ul>
+    </div>
+
+    <!-- HUBIAK -->
+    <div class="sb-panel" data-panel="hubiak">
+      <img src="/Images/rectors/hubiak.png" alt="Protopresbyter Daniel Hubiak" class="sb-img" onerror="this.style.display='none'">
+      <span class="sb-panel-tag">Eighth Rector &middot; 1988&ndash;1991</span>
+      <span class="sb-panel-head">Chancellor, Delegate, Representative</span>
+      <div class="sb-rule"></div>
+      <ul class="sb-list">
+        <li>Russia Help Project launched September 9, 1990: monthly humanitarian airlifts to Fr. Alexander Men's parish near Moscow</li>
+        <li>Only person in OCA history to hold all three senior officer positions: Treasurer (1963), Secretary (1970), Chancellor (1973&ndash;1988)</li>
+        <li>One of seven delegates who received the Tomos of Autocephaly in Moscow, May 18, 1970</li>
+        <li>Present at the discovery of the relics of St. Patriarch Tikhon at Donskoy Monastery, February 22, 1992</li>
+        <li>First OCA Representative to the Moscow Patriarchate (1992&ndash;2001)</li>
+        <li>Restored St. Catherine's Church on Bolshaya Ordynka (shuttered 1931); inaugural service December 7, 1994</li>
+        <li>OCA agreement to ship 12,000 tons of food to Russia ($17 million, USDA partnership)</li>
+        <li>Order of St. Daniel 2nd Degree (1997); Order of St. Sergius 2nd Class (2001); Order of St. Innocent Gold Class (2017)</li>
+        <li>Reposed February 5, 2021, age 94</li>
+      </ul>
+    </div>
+
+    <!-- LICKWAR -->
+    <div class="sb-panel" data-panel="lickwar">
+      <img src="/Images/rectors/lickwar.png" alt="Mitred Archpriest Joseph Lickwar" class="sb-img" onerror="this.style.display='none'">
+      <span class="sb-panel-tag">Ninth Rector &middot; 1991&ndash;2023</span>
+      <span class="sb-panel-head">The Great Restoration</span>
+      <div class="sb-rule"></div>
+      <ul class="sb-list">
+        <li>&ldquo;Giving the Past a Future&rdquo; restoration campaign, 2000&ndash;2006: $1.1 million, three phases</li>
+        <li>Three matching grants from the New Jersey Historic Trust totaling $586,736</li>
+        <li>NJ Historic Trust described the building as &ldquo;a rare historical document and architectural expression of immigration and cultural assimilation&rdquo;</li>
+        <li>Consecration of Bishop Michael (Dahulich) at the cathedral, May 8, 2010: 1,000+ faithful and nine hierarchs</li>
+        <li>Three bishops he formed as a seminary professor were consecrated during his tenure</li>
+        <li>Dean of the New Jersey Deanery (2003); Diocesan Chancellor under three archbishops</li>
+        <li>Mitre awarded June 10, 2018, on the 55th anniversary of his ordination</li>
+        <li>32 years as rector; continues to serve as Diocesan Chancellor after retirement (2023)</li>
+      </ul>
+    </div>
+
+    <!-- LONGO -->
+    <div class="sb-panel" data-panel="longo">
+      <img src="/Images/rectors/longo.webp" alt="Fr. Solomon Longo" class="sb-img" onerror="this.style.display='none'">
+      <span class="sb-panel-tag">Eleventh Rector &middot; 2023&ndash;Present</span>
+      <span class="sb-panel-head">The Current Chapter</span>
+      <div class="sb-rule"></div>
+      <ul class="sb-list">
+        <li>Ordained deacon January 29, 2022; ordained priest January 21, 2023 (both by Archbishop Michael)</li>
+        <li>Concelebrated at the cathedral&rsquo;s 115th anniversary as a seminary deacon, October 30, 2022</li>
+        <li>Assigned as Acting Rector and Cathedral Dean, June 1, 2023</li>
+        <li>Graduate of St. Tikhon&rsquo;s Orthodox Theological Seminary (M.Div.)</li>
+        <li>Matushka Anna; six children including Hattie Olympia (baptized March 2024)</li>
+        <li>Saints Peter and Paul Concert Series launched 2024, in partnership with the Bl&uuml;thner School of Music, Hoboken</li>
+        <li>Music Director: Gleb Ivanov, First Prize laureate, Young Concert Artists International Auditions (2005)</li>
+      </ul>
+      <p class="sb-note">&ldquo;Of all the priests you could ever meet, I am certainly one of them.&rdquo;</p>
+    </div>
+
+  </div><!-- end sb-track -->
+</aside>
+
 </div><!-- end rp-body-wrap -->
 
 <!-- FOOTER -->
@@ -1044,6 +1264,10 @@ document.addEventListener('click',function(e){
     if(activeBtn){
       activeBtn.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
     }
+    /* swap sidebar panel */
+    document.querySelectorAll('.sb-panel').forEach(function(p){
+      p.classList.toggle('sb-active', p.dataset.panel===id);
+    });
   }
 
   if('IntersectionObserver' in window){
