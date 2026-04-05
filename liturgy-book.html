@@ -124,8 +124,8 @@ a{color:inherit;text-decoration:none}
 .lit-section:first-child{border-top:none;padding-top:0}
 .section-watermark{font-family:var(--f-display);font-weight:300;font-size:9rem;color:var(--maroon);opacity:.04;position:absolute;right:-1.5rem;top:.25rem;line-height:1;pointer-events:none;user-select:none;z-index:0}
 .section-tag{font-family:var(--f-ui);font-size:.62rem;font-weight:500;letter-spacing:.20em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.6rem;position:relative;z-index:1}
-.section-head-row{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:.4rem;position:relative;z-index:1}
-.section-head{font-family:var(--f-display);font-weight:400;font-size:clamp(1.7rem,2.8vw,2.4rem);color:var(--text);line-height:1.08;flex:1}
+.section-head-row{display:flex;align-items:center;gap:.75rem;margin-bottom:.4rem;position:relative;z-index:1}
+.section-head{font-family:var(--f-display);font-weight:400;font-size:clamp(1.7rem,2.8vw,2.4rem);color:var(--text);line-height:1.08}
 .section-head em{font-style:italic;font-weight:300}
 .section-sub{font-family:var(--f-display);font-style:italic;font-size:1.5rem;color:var(--maroon);display:block;margin-bottom:1.85rem;line-height:1.38;position:relative;z-index:1}
 .prose{font-family:var(--f-body);font-size:1.15rem;line-height:1.88;color:var(--ink);hyphens:auto;position:relative;z-index:1}
@@ -147,9 +147,9 @@ a{color:inherit;text-decoration:none}
 .lex-verse{font-family:var(--f-display);font-style:italic;font-size:1.1rem;line-height:2;padding-left:1.75rem;border-left:2px solid rgba(123,29,42,.18);margin:.8rem 0 .8rem 52px;color:var(--text)}
 .lex-instruct{display:block;font-family:var(--f-ui);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);margin:.6rem 0 0 52px}
 /* MUSIC BUTTON */
-.music-btn{flex-shrink:0;width:30px;height:30px;border:none;background:none;cursor:not-allowed;color:var(--gold);opacity:.28;padding:0;display:flex;align-items:center;justify-content:center;margin-top:.5rem;transition:opacity .2s;border-radius:4px}
-.music-btn.available{opacity:.80;cursor:pointer}
-.music-btn.available:hover{opacity:1;background:rgba(184,131,40,.10)}
+.music-btn{flex-shrink:0;width:28px;height:28px;border:1px solid rgba(184,131,40,.22);background:rgba(184,131,40,.07);cursor:not-allowed;color:var(--gold);opacity:.35;padding:0;display:flex;align-items:center;justify-content:center;transition:opacity .2s,background .2s,border-color .2s;border-radius:50%}
+.music-btn.available{opacity:.85;cursor:pointer}
+.music-btn.available:hover{opacity:1;background:rgba(184,131,40,.18);border-color:rgba(184,131,40,.55)}
 /* CALLOUT BOX */
 .callout-box{background:var(--vellum-mid);border-left:3px solid var(--gold);padding:1.5rem 1.65rem;margin:2.5rem 0;position:relative;z-index:1}
 .callout-tag{font-family:var(--f-ui);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.4rem}
@@ -502,7 +502,7 @@ footer .btn-outline:hover{background:rgba(246,241,232,.15);color:#fff;border-col
               <a href="/schedule" class="mega-link">Feast Day Liturgies</a>
               <span class="mega-sub">As scheduled &middot; 9:00 AM</span>
               <div class="mega-cta">
-                <a href="/schedule" class="mega-cta-btn">Full Liturgical Calendar &rarr;</a>
+                <a href="/schedule" class="mega-cta-btn">View Full Calendar &rarr;</a>
               </div>
             </div>
             <div class="mega-col">
@@ -656,7 +656,7 @@ footer .btn-outline:hover{background:rgba(246,241,232,.15);color:#fff;border-col
       <div class="dr-section-links">
         <a href="/divine-liturgy" class="dr-link"><span class="dr-link-name">Divine Liturgy</span><span class="dr-link-sub">Every Sunday, 9:30 AM</span></a>
         <a href="/vespers" class="dr-link"><span class="dr-link-name">Great Vespers</span><span class="dr-link-sub">Every Saturday, 5:00 PM</span></a>
-        <a href="/schedule" class="dr-link"><span class="dr-link-name">Full Liturgical Calendar</span><span class="dr-link-sub">Feasts, fasts, and the Church year</span></a>
+        <a href="/schedule" class="dr-link"><span class="dr-link-name">View Full Calendar</span><span class="dr-link-sub">Feasts, fasts, and the Church year</span></a>
         <a href="/readings" class="dr-link"><span class="dr-link-name">Daily Readings</span><span class="dr-link-sub">Scripture appointed for each day</span></a>
         <a href="/saints" class="dr-link"><span class="dr-link-name">Saints of the Day</span><span class="dr-link-sub">Lives of those commemorated today</span></a>
         <a href="/prologue" class="dr-link"><span class="dr-link-name">The Prologue</span><span class="dr-link-sub">Daily readings from the Prologue of Ohrid</span></a>
