@@ -108,29 +108,36 @@
 .rh-stat-label{font-family:var(--f-ui);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(246,241,232,.45);display:block;margin-top:.25rem}
 
 /* ── PORTRAIT STRIP ── */
-.rp-strip{position:sticky;top:60px;z-index:150;background:var(--apse);border-bottom:1px solid rgba(184,131,40,.18);overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.rp-strip{position:sticky;top:60px;z-index:150;background:var(--apse);border-bottom:2px solid rgba(184,131,40,.35);overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;box-shadow:0 4px 24px rgba(0,0,0,.35)}
 .rp-strip::-webkit-scrollbar{display:none}
-.rp-strip-inner{display:flex;align-items:center;gap:0;min-width:max-content;padding:0 2rem;height:96px}
-.rp-btn{display:flex;flex-direction:column;align-items:center;gap:.35rem;padding:.5rem .85rem;cursor:pointer;background:none;border:none;transition:background .18s;text-decoration:none;flex-shrink:0}
+.rp-strip-inner{display:flex;align-items:center;gap:0;min-width:max-content;padding:0 2rem;height:128px}
+.rp-btn{display:flex;flex-direction:column;align-items:center;gap:.4rem;padding:.65rem .9rem;cursor:pointer;background:none;border:none;transition:background .18s;text-decoration:none;flex-shrink:0;position:relative}
 .rp-btn:hover{background:rgba(255,255,255,.04)}
-.rp-btn.active{background:rgba(184,131,40,.1)}
-.rp-portrait{width:52px;height:52px;border-radius:50%;object-fit:cover;object-position:top center;border:2px solid rgba(246,241,232,.18);transition:border-color .22s,box-shadow .22s;flex-shrink:0}
-.rp-btn.active .rp-portrait{border-color:var(--gold);box-shadow:0 0 0 2px rgba(184,131,40,.35)}
-.rp-btn.saint .rp-portrait{border-color:var(--gold)}
-.rp-name{font-family:var(--f-ui);font-size:.48rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,232,.55);white-space:nowrap;transition:color .18s;max-width:80px;text-align:center;line-height:1.3}
+.rp-btn.active{background:rgba(184,131,40,.08)}
+/* Icon frame — rectangular portrait-oriented, no circle */
+.rp-portrait{width:58px;height:78px;border-radius:0;object-fit:cover;object-position:top center;display:block;
+  border:2px solid rgba(184,131,40,.35);
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,.4),0 2px 8px rgba(0,0,0,.45);
+  transition:border-color .22s,box-shadow .22s;flex-shrink:0}
+.rp-btn:hover .rp-portrait{border-color:rgba(184,131,40,.6);box-shadow:inset 0 0 0 1px rgba(0,0,0,.4),0 3px 12px rgba(0,0,0,.5)}
+.rp-btn.active .rp-portrait{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold),inset 0 0 0 1px rgba(0,0,0,.3),0 0 16px rgba(184,131,40,.3)}
+/* Saint gets a thicker gold frame */
+.rp-btn.saint .rp-portrait{border-color:var(--gold);border-width:3px;box-shadow:0 0 0 1px rgba(184,131,40,.5),inset 0 0 0 1px rgba(0,0,0,.3),0 2px 10px rgba(0,0,0,.5)}
+.rp-name{font-family:var(--f-ui);font-size:.47rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,232,.5);white-space:nowrap;transition:color .18s;max-width:82px;text-align:center;line-height:1.3}
+.rp-btn:hover .rp-name{color:rgba(246,241,232,.75)}
 .rp-btn.active .rp-name{color:var(--gold-lt)}
-.rp-btn.saint .rp-name{color:rgba(232,201,122,.75)}
-.rp-years{font-family:var(--f-body);font-size:.62rem;color:rgba(246,241,232,.3);white-space:nowrap}
-.rp-interim{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.2rem;padding:.5rem .85rem;flex-shrink:0}
-.rp-interim-dot{width:6px;height:6px;border-radius:50%;background:rgba(246,241,232,.2)}
-.rp-divider{width:1px;height:36px;background:rgba(255,255,255,.08);flex-shrink:0;margin:0 .25rem}
+.rp-btn.saint .rp-name{color:rgba(232,201,122,.8)}
+.rp-years{font-family:var(--f-body);font-size:.58rem;color:rgba(246,241,232,.28);white-space:nowrap}
+.rp-interim{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.25rem;padding:.65rem .9rem;flex-shrink:0}
+.rp-interim-dot{width:5px;height:5px;border-radius:50%;background:rgba(246,241,232,.18)}
+.rp-divider{width:1px;height:50px;background:rgba(255,255,255,.06);flex-shrink:0;margin:0 .25rem}
 
 /* ── TIMELINE BODY ── */
 .rp-body-wrap{display:grid;grid-template-columns:60px 1fr;max-width:1160px;margin:0 auto}
 .rectors-body{padding:0 3rem 6rem}
 
 /* ── YEAR RAIL ── */
-.lit-rail{position:sticky;top:156px;height:calc(100vh - 156px);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1.5rem 0;border-right:var(--rule-faint);z-index:10;opacity:0;transition:opacity .5s;align-self:start}
+.lit-rail{position:sticky;top:188px;height:calc(100vh - 188px);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1.5rem 0;border-right:var(--rule-faint);z-index:10;opacity:0;transition:opacity .5s;align-self:start}
 .lit-rail.rail-visible{opacity:1}
 .rail-connector{width:1px;background:rgba(123,29,42,.10);flex:1;max-height:10px}
 .rail-item{display:flex;flex-direction:column;align-items:center;cursor:pointer;position:relative;padding:.12rem 0}
@@ -148,7 +155,7 @@
 .rect-grid.saint-grid{grid-template-columns:200px 1fr}
 
 /* ── PORTRAIT COL ── */
-.rect-portrait-col{display:flex;flex-direction:column;align-items:center;gap:.85rem;position:sticky;top:180px}
+.rect-portrait-col{display:flex;flex-direction:column;align-items:center;gap:.85rem;position:sticky;top:208px}
 .rect-portrait-wrap{position:relative}
 .rect-portrait{width:180px;height:220px;object-fit:cover;object-position:top center;border:1px solid rgba(123,29,42,.15)}
 .rect-portrait-wrap.saint::before{content:'';position:absolute;inset:-5px;border:2px solid var(--gold);z-index:0}
@@ -978,7 +985,7 @@ document.addEventListener('click',function(e){
       if(target){
         var stripH=document.getElementById('rp-strip').offsetHeight;
         var navH=60;
-        var top=target.getBoundingClientRect().top+window.pageYOffset-(navH+stripH+20);
+        var top=target.getBoundingClientRect().top+window.pageYOffset-(navH+stripH+16);
         window.scrollTo({top:top,behavior:'smooth'});
       }
     });
@@ -998,7 +1005,7 @@ document.addEventListener('click',function(e){
   function scrollToRailSection(id){
     var el=document.getElementById(id);
     if(!el)return;
-    var top=el.getBoundingClientRect().top+window.scrollY-176;
+    var top=el.getBoundingClientRect().top+window.scrollY-208;
     window.scrollTo({top:top,behavior:'smooth'});
   }
   window.scrollToRailSection=scrollToRailSection;
