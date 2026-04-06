@@ -233,78 +233,71 @@ function parseLifePage(html) {
 
 // ─── Parse troparia page ──────────────────────────────────────────────────────
 // Returns { troparion, kontakion }
-// OCA troparia pages list one or more saints; we grab only the first
-// troparion and kontakion blocks (matching the primary saint on the day's listing).
+//
+// OCA troparia pages use this structure:
+//   <article>
+//     <h2>Troparion &mdash; Tone 4</h2>
+//     <p>In truth you were revealed...</p>
+//   </article>
+//   <article>
+//     <h2>Kontakion &mdash; Tone 8</h2>
+//     <p>Let us all chant...</p>
+//   </article>
+//
+// Each saint on the day gets its own page (individual slug URL), so we don't
+// need to isolate sections — we just iterate all <article> blocks and match
+// the h2 label inside each one.
 
 function parseTropariaPage(html, slug) {
-  let content = html;
-  const mainMatch = html.match(/<main[^>]*>([\s\S]*?)<\/main>/i);
-  if (mainMatch) content = mainMatch[1];
-
-  // Strategy: find the section for this specific slug.
-  // Each saint's troparia block is preceded by an anchor or heading containing the slug.
-  // If we can't isolate it, fall back to the first troparion/kontakion on the page.
-
-  // Find all troparion blocks — OCA uses <h4> or <strong> labels like "Troparion" / "Kontakion"
-  // followed by one or more <p> tags with the text.
-
-  // Normalise content: strip script/style blocks first
-  content = content.replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '');
-  content = content.replace(/<style[^>]*>[\s\S]*?<\/style>/gi, '');
+  // Strip scripts/styles
+  const content = html
+    .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '')
+    .replace(/<style[^>]*>[\s\S]*?<\/style>/gi, '');
 
   let troparion = '';
   let kontakion = '';
 
-  // Look for the slug anchor to isolate this saint's section
-  let section = content;
-  const slugAnchor = content.indexOf(slug);
-  if (slugAnchor !== -1) {
-    // Find the next saint's slug anchor (or end of content)
-    // Saints are separated by h2/h3 headings; slice from this saint to the next
-    const afterSlug  = content.slice(slugAnchor);
-    const nextH2     = afterSlug.slice(1).search(/<h[23][^>]*>/i);
-    section = nextH2 !== -1 ? afterSlug.slice(0, nextH2 + 1) : afterSlug;
-  }
+  // Iterate every <article>...</article> block
+  const articleRe = /<article[^>]*>([\s\S]*?)<\/article>/gi;
+  let am;
+  while ((am = articleRe.exec(content)) !== null) {
+    const block = am[1];
 
-  // Match troparion and kontakion label blocks
-  // OCA uses patterns like: <h4>Troparion</h4><p>text</p>
-  // or: <strong>Troparion —</strong> text inside a <p>
-  // or: <p><strong>Troparion</strong></p><p>text</p>
+    // Get the h2 label inside this article
+    const h2Match = block.match(/<h[2-6][^>]*>([\s\S]*?)<\/h[2-6]>/i);
+    if (!h2Match) continue;
+    const label = clean(stripTags(h2Match[1]));
 
-  const labelPattern = /<(?:h[2-6]|p|div)[^>]*>([\s\S]*?)<\/(?:h[2-6]|p|div)>/gi;
-  const blocks       = [];
-  let bm;
-  while ((bm = labelPattern.exec(section)) !== null) {
-    const text = clean(stripTags(bm[1]));
-    if (text) blocks.push({ raw: bm[0], text, index: bm.index });
-  }
+    const isTrop = /^troparion/i.test(label);
+    const isKon  = /^kontakion/i.test(label);
+    if (!isTrop && !isKon) continue;
 
-  for (let i = 0; i < blocks.length; i++) {
-    const b    = blocks[i];
-    const next = blocks[i + 1];
-    const isTroparion  = /^troparion/i.test(b.text);
-    const isKontakion  = /^kontakion/i.test(b.text);
-
-    if ((isTroparion || isKontakion) && next) {
-      // The label block is followed by the text block
-      const value = next.text;
-      if (!value || value.length < 10) continue;
-      if (isTroparion && !troparion) troparion = value;
-      if (isKontakion && !kontakion) kontakion = value;
+    // Collect all <p> text inside this article
+    const parts = [];
+    for (const pm of block.matchAll(/<p[^>]*>([\s\S]*?)<\/p>/gi)) {
+      const text = clean(stripTags(pm[1]));
+      if (text && text.length >= 10) parts.push(text);
     }
+    const value = parts.join('\n');
+    if (!value) continue;
+
+    if (isTrop && !troparion) troparion = value;
+    if (isKon  && !kontakion) kontakion = value;
   }
 
-  // Fallback: some pages embed troparion text inside the label block itself
+  // Fallback: inline <strong> label inside <p>
   // e.g. <p><strong>Troparion — Tone 4:</strong> Thou who wast taken up...</p>
   if (!troparion || !kontakion) {
-    for (const pm of section.matchAll(/<p[^>]*>([\s\S]*?)<\/p>/gi)) {
+    for (const pm of content.matchAll(/<p[^>]*>([\s\S]*?)<\/p>/gi)) {
       const inner = pm[1];
-      const text  = clean(stripTags(inner));
-      if (!text || text.length < 20) continue;
-      const labelMatch = inner.match(/<(?:strong|b)[^>]*>([\s\S]*?)<\/(?:strong|b)>/i);
-      if (!labelMatch) continue;
-      const label = clean(stripTags(labelMatch[1]));
-      const body  = text.replace(label, '').replace(/^[\s\-–—:]+/, '').trim();
+      const fullText = clean(stripTags(inner));
+      if (!fullText || fullText.length < 20) continue;
+      const boldMatch = inner.match(/<(?:strong|b)[^>]*>([\s\S]*?)<\/(?:strong|b)>/i);
+      if (!boldMatch) continue;
+      const label = clean(stripTags(boldMatch[1]));
+      if (!/troparion|kontakion/i.test(label)) continue;
+      const labelEnd = inner.indexOf(boldMatch[0]) + boldMatch[0].length;
+      const body = clean(stripTags(inner.slice(labelEnd))).replace(/^[\s\-–\u2014:]+/, '').trim();
       if (!body || body.length < 10) continue;
       if (/troparion/i.test(label) && !troparion) troparion = body;
       if (/kontakion/i.test(label) && !kontakion) kontakion = body;
