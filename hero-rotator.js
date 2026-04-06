@@ -66,9 +66,9 @@
     var overlay = document.createElement('div');
     overlay.style.cssText = 'position:absolute;inset:0;z-index:4;pointer-events:none;' +
       'background:linear-gradient(to right,' +
-        'rgba(43,11,18,0.88) 0%,' +
-        'rgba(43,11,18,0.45) 45%,' +
-        'rgba(43,11,18,0.00) 72%);';
+        'rgba(43,11,18,0.93) 0%,' +
+        'rgba(43,11,18,0.65) 50%,' +
+        'rgba(43,11,18,0.00) 80%);';
 
     /* Lift existing content children above the bg layers */
     Array.prototype.forEach.call(container.children, function (child) {
