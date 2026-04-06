@@ -9,12 +9,16 @@
 (function () {
 
   var IMAGES = [
-    { url: '/images/heroes/home-1.jpg', pos: 'center center' },
-    { url: '/images/heroes/home-2.jpg', pos: 'center center' },
-    { url: '/images/heroes/home-3.jpg', pos: 'center center' },
-    { url: '/images/heroes/home-4.jpg', pos: 'center center' },
-    { url: '/images/heroes/home-5.jpg', pos: 'center center' },
-    { url: '/images/heroes/home-6.jpg', pos: 'center center' }
+    { url: '/images/heroes/hero-03.jpg', pos: 'center center' },
+    { url: '/images/heroes/hero-02.jpg', pos: 'center center' },
+    { url: '/images/heroes/hero-04.jpg', pos: 'center center' },
+    { url: '/images/heroes/hero-11.jpg', pos: 'center center' },
+    { url: '/images/heroes/hero-01.jpg', pos: 'center center' },
+    { url: '/images/heroes/hero-09.jpg', pos: 'center center' },
+    { url: '/images/heroes/hero-07.jpg', pos: 'center center' },
+    { url: '/images/heroes/hero-12.jpg', pos: 'center center' },
+    { url: '/images/heroes/hero-06.jpg', pos: 'center center' },
+    { url: '/images/heroes/hero-08.jpg', pos: 'center center' }
   ];
 
   var HOLD     = 15000;  // ms to show each image
