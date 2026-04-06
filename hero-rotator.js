@@ -67,11 +67,16 @@
     overlay.style.cssText = 'position:absolute;inset:0;z-index:4;pointer-events:none;';
     if (gradient) overlay.style.backgroundImage = gradient;
 
-    /* Insert: bg1, bg2, overlay — all behind existing content */
-    var first = container.firstChild;
-    container.insertBefore(overlay, first);
-    container.insertBefore(bg2,    first);
-    container.insertBefore(bg1,    first);
+    /* Lift existing content children above the bg layers */
+    Array.prototype.forEach.call(container.children, function (child) {
+      child.style.position = 'relative';
+      child.style.zIndex   = '5';
+    });
+
+    /* Prepend bg1, bg2, overlay — underneath existing content */
+    container.insertBefore(overlay, container.firstChild);
+    container.insertBefore(bg2,    container.firstChild);
+    container.insertBefore(bg1,    container.firstChild);
 
     return true;
   }
