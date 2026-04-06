@@ -1436,7 +1436,7 @@ function closeCouncil(e) {
 }
 document.addEventListener('keydown', function(e) { if (e.key === 'Escape') { closeCouncilBtn(); closeMinutesBtn(); closeBudgetBtn(); closeReportBtn(); } });
 </script>
-<script src="/hero-rotator.js"></script>
+
 <script>
 if (window.netlifyIdentity) {
   window.netlifyIdentity.on("init", user => {
@@ -1505,5 +1505,7 @@ document.addEventListener('click', function() {
   if (p) p.classList.remove('open');
 });
 </script>
+<script>window.HERO_IMAGES=[{url:'/images/heroes/hero-01.jpg'},{url:'/images/heroes/hero-03.jpg'},{url:'/images/heroes/hero-15.jpg'},{url:'/images/heroes/hero-10.jpg'}];</script>
+<script src="/hero-rotator.js"></script>
 </body>
 </html>

@@ -2419,35 +2419,7 @@ if(window.netlifyIdentity){
 </script>
 
 <!-- Hero Image Rotator -->
-<script>
-(function(){
-  var IMAGES=[
-    {url:'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Interior_of_Greek_Orthodox_church_18th_century_section.JPG/1280px-Interior_of_Greek_Orthodox_church_18th_century_section.JPG',pos:'center center'},
-    {url:'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Church_of_the_Dormition_of_the_Theotokos_iconostasis.jpg/1280px-Church_of_the_Dormition_of_the_Theotokos_iconostasis.jpg',pos:'center center'},
-    {url:'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Russian_Orthodox_iconostasis_Deventer.jpg/1280px-Russian_Orthodox_iconostasis_Deventer.jpg',pos:'center center'},
-    {url:'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Turku_Orthodox_Church%2C_interior.JPG/1280px-Turku_Orthodox_Church%2C_interior.JPG',pos:'center center'},
-    {url:'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Romanian_Orthodox_Monastery_%2849074404227%29.jpg/1280px-Romanian_Orthodox_Monastery_%2849074404227%29.jpg',pos:'center center'}
-  ];
-  var SCRIM='linear-gradient(to right, rgba(59,15,24,.92) 0%, rgba(59,15,24,.72) 55%, rgba(59,15,24,.38) 100%)';
-  var hero=document.getElementById('page-hero');
-  if(!hero) return;
-  var ci=Math.floor(Math.random()*IMAGES.length);
-  function apply(img){
-    hero.style.backgroundImage=SCRIM+', url("'+img.url+'")';
-    hero.style.backgroundSize='cover';
-    hero.style.backgroundPosition=img.pos||'center center';
-    hero.style.backgroundRepeat='no-repeat';
-  }
-  function advance(){
-    var ni=Math.floor(Math.random()*IMAGES.length);
-    if(ni===ci) ni=(ni+1)%IMAGES.length;
-    ci=ni;
-    apply(IMAGES[ci]);
-  }
-  var timer=setInterval(advance,8000);
-  apply(IMAGES[ci]);
-})();
-</script>
+
 <script>
 function drToggle(head){
   var section=head.parentElement;
@@ -2636,5 +2608,7 @@ document.addEventListener('click', function() {
   if (p) p.classList.remove('open');
 });
 </script>
+<script>window.HERO_IMAGES=[{url:'/images/heroes/hero-02.jpg'},{url:'/images/heroes/hero-03.jpg'},{url:'/images/heroes/hero-09.jpg'},{url:'/images/heroes/hero-06.jpg'},{url:'/images/heroes/hero-04.jpg'}];</script>
+<script src="/hero-rotator.js"></script>
 </body>
 </html>

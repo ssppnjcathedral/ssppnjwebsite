@@ -1,67 +1,113 @@
 /*
    SSPP HERO IMAGE ROTATOR
-   - Loads first image immediately on page load
-   - Ken Burns slow zoom on each image (15s)
-   - Smooth crossfade between images — no dark flash
+   - Set window.HERO_IMAGES on each page before loading this script
+   - Works on homepage (#hero-bg1/#hero-bg2) and all page heroes (.page-hero, .vp-hero, .giving-hero)
+   - Pan-down animation: images drift slowly from top to bottom
+   - Smooth crossfade between images, no dark flash
    - Loops continuously
 */
 
 (function () {
 
-  var IMAGES = [
-    { url: '/images/heroes/hero-03.jpg', pos: 'center center' },
-    { url: '/images/heroes/hero-02.jpg', pos: 'center center' },
-    { url: '/images/heroes/hero-04.jpg', pos: 'center center' },
-    { url: '/images/heroes/hero-11.jpg', pos: 'center center' },
-    { url: '/images/heroes/hero-01.jpg', pos: 'center center' },
-    { url: '/images/heroes/hero-09.jpg', pos: 'center center' },
-    { url: '/images/heroes/hero-07.jpg', pos: 'center center' },
-    { url: '/images/heroes/hero-12.jpg', pos: 'center center' },
-    { url: '/images/heroes/hero-06.jpg', pos: 'center center' },
-    { url: '/images/heroes/hero-08.jpg', pos: 'center center' }
-  ];
+  var IMAGES = (window.HERO_IMAGES && window.HERO_IMAGES.length)
+    ? window.HERO_IMAGES
+    : [
+        { url: '/images/heroes/hero-03.jpg' },
+        { url: '/images/heroes/hero-01.jpg' },
+        { url: '/images/heroes/hero-09.jpg' }
+      ];
 
-  var HOLD     = 15000;  // ms to show each image
-  var FADE     = 2000;   // ms crossfade
-  var ZOOM_DUR = 17000;  // ms zoom — longer than HOLD+FADE so it never stops mid-slide
+  var HOLD    = 8000;   // ms each image is fully visible
+  var FADE    = 1400;   // ms crossfade
+  var PAN_DUR = 11000;  // ms full pan — longer than HOLD so pan never stops mid-slide
 
-  var bg1 = document.getElementById('hero-bg1');
-  var bg2 = document.getElementById('hero-bg2');
-  if (!bg1 || !bg2) return;
+  /* Inject shared CSS once */
+  if (!document.getElementById('hr-css')) {
+    var s = document.createElement('style');
+    s.id = 'hr-css';
+    s.textContent =
+      '@keyframes hr-pan{from{background-position:center top}to{background-position:center bottom}}' +
+      '.hr-bg{position:absolute;inset:0;background-size:cover;background-repeat:no-repeat;' +
+        'background-position:center top;opacity:0;z-index:1;will-change:opacity,background-position}';
+    document.head.appendChild(s);
+  }
 
-  /* Reset any CSS z-index — we manage it dynamically */
-  bg1.style.zIndex  = '1';
-  bg2.style.zIndex  = '0';
-  bg1.style.opacity = '0';
-  bg2.style.opacity = '0';
+  var bg1, bg2;
 
-  var current = 0;
-  var front = bg1;  /* currently visible */
-  var back  = bg2;  /* being prepared    */
+  function setup() {
+    /* Homepage already has named divs */
+    bg1 = document.getElementById('hero-bg1');
+    bg2 = document.getElementById('hero-bg2');
+    if (bg1 && bg2) {
+      bg1.className = bg1.className + ' hr-bg';
+      bg2.className = bg2.className + ' hr-bg';
+      return true;
+    }
 
-  function applyZoom(el) {
+    /* All other page heroes — inject bg divs dynamically */
+    var container = document.querySelector('.page-hero, .vp-hero, .giving-hero');
+    if (!container) return false;
+
+    /* Grab the overlay gradient before clearing the background */
+    var cs = window.getComputedStyle(container);
+    var bgImg = cs.backgroundImage || '';
+    var gradient = bgImg.replace(/url\([^)]+\)/g, '').replace(/,\s*,/g, ',')
+                        .replace(/^[\s,]+|[\s,]+$/g, '');
+
+    /* Strip the static image from the container (gradient stays via overlay below) */
+    container.style.backgroundImage = 'none';
+
+    bg1 = document.createElement('div');
+    bg2 = document.createElement('div');
+    bg1.className = 'hr-bg';
+    bg2.className = 'hr-bg';
+
+    /* Gradient overlay sits above the rotating images */
+    var overlay = document.createElement('div');
+    overlay.style.cssText = 'position:absolute;inset:0;z-index:4;pointer-events:none;';
+    if (gradient) overlay.style.backgroundImage = gradient;
+
+    /* Insert: bg1, bg2, overlay — all behind existing content */
+    var first = container.firstChild;
+    container.insertBefore(overlay, first);
+    container.insertBefore(bg2,    first);
+    container.insertBefore(bg1,    first);
+
+    return true;
+  }
+
+  function applyPan(el) {
     el.style.animation = 'none';
     void el.offsetWidth; /* force reflow so animation restarts */
-    el.style.animation = 'kenburns ' + ZOOM_DUR + 'ms linear forwards';
+    el.style.backgroundPosition = 'center top';
+    el.style.animation = 'hr-pan ' + PAN_DUR + 'ms linear forwards';
   }
 
   function setImage(el, img) {
     el.style.backgroundImage    = 'url("' + img.url + '")';
     el.style.backgroundSize     = 'cover';
-    el.style.backgroundPosition = img.pos || 'center center';
     el.style.backgroundRepeat   = 'no-repeat';
   }
 
+  var current = 0;
+  var front, back;
+
   function init() {
-    setImage(front, IMAGES[0]);
-    applyZoom(front);
-    front.style.zIndex     = '1';
+    if (!setup()) return;
+
+    front = bg1;
+    back  = bg2;
+
+    front.style.zIndex     = '2';
+    back.style.zIndex      = '1';
     front.style.transition = 'opacity ' + (FADE / 1000) + 's ease-in-out';
-    front.style.opacity    = '1';
+    back.style.transition  = 'opacity ' + (FADE / 1000) + 's ease-in-out';
 
-    /* preload next */
+    setImage(front, IMAGES[0]);
+    applyPan(front);
+    front.style.opacity = '1';
+
     if (IMAGES.length > 1) new Image().src = IMAGES[1].url;
-
     setTimeout(advance, HOLD);
   }
 
@@ -71,30 +117,25 @@
 
     var img = new Image();
     img.onload = function () {
-      /* prepare back layer silently underneath */
       setImage(back, next);
-      applyZoom(back);
+      applyPan(back);
       back.style.transition = 'none';
       back.style.opacity    = '0';
-      back.style.zIndex     = '0';
+      back.style.zIndex     = '1';
 
-      /* double rAF so browser paints the reset before we animate */
       requestAnimationFrame(function () {
         requestAnimationFrame(function () {
-          back.style.zIndex     = '2';   /* lift above front */
+          back.style.zIndex     = '3';
           back.style.transition = 'opacity ' + (FADE / 1000) + 's ease-in-out';
           back.style.opacity    = '1';
 
           setTimeout(function () {
-            /* back fully visible — hide and demote front */
             front.style.transition = 'none';
             front.style.opacity    = '0';
-            front.style.zIndex     = '0';
-            back.style.zIndex      = '1';
+            front.style.zIndex     = '1';
+            back.style.zIndex      = '2';
 
-            /* swap */
             var tmp = front; front = back; back = tmp;
-
             setTimeout(advance, HOLD);
           }, FADE);
         });
