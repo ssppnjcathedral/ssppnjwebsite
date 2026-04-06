@@ -1962,39 +1962,6 @@ renderSnapshot();
 </script>
 
 <script>
-/* Hero rotator — non-blocking, loads after page is interactive */
-window.addEventListener('load', function(){
-  var IMAGES=[
-    {url:'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Interior_of_Greek_Orthodox_church_18th_century_section.JPG/1280px-Interior_of_Greek_Orthodox_church_18th_century_section.JPG',pos:'center center'},
-    {url:'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Church_of_the_Dormition_of_the_Theotokos_iconostasis.jpg/1280px-Church_of_the_Dormition_of_the_Theotokos_iconostasis.jpg',pos:'center center'},
-    {url:'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Russian_Orthodox_iconostasis_Deventer.jpg/1280px-Russian_Orthodox_iconostasis_Deventer.jpg',pos:'center center'},
-    {url:'https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Hagia_Sophia_Mars_2013.jpg/1280px-Hagia_Sophia_Mars_2013.jpg',pos:'center 60%'},
-    {url:'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Hagia_Sophia_Interior_Wikimedia_Commons.jpg/1280px-Hagia_Sophia_Interior_Wikimedia_Commons.jpg',pos:'center center'},
-    {url:'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Icon_of_Christ_Pantocrator%2C_Sinai%2C_6th_century.jpg/800px-Icon_of_Christ_Pantocrator%2C_Sinai%2C_6th_century.jpg',pos:'center 30%'},
-    {url:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Rila_Monastery_Bulgaria.jpg/1280px-Rila_Monastery_Bulgaria.jpg',pos:'center 40%'},
-    {url:'https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Kizhi_church_1.jpg/1280px-Kizhi_church_1.jpg',pos:'center 40%'},
-  ];
-  var SCRIM='linear-gradient(to right,rgba(21,8,4,.88) 0%,rgba(21,8,4,.65) 55%,rgba(21,8,4,.38) 100%)';
-  var hero=document.querySelector('.page-hero');
-  if(!hero) return;
-  var idx=Math.floor(Math.random()*IMAGES.length);
-  function apply(img){
-    hero.style.backgroundImage=SCRIM+',url("'+img.url+'")';
-    hero.style.backgroundSize='cover';
-    hero.style.backgroundPosition=img.pos||'center center';
-    hero.style.backgroundRepeat='no-repeat';
-  }
-  function tryLoad(i){
-    var img=new Image();
-    img.onload=function(){apply(IMAGES[i]);setInterval(function(){i=(i+1)%IMAGES.length;apply(IMAGES[i]);},8000);};
-    img.onerror=function(){tryLoad((i+1)%IMAGES.length);};
-    setTimeout(function(){img.src=IMAGES[i].url;},100);
-  }
-  tryLoad(idx);
-});
-</script>
-
-<script>
 if(window.netlifyIdentity){
   window.netlifyIdentity.on('init',function(user){
     if(!user){window.netlifyIdentity.on('login',function(){document.location.href='/admin/';});}

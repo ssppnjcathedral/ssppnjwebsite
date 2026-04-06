@@ -1164,43 +1164,6 @@ window.addEventListener('popstate', () => {
 boot();
 </script>
 
-<!-- Hero Image Rotator -->
-<script>
-(function() {
-  var IMAGES = [
-    { url:'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Interior_of_Greek_Orthodox_church_18th_century_section.JPG/1280px-Interior_of_Greek_Orthodox_church_18th_century_section.JPG', label:'Greek Orthodox church interior, 18th century', pos:'center center' },
-    { url:'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Romanian_Orthodox_Monastery_%2849074404227%29.jpg/1280px-Romanian_Orthodox_Monastery_%2849074404227%29.jpg', label:'Romanian Orthodox Monastery interior', pos:'center center' },
-    { url:'https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Saint_Nicholas_Orthodox_church_in_Bangkok_%2810%29.jpg/1280px-Saint_Nicholas_Orthodox_church_in_Bangkok_%2810%29.jpg', label:'Saint Nicholas Orthodox Church, Bangkok', pos:'center center' },
-    { url:'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Church_of_the_Dormition_of_the_Theotokos_iconostasis.jpg/1280px-Church_of_the_Dormition_of_the_Theotokos_iconostasis.jpg', label:'Church of the Dormition iconostasis', pos:'center center' },
-    { url:'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Russian_Orthodox_iconostasis_Deventer.jpg/1280px-Russian_Orthodox_iconostasis_Deventer.jpg', label:'Russian Orthodox iconostasis, Deventer', pos:'center center' },
-    { url:'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Hagia_Sophia_Interior_Wikimedia_Commons.jpg/1280px-Hagia_Sophia_Interior_Wikimedia_Commons.jpg', label:'Hagia Sophia interior', pos:'center center' },
-    { url:'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Icon_of_Christ_Pantocrator%2C_Sinai%2C_6th_century.jpg/800px-Icon_of_Christ_Pantocrator%2C_Sinai%2C_6th_century.jpg', label:'Christ Pantocrator, Sinai', pos:'center 30%' },
-    { url:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Rila_Monastery_Bulgaria.jpg/1280px-Rila_Monastery_Bulgaria.jpg', label:'Rila Monastery, Bulgaria', pos:'center 40%' },
-    { url:'https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Monastery_of_Saint_Naum_02.jpg/1280px-Monastery_of_Saint_Naum_02.jpg', label:'Monastery of Saint Naum', pos:'center center' },
-  ];
-  var SCRIM = 'linear-gradient(to right,rgba(21,8,4,.88) 0%,rgba(21,8,4,.65) 55%,rgba(21,8,4,.38) 100%)';
-  var hero = document.querySelector('.page-hero');
-  if (!hero) return;
-  var currentIdx = Math.floor(Math.random() * IMAGES.length);
-  function applyImage(img) {
-    hero.style.backgroundImage = SCRIM + ',url("' + img.url + '")';
-    hero.style.backgroundSize = 'cover';
-    hero.style.backgroundPosition = img.pos || 'center center';
-    hero.style.backgroundRepeat = 'no-repeat';
-    hero.style.transition = 'background-image 1.2s ease-in-out';
-  }
-  function advance() {
-    var next = (currentIdx + 1 + Math.floor(Math.random() * (IMAGES.length - 1))) % IMAGES.length;
-    currentIdx = next;
-    applyImage(IMAGES[currentIdx]);
-  }
-  var img = new Image();
-  img.onload  = function() { applyImage(IMAGES[currentIdx]); setInterval(advance, 8000); };
-  img.onerror = function() { currentIdx = (currentIdx + 1) % IMAGES.length; img.src = IMAGES[currentIdx].url; };
-  img.src = IMAGES[currentIdx].url;
-})();
-</script>
-
 <script>
 if (window.netlifyIdentity) {
   window.netlifyIdentity.on("init", user => {
