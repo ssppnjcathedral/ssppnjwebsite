@@ -62,10 +62,13 @@
     bg1.className = 'hr-bg';
     bg2.className = 'hr-bg';
 
-    /* Gradient overlay sits above the rotating images */
+    /* Gradient overlay — dark left and right, slight lift in centre */
     var overlay = document.createElement('div');
-    overlay.style.cssText = 'position:absolute;inset:0;z-index:4;pointer-events:none;';
-    if (gradient) overlay.style.backgroundImage = gradient;
+    overlay.style.cssText = 'position:absolute;inset:0;z-index:4;pointer-events:none;' +
+      'background:linear-gradient(to right,' +
+        'rgba(43,11,18,0.93) 0%,' +
+        'rgba(43,11,18,0.74) 42%,' +
+        'rgba(43,11,18,0.88) 100%);';
 
     /* Lift existing content children above the bg layers */
     Array.prototype.forEach.call(container.children, function (child) {
