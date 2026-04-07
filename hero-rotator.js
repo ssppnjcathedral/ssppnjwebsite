@@ -9,26 +9,39 @@
 
 (function () {
 
-  var IMAGES = (window.HERO_IMAGES && window.HERO_IMAGES.length)
-    ? window.HERO_IMAGES
-    : [
-        { url: '/images/heroes/hero-03.jpg' },
-        { url: '/images/heroes/hero-01.jpg' },
-        { url: '/images/heroes/hero-09.jpg' }
-      ];
+  var ALL_HEROES = [
+    {url:'/images/heroes/hero-01.jpg'},{url:'/images/heroes/hero-02.jpg'},
+    {url:'/images/heroes/hero-03.jpg'},{url:'/images/heroes/hero-04.jpg'},
+    {url:'/images/heroes/hero-05.jpg'},{url:'/images/heroes/hero-06.jpg'},
+    {url:'/images/heroes/hero-07.jpg'},{url:'/images/heroes/hero-08.jpg'},
+    {url:'/images/heroes/hero-09.jpg'},{url:'/images/heroes/hero-10.jpg'},
+    {url:'/images/heroes/hero-11.jpg'},{url:'/images/heroes/hero-12.jpg'},
+    {url:'/images/heroes/hero-13.jpg'},{url:'/images/heroes/hero-14.jpg'},
+    {url:'/images/heroes/hero-15.jpg'}
+  ];
 
-  var HOLD    = 8000;   // ms each image is fully visible
-  var FADE    = 1400;   // ms crossfade
-  var PAN_DUR = 11000;  // ms full pan — longer than HOLD so pan never stops mid-slide
+  function shuffle(arr) {
+    for (var i = arr.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = arr[i]; arr[i] = arr[j]; arr[j] = tmp;
+    }
+    return arr;
+  }
+
+  var IMAGES = shuffle(ALL_HEROES.slice());
+
+  var HOLD     = 15000;  // ms each image is fully visible
+  var FADE     = 2000;   // ms crossfade
+  var ZOOM_DUR = 17000;  // ms zoom — longer than HOLD+FADE so it never stops mid-slide
 
   /* Inject shared CSS once */
   if (!document.getElementById('hr-css')) {
     var s = document.createElement('style');
     s.id = 'hr-css';
     s.textContent =
-      '@keyframes hr-pan{from{background-position:center top}to{background-position:center bottom}}' +
+      '@keyframes hr-kenburns{from{transform:scale(1)}to{transform:scale(1.08)}}' +
       '.hr-bg{position:absolute;inset:0;background-size:cover;background-repeat:no-repeat;' +
-        'background-position:center top;opacity:0;z-index:1;will-change:opacity,background-position}';
+        'background-position:center center;opacity:0;z-index:1;will-change:opacity,transform}';
     document.head.appendChild(s);
   }
 
@@ -66,9 +79,10 @@
     var overlay = document.createElement('div');
     overlay.style.cssText = 'position:absolute;inset:0;z-index:4;pointer-events:none;' +
       'background:linear-gradient(to right,' +
-        'rgba(43,11,18,0.95) 0%,' +
-        'rgba(43,11,18,0.75) 50%,' +
-        'rgba(43,11,18,0.00) 95%);';
+        'rgba(91,18,30,0.97) 0%,' +
+        'rgba(91,18,30,0.90) 45%,' +
+        'rgba(91,18,30,0.45) 75%,' +
+        'rgba(91,18,30,0.00) 100%);';
 
     /* Lift existing content children above the bg layers */
     Array.prototype.forEach.call(container.children, function (child) {
@@ -84,11 +98,10 @@
     return true;
   }
 
-  function applyPan(el) {
+  function applyZoom(el) {
     el.style.animation = 'none';
     void el.offsetWidth; /* force reflow so animation restarts */
-    el.style.backgroundPosition = 'center top';
-    el.style.animation = 'hr-pan ' + PAN_DUR + 'ms linear forwards';
+    el.style.animation = 'hr-kenburns ' + ZOOM_DUR + 'ms linear forwards';
   }
 
   function setImage(el, img) {
@@ -112,7 +125,7 @@
     back.style.transition  = 'opacity ' + (FADE / 1000) + 's ease-in-out';
 
     setImage(front, IMAGES[0]);
-    applyPan(front);
+    applyZoom(front);
     front.style.opacity = '1';
 
     if (IMAGES.length > 1) new Image().src = IMAGES[1].url;
@@ -126,7 +139,7 @@
     var img = new Image();
     img.onload = function () {
       setImage(back, next);
-      applyPan(back);
+      applyZoom(back);
       back.style.transition = 'none';
       back.style.opacity    = '0';
       back.style.zIndex     = '1';
