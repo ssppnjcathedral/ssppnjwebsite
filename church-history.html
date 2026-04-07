@@ -203,6 +203,23 @@ footer .btn-outline:hover{background:rgba(246,241,232,.15);color:#fff;border-col
 .mini-tl-year{font-family:var(--f-ui);font-size:.72rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--maroon);display:block;margin-bottom:.2rem}
 .mini-tl-text{font-family:var(--f-body);font-size:.84rem;line-height:1.65;color:var(--ink)}
 
+/* ── DYNAMIC SIDEBAR PANELS ── */
+.lit-sidebar{position:sticky;top:60px;height:calc(100vh - 60px);border-left:var(--rule-faint);background:var(--vellum);overflow:hidden}
+.sidebar-track{height:100%;position:relative;overflow:hidden}
+.sb-panel{position:absolute;inset:0;padding:2.25rem 2rem 2.25rem 2.25rem;opacity:0;transform:translateY(10px);transition:opacity .38s cubic-bezier(.22,1,.36,1),transform .38s cubic-bezier(.22,1,.36,1);pointer-events:none;overflow-y:auto;scrollbar-width:thin;scrollbar-color:rgba(123,29,42,.15) transparent}
+.sb-panel.sb-active{opacity:1;transform:none;pointer-events:all}
+.sb-panel-tag{font-family:var(--f-ui);font-size:.60rem;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.5rem}
+.sb-rule{height:1px;background:rgba(123,29,42,.10);margin:1.1rem 0}
+.sb-panel-head{font-family:var(--f-display);font-weight:400;font-size:1.15rem;color:var(--text);line-height:1.25;margin-bottom:.5rem;display:block}
+.sb-body{font-family:var(--f-body);font-size:1.05rem;line-height:1.78;color:var(--ink);opacity:.90}
+.sb-body em{font-style:italic}
+.sb-body strong{font-weight:500}
+.sb-icon{width:100%;max-height:170px;object-fit:cover;object-position:center top;margin-bottom:.8rem;display:block;filter:sepia(.08)}
+.sb-icon-cap{font-family:var(--f-ui);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);display:block;padding-bottom:.65rem;margin-bottom:1rem;border-bottom:var(--rule-hair)}
+.sb-blockquote{border-left:2px solid var(--maroon);padding-left:1rem;margin:1rem 0}
+.sb-blockquote-text{font-family:var(--f-display);font-style:italic;font-size:1.2rem;line-height:1.55;color:var(--text);display:block}
+.sb-blockquote-attr{font-family:var(--f-ui);font-size:.58rem;letter-spacing:.13em;text-transform:uppercase;color:var(--stone);display:block;margin-top:.45rem}
+
 /* QUOTE BREAK */
 .quote-break{margin:0;padding:4rem 4.5rem;background:var(--vellum-mid);position:relative;border-top:var(--rule-faint);border-bottom:var(--rule-faint)}
 .qb-inner{max-width:680px;margin:0 auto;padding-left:2rem;border-left:3px solid var(--maroon)}
@@ -239,7 +256,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 @media(max-width:1100px){.lit-rail{display:none}.page-body{grid-template-columns:1fr 300px;padding-left:4.5rem}}
 @media(max-width:1024px){
   .page-body{grid-template-columns:1fr;gap:0;padding-left:4.5rem}
-  .side-col{border-left:none;border-top:var(--rule-faint);padding-left:0;padding-top:2.5rem;margin-top:2.5rem}
+  .lit-sidebar{display:none}
   .footer-cols{grid-template-columns:1fr 1fr;gap:2.5rem}
 }
 @media(max-width:768px){
@@ -933,7 +950,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
     <span class="rubric light">Church History</span>
     <div class="rubric-rule" style="background:rgba(232,201,122,.6)"></div>
     <h1 class="page-title">Two Centuries<br><em>on Sacred Ground</em></h1>
-    <p class="page-subtitle">A history of faith, architecture, and community on Grand Street since 1804</p>
+    <p class="page-subtitle">A building two centuries in the making. A parish that gave the OCA its first saint and its first primate.</p>
   </div>
 </div>
 
@@ -964,12 +981,27 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   <div class="rail-connector"></div>
   <div class="rail-item" data-rail="section-parish" onclick="scrollToSection('section-parish')">
     <div class="rail-dot-wrap"><div class="rail-dot"></div></div>
-    <span class="rail-label">Founded 1907</span>
+    <span class="rail-label">Founded, 1907</span>
+  </div>
+  <div class="rail-connector"></div>
+  <div class="rail-item" data-rail="section-saint" onclick="scrollToSection('section-saint')">
+    <div class="rail-dot-wrap"><div class="rail-dot"></div></div>
+    <span class="rail-label">Takes Shape</span>
+  </div>
+  <div class="rail-connector"></div>
+  <div class="rail-item" data-rail="section-rectors" onclick="scrollToSection('section-rectors')">
+    <div class="rail-dot-wrap"><div class="rail-dot"></div></div>
+    <span class="rail-label">Stability</span>
   </div>
   <div class="rail-connector"></div>
   <div class="rail-item" data-rail="section-interior" onclick="scrollToSection('section-interior')">
     <div class="rail-dot-wrap"><div class="rail-dot"></div></div>
-    <span class="rail-label">Orthodox Redesign</span>
+    <span class="rail-label">Restoration</span>
+  </div>
+  <div class="rail-connector"></div>
+  <div class="rail-item" data-rail="section-today" onclick="scrollToSection('section-today')">
+    <div class="rail-dot-wrap"><div class="rail-dot"></div></div>
+    <span class="rail-label">Second Century</span>
   </div>
   <div class="rail-connector"></div>
   <div class="rail-item" data-rail="section-gallery" onclick="scrollToSection('section-gallery')">
@@ -996,8 +1028,12 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
         <span class="stat-label">Orthodox Parish Founded</span>
       </div>
       <div class="stat-box">
-        <span class="stat-num">1982</span>
-        <span class="stat-label">National Register Listing</span>
+        <span class="stat-num">11</span>
+        <span class="stat-label">Rectors Since 1907</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-num">1</span>
+        <span class="stat-label">Canonized Saint Among Our Rectors</span>
       </div>
       <div class="stat-box">
         <span class="stat-num">$1.1M</span>
@@ -1010,8 +1046,8 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
     <div class="rubric-rule"></div>
 
     <div class="prose">
-      <p class="drop-cap">Saints Peter and Paul Russian Orthodox Church on Grand Street, founded in 1907, is the second oldest Slavic Orthodox Church in New Jersey. Its congregants — descendants of Eastern European immigrants — belong to the self-governing body of the Orthodox Church of America, operating under the Diocese of New York and New Jersey. The building itself stands as a Contributing Resource of the Paulus Hook Historic District, listed on both the State and National Register of Historic Places since 1982.</p>
-      <p>For over 200 years, the church site on Grand Street has been reserved exclusively for religious observance. It was one of four lots so designated before any significant settlement took hold in what is now Jersey City's historic district — a testament to the deep roots of faith that have anchored this corner of Paulus Hook since the city's earliest days.</p>
+      <p class="drop-cap">Saints Peter and Paul Orthodox Cathedral on Grand Street is the second oldest Slavic Orthodox parish in New Jersey, founded in 1907 by Eastern European immigrants who had chosen the ancient Byzantine faith over the accommodations being demanded of them. Its congregation belongs to the self-governing Orthodox Church in America, under the Diocese of New York and New Jersey. The building stands as a Contributing Resource of the Paulus Hook Historic District, listed on the State and National Register of Historic Places since 1982.</p>
+      <p>For more than two centuries, this corner of Grand Street has been reserved exclusively for worship. The parish's story begins decades before Orthodoxy arrived here: in the swampy undeveloped frontier of Paulus Hook, and in the faith of a people who crossed an ocean and would not surrender what they brought with them.</p>
     </div>
 
     <div class="hist-note">
@@ -1021,7 +1057,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 
     <!-- IMG 1: Church exterior, full-width -->
     <div class="img-full">
-      <img src="https://picsum.photos/seed/cathedral1/1200/380" alt="Saints Peter and Paul — Grand Street Exterior">
+      <img src="/Images/heroes/hero-02.jpg" alt="Saints Peter and Paul Orthodox Church — Grand Street Exterior, Jersey City" onerror="this.style.display='none'">
       <p class="img-caption">The sandstone Gothic Revival façade of Saints Peter &amp; Paul, 109 Grand Street, Jersey City — a Contributing Resource of the Paulus Hook Historic District since 1982.</p>
     </div>
 
@@ -1069,58 +1105,52 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
       <p class="img-caption">The original Gothic Revival interior as completed by architect Detlef Lienau in 1857 — ten arches on eight columns, open-timbered roof, and ten stained-glass windows for a congregation of 750.</p>
     </div>
 
-    <!-- PULL QUOTE -->
-    <div class="pull-quote">
-      <p>"Images or icons are silent sermons uttered in color. A wall of icons, the iconostasis, displays saints including Saint Nicholas, a fourth century bishop. Beyond the wall is the sacred inner space of the altar, or Holy of Holies — richly encrusted icons creating an inspiring, worshipful environment."</p>
-      <cite>— Rev. Joseph Lickwar, Pastor of Saints Peter and Paul since 1991<br><em>Jersey City's Sacred Spaces</em>, 2004</cite>
-    </div>
-
     <!-- SECTION 3 -->
-    <h2 id="section-parish" class="section-head">Saints Peter and Paul on Grand Street</h2>
+    <h2 id="section-parish" class="section-head">The First Liturgy and the First Transformation, 1907&#8211;1919</h2>
     <span class="rubric-rule"></span>
     <div class="prose">
-      <p>By the 1870s, Jersey City's population surged with the forces of immigration, urbanization, and industrialization. Political consolidation in 1870, the presence of three major railway lines, and employment at Colgate, the Great Atlantic &amp; Pacific Tea Company, P. Lorillard Tobacco, American Sugar Refining, and Dixon Crucible, among other industries, drew newcomers to the city. The population climbed from 82,000 to 200,000 by 1900 — a quantum leap from the handful of residents the Associates had found at Paulus Hook a century earlier.</p>
+      <p>By the 1870s, Jersey City's population surged with immigration and industrialization. Political consolidation in 1870, three major railway lines, and employment at Colgate, the Great Atlantic &amp; Pacific Tea Company, P. Lorillard Tobacco, American Sugar Refining, and Dixon Crucible drew newcomers in waves. The population climbed from 82,000 to 200,000 by 1900, a scale of growth the Associates of the Jersey Company could not have imagined when they platted these blocks in a swamp.</p>
     </div>
 
     <!-- IMG 5: Full-width — Eastern European immigrants, Jersey City c. 1900 -->
     <div class="img-full">
       <img src="https://picsum.photos/seed/jcity1900/1200/380" alt="Eastern European Immigrants — Jersey City, c. 1900">
-      <p class="img-caption">Eastern European immigrants from Slovakia, Ukraine, and the Russian Empire flooded into Jersey City in the late nineteenth century, drawn by work at the city's railroads and refineries. By 1900 the population had reached 200,000.</p>
+      <p class="img-caption">Eastern European immigrants from Slovakia, Ukraine, and the Russian Empire arrived in Jersey City in the late nineteenth century, drawn by work at the city's railroads and refineries. By 1900 the population had reached 200,000.</p>
     </div>
-    <div class="prose">
-      <p>Among the new arrivals were Eastern Europeans from what is now Slovakia and Ukraine, former sections of Austria-Hungary, and the Russian Empire. They organized the Saints Peter and Paul Brotherhood under a December 1889 charter, initially holding services in a wooden building on Chestnut Street. By 1902, the congregation had moved into a newly constructed brick church at the southeast corner of Greene and Sussex Streets.</p>
-      <p>These congregants worshipped as Eastern Rite Catholics — following the Byzantine liturgical rite under the general jurisdiction of Rome. When attempts were made to replace the Byzantine rite with more Latinized forms of worship, a faction of approximately 500 congregants withdrew to form a separate community where their Eastern liturgical traditions could be preserved. They were drawn to the Russian Orthodox movement in North America, led from 1892 by the Very Rev. Alexis Toth.</p>
-      <p>The seceding faction held services at 74 Grand Street, the former annex of Public School No. 1, and later in "house churches" — first at 131 Grand Street, then at 64 Grand Street, rented for $35.00 monthly. On February 16, 1907, the congregation incorporated as "Saints Peter and Paul Russian Orthodox Greek Catholic Church of Jersey City."</p>
-      <p>The new congregation petitioned Archbishop Platon of New York to join the Russian Orthodox Greek Catholic Church of America. He responded by assigning Archpriest Alexander Hotovitsky — a founder of the Orthodox presence on Grand Street — who led the parish's First Divine Liturgy at his 64 Grand Street residence on October 24, 1907. In 1994, Rev. Hotovitzky was canonized as a missionary to North America and New Martyr of Russia, for his martyrdom in Russia in 1938.</p>
+    <div class="prose clearfix">
+      <div class="img-float-right">
+        <img src="/Images/upload/St-Alexander-Hotovitsky-Icon-1.png" alt="Icon of St. Alexander Hotovitsky, New Martyr" onerror="this.style.display='none'">
+        <p class="img-caption">St. Alexander Hotovitsky, first rector of Saints Peter and Paul, 1907. Canonized 1994.</p>
+      </div>
+      <p>Among the new arrivals were Eastern Europeans from what is now Slovakia and Ukraine, and from the Russian Empire. They organized the Saints Peter and Paul Brotherhood under a December 1889 charter, initially gathering in a wooden building on Chestnut Street. By 1902, the congregation had moved into a newly constructed brick church at the southeast corner of Greene and Sussex Streets, worshipping as Eastern Rite Catholics under the Byzantine liturgical rite.</p>
+      <p>When pressure mounted to replace the Byzantine rite with more Latinized forms of worship, approximately 500 congregants withdrew. They would not surrender the ancient liturgy their families had carried from the old country. Drawn to the growing Russian Orthodox movement in North America, they held services first at 74 Grand Street in the former annex of Public School No. 1, then in a series of rented house churches: 131 Grand Street, then 64 Grand Street at $35.00 per month.</p>
+      <p>On February 16, 1907, the congregation incorporated as "Saints Peter and Paul Russian Orthodox Greek Catholic Church of Jersey City." They petitioned Archbishop Platon of New York for reception into the Russian Orthodox Church of America, and on October 24, 1907, Archpriest Alexander Hotovitsky led the parish's first Divine Liturgy at his 64 Grand Street residence. A community of faith had come home to Grand Street.</p>
+    </div>
 
-      <!-- IMG 6+7: Pair — Hotovitsky + early congregation -->
-    </div>
+    <!-- IMG 6+7: Pair — Hotovitsky + early congregation -->
     <div class="img-pair">
       <div class="img-unit">
         <img src="https://picsum.photos/seed/portrait1907/600/268" alt="Archpriest Alexander Hotovitsky, c. 1907">
-        <p class="img-caption">Archpriest Alexander Hotovitsky led the First Divine Liturgy at 64 Grand Street on October 24, 1907. Canonized in 1994 as a New Martyr of Russia, he gave his life for the faith in 1938.</p>
+        <p class="img-caption">Archpriest Alexander Hotovitsky led the First Divine Liturgy at 64 Grand Street on October 24, 1907. Martyred in Russia in 1938, he was canonized in 1994 as a New Martyr and Confessor of Russia.</p>
       </div>
       <div class="img-unit">
         <img src="https://picsum.photos/seed/parish1907/600/268" alt="Early Parish Congregation, 1907">
-        <p class="img-caption">The founding congregation of Saints Peter and Paul — approximately 500 Eastern Rite faithful who withdrew to preserve their Byzantine liturgical heritage and formed the parish in 1907.</p>
+        <p class="img-caption">The founding congregation of Saints Peter and Paul — approximately 500 Eastern Rite faithful who chose the ancient Orthodox faith and formed this parish in 1907.</p>
       </div>
     </div>
-    <div class="prose">
-
-      <p>In 1908, Rev. Alexander Nemolovsky became the first permanent pastor, residing at 131 Grand Street. Having outgrown its house church, the congregation sought to acquire the vacant First Reformed Church of Jersey City on Grand Street, which had consolidated with the Wayne Street Reformed Church. In 1909, the Russian Orthodox Archdiocese in America purchased the 111–113 Grand Street property for $35,000 from the Collegiate Reformed Church of New York City, which had held the mortgage since the 1850s.</p>
+    <div class="prose clearfix">
+      <div class="img-float-left">
+        <img src="/Images/upload/1-facade.jpeg" alt="Saints Peter and Paul Cathedral, 109 Grand Street" onerror="this.style.display='none'">
+        <p class="img-caption">The sandstone Gothic Revival church on Grand Street, purchased by the Archdiocese in 1909 for $35,000.</p>
+      </div>
+      <p>In 1908, the Archdiocese assigned Rev. Alexander Nemolovsky as the first permanent resident rector, living at 131 Grand Street on $25 per month. Within a year, the congregation had outgrown its rented rooms. In February 1909, the Russian Orthodox Archdiocese in America purchased the former First Reformed Church on Grand Street for $35,000 from the Collegiate Reformed Church of New York City, which had held the mortgage since the 1850s. The Gothic Revival sandstone church that the Dutch Reformed had built on this lot in 1857 would now become an Orthodox cathedral.</p>
     </div>
-
-    <!-- SECTION 4 -->
-    <h2 id="section-interior" class="section-head">Redesigned in the Traditional Russian Orthodox Manner</h2>
-    <span class="rubric-rule"></span>
-
-    <!-- Paragraph 1: Iconostasis — float right -->
     <div class="prose clearfix">
       <div class="img-float-right">
-        <img src="https://picsum.photos/seed/iconostasis1/280/210" alt="The Iconostasis">
-        <p class="img-caption">The Royal Doors and Iconostasis, 1909.</p>
+        <img src="https://picsum.photos/seed/iconostasis1/280/210" alt="The Iconostasis — Saints Peter and Paul">
+        <p class="img-caption">The Royal Doors and Iconostasis, purchased in 1909 for $1,200.</p>
       </div>
-      <p>With the parish's formal incorporation on August 31, 1909, work began to transform the Gothic Revival structure into a space fitting for the celebration of the Orthodox liturgy. On July 7, 1909, a hand-carved solid oak Iconostasis — an icon screen — was purchased for $1,200. Its center Royal Doors with icons and red curtains were modeled after those at Saint Nicholas Cathedral in New York City, and its oil-painted icons on canvas were imported from Russia.</p>
+      <p>With the parish's formal incorporation on August 31, 1909, work began to transform the Gothic Revival structure into a space fitting for the celebration of the Orthodox liturgy. On July 7, 1909, a hand-carved solid oak Iconostasis was purchased for $1,200. Its center Royal Doors with icons and red curtains were modeled after those at Saint Nicholas Cathedral in New York City, and its oil-painted icons on canvas were imported from Russia.</p>
       <p>The Iconostasis, set on a platform reached by stairs, divides the altar from the nave, symbolically separating the Divine from the human. An icon of the Last Supper appears over the Royal Doors. The Table of Oblation, to the left of the Iconostasis, holds sacred vessels for the Holy Eucharist.</p>
     </div>
 
@@ -1130,29 +1160,84 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
       <p class="img-caption">The hand-carved solid oak Iconostasis, purchased in 1909 for $1,200 and modeled after Saint Nicholas Cathedral in New York City. Oil-painted icons on canvas were imported from Russia. The Royal Doors at center are flanked by icons and hung with red curtains.</p>
     </div>
 
-    <!-- Paragraph 2: Exterior — float left -->
-    <div class="prose clearfix">
-      <div class="img-float-left">
-        <img src="https://picsum.photos/seed/cupola22/280/210" alt="Corner Tower and Cupola">
-        <p class="img-caption">Russian-style copper domes and Orthodox three-bar crosses cap the towers.</p>
-      </div>
-      <p>The church's exterior retains the original features of the sandstone Gothic Revival structure. Two elongated pier buttresses accentuate the corner towers and lend the building its heightened symmetrical appearance. The towers are capped with three Russian-style cupolas, copper domes, and Orthodox three-bar crosses symbolizing the Trinity.</p>
-      <p>The rectangular doorway features a pointed-arch entrance with ornamental molding surround, hood molding, and label stops. The teak doors — with carved Orthodox cross — were imported from Hong Kong and installed in 1965. In 2009, the church's name in gold letters was installed across the building's façade between the molding, above the entrance and below the foiled-arch Gothic stained-glass window.</p>
+    <!-- pull quote -->
+    <div class="pull-quote">
+      <p>"Images or icons are silent sermons uttered in color. A wall of icons, the iconostasis, displays saints including Saint Nicholas, a fourth century bishop. Beyond the wall is the sacred inner space of the altar, or Holy of Holies."</p>
+      <cite>Rev. Joseph Lickwar, Rector 1991&ndash;2023 &middot; <em>Jersey City's Sacred Spaces</em>, 2004</cite>
     </div>
 
-    <!-- Paragraph 3: Interior murals — float right -->
+    <div class="prose clearfix">
+      <div class="img-float-left">
+        <img src="/Images/upload/CAthedral rooftop.jpeg" alt="The three copper domes of Saints Peter and Paul Cathedral" onerror="this.style.display='none'">
+        <p class="img-caption">The three Russian-style copper domes rising above Grand Street. Photo by Daniel E. Beards.</p>
+      </div>
+      <p>The exterior was transformed alongside the interior. The two corner towers, capped originally in the Gothic style, were crowned with three Russian-style cupolas, copper domes, and Orthodox three-bar crosses symbolizing the Trinity. What the Dutch Reformed had built as a cut-stone Gothic sanctuary was now unmistakably an Orthodox cathedral, its domes visible across the rooftops of Paulus Hook.</p>
+      <p>The first two men to serve this parish left marks on American Orthodoxy that reach far beyond Grand Street. Archpriest Alexander Hotovitsky served here only through the parish's founding year, yet his name is now in the calendar of saints. After his work in North America, he returned to Russia, where the Bolsheviks arrested him, and where he was shot in August 1937 after enduring years of imprisonment and labor camps. The Russian Orthodox Church canonized him in 1994 as a New Martyr and Confessor of Russia. His is the only name from this parish's founding generation in the Menologion of the Church.</p>
+      <p>Alexander Nemolovsky, who served as the first permanent rector from 1908 to 1909, went on to a career no one living at 64 Grand Street could have predicted. Within months of arriving in Jersey City, he supervised the purchase of this building, obtained the hand-carved oak iconostasis, and signed the parish's Certificate of Incorporation in August 1909. The Holy Synod then elected him the first vicar bishop of the North American Archdiocese, and he was consecrated Bishop of Sitka at the Alexander Nevsky Lavra in St. Petersburg on November 15, 1909, by five bishops who would go on to lead different Orthodox jurisdictions across the following century.</p>
+      <p>In February 1919, at St. Theodosius Cathedral in Cleveland, Nemolovsky was elected Archbishop of the Aleutians and North America by the Second All-American Sobor. It was the first election of an Orthodox primate by clergy and laity together in the Western Hemisphere, and it established the model for every subsequent election of the OCA's primates. The man who had lived on Grand Street for one year, at $25 per month, set the democratic precedent by which the Orthodox Church in America has governed itself ever since.</p>
+      <p>His later years were no less extraordinary. Appointed Archbishop of Brussels and Belgium in 1936, he was arrested by forty Gestapo officers immediately after Divine Liturgy on November 4, 1940, handcuffed before his congregation, and imprisoned in Berlin for the duration of the war. Released in 1945, he returned to Brussels, established nursing homes for Russian refugees, and served daily liturgy into his eighties. He died on April 11, 1960, the Monday of Holy Week, and was buried at Ixelles Cemetery in Brussels. The priest who signed this parish's incorporation papers was also the first democratically elected Orthodox primate in the New World.</p>
+    </div>
+
+    <!-- SECTION 4 -->
+    <h2 id="section-saint" class="section-head">The Interior Takes Shape, 1920&#8211;1944</h2>
+    <span class="rubric-rule"></span>
+    <div class="prose">
+      <p>Between Nemolovsky's elevation to the episcopate in 1909 and the arrival of the third permanent rector in 1920, at least seven clergymen served the parish. Several held distinguished positions in the broader life of American Orthodoxy: Protopresbyter Peter G. Kohanik, who would spend 44 years as founding rector of St. John the Baptist in Passaic; Mitred Archpriest Joseph O. Dzvonchik, Vice President and Secretary of the Metropolitan Council; and Archpriest Michael Chervinsky, who physically held the bishop's residence against police and lawyers during the 1925 cathedral dispute in New York. These men maintained the community during its first decade on Grand Street.</p>
+      <p>The third permanent rector, Very Rev. John J. Adamiak, shaped the interior of the church that visitors see today. Born in 1889 in Mayfield, Pennsylvania, he had been sent to seminary in Russia at age fourteen, hand-selected by Bishop Tikhon, the future Patriarch of Moscow. He returned to complete his training in Minneapolis and was ordained in 1911 as one of the first American-born Orthodox priests. He arrived at Saints Peter and Paul in 1920 and remained for twenty years, serving concurrently as Dean of all Orthodox parishes in New Jersey for most of that tenure.</p>
+    </div>
     <div class="prose clearfix">
       <div class="img-float-right">
         <img src="https://picsum.photos/seed/murals40s/280/210" alt="Nave Ceiling Murals by Photius Bodasiuk">
-        <p class="img-caption">One of 70+ murals by iconographer Photius Bodasiuk, completed in the 1940s.</p>
+        <p class="img-caption">One of 70+ murals by iconographer Photius Bodasiuk of Kiev, completed over three years in the 1920s&#8211;1930s.</p>
       </div>
-      <p>On the interior, the original Gothic arches and poured-cement columns remain. A new spruce ceiling modified the former trusses to allow for overhead murals — a hallmark of Orthodox sacred spaces. The more than 70 murals, with decorative stenciled borders on the walls of the nave and ceiling, are the work of iconographer Photius Bodasiuk of Kiev, completed over three years in the 1940s.</p>
-      <div class="img-float-left" style="margin-top:.25rem">
+      <p>Father Adamiak's lasting contribution was the commission of Photius Bodasiuk, an iconographer from Kiev who spent three years painting the more than 70 murals that cover the nave ceiling and walls. A new spruce ceiling had modified the former trusses to allow for overhead painting, and Bodasiuk filled that space with images that transformed the Gothic structure into something unmistakably Orthodox. Decorative stenciled borders frame the nave and aisles. A professional art dealer later valued the complete mural program at $136,000.</p>
+    </div>
+    <div class="prose clearfix">
+      <div class="img-float-left">
         <img src="https://picsum.photos/seed/chandelier9/280/210" alt="45,000-Crystal Chandelier">
-        <p class="img-caption">The 45,000-crystal chandelier draws the eye toward the altar.</p>
+        <p class="img-caption">The 45,000-crystal chandelier, funded by the entire congregation, runs the length of the center aisle.</p>
       </div>
-      <p>A chandelier of 45,000 crystals imported from abroad runs the length of the center aisle. Smaller chandeliers of matching design illuminate the side aisles. The well-worn dark wood pews remain from the original Dutch Reformed Church.</p>
-      <p>Over the years, the parish acquired additional lots on Grand Street. In 1960, the present rectory — designed by architect Maurice Kraut — replaced the 1916 rectory at 107 Grand Street and the former Lyceum lot at 109 Grand Street. The parish received funding from the New Jersey Historic Trust for a three-phase, $1.1 million restoration plan from 2000 to 2006, restoring the church to its 1924 appearance in time for the centennial celebration in 2007.</p>
+      <p>During the same period, three church bells were installed in the towers, donated by parish members and sounding the musical notes A, C-sharp, and E. The great center chandelier, containing over 45,000 pieces of Czechoslovakian crystal, was funded by the entire congregation together. Smaller chandeliers of matching design illuminate the side aisles. The well-worn dark wood pews, still in place today, remain from the original Dutch Reformed Church. Father Adamiak died in active service in December 1940, age fifty-one, with the parish debt reduced to $11,000.</p>
+    </div>
+    <div class="prose">
+      <p>His successor, Very Rev. Michael G. Dziama, held both a law degree and priestly rank, serving as Legal Advisor to the Metropolitan Council of the Russian Orthodox Church in America. He arrived in February 1941 and made short work of what remained: on a Sunday in May 1943, the mortgage was burned ceremonially in the church hall before the entire congregation. Father Dziama died in office on September 5, 1944, at forty-nine. His daughter later endowed the Very Rev. Michael and Matushka Anna Dziama Scholarship Fund at Saint Vladimir's Orthodox Theological Seminary, where it supports the training of Orthodox clergy still.</p>
+    </div>
+
+    <!-- SECTION 5 -->
+    <h2 id="section-rectors" class="section-head">A Long Stability, 1944&#8211;1991</h2>
+    <span class="rubric-rule"></span>
+    <div class="prose">
+      <p>Archpriest John Skvir served from 1952 to 1987, the longest rectorship in the parish's history at thirty-five years. His tenure encompassed the granting of autocephaly to the Orthodox Church in America in 1970, the moment when the North American Church received full canonical self-governance from the Moscow Patriarchate, fulfilling the vision that men like Nemolovsky had worked toward decades before. The acquisition of additional properties on Grand Street, including the purchase of the vacant lot at 101 Grand Street from the City of Jersey City, took place during this era of stability and growth.</p>
+      <p>The church's physical presence on Grand Street continued to deepen. In 1960, the present rectory at 107 Grand Street, designed by architect Maurice Kraut, replaced the 1916 structure. In 1965, teak doors with a carved Orthodox cross were imported from Hong Kong and installed at the main entrance, their warm wood joining the sandstone facade and copper domes as part of what this building had become. The original Gothic arches and poured-cement columns remained inside, framing the murals and the chandelier exactly as Adamiak and Bodasiuk had arranged them.</p>
+    </div>
+
+    <!-- SECTION 6 -->
+    <h2 id="section-interior" class="section-head">Restoration and the Centennial, 1991&#8211;2009</h2>
+    <span class="rubric-rule"></span>
+    <div class="prose clearfix">
+      <div class="img-float-right">
+        <img src="/Images/upload/034 Photos of the Clergy.jpg" alt="Clergy gathered at Saints Peter and Paul Cathedral" onerror="this.style.display='none'">
+        <p class="img-caption">Clergy and altar servers assembled at Saints Peter &amp; Paul Cathedral for a hierarchical Divine Liturgy.</p>
+      </div>
+      <p>Archpriest Joseph Lickwar served from 1991 to 2023, thirty-two years during which the building underwent its most substantial restoration since Adamiak's era. The parish received matching grants from the New Jersey Historic Trust for a three-phase, $1.1 million restoration from 2000 to 2006, returning the church to its 1924 appearance in time for the centennial in 2007. Father Lickwar's description of the church, written for the Jersey City Landmarks Conservancy's 2004 volume, captures what anyone who enters for the first time will sense: a space built for a different order of attention.</p>
+      <p>The centennial year's conclusion was marked in stone and gold: in 2009, the parish's name was installed in gold letters across the sandstone facade, above the entrance and below the Gothic stained-glass window that has faced Grand Street since 1857. The building carried now, in the same stones, both the Dutch Reformed church of 1857 and the Orthodox cathedral of 1909 — and a century of unbroken parish life between them.</p>
+    </div>
+
+    <!-- SECTION 7 -->
+    <h2 id="section-today" class="section-head">The Second Century, 2023&#8211;</h2>
+    <span class="rubric-rule"></span>
+    <div class="prose clearfix">
+      <div class="img-float-left">
+        <img src="/Images/upload/Fr Solomon Longo.jpeg" alt="Father Solomon Longo, rector of Saints Peter and Paul Cathedral" onerror="this.style.display='none'">
+        <p class="img-caption">Fr. Solomon Longo, assigned as rector in 2023.</p>
+      </div>
+      <p>Father Solomon Longo arrived at Saints Peter and Paul in 2023 as the parish entered its second century. The community he was entrusted with is one of the oldest Orthodox parishes in New Jersey, its story touching American church history at points few communities can claim: the first canonized saint of the OCA served here; the first Orthodox primate elected democratically in the Western Hemisphere came from this building's early years. His task is not to be the culmination of that history. The second century is only beginning.</p>
+      <p>Sunday Liturgy at 9:30. Great Vespers on Saturday evenings. Catechesis for those drawing near. The daily rhythm of prayer has continued without interruption on this corner of Grand Street since October 24, 1907. Come and see.</p>
+    </div>
+
+    <div class="hist-note">
+      <span class="hist-note-label">Meet the Rectors</span>
+      <p>The complete record of every priest who has served this parish, from St. Alexander Hotovitsky in 1907 through Fr. Solomon Longo today, is available on the <a href="/rectors" style="color:var(--maroon);border-bottom:1px solid rgba(123,29,42,.28)">Our Rectors</a> page.</p>
     </div>
 
     <!-- ── INTERIOR GALLERY ─────────────────────────────── -->
@@ -1260,83 +1345,195 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
     </div>
 
     <div style="margin-top:3rem;display:flex;gap:1rem;flex-wrap:wrap">
-      <a href="/our-parish" class="btn btn-maroon">Parish History</a>
+      <a href="/rectors" class="btn btn-maroon">Our Rectors</a>
+      <a href="/our-parish" class="btn btn-outline">Parish History</a>
       <a href="/gallery" class="btn btn-outline">Gallery</a>
     </div>
 
   </main>
 
   <!-- SIDEBAR -->
-  <aside class="side-col">
+  <aside class="lit-sidebar">
+    <div class="sidebar-track">
 
-    <div class="side-section">
-      <span class="side-head">Quick Facts</span>
-      <ul class="side-list">
-        <li><strong>Founded</strong>1907, Jersey City, NJ</li>
-        <li><strong>Address</strong>109 Grand Street<br>Jersey City, NJ 07302</li>
-        <li><strong>Diocese</strong>New York &amp; New Jersey, OCA</li>
-        <li><strong>Historic Status</strong>Contributing Resource, Paulus Hook Historic District<br>State &amp; National Register, 1982</li>
-        <li><strong>2nd Oldest</strong>Slavic Orthodox Church in New Jersey (after South River, 1905)</li>
-      </ul>
-    </div>
+      <!-- PANEL 1: OVERVIEW -->
+      <div class="sb-panel sb-active" data-panel="overview">
+        <img src="/Images/heroes/hero-02.jpg" alt="Saints Peter and Paul Cathedral, Grand Street" class="sb-icon" onerror="this.style.display='none'">
+        <span class="sb-icon-cap">Saints Peter &amp; Paul Cathedral &middot; 109 Grand Street, Jersey City</span>
+        <span class="sb-panel-tag">Parish Overview</span>
+        <div class="sb-rule"></div>
+        <ul class="side-list">
+          <li><strong>Founded</strong>1907, Jersey City, NJ</li>
+          <li><strong>Address</strong>109 Grand Street, Jersey City, NJ 07302</li>
+          <li><strong>Diocese</strong>New York &amp; New Jersey, OCA</li>
+          <li><strong>Historic Status</strong>Contributing Resource, Paulus Hook Historic District. State &amp; National Register, 1982</li>
+          <li><strong>2nd Oldest</strong>Slavic Orthodox parish in New Jersey</li>
+          <li><strong>Canonized Saint</strong>St. Alexander Hotovitsky, first rector, canonized 1994</li>
+        </ul>
+        <div class="sb-rule"></div>
+        <a href="/visit" class="annot-nav-link">Plan Your Visit</a>
+        <a href="/contact-us" class="annot-nav-link">Contact the Parish</a>
+      </div>
 
-    <div class="side-section">
-      <span class="side-head">Key Dates</span>
-      <div class="mini-tl">
-        <div class="mini-tl-entry major">
-          <span class="mini-tl-year">1804</span>
-          <span class="mini-tl-text">Grand Street lot designated "church grounds" by the Associates of the Jersey Company</span>
-        </div>
-        <div class="mini-tl-entry">
-          <span class="mini-tl-year">1853–57</span>
-          <span class="mini-tl-text">Gothic Revival sandstone church completed by architect Detlef Lienau for the Dutch Reformed congregation</span>
-        </div>
-        <div class="mini-tl-entry major">
-          <span class="mini-tl-year">1907</span>
-          <span class="mini-tl-text">Parish incorporated; first Divine Liturgy held October 24</span>
-        </div>
-        <div class="mini-tl-entry">
-          <span class="mini-tl-year">1909</span>
-          <span class="mini-tl-text">Archdiocese purchases 111–113 Grand Street for $35,000; oak Iconostasis installed</span>
-        </div>
-        <div class="mini-tl-entry">
-          <span class="mini-tl-year">1940s</span>
-          <span class="mini-tl-text">Iconographer Photius Bodasiuk completes 70+ ceiling and wall murals over three years</span>
-        </div>
-        <div class="mini-tl-entry">
-          <span class="mini-tl-year">1982</span>
-          <span class="mini-tl-text">Listed on State and National Register of Historic Places</span>
-        </div>
-        <div class="mini-tl-entry major">
-          <span class="mini-tl-year">2000–07</span>
-          <span class="mini-tl-text">$1.1M NJ Historic Trust restoration; church returned to 1924 appearance for centennial</span>
+      <!-- PANEL 2: PAULUS HOOK -->
+      <div class="sb-panel" data-panel="paulus">
+        <img src="/Images/upload/1-facade.jpeg" alt="Saints Peter and Paul Cathedral, Grand Street" class="sb-icon" onerror="this.style.display='none'">
+        <span class="sb-icon-cap">The building on the 1804 lot &middot; 109 Grand Street</span>
+        <span class="sb-panel-tag">Paulus Hook, 1804</span>
+        <div class="sb-rule"></div>
+        <p class="sb-body">The Grand Street lot was one of four designated exclusively as "church grounds" on Joseph Mangin's 1804 survey of Paulus Hook — the only sites so named before any significant settlement had taken hold. The corner has been set apart for worship for over two centuries, through four different congregations and three centuries of Jersey City history.</p>
+        <div class="sb-rule"></div>
+        <div class="sb-blockquote">
+          <span class="sb-blockquote-text">"It was the churches which would provide the anchor of civilization."</span>
+          <span class="sb-blockquote-attr">Barbara Petrick &middot; on the original design of Paulus Hook</span>
         </div>
       </div>
-    </div>
 
-    <div class="side-section">
-      <span class="side-head">Building Notes</span>
-      <ul class="side-list">
-        <li><strong>Architectural Style</strong>Perpendicular Gothic Revival</li>
-        <li><strong>Original Architect</strong>John W. Welch (1853)</li>
-        <li><strong>Completing Architect</strong>Detlef Lienau (1857)</li>
-        <li><strong>Rectory Architect</strong>Maurice Kraut (1960)</li>
-        <li><strong>Nave</strong>48 ft high, 30 ft wide; open-timbered roof</li>
-        <li><strong>Material</strong>Brown sandstone, Belleville &amp; Little Falls, NJ</li>
-        <li><strong>Chandelier</strong>45,000 crystals, center aisle</li>
-        <li><strong>Murals</strong>70+ by Photius Bodasiuk of Kiev, 1940s</li>
-        <li><strong>Doors</strong>Teak with carved Orthodox cross; imported from Hong Kong, 1965</li>
-      </ul>
-    </div>
+      <!-- PANEL 3: DEVELOPMENT -->
+      <div class="sb-panel" data-panel="development">
+        <img src="/Images/upload/CAthedral rooftop.jpeg" alt="The three copper domes of Saints Peter and Paul" class="sb-icon" onerror="this.style.display='none'">
+        <span class="sb-icon-cap">The three Russian-style copper domes &middot; Photo by Daniel E. Beards</span>
+        <span class="sb-panel-tag">The Building, 1853–1909</span>
+        <div class="sb-rule"></div>
+        <ul class="side-list">
+          <li><strong>Style</strong>Perpendicular Gothic Revival</li>
+          <li><strong>Original Architect</strong>John W. Welch, 1853</li>
+          <li><strong>Completing Architect</strong>Detlef Lienau, 1857</li>
+          <li><strong>Material</strong>Brown sandstone, Belleville &amp; Little Falls, NJ</li>
+          <li><strong>Nave</strong>48 ft high, 30 ft wide</li>
+          <li><strong>Original Capacity</strong>750, as built 1857</li>
+          <li><strong>Rectory</strong>Maurice Kraut, architect, 1960</li>
+        </ul>
+      </div>
 
-    <div class="side-section">
-      <span class="side-head">More from About Us</span>
-      <a href="/our-parish" class="annot-nav-link">About Our Church</a>
-      <a href="/our-beliefs" class="annot-nav-link">Our Beliefs</a>
-      <a href="/administration" class="annot-nav-link">Administration</a>
-      <a href="/gallery" class="annot-nav-link">Gallery</a>
-      <a href="/cemeteries" class="annot-nav-link">Cemeteries</a>
-    </div>
+      <!-- PANEL 4: FOUNDING -->
+      <div class="sb-panel" data-panel="parish">
+        <img src="/Images/upload/St-Alexander-Hotovitsky-Icon-1.png" alt="Icon of St. Alexander Hotovitsky" class="sb-icon" onerror="this.style.display='none'">
+        <span class="sb-icon-cap">St. Alexander Hotovitsky &middot; First Rector, 1907</span>
+        <span class="sb-panel-tag">The Founding, 1907</span>
+        <div class="sb-rule"></div>
+        <div class="mini-tl">
+          <div class="mini-tl-entry">
+            <span class="mini-tl-year">1889</span>
+            <span class="mini-tl-text">Brotherhood chartered; Eastern Rite Catholic congregation gathers in Jersey City</span>
+          </div>
+          <div class="mini-tl-entry">
+            <span class="mini-tl-year">1902</span>
+            <span class="mini-tl-text">Congregation moves to brick church at Greene and Sussex Streets</span>
+          </div>
+          <div class="mini-tl-entry major">
+            <span class="mini-tl-year">Feb 16, 1907</span>
+            <span class="mini-tl-text">Parish incorporated as "Saints Peter and Paul Russian Orthodox Greek Catholic Church of Jersey City"</span>
+          </div>
+          <div class="mini-tl-entry major">
+            <span class="mini-tl-year">Oct 24, 1907</span>
+            <span class="mini-tl-text">First Divine Liturgy, led by Archpriest Alexander Hotovitsky at 64 Grand Street</span>
+          </div>
+          <div class="mini-tl-entry">
+            <span class="mini-tl-year">1908</span>
+            <span class="mini-tl-text">Rev. Alexander Nemolovsky assigned as first permanent rector, $25/month</span>
+          </div>
+          <div class="mini-tl-entry major">
+            <span class="mini-tl-year">Feb 1909</span>
+            <span class="mini-tl-text">Archdiocese purchases 111–113 Grand Street for $35,000; Iconostasis installed</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PANEL 5: THE INTERIOR TAKES SHAPE -->
+      <div class="sb-panel" data-panel="saint">
+        <img src="https://picsum.photos/seed/murals40s/280/210" alt="Nave murals by Photius Bodasiuk" class="sb-icon">
+        <span class="sb-icon-cap">Nave murals by Photius Bodasiuk of Kiev &middot; 70+ images, 1920s&#8211;1930s</span>
+        <span class="sb-panel-tag">The Interior, 1920&#8211;1944</span>
+        <div class="sb-rule"></div>
+        <span class="sb-panel-head">Very Rev. John J. Adamiak</span>
+        <p class="sb-body">Rector 1920&#8211;1940. Born Mayfield, PA, 1889. Sent to seminary in Russia at age 14 by Bishop Tikhon. Ordained 1911 as one of the first American-born Orthodox priests. Dean of all New Jersey Orthodox parishes for most of his tenure. Commissioned Photius Bodasiuk's 70+ murals, the crystal chandelier, and the three bells. Died in active service, December 1940.</p>
+        <div class="sb-rule"></div>
+        <span class="sb-panel-head">Very Rev. Michael G. Dziama</span>
+        <p class="sb-body">Rector 1941&#8211;1944. Held both a law degree and priestly rank; Legal Advisor to the Metropolitan Council. On a Sunday in May 1943, burned the parish mortgage before the entire congregation. Died in office, September 5, 1944. His daughter endowed a scholarship fund at St. Vladimir's Seminary.</p>
+      </div>
+
+      <!-- PANEL 6: A LONG STABILITY -->
+      <div class="sb-panel" data-panel="rectors">
+        <img src="/Images/upload/034 Photos of the Clergy.jpg" alt="Clergy gathered at Saints Peter and Paul Cathedral" class="sb-icon" onerror="this.style.display='none'">
+        <span class="sb-icon-cap">Clergy at Saints Peter &amp; Paul &middot; Hierarchical Liturgy</span>
+        <span class="sb-panel-tag">The Rectors, 1907&#8211;Present</span>
+        <div class="sb-rule"></div>
+        <ul class="side-list">
+          <li><strong>1907</strong>St. Alexander Hotovitsky</li>
+          <li><strong>1908–09</strong>Alexander Nemolovsky</li>
+          <li><strong>1920–40</strong>John J. Adamiak</li>
+          <li><strong>1941–44</strong>Michael G. Dziama</li>
+          <li><strong>1952–87</strong>John Skvir</li>
+          <li><strong>1991–2023</strong>Joseph Lickwar</li>
+          <li><strong>2023–present</strong>Solomon Longo</li>
+        </ul>
+        <div class="sb-rule"></div>
+        <a href="/rectors" class="annot-nav-link">Complete Rector Record</a>
+      </div>
+
+      <!-- PANEL 7: RESTORATION -->
+      <div class="sb-panel" data-panel="interior">
+        <img src="/images/sidebar/vespers-aposticha.jpg" alt="The iconostasis at Saints Peter and Paul Cathedral" class="sb-icon" onerror="this.style.display='none'">
+        <span class="sb-icon-cap">The Iconostasis &middot; Saints Peter &amp; Paul Cathedral</span>
+        <span class="sb-panel-tag">Restoration, 1991&#8211;2009</span>
+        <div class="sb-rule"></div>
+        <ul class="side-list">
+          <li><strong>Iconostasis</strong>Hand-carved solid oak, 1909. $1,200. Modeled after Saint Nicholas Cathedral, New York. Icons imported from Russia.</li>
+          <li><strong>Murals</strong>70+ by Photius Bodasiuk of Kiev, 1940s. Valued at $136,000.</li>
+          <li><strong>Chandelier</strong>45,000 Czechoslovakian crystals, center aisle. Parish gift.</li>
+          <li><strong>Bells</strong>Three towers, notes A, C-sharp, and E. Parish donation.</li>
+          <li><strong>Doors</strong>Teak with carved Orthodox cross, Hong Kong, 1965</li>
+          <li><strong>Name</strong>Gold letters installed on facade, 2009</li>
+          <li><strong>Restoration</strong>$1.1M NJ Historic Trust, 2000–2006, to 1924 appearance</li>
+        </ul>
+      </div>
+
+      <!-- PANEL 8: THE SECOND CENTURY -->
+      <div class="sb-panel" data-panel="today">
+        <img src="/Images/upload/Fr Solomon Longo.jpeg" alt="Father Solomon Longo" class="sb-icon" onerror="this.style.display='none'">
+        <span class="sb-icon-cap">Fr. Solomon Longo &middot; Rector since 2023</span>
+        <span class="sb-panel-tag">The Second Century</span>
+        <div class="sb-rule"></div>
+        <ul class="side-list">
+          <li><strong>Sunday Liturgy</strong>9:30 AM</li>
+          <li><strong>Saturday Vespers</strong>5:00 PM</li>
+          <li><strong>Address</strong>109 Grand Street, Jersey City, NJ 07302</li>
+          <li><strong>Phone</strong>(201) 434-1986</li>
+        </ul>
+        <div class="sb-rule"></div>
+        <a href="/visit" class="annot-nav-link">Plan Your Visit</a>
+        <a href="/divine-liturgy" class="annot-nav-link">The Divine Liturgy</a>
+        <a href="/catechesis" class="annot-nav-link">Catechesis</a>
+      </div>
+
+      <!-- PANEL 9: GALLERY / VISIT -->
+      <div class="sb-panel" data-panel="gallery">
+        <img src="/Images/upload/Fr Solomon Longo.jpeg" alt="Father Solomon Longo, rector of Saints Peter and Paul Cathedral" class="sb-icon" onerror="this.style.display='none'">
+        <span class="sb-icon-cap">Fr. Solomon Longo &middot; Rector since 2023</span>
+        <span class="sb-panel-tag">Visit Us</span>
+        <div class="sb-rule"></div>
+        <ul class="side-list">
+          <li><strong>Sunday Liturgy</strong>9:30 AM</li>
+          <li><strong>Saturday Vespers</strong>5:00 PM</li>
+          <li><strong>Address</strong>109 Grand Street, Jersey City, NJ 07302</li>
+          <li><strong>Phone</strong>(201) 434-1986</li>
+        </ul>
+        <div class="sb-rule"></div>
+        <a href="/visit" class="annot-nav-link">Plan Your Visit</a>
+        <a href="/divine-liturgy" class="annot-nav-link">The Divine Liturgy</a>
+        <a href="/vespers" class="annot-nav-link">Great Vespers</a>
+        <div class="sb-rule"></div>
+        <span class="sb-panel-head" style="margin-top:.25rem">More from About Us</span>
+        <a href="/our-parish" class="annot-nav-link">About Our Church</a>
+        <a href="/rectors" class="annot-nav-link">Our Rectors</a>
+        <a href="/our-beliefs" class="annot-nav-link">Our Beliefs</a>
+        <a href="/administration" class="annot-nav-link">Administration</a>
+        <a href="/gallery" class="annot-nav-link">Gallery</a>
+        <a href="/cemeteries" class="annot-nav-link">Cemeteries</a>
+      </div>
+
+    </div><!-- /sidebar-track -->
 
   </aside>
 </div>
@@ -1569,13 +1766,16 @@ document.addEventListener('keydown', e => {
 
 /* ── ARTICLE NAVIGATION ────────────────────────────── */
 const SECTIONS = [
-  { id: 'section-overview',     label: 'Overview' },
-  { id: 'section-paulus',       label: 'Paulus Hook Origins' },
-  { id: 'section-development',  label: 'Grand Street Development' },
-  { id: 'section-parish',       label: 'The Parish Founded, 1907' },
-  { id: 'section-interior',     label: 'Orthodox Redesign' },
-  { id: 'section-gallery',      label: 'Interior Gallery' },
-  { id: 'section-references',   label: 'References' },
+  { id: 'section-overview',    label: 'Overview',                  panel: 'overview'     },
+  { id: 'section-paulus',      label: 'Paulus Hook Origins',       panel: 'paulus'       },
+  { id: 'section-development', label: 'Grand Street Development',  panel: 'development'  },
+  { id: 'section-parish',      label: 'First Liturgy, 1907&#8211;1919',     panel: 'parish'       },
+  { id: 'section-saint',       label: 'The Interior Takes Shape',           panel: 'saint'        },
+  { id: 'section-rectors',     label: 'A Long Stability, 1944&#8211;1991',  panel: 'rectors'      },
+  { id: 'section-interior',    label: 'Restoration, 1991&#8211;2009',       panel: 'interior'     },
+  { id: 'section-today',       label: 'The Second Century',                 panel: 'today'        },
+  { id: 'section-gallery',     label: 'Interior Gallery',                   panel: 'gallery'      },
+  { id: 'section-references',  label: 'References',                         panel: 'gallery'      },
 ];
 
 let activeIdx = 0;
@@ -1583,7 +1783,7 @@ let activeIdx = 0;
 function scrollToSection(id) {
   const el = document.getElementById(id);
   if (!el) return;
-  const offset = 80; // clear the fixed nav bar
+  const offset = 80;
   const top = el.getBoundingClientRect().top + window.scrollY - offset;
   window.scrollTo({ top, behavior: 'smooth' });
 }
@@ -1601,6 +1801,11 @@ function setActive(idx) {
   document.querySelectorAll('.rail-item').forEach((el, i) => {
     el.classList.toggle('rail-active', i === idx);
   });
+
+  /* Sidebar panels */
+  document.querySelectorAll('.sb-panel').forEach(p => p.classList.remove('sb-active'));
+  const panel = document.querySelector('.sb-panel[data-panel="' + SECTIONS[idx].panel + '"]');
+  if (panel) panel.classList.add('sb-active');
 
   /* Floating Pill */
   const label = document.getElementById('fpLabel');
