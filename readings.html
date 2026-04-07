@@ -42,7 +42,7 @@ a{color:inherit;text-decoration:none}
 
 /* ── PAGE HERO ── */
 .page-hero{padding-top:60px;background:linear-gradient(to right,rgba(21,8,4,.92) 0%,rgba(21,8,4,.72) 55%,rgba(21,8,4,.45) 100%),url('/images/heroes/hero-readings.jpg') center/cover no-repeat;background-color:var(--apse);min-height:380px;display:flex;align-items:flex-end;position:relative;overflow:hidden}
-.page-hero-inner{max-width:1380px;margin:0 auto;padding:5rem 6rem 4rem;position:relative;z-index:1}
+.page-hero-inner{max-width:1380px;width:100%;margin:0 auto;padding:3rem 4.5rem 3.5rem;position:relative;z-index:1}
 
 .page-title{font-family:var(--f-display);font-weight:300;font-size:clamp(2.5rem,5vw,4.5rem);line-height:.95;color:#fff;margin:.5rem 0 .75rem}
 .page-title em{font-style:italic}
@@ -73,19 +73,37 @@ a{color:inherit;text-decoration:none}
 .feast-fast::before{content:'✦ ';color:var(--gold);font-style:normal;font-size:.72rem}
 
 /* ── READING SECTION ── */
-.reading-section{margin-bottom:3.5rem;padding-bottom:3.5rem;border-bottom:var(--rule-faint)}
+.reading-section{border-bottom:var(--rule-faint)}
 .reading-section:last-of-type{border-bottom:none}
 
-.reading-header{display:flex;align-items:center;gap:.85rem;margin-bottom:1.75rem;flex-wrap:wrap}
+.reading-toggle{display:flex;align-items:center;justify-content:space-between;width:100%;background:none;border:none;padding:1.25rem 0;cursor:pointer;text-align:left;gap:1rem;transition:opacity .2s}
+.reading-toggle:hover{opacity:.75}
+.reading-header{display:flex;align-items:center;gap:.85rem;flex-wrap:wrap}
 .reading-source-pill{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.20em;text-transform:uppercase;color:rgba(246,241,232,.92);background:var(--maroon);padding:.35rem 1rem}
 .reading-ref{font-family:var(--f-display);font-style:italic;font-size:1.1rem;color:var(--stone)}
 .reading-pericope{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone-lt)}
+.reading-toggle-icon{font-size:.9rem;color:var(--maroon);font-weight:600;flex-shrink:0;width:1.25rem;text-align:center}
+.reading-body{max-height:0;overflow:hidden;opacity:0;transition:max-height .5s cubic-bezier(.4,0,.2,1),opacity .35s ease .1s}
+.reading-section.is-open .reading-body{max-height:6000px;opacity:1}
+.reading-body-inner{padding-bottom:2rem}
 
 /* ── SCRIPTURE TEXT ── */
 .verse-text{font-family:var(--f-display);font-size:1.08rem;line-height:1.90;color:var(--ink);text-align:justify;hyphens:auto;max-width:62ch}
-.verse-num{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.08em;color:var(--maroon);vertical-align:super;margin-right:.18em;line-height:0;font-style:normal;display:inline-block;margin-top:.1em}
-/* Paragraph break within a reading */
+.verse-num{font-family:var(--f-ui);font-size:.42rem;letter-spacing:.08em;color:var(--maroon);vertical-align:super;margin-right:.18em;line-height:0;font-style:normal;display:inline-block;margin-top:.1em}
 .verse-para-break{display:block;margin-top:.6em}
+/* ── SIDEBAR TODAY ── */
+.today-card{display:block;background:var(--vellum-mid);border-left:3px solid var(--gold);padding:1rem 1.1rem;text-decoration:none;color:inherit;transition:border-color .25s ease,background .25s ease,transform .25s ease,box-shadow .25s ease}.today-card:hover{border-left-color:var(--maroon);background:var(--vellum);transform:translateX(3px);box-shadow:0 4px 18px rgba(21,8,4,.08)}
+.today-feast{font-family:var(--f-display);font-size:1rem;color:var(--text);line-height:1.4;margin-bottom:.4rem}
+.today-saints{font-family:var(--f-display);font-style:italic;font-size:.88rem;color:var(--stone);margin-bottom:.5rem;line-height:1.4}
+.today-tone{font-family:var(--f-ui);font-size:.60rem;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);display:inline-block;margin-bottom:.35rem}
+.today-fast{font-family:var(--f-body);font-style:italic;font-size:.88rem;color:var(--stone)}
+.ri-ref{font-family:var(--f-display);font-style:italic;font-size:.88rem;color:var(--stone);display:block;margin-top:.1rem}
+/* ── STATES ── */
+.error-state{font-family:var(--f-body);font-style:italic;color:var(--stone);padding:2rem;background:var(--vellum-mid);border-left:3px solid rgba(123,29,42,.25)}
+.error-state strong{font-family:var(--f-ui);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);display:block;margin-bottom:.5rem;font-style:normal}
+.no-text-note{font-family:var(--f-body);font-style:italic;color:var(--stone);font-size:.92rem;margin-top:1rem;padding:1rem;background:var(--vellum-mid);border-left:2px solid rgba(184,131,40,.30)}
+.attribution{font-family:var(--f-ui);font-size:.50rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone-lt);margin-top:3rem;padding-top:1.5rem;border-top:var(--rule-faint);display:flex;align-items:center;gap:.75rem}
+.attribution a{color:var(--maroon)}
 
 /* ── SIDEBAR ── */
 .side-col{border-left:var(--rule-faint);padding-left:2.5rem;position:sticky;top:80px}
@@ -94,7 +112,7 @@ a{color:inherit;text-decoration:none}
 .side-head{font-family:var(--f-ui);font-size:.72rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.85rem}
 
 /* today summary card */
-.today-card{background:var(--vellum-mid);border-left:3px solid var(--gold);padding:1rem 1.1rem}
+.today-card{display:block;background:var(--vellum-mid);border-left:3px solid var(--gold);padding:1rem 1.1rem;text-decoration:none;color:inherit;transition:border-color .25s ease,background .25s ease,transform .25s ease,box-shadow .25s ease}.today-card:hover{border-left-color:var(--maroon);background:var(--vellum);transform:translateX(3px);box-shadow:0 4px 18px rgba(21,8,4,.08)}
 .today-feast{font-family:var(--f-display);font-size:1rem;color:var(--text);line-height:1.35;margin-bottom:.35rem}
 .today-saints{font-family:var(--f-display);font-style:italic;font-size:.88rem;color:var(--stone);line-height:1.5;margin-bottom:.5rem}
 .today-tone{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);display:block;margin-bottom:.25rem}
@@ -134,9 +152,6 @@ a{color:inherit;text-decoration:none}
 .no-text-btn:hover{background:var(--gold-lt);transform:translateY(-1px)}
 .no-text-bible{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,232,.30);text-align:center}
 
-/* ── ATTRIBUTION ── */
-.attribution{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone-lt);margin-top:3rem;padding-top:1.5rem;border-top:var(--rule-faint);display:flex;align-items:center;gap:.75rem}
-.attribution a{color:var(--maroon)}
 
 /* ── FOOTER ── */
 footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:4.5rem 4.5rem 2.5rem}
@@ -905,6 +920,125 @@ document.addEventListener('click', function() {
   var p = document.getElementById('nav-mp-panel');
   if (p) p.classList.remove('open');
 });
+</script>
+<script>
+const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+const DAYS   = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+const ROMAN  = {1:'I',2:'II',3:'III',4:'IV',5:'V',6:'VI',7:'VII',8:'VIII'};
+
+function feastClass(level){ if(level>=7)return'lv7'; if(level>=5)return'lv5'; if(level>=4)return'lv4'; return''; }
+function cap(s){ return s ? s.charAt(0).toUpperCase()+s.slice(1) : ''; }
+function sourceLabel(src){
+  if(!src) return 'Reading';
+  const map={'epistle':'Epistle','gospel':'Gospel','matins gospel':'Matins Gospel','ot':'Old Testament','6th hour':'Sixth Hour','vespers':'Vespers'};
+  const lower=src.toLowerCase();
+  for(const[k,v] of Object.entries(map)){ if(lower.includes(k)) return v; }
+  return cap(src);
+}
+
+function buildVerseHTML(passage){
+  if(!Array.isArray(passage)||!passage.length) return null;
+  let html='', lastChapter=null;
+  passage.forEach((v,idx)=>{
+    const content=(v.content||v.text||'').trim();
+    if(!content) return;
+    const ch=v.chapter||null, vn=v.verse||null;
+    if(ch&&ch!==lastChapter&&idx>0) html+='<span class="verse-para-break"></span>';
+    lastChapter=ch;
+    const numHtml=vn?`<sup class="verse-num">${vn}</sup>`:'';
+    html+=numHtml+content+' ';
+  });
+  return html.trim();
+}
+
+function showError(title,body,dateStr){
+  if(dateStr){ document.getElementById('hero-meta').textContent=dateStr; document.getElementById('cbar-date').textContent=dateStr; }
+  document.getElementById('readings-main').innerHTML=`<div class="error-state"><strong>${title}</strong><p>${body}</p></div><div class="attribution" style="margin-top:2rem">Readings from the <a href="https://www.oca.org/readings" target="_blank" rel="noopener">OCA Liturgical Calendar</a></div>`;
+  const st=document.getElementById('side-today');
+  if(st) st.innerHTML='<p style="font-family:var(--f-body);font-style:italic;font-size:.9rem;color:var(--stone)">Unable to load today\'s data.</p>';
+}
+
+async function loadReadings(){
+  const today=new Date(), y=today.getFullYear(), m=today.getMonth()+1, d=today.getDate();
+  const fullDate=`${DAYS[today.getDay()]}, ${MONTHS[today.getMonth()]} ${d}, ${y}`;
+  document.getElementById('hero-meta').textContent=fullDate;
+  document.getElementById('cbar-date').innerHTML=`<span class="cbar-loading" id="cbar-spinner"></span>${fullDate}`;
+
+  let data;
+  try{
+    const resp=await fetch(`https://orthocal.info/api/oca/${y}/${m}/${d}/`);
+    if(!resp.ok) throw new Error(`HTTP ${resp.status}`);
+    data=await resp.json();
+  }catch(err){
+    showError('Could not load today\'s readings','The readings service may be temporarily unavailable. Please visit the <a href="https://www.oca.org/readings" target="_blank" style="color:var(--maroon)">OCA Readings site</a> directly, or check back shortly.',fullDate);
+    return;
+  }
+
+  document.getElementById('cbar-date').textContent=fullDate;
+
+  const feast=data.summary_title||(data.titles&&data.titles[0])||'Daily Readings';
+  const saints=(data.saints||[]).map(s=>s.name||s).filter(Boolean);
+  const toneNum=data.tone, tone=toneNum?`Tone ${ROMAN[toneNum]||toneNum}`:'';
+  const fastDesc=[data.fast_level_desc,data.fast_exception_desc].filter(Boolean).join(' \u2013 ');
+  const lvl=data.feast_level||0, readings=data.readings||[];
+
+  document.getElementById('hero-meta').textContent=`${fullDate} \u00B7 ${feast}`;
+
+  /* Sidebar today */
+  const saintText=saints.slice(0,4).join('; ');
+  document.getElementById('side-today').innerHTML=`<a href="/schedule" class="today-card"><div class="today-feast">${feast}</div>${saintText?`<div class="today-saints">${saintText}</div>`:''} ${tone?`<span class="today-tone">${tone}</span>`:''} ${fastDesc?`<div class="today-fast">${fastDesc}</div>`:''}</a>`;
+
+  /* Sidebar index */
+  if(readings.length){
+    const idxUl=document.getElementById('side-index');
+    readings.forEach((r,i)=>{
+      const li=document.createElement('li');
+      li.innerHTML=`<a href="#reading-${i}" class="annot-nav-link">${sourceLabel(r.source)}${r.display?` <span class="ri-ref">${r.display}</span>`:''}</a>`;
+      idxUl.appendChild(li);
+    });
+    document.getElementById('side-index-section').style.display='';
+  }
+
+  if(!readings.length){ showError('No readings appointed for today','There are no scripture readings listed for this date in the OCA calendar.',fullDate); return; }
+
+  let html=`<div class="feast-header ${feastClass(lvl)}"><h2 class="feast-name">${feast}</h2>${saintText?`<span class="feast-saint">${saintText}</span>`:''}<div class="feast-badges">${tone?`<span class="feast-tone">${tone}</span>`:''} ${fastDesc?`<span class="feast-fast">${fastDesc}</span>`:''}</div></div>`;
+
+  readings.forEach((r,i)=>{
+    const lbl=sourceLabel(r.source), ref=r.display||'', pericope=r.pericope||'';
+    const verseHTML=buildVerseHTML(r.passage);
+    const bodyHTML=verseHTML
+      ? `<div class="verse-text">${verseHTML}</div>`
+      : `<div class="no-text-note">The full text of ${ref?`<em>${ref}</em>`:'this reading'} is not included in the digital calendar. You can find it on <a href="https://www.oca.org/readings" target="_blank" rel="noopener" style="color:var(--maroon)">oca.org</a> or in a Bible under the reference above.</div>`;
+    html+=`<div class="reading-section" id="reading-${i}">
+      <button class="reading-toggle" aria-expanded="false">
+        <div class="reading-header">
+          <span class="reading-source-pill">${lbl}</span>
+          ${ref?`<span class="reading-ref">${ref}</span>`:''}
+          ${pericope?`<span class="reading-pericope">${pericope}</span>`:''}
+        </div>
+        <span class="reading-toggle-icon" aria-hidden="true">+</span>
+      </button>
+      <div class="reading-body"><div class="reading-body-inner">${bodyHTML}</div></div>
+    </div>`;
+  });
+
+  html+=`<div class="attribution">Scripture readings from the <a href="https://www.oca.org/readings" target="_blank" rel="noopener">OCA Liturgical Calendar</a> \u00B7 King James Version</div>`;
+  document.getElementById('readings-main').innerHTML=html;
+
+  /* Accordion toggles */
+  document.querySelectorAll('.reading-toggle').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const section=btn.closest('.reading-section');
+      const opening=!section.classList.contains('is-open');
+      section.classList.toggle('is-open',opening);
+      btn.setAttribute('aria-expanded',opening);
+      btn.querySelector('.reading-toggle-icon').textContent=opening?'\u2212':'+';
+    });
+  });
+
+}
+
+loadReadings();
 </script>
 <script>window.HERO_IMAGES=[{url:'/images/heroes/hero-06.jpg'},{url:'/images/heroes/hero-14.jpg'},{url:'/images/heroes/hero-09.jpg'},{url:'/images/heroes/hero-04.jpg'},{url:'/images/heroes/hero-12.jpg'}];</script>
 <script src="/hero-rotator.js"></script>

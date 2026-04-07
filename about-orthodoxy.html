@@ -45,24 +45,43 @@
 /* ── RECOMMENDED READING ── */
 .reading-section{background:var(--vellum-mid);padding:4.5rem 4.5rem;border-top:var(--rule-faint);border-bottom:var(--rule-faint)}
 .reading-inner{max-width:1380px;margin:0 auto}
-.reading-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:2.5rem;border:var(--rule-faint)}
-.reading-col{padding:2.5rem;border-right:var(--rule-faint);animation:rcol-in .6s ease both}.reading-col:nth-child(1){animation-delay:.1s}.reading-col:nth-child(2){animation-delay:.28s}.reading-col:nth-child(3){animation-delay:.46s}@keyframes rcol-in{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.reading-cols{display:flex;align-items:stretch;gap:0;margin-top:2.5rem;border:var(--rule-faint)}
+.reading-col{flex:1 1 0;min-width:0;padding:2.5rem;border-right:var(--rule-faint);overflow:hidden;transition:flex .55s cubic-bezier(.4,0,.2,1),opacity .4s ease,padding .55s cubic-bezier(.4,0,.2,1),border-color .35s ease;animation:rcol-in .6s ease both}.reading-col:nth-child(1){animation-delay:.1s}.reading-col:nth-child(2){animation-delay:.28s}.reading-col:nth-child(3){animation-delay:.46s}@keyframes rcol-in{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
 .reading-col.visible{opacity:1;transform:translateY(0)}
 .reading-col:last-child{border-right:none}
+.reading-cols.has-active .reading-col.col-hidden{flex:0 0 0px;opacity:0;padding-left:0;padding-right:0;border-right-color:transparent;pointer-events:none}
+.reading-cols.has-active .reading-col.col-active{flex:1 1 100%}
+.reading-book-overflow{overflow:hidden;max-height:0;opacity:0;transition:max-height .65s cubic-bezier(.4,0,.2,1),opacity .4s ease .15s}
+.reading-col.col-active .reading-book-overflow{max-height:5000px;opacity:1}
+.reading-col-more{margin-top:1.25rem;padding-top:1rem;border-top:var(--rule-hair)}
+.reading-col-more-btn{font-family:var(--f-ui);font-size:.63rem;letter-spacing:.16em;text-transform:uppercase;color:var(--maroon);background:none;border:none;cursor:pointer;padding:0;display:inline-flex;align-items:center;gap:.5rem;transition:opacity .2s ease}
+.reading-col-more-btn:hover{opacity:.7}
+.reading-col-more-btn .btn-arrow{display:inline-block;transition:transform .25s ease}
+.reading-col-more-btn:hover .btn-arrow{transform:translateX(4px)}
+.reading-cols.has-active .reading-col.col-active .reading-col-more{display:none}
+.reading-col-back{display:none;align-items:center;gap:.45rem;font-family:var(--f-ui);font-size:.63rem;letter-spacing:.16em;text-transform:uppercase;color:var(--stone);background:none;border:none;cursor:pointer;padding:0;margin-bottom:1.75rem;transition:color .2s ease}
+.reading-col-back:hover{color:var(--maroon)}
+.reading-col-back .back-arrow{display:inline-block;transition:transform .25s ease}
+.reading-col-back:hover .back-arrow{transform:translateX(-4px)}
+.reading-cols.has-active .reading-col.col-active .reading-col-back{display:flex}
 .reading-col-label{font-family:var(--f-ui);font-size:.65rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.4rem}
 .reading-col-rule{width:32px;height:2px;background:var(--maroon);display:block;margin-bottom:2rem}
-.reading-col-head{font-family:var(--f-display);font-weight:400;font-size:1.3rem;color:var(--text);margin-bottom:1.5rem;line-height:1.2}
-.reading-book-wrap{position:relative;border-bottom:var(--rule-hair);min-height:6.5rem}
+.reading-col-head{font-family:var(--f-display);font-weight:400;font-size:1.3rem;color:var(--text);margin-bottom:1.5rem;line-height:1.2;min-height:3.6rem}
+.reading-book-wrap{border-bottom:var(--rule-hair)}
 .reading-book-wrap:last-child{border-bottom:none}
-.reading-book{display:block;padding:.85rem .75rem;cursor:pointer;text-decoration:none;color:inherit;position:absolute;left:0;right:0;top:0;background:var(--vellum-mid);transition:transform .4s cubic-bezier(.25,.8,.25,1),box-shadow .4s cubic-bezier(.25,.8,.25,1),background .3s ease;z-index:1;border-radius:2px;transform:translateZ(0);-webkit-font-smoothing:antialiased;backface-visibility:hidden}
-.reading-book:hover{transform:translateZ(0) scale(1.02);box-shadow:0 12px 36px rgba(21,8,4,.13);background:var(--vellum);z-index:20;border-radius:4px}
-.reading-book::after{content:'→';position:absolute;right:.85rem;top:.95rem;font-size:.75rem;color:var(--maroon);opacity:0;transition:opacity .35s ease}
-.reading-book:hover::after{opacity:1}
-.reading-book-title{font-family:var(--f-display);font-style:italic;font-size:1.2rem;font-weight:500;color:var(--text);display:block;margin-bottom:.12rem;transition:color .3s ease}
-.reading-book:hover .reading-book-title{color:var(--maroon)}
-.reading-book-author{font-family:var(--f-ui);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:0}
-.reading-book-desc{font-family:var(--f-body);font-size:.95rem;line-height:1.72;color:var(--stone);max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.25,.8,.25,1),opacity .4s ease,margin-top .4s ease;opacity:0;margin-top:0}
-.reading-book:hover .reading-book-desc{max-height:160px;opacity:1;margin-top:.65rem}
+.reading-book{padding:.85rem .75rem;background:var(--vellum-mid);border-radius:2px;transition:background .25s ease}
+.reading-book.is-open{background:var(--vellum);border-radius:4px}
+.reading-book-toggle{display:grid;grid-template-areas:'title chevron' 'author chevron';grid-template-columns:1fr auto;column-gap:.65rem;align-items:center;width:100%;background:none;border:none;padding:0;cursor:pointer;text-align:left;color:inherit}
+.reading-book-title{grid-area:title;font-family:var(--f-display);font-style:italic;font-size:1.2rem;font-weight:500;color:var(--text);display:block;margin-bottom:.12rem;transition:color .25s ease}
+.reading-book.is-open .reading-book-title{color:var(--maroon)}
+.reading-book-author{grid-area:author;font-family:var(--f-ui);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);display:block}
+.reading-book-chevron{grid-area:chevron;font-size:.85rem;color:var(--maroon);font-weight:600;line-height:1;width:1rem;text-align:center;font-style:normal;transition:transform .3s ease;align-self:center}
+.reading-book.is-open .reading-book-chevron{transform:rotate(45deg)}
+.reading-book-body{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.25,.8,.25,1),opacity .35s ease;opacity:0}
+.reading-book.is-open .reading-book-body{max-height:200px;opacity:1}
+.reading-book-desc{font-family:var(--f-body);font-size:.95rem;line-height:1.72;color:var(--stone);margin:.65rem 0 .5rem}
+.reading-book-link{font-family:var(--f-ui);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--maroon);text-decoration:none;display:inline-block;margin-bottom:.2rem}
+.reading-book-link:hover{text-decoration:underline}
 
 
 /* ── TABBED ENCYCLOPEDIA ── */
@@ -203,6 +222,25 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   .quote-break{padding:2.5rem 1.5rem}.qb-inner{padding-left:1.25rem}.qb-text{font-size:1.3rem}
 }
 
+/* ── FULL-BLEED IMAGE BREAK ── */
+.image-break{position:relative;height:380px;overflow:hidden;background:var(--apse);margin:0;display:block}
+.image-break img{width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;transition:transform 8s ease}
+.image-break:hover img{transform:scale(1.03)}
+.image-break-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(59,15,24,.05) 0%,rgba(59,15,24,.45) 100%)}
+.image-break-caption{position:absolute;bottom:1.25rem;right:2rem;font-family:var(--f-ui);font-size:.56rem;letter-spacing:.13em;text-transform:uppercase;color:rgba(246,241,232,.45)}
+@media(max-width:768px){.image-break{height:240px}.image-break-caption{right:1.25rem}}
+
+/* ── HISTORY PULL IMAGE ── */
+.history-pull{float:right;width:210px;margin:0 0 1.5rem 2.5rem;clear:right;shape-outside:margin-box}
+.history-pull img{width:100%;display:block;box-shadow:0 6px 28px rgba(21,8,4,.20)}
+.history-pull figcaption{font-family:var(--f-ui);font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);margin-top:.55rem;text-align:center;line-height:1.6}
+@media(max-width:900px){.history-pull{float:none;width:100%;margin:0 0 1.5rem 0}}
+
+/* ── SIDEBAR ICON IMAGE ── */
+.side-icon-wrap{margin-bottom:2rem}
+.side-icon-wrap img{width:100%;display:block;box-shadow:0 4px 22px rgba(21,8,4,.16)}
+.side-icon-caption{display:block;font-family:var(--f-ui);font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);margin-top:.55rem;text-align:center}
+
 /* ── RESOURCE HUB CARDS ── */
 .hub-strip{background:var(--vellum-mid);padding:3.5rem 4.5rem;overflow:hidden}
 .hub-strip-inner{max-width:1380px;margin:0 auto}
@@ -213,7 +251,11 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 
 /* Cards */
 .hub-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:var(--rule-faint);position:relative}
-.hub-card{padding:2rem 1.75rem 1.75rem;border-right:var(--rule-faint);opacity:0;transform:translateY(14px);transition:opacity .45s ease,transform .45s ease,background 0s,box-shadow .3s}
+.hub-card{padding:2rem 1.75rem 1.75rem;border-right:var(--rule-faint);opacity:0;transform:translateY(14px);transition:opacity .45s ease,transform .45s ease,background 0s,box-shadow .3s;position:relative;overflow:hidden}
+.hub-card-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:0;transition:opacity .5s ease;z-index:0;pointer-events:none;display:block}
+.hub-card.visible .hub-card-img{opacity:.07}
+.hub-card.visible:hover .hub-card-img{opacity:.18}
+.hub-card-icon,.hub-card-title,.hub-card-desc,.hub-card-link{position:relative;z-index:1}
 .hub-card.visible{opacity:1;transform:translateY(0)}
 .hub-card.visible:hover{transform:scale(1.04);box-shadow:0 16px 40px rgba(0,0,0,.50);background:var(--vellum);z-index:2;position:relative}
 .hub-card:last-child{border-right:none}
@@ -274,11 +316,11 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   .link-card:nth-last-child(-n+3){border-bottom:var(--rule-faint)}
   .link-card:last-child{border-bottom:none}
   .reading-section{padding:2.5rem 1.5rem}
-  .reading-cols{grid-template-columns:1fr}
-  .reading-col{border-right:none;border-bottom:var(--rule-faint);padding:2rem 0}
+  .reading-cols{flex-direction:column}
+  .reading-col{flex:1 1 auto;border-right:none;border-bottom:var(--rule-faint);padding:2rem 0}
   .reading-col:last-child{border-bottom:none}
-  .reading-book-wrap{min-height:5rem}
-  .reading-book:hover{transform:translateZ(0) !important;box-shadow:none !important}
+  .reading-cols.has-active .reading-col.col-hidden{flex:0 0 0px;padding-top:0;padding-bottom:0;border-bottom-color:transparent}
+  .reading-book{border-radius:2px}
 }
 
 /* Content area background fix */
@@ -833,24 +875,28 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
     <h2 class="hub-headline">Everything a seeker needs to know about<br><em style="font-style:italic">Saints Peter &amp; Paul and the Orthodox Faith</em></h2>
     <div class="hub-cards" id="hub-cards">
         <a href="#history" class="hub-card" id="hub-card-0">
+          <img class="hub-card-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Hagia_Sophia_Interior%2C_Istanbul%2C_Turkey_-_Diliff.jpg/800px-Hagia_Sophia_Interior%2C_Istanbul%2C_Turkey_-_Diliff.jpg" alt="" onerror="this.style.display='none'">
           <span class="hub-card-icon">&#9766;</span>
           <span class="hub-card-title">Ancient Roots</span>
           <p class="hub-card-desc">The history of the Orthodox Church from the Apostles to today — 2,000 years of unbroken faith.</p>
           <span class="hub-card-link">Read the History &rarr;</span>
         </a>
         <a href="#reading" class="hub-card" id="hub-card-1">
+          <img class="hub-card-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Rabbula-Gospels.jpg/800px-Rabbula-Gospels.jpg" alt="" onerror="this.style.display='none'">
           <span class="hub-card-icon">&#10002;</span>
           <span class="hub-card-title">Recommended Reading</span>
           <p class="hub-card-desc">Books that have guided seekers into the Orthodox Faith, from accessible introductions to spiritual classics.</p>
           <span class="hub-card-link">Browse the List &rarr;</span>
         </a>
         <a href="#resources" class="hub-card" id="hub-card-2">
+          <img class="hub-card-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Candles_in_church.jpg/800px-Candles_in_church.jpg" alt="" onerror="this.style.display='none'">
           <span class="hub-card-icon">&#9769;</span>
           <span class="hub-card-title">Learn the Faith</span>
           <p class="hub-card-desc">Curated resources from the OCA — feasts &amp; saints, daily readings, and questions about Orthodoxy answered.</p>
           <span class="hub-card-link">Explore Resources &rarr;</span>
         </a>
         <a href="#useful" class="hub-card" id="hub-card-3">
+          <img class="hub-card-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Mount_Athos_by_cod_gabriel.jpg/800px-Mount_Athos_by_cod_gabriel.jpg" alt="" onerror="this.style.display='none'">
           <span class="hub-card-icon">&#8853;</span>
           <span class="hub-card-title">Useful Websites</span>
           <p class="hub-card-desc">Important Orthodox resources online — the OCA, our diocese, Ancient Faith Ministries, and more.</p>
@@ -868,6 +914,10 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
     <span class="rubric-voice">The original Christian Faith — twenty centuries of unbroken witness</span>
 
     <div class="prose" style="margin-top:2rem">
+      <figure class="history-pull">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Hagia_Sophia_Deesis_mosaic2.jpg/400px-Hagia_Sophia_Deesis_mosaic2.jpg" alt="Deesis mosaic, Hagia Sophia" onerror="this.style.display='none'">
+        <figcaption>Deesis mosaic, Hagia Sophia, 13th c.</figcaption>
+      </figure>
       <p class="drop-cap">The Orthodox Church was founded by our Lord Jesus Christ and is the living manifestation of His presence in the history of mankind. The most conspicuous characteristics of Orthodoxy are its rich liturgical life and its faithfulness to the apostolic tradition. It is believed by Orthodox Christians that our Church has preserved the tradition and continuity of the ancient Church in its fullness compared to other Christian denominations which have departed, to smaller or greater degrees, from the common tradition of the Church of the first ten centuries.</p>
     </div>
 
@@ -954,6 +1004,10 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   </main>
 
   <aside class="side-col">
+    <div class="side-icon-wrap">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Cefal%C3%B9_Pantocrator_Cropped.jpg/400px-Cefal%C3%B9_Pantocrator_Cropped.jpg" alt="Christ Pantocrator, Cefalù Cathedral" onerror="this.style.display='none'">
+      <span class="side-icon-caption">Christ Pantocrator, Cefalù Cathedral, 12th c.</span>
+    </div>
     <div class="side-section">
       <span class="side-head">For Inquirers</span>
       <a href="/our-beliefs" class="annot-nav-link">Our Beliefs</a>
@@ -972,6 +1026,13 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 </div>
 
 
+<!-- IMAGE BREAK -->
+<div class="image-break">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Hagia_Sophia_Interior%2C_Istanbul%2C_Turkey_-_Diliff.jpg/1280px-Hagia_Sophia_Interior%2C_Istanbul%2C_Turkey_-_Diliff.jpg" alt="Hagia Sophia interior" onerror="this.style.display='none'">
+  <div class="image-break-overlay"></div>
+  <span class="image-break-caption">Hagia Sophia, Constantinople &mdash; the Great Church of the Orthodox world for a thousand years</span>
+</div>
+
 <!-- RECOMMENDED READING --><span id="reading"></span>
 <div class="reading-section" id="reading-section">
   <div class="reading-inner">
@@ -985,124 +1046,249 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
         <span class="reading-col-label">Begin Here</span>
         <span class="reading-col-rule"></span>
         <p class="reading-col-head">Essential first books for anyone curious about Orthodoxy</p>
-        <div class="reading-book-wrap"><a href="https://www.amazon.com/Orthodox-Way-Kallistos-Ware/dp/0913836583" target="_blank" class="reading-book">
-          <span class="reading-book-title">The Orthodox Way</span>
-          <span class="reading-book-author">Kallistos Ware</span>
-          <p class="reading-book-desc">The single most recommended starting point. Covers theology, prayer, and the spiritual life with warmth and accessibility. Begin here.</p>
-        </a></div>
-        <div class="reading-book-wrap"><a href="https://www.amazon.com/Orthodox-Church-Kallistos-Ware/dp/0140146563" target="_blank" class="reading-book">
-          <span class="reading-book-title">The Orthodox Church</span>
-          <span class="reading-book-author">Kallistos Ware</span>
-          <p class="reading-book-desc">The companion to The Orthodox Way — more historical and institutional. Covers the history, structure, and faith of the Church from the early centuries to today.</p>
-        </a></div>
-        <div class="reading-book-wrap"><a href="https://www.amazon.com/Surprised-Christ-James-Bernstein/dp/1888212470" target="_blank" class="reading-book">
-          <span class="reading-book-title">Surprised by Christ</span>
-          <span class="reading-book-author">Fr. James Bernstein</span>
-          <p class="reading-book-desc">A convert's memoir — one of the most compelling accounts of a journey into Orthodoxy. Especially resonant for those coming from Protestant backgrounds.</p>
-        </a></div>
-        <div class="reading-book-wrap"><a href="https://www.amazon.com/Becoming-Orthodox-Journey-Ancient-Christian/dp/1888212411" target="_blank" class="reading-book">
-          <span class="reading-book-title">Becoming Orthodox</span>
-          <span class="reading-book-author">Fr. Peter Gillquist</span>
-          <p class="reading-book-desc">The story of a large Protestant community's decade-long journey into the Orthodox Church. Practical, honest, and deeply moving.</p>
-        </a></div>
-        <div class="reading-book-wrap"><a href="https://store.ancientfaith.com/the-religion-of-the-apostles/" target="_blank" class="reading-book">
-          <span class="reading-book-title">The Religion of the Apostles</span>
-          <span class="reading-book-author">Fr. Stephen De Young</span>
-          <p class="reading-book-desc">Traces Orthodox Christianity back to its apostolic roots in first-century Judaism. An eye-opening case that the Faith was complete from the beginning.</p>
-        </a></div>
-        <div class="reading-book-wrap"><a href="https://store.ancientfaith.com/saint-paul-the-pharisee-jewish-apostle-to-all-nations/" target="_blank" class="reading-book">
-          <span class="reading-book-title">Saint Paul the Pharisee</span>
-          <span class="reading-book-author">Fr. Stephen De Young</span>
-          <p class="reading-book-desc">A deep reading of St. Paul's letters through the lens of Second Temple Judaism and Orthodox tradition. Reframes Paul as a thoroughly Jewish apostle whose theology is inseparable from the Old Testament world.</p>
-        </a></div>
-        <div class="reading-book-wrap"><a href="https://store.ancientfaith.com/orthodoxy-and-heterodoxy-finding-the-way-to-christ-in-a-complicated-religious-landscape" target="_blank" class="reading-book">
-          <span class="reading-book-title">Orthodoxy and Heterodoxy</span>
-          <span class="reading-book-author">Fr. Andrew Stephen Damick</span>
-          <p class="reading-book-desc">A clear-eyed guide to how Orthodoxy relates to other Christian traditions — Catholic, Protestant, and beyond. Charitable, thorough, and essential for anyone coming from another background.</p>
-        </a></div>
-        
+        <div class="reading-book-wrap"><div class="reading-book">
+          <button class="reading-book-toggle" aria-expanded="false">
+            <span class="reading-book-title">The Orthodox Way</span>
+            <span class="reading-book-author">Kallistos Ware</span>
+            <span class="reading-book-chevron" aria-hidden="true">+</span>
+          </button>
+          <div class="reading-book-body">
+            <p class="reading-book-desc">The single most recommended starting point. Covers theology, prayer, and the spiritual life with warmth and accessibility. Begin here.</p>
+            <a href="https://www.amazon.com/Orthodox-Way-Kallistos-Ware/dp/0913836583" target="_blank" rel="noopener" class="reading-book-link">View book →</a>
+          </div>
+        </div></div>
+        <div class="reading-book-wrap"><div class="reading-book">
+          <button class="reading-book-toggle" aria-expanded="false">
+            <span class="reading-book-title">The Orthodox Church</span>
+            <span class="reading-book-author">Kallistos Ware</span>
+            <span class="reading-book-chevron" aria-hidden="true">+</span>
+          </button>
+          <div class="reading-book-body">
+            <p class="reading-book-desc">The companion to The Orthodox Way — more historical and institutional. Covers the history, structure, and faith of the Church from the early centuries to today.</p>
+            <a href="https://www.amazon.com/Orthodox-Church-Kallistos-Ware/dp/0140146563" target="_blank" rel="noopener" class="reading-book-link">View book →</a>
+          </div>
+        </div></div>
+        <div class="reading-book-wrap"><div class="reading-book">
+          <button class="reading-book-toggle" aria-expanded="false">
+            <span class="reading-book-title">Surprised by Christ</span>
+            <span class="reading-book-author">Fr. James Bernstein</span>
+            <span class="reading-book-chevron" aria-hidden="true">+</span>
+          </button>
+          <div class="reading-book-body">
+            <p class="reading-book-desc">A convert's memoir — one of the most compelling accounts of a journey into Orthodoxy. Especially resonant for those coming from Protestant backgrounds.</p>
+            <a href="https://www.amazon.com/Surprised-Christ-James-Bernstein/dp/1888212470" target="_blank" rel="noopener" class="reading-book-link">View book →</a>
+          </div>
+        </div></div>
+        <div class="reading-book-wrap"><div class="reading-book">
+          <button class="reading-book-toggle" aria-expanded="false">
+            <span class="reading-book-title">Becoming Orthodox</span>
+            <span class="reading-book-author">Fr. Peter Gillquist</span>
+            <span class="reading-book-chevron" aria-hidden="true">+</span>
+          </button>
+          <div class="reading-book-body">
+            <p class="reading-book-desc">The story of a large Protestant community's decade-long journey into the Orthodox Church. Practical, honest, and deeply moving.</p>
+            <a href="https://www.amazon.com/Becoming-Orthodox-Journey-Ancient-Christian/dp/1888212411" target="_blank" rel="noopener" class="reading-book-link">View book →</a>
+          </div>
+        </div></div>
+        <div class="reading-book-wrap"><div class="reading-book">
+          <button class="reading-book-toggle" aria-expanded="false">
+            <span class="reading-book-title">The Religion of the Apostles</span>
+            <span class="reading-book-author">Fr. Stephen De Young</span>
+            <span class="reading-book-chevron" aria-hidden="true">+</span>
+          </button>
+          <div class="reading-book-body">
+            <p class="reading-book-desc">Traces Orthodox Christianity back to its apostolic roots in first-century Judaism. An eye-opening case that the Faith was complete from the beginning.</p>
+            <a href="https://store.ancientfaith.com/the-religion-of-the-apostles/" target="_blank" rel="noopener" class="reading-book-link">View book →</a>
+          </div>
+        </div></div>
+        <div class="reading-book-wrap"><div class="reading-book">
+          <button class="reading-book-toggle" aria-expanded="false">
+            <span class="reading-book-title">Saint Paul the Pharisee</span>
+            <span class="reading-book-author">Fr. Stephen De Young</span>
+            <span class="reading-book-chevron" aria-hidden="true">+</span>
+          </button>
+          <div class="reading-book-body">
+            <p class="reading-book-desc">A deep reading of St. Paul's letters through the lens of Second Temple Judaism and Orthodox tradition. Reframes Paul as a thoroughly Jewish apostle whose theology is inseparable from the Old Testament world.</p>
+            <a href="https://store.ancientfaith.com/saint-paul-the-pharisee-jewish-apostle-to-all-nations/" target="_blank" rel="noopener" class="reading-book-link">View book →</a>
+          </div>
+        </div></div>
+        <div class="reading-book-wrap"><div class="reading-book">
+          <button class="reading-book-toggle" aria-expanded="false">
+            <span class="reading-book-title">Orthodoxy and Heterodoxy</span>
+            <span class="reading-book-author">Fr. Andrew Stephen Damick</span>
+            <span class="reading-book-chevron" aria-hidden="true">+</span>
+          </button>
+          <div class="reading-book-body">
+            <p class="reading-book-desc">A clear-eyed guide to how Orthodoxy relates to other Christian traditions — Catholic, Protestant, and beyond. Charitable, thorough, and essential for anyone coming from another background.</p>
+            <a href="https://store.ancientfaith.com/orthodoxy-and-heterodoxy-finding-the-way-to-christ-in-a-complicated-religious-landscape" target="_blank" rel="noopener" class="reading-book-link">View book →</a>
+          </div>
+        </div></div>
+        <div class="reading-book-wrap"><div class="reading-book">
+          <button class="reading-book-toggle" aria-expanded="false">
+            <span class="reading-book-title">The Mountain of Silence</span>
+            <span class="reading-book-author">Kyriacos C. Markides</span>
+            <span class="reading-book-chevron" aria-hidden="true">+</span>
+          </button>
+          <div class="reading-book-body">
+            <p class="reading-book-desc">A sociologist follows a Mount Athos monk to Cyprus and discovers the depth of Orthodox mystical spirituality. Accessible, deeply moving, and an ideal introduction for Western seekers.</p>
+            <a href="https://www.amazon.com/Mountain-Silence-Search-Orthodox-Spirituality/dp/0385500920" target="_blank" rel="noopener" class="reading-book-link">View book →</a>
+          </div>
+        </div></div>
       </div>
 
       <div class="reading-col" id="rcol-1">
         <span class="reading-col-label">Go Deeper</span>
         <span class="reading-col-rule"></span>
         <p class="reading-col-head">For those ready to engage Orthodox theology seriously</p>
-        <div class="reading-book-wrap"><a href="https://www.amazon.com/Life-World-Sacraments-Orthodoxy/dp/0913836087" target="_blank" class="reading-book">
-          <span class="reading-book-title">For the Life of the World</span>
-          <span class="reading-book-author">Fr. Alexander Schmemann</span>
-          <p class="reading-book-desc">A slim, essential book about the sacramental vision of the world. Changes how you see everything. One of the most important Orthodox texts of the 20th century.</p>
-        </a></div>
-        <div class="reading-book-wrap"><a href="https://www.amazon.com/Mystical-Theology-Eastern-Church/dp/0913836311" target="_blank" class="reading-book">
-          <span class="reading-book-title">The Mystical Theology of the Eastern Church</span>
-          <span class="reading-book-author">Vladimir Lossky</span>
-          <p class="reading-book-desc">The foundational theological introduction to the Eastern tradition. Essential for anyone who wants to understand Orthodox thought at its depth.</p>
-        </a></div>
-        <div class="reading-book-wrap"><a href="https://www.amazon.com/Deification-Christ-Perspectives-Contemporary-Theologians/dp/0881410306" target="_blank" class="reading-book">
-          <span class="reading-book-title">Deification in Christ</span>
-          <span class="reading-book-author">Panayiotis Nellas</span>
-          <p class="reading-book-desc">A profound study of Orthodox anthropology and theosis — what it means for the human person to be made in the image of God and to grow into His likeness.</p>
-        </a></div>
-        <div class="reading-book-wrap"><a href="https://www.amazon.com/Maximus-Confessor-Early-Church-Fathers/dp/041511845X" target="_blank" class="reading-book">
-          <span class="reading-book-title">St. Maximus the Confessor</span>
-          <span class="reading-book-author">Andrew Louth</span>
-          <p class="reading-book-desc">The best single-volume introduction to the greatest Byzantine theologian. Louth translates key texts and provides a lucid guide to Maximus's cosmic vision.</p>
-        </a></div>
-        <div class="reading-book-wrap"><a href="https://www.amazon.com/Ethics-Beauty-Timothy-G-Patitsas/dp/1635511003" target="_blank" class="reading-book">
-          <span class="reading-book-title">The Ethics of Beauty</span>
-          <span class="reading-book-author">Timothy Patitsas</span>
-          <p class="reading-book-desc">A remarkable work of Orthodox moral theology arguing that beauty is the proper ground of Christian ethics. Dense, rewarding, and original.</p>
-        </a></div>
-        <div class="reading-book-wrap"><a href="https://www.amazon.com/Christ-Conqueror-Hell-Orthodox-Perspective/dp/0881410616" target="_blank" class="reading-book">
-          <span class="reading-book-title">Christ the Conqueror of Hell</span>
-          <span class="reading-book-author">Metropolitan Hilarion Alfeyev</span>
-          <p class="reading-book-desc">A deep study of Christ's descent into Hades. Presents a message of cosmic hope using Scripture, patristic tradition, and liturgical texts.</p>
-        </a></div>
-        <div class="reading-book-wrap"><a href="https://www.amazon.com/Orthodox-Christianity-Metropolitan-Hilarion-Alfeyev/dp/0881412767" target="_blank" class="reading-book">
-          <span class="reading-book-title">Orthodox Christianity (5 vols.)</span>
-          <span class="reading-book-author">Metropolitan Hilarion Alfeyev</span>
-          <p class="reading-book-desc">The most comprehensive modern survey of Orthodox theology, history, worship, and spiritual life. A monumental reference for serious students of the faith.</p>
-        </a></div>
+        <div class="reading-book-wrap"><div class="reading-book">
+          <button class="reading-book-toggle" aria-expanded="false">
+            <span class="reading-book-title">For the Life of the World</span>
+            <span class="reading-book-author">Fr. Alexander Schmemann</span>
+            <span class="reading-book-chevron" aria-hidden="true">+</span>
+          </button>
+          <div class="reading-book-body">
+            <p class="reading-book-desc">A slim, essential book about the sacramental vision of the world. Changes how you see everything. One of the most important Orthodox texts of the 20th century.</p>
+            <a href="https://www.amazon.com/Life-World-Sacraments-Orthodoxy/dp/0913836087" target="_blank" rel="noopener" class="reading-book-link">View book →</a>
+          </div>
+        </div></div>
+        <div class="reading-book-wrap"><div class="reading-book">
+          <button class="reading-book-toggle" aria-expanded="false">
+            <span class="reading-book-title">The Mystical Theology of the Eastern Church</span>
+            <span class="reading-book-author">Vladimir Lossky</span>
+            <span class="reading-book-chevron" aria-hidden="true">+</span>
+          </button>
+          <div class="reading-book-body">
+            <p class="reading-book-desc">The foundational theological introduction to the Eastern tradition. Essential for anyone who wants to understand Orthodox thought at its depth.</p>
+            <a href="https://www.amazon.com/Mystical-Theology-Eastern-Church/dp/0913836311" target="_blank" rel="noopener" class="reading-book-link">View book →</a>
+          </div>
+        </div></div>
+        <div class="reading-book-wrap"><div class="reading-book">
+          <button class="reading-book-toggle" aria-expanded="false">
+            <span class="reading-book-title">Deification in Christ</span>
+            <span class="reading-book-author">Panayiotis Nellas</span>
+            <span class="reading-book-chevron" aria-hidden="true">+</span>
+          </button>
+          <div class="reading-book-body">
+            <p class="reading-book-desc">A profound study of Orthodox anthropology and theosis — what it means for the human person to be made in the image of God and to grow into His likeness.</p>
+            <a href="https://www.amazon.com/Deification-Christ-Perspectives-Contemporary-Theologians/dp/0881410306" target="_blank" rel="noopener" class="reading-book-link">View book →</a>
+          </div>
+        </div></div>
+        <div class="reading-book-wrap"><div class="reading-book">
+          <button class="reading-book-toggle" aria-expanded="false">
+            <span class="reading-book-title">St. Maximus the Confessor</span>
+            <span class="reading-book-author">Andrew Louth</span>
+            <span class="reading-book-chevron" aria-hidden="true">+</span>
+          </button>
+          <div class="reading-book-body">
+            <p class="reading-book-desc">The best single-volume introduction to the greatest Byzantine theologian. Louth translates key texts and provides a lucid guide to Maximus's cosmic vision.</p>
+            <a href="https://www.amazon.com/Maximus-Confessor-Early-Church-Fathers/dp/041511845X" target="_blank" rel="noopener" class="reading-book-link">View book →</a>
+          </div>
+        </div></div>
+        <div class="reading-book-wrap"><div class="reading-book">
+          <button class="reading-book-toggle" aria-expanded="false">
+            <span class="reading-book-title">The Ethics of Beauty</span>
+            <span class="reading-book-author">Timothy Patitsas</span>
+            <span class="reading-book-chevron" aria-hidden="true">+</span>
+          </button>
+          <div class="reading-book-body">
+            <p class="reading-book-desc">A remarkable work of Orthodox moral theology arguing that beauty is the proper ground of Christian ethics. Dense, rewarding, and original.</p>
+            <a href="https://www.amazon.com/Ethics-Beauty-Timothy-G-Patitsas/dp/1635511003" target="_blank" rel="noopener" class="reading-book-link">View book →</a>
+          </div>
+        </div></div>
+        <div class="reading-book-wrap"><div class="reading-book">
+          <button class="reading-book-toggle" aria-expanded="false">
+            <span class="reading-book-title">Christ the Conqueror of Hell</span>
+            <span class="reading-book-author">Metropolitan Hilarion Alfeyev</span>
+            <span class="reading-book-chevron" aria-hidden="true">+</span>
+          </button>
+          <div class="reading-book-body">
+            <p class="reading-book-desc">A deep study of Christ's descent into Hades. Presents a message of cosmic hope using Scripture, patristic tradition, and liturgical texts.</p>
+            <a href="https://www.amazon.com/Christ-Conqueror-Hell-Orthodox-Perspective/dp/0881410616" target="_blank" rel="noopener" class="reading-book-link">View book →</a>
+          </div>
+        </div></div>
+        <div class="reading-book-wrap"><div class="reading-book">
+          <button class="reading-book-toggle" aria-expanded="false">
+            <span class="reading-book-title">Orthodox Christianity (5 vols.)</span>
+            <span class="reading-book-author">Metropolitan Hilarion Alfeyev</span>
+            <span class="reading-book-chevron" aria-hidden="true">+</span>
+          </button>
+          <div class="reading-book-body">
+            <p class="reading-book-desc">The most comprehensive modern survey of Orthodox theology, history, worship, and spiritual life. A monumental reference for serious students of the faith.</p>
+            <a href="https://www.amazon.com/Orthodox-Christianity-Metropolitan-Hilarion-Alfeyev/dp/0881412767" target="_blank" rel="noopener" class="reading-book-link">View book →</a>
+          </div>
+        </div></div>
       </div>
 
       <div class="reading-col" id="rcol-2">
         <span class="reading-col-label">Spiritual Classics</span>
         <span class="reading-col-rule"></span>
         <p class="reading-col-head">The enduring texts of Orthodox prayer and the inner life</p>
-        <div class="reading-book-wrap"><a href="https://www.amazon.com/Way-Pilgrim-Continues-His-ebook/dp/B0DCKBVJJ3" target="_blank" class="reading-book">
-          <span class="reading-book-title">The Way of a Pilgrim</span>
-          <span class="reading-book-author">Anonymous</span>
-          <p class="reading-book-desc">A 19th-century Russian pilgrim's account of learning the Jesus Prayer. Short, luminous, and transformative. One of the most beloved books in Orthodox literature.</p>
-        </a></div>
-        <div class="reading-book-wrap"><a href="https://www.amazon.com/Mountain-Silence-Search-Orthodox-Spirituality/dp/0385500920" target="_blank" class="reading-book">
-          <span class="reading-book-title">The Mountain of Silence</span>
-          <span class="reading-book-author">Kyriacos C. Markides</span>
-          <p class="reading-book-desc">A sociologist follows a Mount Athos monk to Cyprus and discovers the depth of Orthodox mystical spirituality. Accessible, deeply moving, and an ideal introduction for Western seekers.</p>
-        </a></div>
-        <div class="reading-book-wrap"><a href="https://www.amazon.com/Philokalia-Complete-Text-compiled-Nikodimos/dp/0571193536" target="_blank" class="reading-book">
-          <span class="reading-book-title">The Philokalia</span>
-          <span class="reading-book-author">Various Desert Fathers</span>
-          <p class="reading-book-desc">The collected writings of the Desert Fathers on prayer and the inner life. Not read cover to cover — dipped into. Begin with Volume 1. A lifetime's companion.</p>
-        </a></div>
-        <div class="reading-book-wrap"><a href="https://www.amazon.com/Therapy-Spiritual-Illness-Introduction-Tradition/dp/1896800394" target="_blank" class="reading-book">
-          <span class="reading-book-title">Therapy of Spiritual Illness</span>
-          <span class="reading-book-author">Jean-Claude Larchet</span>
-          <p class="reading-book-desc">A vast synthesis of patristic teaching on the passions, healing, and salvation. Presents Orthodox asceticism as a complete science of the soul.</p>
-        </a></div>
-        <div class="reading-book-wrap"><a href="https://www.amazon.com/Elder-Paisios-Mount-Athos-Hieromonk/dp/0990700364" target="_blank" class="reading-book">
-          <span class="reading-book-title">Elder Paisios of Mount Athos</span>
-          <span class="reading-book-author">Hieromonk Isaac</span>
-          <p class="reading-book-desc">The spiritual counsels of one of the most beloved saints of the 20th century. Practical, warm, occasionally astonishing. Beloved across the Orthodox world.</p>
-        </a></div>
-        <div class="reading-book-wrap"><a href="https://www.amazon.com/Incarnation-St-Athanasius/dp/0881411639" target="_blank" class="reading-book">
-          <span class="reading-book-title">On the Incarnation</span>
-          <span class="reading-book-author">St. Athanasius the Great</span>
-          <p class="reading-book-desc">The foundational text on why God became man. Written in the 4th century, it reads with startling clarity. C.S. Lewis called it a masterpiece and wrote the introduction to the popular English edition — a fitting entry point.</p>
-        </a></div>
-        <div class="reading-book-wrap"><a href="https://www.amazon.com/Orthodox-Faith-John-Damascus/dp/0813200474" target="_blank" class="reading-book">
-          <span class="reading-book-title">On the Orthodox Faith</span>
-          <span class="reading-book-author">St. John of Damascus</span>
-          <p class="reading-book-desc">The definitive systematic theology of the Eastern Church, written in the 8th century. Still the standard reference for Orthodox doctrine. Dense but essential for anyone who wants to understand the faith at its foundations.</p>
-        </a></div>
+        <div class="reading-book-wrap"><div class="reading-book">
+          <button class="reading-book-toggle" aria-expanded="false">
+            <span class="reading-book-title">The Way of a Pilgrim</span>
+            <span class="reading-book-author">Anonymous</span>
+            <span class="reading-book-chevron" aria-hidden="true">+</span>
+          </button>
+          <div class="reading-book-body">
+            <p class="reading-book-desc">A 19th-century Russian pilgrim's account of learning the Jesus Prayer. Short, luminous, and transformative. One of the most beloved books in Orthodox literature.</p>
+            <a href="https://www.amazon.com/Way-Pilgrim-Continues-His-ebook/dp/B0DCKBVJJ3" target="_blank" rel="noopener" class="reading-book-link">View book →</a>
+          </div>
+        </div></div>
+        <div class="reading-book-wrap"><div class="reading-book">
+          <button class="reading-book-toggle" aria-expanded="false">
+            <span class="reading-book-title">The Philokalia</span>
+            <span class="reading-book-author">Various Desert Fathers</span>
+            <span class="reading-book-chevron" aria-hidden="true">+</span>
+          </button>
+          <div class="reading-book-body">
+            <p class="reading-book-desc">The collected writings of the Desert Fathers on prayer and the inner life. Not read cover to cover — dipped into. Begin with Volume 1. A lifetime's companion.</p>
+            <a href="https://www.amazon.com/Philokalia-Complete-Text-compiled-Nikodimos/dp/0571193536" target="_blank" rel="noopener" class="reading-book-link">View book →</a>
+          </div>
+        </div></div>
+        <div class="reading-book-wrap"><div class="reading-book">
+          <button class="reading-book-toggle" aria-expanded="false">
+            <span class="reading-book-title">Therapy of Spiritual Illness</span>
+            <span class="reading-book-author">Jean-Claude Larchet</span>
+            <span class="reading-book-chevron" aria-hidden="true">+</span>
+          </button>
+          <div class="reading-book-body">
+            <p class="reading-book-desc">A vast synthesis of patristic teaching on the passions, healing, and salvation. Presents Orthodox asceticism as a complete science of the soul.</p>
+            <a href="https://www.amazon.com/Therapy-Spiritual-Illness-Introduction-Tradition/dp/1896800394" target="_blank" rel="noopener" class="reading-book-link">View book →</a>
+          </div>
+        </div></div>
+        <div class="reading-book-wrap"><div class="reading-book">
+          <button class="reading-book-toggle" aria-expanded="false">
+            <span class="reading-book-title">Elder Paisios of Mount Athos</span>
+            <span class="reading-book-author">Hieromonk Isaac</span>
+            <span class="reading-book-chevron" aria-hidden="true">+</span>
+          </button>
+          <div class="reading-book-body">
+            <p class="reading-book-desc">The spiritual counsels of one of the most beloved saints of the 20th century. Practical, warm, occasionally astonishing. Beloved across the Orthodox world.</p>
+            <a href="https://www.amazon.com/Elder-Paisios-Mount-Athos-Hieromonk/dp/0990700364" target="_blank" rel="noopener" class="reading-book-link">View book →</a>
+          </div>
+        </div></div>
+        <div class="reading-book-wrap"><div class="reading-book">
+          <button class="reading-book-toggle" aria-expanded="false">
+            <span class="reading-book-title">On the Incarnation</span>
+            <span class="reading-book-author">St. Athanasius the Great</span>
+            <span class="reading-book-chevron" aria-hidden="true">+</span>
+          </button>
+          <div class="reading-book-body">
+            <p class="reading-book-desc">The foundational text on why God became man. Written in the 4th century, it reads with startling clarity. C.S. Lewis called it a masterpiece and wrote the introduction to the popular English edition — a fitting entry point.</p>
+            <a href="https://www.amazon.com/Incarnation-St-Athanasius/dp/0881411639" target="_blank" rel="noopener" class="reading-book-link">View book →</a>
+          </div>
+        </div></div>
+        <div class="reading-book-wrap"><div class="reading-book">
+          <button class="reading-book-toggle" aria-expanded="false">
+            <span class="reading-book-title">On the Orthodox Faith</span>
+            <span class="reading-book-author">St. John of Damascus</span>
+            <span class="reading-book-chevron" aria-hidden="true">+</span>
+          </button>
+          <div class="reading-book-body">
+            <p class="reading-book-desc">The definitive systematic theology of the Eastern Church, written in the 8th century. Still the standard reference for Orthodox doctrine. Dense but essential for anyone who wants to understand the faith at its foundations.</p>
+            <a href="https://www.amazon.com/Orthodox-Faith-John-Damascus/dp/0813200474" target="_blank" rel="noopener" class="reading-book-link">View book →</a>
+          </div>
+        </div></div>
       </div>
 
     </div>
@@ -1822,5 +2008,68 @@ document.addEventListener('click', function() {
 </script>
 <script>window.HERO_IMAGES=[{url:'/images/heroes/hero-06.jpg'},{url:'/images/heroes/hero-14.jpg'},{url:'/images/heroes/hero-09.jpg'},{url:'/images/heroes/hero-04.jpg'},{url:'/images/heroes/hero-12.jpg'}];</script>
 <script src="/hero-rotator.js"></script>
+<script>
+(function(){
+  // Book card expand toggles
+  document.querySelectorAll('.reading-book-toggle').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var card = btn.closest('.reading-book');
+      var opening = !card.classList.contains('is-open');
+      card.classList.toggle('is-open', opening);
+      btn.setAttribute('aria-expanded', opening);
+      btn.querySelector('.reading-book-chevron').textContent = opening ? '\u00D7' : '+';
+    });
+  });
+
+  // Reading column "View all" expand
+  var THRESHOLD = 5;
+  document.querySelectorAll('.reading-col').forEach(function(col){
+    var books = Array.from(col.querySelectorAll('.reading-book-wrap'));
+    if(books.length <= THRESHOLD) return;
+
+    // Wrap overflow books
+    var overflow = document.createElement('div');
+    overflow.className = 'reading-book-overflow';
+    for(var i = THRESHOLD; i < books.length; i++){
+      overflow.appendChild(books[i]);
+    }
+    col.appendChild(overflow);
+
+    // Back button — insert before the label
+    var backBtn = document.createElement('button');
+    backBtn.className = 'reading-col-back';
+    backBtn.innerHTML = '<span class="back-arrow">\u2190</span> All sections';
+    var label = col.querySelector('.reading-col-label');
+    col.insertBefore(backBtn, label);
+
+    // "View all" CTA
+    var moreDiv = document.createElement('div');
+    moreDiv.className = 'reading-col-more';
+    var moreBtn = document.createElement('button');
+    moreBtn.className = 'reading-col-more-btn';
+    moreBtn.innerHTML = 'View all ' + books.length + ' books <span class="btn-arrow">\u2192</span>';
+    moreDiv.appendChild(moreBtn);
+    col.appendChild(moreDiv);
+
+    moreBtn.addEventListener('click', function(){
+      var cols = col.closest('.reading-cols');
+      cols.classList.add('has-active');
+      col.classList.add('col-active');
+      cols.querySelectorAll('.reading-col').forEach(function(c){
+        if(c !== col) c.classList.add('col-hidden');
+      });
+    });
+
+    backBtn.addEventListener('click', function(){
+      var cols = col.closest('.reading-cols');
+      cols.classList.remove('has-active');
+      col.classList.remove('col-active');
+      cols.querySelectorAll('.reading-col').forEach(function(c){
+        c.classList.remove('col-hidden');
+      });
+    });
+  });
+})();
+</script>
 </body>
 </html>
