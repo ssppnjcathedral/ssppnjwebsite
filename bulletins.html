@@ -35,6 +35,49 @@
 .nav-drop a:hover{color:var(--maroon)}.nav-links .nav-active{color:var(--maroon)}.nav-links .nav-active-parent>a{color:var(--maroon);border-bottom:2px solid var(--gold)}.nav-drop .nav-active{color:var(--maroon);font-weight:600}
 .nav-give{font-family:var(--f-ui);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--vellum);background:var(--maroon);padding:.5rem 1.1rem;transition:background .2s}
 .nav-give:hover{background:var(--maroon-deep)}
+/* ── PREMIUM ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes growLine{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
+/* Hero entrance */
+.breadcrumb{animation:fadeIn .5s ease .1s both}
+.rubric.light{animation:fadeIn .5s ease .15s both}
+.rubric-rule{animation:growLine .5s ease .2s both;transform-origin:left}
+.page-title{animation:fadeUp .65s ease .25s both}
+.chapter-bar{animation:fadeIn .4s ease .35s both}
+
+/* Scroll-triggered — JS adds .scroll-hidden then .visible on intersect */
+.scroll-hidden{opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease}
+.scroll-hidden.visible{opacity:1;transform:translateY(0)}
+
+/* Year labels — slide from left */
+.year-label.scroll-hidden{transform:translateX(-16px)}
+
+/* Bulletin rows — staggered */
+.bulletin-row.scroll-hidden{transform:translateY(12px)}
+.bulletin-row.scroll-hidden.visible:nth-child(1){transition-delay:.05s}
+.bulletin-row.scroll-hidden.visible:nth-child(2){transition-delay:.10s}
+.bulletin-row.scroll-hidden.visible:nth-child(3){transition-delay:.15s}
+.bulletin-row.scroll-hidden.visible:nth-child(4){transition-delay:.20s}
+.bulletin-row.scroll-hidden.visible:nth-child(5){transition-delay:.25s}
+.bulletin-row.scroll-hidden.visible:nth-child(n+6){transition-delay:.30s}
+
+/* Bulletin row hover — gold accent slide */
+@media(hover:hover){.bulletin-row:hover{transform:translateX(4px);box-shadow:-4px 0 0 var(--gold)}}
+
+/* Sidebar sections — staggered from right */
+.side-section.scroll-hidden{transform:translateX(16px)}
+.side-section.scroll-hidden.visible:nth-child(1){transition-delay:.1s}
+.side-section.scroll-hidden.visible:nth-child(2){transition-delay:.2s}
+.side-section.scroll-hidden.visible:nth-child(3){transition-delay:.3s}
+
+/* Reduce motion */
+@media(prefers-reduced-motion:reduce){
+  .breadcrumb,.rubric.light,.rubric-rule,.page-title,.chapter-bar{animation:none!important}
+  .scroll-hidden{opacity:1!important;transform:none!important;transition:none!important}
+}
+
 .page-hero{padding-top:60px;background:linear-gradient(to right,rgba(59,15,24,.88) 0%,rgba(59,15,24,.62) 55%,rgba(59,15,24,.38) 100%),url('/images/heroes/hero-bulletins.jpg') center/cover no-repeat;background-color:var(--apse);min-height:380px;display:flex;align-items:flex-end;position:relative;overflow:hidden}
 .page-hero-inner{max-width:1380px;margin:0 auto;padding:3rem 4.5rem 3.5rem;width:100%}
 
@@ -868,5 +911,42 @@ document.addEventListener('click', function() {
 </script>
 <script>window.HERO_IMAGES=[{url:'/images/heroes/hero-01.jpg'},{url:'/images/heroes/hero-03.jpg'},{url:'/images/heroes/hero-12.jpg'},{url:'/images/heroes/hero-10.jpg'}];</script>
 <script src="/hero-rotator.js"></script>
+<script>
+/* ── Scroll-reveal observer ── */
+(function(){
+  if (!('IntersectionObserver' in window)) return;
+
+  function observeAll(root) {
+    root.querySelectorAll('.year-label, .bulletin-row, .side-section, .year-group').forEach(function(el){
+      if (!el.classList.contains('scroll-hidden') && !el.classList.contains('visible')) {
+        el.classList.add('scroll-hidden');
+        io.observe(el);
+      }
+    });
+  }
+
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, {threshold:0.1, rootMargin:'0px 0px -30px 0px'});
+
+  /* Observe static sidebar immediately */
+  document.querySelectorAll('.side-section').forEach(function(el){
+    el.classList.add('scroll-hidden');
+    io.observe(el);
+  });
+
+  /* Observe bulletin content after it renders (dynamic via JS) */
+  var wrap = document.querySelector('.main-col') || document.querySelector('.bulletins-wrap');
+  if (wrap) {
+    var mo = new MutationObserver(function(){ observeAll(wrap); });
+    mo.observe(wrap, {childList:true, subtree:true});
+  }
+})();
+</script>
 </body>
 </html>

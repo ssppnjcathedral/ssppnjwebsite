@@ -62,14 +62,15 @@ function renderSunday(data, d){
   }).join('');
   var readHTML = readRows ? '<div class="ts-readings"><p class="ts-readings-head">Scripture Readings</p>'+readRows+'</div>' : '';
   var lvl = data.feast_level||0;
-  var html = '<div class="ts-opening '+feastClass(lvl)+'">'
+  var html = '<a href="/schedule" class="ts-opening-link" style="display:block;text-decoration:none;color:inherit;cursor:pointer"><div class="ts-opening '+feastClass(lvl)+'">'
     +'<span class="rubric">This Sunday</span>'
     +'<h2 class="ts-feast">'+feast+'</h2>'
     +(saints?'<span class="ts-saint">'+saints+'</span>':'')
     +(tone?'<span class="ts-tone">'+tone+'</span>':'')
     +'</div>'
-    +readHTML
     +(fastDesc?'<p class="ts-fast">'+fastDesc+'</p>':'')
+    +readHTML
+    +'</a>'
     +'<div class="ts-ctas">'
     +'<a href="/readings" class="btn btn-maroon">Read the Readings</a>'
     +'<a href="/schedule" class="btn btn-outline">Full Calendar</a>'
@@ -85,10 +86,10 @@ function renderWeek(entries){
     var lv    = data.feast_level||0;
     var dot   = lv>=2?'<span class="feast-dot"></span>':'';
     var short = title.length>50?title.slice(0,50)+'\u2026':title;
-    return '<div class="week-entry">'
+    return '<a href="/schedule" class="week-entry" style="text-decoration:none;color:inherit;display:block;cursor:pointer">'
       +'<span class="week-day-lbl">'+DAYS_SHORT[date.getDay()]+' \u00b7 '+MONTHS_S[date.getMonth()]+' '+date.getDate()+'</span>'
       +'<span class="week-day-title '+(lv>=4?'major':'')+'">'+short+dot+'</span>'
-      +'</div>';
+      +'</a>';
   }).join('');
   document.getElementById('week-strip').innerHTML = html;
 }
