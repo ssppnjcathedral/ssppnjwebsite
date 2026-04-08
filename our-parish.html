@@ -18,7 +18,7 @@
 <style>
 :root{--vellum:#F6F1E8;--vellum-mid:#EDE7DC;--vellum-alt:#E8E0D0;--text:#1E1510;--ink:#2C1F16;--maroon:#7B1D2A;--maroon-deep:#5C1520;--gold:#B88328;--gold-lt:#E8C97A;--verdigris:#3D6B5E;--stone:#7A6648;--stone-lt:#A89070;--apse:#3B0F18;--f-display:'Cormorant Garamond',Georgia,serif;--f-body:'EB Garamond',Georgia,serif;--f-ui:'Cinzel',Georgia,serif;--rule:1px solid var(--maroon);--rule-faint:1px solid rgba(123,29,42,0.14);--rule-hair:1px solid rgba(123,29,42,0.07)}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;overflow-x:hidden}
+html{scroll-behavior:smooth}
 body{background:var(--vellum);color:var(--text);font-family:var(--f-body);font-size:21px;line-height:1.75;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
 .rubric{display:block;font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.20em;text-transform:uppercase;color:var(--stone);margin-bottom:.5rem}
@@ -63,6 +63,62 @@ a{color:inherit;text-decoration:none}
 .breadcrumb{font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:1.5rem}
 .breadcrumb a{color:rgba(232,201,122,.70)}
 .breadcrumb a:hover{color:var(--gold-lt)}
+
+/* ── PREMIUM ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes scaleIn{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}
+@keyframes slideLeft{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
+@keyframes slideRight{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:translateX(0)}}
+@keyframes countUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes tlDot{from{opacity:0;transform:scale(0)}to{opacity:1;transform:scale(1)}}
+@keyframes tlGrow{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0 0 0% 0)}}
+
+/* Hero entrance */
+.page-title{animation:fadeUp .7s ease .2s both}
+.page-subtitle{animation:fadeUp .6s ease .4s both}
+.breadcrumb{animation:fadeIn .5s ease .1s both}
+
+/* All scroll-reveal elements start visible by default.
+   JS adds .scroll-hidden AFTER confirming the observer works,
+   so content is never invisible if JS fails. */
+.scroll-hidden{opacity:0;transform:translateY(22px);transition:opacity .55s ease,transform .55s ease}
+.scroll-hidden.visible{opacity:1;transform:translateY(0)}
+
+/* Parish cards — staggered entrance */
+.parish-card.scroll-hidden.visible:nth-child(1){transition-delay:.05s}
+.parish-card.scroll-hidden.visible:nth-child(2){transition-delay:.15s}
+.parish-card.scroll-hidden.visible:nth-child(3){transition-delay:.25s}
+.parish-card.scroll-hidden.visible:nth-child(4){transition-delay:.35s}
+@media(hover:hover){.parish-card:hover{transform:translateY(-3px)!important;box-shadow:0 8px 24px rgba(28,20,16,.08)}}
+
+/* Stats row — staggered */
+.stat-box.scroll-hidden.visible:nth-child(1){transition-delay:.1s}
+.stat-box.scroll-hidden.visible:nth-child(2){transition-delay:.2s}
+.stat-box.scroll-hidden.visible:nth-child(3){transition-delay:.3s}
+.stat-box.scroll-hidden.visible:nth-child(4){transition-delay:.4s}
+.stat-num{transition:color .3s ease}
+@media(hover:hover){.stat-box:hover .stat-num{color:var(--gold)}}
+
+/* Timeline entries — slide from left */
+.tl-entry.scroll-hidden{transform:translateX(-14px)}
+.tl-entry.scroll-hidden.visible::before{animation:tlDot .35s ease .2s both}
+
+/* Section images — scale in */
+.section-img.scroll-hidden{transform:scale(.97)}
+
+/* Sidebar — slide from right */
+.side-col.scroll-hidden{transform:translateX(20px);transition-delay:.3s}
+
+/* Choir section photos — scale in */
+.section-aside-img.scroll-hidden{transform:scale(.96)}
+
+/* Reduce motion for accessibility */
+@media(prefers-reduced-motion:reduce){
+  .page-title,.page-subtitle,.breadcrumb{animation:none!important}
+  .scroll-hidden{opacity:1!important;transform:none!important;transition:none!important}
+  .tl-entry::before{animation:none!important}
+}
 
 /* MAIN CONTENT */
 .page-body{background:var(--vellum);max-width:1380px;margin:0 auto;padding:5rem 4.5rem;display:grid;grid-template-columns:1fr 300px;gap:5rem}
@@ -962,8 +1018,8 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
       <h2 class="section-head">Our Story</h2>
 
       <div class="stats-row" style="margin:1.5rem 0 3rem">
-        <div class="stat-box"><span class="stat-num">~30</span><span class="stat-label">Children</span></div>
-        <div class="stat-box"><span class="stat-num">3x</span><span class="stat-label">Growth in 5 Years</span></div>
+        <div class="stat-box"><span class="stat-num">60</span><span class="stat-label">Families</span></div>
+        <div class="stat-box"><span class="stat-num">30</span><span class="stat-label">Catechumens</span></div>
         <div class="stat-box"><span class="stat-num">1907</span><span class="stat-label">Parish Founded</span></div>
         <div class="stat-box"><span class="stat-num">2020</span><span class="stat-label">Became Cathedral</span></div>
       </div>
@@ -1488,6 +1544,28 @@ document.addEventListener('click', function() {
     if(e.key === 'ArrowLeft') show(cur-1);
     if(e.key === 'ArrowRight') show(cur+1);
   });
+})();
+</script>
+<script>
+/* ── Scroll-reveal observer ── */
+(function(){
+  if (!('IntersectionObserver' in window)) return; /* no observer = no animation, content stays visible */
+
+  var targets = '.section-head, .parish-card, .stat-box, .tl-entry, .section-img, .side-col, .section-aside-img';
+  var els = document.querySelectorAll(targets);
+
+  /* JS confirmed working — NOW hide elements for reveal. Content was fully visible until this line. */
+  els.forEach(function(el){ el.classList.add('scroll-hidden'); });
+
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, {threshold:0.12, rootMargin:'0px 0px -40px 0px'});
+  els.forEach(function(el){ io.observe(el); });
 })();
 </script>
 </body>
