@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /mockup-journey-layouts
+Disallow: /mockup-profile-cd
+Disallow: /mockup-profile-document
+Disallow: /my-profile
+
+Sitemap: https://www.peterandpaulcathedral.com/sitemap.xml

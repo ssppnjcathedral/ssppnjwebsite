@@ -306,8 +306,8 @@ async function openEventDetail(id) {
     +   '</div>'
     + '</div>'
     + '<div class="pe-detail-footer">'
-    +   (ev.link ? '<a href="' + ev.link + '" target="_blank" rel="noopener" class="btn btn-maroon">Learn More</a>' : '<span class="btn btn-maroon" style="cursor:default">All Are Welcome</span>')
-    +   '<button class="btn btn-outline" onclick="closeEventDetail()">Back to Calendar</button>'
+    +   (ev.link ? '<a href="' + ev.link + '" target="_blank" rel="noopener" class="btn btn-maroon">Learn More</a>' : '')
+    +   '<a href="/schedule" class="btn btn-outline">Go to Full Calendar</a>'
     + '</div>';
 
   // Two-frame delay so display:flex is applied before transform transition starts

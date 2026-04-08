@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta charset="UTF-8"/><meta name="theme-color" content="#7B1D2A"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title id="page-title">Giving Project &middot; Saints Peter &amp; Paul Orthodox Cathedral</title>
+<link rel="canonical" href="https://www.peterandpaulcathedral.com/give"/>
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="Saints Peter &amp; Paul Orthodox Cathedral"/>
+<meta property="og:title" content="Support a Giving Project · Saints Peter &amp; Paul Orthodox Cathedral"/>
+<meta property="og:url" content="https://www.peterandpaulcathedral.com/give"/>
+<meta property="og:image" content="https://www.peterandpaulcathedral.com/images/heroes/hero-01.jpg"/>
 <meta name="description" id="page-desc" content="Support a specific giving project at Saints Peter and Paul Orthodox Cathedral, Jersey City."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet"/>
 <style>
 :root{--vellum:#F6F1E8;--vellum-mid:#EDE7DC;--ink:#2C1F16;--maroon:#7B1D2A;--maroon-deep:#5C1520;--gold:#B88328;--gold-lt:#E8C97A;--verdigris:#3D6B5E;--stone:#7A6648;--apse:#3B0F18;--f-display:'Cormorant Garamond',Georgia,serif;--f-body:'EB Garamond',Georgia,serif;--f-ui:'Cinzel',Georgia,serif;--rule-faint:1px solid rgba(123,29,42,0.14);--rule-hair:1px solid rgba(123,29,42,0.07)}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{background:var(--vellum);color:var(--ink);font-family:var(--f-body);font-size:18px;line-height:1.75;overflow-x:hidden;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth;overflow-x:hidden}body{background:var(--vellum);color:var(--ink);font-family:var(--f-body);font-size:18px;line-height:1.75;overflow-x:hidden;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}
 
 /* ── RUBRIC ── */
 .rubric{display:block;font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.20em;text-transform:uppercase;color:var(--stone);margin-bottom:.5rem}
@@ -549,7 +556,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 <div class="nav-drawer-overlay" id="nav-overlay" onclick="closeDrawer()"></div>
 <div class="nav-drawer" id="nav-drawer">
   <div class="nav-drawer-head">
-    <div class="nav-drawer-logo">Sts. Peter &amp; Paul<span>Orthodox Cathedral &middot; Jersey City</span></div>
+    <div class="nav-drawer-logo"><img src="/images/logo/logo-2026.svg" alt="Saints Peter &amp; Paul Orthodox Cathedral" style="height:38px;width:auto;display:block;filter:brightness(0) invert(1);opacity:.9" onerror="this.style.display='none'"></div>
     <button class="nav-drawer-close" onclick="closeDrawer()">&#x2715;</button>
   </div>
   <div class="dr-accordion" id="dr-accordion">
@@ -751,8 +758,8 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 
 <script>
 // ── NAV DRAWER ───────────────────────────────────────────
-function openDrawer(){document.getElementById('nav-drawer').classList.add('open');document.getElementById('nav-overlay').classList.add('open');document.getElementById('nav-hamburger').classList.add('open')}
-function closeDrawer(){document.getElementById('nav-drawer').classList.remove('open');document.getElementById('nav-overlay').classList.remove('open');document.getElementById('nav-hamburger').classList.remove('open')}
+function openDrawer(){document.getElementById('nav-drawer').classList.add('open');document.getElementById('nav-overlay').classList.add('open');document.getElementById('nav-hamburger').classList.add('open');document.body.style.overflow='hidden'}
+function closeDrawer(){document.getElementById('nav-drawer').classList.remove('open');document.getElementById('nav-overlay').classList.remove('open');document.getElementById('nav-hamburger').classList.remove('open');document.body.style.overflow=''}
 
 // ── HELPERS ──────────────────────────────────────────────
 var CAT_LABELS={temple:'Cathedral',liturgical:'Liturgical Life',facilities:'Parish Hall & Facilities',mercy:'Mercy & Outreach',education:'Education & Formation'};
@@ -850,8 +857,8 @@ function renderProject(p){
   var baSlider='';
   if(p.image_before&&p.image){
     baSlider='<div class="ba-slider" id="ba-slider" data-pct="50">'
-      +'<div class="ba-after"><img src="'+p.image+'" alt="After" onerror="this.style.display=\'none\'"></div>'
-      +'<div class="ba-before-wrap" id="ba-before-wrap"><img src="'+p.image_before+'" alt="Before" onerror="this.style.display=\'none\'"></div>'
+      +'<div class="ba-after"><img src="'+p.image+'" alt="After" onerror="this.style.display=\'none\'" loading="lazy"></div>'
+      +'<div class="ba-before-wrap" id="ba-before-wrap"><img src="'+p.image_before+'" alt="Before" onerror="this.style.display=\'none\'" loading="lazy"></div>'
       +'<div class="ba-handle" id="ba-handle"><div class="ba-knob"><svg viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg"><path d="M5.5 3L1 9l4.5 6M12.5 3L17 9l-4.5 6" stroke="var(--ink)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></div></div>'
       +'<span class="ba-label ba-label-before">Before</span>'
       +'<span class="ba-label ba-label-after">After</span>'
@@ -1101,7 +1108,7 @@ document.addEventListener('click', function() {
   if (p) p.classList.remove('open');
 });
 </script>
-<script>window.HERO_IMAGES=[{url:'/images/heroes/hero-01.jpg'},{url:'/images/heroes/hero-03.jpg'},{url:'/images/heroes/hero-15.jpg'},{url:'/images/heroes/hero-10.jpg'}];</script>
+<script>window.HERO_IMAGES=[{url:'/images/heroes/hero-01.jpg'},{url:'/images/heroes/hero-03.jpg'},{url:'/images/heroes/hero-12.jpg'},{url:'/images/heroes/hero-10.jpg'}];</script>
 <script src="/hero-rotator.js"></script>
 </body>
 </html>

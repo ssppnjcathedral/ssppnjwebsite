@@ -11,13 +11,11 @@
 
   var ALL_HEROES = [
     {url:'/images/heroes/hero-01.jpg'},{url:'/images/heroes/hero-02.jpg'},
-    {url:'/images/heroes/hero-03.jpg'},{url:'/images/heroes/hero-04.jpg'},
-    {url:'/images/heroes/hero-05.jpg'},{url:'/images/heroes/hero-06.jpg'},
-    {url:'/images/heroes/hero-07.jpg'},{url:'/images/heroes/hero-08.jpg'},
-    {url:'/images/heroes/hero-09.jpg'},{url:'/images/heroes/hero-10.jpg'},
-    {url:'/images/heroes/hero-11.jpg'},{url:'/images/heroes/hero-12.jpg'},
+    {url:'/images/heroes/hero-03.jpg'},{url:'/images/heroes/hero-05.jpg'},
+    {url:'/images/heroes/hero-06.jpg'},{url:'/images/heroes/hero-09.jpg'},
+    {url:'/images/heroes/hero-10.jpg'},{url:'/images/heroes/hero-12.jpg'},
     {url:'/images/heroes/hero-13.jpg'},{url:'/images/heroes/hero-14.jpg'},
-    {url:'/images/heroes/hero-15.jpg'}
+    {url:'/images/heroes/hero-16.jpg'},{url:'/images/heroes/hero-18.jpg'}
   ];
 
   function shuffle(arr) {

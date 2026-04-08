@@ -1,9 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Parish News &middot; Saints Peter &amp; Paul Orthodox Cathedral</title>
-<meta name="description" content="Parish news article."/>
+<meta charset="UTF-8"/><meta name="theme-color" content="#7B1D2A"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Parish News Article &middot; Saints Peter &amp; Paul Orthodox Cathedral</title>
+<meta name="description" content="Parish news and announcements from Saints Peter &amp; Paul Orthodox Cathedral, Jersey City, NJ."/>
+<link rel="canonical" href="https://www.peterandpaulcathedral.com/news"/>
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="Saints Peter &amp; Paul Orthodox Cathedral"/>
+<meta property="og:title" content="Parish News · Saints Peter &amp; Paul Orthodox Cathedral"/>
+<meta property="og:description" content="Parish news and announcements from Saints Peter &amp; Paul Orthodox Cathedral, Jersey City, NJ."/>
+<meta property="og:url" content="https://www.peterandpaulcathedral.com/news"/>
+<meta property="og:image" content="https://www.peterandpaulcathedral.com/images/heroes/hero-01.jpg"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet"/>
@@ -23,7 +31,7 @@
   --max:1160px;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;overflow-x:hidden}
 body{background:var(--vellum);color:var(--text);font-family:var(--f-body);font-size:18px;line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
 img{display:block;max-width:100%}
@@ -501,7 +509,7 @@ footer .btn:hover{background:rgba(246,241,232,.15);color:#fff;border-color:rgba(
 <div class="nav-drawer-overlay" id="nav-overlay" onclick="closeDrawer()"></div>
 <div class="nav-drawer" id="nav-drawer">
   <div class="nav-drawer-head">
-    <div class="nav-drawer-logo">Sts. Peter &amp; Paul<span>Orthodox Cathedral &middot; Jersey City</span></div>
+    <div class="nav-drawer-logo"><img src="/images/logo/logo-2026.svg" alt="Saints Peter &amp; Paul Orthodox Cathedral" style="height:38px;width:auto;display:block;filter:brightness(0) invert(1);opacity:.9" onerror="this.style.display='none'"></div>
     <button class="nav-drawer-close" onclick="closeDrawer()">&#x2715;</button>
   </div>
   <div class="dr-accordion" id="dr-accordion">
@@ -763,9 +771,44 @@ fetch('/news.json')
       return;
     }
     document.title = esc(article.title) + ' \u00B7 Saints Peter & Paul Orthodox Cathedral';
+    injectArticleSchema(article);
     renderArticle(article, articles);
   })
   .catch(function(){ renderNotFound(); });
+
+function injectArticleSchema(art) {
+  var schema = {
+    '@context': 'https://schema.org',
+    '@type': 'NewsArticle',
+    'headline': art.title,
+    'datePublished': art.date,
+    'dateModified': art.date,
+    'description': art.excerpt || art.summary || '',
+    'image': art.image ? [art.image] : [],
+    'author': {
+      '@type': 'Organization',
+      'name': 'Saints Peter & Paul Orthodox Cathedral',
+      'url': 'https://www.peterandpaulcathedral.com'
+    },
+    'publisher': {
+      '@type': 'Organization',
+      'name': 'Saints Peter & Paul Orthodox Cathedral',
+      'url': 'https://www.peterandpaulcathedral.com',
+      'logo': {
+        '@type': 'ImageObject',
+        'url': 'https://www.peterandpaulcathedral.com/images/logo/logo-2026.svg'
+      }
+    },
+    'mainEntityOfPage': {
+      '@type': 'WebPage',
+      '@id': 'https://www.peterandpaulcathedral.com/news'
+    }
+  };
+  var s = document.createElement('script');
+  s.type = 'application/ld+json';
+  s.text = JSON.stringify(schema);
+  document.head.appendChild(s);
+}
 
 function renderArticle(art, allArticles) {
   var wrap = document.getElementById('article-wrap');
@@ -774,7 +817,7 @@ function renderArticle(art, allArticles) {
   /* Banner */
   html += '<div class="article-banner">';
   if (art.image) {
-    html += '<img src="'+esc(art.image)+'" alt="'+esc(art.title)+'" onerror="this.parentElement.querySelector(\'.article-banner-text\').style.display=\'block\';this.style.display=\'none\'">';
+    html += '<img src="'+esc(art.image)+'" alt="'+esc(art.title)+'" onerror="this.parentElement.querySelector(\'.article-banner-text\').style.display=\'block\';this.style.display=\'none\'" loading="lazy">';
     html += '<span class="article-banner-text" style="display:none">'+esc(art.category)+'</span>';
   } else {
     html += '<div class="article-banner-imgblock"><span class="article-banner-text" style="position:static;font-size:clamp(2.5rem,5vw,5rem)">'+esc(art.category)+'</span></div>';
@@ -826,7 +869,7 @@ function renderArticle(art, allArticles) {
     html += '<div class="gallery-section">';
     html += '<span class="gallery-label">Photos</span>';
     html += '<div class="gallery-viewer">';
-    html += '<img id="gallery-main-img" class="gallery-img" src="'+esc(imgs[0])+'" alt="Photo 1" onerror="this.style.display=\'none\'">';
+    html += '<img id="gallery-main-img" class="gallery-img" src="'+esc(imgs[0])+'" alt="Photo 1" onerror="this.style.display=\'none\'" loading="lazy">';
     html += '</div>';
     if (imgs.length > 1) {
       html += '<div class="gallery-controls">';
@@ -874,8 +917,8 @@ function renderNotFound() {
 }
 
 /* DRAWER */
-function openDrawer(){document.getElementById('nav-drawer').classList.add('open');document.getElementById('nav-overlay').classList.add('open');document.getElementById('nav-hamburger').classList.add('open');}
-function closeDrawer(){document.getElementById('nav-drawer').classList.remove('open');document.getElementById('nav-overlay').classList.remove('open');document.getElementById('nav-hamburger').classList.remove('open');}
+function openDrawer(){document.getElementById('nav-drawer').classList.add('open');document.getElementById('nav-overlay').classList.add('open');document.getElementById('nav-hamburger').classList.add('open');document.body.style.overflow='hidden';}
+function closeDrawer(){document.getElementById('nav-drawer').classList.remove('open');document.getElementById('nav-overlay').classList.remove('open');document.getElementById('nav-hamburger').classList.remove('open');document.body.style.overflow='';}
 </script>
 <script>
 function drToggle(head){
@@ -922,7 +965,7 @@ document.addEventListener('click', function() {
   if (p) p.classList.remove('open');
 });
 </script>
-<script>window.HERO_IMAGES=[{url:'/images/heroes/hero-01.jpg'},{url:'/images/heroes/hero-03.jpg'},{url:'/images/heroes/hero-15.jpg'},{url:'/images/heroes/hero-10.jpg'}];</script>
+<script>window.HERO_IMAGES=[{url:'/images/heroes/hero-01.jpg'},{url:'/images/heroes/hero-03.jpg'},{url:'/images/heroes/hero-12.jpg'},{url:'/images/heroes/hero-10.jpg'}];</script>
 <script src="/hero-rotator.js"></script>
 </body>
 </html>

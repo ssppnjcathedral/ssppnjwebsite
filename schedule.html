@@ -2,8 +2,17 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
+<meta name="theme-color" content="#7B1D2A"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Liturgical Calendar · Saints Peter &amp; Paul Orthodox Cathedral</title>
+<meta name="description" content="The full liturgical calendar for Saints Peter &amp; Paul Orthodox Cathedral in Jersey City, NJ — feast days, fasts, Scripture readings, and parish services."/>
+<link rel="canonical" href="https://www.peterandpaulcathedral.com/schedule"/>
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="Saints Peter &amp; Paul Orthodox Cathedral"/>
+<meta property="og:title" content="Liturgical Calendar · Saints Peter &amp; Paul Orthodox Cathedral"/>
+<meta property="og:description" content="The full liturgical calendar for Saints Peter &amp; Paul Orthodox Cathedral in Jersey City, NJ — feast days, fasts, Scripture readings, and parish services."/>
+<meta property="og:url" content="https://www.peterandpaulcathedral.com/schedule"/>
+<meta property="og:image" content="https://www.peterandpaulcathedral.com/images/heroes/schedule.webp"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Cinzel:wght@400;500;600&family=Spectral:wght@300;400&display=swap" rel="stylesheet"/>
@@ -23,7 +32,7 @@
   --rule-hair:1px solid rgba(123,29,42,0.07);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;overflow-x:hidden}
 body{background:var(--vellum);color:var(--text);font-family:var(--f-body);font-size:21px;line-height:1.75;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
 .nav{position:fixed;top:0;left:0;right:0;z-index:300;background:rgba(246,241,232,.97);backdrop-filter:blur(10px);border-bottom:var(--rule-faint)}
@@ -49,7 +58,7 @@ a{color:inherit;text-decoration:none}
 .breadcrumb{font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.70);margin-bottom:.3rem}
 .breadcrumb a{color:rgba(232,201,122,.70)}
 .hero-sub{font-family:var(--f-display);font-style:italic;font-size:1.1rem;color:rgba(255,255,255,.58);margin-top:.5rem}
-.cal-chrome{max-width:1200px;margin:0 auto;padding-top:0}
+.cal-chrome{max-width:1380px;margin:0 auto;padding-top:0}
 .svc-strip{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:var(--rule-faint);background:var(--vellum)}
 .svc-item{padding:1rem 1.5rem;border-right:var(--rule-faint);text-align:center}
 .svc-item:last-child{border-right:none}
@@ -146,6 +155,83 @@ a{color:inherit;text-decoration:none}
 .cal-loading{font-family:var(--f-display);font-style:italic;color:var(--stone);padding:.6rem 0;font-size:1.05rem;display:flex;align-items:center;gap:.5rem}
 .cal-loading::before{content:'';display:inline-block;width:10px;height:10px;border:1px solid rgba(123,29,42,.25);border-top-color:var(--maroon);border-radius:50%;animation:spin .8s linear infinite;flex-shrink:0}
 @keyframes spin{to{transform:rotate(360deg)}}
+
+/* ── PREMIUM ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes scaleIn{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:scale(1)}}
+@keyframes slideRight{from{opacity:0;transform:translateX(-12px)}to{opacity:1;transform:translateX(0)}}
+@keyframes glowPulse{0%,100%{box-shadow:0 0 0 0 rgba(184,131,40,0)}50%{box-shadow:0 0 12px 2px rgba(184,131,40,.12)}}
+
+/* Snapshot cards — staggered entrance */
+.snap-card{animation:fadeUp .55s ease both}
+.snap-card:nth-child(1){animation-delay:.1s}
+.snap-card:nth-child(2){animation-delay:.2s}
+.snap-card:nth-child(3){animation-delay:.3s}
+.snap-card:nth-child(4){animation-delay:.4s}
+
+/* Snap cards subtle hover lift */
+.snap-card{transition:transform .25s ease,box-shadow .25s ease}
+@media(hover:hover){.snap-card:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(28,20,16,.08)}}
+
+/* Switcher bar entrance */
+.switcher-bar{animation:fadeIn .4s ease .15s both}
+
+/* Split panel — sidebar slides in, detail fades */
+.sp-left{animation:slideRight .5s ease .2s both}
+.sp-right .dh{animation:fadeUp .45s ease .35s both}
+.sp-right .db{animation:fadeUp .45s ease .45s both}
+
+/* Mini grid cells — subtle staggered pop-in */
+.mg-cell{animation:scaleIn .3s ease both}
+.mg-cell:hover:not(.other){background:rgba(246,241,232,.12);transition:background .15s}
+
+/* Today cell gentle glow */
+.mg-cell.today{animation:scaleIn .3s ease both,glowPulse 3s ease-in-out 1.5s 2}
+
+/* Day detail panel — smooth content transitions */
+.dh-date{transition:opacity .2s ease}
+.ds-feast{transition:opacity .2s ease}
+
+/* Classic calendar grid cells — hover lift */
+.cg-cell{transition:background .14s,transform .18s ease,box-shadow .18s ease}
+@media(hover:hover){.cg-cell:hover{transform:translateY(-1px);box-shadow:0 3px 10px rgba(28,20,16,.06);z-index:2}}
+
+/* List view rows — staggered fade-up on render */
+.sl-row,.lv-row{animation:fadeUp .35s ease both}
+
+/* Parish events hub cards — staggered entrance */
+.pe-card{animation:fadeUp .4s ease both}
+.pe-card:nth-child(1){animation-delay:.05s}
+.pe-card:nth-child(2){animation-delay:.12s}
+.pe-card:nth-child(3){animation-delay:.19s}
+.pe-card:nth-child(4){animation-delay:.26s}
+.pe-card:nth-child(5){animation-delay:.33s}
+.pe-card:nth-child(6){animation-delay:.40s}
+
+/* Parish event card hover — subtle slide + shadow */
+@media(hover:hover){.pe-card:hover{transform:translateX(4px);box-shadow:0 2px 12px rgba(28,20,16,.06)}}
+
+/* View toggle tabs — subtle scale on active */
+.vbtn.on{transition:all .2s;transform:scale(1.02)}
+
+/* Season ribbon buttons — slide up on hover */
+@media(hover:hover){.srb:hover{transform:translateY(-1px)}}
+
+/* Feast level pill — gentle shimmer on great feasts */
+@keyframes feastShimmer{0%,100%{opacity:1}50%{opacity:.75}}
+.lv-great{animation:feastShimmer 2.5s ease-in-out 1}
+
+/* Day modal — refined entrance */
+.day-modal{transition:transform .35s cubic-bezier(.4,0,.2,1),opacity .3s ease}
+
+/* Reduce motion for accessibility */
+@media(prefers-reduced-motion:reduce){
+  .snap-card,.switcher-bar,.sp-left,.sp-right .dh,.sp-right .db,.mg-cell,.sl-row,.lv-row,.pe-card{animation:none!important}
+  .mg-cell.today{animation:none!important}
+  .cg-cell,.pe-card,.snap-card,.srb{transition:none!important}
+}
+
 .seasons-view{min-height:600px;display:flex;flex-direction:column}
 .season-ribbon{display:flex;overflow-x:auto;border-bottom:2px solid rgba(123,29,42,.18);background:var(--vellum-mid)}
 .season-ribbon::-webkit-scrollbar{height:3px}
@@ -248,7 +334,7 @@ a{color:inherit;text-decoration:none}
 .pe-card{background:var(--vellum);border-bottom:var(--rule-hair);cursor:pointer;transition:background .18s;display:flex;align-items:center;gap:1.25rem;padding:.9rem 2.25rem;min-height:0}
 /* ── AT A GLANCE SNAPSHOT ── */
 .cal-snapshot{border-bottom:none;padding:2.5rem 2rem;background:linear-gradient(to right,rgba(59,15,24,.93) 0%,rgba(59,15,24,.78) 50%,rgba(59,15,24,.88) 100%),url('/images/heroes/schedule.webp') center 40%/cover no-repeat;background-color:var(--apse)}
-.snap-inner{max-width:1200px;margin:0 auto}
+.snap-inner{max-width:1380px;margin:0 auto}
 .snap-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:1.5rem}
 .snap-section-title{font-family:var(--f-ui);font-size:.68rem;letter-spacing:.20em;text-transform:uppercase;color:rgba(246,241,232,.55)}
 .snap-section-date{font-family:var(--f-ui);font-size:.60rem;letter-spacing:.13em;text-transform:uppercase;color:rgba(246,241,232,.38)}
@@ -272,7 +358,8 @@ a{color:inherit;text-decoration:none}
 .snap-readings-standalone{background:var(--vellum-mid);border-top:var(--rule-faint);border-bottom:var(--rule-faint);padding:2.25rem 2rem}
 .snap-rdg-lbl{font-family:var(--f-ui);font-size:.68rem;letter-spacing:.20em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:1rem}
 .snap-rdg-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:.5rem}
-.snap-rdg-col{background:var(--vellum);border:var(--rule-hair);padding:.7rem .8rem}
+.snap-rdg-col{background:var(--vellum);border:var(--rule-hair);padding:.7rem .8rem;transition:transform .2s ease,box-shadow .2s ease;display:block;cursor:pointer}
+@media(hover:hover){.snap-rdg-col:hover{transform:translateY(-2px);box-shadow:0 4px 14px rgba(28,20,16,.08)}}
 .snap-rdg-col.snap-rdg-today{border-color:var(--maroon)}
 .snap-rdg-col.snap-rdg-sun{border-top:2px solid var(--maroon)}
 .snap-rdg-dn{font-family:var(--f-ui);font-size:.52rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone-lt);display:block;margin-bottom:.2rem}
@@ -424,16 +511,16 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   .snap-rdg-grid{grid-template-columns:repeat(2,1fr)}
   .cal-snapshot{padding:1.25rem 1.25rem 1.5rem}
   .snap-head{margin-bottom:1rem}
-  .snap-cards{grid-template-columns:1fr;gap:.6rem;margin-bottom:0}
-  .snap-card{flex-direction:column;align-items:flex-start;background:rgba(21,8,4,.65);border:1px solid rgba(246,241,232,.09);padding:.85rem 1rem;gap:.2rem}
-  .snap-card:last-child{border-bottom:1px solid rgba(246,241,232,.09)}
-  .snap-card-lbl{width:auto;border-bottom:1px solid rgba(246,241,232,.10);padding-bottom:.35rem;margin-bottom:.2rem;color:rgba(246,241,232,.42);font-size:.54rem}
-  .snap-card-main{color:rgba(246,241,232,.88);font-size:.88rem;line-height:1.35}
-  .snap-card-sub{display:block;color:rgba(246,241,232,.52);font-size:.78rem}
-  .snap-card-tag{color:rgba(232,201,122,.8);font-size:.54rem;margin-top:.1rem}
-  .snap-feast-num{font-size:1.6rem;display:block;line-height:1;color:rgba(184,131,40,.9);margin-bottom:.1rem}
-  .snap-feast-unit{display:block;font-size:.52rem;letter-spacing:.06em;color:rgba(246,241,232,.38)}
-  .snap-tone-num{font-size:1.8rem;display:block;line-height:1;color:rgba(246,241,232,.88);margin-bottom:.1rem}
+  .snap-cards{grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:0}
+  .snap-card{flex-direction:column;align-items:flex-start;background:var(--vellum);border:1px solid rgba(246,241,232,.12);padding:1rem 1.1rem;gap:.25rem}
+  .snap-card:last-child{border-bottom:1px solid rgba(246,241,232,.12)}
+  .snap-card-lbl{width:auto;border-bottom:var(--rule-hair);padding-bottom:.35rem;margin-bottom:.2rem;color:var(--stone-lt);font-size:.54rem}
+  .snap-card-main{color:var(--text);font-size:.95rem;line-height:1.3}
+  .snap-card-sub{display:block;color:var(--stone);font-size:.8rem}
+  .snap-card-tag{color:var(--maroon);font-size:.54rem;margin-top:.1rem}
+  .snap-feast-num{font-size:1.6rem;display:block;line-height:1;color:var(--gold);margin-bottom:.1rem}
+  .snap-feast-unit{display:block;font-size:.52rem;letter-spacing:.06em;color:var(--stone)}
+  .snap-tone-num{font-size:1.8rem;display:block;line-height:1;color:var(--text);margin-bottom:.1rem}
   .snap-tone-reset{display:none}
   .snap-svc-row{padding:.2rem 0;border-bottom:1px solid rgba(246,241,232,.07)}
   .snap-svc-row:last-child{border-bottom:none}
@@ -587,6 +674,26 @@ footer .btn-outline{color:rgba(246,241,232,.92);border-color:rgba(246,241,232,.5
 .nav-mp-link-sub{font-family:'EB Garamond',Georgia,serif;font-style:italic;font-size:.88rem;color:#7A6648;display:block}
 @media(max-width:1100px){.nav-my-parish{display:none}}
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.peterandpaulcathedral.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Liturgical Calendar",
+      "item": "https://www.peterandpaulcathedral.com/schedule"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -817,7 +924,7 @@ footer .btn-outline{color:rgba(246,241,232,.92);border-color:rgba(246,241,232,.5
 <div class="nav-drawer-overlay" id="nav-overlay" onclick="closeDrawer()"></div>
 <div class="nav-drawer" id="nav-drawer">
   <div class="nav-drawer-head">
-    <div class="nav-drawer-logo">Sts. Peter &amp; Paul<span>Orthodox Cathedral &middot; Jersey City</span></div>
+    <div class="nav-drawer-logo"><img src="/images/logo/logo-2026.svg" alt="Saints Peter &amp; Paul Orthodox Cathedral" style="height:38px;width:auto;display:block;filter:brightness(0) invert(1);opacity:.9" onerror="this.style.display='none'"></div>
     <button class="nav-drawer-close" onclick="closeDrawer()">&#x2715;</button>
   </div>
   <div class="dr-accordion" id="dr-accordion">
@@ -1038,14 +1145,6 @@ footer .btn-outline{color:rgba(246,241,232,.92);border-color:rgba(246,241,232,.5
   </div>
 </div>
 
-<!-- ═══ THIS WEEK'S READINGS ═══ -->
-<div class="snap-readings snap-readings-standalone" id="snap-readings-wrap" style="display:none">
-  <div class="snap-inner">
-    <span class="snap-rdg-lbl">This Week's Readings</span>
-    <div class="snap-rdg-grid" id="snap-rdg-grid"></div>
-  </div>
-</div>
-
 <!-- ═══ PARISH EVENTS HUB ═══ -->
 <div id="parish-events-hub" style="display:none">
   <div class="pe-hub-bar">
@@ -1063,6 +1162,14 @@ footer .btn-outline{color:rgba(246,241,232,.92);border-color:rgba(246,241,232,.5
     </div>
   </div>
   <div class="pe-hub-cards" id="pe-hub-cards"></div>
+</div>
+
+<!-- ═══ THIS WEEK'S READINGS ═══ -->
+<div class="snap-readings snap-readings-standalone" id="snap-readings-wrap" style="display:none">
+  <div class="snap-inner">
+    <span class="snap-rdg-lbl">This Week's Readings</span>
+    <div class="snap-rdg-grid" id="snap-rdg-grid"></div>
+  </div>
 </div>
 
 <div class="quote-break reveal">
@@ -1518,13 +1625,16 @@ async function renderDetailF(date){
    Renders progressively week by week — never more than 7 concurrent fetches,
    yields to browser between each week so UI stays responsive
 ═══════════════════════════════════════ */
+/* 2026 Paschal date: April 12. All movable seasons computed from this. */
+var PASCHA=new Date(2026,3,12);
+function pOff(d){return new Date(PASCHA.getFullYear(),PASCHA.getMonth(),PASCHA.getDate()+d);}
 const SEASONS=[
-  {id:'pre-lent',name:'Pre-Lenten',short:'Pre-Lent',icon:'\u263d',dates:'Feb \u2013 Mar 15',desc:'The preparatory Sundays before Great Lent \u2014 Publican & Pharisee, Prodigal Son, Meatfare, and Cheesefare.',start:new Date(today.getFullYear(),1,1),end:new Date(today.getFullYear(),2,15)},
-  {id:'lent',name:'Great Lent',short:'Lent',icon:'<svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 11L5.5 3L8.5 8L10.5 5L13 11H1Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>',dates:'Mar \u2013 Apr',desc:'Forty days of fasting, prayer, and preparation, culminating in Lazarus Saturday and Palm Sunday.',start:new Date(today.getFullYear(),2,16),end:new Date(today.getFullYear(),3,25)},
-  {id:'holyweek',name:'Holy Week',short:'Holy Week',icon:'<svg width="12" height="14" viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="6" y1="0.5" x2="6" y2="13.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><line x1="2" y1="4" x2="10" y2="4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><line x1="3.5" y1="7" x2="8.5" y2="7" stroke="currentColor" stroke-width="1" stroke-linecap="round"/><line x1="4.5" y1="11.5" x2="7.5" y2="11.5" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-dasharray="0"/></svg>',dates:'Late Apr',desc:'The most solemn week of the year \u2014 from Palm Sunday through the midnight Paschal service.',start:new Date(today.getFullYear(),3,26),end:new Date(today.getFullYear(),4,3)},
-  {id:'pascha',name:'Pascha',short:'Pascha',icon:'\u2600',dates:'May \u2013 Jun',desc:'Fifty days of Paschal joy from the Resurrection through Pentecost. No fasting, no prostrations.',start:new Date(today.getFullYear(),4,4),end:new Date(today.getFullYear(),5,22)},
-  {id:'pentecost',name:'Pentecost',short:'Pentecost',icon:'<svg width="11" height="14" viewBox="0 0 11 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.5 13C5.5 13 1 10 1 6.5C1 4.5 2.5 2.5 5.5 1C5.5 1 4.5 3.5 6 5C6 5 6.5 3 8 2C8 2 10 4 10 6.5C10 10 5.5 13 5.5 13Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/><path d="M5.5 13C5.5 13 3.5 10.5 4.5 8.5C5 7.5 5.5 7 5.5 7C5.5 7 6 8 6.5 8.5C7 9 7 10 5.5 13Z" stroke="currentColor" stroke-width="1" stroke-linejoin="round"/></svg>',dates:'Jun \u2013 Nov',desc:'The long season of Pentecost, including the Apostles Fast, Transfiguration, Dormition, and the feasts of summer and autumn.',start:new Date(today.getFullYear(),5,23),end:new Date(today.getFullYear(),10,14)},
-  {id:'nativity',name:'Nativity Fast',short:'Nativity',icon:'\u2605',dates:'Nov 15 \u2013 Dec 24',desc:'Forty days of fasting in preparation for the Nativity of our Lord, God and Saviour Jesus Christ.',start:new Date(today.getFullYear(),10,15),end:new Date(today.getFullYear(),11,24)},
+  {id:'pre-lent',name:'Pre-Lenten',short:'Pre-Lent',icon:'\u263d',dates:'Feb 1 \u2013 Feb 22',desc:'The preparatory Sundays before Great Lent \u2014 Publican & Pharisee, Prodigal Son, Meatfare, and Cheesefare.',start:pOff(-70),end:pOff(-49)},
+  {id:'lent',name:'Great Lent',short:'Lent',icon:'<svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 11L5.5 3L8.5 8L10.5 5L13 11H1Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>',dates:'Feb 23 \u2013 Apr 4',desc:'Forty days of fasting, prayer, and preparation, culminating in Lazarus Saturday and Palm Sunday.',start:pOff(-48),end:pOff(-8)},
+  {id:'holyweek',name:'Holy Week',short:'Holy Week',icon:'<svg width="12" height="14" viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="6" y1="0.5" x2="6" y2="13.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><line x1="2" y1="4" x2="10" y2="4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><line x1="3.5" y1="7" x2="8.5" y2="7" stroke="currentColor" stroke-width="1" stroke-linecap="round"/><line x1="4.5" y1="11.5" x2="7.5" y2="11.5" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-dasharray="0"/></svg>',dates:'Apr 5 \u2013 Apr 11',desc:'The most solemn week of the year \u2014 from Palm Sunday through Great and Holy Saturday.',start:pOff(-7),end:pOff(-1)},
+  {id:'pascha',name:'Pascha',short:'Pascha',icon:'\u2600',dates:'Apr 12 \u2013 May 30',desc:'Fifty days of Paschal joy from the Resurrection through the day before Pentecost. No fasting, no prostrations.',start:pOff(0),end:pOff(48)},
+  {id:'pentecost',name:'Pentecost',short:'Pentecost',icon:'<svg width="11" height="14" viewBox="0 0 11 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.5 13C5.5 13 1 10 1 6.5C1 4.5 2.5 2.5 5.5 1C5.5 1 4.5 3.5 6 5C6 5 6.5 3 8 2C8 2 10 4 10 6.5C10 10 5.5 13 5.5 13Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/><path d="M5.5 13C5.5 13 3.5 10.5 4.5 8.5C5 7.5 5.5 7 5.5 7C5.5 7 6 8 6.5 8.5C7 9 7 10 5.5 13Z" stroke="currentColor" stroke-width="1" stroke-linejoin="round"/></svg>',dates:'May 31 \u2013 Nov 14',desc:'The long season of Pentecost, including the Apostles\u2019 Fast, Transfiguration, Dormition, and the feasts of summer and autumn.',start:pOff(49),end:new Date(2026,10,14)},
+  {id:'nativity',name:'Nativity Fast',short:'Nativity',icon:'\u2605',dates:'Nov 15 \u2013 Dec 24',desc:'Forty days of fasting in preparation for the Nativity of our Lord, God and Saviour Jesus Christ.',start:new Date(2026,10,15),end:new Date(2026,11,24)},
 ];
 
 function renderViewG(){buildSeasons();}
@@ -1940,7 +2050,8 @@ async function renderSnapshot(){
       var rdgs=rdata?getReadings(rdata):[];
       var isT=(ri===0);
       var isSunday=isSun(rd);
-      rdgHtml+='<div class="snap-rdg-col'+(isT?' snap-rdg-today':'')+(isSunday?' snap-rdg-sun':'')+ '">';
+      var rdKey=rd.getFullYear()+'-'+String(rd.getMonth()+1).padStart(2,'0')+'-'+String(rd.getDate()).padStart(2,'0');
+      rdgHtml+='<a href="/readings#'+rdKey+'" class="snap-rdg-col'+(isT?' snap-rdg-today':'')+(isSunday?' snap-rdg-sun':'')+ '" style="text-decoration:none;color:inherit">';
       rdgHtml+='<span class="snap-rdg-dn">'+DAYS_S[rd.getDay()]+'</span>';
       rdgHtml+='<span class="snap-rdg-dt">'+rd.getDate()+'</span>';
       if(rdgs.length){
@@ -1948,7 +2059,7 @@ async function renderSnapshot(){
       } else {
         rdgHtml+='<span class="snap-rdg-none">No readings listed</span>';
       }
-      rdgHtml+='</div>';
+      rdgHtml+='</a>';
     }
     rdgGrid.innerHTML=rdgHtml;
     if(rdgWrap) rdgWrap.style.display='block';
@@ -2131,6 +2242,58 @@ function closeHubDetail() {
 
 document.addEventListener('keydown', function(e){if(e.key==='Escape')closeHubDetail();});
 
+function injectEventSchema(events) {
+  var TYPE_MAP = {
+    liturgy: 'MassService',
+    vespers: 'MassService',
+    community: 'SocialEvent',
+    social: 'SocialEvent',
+    concert: 'MusicEvent',
+    announcement: 'Event'
+  };
+  var items = events.slice(0, 10).map(function(ev) {
+    var startDate = ev.date + (ev.time ? 'T' + to24h(ev.time) : '');
+    return {
+      '@type': 'Event',
+      'name': ev.title,
+      'description': ev.description || ev.subtitle || '',
+      'startDate': startDate,
+      'eventStatus': 'https://schema.org/EventScheduled',
+      'eventAttendanceMode': 'https://schema.org/OfflineEventAttendanceMode',
+      'location': {
+        '@type': 'Place',
+        'name': 'Saints Peter & Paul Orthodox Cathedral',
+        'address': {
+          '@type': 'PostalAddress',
+          'streetAddress': '109 Grand Street',
+          'addressLocality': 'Jersey City',
+          'addressRegion': 'NJ',
+          'postalCode': '07302',
+          'addressCountry': 'US'
+        }
+      },
+      'organizer': {
+        '@type': 'Church',
+        'name': 'Saints Peter & Paul Orthodox Cathedral',
+        'url': 'https://www.peterandpaulcathedral.com'
+      }
+    };
+  });
+  function to24h(timeStr) {
+    var m = timeStr.match(/(\d+):(\d+)\s*(AM|PM)/i);
+    if (!m) return '09:00:00';
+    var h = parseInt(m[1]), min = m[2], ampm = m[3].toUpperCase();
+    if (ampm === 'PM' && h !== 12) h += 12;
+    if (ampm === 'AM' && h === 12) h = 0;
+    return (h < 10 ? '0' : '') + h + ':' + min + ':00';
+  }
+  var schema = { '@context': 'https://schema.org', '@graph': items };
+  var s = document.createElement('script');
+  s.type = 'application/ld+json';
+  s.text = JSON.stringify(schema);
+  document.head.appendChild(s);
+}
+
 (async function initHub() {
   try {
     var r = await fetch('/parish-events.json');
@@ -2150,6 +2313,7 @@ document.addEventListener('keydown', function(e){if(e.key==='Escape')closeHubDet
     if (_allEvents.length) {
       document.getElementById('parish-events-hub').style.display = 'block';
       renderHubCards(_allEvents);
+      injectEventSchema(_allEvents);
     }
     /* Build shared event map for all calendar views — all active events, not just 60-day window */
     _scheduleEventMap = {};
@@ -2184,7 +2348,7 @@ document.addEventListener('click', function() {
   if (p) p.classList.remove('open');
 });
 </script>
-<script>window.HERO_IMAGES=[{url:'/images/heroes/hero-01.jpg'},{url:'/images/heroes/hero-03.jpg'},{url:'/images/heroes/hero-15.jpg'},{url:'/images/heroes/hero-10.jpg'}];</script>
+<script>window.HERO_IMAGES=[{url:'/images/heroes/hero-01.jpg'},{url:'/images/heroes/hero-03.jpg'},{url:'/images/heroes/hero-12.jpg'},{url:'/images/heroes/hero-10.jpg'}];</script>
 <script src="/hero-rotator.js"></script>
 </body>
 </html>
