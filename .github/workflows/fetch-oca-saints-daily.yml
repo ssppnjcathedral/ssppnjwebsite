@@ -1,9 +1,9 @@
 name: Fetch OCA Saints Daily
 
 on:
-  workflow_dispatch:  # manual trigger
+  workflow_dispatch:
   schedule:
-    - cron: '0 3 1 1 *'  # auto-run every Jan 1 at 3am UTC
+    - cron: '0 3 1 1 *'
 
 jobs:
   scrape:
@@ -31,4 +31,6 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add _data/oca-saints-*.json
           git diff --cached --quiet || git commit -m "chore: update OCA saints data $(date +%Y-%m-%d)"
+          git fetch origin
+          git rebase origin/main
           git push
