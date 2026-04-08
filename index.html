@@ -723,12 +723,16 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 .worship-section{background:var(--vellum);padding-top:0}
 .worship-header{max-width:1380px;margin:0 auto;padding:5rem 4.5rem 3.5rem;border-bottom:2px solid var(--maroon);text-align:center}
 .worship-headline{font-family:var(--f-display);font-weight:300;font-size:clamp(1.9rem,3.5vw,2.8rem);color:var(--text);margin:.75rem 0 .5rem}
-.worship-grid{display:grid;grid-template-columns:repeat(3,1fr);height:520px}
+.worship-grid{display:grid;grid-template-columns:repeat(3,1fr);height:520px;gap:3px;background:var(--vellum)}
 .worship-card{position:relative;overflow:hidden;cursor:pointer;transition:transform .3s ease,box-shadow .3s ease}
 @media(hover:hover){.worship-card:hover{transform:translateY(-6px);box-shadow:0 16px 48px rgba(21,8,4,.4);z-index:2}}
 .worship-card-bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .6s ease}
 .worship-card:hover .worship-card-bg{transform:scale(1.03)}
-.worship-card-scrim{position:absolute;inset:0;background:linear-gradient(to top,rgba(21,8,4,.97) 0%,rgba(21,8,4,.75) 45%,rgba(21,8,4,.35) 100%)}
+.worship-card-scrim{position:absolute;inset:0;background:linear-gradient(to top,rgba(21,8,4,.88) 0%,rgba(21,8,4,.55) 45%,rgba(21,8,4,.25) 100%)}
+.worship-card::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:rgba(184,131,40,.45);z-index:1}
+.worship-card:nth-child(2) .worship-card-body{padding-bottom:2.75rem}
+.worship-card:nth-child(1) .worship-card-body{padding-bottom:1.75rem}
+.worship-card:nth-child(3) .worship-card-body{padding-bottom:1.75rem}
 .worship-card-body{position:absolute;bottom:0;left:0;right:0;padding:2rem 2rem 1.75rem;transform:translateY(0);transition:transform .3s ease}
 .worship-card-cta{display:inline-block;font-family:var(--f-ui);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(184,131,40,.9);border-bottom:1px solid rgba(184,131,40,.4);padding-bottom:1px;margin-top:1rem;opacity:0;transform:translateY(6px);transition:opacity .3s ease,transform .3s ease}
 .worship-card:hover .worship-card-cta{opacity:1;transform:translateY(0)}
@@ -737,7 +741,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 .worship-card-desc{font-family:var(--f-body);font-size:.9rem;line-height:1.65;color:rgba(246,241,232,.7)}
 .worship-card-fallback{position:absolute;inset:0;background:linear-gradient(160deg,var(--apse) 0%,var(--maroon) 100%)}
 /* Lightbox */
-@media(max-width:768px){.worship-grid{grid-template-columns:1fr;height:auto}.worship-card{height:320px}}
+@media(max-width:768px){.worship-grid{grid-template-columns:1fr;height:auto;gap:3px}.worship-card{height:320px}.worship-card:nth-child(2) .worship-card-body{padding-bottom:1.75rem}}
 /* A: Photo header */
 /* C: Dark maroon header block */
 /* Content area */
@@ -818,8 +822,9 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   /* CTA always visible on touch */
   .worship-card-cta{opacity:1;transform:translateY(0)}
   /* Worship cards stack */
-  .worship-grid{grid-template-columns:1fr;height:auto}
+  .worship-grid{grid-template-columns:1fr;height:auto;gap:3px}
   .worship-card{height:280px}
+  .worship-card:nth-child(2) .worship-card-body{padding-bottom:1.75rem}
 }
 
 .gallery-section{background:var(--vellum-mid);border-top:var(--rule-faint);border-bottom:var(--rule-faint)}
