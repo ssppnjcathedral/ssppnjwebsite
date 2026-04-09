@@ -1,19 +1,16 @@
 // ── AUTH AVATAR INDICATOR ──
-// Shows user initials in the nav when signed in.
-// Desktop: replaces person icon in .nav-my-parish-btn with initials circle.
-// Mobile: adds avatar indicator next to hamburger + at top of drawer.
+// Controls all auth-related UI: nav panel, sign-in modal, drawer row, footer CTA.
 // Loaded after auth.js on all pages.
 
 (function() {
   if (!_supabase) return;
 
+  // ── Helpers ──
   function getInitials(profile, email) {
-    if (profile && profile.firstName && profile.lastName) {
+    if (profile && profile.firstName && profile.lastName)
       return (profile.firstName.charAt(0) + profile.lastName.charAt(0)).toUpperCase();
-    }
-    if (profile && profile.firstName) {
+    if (profile && profile.firstName)
       return profile.firstName.charAt(0).toUpperCase();
-    }
     if (email) return email.charAt(0).toUpperCase();
     return '?';
   }
@@ -22,21 +19,178 @@
     try { return JSON.parse(localStorage.getItem('spp_profile') || 'null'); } catch(e) { return null; }
   }
 
+  // ── Modal ──
+  var ENVELOPE_SVG =
+    '<svg viewBox="0 0 52 40" fill="none" xmlns="http://www.w3.org/2000/svg" width="56" height="44">' +
+      '<rect x="1" y="1" width="50" height="38" rx="3" stroke="var(--gold,#B88328)" stroke-width="1.5"/>' +
+      '<path d="M1 5l25 17L51 5" stroke="var(--gold,#B88328)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>' +
+    '</svg>';
+
+  function makeConfirmHTML(idPrefix) {
+    return '<div class="auth-modal-confirm" id="' + idPrefix + '-confirm">' +
+      '<div class="auth-modal-envelope">' + ENVELOPE_SVG + '</div>' +
+      '<p class="auth-modal-confirm-msg">Check your inbox</p>' +
+      '<p class="auth-modal-confirm-sub" id="' + idPrefix + '-confirm-sub"></p>' +
+    '</div>';
+  }
+
+  function injectModal() {
+    // ── Sign In modal ──
+    if (!document.getElementById('auth-modal')) {
+      var modal = document.createElement('div');
+      modal.id = 'auth-modal';
+      modal.className = 'auth-modal-overlay';
+      modal.innerHTML =
+        '<div class="auth-modal-card">' +
+          '<button class="auth-modal-close" onclick="closeAuthModal()" aria-label="Close">&times;</button>' +
+          '<div class="auth-modal-form" id="auth-modal-form">' +
+            '<h3 class="auth-modal-heading">Welcome back</h3>' +
+            '<p class="auth-modal-sub">Enter your email and we\'ll send you a sign-in link — no password needed.</p>' +
+            '<input type="email" id="auth-modal-email" class="auth-modal-input" placeholder="your@email.com">' +
+            '<button class="auth-modal-btn" id="auth-modal-send-btn" onclick="modalSendLink(\'auth\')">Get my sign-in link</button>' +
+          '</div>' +
+          makeConfirmHTML('auth-modal') +
+        '</div>';
+      modal.addEventListener('click', function(e) { if (e.target === modal) closeAuthModal(); });
+      document.body.appendChild(modal);
+    }
+
+    // ── Create Profile modal ──
+    if (!document.getElementById('profile-modal')) {
+      var pmodal = document.createElement('div');
+      pmodal.id = 'profile-modal';
+      pmodal.className = 'auth-modal-overlay';
+      pmodal.innerHTML =
+        '<div class="auth-modal-card">' +
+          '<button class="auth-modal-close" onclick="closeProfileModal()" aria-label="Close">&times;</button>' +
+          '<div class="auth-modal-form" id="profile-modal-form">' +
+            '<h3 class="auth-modal-heading">Create your parish profile</h3>' +
+            '<p class="auth-modal-sub">Your profile lets you save notes and highlights as you explore the Faith, track the pages you\'ve read, and gives Fr. Solomon a way to know your family and walk alongside you on your journey. You\'ll also be added to the parish newsletter.</p>' +
+            '<input type="email" id="profile-modal-email" class="auth-modal-input" placeholder="your@email.com">' +
+            '<button class="auth-modal-btn" id="profile-modal-send-btn" onclick="modalSendLink(\'profile\')">Create my profile</button>' +
+          '</div>' +
+          makeConfirmHTML('profile-modal') +
+        '</div>';
+      pmodal.addEventListener('click', function(e) { if (e.target === pmodal) closeProfileModal(); });
+      document.body.appendChild(pmodal);
+    }
+  }
+
+  function resetModal(prefix, btnLabel) {
+    var form = document.getElementById(prefix + '-form');
+    var confirm = document.getElementById(prefix + '-confirm');
+    var input = document.getElementById(prefix + '-email');
+    var btn = document.getElementById(prefix + '-send-btn');
+    if (form) { form.style.opacity = '1'; form.style.display = 'flex'; }
+    if (confirm) confirm.classList.remove('visible');
+    if (input) input.value = '';
+    if (btn) { btn.textContent = btnLabel; btn.disabled = false; }
+  }
+
+  window.openAuthModal = function() {
+    var modal = document.getElementById('auth-modal');
+    if (!modal) return;
+    resetModal('auth-modal', 'Get my sign-in link');
+    modal.classList.add('open');
+    setTimeout(function() { var i = document.getElementById('auth-modal-email'); if (i) i.focus(); }, 80);
+  };
+
+  window.closeAuthModal = function() {
+    var modal = document.getElementById('auth-modal');
+    if (modal) modal.classList.remove('open');
+  };
+
+  window.openProfileModal = function() {
+    var modal = document.getElementById('profile-modal');
+    if (!modal) return;
+    resetModal('profile-modal', 'Create my profile');
+    modal.classList.add('open');
+    setTimeout(function() { var i = document.getElementById('profile-modal-email'); if (i) i.focus(); }, 80);
+  };
+
+  window.closeProfileModal = function() {
+    var modal = document.getElementById('profile-modal');
+    if (modal) modal.classList.remove('open');
+  };
+
+  window.modalSendLink = async function(prefix) {
+    var inputId = prefix + '-modal-email';
+    var btnId = prefix + '-modal-send-btn';
+    var input = document.getElementById(inputId);
+    var btn = document.getElementById(btnId);
+    var email = input ? input.value.trim() : '';
+    if (!email) { if (input) input.focus(); return; }
+    if (btn) { btn.textContent = 'Sending...'; btn.disabled = true; }
+    var result = await sendMagicLink(email, window.location.href);
+    if (result.success) {
+      var form = document.getElementById(prefix + '-modal-form');
+      var confirm = document.getElementById(prefix + '-modal-confirm');
+      var sub = document.getElementById(prefix + '-modal-confirm-sub');
+      if (sub) sub.textContent = 'We sent a link to ' + email + '. Tap it to continue — you can close this.';
+      if (form) {
+        form.style.transition = 'opacity .22s';
+        form.style.opacity = '0';
+        setTimeout(function() {
+          form.style.display = 'none';
+          if (confirm) confirm.classList.add('visible');
+        }, 220);
+      }
+    } else {
+      var origLabel = prefix === 'auth' ? 'Get my sign-in link' : 'Create my profile';
+      if (btn) { btn.textContent = origLabel; btn.disabled = false; }
+      alert('Could not send link: ' + (result.error || 'Unknown error'));
+    }
+  };
+
+  // ── Footer CTA ──
+  function updateFooterCTA(user, initials) {
+    var socials = document.querySelector('.footer-socials');
+    if (!socials) return;
+    var existing = document.getElementById('footer-auth-cta');
+    if (existing) existing.remove();
+
+    var cta = document.createElement('div');
+    cta.id = 'footer-auth-cta';
+    cta.className = 'footer-auth-cta';
+
+    if (user) {
+      cta.innerHTML =
+        '<div class="footer-auth-signed">' +
+          '<span class="footer-auth-avatar">' + initials + '</span>' +
+          '<span class="footer-auth-email">' + (user.email || '') + '</span>' +
+        '</div>' +
+        '<div class="footer-auth-actions">' +
+          '<a href="/my-journey" class="footer-auth-link">My Journey</a>' +
+          '<button class="footer-auth-signout" onclick="signOut()">Sign Out</button>' +
+        '</div>';
+    } else {
+      cta.innerHTML =
+        '<p class="footer-auth-pitch">Your journey, saved.</p>' +
+        '<p class="footer-auth-desc">Create a profile or sign in to pick up where you left off.</p>' +
+        '<div class="footer-auth-btns">' +
+          '<button class="footer-auth-create" onclick="openProfileModal()">Create Profile</button>' +
+          '<button class="footer-auth-signin" onclick="openAuthModal()">Sign In</button>' +
+        '</div>';
+    }
+    socials.after(cta);
+  }
+
+
+  // ── Main update ──
   async function updateAvatar() {
     var user = null;
     try { user = await getCurrentUser(); } catch(e) {}
     var profile = getProfile();
     var initials = user ? getInitials(profile, user.email) : null;
 
-    // ── Desktop: update nav-my-parish-btn ──
+    // ── Desktop nav button ──
     var desktopBtn = document.querySelector('.nav-my-parish-btn');
     if (desktopBtn) {
       if (user) {
         desktopBtn.innerHTML = '<span class="nav-avatar-initials">' + initials + '</span>';
         desktopBtn.classList.add('nav-avatar-active');
-        desktopBtn.title = 'Signed in' + (user.email ? ' as ' + user.email : '');
+        desktopBtn.title = user.email ? 'Signed in as ' + user.email : 'Signed in';
       } else {
-        // Restore default person icon
         if (desktopBtn.classList.contains('nav-avatar-active')) {
           desktopBtn.innerHTML = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="8" r="3.5"/><path d="M4 20c0-3.5 3.6-6 8-6s8 2.5 8 6"/></svg>';
           desktopBtn.classList.remove('nav-avatar-active');
@@ -45,32 +199,52 @@
       }
     }
 
-    // ── Desktop: add sign-in/sign-out to panel ──
+    // ── Desktop panel: fully rebuilt each update ──
     var panel = document.getElementById('nav-mp-panel');
     if (panel) {
-      var existingAuth = panel.querySelector('.nav-mp-auth');
-      if (existingAuth) existingAuth.remove();
-
-      var authDiv = document.createElement('div');
-      authDiv.className = 'nav-mp-auth';
-
+      panel.innerHTML = '';
+      var body = document.createElement('div');
+      body.className = 'nav-mp-body';
+      var firstName = (profile && profile.firstName) ? profile.firstName : null;
       if (user) {
-        authDiv.innerHTML =
-          '<div class="nav-mp-auth-info">' +
-            '<span class="nav-mp-auth-email">' + (user.email || '') + '</span>' +
-            '<button class="nav-mp-auth-btn" onclick="signOut()">Sign Out</button>' +
+        body.innerHTML =
+          '<div class="nav-mp-header">' +
+            '<span class="nav-mp-avatar">' + initials + '</span>' +
+            '<div class="nav-mp-header-text">' +
+              '<span class="nav-mp-welcome">Welcome' + (firstName ? ', ' + firstName : '') + '.</span>' +
+              '<span class="nav-mp-email">' + (user.email || '') + '</span>' +
+            '</div>' +
+          '</div>' +
+          '<div class="nav-mp-feature-list">' +
+            '<a href="/my-journey" class="nav-mp-feature">' +
+              '<span class="nav-mp-feature-name">My Journey</span>' +
+              '<span class="nav-mp-feature-sub">Explore the Faith at your own pace</span>' +
+            '</a>' +
+            '<a href="/my-profile" class="nav-mp-feature">' +
+              '<span class="nav-mp-feature-name">My Profile</span>' +
+              '<span class="nav-mp-feature-sub">Help Fr. Solomon know your family</span>' +
+            '</a>' +
+            '<a href="/my-journey" class="nav-mp-feature">' +
+              '<span class="nav-mp-feature-name">My Notes</span>' +
+              '<span class="nav-mp-feature-sub">Your saved highlights and reflections</span>' +
+            '</a>' +
+          '</div>' +
+          '<div class="nav-mp-footer">' +
+            '<button class="nav-mp-signout" onclick="signOut()">Sign Out</button>' +
           '</div>';
       } else {
-        authDiv.innerHTML =
-          '<div class="nav-mp-auth-login">' +
-            '<input type="email" id="nav-auth-email" placeholder="your@email.com" class="nav-mp-auth-input">' +
-            '<button class="nav-mp-auth-btn nav-mp-auth-send" onclick="navSendLink()">Sign In</button>' +
+        body.innerHTML =
+          '<div class="nav-mp-logged-out">' +
+            '<p class="nav-mp-pitch-head">Your journey, saved.</p>' +
+            '<p class="nav-mp-pitch-body">Create a profile or sign in to pick up where you left off.</p>' +
+            '<button class="nav-mp-signin-btn" onclick="openProfileModal()">Create Profile</button>' +
+            '<button class="nav-mp-signin-alt" onclick="openAuthModal()">Sign In</button>' +
           '</div>';
       }
-      panel.appendChild(authDiv);
+      panel.appendChild(body);
     }
 
-    // ── Mobile: indicator next to hamburger ──
+    // ── Mobile: initials dot next to hamburger ──
     var hamburger = document.getElementById('nav-hamburger');
     if (hamburger && user) {
       var existing = document.getElementById('nav-mob-avatar');
@@ -88,110 +262,205 @@
       if (old) old.remove();
     }
 
-    // ── Mobile drawer: auth row at top ──
+    // ── Mobile drawer auth row ──
     var drawerHead = document.querySelector('.nav-drawer-head');
     if (drawerHead) {
       var existingRow = document.getElementById('drawer-auth-row');
       if (existingRow) existingRow.remove();
-
       var row = document.createElement('div');
       row.id = 'drawer-auth-row';
       row.className = 'drawer-auth-row';
-
       if (user) {
         row.innerHTML =
           '<span class="drawer-auth-avatar">' + initials + '</span>' +
           '<span class="drawer-auth-email">' + (user.email || '') + '</span>' +
           '<button class="drawer-auth-btn" onclick="signOut()">Sign Out</button>';
+        // Logged in: identity strip at top
+        drawerHead.after(row);
       } else {
         row.innerHTML =
-          '<span class="drawer-auth-avatar" style="opacity:.4">?</span>' +
-          '<input type="email" id="drawer-auth-email" placeholder="your@email.com" class="drawer-auth-input">' +
-          '<button class="drawer-auth-btn drawer-auth-send" onclick="drawerSendLink()">Sign In</button>';
+          '<div class="drawer-auth-pitch">Your journey, saved.</div>' +
+          '<div class="drawer-auth-cta">' +
+            '<button class="drawer-auth-btn drawer-auth-create" onclick="openProfileModal()">Create Profile</button>' +
+            '<button class="drawer-auth-btn drawer-auth-send" onclick="openAuthModal()">Sign In</button>' +
+          '</div>';
+        // Logged out: CTA at bottom, before Give Online
+        var giveBtn = document.querySelector('.nav-drawer-give');
+        if (giveBtn) giveBtn.before(row);
+        else document.getElementById('nav-drawer').appendChild(row);
       }
-      drawerHead.after(row);
+    }
+
+    // ── Footer CTA ──
+    updateFooterCTA(user, initials);
+  }
+
+  // ── Prevent panel from closing when clicking inside it ──
+  function bindPanelClick() {
+    var panel = document.getElementById('nav-mp-panel');
+    if (panel && !panel._authClickBound) {
+      panel.addEventListener('click', function(e) { e.stopPropagation(); });
+      panel._authClickBound = true;
     }
   }
 
-  // ── Nav panel sign-in ──
-  window.navSendLink = async function() {
-    var input = document.getElementById('nav-auth-email');
-    var email = input ? input.value.trim() : '';
-    if (!email) return;
-    var btn = document.querySelector('.nav-mp-auth-send');
-    if (btn) { btn.textContent = 'Sending...'; btn.disabled = true; }
-    var result = await sendMagicLink(email, window.location.href);
-    if (result.success) {
-      if (btn) btn.textContent = 'Check Email';
-    } else {
-      if (btn) { btn.textContent = 'Sign In'; btn.disabled = false; }
-      alert('Could not send link: ' + (result.error || 'Unknown error'));
-    }
-  };
-
-  // ── Drawer sign-in ──
-  window.drawerSendLink = async function() {
-    var input = document.getElementById('drawer-auth-email');
-    var email = input ? input.value.trim() : '';
-    if (!email) return;
-    var btn = document.querySelector('.drawer-auth-send');
-    if (btn) { btn.textContent = 'Sending...'; btn.disabled = true; }
-    var result = await sendMagicLink(email, window.location.href);
-    if (result.success) {
-      if (btn) btn.textContent = 'Check Email';
-    } else {
-      if (btn) { btn.textContent = 'Sign In'; btn.disabled = false; }
-      alert('Could not send link: ' + (result.error || 'Unknown error'));
-    }
-  };
-
-  // ── Inject styles ──
+  // ── Styles ──
   function injectStyles() {
     var s = document.createElement('style');
     s.textContent =
-      /* Desktop avatar in nav button */
+      /* Hide hardcoded panel links — panel is fully rebuilt by JS */
+      '.nav-mp-link{display:none!important}' +
+      /* Widen panel for pitch text */
+      '#nav-mp-panel{width:270px!important}' +
+
+      /* Nav button avatar */
       '.nav-avatar-initials{font-family:var(--f-ui,"Cinzel",serif);font-size:.5rem;letter-spacing:.06em;line-height:1;font-weight:500}' +
       '.nav-my-parish-btn.nav-avatar-active{background:var(--maroon,#7B1D2A);color:var(--vellum,#F6F1E8);border-color:var(--maroon,#7B1D2A)}' +
       '.nav-scrolled .nav-my-parish-btn.nav-avatar-active{background:var(--maroon,#7B1D2A);color:var(--vellum,#F6F1E8);border-color:var(--maroon,#7B1D2A)}' +
       '.nav-my-parish-btn.nav-avatar-active:hover{background:var(--gold,#B88328);border-color:var(--gold,#B88328)}' +
 
-      /* Auth in panel */
-      '.nav-mp-auth{padding:.65rem .85rem;border-top:1px solid rgba(123,29,42,.1)}' +
-      '.nav-mp-auth-info{display:flex;align-items:center;gap:.5rem;justify-content:space-between}' +
-      '.nav-mp-auth-email{font-family:var(--f-body);font-size:.78rem;color:var(--stone,#7A6648);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}' +
-      '.nav-mp-auth-btn{font-family:var(--f-ui,"Cinzel",serif);font-size:.42rem;letter-spacing:.12em;text-transform:uppercase;background:none;border:1px solid rgba(123,29,42,.2);color:var(--stone,#7A6648);padding:.25rem .6rem;cursor:pointer;transition:all .18s;white-space:nowrap}' +
-      '.nav-mp-auth-btn:hover{color:var(--maroon,#7B1D2A);border-color:var(--maroon,#7B1D2A)}' +
-      '.nav-mp-auth-login{display:flex;gap:.35rem}' +
-      '.nav-mp-auth-input{flex:1;padding:.3rem .5rem;border:1px solid rgba(123,29,42,.15);background:#fff;font-family:var(--f-body);font-size:.8rem;color:var(--ink,#2C1F16);outline:none;min-width:0}' +
-      '.nav-mp-auth-input:focus{border-color:var(--gold,#B88328)}' +
+      /* Panel body */
+      '.nav-mp-body{padding:0;overflow:hidden}' +
+      '.nav-mp-logged-out{padding:1.4rem 1.1rem 0}' +
 
-      /* Mobile avatar dot next to hamburger */
+      /* Logged out: pitch */
+      '.nav-mp-pitch-head{font-family:var(--f-display,"Cormorant Garamond",serif);font-size:1.15rem;font-weight:600;color:var(--ink,#2C1F16);margin:0 0 .5rem;line-height:1.2}' +
+      '.nav-mp-pitch-body{font-family:var(--f-body,"EB Garamond",serif);font-size:.88rem;line-height:1.6;color:var(--stone,#7A6648);margin:0 0 1.1rem}' +
+      '.nav-mp-signin-btn{width:100%;padding:.65rem;background:var(--maroon,#7B1D2A);color:var(--vellum,#F6F1E8);border:none;font-family:var(--f-ui,"Cinzel",serif);font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;transition:background .18s}' +
+      '.nav-mp-signin-btn:hover{background:var(--gold,#B88328)}' +
+      '.nav-mp-signin-alt{width:100%;margin-top:.5rem;padding:.5rem;background:none;border:1px solid rgba(123,29,42,.2);color:var(--stone,#7A6648);font-family:var(--f-ui,"Cinzel",serif);font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;transition:all .18s}' +
+      '.nav-mp-signin-alt:hover{color:var(--maroon,#7B1D2A);border-color:var(--maroon,#7B1D2A)}' +
+
+      /* Logged in: header */
+      '.nav-mp-header{display:flex;align-items:center;gap:.75rem;padding:1.25rem 1.1rem 1rem;background:var(--maroon,#7B1D2A)}' +
+      '.nav-mp-avatar{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.15);color:var(--vellum,#F6F1E8);font-family:var(--f-ui,"Cinzel",serif);font-size:.55rem;letter-spacing:.04em;display:flex;align-items:center;justify-content:center;flex-shrink:0;border:1px solid rgba(255,255,255,.25)}' +
+      '.nav-mp-header-text{display:flex;flex-direction:column;gap:.15rem;min-width:0}' +
+      '.nav-mp-welcome{font-family:var(--f-display,"Cormorant Garamond",serif);font-size:1.05rem;font-weight:600;color:var(--vellum,#F6F1E8);line-height:1.2;display:block}' +
+      '.nav-mp-email{font-family:var(--f-body,"EB Garamond",serif);font-size:.75rem;color:rgba(246,241,232,.5);display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}' +
+      /* Feature list */
+      '.nav-mp-feature-list{padding:.4rem 0}' +
+      '.nav-mp-feature{display:block;text-decoration:none;padding:.7rem 1.1rem .7rem 1.4rem;border-left:2px solid transparent;transition:border-color .18s,background .18s;position:relative}' +
+      '.nav-mp-feature:hover{border-left-color:var(--gold,#B88328);background:rgba(123,29,42,.04)}' +
+      '.nav-mp-feature-name{display:block;font-family:var(--f-ui,"Cinzel",serif);font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;color:var(--maroon,#7B1D2A);margin-bottom:.25rem}' +
+      '.nav-mp-feature-sub{display:block;font-family:var(--f-body,"EB Garamond",serif);font-size:.85rem;color:var(--stone,#7A6648);line-height:1.4}' +
+      /* Footer */
+      '.nav-mp-footer{padding:.75rem 1.1rem;border-top:1px solid rgba(123,29,42,.08)}' +
+      '.nav-mp-signout{background:none;border:none;font-family:var(--f-ui,"Cinzel",serif);font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(123,29,42,.4);cursor:pointer;padding:0;transition:color .18s}' +
+      '.nav-mp-signout:hover{color:var(--maroon,#7B1D2A)}' +
+
+      /* Mobile avatar dot */
       '.nav-mob-avatar{width:26px;height:26px;border-radius:50%;background:var(--maroon,#7B1D2A);color:var(--vellum,#F6F1E8);font-family:var(--f-ui,"Cinzel",serif);font-size:.45rem;letter-spacing:.04em;display:none;align-items:center;justify-content:center;flex-shrink:0;margin-right:.35rem}' +
       '@media(max-width:1100px){.nav-mob-avatar{display:flex}}' +
-      '.nav-scrolled .nav-mob-avatar{background:var(--maroon,#7B1D2A);color:var(--vellum,#F6F1E8)}' +
 
       /* Drawer auth row */
-      '.drawer-auth-row{display:flex;align-items:center;gap:.6rem;padding:.6rem 1.5rem;border-bottom:1px solid rgba(255,255,255,.06);background:rgba(0,0,0,.15)}' +
+      '.drawer-auth-row{display:flex;align-items:center;flex-wrap:wrap;gap:.5rem;padding:.85rem 1.5rem;border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);background:rgba(0,0,0,.15)}' +
       '.drawer-auth-avatar{width:28px;height:28px;border-radius:50%;background:var(--maroon,#7B1D2A);color:var(--vellum,#F6F1E8);font-family:var(--f-ui,"Cinzel",serif);font-size:.45rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}' +
-      '.drawer-auth-email{font-family:var(--f-body);font-size:.8rem;color:rgba(246,241,232,.65);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}' +
-      '.drawer-auth-btn{font-family:var(--f-ui,"Cinzel",serif);font-size:.42rem;letter-spacing:.12em;text-transform:uppercase;background:none;border:1px solid rgba(246,241,232,.2);color:rgba(246,241,232,.5);padding:.25rem .6rem;cursor:pointer;transition:all .18s;white-space:nowrap;flex-shrink:0}' +
+      '.drawer-auth-email{font-family:var(--f-body);font-size:.8rem;color:rgba(246,241,232,.65);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;min-width:0}' +
+      '.drawer-auth-btn{font-family:var(--f-ui,"Cinzel",serif);font-size:.42rem;letter-spacing:.12em;text-transform:uppercase;background:none;border:1px solid rgba(246,241,232,.2);color:rgba(246,241,232,.5);padding:.28rem .65rem;cursor:pointer;transition:all .18s;white-space:nowrap;flex-shrink:0}' +
       '.drawer-auth-btn:hover{color:rgba(246,241,232,.9);border-color:rgba(246,241,232,.4)}' +
-      '.drawer-auth-input{flex:1;padding:.3rem .5rem;border:1px solid rgba(246,241,232,.15);background:rgba(255,255,255,.06);font-family:var(--f-body);font-size:.8rem;color:rgba(246,241,232,.9);outline:none;min-width:0}' +
-      '.drawer-auth-input:focus{border-color:var(--gold,#B88328)}';
+      '.drawer-auth-create{background:var(--maroon,#7B1D2A)!important;border-color:var(--maroon,#7B1D2A)!important;color:var(--vellum,#F6F1E8)!important}' +
+      '.drawer-auth-create:hover{background:var(--gold,#B88328)!important;border-color:var(--gold,#B88328)!important}' +
+      '.drawer-auth-pitch{font-family:var(--f-display,"Cormorant Garamond",serif);font-size:.95rem;font-weight:500;color:rgba(246,241,232,.85);margin-bottom:.55rem;width:100%}' +
+      '.drawer-auth-cta{display:flex;gap:.5rem;width:100%}' +
+      '.drawer-auth-cta .drawer-auth-btn{flex:1;text-align:center}' +
+
+      /* ── Sign In Modal ── */
+      '.auth-modal-overlay{position:fixed;inset:0;background:rgba(21,8,4,.75);z-index:9000;display:flex;align-items:center;justify-content:center;padding:1.5rem;opacity:0;pointer-events:none;transition:opacity .25s}' +
+      '.auth-modal-overlay.open{opacity:1;pointer-events:all}' +
+      '.auth-modal-card{background:var(--vellum,#F6F1E8);width:100%;max-width:420px;padding:2.5rem 2rem 2.25rem;position:relative;box-shadow:0 24px 80px rgba(21,8,4,.4);transform:translateY(14px);transition:transform .3s cubic-bezier(.4,0,.2,1)}' +
+      '.auth-modal-overlay.open .auth-modal-card{transform:translateY(0)}' +
+      '@media(max-width:680px){' +
+        '.auth-modal-overlay{align-items:flex-end;padding:0}' +
+        '.auth-modal-card{max-width:100%;border-radius:16px 16px 0 0;padding:2rem 1.5rem 2.5rem;transform:translateY(100%)}' +
+        '.auth-modal-overlay.open .auth-modal-card{transform:translateY(0)}' +
+      '}' +
+      '.auth-modal-close{position:absolute;top:.9rem;right:.9rem;background:none;border:none;font-size:1.4rem;color:var(--stone,#7A6648);cursor:pointer;line-height:1;padding:.2rem .4rem;transition:color .18s}' +
+      '.auth-modal-close:hover{color:var(--maroon,#7B1D2A)}' +
+      '.auth-modal-form{display:flex;flex-direction:column;gap:.8rem}' +
+      '.auth-modal-heading{font-family:var(--f-display,"Cormorant Garamond",serif);font-size:1.55rem;font-weight:600;color:var(--ink,#2C1F16);margin:0;line-height:1.2}' +
+      '.auth-modal-sub{font-family:var(--f-body,"EB Garamond",serif);font-size:.92rem;color:var(--stone,#7A6648);line-height:1.55;margin:0}' +
+      '.auth-modal-input{padding:.7rem .85rem;border:1px solid rgba(123,29,42,.2);background:#fff;font-family:var(--f-body);font-size:1rem;color:var(--ink,#2C1F16);outline:none;width:100%;box-sizing:border-box}' +
+      '.auth-modal-input:focus{border-color:var(--gold,#B88328)}' +
+      '.auth-modal-btn{padding:.75rem;background:var(--maroon,#7B1D2A);color:var(--vellum,#F6F1E8);border:none;font-family:var(--f-ui,"Cinzel",serif);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;transition:background .18s}' +
+      '.auth-modal-btn:hover:not(:disabled){background:var(--gold,#B88328)}' +
+      '.auth-modal-btn:disabled{opacity:.55;cursor:default}' +
+
+      /* Confirmation screen */
+      '.auth-modal-confirm{display:none;flex-direction:column;align-items:center;text-align:center;padding:.75rem 0 .25rem}' +
+      '.auth-modal-confirm.visible{display:flex}' +
+      '.auth-modal-envelope{animation:envFloat .55s cubic-bezier(.34,1.56,.64,1) both}' +
+      '@keyframes envFloat{from{opacity:0;transform:translateY(18px) scale(.8)}to{opacity:1;transform:translateY(0) scale(1)}}' +
+      '.auth-modal-confirm-msg{font-family:var(--f-display,"Cormorant Garamond",serif);font-size:1.5rem;font-weight:600;color:var(--ink,#2C1F16);margin:1.2rem 0 .45rem;animation:fadeUp .4s .2s both}' +
+      '.auth-modal-confirm-sub{font-family:var(--f-body,"EB Garamond",serif);font-size:.92rem;color:var(--stone,#7A6648);line-height:1.6;margin:0;animation:fadeUp .4s .32s both}' +
+      '@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}' +
+
+      /* ── Footer CTA ── */
+      '.footer-auth-cta{margin-top:1.6rem;padding-top:1.5rem;border-top:1px solid rgba(246,241,232,.08)}' +
+      '.footer-auth-pitch{font-family:var(--f-display,"Cormorant Garamond",serif);font-size:1.05rem;font-weight:500;color:rgba(246,241,232,.88);margin:0 0 .3rem;line-height:1.25}' +
+      '.footer-auth-desc{font-family:var(--f-body,"EB Garamond",serif);font-size:.82rem;line-height:1.55;color:rgba(246,241,232,.42);margin:0 0 .9rem}' +
+      '.footer-auth-btns{display:flex;gap:.5rem;flex-wrap:wrap}' +
+      '.footer-auth-create{flex:1;padding:.55rem .5rem;background:var(--maroon,#7B1D2A);color:var(--vellum,#F6F1E8);border:none;font-family:var(--f-ui,"Cinzel",serif);font-size:.58rem;letter-spacing:.13em;text-transform:uppercase;cursor:pointer;transition:background .18s;white-space:nowrap}' +
+      '.footer-auth-create:hover{background:var(--gold,#B88328)}' +
+      '.footer-auth-signin{flex:1;padding:.55rem .5rem;background:none;border:1px solid rgba(246,241,232,.18);color:rgba(246,241,232,.55);font-family:var(--f-ui,"Cinzel",serif);font-size:.58rem;letter-spacing:.13em;text-transform:uppercase;cursor:pointer;transition:all .18s;white-space:nowrap}' +
+      '.footer-auth-signin:hover{color:rgba(246,241,232,.9);border-color:rgba(246,241,232,.4)}' +
+      /* Footer logged-in */
+      '.footer-auth-signed{display:flex;align-items:center;gap:.6rem;margin-bottom:.75rem}' +
+      '.footer-auth-avatar{width:28px;height:28px;border-radius:50%;background:var(--maroon,#7B1D2A);color:var(--vellum,#F6F1E8);font-family:var(--f-ui,"Cinzel",serif);font-size:.45rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}' +
+      '.footer-auth-email{font-family:var(--f-body);font-size:.78rem;color:rgba(246,241,232,.48);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;min-width:0}' +
+      '.footer-auth-actions{display:flex;align-items:center;gap:.7rem}' +
+      '.footer-auth-link{font-family:var(--f-ui,"Cinzel",serif);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,232,.6);text-decoration:none;transition:color .18s}' +
+      '.footer-auth-link:hover{color:var(--gold,#B88328)}' +
+      '.footer-auth-signout{background:none;border:1px solid rgba(246,241,232,.14);color:rgba(246,241,232,.42);font-family:var(--f-ui,"Cinzel",serif);font-size:.52rem;letter-spacing:.12em;text-transform:uppercase;padding:.28rem .6rem;cursor:pointer;transition:all .18s}' +
+      '.footer-auth-signout:hover{color:rgba(246,241,232,.85);border-color:rgba(246,241,232,.35)}';
+
     document.head.appendChild(s);
   }
+
+  // ── Remove legacy My Parish elements ──
+  function removeLegacyMyParish() {
+    // Footer pill links
+    document.querySelectorAll('a.footer-my-journey').forEach(function(el) { el.remove(); });
+    document.querySelectorAll('.footer-nav-sub').forEach(function(el) {
+      if (el.textContent.trim() === 'My Parish') el.remove();
+    });
+    // Mobile drawer "My Profile" accordion section
+    document.querySelectorAll('.dr-section').forEach(function(section) {
+      var head = section.querySelector('.dr-section-name');
+      if (head && head.textContent.trim() === 'My Profile') section.remove();
+    });
+  }
+
+  // ── Dev testing hook ──
+  window.__reloadAuth = updateAvatar;
 
   // ── Init ──
   function init() {
     injectStyles();
+    injectModal();
     updateAvatar();
-    // Re-check on auth state change
+    bindPanelClick();
+    removeLegacyMyParish();
     if (_supabase && _supabase.auth) {
       _supabase.auth.onAuthStateChange(function() {
         setTimeout(updateAvatar, 100);
       });
     }
   }
+
+  function bindPanelClick() {
+    var panel = document.getElementById('nav-mp-panel');
+    if (panel && !panel._authClickBound) {
+      panel.addEventListener('click', function(e) { e.stopPropagation(); });
+      panel._authClickBound = true;
+    }
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      if (window.closeAuthModal) closeAuthModal();
+      if (window.closeProfileModal) closeProfileModal();
+    }
+  });
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
