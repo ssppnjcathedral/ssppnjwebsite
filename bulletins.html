@@ -78,7 +78,7 @@
   .scroll-hidden{opacity:1!important;transform:none!important;transition:none!important}
 }
 
-.page-hero{padding-top:60px;background:linear-gradient(to right,rgba(59,15,24,.88) 0%,rgba(59,15,24,.62) 55%,rgba(59,15,24,.38) 100%),url('/images/heroes/hero-bulletins.jpg') center/cover no-repeat;background-color:var(--apse);min-height:380px;display:flex;align-items:flex-end;position:relative;overflow:hidden}
+.page-hero{padding-top:60px;background:linear-gradient(to right,rgba(59,15,24,.88) 0%,rgba(59,15,24,.62) 55%,rgba(59,15,24,.38) 100%),url('/images/heroes/hero-bulletins.jpg') center 55%/cover no-repeat;background-color:var(--apse);min-height:380px;display:flex;align-items:flex-end;position:relative;overflow:hidden}
 .page-hero-inner{max-width:1380px;margin:0 auto;padding:3rem 4.5rem 3.5rem;width:100%}
 
 .page-title{font-family:var(--f-display);font-weight:300;font-size:clamp(2.5rem,5vw,4.5rem);line-height:.95;color:#fff;margin:.5rem 0 .75rem}
@@ -298,6 +298,11 @@ footer .btn-outline{color:rgba(246,241,232,.92);border-color:rgba(246,241,232,.5
   ]
 }
 </script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="/supabase-client.js"></script>
+<script src="/auth.js"></script>
+<script src="/content-overrides.js"></script>
+<script src="/admin-edit.js"></script>
 </head>
 <body>
 <!-- ═══════════════════════════════════════════
