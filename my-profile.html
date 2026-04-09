@@ -533,7 +533,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
     <div style="display:flex;gap:.5rem;flex-shrink:0;">
       <input type="email" id="auth-email-input" placeholder="your@email.com"
         style="padding:.5rem .85rem;border:1px solid rgba(59,15,24,.2);background:white;font-family:var(--f-body);font-size:.95rem;color:var(--ink);outline:none;width:220px;">
-      <button onclick="authSendLink()"
+      <button onclick="authSendLink(event)"
         style="font-family:var(--f-ui);font-size:.5rem;letter-spacing:.14em;text-transform:uppercase;background:var(--maroon);color:var(--vellum);border:none;padding:.5rem 1rem;cursor:pointer;white-space:nowrap;">
         Send Me a Link
       </button>
@@ -1150,9 +1150,9 @@ function renderDocumentView(data, user) {
     html += '<p style="font-family:var(--f-display);font-style:italic;font-size:1rem;color:var(--stone);margin-bottom:.85rem;">Sign in to access this profile from any device.</p>';
     html += '<div style="display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;">';
     html += '<input type="email" id="auth-email-input" placeholder="your@email.com" style="padding:.5rem .85rem;border:1px solid rgba(59,15,24,.2);background:white;font-family:var(--f-body);font-size:.95rem;color:var(--ink);outline:none;width:220px;">';
-    html += '<button onclick="authSendLink()" style="font-family:var(--f-ui);font-size:.5rem;letter-spacing:.14em;text-transform:uppercase;background:var(--maroon);color:var(--vellum);border:none;padding:.5rem 1rem;cursor:pointer;white-space:nowrap;">Send Me a Link</button>';
+    html += '<button onclick="authSendLink(event)" style="font-family:var(--f-ui);font-size:.5rem;letter-spacing:.14em;text-transform:uppercase;background:var(--maroon);color:var(--vellum);border:none;padding:.5rem 1rem;cursor:pointer;white-space:nowrap;">Send Me a Link</button>';
     html += '</div>';
-    html += '<span id="auth-sent-msg" style="display:none;font-family:var(--f-body);font-style:italic;font-size:.85rem;color:var(--verdigris);margin-top:.6rem;display:block">Check your email for a sign-in link.</span>';
+    html += '<span id="auth-sent-msg" style="display:none;font-family:var(--f-body);font-style:italic;font-size:.85rem;color:var(--verdigris);margin-top:.6rem;">Check your email for a sign-in link.</span>';
     html += '</div>';
   } else {
     html += '<div style="margin-top:1.25rem;text-align:center;font-family:var(--f-body);font-style:italic;font-size:.85rem;color:var(--stone);">Synced to your account &middot; <button onclick="signOut()" style="background:none;border:none;font-family:var(--f-body);font-style:italic;font-size:.85rem;color:var(--stone);cursor:pointer;text-decoration:underline;">Sign out</button></div>';
@@ -1172,10 +1172,10 @@ function editProfile(tab) {
 }
 
 
-async function authSendLink() {
+async function authSendLink(e) {
   var email = document.getElementById('auth-email-input').value.trim();
   if (!email) return;
-  var btn = event.target;
+  var btn = (e && e.target) || document.querySelector('[onclick*="authSendLink"]');
   btn.textContent = 'Sending...';
   btn.disabled = true;
   var result = await sendMagicLink(email, window.location.href);
