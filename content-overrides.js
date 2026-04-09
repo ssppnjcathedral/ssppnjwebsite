@@ -35,8 +35,10 @@
         switch (row.override_type) {
           case 'image':
             if (el.tagName === 'IMG') {
+              el.dataset.originalSrc = el.getAttribute('src');
               el.src = row.new_value;
             } else {
+              el.dataset.originalBg = getComputedStyle(el).backgroundImage;
               el.style.backgroundImage = 'url(' + row.new_value + ')';
             }
             break;

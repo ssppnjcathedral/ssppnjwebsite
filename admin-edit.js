@@ -58,10 +58,9 @@
 
   // ── Generate a stable identifier for an element ──
   function getSelector(el) {
-    // For images, use src as a stable identifier
-    if (el.tagName === 'IMG' && el.src) {
-      // Strip origin to get relative path
-      var src = el.getAttribute('src') || el.src.replace(window.location.origin, '');
+    // For images, use the original src as a stable identifier
+    if (el.tagName === 'IMG') {
+      var src = el.dataset.originalSrc || el.getAttribute('src') || el.src.replace(window.location.origin, '');
       return 'img[src="' + src + '"]';
     }
     // For elements with IDs
