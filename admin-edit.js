@@ -56,26 +56,45 @@
     }
   }
 
-  // ── Generate a unique CSS selector for an element ──
+  // ── Generate a stable identifier for an element ──
   function getSelector(el) {
+    // For images, use src as a stable identifier
+    if (el.tagName === 'IMG' && el.src) {
+      // Strip origin to get relative path
+      var src = el.getAttribute('src') || el.src.replace(window.location.origin, '');
+      return 'img[src="' + src + '"]';
+    }
+    // For elements with IDs
     if (el.id) return '#' + el.id;
+    // For elements with unique classes
+    if (el.className && typeof el.className === 'string') {
+      var classes = el.className.trim().split(/\s+/).filter(function(c) {
+        return c && !c.startsWith('admin-') && !c.startsWith('jw-');
+      });
+      if (classes.length) {
+        var sel = el.tagName.toLowerCase() + '.' + classes.join('.');
+        if (document.querySelectorAll(sel).length === 1) return sel;
+      }
+    }
+    // Fallback: path with IDs as anchors
     var path = [];
-    while (el && el !== document.body) {
-      var tag = el.tagName.toLowerCase();
-      if (el.id) {
-        path.unshift('#' + el.id);
+    var current = el;
+    while (current && current !== document.body) {
+      var tag = current.tagName.toLowerCase();
+      if (current.id) {
+        path.unshift('#' + current.id);
         break;
       }
-      var parent = el.parentElement;
+      var parent = current.parentElement;
       if (parent) {
-        var siblings = Array.from(parent.children).filter(function(c) { return c.tagName === el.tagName; });
+        var siblings = Array.from(parent.children).filter(function(c) { return c.tagName === current.tagName; });
         if (siblings.length > 1) {
-          var idx = siblings.indexOf(el) + 1;
+          var idx = siblings.indexOf(current) + 1;
           tag += ':nth-of-type(' + idx + ')';
         }
       }
       path.unshift(tag);
-      el = parent;
+      current = parent;
     }
     return path.join(' > ');
   }
