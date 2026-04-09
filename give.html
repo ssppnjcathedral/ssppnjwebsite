@@ -63,9 +63,12 @@
 .nav-drawer-give:hover{background:var(--maroon-deep)}
 
 /* ── HERO ── */
-.giving-hero{padding-top:60px;background:linear-gradient(rgba(21,8,4,.82),rgba(21,8,4,.82)),url('/images/heroes/donate.webp') center/cover no-repeat;background-color:var(--apse);min-height:380px;display:flex;align-items:center}
-.giving-hero-inner{max-width:1380px;width:100%;margin:0 auto;padding:5rem 4.5rem 4rem}
-.giving-hero-eyebrow{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(184,131,40,.70);display:block;margin-bottom:.75rem}
+.giving-hero{padding-top:60px;background:linear-gradient(to right,rgba(59,15,24,.88) 0%,rgba(59,15,24,.62) 55%,rgba(59,15,24,.38) 100%),url('/images/heroes/donate.webp') center 55%/cover no-repeat;background-color:var(--apse);min-height:380px;display:flex;align-items:flex-end;position:relative;overflow:hidden}
+.giving-hero-inner{max-width:1380px;width:100%;margin:0 auto;padding:3rem 4.5rem 3.5rem}
+.giving-hero-breadcrumb{font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:1.5rem}
+.giving-hero-breadcrumb a{color:rgba(232,201,122,.70)}
+.giving-hero-breadcrumb a:hover{color:var(--gold-lt)}
+.giving-hero-eyebrow{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(184,131,40,.70);display:block;margin-bottom:.5rem}
 .giving-hero-title{font-family:var(--f-display);font-weight:300;font-size:clamp(2.6rem,5vw,4.2rem);line-height:1;color:#fff;margin-bottom:1rem}
 .giving-hero-title em{font-style:italic;color:var(--gold-lt)}
 .giving-hero-rule{width:56px;height:1px;background:rgba(184,131,40,.40);margin:.75rem 0 1rem}
@@ -336,10 +339,11 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 
 /* ── SCROLL REVEAL ── */
 @keyframes heroUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.giving-hero-breadcrumb{animation:heroUp .55s cubic-bezier(.4,0,.2,1) .15s both}
 .giving-hero-eyebrow{animation:heroUp .65s cubic-bezier(.4,0,.2,1) .25s both}
-.giving-hero-title{animation:heroUp .80s cubic-bezier(.4,0,.2,1) .42s both}
-.giving-hero-rule{animation:heroUp .65s cubic-bezier(.4,0,.2,1) .64s both}
-.giving-hero-sub{animation:heroUp .65s cubic-bezier(.4,0,.2,1) .78s both}
+.giving-hero-rule{animation:heroUp .65s cubic-bezier(.4,0,.2,1) .38s both}
+.giving-hero-title{animation:heroUp .80s cubic-bezier(.4,0,.2,1) .50s both}
+.giving-hero-sub{animation:heroUp .65s cubic-bezier(.4,0,.2,1) .68s both}
 .rv{opacity:0;transform:translateY(24px);transition:opacity .62s cubic-bezier(.4,0,.2,1),transform .62s cubic-bezier(.4,0,.2,1);transition-delay:var(--d,0s);will-change:transform,opacity}
 .rv.in{opacity:1;transform:translateY(0)}
 .rv-scale{opacity:0;transform:scale(.97) translateY(14px);transition:opacity .72s cubic-bezier(.4,0,.2,1),transform .72s cubic-bezier(.4,0,.2,1);transition-delay:var(--d,0s);will-change:transform,opacity}
@@ -349,7 +353,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 .rv-right{opacity:0;transform:translateX(28px);transition:opacity .65s cubic-bezier(.4,0,.2,1),transform .65s cubic-bezier(.4,0,.2,1);transition-delay:var(--d,0s);will-change:transform,opacity}
 .rv-right.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){
-  .giving-hero-eyebrow,.giving-hero-title,.giving-hero-rule,.giving-hero-sub{animation:none;opacity:1}
+  .giving-hero-breadcrumb,.giving-hero-eyebrow,.giving-hero-title,.giving-hero-rule,.giving-hero-sub{animation:none;opacity:1}
   .rv,.rv-scale,.rv-slide,.rv-right{opacity:1;transform:none;transition:none}
 }
 
@@ -842,9 +846,10 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 <!-- HERO -->
 <div class="giving-hero">
   <div class="giving-hero-inner">
+    <p class="giving-hero-breadcrumb"><a href="/">Home</a> · Stewardship &amp; Giving</p>
     <span class="giving-hero-eyebrow">Stewardship &amp; Giving</span>
+    <div class="giving-hero-rule" style="margin:.5rem 0 1rem"></div>
     <h1 class="giving-hero-title">Give to<br><em>Saints Peter &amp; Paul</em></h1>
-    <div class="giving-hero-rule"></div>
     <p class="giving-hero-sub">Sustaining 115 years of worship, community, and open doors</p>
   </div>
 </div>

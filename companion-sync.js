@@ -7,17 +7,37 @@ async function syncJourneyProgress(pageKey, state) {
   try {
     var user = await getCurrentUser();
     if (!user) return;
+    // Support both old single-note format and new entries array
+    var notesValue = state.notes || null;
+    if (state.entries && state.entries.length) {
+      notesValue = JSON.stringify(state.entries);
+    }
     await _supabase.from('journey_progress').upsert({
       user_id: user.id,
       page_key: pageKey,
       completed: !!state.completed,
       completed_at: state.completedAt || null,
-      notes: state.notes || null,
+      notes: notesValue,
       updated_at: new Date().toISOString()
     }, { onConflict: 'user_id,page_key' });
   } catch (e) { console.warn('Journey sync error:', e); }
 }
 window.syncJourneyProgress = syncJourneyProgress;
+
+// ── HIGHLIGHTS SYNC ──
+async function syncHighlights(pageKey, highlights) {
+  try {
+    var user = await getCurrentUser();
+    if (!user) return;
+    await _supabase.from('journey_progress').upsert({
+      user_id: user.id,
+      page_key: pageKey,
+      highlights: highlights || [],
+      updated_at: new Date().toISOString()
+    }, { onConflict: 'user_id,page_key' });
+  } catch (e) { console.warn('Highlights sync error:', e); }
+}
+window.syncHighlights = syncHighlights;
 
 // ── PRAYER RULE SYNC ──
 async function syncPrayerRule(prayerIds, ruleName, ruleBegun) {
@@ -54,10 +74,23 @@ async function loadFromSupabase() {
         if (!existing.completed && row.completed) {
           var state = {
             completed: row.completed,
-            completedAt: row.completed_at,
-            notes: row.notes || existing.notes || ''
+            completedAt: row.completed_at
           };
+          // Detect entries array (JSON string starting with [) vs plain note
+          if (row.notes && row.notes.charAt(0) === '[') {
+            try { state.entries = JSON.parse(row.notes); } catch(e) { state.entries = []; }
+          } else {
+            state.notes = row.notes || existing.notes || '';
+          }
           localStorage.setItem('spp_journey_' + row.page_key, JSON.stringify(state));
+        }
+        // Sync highlights from Supabase if local is empty
+        if (row.highlights && row.highlights.length > 0) {
+          var localHL = [];
+          try { localHL = JSON.parse(localStorage.getItem('spp_highlights_' + row.page_key) || '[]'); } catch {}
+          if (localHL.length === 0) {
+            localStorage.setItem('spp_highlights_' + row.page_key, JSON.stringify(row.highlights));
+          }
         }
       });
     }

@@ -61,12 +61,15 @@
         var pageKey = keys[i].replace('spp_journey_', '');
         var state = JSON.parse(localStorage.getItem(keys[i]) || '{}');
         if (state.completed || (state.notes && state.notes.trim())) {
+          var hlData = [];
+          try { hlData = JSON.parse(localStorage.getItem('spp_highlights_' + pageKey) || '[]'); } catch {}
           await _supabase.from('journey_progress').upsert({
             user_id: user.id,
             page_key: pageKey,
             completed: !!state.completed,
             completed_at: state.completedAt || null,
-            notes: state.notes || null
+            notes: state.notes || null,
+            highlights: hlData
           }, { onConflict: 'user_id,page_key' });
         }
       }

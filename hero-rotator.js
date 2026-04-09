@@ -56,7 +56,7 @@
     }
 
     /* All other page heroes — inject bg divs dynamically */
-    var container = document.querySelector('.page-hero, .vp-hero, .giving-hero');
+    var container = document.querySelector('.page-hero, .vp-hero, .giving-hero, .cal-snapshot');
     if (!container) return false;
 
     /* Grab the overlay gradient before clearing the background */
