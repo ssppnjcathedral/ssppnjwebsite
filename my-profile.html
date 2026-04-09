@@ -1173,19 +1173,42 @@ function editProfile(tab) {
 
 
 async function authSendLink(e) {
-  var email = document.getElementById('auth-email-input').value.trim();
-  if (!email) return;
-  var btn = (e && e.target) || document.querySelector('[onclick*="authSendLink"]');
-  btn.textContent = 'Sending...';
-  btn.disabled = true;
-  var result = await sendMagicLink(email, window.location.href);
-  if (result.success) {
-    document.getElementById('auth-sent-msg').style.display = 'inline';
-    btn.style.display = 'none';
-  } else {
-    btn.textContent = 'Send Me a Link';
-    btn.disabled = false;
-    alert('Could not send link. Please check your email and try again.');
+  try {
+    var emailInput = document.getElementById('auth-email-input');
+    // If there are multiple inputs with same ID (static + JS-rendered), grab the visible one
+    var allInputs = document.querySelectorAll('#auth-email-input');
+    var email = '';
+    allInputs.forEach(function(inp) {
+      if (inp.offsetParent !== null && inp.value.trim()) email = inp.value.trim();
+    });
+    if (!email && emailInput) email = emailInput.value.trim();
+    if (!email) { alert('Please enter your email address.'); return; }
+
+    var btn = e && e.target ? e.target : document.querySelector('[onclick*="authSendLink"]');
+    if (btn.tagName !== 'BUTTON') btn = btn.closest('button') || btn;
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
+    if (typeof sendMagicLink !== 'function') {
+      alert('Auth system not loaded. Please refresh and try again.');
+      btn.textContent = 'Send Me a Link';
+      btn.disabled = false;
+      return;
+    }
+
+    var result = await sendMagicLink(email, window.location.href);
+    if (result.success) {
+      var msg = document.getElementById('auth-sent-msg');
+      if (msg) { msg.style.display = 'inline-block'; }
+      btn.style.display = 'none';
+    } else {
+      btn.textContent = 'Send Me a Link';
+      btn.disabled = false;
+      alert('Could not send link: ' + (result.error || 'Unknown error'));
+    }
+  } catch(err) {
+    alert('Error: ' + err.message);
+    console.error('authSendLink error:', err);
   }
 }
 
