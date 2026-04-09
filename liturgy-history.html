@@ -436,6 +436,18 @@ footer{background:var(--apse);padding:4rem 4.5rem 2rem}
 .sheet-jw-btn.jw-done{background:rgba(61,107,94,.2);color:var(--verdigris)}
 .sheet-jw-btn::after{content:attr(data-tooltip);position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:var(--apse);color:rgba(246,241,232,.92);font-family:var(--f-ui);font-size:.45rem;letter-spacing:.10em;text-transform:uppercase;white-space:nowrap;padding:.3rem .65rem;pointer-events:none;opacity:0;transition:opacity .15s;border:1px solid rgba(246,241,232,.12);border-radius:4px}
 .sheet-jw-btn:hover::after{opacity:1}
+/* Fullscreen editing mode (mobile keyboard) */
+.jw-drawer.jw-fullscreen{top:0;bottom:0;left:0;right:0;min-height:100vh;min-height:100dvh;padding:0;border-top:none;border-radius:0;z-index:400}
+.jw-drawer.jw-fullscreen .jw-drawer-top{padding:.75rem 1.25rem;background:rgba(0,0,0,.2);margin-bottom:0;border-bottom:1px solid rgba(184,131,40,.15)}
+.jw-drawer.jw-fullscreen .jw-notes-carousel{display:none}
+.jw-drawer.jw-fullscreen .jw-tab-pane.active{padding:0 1.25rem 1rem;flex:1;overflow:hidden}
+.jw-drawer.jw-fullscreen .jw-quill-wrap{flex:1;min-height:0}
+.jw-drawer.jw-fullscreen .jw-quill-wrap .ql-container.ql-snow{min-height:0;flex:1}
+.jw-drawer.jw-fullscreen .jw-quill-wrap .ql-editor{min-height:0}
+.jw-drawer.jw-fullscreen .jw-drawer-actions{padding:.5rem 1.25rem;border-top:1px solid rgba(184,131,40,.15);margin-top:0}
+.jw-fs-done{display:none;font-family:var(--f-ui);font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;background:none;border:none;color:var(--gold);cursor:pointer;padding:.4rem .6rem;margin-left:auto;transition:color .18s}
+.jw-fs-done:hover{color:#fff}
+.jw-drawer.jw-fullscreen .jw-fs-done{display:block}
 @media(max-width:680px){.jw-drawer{padding:1rem 1.25rem 1.5rem;min-height:50vh}.jw-drawer-top{flex-wrap:wrap;gap:.5rem}.jw-note-entry{flex:0 0 85vw}.jw-carousel-nav{display:none}}
 @media print{@page{margin:0.5in;margin-top:0.3in;margin-bottom:0.3in}body *{visibility:hidden}.jw-print-export,.jw-print-export *{visibility:visible}.jw-print-export{position:absolute;top:0;left:0;width:100%;padding:2rem;background:#fff;color:var(--ink)}.jw-print-export h1{font-family:var(--f-display);font-size:1.8rem;color:var(--maroon);margin-bottom:.25rem}.jw-print-export .jw-pe-date{font-family:var(--f-ui);font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);margin-bottom:1.5rem;display:block}.jw-print-export .jw-pe-section{margin-bottom:1.5rem;border-bottom:1px solid rgba(123,29,42,.1);padding-bottom:1rem}.jw-print-export .jw-pe-section h2{font-family:var(--f-ui);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--maroon);margin-bottom:.5rem}.jw-print-export .jw-pe-hl{border-left:3px solid var(--gold);padding-left:.75rem;margin:.5rem 0;font-style:italic;color:var(--stone)}}
 </style>
@@ -2004,7 +2016,28 @@ function drToggle(head){
     printDiv.innerHTML = html; document.body.appendChild(printDiv); window.print(); setTimeout(function() { document.body.removeChild(printDiv); }, 500);
   };
 
-  document.addEventListener('DOMContentLoaded', function() { jwInit(); });
+  /* ── Mobile fullscreen editing ── */
+  var isMobile = function() { return window.innerWidth <= 680; };
+
+  function jwEnterFullscreen() {
+    var drawer = document.getElementById('jw-drawer');
+    if (drawer && isMobile()) drawer.classList.add('jw-fullscreen');
+  }
+  window.jwExitFullscreen = function() {
+    var drawer = document.getElementById('jw-drawer');
+    if (drawer) drawer.classList.remove('jw-fullscreen');
+    if (quill) quill.blur();
+  };
+
+  /* ── DOMContentLoaded ── */
+  document.addEventListener('DOMContentLoaded', function() {
+    jwInit();
+    if (quill) {
+      quill.on('selection-change', function(range) {
+        if (range && isMobile()) jwEnterFullscreen();
+      });
+    }
+  });
 })();
 </script>
 <!-- ── JOURNEY WIDGET ── -->
@@ -2015,6 +2048,7 @@ function drToggle(head){
       <button class="jw-drawer-tab active" onclick="jwSwitchTab('notes')">Notes</button>
       <button class="jw-drawer-tab" onclick="jwSwitchTab('highlights')">Highlights</button>
     </div>
+    <button class="jw-fs-done" onclick="jwExitFullscreen()">Done</button>
   </div>
   <div class="jw-tab-pane active" id="jw-tab-notes">
     <div class="jw-notes-carousel" id="jw-notes-carousel">
