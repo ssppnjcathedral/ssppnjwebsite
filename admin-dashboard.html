@@ -3370,7 +3370,8 @@ async function loadBulletin() {
   var container = document.getElementById('bulletin-card');
   try {
     var res = await fetch('/bulletins.json');
-    var bulletins = await res.json();
+    var raw = await res.json();
+    var bulletins = Array.isArray(raw) ? raw : (raw.bulletins || []);
     var today = todayStr();
     // Find closest bulletin to today (prefer past/equal)
     var best = null;
