@@ -716,6 +716,22 @@ body {
   margin-left: auto;
 }
 .flock-add-btn:hover { background: var(--maroon-deep); }
+.flock-export-btn {
+  font-family: var(--f-body);
+  font-size: .88rem;
+  letter-spacing: .02em;
+  padding: .3rem .9rem;
+  border: 1px solid rgba(123,29,42,.3);
+  border-radius: 20px;
+  background: transparent;
+  color: var(--stone);
+  cursor: pointer;
+  transition: all .2s;
+  display: flex;
+  align-items: center;
+  gap: .35rem;
+}
+.flock-export-btn:hover { border-color: var(--maroon); color: var(--maroon); }
 
 /* ── FLOCK ROWS ── */
 .p-card-list { display: flex; flex-direction: column; gap: 0; }
@@ -2341,6 +2357,10 @@ body {
         <button class="flock-pill" data-filter="member" data-tip="Baptized, chrismated members of the parish">Members</button>
         <button class="flock-pill" data-filter="admin-created" data-tip="Records you added manually — not self-registered by the parishioner">Admin-Created</button>
         <button class="flock-pill" data-filter="archived" data-tip="Transferred or reposed parishioners — kept for records, removed from active view">Archived</button>
+        <button class="flock-export-btn" onclick="exportFlockCSV()" data-tip="Download all parishioner records as a CSV file">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Export CSV
+        </button>
         <button class="flock-add-btn" onclick="openAddPanel()" data-tip="Create a new parishioner record manually">+ Add Parishioner</button>
       </div>
       <div id="p-card-list" class="p-card-list"></div>
@@ -4142,6 +4162,42 @@ async function confirmDelete(id) {
 }
 
 // ── ADD PARISHIONER PANEL ──
+function exportFlockCSV() {
+  var rows = [['First Name','Last Name','Email','Phone','Status','Baptism Date','Nameday','Spouse','Godparents','Family','Children','Anniversary','Flagged','Admin Created','Created']];
+  allParishioners.forEach(function(p) {
+    var family = allFamilyUnits.find(function(f) { return f.id === p.family_unit_id; });
+    rows.push([
+      p.first_name || '',
+      p.last_name || '',
+      p.email || '',
+      p.phone || '',
+      p.status || '',
+      p.baptism_date || '',
+      p.nameday_date || '',
+      p.spouse_name || '',
+      p.godparents || '',
+      family ? family.family_name : '',
+      (p.children || []).join('; '),
+      p.anniversary || '',
+      p.flagged ? 'Yes' : 'No',
+      p.admin_created ? 'Yes' : 'No',
+      p.created_at ? p.created_at.slice(0,10) : ''
+    ]);
+  });
+  var csv = rows.map(function(r) {
+    return r.map(function(v) {
+      var s = String(v).replace(/"/g, '""');
+      return /[,"\n]/.test(s) ? '"' + s + '"' : s;
+    }).join(',');
+  }).join('\n');
+  var blob = new Blob([csv], { type: 'text/csv' });
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'parishioners-' + todayStr() + '.csv';
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
 function openAddPanel() {
   var panel = document.getElementById('add-panel');
   panel.innerHTML = '<div style="position:relative">' +
