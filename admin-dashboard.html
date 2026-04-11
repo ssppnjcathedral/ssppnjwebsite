@@ -405,7 +405,7 @@ body {
 }
 
 /* ── MAIN LAYOUT ── */
-#dashboard-wrap { padding-top: 60px; }
+#dashboard-wrap { padding-top: 0; }
 .admin-shell { max-width: 1140px; margin: 0 auto; padding: 2rem 2rem 4rem; }
 .dash-main {
   max-width: 1140px;
@@ -950,22 +950,45 @@ body {
 /* ── CURRENT PRAYER LIST ── */
 .pl-entry {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: space-between;
-  padding: .35rem .5rem;
-  border-bottom: var(--rule-hair);
-  font-size: .92rem;
+  padding: .45rem 0;
+  border-bottom: 1px solid rgba(123,29,42,.06);
+  gap: .5rem;
+}
+.pl-entry:last-child { border-bottom: none; }
+.pl-entry span {
+  font-family: var(--f-body);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--ink);
+  line-height: 1.4;
+  flex: 1;
+}
+.pl-entry span::before {
+  content: '✦';
+  font-style: normal;
+  font-size: .5rem;
+  color: var(--maroon);
+  opacity: .5;
+  margin-right: .55rem;
+  vertical-align: middle;
+  position: relative;
+  top: -.05em;
 }
 .pl-entry button {
   background: none;
   border: none;
-  color: var(--stone);
+  color: transparent;
   cursor: pointer;
-  font-size: 1.1rem;
+  font-size: .85rem;
   line-height: 1;
-  padding: 0 .3rem;
+  padding: 0 .2rem;
+  transition: color .15s;
+  flex-shrink: 0;
 }
-.pl-entry button:hover { color: var(--maroon); }
+.pl-entry:hover button { color: rgba(123,29,42,.35); }
+.pl-entry button:hover { color: var(--maroon) !important; }
 .pl-add-row {
   display: flex;
   gap: .5rem;
@@ -2132,7 +2155,12 @@ body {
   flex-shrink: 0;
   align-self: center;
   font-size: .85rem;
-  cursor: default;
+  cursor: pointer;
+  transition: background .15s, border-color .15s;
+}
+.pr2-acked-btn:hover {
+  background: rgba(61,107,94,.08);
+  border-color: var(--verdigris);
 }
 .pl-intercession-empty {
   font-family: var(--f-body);
@@ -2239,7 +2267,7 @@ body {
 </head>
 <body>
 
-<nav class="nav">
+<nav class="nav" style="display:none">
   <div class="nav-inner">
     <a href="/"><img src="/images/logo/logo-2026.svg" alt="Saints Peter &amp; Paul Orthodox Cathedral" class="nav-logo-img" onerror="this.style.display='none'"></a>
     <div class="nav-mega-group" id="nav-mega-group">
@@ -2376,7 +2404,7 @@ body {
         </div>
         <div>
           <span class="prayer-col-head">Published Intercession List</span>
-          <div id="prayer-list-entries"></div>
+          <div id="prayer-list-entries" style="max-height:420px;overflow-y:auto;padding-right:.25rem"></div>
           <div class="pl-add-row" style="margin-top:.75rem">
             <input id="pl-new-name" placeholder="Add a name..." onkeydown="if(event.key==='Enter')addNameToList()">
             <button onclick="addNameToList()" data-tip="Add this name to the published intercession list on the website">Add</button>
@@ -3243,9 +3271,15 @@ function renderPrayerRequests(requests) {
           '<div class="pr2-text">' + escHtml(r.intention || r.request_text || '') + '</div>' +
           '<div class="pr2-acked-date">Acknowledged ' + fmtDateShort(r.acknowledged_at) + '</div>' +
         '</div>' +
-        '<div class="pr2-acked-btn">&#x2713;</div>' +
+        '<button class="pr2-acked-btn" data-dismiss="' + r.id + '" data-tip="Dismiss — remove from this list">&#x2713;</button>' +
       '</div>';
     }).join('');
+    archiveContainer.querySelectorAll('[data-dismiss]').forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        dismissRequest(btn.getAttribute('data-dismiss'));
+      });
+    });
   }
 }
 
@@ -3261,6 +3295,14 @@ async function acknowledgeRequest(id) {
   renderPrayerRequests(allPrayerRequests);
   renderAttentionStrip(allPrayerRequests);
   showToast('Request acknowledged.');
+}
+
+async function dismissRequest(id) {
+  await _supabase.from('prayer_requests').delete().eq('id', id);
+  allPrayerRequests = allPrayerRequests.filter(function(r) { return String(r.id) !== String(id); });
+  renderPrayerRequests(allPrayerRequests);
+  renderAttentionStrip(allPrayerRequests);
+  showToast('Request dismissed.');
 }
 
 // ── PRAYER LIST ──
@@ -3430,7 +3472,8 @@ async function loadBulletin() {
 async function loadEvents() {
   try {
     var res = await fetch('/parish-events.json');
-    eventsData = await res.json();
+    var raw = await res.json();
+    eventsData = Array.isArray(raw) ? raw : (raw.events || []);
   } catch(e) {
     eventsData = [];
   }
@@ -3443,7 +3486,7 @@ function renderEvents() {
   var upcoming = eventsData
     .filter(function(e) { return e.active && e.date >= today; })
     .sort(function(a, b) { return a.date.localeCompare(b.date); })
-    .slice(0, 3);
+;
 
   if (upcoming.length === 0) {
     container.innerHTML = '<div class="p-empty">No upcoming events.</div>';
