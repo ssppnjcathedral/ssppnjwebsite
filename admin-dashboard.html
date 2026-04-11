@@ -53,11 +53,11 @@ body {
 .login-card {
   background: #fff;
   border: var(--rule-faint);
-  border-radius: 8px;
-  padding: 2.5rem 2.25rem 2rem;
-  width: 340px;
-  max-width: 90vw;
-  box-shadow: 0 4px 24px rgba(28,20,16,.08);
+  border-radius: 10px;
+  padding: 3rem 2.75rem 2.5rem;
+  width: 420px;
+  max-width: 92vw;
+  box-shadow: 0 6px 32px rgba(28,20,16,.10);
   text-align: center;
 }
 .login-logo {
@@ -75,15 +75,14 @@ body {
   margin-bottom: 2rem;
 }
 .login-input {
-  font-family: var(--f-data);
+  font-family: var(--f-body);
   font-size: 1rem;
-  padding: .65rem 1rem;
+  padding: .7rem 1rem;
   border: var(--rule-faint);
   border-radius: 4px;
   background: #fff;
-  width: 300px;
-  max-width: 90vw;
-  margin-bottom: .75rem;
+  width: 100%;
+  margin-bottom: .85rem;
   outline: none;
 }
 .login-input:focus { border-color: var(--maroon); }
@@ -2274,9 +2273,9 @@ body {
 <!-- ── LOGIN SCREEN ── -->
 <div id="login-screen" class="login-screen" style="display:none">
   <div class="login-card">
-    <img src="/images/logo/logo-2026.svg" alt="Saints Peter &amp; Paul" class="login-logo" style="height:52px;width:auto;margin:0 auto 1.25rem;display:block" onerror="this.style.display='none'">
-    <div style="font-family:var(--f-ui);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--maroon);margin-bottom:.35rem">Parish Administration</div>
-    <div style="font-family:var(--f-display);font-style:italic;font-size:1.05rem;color:var(--stone);margin-bottom:1.75rem">Sign in with your parish email</div>
+    <img src="/images/logo/logo-2026.svg" alt="Saints Peter &amp; Paul" class="login-logo" style="height:90px;width:auto;margin:0 auto 1.5rem;display:block" onerror="this.style.display='none'">
+    <div style="font-family:var(--f-ui);font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--maroon);margin-bottom:.5rem">Parish Administration</div>
+    <div style="font-family:var(--f-display);font-style:italic;font-size:1.15rem;color:var(--stone);margin-bottom:2rem">Sign in with your parish email</div>
     <input type="email" id="login-email" class="login-input" placeholder="Enter your email" onkeydown="if(event.key==='Enter')handleLogin()">
     <div id="login-action">
       <button class="login-btn" onclick="handleLogin()">Send Sign-in Link</button>
