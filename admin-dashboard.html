@@ -2049,12 +2049,12 @@ body {
   border-bottom-color: rgba(123,29,42,.18);
 }
 
-/* ── PRAYER: TWO-COLUMN LAYOUT ── */
+/* ── PRAYER: THREE-COLUMN LAYOUT ── */
 .prayer-cols {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 2rem;
-  margin-bottom: 2rem;
+  align-items: start;
 }
 .prayer-col-head {
   font-family: var(--f-ui);
@@ -2134,11 +2134,6 @@ body {
   font-size: .85rem;
   cursor: default;
 }
-.prayer-list-lower {
-  margin-top: 2rem;
-  padding-top: 1.75rem;
-  border-top: 2px solid rgba(123,29,42,.08);
-}
 .pl-intercession-empty {
   font-family: var(--f-body);
   font-style: italic;
@@ -2151,7 +2146,8 @@ body {
   font-size: 1.05rem;
   color: var(--ink);
 }
-@media (max-width: 768px) { .prayer-cols { grid-template-columns: 1fr; } }
+@media (max-width: 900px) { .prayer-cols { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) { .prayer-cols { grid-template-columns: 1fr; } }
 
 /* ── PARISH LIFE: BULLETIN SECTION HEAD ── */
 .bulletin-section-wrap { margin-bottom: 1.5rem; }
@@ -2369,7 +2365,6 @@ body {
 
     <!-- PANE 2: Prayer List -->
     <div class="tab-pane pane-prayer" id="pane-prayer">
-      <!-- Two-column: New Requests | Acknowledged -->
       <div class="prayer-cols">
         <div>
           <span class="prayer-col-head">New Requests</span>
@@ -2379,16 +2374,15 @@ body {
           <span class="prayer-col-head">Acknowledged</span>
           <div id="prayer-archived"></div>
         </div>
-      </div>
-      <!-- Published Intercession List -->
-      <div class="prayer-list-lower">
-        <span class="prayer-col-head" style="margin-bottom:.85rem">Published Intercession List</span>
-        <div id="prayer-list-entries"></div>
-        <div class="pl-add-row">
-          <input id="pl-new-name" placeholder="Add a name..." onkeydown="if(event.key==='Enter')addNameToList()">
-          <button onclick="addNameToList()" data-tip="Add this name to the published intercession list on the website">Add</button>
+        <div>
+          <span class="prayer-col-head">Published Intercession List</span>
+          <div id="prayer-list-entries"></div>
+          <div class="pl-add-row" style="margin-top:.75rem">
+            <input id="pl-new-name" placeholder="Add a name..." onkeydown="if(event.key==='Enter')addNameToList()">
+            <button onclick="addNameToList()" data-tip="Add this name to the published intercession list on the website">Add</button>
+          </div>
+          <div class="pl-note">Changes publish immediately to the site.</div>
         </div>
-        <div class="pl-note">Changes publish immediately to the site.</div>
       </div>
     </div>
 
