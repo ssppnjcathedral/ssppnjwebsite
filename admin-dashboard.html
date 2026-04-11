@@ -3273,7 +3273,10 @@ async function acknowledgeRequest(id) {
 async function loadPrayerList() {
   try {
     var res = await fetch('/prayer-list.json');
-    prayerListData = await res.json();
+    var raw = await res.json();
+    // Normalize: Decap may save names as [{name:"..."}] or plain strings
+    var names = Array.isArray(raw) ? raw : (raw.names || []);
+    prayerListData = { names: names.map(function(e) { return typeof e === 'string' ? e : (e.name || ''); }).filter(Boolean) };
   } catch(e) {
     prayerListData = { names: [] };
   }
@@ -3286,7 +3289,9 @@ function renderPrayerList() {
     container.innerHTML = '<div class="p-empty">No names on the list.</div>';
     return;
   }
-  container.innerHTML = prayerListData.names.map(function(name, i) {
+  container.innerHTML = prayerListData.names.map(function(entry, i) {
+    // Decap may save as objects {name:"..."} or plain strings depending on widget config
+    var name = typeof entry === 'string' ? entry : (entry.name || '');
     return '<div class="pl-entry"><span>' + escHtml(name) + '</span><button data-rm="' + i + '" data-tip="Remove this name from the intercession list">&times;</button></div>';
   }).join('');
   container.querySelectorAll('[data-rm]').forEach(function(btn) {
