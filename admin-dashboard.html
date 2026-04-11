@@ -717,13 +717,14 @@ body {
 }
 .flock-add-btn:hover { background: var(--maroon-deep); }
 .flock-export-btn {
-  font-family: var(--f-body);
-  font-size: .88rem;
-  letter-spacing: .02em;
-  padding: .3rem .9rem;
-  border: 1px solid rgba(123,29,42,.3);
-  border-radius: 20px;
-  background: transparent;
+  font-family: var(--f-ui);
+  font-size: .48rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  padding: .32rem .85rem;
+  border: 1px solid rgba(123,29,42,.22);
+  border-radius: 4px;
+  background: var(--vellum-mid);
   color: var(--stone);
   cursor: pointer;
   transition: all .2s;
@@ -731,7 +732,7 @@ body {
   align-items: center;
   gap: .35rem;
 }
-.flock-export-btn:hover { border-color: var(--maroon); color: var(--maroon); }
+.flock-export-btn:hover { border-color: var(--maroon); color: var(--maroon); background: #fff; }
 
 /* ── FLOCK ROWS ── */
 .p-card-list { display: flex; flex-direction: column; gap: 0; }
