@@ -590,3 +590,173 @@ collections:
                 widget: string
                 required: false
                 hint: "e.g. 2 min read. Estimate at 200 words per minute."
+
+  # ────────────────────────────────────────────
+  # GALLERY & MEDIA
+  # ────────────────────────────────────────────
+  - name: "gallery"
+    label: "Gallery & Media"
+    description: "Manage the gallery page: hero slides, photo/video collections, and individual media items."
+    files:
+      - name: "gallery-data"
+        label: "Gallery Data"
+        file: "gallery-data.json"
+        fields:
+
+          # ── HERO SLIDES ──
+          - name: hero_slides
+            label: Hero Slides
+            label_singular: Slide
+            widget: list
+            summary: "{{fields.eyebrow}} — {{fields.headline}}"
+            hint: "These rotate in the full-screen hero at the top of the gallery page. 3–5 slides recommended."
+            fields:
+              - name: image
+                label: Background Image
+                widget: image
+                media_folder: "/images/gallery"
+                public_folder: "/images/gallery"
+                hint: "Wide landscape photo, at least 1600px wide."
+
+              - name: badge
+                label: Badge Label
+                widget: string
+                hint: "Small label above the headline, e.g. 'Featured Collection' or 'Video'"
+
+              - name: eyebrow
+                label: Eyebrow
+                widget: string
+                hint: "Category or season text, e.g. 'Holy Week 2026'"
+
+              - name: headline
+                label: Headline
+                widget: string
+                hint: "Main display headline. Wrap a word in <em>...</em> for italics."
+
+              - name: description
+                label: Description
+                widget: text
+                hint: "1–2 sentence description shown below the headline."
+
+              - name: date
+                label: Date Label
+                widget: string
+                required: false
+                hint: "Optional date text shown in the hero, e.g. 'April 2026'"
+
+              - name: collection
+                label: Linked Collection
+                widget: string
+                required: false
+                hint: "Slug of the collection this slide links to (e.g. 'holy-week-2026'). Leave blank for no link."
+
+          # ── COLLECTIONS ──
+          - name: collections
+            label: Collections
+            label_singular: Collection
+            widget: list
+            summary: "{{fields.title}}"
+            hint: "Curated albums that appear as large cards. Each groups related photos and videos."
+            fields:
+              - name: slug
+                label: Slug
+                widget: string
+                hint: "Unique ID, no spaces (e.g. 'holy-week-2026'). Used to link items to this collection."
+
+              - name: title
+                label: Title
+                widget: string
+
+              - name: cover
+                label: Cover Image
+                widget: image
+                media_folder: "/images/gallery"
+                public_folder: "/images/gallery"
+                hint: "Cover photo for the collection card."
+
+              - name: description
+                label: Description
+                widget: string
+                hint: "Short description shown on the card."
+
+              - name: featured
+                label: Featured (spans 2 columns)
+                widget: boolean
+                default: false
+
+              - name: is_new
+                label: Show 'New' badge
+                widget: boolean
+                default: false
+
+              - name: has_video
+                label: Contains video
+                widget: boolean
+                default: false
+
+          # ── MEDIA ITEMS ──
+          - name: items
+            label: Media Items
+            label_singular: Item
+            widget: list
+            summary: "{{fields.title}} — {{fields.date}} ({{fields.type}})"
+            hint: "Individual photos and videos. These appear in the chronological feed and can belong to collections."
+            fields:
+              - name: type
+                label: Type
+                widget: select
+                options: ["photo", "video"]
+
+              - name: date
+                label: Date
+                widget: datetime
+                format: "YYYY-MM-DD"
+                date_format: "YYYY-MM-DD"
+                time_format: false
+                hint: "Date the photo was taken or the video was recorded."
+
+              - name: title
+                label: Title
+                widget: string
+
+              - name: category
+                label: Category
+                widget: select
+                options:
+                  - { label: "Worship", value: "worship" }
+                  - { label: "Community", value: "community" }
+                  - { label: "Cathedral", value: "cathedral" }
+                  - { label: "Events", value: "events" }
+
+              - name: season
+                label: Liturgical Season
+                widget: select
+                options:
+                  - { label: "Great Lent", value: "lent" }
+                  - { label: "Pascha", value: "pascha" }
+                  - { label: "Pentecost", value: "pentecost" }
+                  - { label: "Nativity Fast", value: "nativity" }
+                  - { label: "Theophany", value: "theophany" }
+
+              - name: collections
+                label: Collections
+                widget: list
+                field:
+                  name: slug
+                  label: Collection Slug
+                  widget: string
+                required: false
+                hint: "Slugs of collections this item belongs to (e.g. 'holy-week-2026'). Leave empty if none."
+
+              - name: image
+                label: Image
+                widget: image
+                media_folder: "/images/gallery"
+                public_folder: "/images/gallery"
+                hint: "The photo itself, or a thumbnail for videos."
+
+              - name: youtube_id
+                label: YouTube Video ID
+                widget: string
+                required: false
+                hint: "For videos only. The ID from the YouTube URL (e.g. 'dQw4w9WgXcQ' from youtube.com/watch?v=dQw4w9WgXcQ)"

@@ -4,70 +4,79 @@
 <meta charset="UTF-8"/>
 <meta name="theme-color" content="#7B1D2A"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Gallery · Saints Peter &amp; Paul Orthodox Cathedral</title>
-<meta name="description" content="Photos of worship, parish life, and the beauty of Saints Peter &amp; Paul Orthodox Cathedral at 109 Grand Street, Jersey City, NJ."/>
+<title>Gallery &amp; Media · Saints Peter &amp; Paul Orthodox Cathedral</title>
+<meta name="description" content="Photos and video from worship, parish life, and the beauty of Saints Peter &amp; Paul Orthodox Cathedral at 109 Grand Street, Jersey City, NJ."/>
 <link rel="canonical" href="https://www.peterandpaulcathedral.com/gallery"/>
 <meta property="og:type" content="website"/>
 <meta property="og:site_name" content="Saints Peter &amp; Paul Orthodox Cathedral"/>
-<meta property="og:title" content="Gallery · Saints Peter &amp; Paul Orthodox Cathedral"/>
-<meta property="og:description" content="Photos of worship, parish life, and the beauty of Saints Peter &amp; Paul Orthodox Cathedral at 109 Grand Street, Jersey City, NJ."/>
+<meta property="og:title" content="Gallery &amp; Media · Saints Peter &amp; Paul Orthodox Cathedral"/>
+<meta property="og:description" content="Photos and video from worship, parish life, and the beauty of Saints Peter &amp; Paul Orthodox Cathedral at 109 Grand Street, Jersey City, NJ."/>
 <meta property="og:url" content="https://www.peterandpaulcathedral.com/gallery"/>
 <meta property="og:image" content="https://www.peterandpaulcathedral.com/images/heroes/hero-01.jpg"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet"/>
 <style>
+/* ── DESIGN TOKENS ── */
 :root{--vellum:#F6F1E8;--vellum-mid:#EDE7DC;--vellum-dark:#E4DDD0;--text:#1E1510;--ink:#2C1F16;--maroon:#7B1D2A;--maroon-deep:#5C1520;--gold:#B88328;--gold-lt:#E8C97A;--stone:#7A6648;--stone-lt:#A89070;--apse:#3B0F18;--verdigris:#3D6B5E;--f-display:'Cormorant Garamond',Georgia,serif;--f-body:'EB Garamond',Georgia,serif;--f-ui:'Cinzel',Georgia,serif;--rule:1px solid var(--maroon);--rule-faint:1px solid rgba(123,29,42,0.14);--rule-hair:1px solid rgba(123,29,42,0.07)}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{background:var(--vellum);color:var(--text);font-family:var(--f-body);font-size:21px;line-height:1.75;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
 
-/* NAV */
-.nav{position:fixed;top:0;left:0;right:0;z-index:300;background:rgba(246,241,232,.97);backdrop-filter:blur(10px);border-bottom:var(--rule-faint)}
+/* ── NAV (transparent → solid on scroll) ── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;background:transparent;backdrop-filter:none;border-bottom:1px solid transparent;transition:background .3s ease,border-color .3s ease,backdrop-filter .3s ease}
+.nav.nav-scrolled,.nav:has(.mega-visible){background:rgba(246,241,232,.97);backdrop-filter:blur(10px);border-bottom:var(--rule-faint)}
 .nav-inner{max-width:1380px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px;padding:0 3rem}
-.nav-logo-name{font-family:var(--f-display);font-weight:500;font-size:1.25rem;color:var(--text);display:block}
-.nav-logo-sub{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);display:block}
-.nav-links{display:flex;align-items:center;list-style:none}
-.nav-links>li{position:relative}
-.nav-links>li>a{font-family:var(--f-ui);font-size:.78rem;letter-spacing:.10em;text-transform:uppercase;color:var(--text);padding:1.1rem .85rem;display:block;transition:color .18s}
-.nav-links>li>a.active,.nav-links>li:hover>a{color:var(--maroon)}
-.nav-drop{position:absolute;top:100%;left:0;background:var(--vellum);border-top:2px solid var(--maroon);border-bottom:var(--rule-faint);border-left:var(--rule-faint);border-right:var(--rule-faint);min-width:200px;padding:.5rem 0;opacity:0;pointer-events:none;transform:translateY(-4px);transition:all .16s;box-shadow:0 8px 28px rgba(28,20,16,.10)}
-.nav-links>li:hover .nav-drop{opacity:1;pointer-events:all;transform:none}
-.nav-drop a{display:block;font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text);padding:.5rem 1.4rem;transition:color .14s}
-.nav-drop a:hover{color:var(--maroon)}.nav-links .nav-active{color:var(--maroon)}.nav-links .nav-active-parent>a{color:var(--maroon);border-bottom:2px solid var(--gold)}.nav-drop .nav-active{color:var(--maroon);font-weight:600}
-.nav-give{font-family:var(--f-ui);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--vellum);background:var(--maroon);padding:.5rem 1.1rem;transition:background .2s}
+.nav-logo-img{height:38px;width:auto;display:block;filter:brightness(0) invert(1);opacity:.9;transition:filter .3s,opacity .3s}
+.nav-scrolled .nav-logo-img,.nav:has(.mega-visible) .nav-logo-img{filter:none;opacity:1;pointer-events:auto}
+.nav-mega-group{flex:1;justify-content:center;height:100%;display:flex;align-items:center}
+.nav-links{display:flex;align-items:center;list-style:none;height:100%}
+.nav-links>li{height:100%;display:flex;align-items:center}
+.nav-links>li>a{font-family:var(--f-ui);font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,232,.88);padding:0 .85rem;height:100%;display:flex;align-items:center;transition:color .18s;border-bottom:2px solid transparent;white-space:nowrap}
+.nav-scrolled .nav-links>li>a,.nav:has(.mega-visible) .nav-links>li>a{color:var(--ink)}
+.nav-links>li>a:hover{color:var(--maroon);border-bottom-color:var(--gold)}
+.nav-give{font-family:var(--f-ui);font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;color:var(--vellum);background:var(--maroon);padding:.5rem 1.1rem;transition:background .2s;white-space:nowrap;margin-left:1rem}
 .nav-give:hover{background:var(--maroon-deep)}
+.nav-hamburger{display:none;flex-direction:column;justify-content:space-between;width:28px;height:20px;cursor:pointer;padding:0;background:none;border:none;z-index:400}
+.nav-hamburger span{display:block;width:100%;height:2px;background:var(--maroon);transition:all .28s ease;transform-origin:center}
+.nav:not(.nav-scrolled) .nav-hamburger span{background:rgba(246,241,232,.9)}
 
-/* HERO */
-.hero{padding-top:60px;position:relative;overflow:hidden;min-height:500px;display:flex;flex-direction:column;justify-content:flex-end}
-.hero-bg{position:absolute;inset:0;transition:background 1s ease}
-.hero-scrim{position:absolute;inset:0;transition:background .8s ease}
-.hero-frame{position:absolute;inset:2.5rem;border:1px solid rgba(184,131,40,.18);pointer-events:none;z-index:2}
-.hfc{position:absolute;width:14px;height:14px;border-style:solid;border-color:rgba(184,131,40,.45)}
-.hfc.tl{top:-1px;left:-1px;border-width:2px 0 0 2px}
-.hfc.tr{top:-1px;right:-1px;border-width:2px 2px 0 0}
-.hfc.bl{bottom:-1px;left:-1px;border-width:0 0 2px 2px}
-.hfc.br{bottom:-1px;right:-1px;border-width:0 2px 2px 0}
-.hero-dots{position:absolute;right:3rem;top:50%;transform:translateY(-50%);z-index:4;display:flex;flex-direction:column;gap:8px}
-.hero-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.28);cursor:pointer;transition:all .22s}
-.hero-dot.on{background:#fff;border-color:#fff;transform:scale(1.4)}
-.hero-content{position:relative;z-index:3;max-width:1380px;margin:0 auto;width:100%;padding:5rem 6rem 4rem;transition:opacity .38s ease}
-.hero-content.fading{opacity:0}
-.hero-badge{display:inline-flex;align-items:center;gap:.55rem;margin-bottom:.85rem}
-.hb-pip{width:7px;height:7px;border-radius:50%;flex-shrink:0;transition:background .6s}
-.hb-label{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;transition:color .6s}
-.hero-eyebrow{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.20em;text-transform:uppercase;margin-bottom:.55rem;transition:color .5s}
-.hero-hed{font-family:var(--f-display);font-weight:300;font-size:clamp(2.5rem,5vw,5rem);line-height:.90;margin-bottom:.7rem;transition:color .5s}
-.hero-hed em{font-style:italic}
-.hero-dek{font-family:var(--f-body);font-size:1rem;line-height:1.72;max-width:48ch;margin-bottom:1.75rem;transition:color .5s}
-.hero-foot{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap}
-.hero-date{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;transition:color .5s}
-.hero-sep{width:1px;height:14px;opacity:.3}
-.hero-btn{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;padding:.5rem 1.2rem;border:1px solid currentColor;cursor:pointer;background:transparent;transition:opacity .2s}
-.hero-btn:hover{opacity:.6}
+/* ── GALLERY HERO (interactive rotator) ── */
+.gh{padding-top:60px;position:relative;overflow:hidden;height:100vh;min-height:600px;display:flex;flex-direction:column;justify-content:flex-end;background:var(--apse)}
+.gh-bg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;z-index:1;will-change:opacity,transform}
+.gh-bg.active{opacity:1}
+@keyframes gh-kenburns{from{transform:scale(1)}to{transform:scale(1.08)}}
+.gh-overlay{position:absolute;inset:0;z-index:4;pointer-events:none;background:linear-gradient(to right,rgba(59,15,24,.92) 0%,rgba(59,15,24,.75) 40%,rgba(59,15,24,.30) 70%,rgba(59,15,24,.05) 100%)}
+/* ── HERO TABS (bottom bar) ── */
+.gh-tabs{position:absolute;bottom:0;left:0;right:0;z-index:8;display:flex;align-items:stretch;background:rgba(21,8,4,.45);backdrop-filter:blur(6px);border-top:1px solid rgba(184,131,40,.12)}
+.gh-tab{flex:1;padding:1rem 1.25rem;cursor:pointer;transition:all .25s;position:relative;border-right:1px solid rgba(255,255,255,.06)}
+.gh-tab:last-child{border-right:none}
+.gh-tab:hover{background:rgba(184,131,40,.08)}
+.gh-tab.on{background:rgba(184,131,40,.12)}
+.gh-tab.on::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--gold)}
+.gh-tab-num{font-family:var(--f-ui);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(232,201,122,.5);display:block;margin-bottom:.2rem}
+.gh-tab.on .gh-tab-num{color:rgba(232,201,122,.85)}
+.gh-tab-name{font-family:var(--f-ui);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,241,232,.5);transition:color .25s}
+.gh-tab.on .gh-tab-name{color:rgba(246,241,232,.92)}
+.gh-content{position:relative;z-index:7;max-width:1380px;margin:0 auto;width:100%;padding:5rem 6rem 6.5rem}
+.gh-content.fading{opacity:0;transition:opacity .25s}
+.gh-content:not(.fading){transition:opacity .35s}
+.gh-badge{display:inline-flex;align-items:center;gap:.55rem;margin-bottom:.75rem}
+.gh-pip{width:7px;height:7px;border-radius:50%;background:var(--gold);flex-shrink:0}
+.gh-badge-label{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(232,201,122,.7)}
+.gh-eyebrow{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.20em;text-transform:uppercase;color:rgba(246,241,232,.6);margin-bottom:.5rem}
+.gh-hed{font-family:var(--f-display);font-weight:300;font-size:clamp(2.2rem,4.5vw,4.2rem);line-height:.92;color:#fff;margin-bottom:.65rem}
+.gh-hed em{font-style:italic}
+.gh-dek{font-family:var(--f-body);font-size:1rem;line-height:1.65;color:rgba(246,241,232,.55);max-width:42ch;margin-bottom:1.5rem}
+.gh-foot{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap}
+.gh-date{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(246,241,232,.5)}
+.gh-sep{width:1px;height:14px;background:rgba(246,241,232,.25)}
+.gh-btn{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;padding:.5rem 1.2rem;border:1px solid rgba(246,241,232,.4);color:rgba(246,241,232,.85);cursor:pointer;background:transparent;transition:all .2s;display:inline-block}
+.gh-btn:hover{background:rgba(246,241,232,.1);border-color:rgba(246,241,232,.6)}
+/* progress bar now integrated into tab underline */
 
-/* SEASON STRIP */
+/* ── SEASON STRIP ── */
 .season-strip{background:var(--vellum-dark);border-bottom:var(--rule-faint);padding:.6rem 4.5rem;display:flex;align-items:center;gap:0;overflow-x:auto}
 .ss-label{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--stone-lt);margin-right:1.25rem;flex-shrink:0}
 .ss-btn{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);padding:.45rem .95rem;border:none;border-bottom:2px solid transparent;background:transparent;cursor:pointer;transition:all .18s;white-space:nowrap;flex-shrink:0}
@@ -77,45 +86,58 @@ a{color:inherit;text-decoration:none}
 .ss-right{margin-left:auto;font-family:var(--f-ui);font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;color:var(--stone-lt);flex-shrink:0;white-space:nowrap}
 .ss-right strong{color:var(--maroon)}
 
-/* FEATURED */
-.featured-wrap{max-width:1380px;margin:0 auto;padding:3rem 4.5rem 0}
+/* ── FILTER ROWS ── */
+.filter-row{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap}
+.filter-row+.filter-row{margin-top:.75rem;padding-top:.75rem;border-top:var(--rule-hair)}
+.filter-row-label{font-family:var(--f-ui);font-size:.62rem;letter-spacing:.20em;text-transform:uppercase;color:var(--stone-lt);margin-right:.35rem;flex-shrink:0;min-width:52px}
+.active-filter-banner{display:none;align-items:center;gap:.75rem;padding:.85rem 1.25rem;margin-bottom:1.25rem;background:rgba(184,131,40,.06);border:1px solid rgba(184,131,40,.18)}
+.active-filter-banner.visible{display:flex}
+.afb-text{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);flex:1}
+.afb-text strong{color:var(--gold)}
+.afb-clear{font-family:var(--f-ui);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);padding:.3rem .75rem;border:1px solid rgba(123,29,42,.18);background:transparent;cursor:pointer;transition:all .18s;flex-shrink:0}
+.afb-clear:hover{border-color:var(--maroon);color:var(--maroon)}
+
+/* ── COLLECTIONS SECTION ── */
+.collections-wrap{max-width:1380px;margin:0 auto;padding:3rem 4.5rem 0}
 .section-label{display:flex;align-items:center;gap:1rem;margin-bottom:1.75rem}
 .sl-rule{flex:1;height:1px;background:rgba(123,29,42,.12)}
 .sl-txt{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--stone-lt)}
-.sl-g{color:var(--gold);font-size:.72rem;letter-spacing:.3em}
-.feat-row{display:grid;gap:12px;margin-bottom:12px}
-.fr-main{grid-template-columns:2fr 1fr}
-.fr-trio{grid-template-columns:1fr 1fr 1fr}
-.fr-asym{grid-template-columns:1fr 2fr}
-.fr-quad{grid-template-columns:repeat(4,1fr)}
-.fc-stack{display:flex;flex-direction:column;gap:12px}
-.fc{position:relative;overflow:hidden;cursor:pointer;background:var(--apse)}
-.fc.tall{min-height:300px}
-.fc.med{min-height:190px}
-.fc.short{min-height:130px}
-.fc-bg{position:absolute;inset:0;transition:transform .5s ease}
-.fc:hover .fc-bg{transform:scale(1.04)}
-.fc-scrim{position:absolute;inset:0;background:linear-gradient(to top,rgba(21,8,4,.88) 0%,rgba(21,8,4,.12) 55%,transparent 100%)}
-.fc-new{position:absolute;top:10px;right:10px;font-family:var(--f-ui);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;padding:3px 8px;background:var(--gold);color:#fff;z-index:2}
-.fc-cap{position:absolute;bottom:0;left:0;right:0;padding:1.25rem 1.25rem 1rem;transform:translateY(4px);opacity:.92;transition:all .28s;z-index:2}
-.fc:hover .fc-cap{transform:none;opacity:1}
-.fc-cat{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-lt);display:block;margin-bottom:4px}
-.fc-title{font-family:var(--f-display);font-weight:400;font-size:1.1rem;color:#fff;line-height:1.15}
-.fc-title em{font-style:italic}
-.fc-date{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.35);display:block;margin-top:4px}
 
-/* ARCHIVE DIVIDER */
-.archive-divider{max-width:1380px;margin:3.5rem auto 0;padding:0 4.5rem}
-.adiv{display:flex;align-items:center;gap:1.5rem}
-.adiv-rule{flex:1;height:1px;background:rgba(123,29,42,.12)}
-.adiv-center{text-align:center;flex-shrink:0}
-.adiv-title{font-family:var(--f-display);font-weight:300;font-size:1.9rem;color:var(--text);line-height:1;display:block}
-.adiv-title em{font-style:italic;color:var(--maroon)}
-.adiv-sub{font-family:var(--f-body);font-style:italic;font-size:.88rem;color:var(--stone-lt);display:block;margin-top:.2rem}
-.adiv-glyph{color:var(--gold);font-size:.75rem;letter-spacing:.4em;display:block;margin-top:.6rem}
+.coll-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:2rem}
 
-/* ARCHIVE */
-.archive-wrap{max-width:1380px;margin:0 auto;padding:2.5rem 4.5rem 3rem}
+.coll-card{position:relative;overflow:hidden;cursor:pointer;background:var(--apse);min-height:260px}
+.coll-card.featured{grid-column:span 2;min-height:320px}
+.coll-bg{position:absolute;inset:0;transition:transform .6s ease}
+.coll-card:hover .coll-bg{transform:scale(1.04)}
+.coll-scrim{position:absolute;inset:0;background:linear-gradient(to top,rgba(21,8,4,.92) 0%,rgba(21,8,4,.35) 45%,rgba(21,8,4,.10) 100%)}
+.coll-badge{position:absolute;top:12px;left:12px;z-index:3}
+.coll-badge-inner{font-family:var(--f-ui);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;padding:3px 10px;display:inline-block}
+.coll-badge-new{background:var(--gold);color:#fff}
+.coll-badge-video{background:rgba(21,8,4,.7);color:rgba(246,241,232,.9);border:1px solid rgba(246,241,232,.2)}
+.coll-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:60px;height:60px;border-radius:50%;background:rgba(184,131,40,.85);display:flex;align-items:center;justify-content:center;z-index:3;opacity:0;transition:opacity .3s,transform .3s}
+.coll-card:hover .coll-play{opacity:1;transform:translate(-50%,-50%) scale(1.05)}
+.coll-play-tri{width:0;height:0;border-left:18px solid #fff;border-top:11px solid transparent;border-bottom:11px solid transparent;margin-left:4px}
+.coll-cap{position:absolute;bottom:0;left:0;right:0;padding:1.5rem 1.5rem 1.25rem;z-index:2;transform:translateY(4px);opacity:.92;transition:all .28s}
+.coll-card:hover .coll-cap{transform:none;opacity:1}
+.coll-kicker{font-family:var(--f-ui);font-size:.62rem;letter-spacing:.20em;text-transform:uppercase;color:var(--gold-lt);display:block;margin-bottom:.3rem}
+.coll-title{font-family:var(--f-display);font-weight:400;font-size:1.35rem;color:#fff;line-height:1.15;margin-bottom:.3rem}
+.coll-title em{font-style:italic}
+.coll-card.featured .coll-title{font-size:1.65rem}
+.coll-meta{font-family:var(--f-ui);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.4);display:flex;align-items:center;gap:.75rem}
+.coll-count{display:inline-flex;align-items:center;gap:.3rem}
+
+/* ── FEED SECTION ── */
+.feed-divider{max-width:1380px;margin:3rem auto 0;padding:0 4.5rem}
+.fdiv{display:flex;align-items:center;gap:1.5rem}
+.fdiv-rule{flex:1;height:1px;background:rgba(123,29,42,.12)}
+.fdiv-center{text-align:center;flex-shrink:0}
+.fdiv-title{font-family:var(--f-display);font-weight:300;font-size:1.9rem;color:var(--text);line-height:1;display:block}
+.fdiv-title em{font-style:italic;color:var(--maroon)}
+.fdiv-sub{font-family:var(--f-body);font-style:italic;font-size:.88rem;color:var(--stone-lt);display:block;margin-top:.2rem}
+
+.feed-wrap{max-width:1380px;margin:0 auto;padding:2rem 4.5rem 4rem}
+
+/* Filter bar */
 .filter-bar{display:flex;align-items:center;gap:.6rem;margin-bottom:1.75rem;padding-bottom:1.25rem;border-bottom:var(--rule-faint);flex-wrap:wrap}
 .chip{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;padding:.38rem 1rem;border:1px solid rgba(123,29,42,.18);color:var(--stone);cursor:pointer;transition:all .18s;background:transparent}
 .chip:hover{border-color:var(--maroon);color:var(--maroon)}
@@ -124,42 +146,49 @@ a{color:inherit;text-decoration:none}
 .filter-right{margin-left:auto;display:flex;align-items:center;gap:.75rem}
 .count-lbl{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone-lt)}
 .count-lbl strong{color:var(--maroon)}
-.view-tog{display:flex;border:1px solid rgba(123,29,42,.18);overflow:hidden}
-.vt{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;padding:.38rem .85rem;cursor:pointer;color:var(--stone);background:transparent;transition:all .15s;border:none}
-.vt.on{background:var(--maroon);color:var(--vellum)}
 
-/* MASONRY */
-.masonry-grid{columns:3;gap:14px}
-.mi{break-inside:avoid;margin-bottom:14px;position:relative;overflow:hidden;cursor:pointer;background:var(--apse)}
-.mi.hidden{display:none}
-.mi-inner{position:absolute;inset:0;transition:transform .45s ease}
-.mi:hover .mi-inner{transform:scale(1.04)}
-.mi-h{width:100%;display:block;visibility:hidden}
-.mi-scrim{position:absolute;inset:0;background:linear-gradient(to top,rgba(21,8,4,.88) 0%,rgba(21,8,4,.08) 55%,transparent 100%)}
-.mi-cap{position:absolute;bottom:0;left:0;right:0;padding:.95rem 1rem .85rem;transform:translateY(5px);opacity:0;transition:all .28s}
-.mi:hover .mi-cap{transform:none;opacity:1}
-.mi-cat{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.17em;text-transform:uppercase;color:var(--gold-lt);display:block;margin-bottom:3px}
-.mi-title{font-family:var(--f-display);font-size:.95rem;color:#fff;line-height:1.2}
-.mi-title em{font-style:italic}
-.mi-expand{position:absolute;top:8px;right:8px;width:28px;height:28px;background:rgba(21,8,4,.58);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .22s;z-index:2}
-.mi:hover .mi-expand{opacity:1}
-.mi-expand span{color:rgba(255,255,255,.80);font-size:.72rem;font-family:var(--f-ui);letter-spacing:.05em}
+/* Month group */
+.month-group{margin-bottom:2.5rem}
+.month-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.25rem;position:sticky;top:60px;z-index:10;background:var(--vellum);padding:.5rem 0}
+.mh-line{flex:1;height:1px;background:rgba(123,29,42,.12)}
+.mh-label{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--maroon);flex-shrink:0}
+.mh-count{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone-lt);flex-shrink:0}
 
-/* LIST VIEW */
-.list-view{display:none;flex-direction:column}
-.lr{display:grid;grid-template-columns:100px 1fr auto;gap:1.25rem;align-items:center;padding:1rem 0;border-bottom:var(--rule-hair);cursor:pointer;transition:background .15s}
-.lr:hover{background:var(--vellum-mid);padding-left:.75rem;padding-right:.75rem;margin:0 -.75rem}
-.lr.hidden{display:none}
-.lr-thumb{width:100px;height:66px;position:relative;overflow:hidden;flex-shrink:0}
-.lr-bg{position:absolute;inset:0}
-.lr-title{font-family:var(--f-display);font-size:1.05rem;color:var(--text);margin-bottom:2px;line-height:1.25}
-.lr-title em{font-style:italic;color:var(--maroon)}
-.lr-sub{font-family:var(--f-body);font-style:italic;font-size:.84rem;color:var(--stone-lt)}
-.lr-cat{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone-lt);background:var(--vellum-dark);padding:3px 8px;white-space:nowrap;align-self:center}
+/* Feed grid */
+.feed-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
 
-/* SUBMIT CTA */
+.feed-item{position:relative;overflow:hidden;cursor:pointer;background:var(--apse)}
+.feed-item.span-2{grid-column:span 2;grid-row:span 2}
+.fi-inner{position:absolute;inset:0;transition:transform .45s ease}
+.feed-item:hover .fi-inner{transform:scale(1.04)}
+.fi-sizer{width:100%;padding-bottom:100%;display:block}
+.feed-item.span-2 .fi-sizer{padding-bottom:100%}
+.feed-item.landscape .fi-sizer{padding-bottom:66%}
+.fi-scrim{position:absolute;inset:0;background:linear-gradient(to top,rgba(21,8,4,.85) 0%,rgba(21,8,4,.08) 50%,transparent 100%)}
+.fi-cap{position:absolute;bottom:0;left:0;right:0;padding:.85rem 1rem .75rem;transform:translateY(5px);opacity:0;transition:all .28s;z-index:2}
+.feed-item:hover .fi-cap{transform:none;opacity:1}
+.fi-cat{font-family:var(--f-ui);font-size:.62rem;letter-spacing:.17em;text-transform:uppercase;color:var(--gold-lt);display:block;margin-bottom:3px}
+.fi-title{font-family:var(--f-display);font-size:.92rem;color:#fff;line-height:1.2}
+.fi-title em{font-style:italic}
+.feed-item.span-2 .fi-title{font-size:1.15rem}
+
+/* Video overlay on feed items */
+.fi-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:48px;height:48px;border-radius:50%;background:rgba(184,131,40,.85);display:flex;align-items:center;justify-content:center;z-index:3;opacity:.85;transition:opacity .25s,transform .25s}
+.feed-item:hover .fi-play{opacity:1;transform:translate(-50%,-50%) scale(1.08)}
+.fi-play-tri{width:0;height:0;border-left:14px solid #fff;border-top:8px solid transparent;border-bottom:8px solid transparent;margin-left:3px}
+.fi-video-badge{position:absolute;top:8px;right:8px;font-family:var(--f-ui);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;padding:2px 8px;background:rgba(21,8,4,.7);color:rgba(246,241,232,.85);border:1px solid rgba(246,241,232,.2);z-index:3}
+
+/* ── YOUTUBE CTA ── */
+.yt-cta{max-width:1380px;margin:0 auto 3rem;padding:0 4.5rem}
+.yt-inner{background:var(--apse);padding:2rem 2.5rem;display:flex;align-items:center;justify-content:space-between;gap:2rem}
+.yt-text{font-family:var(--f-display);font-style:italic;font-size:1.1rem;color:rgba(246,241,232,.75);line-height:1.4}
+.yt-text strong{font-style:normal;font-weight:500;color:#fff}
+.yt-btn{display:inline-block;font-family:var(--f-ui);font-size:.72rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;padding:.75rem 1.8rem;background:var(--gold);color:#fff;border:1px solid var(--gold);transition:background .2s;white-space:nowrap;flex-shrink:0}
+.yt-btn:hover{background:#9a6d20}
+
+/* ── SUBMIT CTA ── */
 .submit-cta{max-width:1380px;margin:0 auto 4rem;padding:0 4.5rem}
-.submit-inner{background:var(--vellum-mid);border-left:3px solid var(--gold);border:1px solid rgba(123,29,42,.10);border-left:3px solid var(--gold);padding:2rem 2.5rem;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center}
+.submit-inner{background:var(--vellum-mid);border:1px solid rgba(123,29,42,.10);border-left:3px solid var(--gold);padding:2rem 2.5rem;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center}
 .submit-over{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:.4rem}
 .submit-title{font-family:var(--f-display);font-weight:300;font-size:1.7rem;color:var(--text);line-height:1.1;margin-bottom:.35rem}
 .submit-title em{font-style:italic;color:var(--maroon)}
@@ -167,36 +196,38 @@ a{color:inherit;text-decoration:none}
 .submit-right{display:flex;flex-direction:column;align-items:flex-end;gap:.6rem}
 .submit-btn{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;padding:.75rem 1.75rem;background:var(--maroon);color:var(--vellum);cursor:pointer;border:1px solid var(--maroon);transition:background .2s;white-space:nowrap;display:inline-block}
 .submit-btn:hover{background:var(--maroon-deep)}
-.submit-note{font-family:var(--f-body);font-style:italic;font-size:.78rem;color:var(--stone-lt);text-align:right}
 
-/* LIGHTBOX */
+/* ── LIGHTBOX ── */
 .lightbox{position:fixed;inset:0;z-index:500;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .28s}
 .lightbox.open{opacity:1;pointer-events:all}
 .lb-backdrop{position:absolute;inset:0;background:rgba(21,8,4,.92);cursor:pointer}
-.lb-body{position:relative;z-index:1;width:min(90vw,900px + 120px);max-width:1040px;padding:0 56px}
+.lb-body{position:relative;z-index:1;width:min(90vw,1040px);max-width:1040px;padding:0 56px}
 .lb-close{position:absolute;top:-2.75rem;right:0;font-family:var(--f-ui);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.70);background:none;border:none;cursor:pointer;padding:.4rem;transition:color .2s}
 .lb-close:hover{color:#fff}
-.lb-nav{position:absolute;top:31%;transform:translateY(-50%);width:44px;height:44px;background:rgba(21,8,4,.75);border:1px solid rgba(255,255,255,.25);color:#fff;cursor:pointer;font-size:1.2rem;display:flex;align-items:center;justify-content:center;transition:all .2s;z-index:10}
+.lb-nav{position:absolute;top:40%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;background:rgba(21,8,4,.5);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.8);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .25s;z-index:10}
+.lb-nav:hover{background:rgba(21,8,4,.75);border-color:rgba(184,131,40,.4);color:#fff}
 .lb-nav:hover{background:rgba(21,8,4,.90)}
 .lb-prev{left:6px}
 .lb-next{right:6px}
 .lb-img{width:100%;padding-bottom:62%;position:relative;overflow:hidden}
 .lb-img-inner{position:absolute;inset:0}
+.lb-video{width:100%;padding-bottom:56.25%;position:relative;overflow:hidden;display:none}
+.lb-video iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
 .lb-cap{margin-top:1.25rem;text-align:center}
 .lb-cap-title{font-family:var(--f-display);font-size:1.3rem;color:#fff;display:block;margin-bottom:.2rem}
 .lb-cap-sub{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(232,201,122,.65)}
 .lb-counter{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.60);text-align:center;margin-top:.65rem}
 
-/* FOOTER */
+/* ── FOOTER ── */
 footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:4.5rem 4.5rem 2.5rem}
 .footer-logo-img{height:44px;width:auto;display:block;margin-bottom:1.75rem;filter:brightness(0) invert(1);opacity:.85}
 .footer-nav-sub{font-family:var(--f-ui);font-size:.72rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(184,131,40,.55);display:block;margin:1.25rem 0 .5rem;padding-bottom:.35rem;border-bottom:1px solid rgba(246,241,232,.04)}
 .footer-my-journey{display:inline-block;margin-top:.5rem;padding:.42rem 1rem;border:1px solid rgba(246,241,232,.55);color:rgba(246,241,232,.9);font-family:var(--f-ui);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;transition:border-color .2s,color .2s}
 .footer-my-journey:hover{border-color:rgba(246,241,232,1);color:rgba(246,241,232,1)}
 .footer-cols{max-width:1380px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:5rem;margin-bottom:3.5rem}
-.footer-col-head{font-family:var(--f-ui);font-size:.72rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(246,241,232,.82);display:block;margin-bottom:1.2rem;padding-bottom:.5rem;border-bottom:1px solid rgba(246,241,232,.06)}
+.footer-col-head{font-family:var(--f-ui);font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(246,241,232,.82);display:block;margin-bottom:1.2rem;padding-bottom:.5rem;border-bottom:1px solid rgba(246,241,232,.06)}
 .footer-name{font-family:var(--f-display);font-weight:400;font-size:1.2rem;color:rgba(246,241,232,.88);line-height:1.3;margin-bottom:.75rem}
-.footer-meta{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.30);line-height:2.4}
+.footer-meta{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.72);line-height:2.3}
 .footer-meta a{color:rgba(184,131,40,.85);transition:color .2s}
 .footer-meta a:hover{color:var(--gold)}
 .footer-socials{display:flex;gap:1.5rem;margin-top:1.5rem}
@@ -205,74 +236,142 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 .footer-nav{list-style:none;display:flex;flex-direction:column}
 .footer-nav li{padding:.38rem 0;border-bottom:1px solid rgba(246,241,232,.10)}
 .footer-nav li:last-child{border-bottom:none}
-.footer-nav a{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.85);transition:color .2s}
+.footer-nav a{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,232,.85);transition:color .2s}
 .footer-nav a:hover{color:rgba(246,241,232,.95)}
-.footer-blurb{font-family:var(--f-display);font-style:italic;font-size:.92rem;color:rgba(246,241,232,.85);line-height:1.65;margin-bottom:1.25rem}
-.footer-submit-btn{display:inline-block;font-family:var(--f-ui);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;padding:.65rem 1.4rem;background:transparent;border:1px solid rgba(184,131,40,.35);color:rgba(184,131,40,.65);cursor:pointer;transition:all .2s;margin-bottom:1.5rem}
-.footer-submit-btn:hover{border-color:var(--gold);color:var(--gold)}
 .footer-bottom{max-width:1380px;margin:2.5rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(246,241,232,.12);display:flex;justify-content:space-between;align-items:center}
 .footer-copy,.footer-addr{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.60)}
 
-.nav-hamburger{display:none;flex-direction:column;justify-content:space-between;width:28px;height:20px;cursor:pointer;padding:0;background:none;border:none;z-index:400}
-@media(max-width:1100px){.fr-trio{grid-template-columns:1fr 1fr}.fr-quad{grid-template-columns:1fr 1fr}.footer-cols{grid-template-columns:1fr 1fr;gap:3rem}.masonry-grid{columns:2}}
-@media(max-width:768px){.nav-links{display:none}.nav-hamburger{display:flex}.nav-give{display:none}.hero{min-height:420px}.hero-content,.featured-wrap,.archive-wrap,.archive-divider,.submit-cta{padding-left:1.5rem;padding-right:1.5rem}.season-strip{padding:.6rem 1.5rem}.fr-main,.fr-trio,.fr-asym{grid-template-columns:1fr}.fr-quad{grid-template-columns:1fr 1fr}.masonry-grid{columns:2}.submit-inner{grid-template-columns:1fr}.submit-right{align-items:flex-start}.footer-cols{grid-template-columns:1fr;gap:2.5rem}footer{padding:4rem 1.5rem 2rem}.footer-bottom{flex-direction:column;gap:.75rem;text-align:center}
-  /* ── MOBILE FONT BUMPS ── */
+/* ── RESPONSIVE ── */
+@media(max-width:1100px){
+  .nav-links{display:none}.nav-hamburger{display:flex}.nav-give{display:none}
+  .coll-grid{grid-template-columns:repeat(2,1fr)}
+  .coll-card.featured{grid-column:span 2}
+  .feed-grid{grid-template-columns:repeat(3,1fr)}
+  .footer-cols{grid-template-columns:1fr 1fr;gap:3rem}
+}
+@media(max-width:768px){
   body{font-size:18px;line-height:1.8}
+
+  /* ── HERO ── */
+  .gh{height:100svh;min-height:520px}
+  .gh-content{padding:2.5rem 1.5rem 6rem}
+  .gh-hed{font-size:clamp(1.8rem,7vw,2.8rem);line-height:.95;margin-bottom:.5rem}
+  .gh-dek{font-size:.92rem;line-height:1.55;max-width:none;margin-bottom:1.25rem}
+  .gh-eyebrow{font-size:.68rem;margin-bottom:.35rem}
+  .gh-badge-label{font-size:.68rem}
+  .gh-btn{font-size:.68rem;padding:.45rem 1rem}
+  .gh-date{font-size:.68rem}
+
+  /* Hero tabs — horizontal scroll on small screens */
+  .gh-tabs{overflow-x:auto;-webkit-overflow-scrolling:touch;flex-wrap:nowrap}
+  .gh-tab{padding:.65rem .75rem;flex-shrink:0;min-width:0}
+  .gh-tab-num{display:none}
+  .gh-tab-name{font-size:.56rem;letter-spacing:.10em}
+
+  /* ── SEASON STRIP ── */
+  .season-strip{padding:.5rem 1rem;gap:0;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .ss-label{font-size:.62rem;margin-right:.75rem}
+  .ss-btn{font-size:.62rem;padding:.4rem .65rem;white-space:nowrap}
+  .ss-right{font-size:.62rem}
+
+  /* ── COLLECTIONS ── */
+  .collections-wrap{padding:2rem 1.5rem 0}
+  .coll-grid{grid-template-columns:1fr;gap:12px}
+  .coll-card{min-height:200px}
+  .coll-card.featured{grid-column:span 1;min-height:220px}
+  .coll-title{font-size:1.15rem}
+  .coll-card.featured .coll-title{font-size:1.3rem}
+  .coll-kicker{font-size:.58rem}
+  .coll-cap{padding:1.1rem 1.1rem .9rem}
+
+  /* ── FEED ── */
+  .feed-divider{padding:2rem 1.5rem 0}
+  .fdiv-title{font-size:1.5rem}
+  .feed-wrap{padding:1.5rem 1.5rem 3rem}
+
+  /* Filter bar — stack rows vertically */
+  .filter-bar{padding-bottom:1rem;margin-bottom:1.25rem}
+  .filter-row{gap:.4rem}
+  .filter-row-label{font-size:.58rem;min-width:40px;margin-right:.2rem}
+  .chip{font-size:.62rem;padding:.32rem .7rem;letter-spacing:.10em}
+  .filter-sep{height:16px;margin:0 .15rem}
+  .filter-right{margin-left:0;width:100%;justify-content:flex-end;margin-top:.25rem}
+  .count-lbl{font-size:.62rem}
+
+  /* Active collection banner */
+  .active-filter-banner{flex-direction:column;gap:.5rem;padding:.75rem 1rem}
+  .afb-clear{align-self:flex-start}
+
+  /* Month groups */
+  .month-header{gap:.5rem;padding:.4rem 0;top:60px}
+  .mh-label{font-size:.62rem}
+  .mh-count{font-size:.62rem}
+
+  /* Feed grid */
+  .feed-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .feed-item.span-2{grid-column:span 2}
+  .fi-title{font-size:.82rem}
+  .feed-item.span-2 .fi-title{font-size:1rem}
+  .fi-cat{font-size:.56rem}
+  .fi-video-badge{font-size:.52rem;padding:2px 6px}
+
+  /* ── YOUTUBE CTA ── */
+  .yt-cta{padding:0 1.5rem;margin-bottom:2rem}
+  .yt-inner{flex-direction:column;text-align:center;padding:1.75rem 1.5rem;gap:1rem}
+  .yt-text{font-size:1rem}
+
+  /* ── SUBMIT CTA ── */
+  .submit-cta{padding:0 1.5rem;margin-bottom:3rem}
+  .submit-inner{grid-template-columns:1fr;padding:1.5rem;gap:1.25rem}
+  .submit-title{font-size:1.4rem}
+  .submit-right{align-items:flex-start}
+
+  /* ── LIGHTBOX ── */
+  .lb-body{padding:0 12px}
+  .lb-prev{left:4px}
+  .lb-next{right:4px}
+  .lb-nav{width:40px;height:40px}
+  .lb-close{top:-2.25rem;font-size:.62rem}
+  .lb-cap-title{font-size:1.1rem}
+  .lb-cap-sub{font-size:.62rem}
+  .lb-counter{font-size:.62rem}
+
+  /* ── FOOTER ── */
+  .footer-cols{grid-template-columns:1fr;gap:2.5rem}
+  footer{padding:3.5rem 1.5rem 2rem}
+  .footer-bottom{flex-direction:column;gap:.75rem;text-align:center}
+
+  /* ── MOBILE FONT BUMPS ── */
   [class*="-over"],[class*="-cat"],[class*="-sub"],[class*="-label"],[class*="-tag"],[class*="-kicker"],[class*="-lbl"],[class*="-badge"],[class*="-date"],[class*="-meta"]{font-size:.72rem!important;letter-spacing:.12em}
   [class*="-title"]{line-height:1.2}
-  [class*="hero-title"],[class*="page-title"]{line-height:1.1}
   [class*="-name"],[class*="-head"]{line-height:1.25}
   .footer-copy,.footer-legal,.footer-bottom{font-size:.72rem}
-  .nav-drawer-links a{font-size:.76rem;padding:1rem 1.75rem}.lb-prev{left:6px}.lb-next{right:6px}.lb-body{padding:0 44px}}
-@media(max-width:480px){.masonry-grid{columns:1}.fr-quad{grid-template-columns:1fr}}
-
-/* ── MOBILE NAV DRAWER ── */
-
-.nav-hamburger span{display:block;width:100%;height:2px;background:var(--maroon);transition:all .28s ease;transform-origin:center}
-.nav-hamburger.open span:nth-child(1){transform:translateY(9px) rotate(45deg)}
-.nav-hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
-.nav-hamburger.open span:nth-child(3){transform:translateY(-9px) rotate(-45deg)}
-.nav-drawer{position:fixed;top:0;right:0;bottom:0;width:300px;max-width:85vw;background:var(--apse);z-index:350;transform:translateX(100%);transition:transform .32s cubic-bezier(.4,0,.2,1),visibility 0s .32s;display:flex;flex-direction:column;overflow-y:auto;visibility:hidden}
-.nav-drawer.open{transform:translateX(0);visibility:visible;transition:transform .32s cubic-bezier(.4,0,.2,1),visibility 0s}
-.nav-drawer-overlay{position:fixed;inset:0;background:rgba(21,8,4,.65);z-index:340;opacity:0;pointer-events:none;transition:opacity .32s}
-.nav-drawer-overlay.open{opacity:1;pointer-events:all}
-.nav-drawer-head{padding:1.5rem 1.75rem 1rem;border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:space-between}
-.nav-drawer-logo{font-family:var(--f-display);font-weight:500;font-size:1.1rem;color:#fff}
-.nav-drawer-logo span{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);display:block;margin-top:2px}
-.nav-drawer-close{width:32px;height:32px;background:rgba(255,255,255,.08);border:none;color:rgba(255,255,255,.65);cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:background .2s}
-.nav-drawer-close:hover{background:rgba(255,255,255,.15)}
-.nav-drawer-links{padding:1rem 0;flex:1}
-.nav-drawer-links a{display:block;font-family:var(--f-ui);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,232,.70);padding:.9rem 1.75rem;border-bottom:1px solid rgba(255,255,255,.05);transition:all .18s}
-.nav-drawer-links a:hover{color:#fff;background:rgba(255,255,255,.05)}
-.nav-drawer-links .drawer-section{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(184,131,40,.55);padding:.85rem 1.75rem .35rem;display:block}
-.nav-drawer-give{margin:1.25rem 1.75rem;display:block;text-align:center;font-family:var(--f-ui);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;padding:.85rem;background:var(--maroon);color:var(--vellum);transition:background .2s}
-.nav-drawer-give:hover{background:var(--maroon-deep)}
-
-/* ── QUOTE INTERSTITIAL ───────────────────────────── */
-.quote-break{margin:0;padding:4rem 4.5rem;background:var(--vellum);position:relative}
-.qb-inner{max-width:680px;margin:0 auto;padding-left:2rem;border-left:3px solid var(--maroon);position:relative}
-.qb-cross{display:none}
-.qb-rule{display:none}
-.qb-text{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-weight:300;font-size:clamp(1.5rem,3vw,2.2rem);line-height:1.4;color:var(--text);margin-bottom:.75rem}
-.qb-attr{font-family:'Cinzel',Georgia,serif;font-size:.72rem;letter-spacing:.20em;text-transform:uppercase;color:var(--maroon);display:block}
-@media(max-width:768px){
-  .quote-break{padding:2.5rem 1.5rem}.qb-inner{padding-left:1.25rem}.qb-text{font-size:1.3rem}
 }
 
-/* Content area background fix */
-.page-body,.main-wrap,.cal-wrap,.giving-wrap,.gallery-wrap,.video-wrap,.bulletin-wrap,.news-wrap,.contact-wrap,.cemetery-wrap{background:var(--vellum)}
+/* ── SMALL PHONES ── */
+@media(max-width:480px){
+  .gh-content{padding:2rem 1.25rem 5.5rem}
+  .gh-hed{font-size:clamp(1.6rem,8vw,2.2rem)}
+  .gh-dek{font-size:.88rem}
+
+  .feed-grid{grid-template-columns:1fr;gap:10px}
+  .feed-item.span-2{grid-column:span 1}
+  .feed-item .fi-sizer{padding-bottom:75%}
+
+  .coll-card{min-height:180px}
+
+  /* Filters scroll horizontally on very small screens */
+  .filter-row{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:.25rem}
+  .filter-row-label{flex-shrink:0}
+  .chip{flex-shrink:0}
+
+  .lb-body{padding:0 8px}
+  .lb-nav{width:36px;height:36px}
+  .lb-prev{left:2px}
+  .lb-next{right:2px}
+}
 
 /* ── MEGA MENU NAV (canonical) ── */
-.nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(246,241,232,.97);backdrop-filter:blur(10px);border-bottom:var(--rule-faint)}
-.nav-inner{max-width:1380px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px;padding:0 3rem}
-.nav-logo-img{height:38px;width:auto;display:block}
-.nav-mega-group{height:100%;display:flex;align-items:center}
-.nav-links{display:flex;align-items:center;list-style:none;height:100%}
-.nav-links>li{height:100%;display:flex;align-items:center}
-.nav-links>li>a{font-family:var(--f-ui);font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);padding:0 .85rem;height:100%;display:flex;align-items:center;transition:color .18s;border-bottom:2px solid transparent;white-space:nowrap}
-.nav-links>li>a:hover{color:var(--maroon)}
-.nav-mega-group:hover .nav-links>li>a{color:var(--maroon)}
-.nav-links>li>a:hover{border-bottom-color:var(--gold)}
 .mega-panel{position:absolute;top:60px;left:0;right:0;background:var(--vellum);border-top:2px solid var(--maroon);border-bottom:var(--rule-faint);box-shadow:0 16px 48px rgba(28,20,16,.13);opacity:0;pointer-events:none;transform:translateY(-8px);transition:opacity .22s ease,transform .22s ease;z-index:100;display:grid;grid-template-columns:420px 1fr}
 .mega-panel.mega-visible{opacity:1;pointer-events:all;transform:translateY(0)}
 .mega-photo{position:relative;overflow:hidden;background-color:var(--apse)}
@@ -280,7 +379,6 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 .mega-panel.mega-visible .mega-photo-bg{transform:scale(1.18)}
 .mega-photo-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(59,15,24,.88) 0%,rgba(59,15,24,.72) 100%)}
 .mega-photo-content{position:relative;z-index:1;padding:2rem 2rem;display:flex;flex-direction:column;height:100%;min-height:220px}
-.mega-photo-cross{display:none}
 .mega-photo-label{font-family:var(--f-ui);font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(232,201,122,.65);display:block;margin-bottom:.4rem}
 .mega-photo-quote{font-family:var(--f-display);font-style:italic;font-weight:300;font-size:1.45rem;color:rgba(246,241,232,.92);line-height:1.25}
 .mega-content{border-left:2px solid var(--maroon)}
@@ -296,23 +394,29 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 .mega-cta-btn{font-family:var(--f-ui);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);border:1px solid rgba(123,29,42,.28);padding:.48rem .9rem;display:block;text-align:center;transition:all .2s}
 .mega-cta-btn:hover{background:var(--maroon);color:var(--vellum)}
 .nav-links>li.tab-active>a{color:var(--maroon);border-bottom-color:var(--gold)}
-.nav-give{font-family:var(--f-ui);font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;color:var(--vellum);background:var(--maroon);padding:.5rem 1.1rem;transition:background .2s;white-space:nowrap;margin-left:1rem}
-.nav-give:hover{background:var(--maroon-deep)}
-.nav-hamburger{display:none;flex-direction:column;justify-content:space-between;width:28px;height:20px;cursor:pointer;padding:0;background:none;border:none;z-index:400}
-.nav-hamburger span{display:block;width:100%;height:2px;background:var(--maroon);transition:all .28s ease;transform-origin:center}
-.nav-hamburger.open span:nth-child(1){transform:translateY(9px) rotate(45deg)}
-.nav-hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
-.nav-hamburger.open span:nth-child(3){transform:translateY(-9px) rotate(-45deg)}
-.nav-drawer{position:fixed;top:0;right:0;width:300px;max-width:85vw;bottom:0;background:var(--apse);z-index:350;transform:translateX(100%);transition:transform .32s cubic-bezier(.4,0,.2,1),visibility 0s .32s;display:flex;flex-direction:column;overflow-y:auto;visibility:hidden}
+
+/* ── MY PARISH NAV ── */
+.nav-my-parish{position:relative;margin-right:.35rem}
+.nav-my-parish-btn{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:none;border:1px solid rgba(246,241,232,.45);cursor:pointer;color:rgba(246,241,232,.88);transition:all .2s;padding:0;flex-shrink:0}
+.nav-scrolled .nav-my-parish-btn,.nav:has(.mega-visible) .nav-my-parish-btn{border-color:rgba(123,29,42,.35);color:#7B1D2A}
+.nav-my-parish-btn:hover{background:#7B1D2A;color:#F6F1E8;border-color:#7B1D2A}
+.nav-my-parish-panel{position:absolute;top:calc(100% + 6px);right:0;width:230px;background:#F6F1E8;border:1px solid rgba(123,29,42,.15);box-shadow:0 8px 32px rgba(28,20,16,.12);opacity:0;pointer-events:none;transform:translateY(-6px);transition:opacity .18s,transform .18s;z-index:500}
+.nav-my-parish-panel.open{opacity:1;pointer-events:all;transform:translateY(0)}
+.nav-mp-link{display:block;padding:.85rem 1.1rem;border-bottom:1px solid rgba(123,29,42,.07);text-decoration:none;transition:background .15s}
+.nav-mp-link:last-child{border-bottom:none}
+.nav-mp-link:hover{background:rgba(123,29,42,.04)}
+.nav-mp-link-name{font-family:var(--f-ui);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:#7B1D2A;display:block;margin-bottom:.15rem}
+.nav-mp-link-sub{font-family:var(--f-body);font-style:italic;font-size:.88rem;color:#7A6648;display:block}
+
+/* ── MOBILE NAV DRAWER ── */
+.nav-drawer{position:fixed;top:0;right:0;bottom:0;width:300px;max-width:85vw;background:var(--apse);z-index:350;transform:translateX(100%);transition:transform .32s cubic-bezier(.4,0,.2,1),visibility 0s .32s;display:flex;flex-direction:column;overflow-y:auto;visibility:hidden}
 .nav-drawer.open{transform:translateX(0);visibility:visible;transition:transform .32s cubic-bezier(.4,0,.2,1),visibility 0s}
 .nav-drawer-overlay{position:fixed;inset:0;background:rgba(21,8,4,.65);z-index:340;opacity:0;pointer-events:none;transition:opacity .32s}
 .nav-drawer-overlay.open{opacity:1;pointer-events:all}
 .nav-drawer-head{padding:1.5rem 1.75rem 1rem;border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:space-between}
 .nav-drawer-logo{font-family:var(--f-display);font-weight:500;font-size:1.2rem;color:rgba(246,241,232,.95)}
-.nav-drawer-logo span{font-family:var(--f-ui);font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,241,232,.6);display:block;margin-top:2px}
 .nav-drawer-close{width:32px;height:32px;background:rgba(255,255,255,.08);border:none;color:rgba(255,255,255,.65);cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:background .2s}
 .nav-drawer-close:hover{background:rgba(255,255,255,.15)}
-.nav-drawer-links{display:none}
 .dr-accordion{flex:1;overflow-y:auto}
 .dr-section{border-bottom:1px solid rgba(255,255,255,.06)}
 .dr-section-head{display:flex;align-items:center;justify-content:space-between;padding:1.1rem 1.25rem;cursor:pointer;transition:background .18s;user-select:none}
@@ -331,26 +435,10 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 .dr-link-sub{font-family:var(--f-body);font-style:italic;font-size:.95rem;color:rgba(232,201,122,.55);display:block;margin-top:.08rem;line-height:1.25}
 .nav-drawer-give{margin:1.25rem 1.75rem;display:block;text-align:center;font-family:var(--f-ui);font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;padding:.85rem;background:var(--maroon);color:var(--vellum);transition:background .2s}
 .nav-drawer-give:hover{background:var(--maroon-deep)}
-@media(max-width:1100px){.nav-links{display:none}.nav-hamburger{display:flex}.nav-give{display:none}}
+@media(max-width:1100px){.nav-links{display:none}.nav-hamburger{display:flex}.nav-give{display:none}.nav-my-parish{display:none}}
 </style>
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-
-  <link rel="stylesheet" href="/styles/typography.css">
-
-<style>
-/* ── MY PARISH NAV ── */
-.nav-mega-group{flex:1;justify-content:center}.nav-my-parish{position:relative;margin-right:.35rem}
-.nav-my-parish-btn{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:none;border:1px solid rgba(123,29,42,.35);cursor:pointer;color:#7B1D2A;transition:all .2s;padding:0;flex-shrink:0}
-.nav-my-parish-btn:hover{background:#7B1D2A;color:#F6F1E8;border-color:#7B1D2A}
-.nav-my-parish-panel{position:absolute;top:calc(100% + 6px);right:0;width:230px;background:#F6F1E8;border:1px solid rgba(123,29,42,.15);box-shadow:0 8px 32px rgba(28,20,16,.12);opacity:0;pointer-events:none;transform:translateY(-6px);transition:opacity .18s,transform .18s;z-index:500}
-.nav-my-parish-panel.open{opacity:1;pointer-events:all;transform:translateY(0)}
-.nav-mp-link{display:block;padding:.85rem 1.1rem;border-bottom:1px solid rgba(123,29,42,.07);text-decoration:none;transition:background .15s}
-.nav-mp-link:last-child{border-bottom:none}
-.nav-mp-link:hover{background:rgba(123,29,42,.04)}
-.nav-mp-link-name{font-family:'Cinzel',Georgia,serif;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:#7B1D2A;display:block;margin-bottom:.15rem}
-.nav-mp-link-sub{font-family:'EB Garamond',Georgia,serif;font-style:italic;font-size:.88rem;color:#7A6648;display:block}
-@media(max-width:1100px){.nav-my-parish{display:none}}
-</style>
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<link rel="stylesheet" href="/styles/typography.css">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -365,7 +453,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
     {
       "@type": "ListItem",
       "position": 2,
-      "name": "Gallery",
+      "name": "Gallery & Media",
       "item": "https://www.peterandpaulcathedral.com/gallery"
     }
   ]
@@ -584,18 +672,18 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 
     </div>
     <div class="nav-my-parish" id="nav-my-parish">
-  <button class="nav-my-parish-btn" onclick="toggleMyParish(event)" aria-label="My Parish"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="8" r="3.5"/><path d="M4 20c0-3.5 3.6-6 8-6s8 2.5 8 6"/></svg></button>
-  <div class="nav-my-parish-panel" id="nav-mp-panel">
-    <a href="/my-profile" class="nav-mp-link">
-      <span class="nav-mp-link-name">My Profile</span>
-      <span class="nav-mp-link-sub">Help Fr. Solomon know your family</span>
-    </a>
-    <a href="/my-journey" class="nav-mp-link">
-      <span class="nav-mp-link-name">Explore</span>
-      <span class="nav-mp-link-sub">The ancient Orthodox Faith</span>
-    </a>
-  </div>
-</div>
+      <button class="nav-my-parish-btn" onclick="toggleMyParish(event)" aria-label="My Parish"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="8" r="3.5"/><path d="M4 20c0-3.5 3.6-6 8-6s8 2.5 8 6"/></svg></button>
+      <div class="nav-my-parish-panel" id="nav-mp-panel">
+        <a href="/my-profile" class="nav-mp-link">
+          <span class="nav-mp-link-name">My Profile</span>
+          <span class="nav-mp-link-sub">Help Fr. Solomon know your family</span>
+        </a>
+        <a href="/my-journey" class="nav-mp-link">
+          <span class="nav-mp-link-name">Explore</span>
+          <span class="nav-mp-link-sub">The ancient Orthodox Faith</span>
+        </a>
+      </div>
+    </div>
     <a href="/give" class="nav-give">Give</a>
     <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" onclick="openDrawer()">
       <span></span><span></span><span></span>
@@ -611,12 +699,8 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
     <button class="nav-drawer-close" onclick="closeDrawer()">&#x2715;</button>
   </div>
   <div class="dr-accordion" id="dr-accordion">
-
-    <div class="dr-section" data-photo="sspp-exterior" data-label="About Us" data-quote="A century of faith on Grand Street.">
-      <div class="dr-section-head" onclick="drToggle(this)">
-        <span class="dr-section-name">About Us</span>
-        <span class="dr-section-toggle">+</span>
-      </div>
+    <div class="dr-section">
+      <div class="dr-section-head" onclick="drToggle(this)"><span class="dr-section-name">About Us</span><span class="dr-section-toggle">+</span></div>
       <div class="dr-section-links">
         <a href="/our-parish" class="dr-link"><span class="dr-link-name">Our Parish</span><span class="dr-link-sub">Our history, our people, our home</span></a>
         <a href="/church-history" class="dr-link"><span class="dr-link-name">Church History</span><span class="dr-link-sub">A century of faith in Jersey City</span></a>
@@ -627,44 +711,28 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
         <a href="/rectors" class="dr-link"><span class="dr-link-name">Our Rectors</span><span class="dr-link-sub">The priests who have served this parish</span></a>
       </div>
     </div>
-
-    <div class="dr-section" data-photo="sspp-welcome" data-label="Inquirers" data-quote="Exploring the ancient Faith?">
-      <div class="dr-section-head" onclick="drToggle(this)">
-        <span class="dr-section-name">Inquirers</span>
-        <span class="dr-section-toggle">+</span>
-      </div>
+    <div class="dr-section">
+      <div class="dr-section-head" onclick="drToggle(this)"><span class="dr-section-name">Inquirers</span><span class="dr-section-toggle">+</span></div>
       <div class="dr-section-links">
         <a href="/about-orthodoxy" class="dr-link"><span class="dr-link-name">About Orthodoxy</span><span class="dr-link-sub">The ancient Christian faith and its teachings</span></a>
         <a href="/our-beliefs" class="dr-link"><span class="dr-link-name">Our Beliefs</span><span class="dr-link-sub">What we confess and why it matters</span></a>
         <a href="/catechesis" class="dr-link"><span class="dr-link-name">Catechesis Series</span><span class="dr-link-sub">Recorded talks and study materials</span></a>
-        <a href="/catechesis-history" class="dr-link"><span class="dr-link-name">Catechesis History</span><span class="dr-link-sub">Formation for those entering the Church</span></a>
-        <a href="/bible-study" class="dr-link"><span class="dr-link-name">Bible Study</span><span class="dr-link-sub">Weekly verse-by-verse study, open to all</span></a>
-        <a href="/fasting" class="dr-link"><span class="dr-link-name">Fasting</span><span class="dr-link-sub">The history and practice of Orthodox fasting</span></a>
         <a href="/visit" class="dr-link"><span class="dr-link-name">Visitor Guide</span><span class="dr-link-sub">Everything you need before you arrive</span></a>
         <a href="/contact-us" class="dr-link"><span class="dr-link-name">Contact Us</span><span class="dr-link-sub">Reach Fr. Solomon and the parish office</span></a>
       </div>
     </div>
-
-    <div class="dr-section" data-photo="sspp-calendar" data-label="Calendar" data-quote="The rhythm of the Church's year.">
-      <div class="dr-section-head" onclick="drToggle(this)">
-        <span class="dr-section-name">Calendar</span>
-        <span class="dr-section-toggle">+</span>
-      </div>
+    <div class="dr-section">
+      <div class="dr-section-head" onclick="drToggle(this)"><span class="dr-section-name">Calendar</span><span class="dr-section-toggle">+</span></div>
       <div class="dr-section-links">
         <a href="/divine-liturgy" class="dr-link"><span class="dr-link-name">Divine Liturgy</span><span class="dr-link-sub">Every Sunday, 9:30 AM</span></a>
         <a href="/vespers" class="dr-link"><span class="dr-link-name">Great Vespers</span><span class="dr-link-sub">Every Saturday, 5:00 PM</span></a>
         <a href="/schedule" class="dr-link"><span class="dr-link-name">View Full Calendar</span><span class="dr-link-sub">Feasts, fasts, and the Church year</span></a>
         <a href="/readings" class="dr-link"><span class="dr-link-name">Daily Readings</span><span class="dr-link-sub">Scripture appointed for each day</span></a>
         <a href="/saints" class="dr-link"><span class="dr-link-name">Saints of the Day</span><span class="dr-link-sub">Lives of those commemorated today</span></a>
-        <a href="/prologue" class="dr-link"><span class="dr-link-name">The Prologue</span><span class="dr-link-sub">Daily readings from the Prologue of Ohrid</span></a>
       </div>
     </div>
-
-    <div class="dr-section" data-photo="sspp-community" data-label="Parish Life" data-quote="A family that shares a life.">
-      <div class="dr-section-head" onclick="drToggle(this)">
-        <span class="dr-section-name">Parish Life</span>
-        <span class="dr-section-toggle">+</span>
-      </div>
+    <div class="dr-section">
+      <div class="dr-section-head" onclick="drToggle(this)"><span class="dr-section-name">Parish Life</span><span class="dr-section-toggle">+</span></div>
       <div class="dr-section-links">
         <a href="/news" class="dr-link"><span class="dr-link-name">News &amp; Announcements</span><span class="dr-link-sub">What's happening at the parish</span></a>
         <a href="/bulletins" class="dr-link"><span class="dr-link-name">Parish Bulletins</span><span class="dr-link-sub">Weekly reflections from Fr. Solomon</span></a>
@@ -674,52 +742,47 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
         <a href="/give" class="dr-link"><span class="dr-link-name">Give &amp; Support</span><span class="dr-link-sub">Projects, drives, and ongoing stewardship</span></a>
       </div>
     </div>
-
-    <div class="dr-section" data-photo="sspp-interior" data-label="Worship" data-quote="The living tradition of the Church.">
-      <div class="dr-section-head" onclick="drToggle(this)">
-        <span class="dr-section-name">Worship</span>
-        <span class="dr-section-toggle">+</span>
-      </div>
+    <div class="dr-section">
+      <div class="dr-section-head" onclick="drToggle(this)"><span class="dr-section-name">Worship</span><span class="dr-section-toggle">+</span></div>
       <div class="dr-section-links">
         <a href="/divine-liturgy" class="dr-link"><span class="dr-link-name">About the Divine Liturgy</span><span class="dr-link-sub">History, structure, and meaning</span></a>
         <a href="/vespers" class="dr-link"><span class="dr-link-name">About Vespers</span><span class="dr-link-sub">The ancient evening prayer of the Church</span></a>
-        <a href="/liturgy-history" class="dr-link"><span class="dr-link-name">History of the Liturgy</span><span class="dr-link-sub">How the Divine Liturgy developed</span></a>
         <a href="/liturgy-book" class="dr-link"><span class="dr-link-name">Liturgy Book</span><span class="dr-link-sub">Full text for the Divine Liturgy</span></a>
         <a href="/vespers-book" class="dr-link"><span class="dr-link-name">Vespers Book</span><span class="dr-link-sub">Full text for Great Vespers</span></a>
         <a href="/prayers" class="dr-link"><span class="dr-link-name">Daily Prayers</span><span class="dr-link-sub">The daily prayer rule of the Orthodox Church</span></a>
       </div>
     </div>
-
-  </div>
-      <div class="dr-section">
+    <div class="dr-section">
       <div class="dr-section-head" onclick="drToggle(this)"><span class="dr-section-name">My Profile</span><span class="dr-section-toggle">+</span></div>
       <div class="dr-section-links">
         <a href="/my-profile" class="dr-link"><span class="dr-link-name">My Profile</span><span class="dr-link-sub">Help Fr. Solomon know your family</span></a>
         <a href="/my-journey" class="dr-link"><span class="dr-link-name">Explore</span><span class="dr-link-sub">The ancient Orthodox Faith</span></a>
       </div>
     </div>
-<a href="https://tithe.ly/give?c=5004259" target="_blank" class="nav-drawer-give">Give Online</a>
+  </div>
+  <a href="https://tithe.ly/give?c=5004259" target="_blank" class="nav-drawer-give">Give Online</a>
 </div>
 <!-- ═══════════════════════════════════════════
      NAV END
      ═══════════════════════════════════════════ -->
 
-
-<!-- HERO -->
-<div class="hero" id="hero">
-  <div class="hero-bg" id="hero-bg"></div>
-  <div class="hero-scrim" id="hero-scrim"></div>
-  <div class="hero-frame"><div class="hfc tl"></div><div class="hfc tr"></div><div class="hfc bl"></div><div class="hfc br"></div></div>
-  <div class="hero-dots" id="hero-dots"></div>
-  <div class="hero-content" id="hero-content">
-    <div class="hero-badge"><div class="hb-pip" id="hb-pip"></div><span class="hb-label" id="hb-label"></span></div>
-    <div class="hero-eyebrow" id="hero-eyebrow"></div>
-    <div class="hero-hed" id="hero-hed"></div>
-    <div class="hero-dek" id="hero-dek"></div>
-    <div class="hero-foot">
-      <span class="hero-date" id="hero-date"></span>
-      <div class="hero-sep" id="hero-sep" style="background:currentColor"></div>
-      <div class="hero-btn" id="hero-btn" onclick="document.getElementById('archive').scrollIntoView({behavior:'smooth'})">Browse all photos</div>
+<!-- ═══════════════════════════════════════════
+     GALLERY HERO (interactive rotator)
+     ═══════════════════════════════════════════ -->
+<div class="gh" id="gh">
+  <div class="gh-bg" id="gh-bg1"></div>
+  <div class="gh-bg" id="gh-bg2"></div>
+  <div class="gh-overlay"></div>
+  <div class="gh-tabs" id="gh-tabs"></div>
+  <div class="gh-content" id="gh-content">
+    <div class="gh-badge"><div class="gh-pip"></div><span class="gh-badge-label" id="gh-badge">Featured</span></div>
+    <div class="gh-eyebrow" id="gh-eyebrow"></div>
+    <h1 class="gh-hed" id="gh-hed"></h1>
+    <p class="gh-dek" id="gh-dek"></p>
+    <div class="gh-foot">
+      <span class="gh-date" id="gh-date"></span>
+      <div class="gh-sep"></div>
+      <div class="gh-btn" id="gh-btn" onclick="document.getElementById('collections').scrollIntoView({behavior:'smooth'})">Browse Collections</div>
     </div>
   </div>
 </div>
@@ -727,107 +790,225 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 <!-- SEASON STRIP -->
 <div class="season-strip">
   <span class="ss-label">Season</span>
-  <button class="ss-btn" data-s="lent"      onclick="setSeason('lent',this)">Great Lent</button><div class="ss-div"></div>
-  <button class="ss-btn" data-s="pascha"    onclick="setSeason('pascha',this)">Pascha</button><div class="ss-div"></div>
-  <button class="ss-btn" data-s="summer"    onclick="setSeason('summer',this)">Pentecost</button><div class="ss-div"></div>
-  <button class="ss-btn" data-s="advent"    onclick="setSeason('advent',this)">Nativity Fast</button><div class="ss-div"></div>
-  <button class="ss-btn" data-s="theophany" onclick="setSeason('theophany',this)">Theophany</button><div class="ss-div"></div>
-  <button class="ss-btn" data-s="latest"    onclick="setSeason('latest',this)">Latest Added</button>
-  <span class="ss-right">Updated <strong>March 2026</strong></span>
+  <button class="ss-btn on" data-season="all"       onclick="setSeason('all',this)">All</button><div class="ss-div"></div>
+  <button class="ss-btn"    data-season="lent"       onclick="setSeason('lent',this)">Great Lent</button><div class="ss-div"></div>
+  <button class="ss-btn"    data-season="pascha"     onclick="setSeason('pascha',this)">Pascha</button><div class="ss-div"></div>
+  <button class="ss-btn"    data-season="pentecost"  onclick="setSeason('pentecost',this)">Pentecost</button><div class="ss-div"></div>
+  <button class="ss-btn"    data-season="nativity"   onclick="setSeason('nativity',this)">Nativity Fast</button><div class="ss-div"></div>
+  <button class="ss-btn"    data-season="theophany"  onclick="setSeason('theophany',this)">Theophany</button><div class="ss-div"></div>
+  <button class="ss-btn"    data-season="latest"     onclick="setSeason('latest',this)">Latest Added</button>
+  <span class="ss-right"><strong id="total-count">0</strong> items</span>
 </div>
 
-<!-- FEATURED SPREADS -->
-<div class="featured-wrap">
-  <div class="section-label"><div class="sl-rule"></div><span class="sl-g">✦</span><span class="sl-txt">Featured Photographs</span><span class="sl-g">✦</span><div class="sl-rule"></div></div>
+<!-- ═══════════════════════════════════════════
+     COLLECTIONS
+     ═══════════════════════════════════════════ -->
+<div class="collections-wrap" id="collections">
+  <div class="section-label">
+    <div class="sl-rule"></div>
+    <span class="sl-txt">Collections</span>
+    <div class="sl-rule"></div>
+  </div>
+  <div class="coll-grid" id="coll-grid">
+    <!-- rendered by JS -->
+  </div>
+</div>
 
-  <div class="feat-row fr-main">
-    <div class="fc tall" data-cat="community" onclick="openLbFc(this)"><div class="fc-bg" style="background:linear-gradient(155deg,#1A0508,#7B1D2A,#B88328)"></div><div class="fc-scrim"></div><div class="fc-new">New</div><div class="fc-cap"><span class="fc-cat">Community · Holy Week</span><div class="fc-title">Pascha — <em>Christ is Risen!</em></div><span class="fc-date">Holy Saturday · April 2025</span></div></div>
-    <div class="fc-stack">
-      <div class="fc med" data-cat="community" onclick="openLbFc(this)"><div class="fc-bg" style="background:linear-gradient(160deg,#0A1A2E,#1A0508,#3D6B5E)"></div><div class="fc-scrim"></div><div class="fc-new">New</div><div class="fc-cap"><span class="fc-cat">Community · Theophany</span><div class="fc-title">Blessing of <em>Waters</em></div><span class="fc-date">January 2026</span></div></div>
-      <div class="fc med" data-cat="community" onclick="openLbFc(this)"><div class="fc-bg" style="background:linear-gradient(160deg,#0A1A2E,#1A0508,#3D6B5E)"></div><div class="fc-scrim"></div><div class="fc-cap"><span class="fc-cat">Community · Music</span><div class="fc-title">The choir in <em>full voice</em></div></div></div>
+<!-- ═══════════════════════════════════════════
+     CHRONOLOGICAL FEED
+     ═══════════════════════════════════════════ -->
+<div class="feed-divider" id="feed">
+  <div class="fdiv">
+    <div class="fdiv-rule"></div>
+    <div class="fdiv-center">
+      <span class="fdiv-title">Recent <em>Media</em></span>
+      <span class="fdiv-sub">Photos and video, newest first</span>
     </div>
-  </div>
-
-  <div class="feat-row fr-trio">
-    <div class="fc tall" data-cat="cathedral" onclick="openLbFc(this)"><div class="fc-bg" style="background:linear-gradient(160deg,#3B0F18,#7B1D2A,#1A0508)"></div><div class="fc-scrim"></div><div class="fc-cap"><span class="fc-cat">Cathedral · Exterior</span><div class="fc-title">The copper domes of <em>Grand Street</em></div></div></div>
-    <div class="fc tall" data-cat="cathedral" onclick="openLbFc(this)"><div class="fc-bg" style="background:linear-gradient(160deg,#1C1005,#B88328,#3B0F18)"></div><div class="fc-scrim"></div><div class="fc-cap"><span class="fc-cat">Cathedral · Interior</span><div class="fc-title">The iconostasis</div></div></div>
-    <div class="fc tall" data-cat="community" onclick="openLbFc(this)"><div class="fc-bg" style="background:linear-gradient(160deg,#7B1D2A,#1A0508,#B88328)"></div><div class="fc-scrim"></div><div class="fc-cap"><span class="fc-cat">Community · Palm Sunday</span><div class="fc-title">Children with candles on <em>Palm Sunday</em></div><span class="fc-date">2025</span></div></div>
-  </div>
-
-  <div class="feat-row fr-asym">
-    <div class="fc med" data-cat="community" onclick="openLbFc(this)"><div class="fc-bg" style="background:linear-gradient(160deg,#7B1D2A,#3B0F18,#B88328)"></div><div class="fc-scrim"></div><div class="fc-cap"><span class="fc-cat">Community · Every Sunday</span><div class="fc-title">Coffee hour after the <em>Divine Liturgy</em></div></div></div>
-    <div class="fc med" data-cat="events" onclick="openLbFc(this)"><div class="fc-bg" style="background:linear-gradient(160deg,#2E0D14,#B88328,#3B0F18)"></div><div class="fc-scrim"></div><div class="fc-cap"><span class="fc-cat">Events · 2020</span><div class="fc-title">Cathedral elevation — <em>a century in the making</em></div></div></div>
-  </div>
-
-  <div class="feat-row fr-quad">
-    <div class="fc short" data-cat="community" onclick="openLbFc(this)"><div class="fc-bg" style="background:linear-gradient(160deg,#1E1005,#7A6648,#B88328)"></div><div class="fc-scrim"></div><div class="fc-cap"><span class="fc-cat">Community</span><div class="fc-title">Christmas Day Liturgy</div></div></div>
-    <div class="fc short" data-cat="community" onclick="openLbFc(this)"><div class="fc-bg" style="background:linear-gradient(160deg,#1C1005,#B88328,#7A6648)"></div><div class="fc-scrim"></div><div class="fc-cap"><span class="fc-cat">Community · Great Lent</span><div class="fc-title">Holy Unction</div></div></div>
-    <div class="fc short" data-cat="community" onclick="openLbFc(this)"><div class="fc-bg" style="background:linear-gradient(160deg,#1E1005,#7A6648,#3B0F18)"></div><div class="fc-scrim"></div><div class="fc-cap"><span class="fc-cat">Community</span><div class="fc-title">Parish picnic, 2024</div></div></div>
-    <div class="fc short" data-cat="community" onclick="openLbFc(this)"><div class="fc-bg" style="background:linear-gradient(160deg,#1A0508,#4A1019,#7A6648)"></div><div class="fc-scrim"></div><div class="fc-cap"><span class="fc-cat">Community · Archive</span><div class="fc-title">Founders' Day, 1932</div></div></div>
+    <div class="fdiv-rule"></div>
   </div>
 </div>
 
-<!-- ARCHIVE DIVIDER -->
-<div class="archive-divider" id="archive">
-  <div class="adiv">
-    <div class="adiv-rule"></div>
-    <div class="adiv-center">
-      <span class="adiv-title">The Complete <em>Archive</em></span>
-      <span class="adiv-sub">115 years of parish life — browse, filter, discover</span>
-      <span class="adiv-glyph">✦ ✝ ✦</span>
-    </div>
-    <div class="adiv-rule"></div>
-  </div>
-</div>
-
-<!-- ARCHIVE -->
-<div class="archive-wrap">
+<div class="feed-wrap">
   <div class="filter-bar">
-    <div class="chip on" onclick="setFilter('all',this,'cat')">All</div>
-    <div class="chip"    onclick="setFilter('community',this,'cat')">Community</div>
-    <div class="chip"    onclick="setFilter('cathedral',this,'cat')">Cathedral</div>
-    <div class="chip"    onclick="setFilter('events',this,'cat')">Events</div>
-    <div class="filter-sep"></div>
-    <div class="chip"    onclick="setFilter('2026',this,'year')">2026</div>
-    <div class="chip"    onclick="setFilter('2025',this,'year')">2025</div>
-    <div class="chip"    onclick="setFilter('2024',this,'year')">2024</div>
-    <div class="chip"    onclick="setFilter('pre2023',this,'year')">Pre-2023</div>
-    <div class="filter-right">
-      <span class="count-lbl"><strong id="vis-count">24</strong> photos</span>
-      <div class="view-tog">
-        <button class="vt on" onclick="setView('masonry',this)">Masonry</button>
-        <button class="vt"    onclick="setView('list',this)">List</button>
+    <!-- Row 1: Type + Category -->
+    <div class="filter-row">
+      <span class="filter-row-label">Type</span>
+      <div class="chip on" data-type="all" onclick="setTypeFilter('all',this)">All</div>
+      <div class="chip" data-type="photo" onclick="setTypeFilter('photo',this)">Photos</div>
+      <div class="chip" data-type="video" onclick="setTypeFilter('video',this)">Videos</div>
+      <div class="filter-sep"></div>
+      <span class="filter-row-label">Category</span>
+      <div class="chip on" data-cat="all" onclick="setCatFilter('all',this)">All</div>
+      <div class="chip" data-cat="worship" onclick="setCatFilter('worship',this)">Worship</div>
+      <div class="chip" data-cat="community" onclick="setCatFilter('community',this)">Community</div>
+      <div class="chip" data-cat="cathedral" onclick="setCatFilter('cathedral',this)">Cathedral</div>
+      <div class="chip" data-cat="events" onclick="setCatFilter('events',this)">Events</div>
+    </div>
+    <!-- Row 2: Year -->
+    <div class="filter-row">
+      <span class="filter-row-label">Year</span>
+      <div class="chip on" data-year="all" onclick="setYearFilter('all',this)">All Years</div>
+      <div class="chip" data-year="2026" onclick="setYearFilter('2026',this)">2026</div>
+      <div class="chip" data-year="2025" onclick="setYearFilter('2025',this)">2025</div>
+      <div class="chip" data-year="2024" onclick="setYearFilter('2024',this)">2024</div>
+      <div class="chip" data-year="pre2023" onclick="setYearFilter('pre2023',this)">Pre-2023</div>
+      <div class="filter-right">
+        <span class="count-lbl"><strong id="feed-count">0</strong> items</span>
       </div>
     </div>
   </div>
 
-  <!-- MASONRY GRID -->
-  <!-- ══════════════════════════════════════════════════
-       PHOTO LIBRARY — ADD YOUR PHOTOS HERE
-       
-       Each photo needs 6 fields:
-         src:   path to your image file e.g. '/images/gallery/palm-sunday.jpg'
-                (use a gradient string as placeholder until you have real photos)
-         cat:   'community' | 'cathedral' | 'events'
-         year:  '2026' | '2025' | '2024' | 'pre2023'
-         label: small category text shown on the card
-         title: main title (can use <em>italic</em>)
-         h:     card height in pixels (130–220, vary for masonry effect)
-  ══════════════════════════════════════════════════ -->
-  
-<script>
-if (window.netlifyIdentity) {
-  window.netlifyIdentity.on("init", user => {
-    if (!user) {
-      window.netlifyIdentity.on("login", () => {
-        document.location.href = "/admin/";
-      });
-    }
-  });
-}
-</script>
+  <!-- Active collection banner -->
+  <div class="active-filter-banner" id="active-banner">
+    <span class="afb-text">Viewing collection: <strong id="active-coll-name"></strong></span>
+    <button class="afb-clear" onclick="clearCollectionFilter()">Clear filter</button>
+  </div>
 
+  <div id="feed-container">
+    <!-- month groups rendered by JS -->
+  </div>
+</div>
+
+<!-- YOUTUBE CTA -->
+<div class="yt-cta">
+  <div class="yt-inner">
+    <span class="yt-text">Subscribe to <strong>@SSPPJC on YouTube</strong> for services, homilies, and parish life</span>
+    <a href="https://www.youtube.com/@SSPPJC" target="_blank" rel="noopener" class="yt-btn">Subscribe</a>
+  </div>
+</div>
+
+<!-- SUBMIT CTA -->
+<div class="submit-cta">
+  <div class="submit-inner">
+    <div>
+      <span class="submit-over">Share your photos</span>
+      <div class="submit-title">Have photos from a <em>parish event?</em></div>
+      <p class="submit-body">Send them to the parish office and we will add them to the gallery. Photos from liturgical celebrations, community gatherings, and parish milestones are all welcome.</p>
+    </div>
+    <div class="submit-right">
+      <a href="mailto:ssppnj@gmail.com?subject=Gallery%20Photos" class="submit-btn">Email Photos</a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+     ═══════════════════════════════════════════ -->
+<footer>
+  <div class="footer-cols">
+    <div>
+      <img src="/images/logo/logo-2026.svg" alt="Saints Peter &amp; Paul Orthodox Cathedral" class="footer-logo-img" onerror="this.style.display='none'">
+      <p class="footer-meta">
+        Diocese of New York &amp; New Jersey<br>
+        <a href="https://nynjoca.org" target="_blank" rel="noopener">nynjoca.org</a><br>
+        Orthodox Church in America<br>
+        <a href="https://oca.org" target="_blank" rel="noopener">oca.org</a>
+      </p>
+      <div class="footer-socials">
+        <a href="#" target="_blank" rel="noopener">Facebook</a>
+        <a href="#" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.youtube.com/@SSPPJC" target="_blank" rel="noopener">YouTube</a>
+      </div>
+    </div>
+    <div>
+      <span class="footer-col-head">About Us</span>
+      <ul class="footer-nav">
+        <li><a href="/our-parish">Our Parish</a></li>
+        <li><a href="/church-history">Church History</a></li>
+        <li><a href="/our-beliefs">Our Beliefs</a></li>
+        <li><a href="/administration">Administration</a></li>
+        <li><a href="/council">Parish Council</a></li>
+        <li><a href="/bylaws">Bylaws</a></li>
+        <li><a href="/rectors">Our Rectors</a></li>
+      </ul>
+      <span class="footer-nav-sub">Inquirers</span>
+      <ul class="footer-nav">
+        <li><a href="/about-orthodoxy">About Orthodoxy</a></li>
+        <li><a href="/catechesis">Catechesis Series</a></li>
+        <li><a href="/bible-study">Bible Study</a></li>
+        <li><a href="/fasting">Fasting</a></li>
+        <li><a href="/visit">Visitor Guide</a></li>
+        <li><a href="/contact-us">Contact Us</a></li>
+      </ul>
+    </div>
+    <div>
+      <span class="footer-col-head">Worship</span>
+      <ul class="footer-nav">
+        <li><a href="/divine-liturgy">About the Divine Liturgy</a></li>
+        <li><a href="/vespers">About Vespers</a></li>
+        <li><a href="/liturgy-book">Liturgy Book</a></li>
+        <li><a href="/vespers-book">Vespers Book</a></li>
+        <li><a href="/liturgy-history">History of the Liturgy</a></li>
+      </ul>
+      <span class="footer-nav-sub">Daily</span>
+      <ul class="footer-nav">
+        <li><a href="/readings">Daily Readings</a></li>
+        <li><a href="/saints">Saints of the Day</a></li>
+        <li><a href="/prologue">The Prologue</a></li>
+        <li><a href="/prayers">Daily Prayers</a></li>
+      </ul>
+    </div>
+    <div>
+      <span class="footer-col-head">Parish Life</span>
+      <ul class="footer-nav">
+        <li><a href="/news">News &amp; Announcements</a></li>
+        <li><a href="/bulletins">Parish Bulletins</a></li>
+        <li><a href="/gallery">Gallery</a></li>
+        <li><a href="/videos">Videos</a></li>
+        <li><a href="/cemeteries">Cemeteries</a></li>
+        <li><a href="/give">Give &amp; Support</a></li>
+      </ul>
+      <span class="footer-nav-sub">My Parish</span>
+      <a href="/my-journey" class="footer-my-journey">My Journey</a>
+      <a href="/my-profile" class="footer-my-journey" style="margin-left:.5rem">My Profile</a>
+      <span class="footer-nav-sub">Connect</span>
+      <p class="footer-meta" style="line-height:2.2">
+        Vespers &middot; Saturdays 5:00 PM<br>
+        Divine Liturgy &middot; Sundays 9:30 AM
+      </p>
+      <p class="footer-meta" style="margin-top:.75rem">
+        <a href="https://maps.google.com/?q=109+Grand+Street+Jersey+City+NJ+07302" target="_blank" rel="noopener">109 Grand Street &middot; Jersey City, NJ</a><br>
+        <a href="tel:+12014341986">(201) 434-1986</a><br>
+        <a href="mailto:ssppnj@gmail.com">ssppnj@gmail.com</a>
+      </p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">&copy; Saints Peter &amp; Paul Orthodox Cathedral. All Rights Reserved.</p>
+    <p class="footer-addr">
+      <a href="https://maps.google.com/?q=109+Grand+Street+Jersey+City+NJ+07302" target="_blank" rel="noopener" style="color:inherit;border-bottom:1px solid rgba(246,241,232,.25)">109 Grand Street &middot; Jersey City, NJ 07302</a><br>
+      (201) 434-1986 &middot; <a href="mailto:ssppnj@gmail.com" style="color:inherit">ssppnj@gmail.com</a>
+    </p>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════
+     LIGHTBOX
+     ═══════════════════════════════════════════ -->
+<div class="lightbox" id="lightbox">
+  <div class="lb-backdrop" onclick="closeLightbox()"></div>
+  <div class="lb-body">
+    <button class="lb-close" onclick="closeLightbox()">Close</button>
+    <button class="lb-nav lb-prev" onclick="lbNav(-1)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+    <button class="lb-nav lb-next" onclick="lbNav(1)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg></button>
+    <div class="lb-img" id="lb-img">
+      <div class="lb-img-inner" id="lb-img-inner"></div>
+    </div>
+    <div class="lb-video" id="lb-video"></div>
+    <div class="lb-cap">
+      <span class="lb-cap-title" id="lb-title"></span>
+      <span class="lb-cap-sub" id="lb-sub"></span>
+    </div>
+    <div class="lb-counter" id="lb-counter"></div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     DATA + RENDER LOGIC
+     ═══════════════════════════════════════════ -->
 <script>
+// ── NAV: Drawer ──
 function openDrawer(){
   document.getElementById('nav-drawer').classList.add('open');
   document.getElementById('nav-overlay').classList.add('open');
@@ -850,9 +1031,10 @@ function drToggle(head){
   });
   if(!isOpen){
     section.classList.add('open');
-    section.querySelector('.dr-section-toggle').textContent='−';
+    section.querySelector('.dr-section-toggle').textContent='\u2212';
   }
 }
+// ── NAV: Mega menu ──
 (function(){
   var tabs=document.querySelectorAll('.nav-links > li[data-mega]');
   var group=document.getElementById('nav-mega-group');
@@ -872,11 +1054,7 @@ function drToggle(head){
   tabs.forEach(function(tab){tab.addEventListener('mouseenter',function(){showPanel(tab);});});
   group.addEventListener('mouseleave',function(){hideAll();});
 })();
-</script>
-
-<script src="/enhancements.js"></script>
-
-<script>
+// ── NAV: My Parish ──
 function toggleMyParish(e) {
   e.stopPropagation();
   var p = document.getElementById('nav-mp-panel');
@@ -886,9 +1064,520 @@ document.addEventListener('click', function() {
   var p = document.getElementById('nav-mp-panel');
   if (p) p.classList.remove('open');
 });
-</script>
-<script>window.HERO_IMAGES=[{url:'/images/heroes/hero-06.jpg'},{url:'/images/heroes/hero-13.jpg'},{url:'/images/heroes/hero-14.jpg'},{url:'/images/heroes/hero-09.jpg'}];</script>
-<script src="/hero-rotator.js"></script>
-</body>
 
+// ── GALLERY DATA (loaded from gallery-data.json) ──
+var GALLERY_DATA = { collections: [], items: [] };
+var HERO_SLIDES_DATA = [];
+
+// ── RENDER COLLECTIONS ──
+function renderCollections() {
+  var grid = document.getElementById('coll-grid');
+  var html = '';
+  GALLERY_DATA.collections.forEach(function(c) {
+    var count = GALLERY_DATA.items.filter(function(i) { return i.collections.indexOf(c.slug) >= 0; }).length;
+    var videoCount = GALLERY_DATA.items.filter(function(i) { return i.collections.indexOf(c.slug) >= 0 && i.type === 'video'; }).length;
+    var photoCount = count - videoCount;
+
+    html += '<div class="coll-card' + (c.featured ? ' featured' : '') + '" onclick="filterByCollection(\'' + c.slug + '\')">';
+    var coverStyle = c.cover.indexOf('linear-gradient') === 0 ? 'background:' + c.cover : 'background-image:url(\'' + c.cover + '\');background-size:cover;background-position:center';
+    html += '<div class="coll-bg" style="' + coverStyle + '"></div>';
+    html += '<div class="coll-scrim"></div>';
+
+    // badges
+    if (c.isNew) html += '<div class="coll-badge"><span class="coll-badge-inner coll-badge-new">New</span></div>';
+    if (c.hasVideo) {
+      html += '<div class="coll-play"><div class="coll-play-tri"></div></div>';
+      if (!c.isNew) html += '<div class="coll-badge"><span class="coll-badge-inner coll-badge-video">Video</span></div>';
+    }
+
+    html += '<div class="coll-cap">';
+    html += '<span class="coll-kicker">' + (c.hasVideo ? 'Video Collection' : 'Photo Collection') + '</span>';
+    html += '<div class="coll-title">' + c.title + '</div>';
+    html += '<div class="coll-meta">';
+    if (photoCount > 0) html += '<span class="coll-count">' + photoCount + ' photo' + (photoCount !== 1 ? 's' : '') + '</span>';
+    if (videoCount > 0) html += '<span class="coll-count">' + videoCount + ' video' + (videoCount !== 1 ? 's' : '') + '</span>';
+    html += '</div>';
+    html += '</div></div>';
+  });
+  grid.innerHTML = html;
+}
+
+// ── FILTER STATE ──
+var currentCatFilter = 'all';
+var currentTypeFilter = 'all';
+var currentYearFilter = 'all';
+var currentSeasonFilter = 'all';
+var currentCollectionFilter = null;
+
+function getFilteredItems() {
+  return GALLERY_DATA.items.filter(function(item) {
+    if (currentTypeFilter !== 'all' && item.type !== currentTypeFilter) return false;
+    if (currentCatFilter !== 'all' && item.category !== currentCatFilter) return false;
+    if (currentCollectionFilter && item.collections.indexOf(currentCollectionFilter) < 0) return false;
+    if (currentSeasonFilter !== 'all' && currentSeasonFilter !== 'latest' && item.season !== currentSeasonFilter) return false;
+    // year filter
+    if (currentYearFilter !== 'all') {
+      var itemYear = item.date.substring(0, 4);
+      if (currentYearFilter === 'pre2023') {
+        if (parseInt(itemYear) >= 2023) return false;
+      } else {
+        if (itemYear !== currentYearFilter) return false;
+      }
+    }
+    return true;
+  });
+}
+
+// ── RENDER FEED ──
+function renderFeed() {
+  var items = getFilteredItems();
+
+  // "Latest Added" sorts by date descending, takes first 10
+  if (currentSeasonFilter === 'latest') {
+    items.sort(function(a, b) { return b.date.localeCompare(a.date); });
+    items = items.slice(0, 10);
+  }
+
+  var container = document.getElementById('feed-container');
+
+  // group by month
+  var months = {};
+  var monthOrder = [];
+  items.forEach(function(item) {
+    var d = new Date(item.date + 'T12:00:00');
+    var key = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0');
+    if (!months[key]) {
+      months[key] = [];
+      monthOrder.push(key);
+    }
+    months[key].push(item);
+  });
+
+  // sort months descending
+  monthOrder.sort(function(a, b) { return b.localeCompare(a); });
+
+  var monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var seasonLabels = { lent:'Great Lent', pascha:'Pascha', pentecost:'Pentecost', nativity:'Nativity', theophany:'Theophany' };
+
+  var html = '';
+  monthOrder.forEach(function(key) {
+    var parts = key.split('-');
+    var year = parts[0];
+    var monthIdx = parseInt(parts[1], 10) - 1;
+    var label = monthNames[monthIdx] + ' ' + year;
+    var groupItems = months[key];
+
+    html += '<div class="month-group">';
+    html += '<div class="month-header">';
+    html += '<div class="mh-line"></div>';
+    html += '<span class="mh-label">' + label + '</span>';
+    html += '<span class="mh-count">' + groupItems.length + ' item' + (groupItems.length !== 1 ? 's' : '') + '</span>';
+    html += '<div class="mh-line"></div>';
+    html += '</div>';
+    html += '<div class="feed-grid">';
+
+    groupItems.forEach(function(item, idx) {
+      var span = (idx === 0 && groupItems.length >= 3) ? ' span-2' : '';
+      var isVideo = item.type === 'video';
+
+      html += '<div class="feed-item' + span + '" onclick="openLightbox(this)" data-type="' + item.type + '" data-src="' + item.src + '" data-title="' + item.title.replace(/"/g, '&quot;') + '" data-cat="' + item.category + '" data-season="' + item.season + '"' + (isVideo ? ' data-ytid="' + item.ytId + '"' : '') + '>';
+      html += '<div class="fi-sizer"></div>';
+      var itemStyle = item.src.indexOf('linear-gradient') === 0 ? 'background:' + item.src : 'background-image:url(\'' + item.src + '\');background-size:cover;background-position:center';
+      html += '<div class="fi-inner" style="' + itemStyle + '"></div>';
+      html += '<div class="fi-scrim"></div>';
+
+      if (isVideo) {
+        html += '<div class="fi-play"><div class="fi-play-tri"></div></div>';
+        html += '<div class="fi-video-badge">Video</div>';
+      }
+
+      html += '<div class="fi-cap">';
+      html += '<span class="fi-cat">' + item.category + (item.season && seasonLabels[item.season] ? ' &middot; ' + seasonLabels[item.season] : '') + '</span>';
+      html += '<div class="fi-title">' + item.title + '</div>';
+      html += '</div></div>';
+    });
+
+    html += '</div></div>';
+  });
+
+  if (items.length === 0) {
+    html = '<div style="text-align:center;padding:4rem 0"><p style="font-family:var(--f-display);font-style:italic;color:var(--stone);font-size:1.05rem">No items match these filters.</p></div>';
+  }
+
+  container.innerHTML = html;
+  document.getElementById('feed-count').textContent = items.length;
+  document.getElementById('total-count').textContent = GALLERY_DATA.items.length;
+
+  // update collection banner
+  var banner = document.getElementById('active-banner');
+  if (currentCollectionFilter) {
+    var coll = GALLERY_DATA.collections.find(function(c) { return c.slug === currentCollectionFilter; });
+    document.getElementById('active-coll-name').textContent = coll ? coll.title : currentCollectionFilter;
+    banner.classList.add('visible');
+  } else {
+    banner.classList.remove('visible');
+  }
+}
+
+// ── FILTERS ──
+function setTypeFilter(type, el) {
+  currentTypeFilter = type;
+  document.querySelectorAll('[data-type].chip').forEach(function(b) { b.classList.remove('on'); });
+  el.classList.add('on');
+  renderFeed();
+}
+
+function setCatFilter(cat, el) {
+  currentCatFilter = cat;
+  document.querySelectorAll('[data-cat].chip').forEach(function(c) { c.classList.remove('on'); });
+  el.classList.add('on');
+  renderFeed();
+}
+
+function setYearFilter(year, el) {
+  currentYearFilter = year;
+  document.querySelectorAll('[data-year].chip').forEach(function(c) { c.classList.remove('on'); });
+  el.classList.add('on');
+  renderFeed();
+}
+
+function setSeason(season, el) {
+  currentSeasonFilter = season;
+  document.querySelectorAll('.ss-btn').forEach(function(b) { b.classList.remove('on'); });
+  el.classList.add('on');
+  renderFeed();
+  // scroll to the feed so user sees results
+  document.getElementById('feed').scrollIntoView({ behavior: 'smooth' });
+}
+
+function filterByCollection(slug) {
+  if (currentCollectionFilter === slug) {
+    clearCollectionFilter();
+    return;
+  }
+  currentCollectionFilter = slug;
+  renderFeed();
+  document.getElementById('feed').scrollIntoView({ behavior: 'smooth' });
+}
+
+function clearCollectionFilter() {
+  currentCollectionFilter = null;
+  renderFeed();
+}
+
+// ── LIGHTBOX ──
+var lbItems = [];
+var lbIdx = 0;
+
+function openLightbox(el) {
+  var type = el.getAttribute('data-type');
+  var title = el.getAttribute('data-title');
+  var cat = el.getAttribute('data-cat');
+  var src = el.getAttribute('data-src');
+  var ytId = el.getAttribute('data-ytid');
+
+  // gather all visible feed items for navigation
+  lbItems = Array.from(document.querySelectorAll('.feed-item'));
+  lbIdx = lbItems.indexOf(el);
+
+  showLbItem(type, title, cat, src, ytId);
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  updateLbCounter();
+}
+
+function showLbItem(type, title, cat, src, ytId) {
+  var lbImg = document.getElementById('lb-img');
+  var lbVideo = document.getElementById('lb-video');
+  document.getElementById('lb-title').textContent = title;
+  document.getElementById('lb-sub').textContent = cat.toUpperCase();
+
+  if (type === 'video' && ytId) {
+    lbImg.style.display = 'none';
+    lbVideo.style.display = 'block';
+    lbVideo.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + ytId + '?autoplay=1" allow="autoplay;encrypted-media" allowfullscreen></iframe>';
+  } else {
+    lbVideo.style.display = 'none';
+    lbVideo.innerHTML = '';
+    lbImg.style.display = 'block';
+    document.getElementById('lb-img-inner').style.background = src;
+  }
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+  document.getElementById('lb-video').innerHTML = '';
+}
+
+function lbNav(dir) {
+  lbIdx += dir;
+  if (lbIdx < 0) lbIdx = lbItems.length - 1;
+  if (lbIdx >= lbItems.length) lbIdx = 0;
+  var el = lbItems[lbIdx];
+  showLbItem(
+    el.getAttribute('data-type'),
+    el.getAttribute('data-title'),
+    el.getAttribute('data-cat'),
+    el.getAttribute('data-src'),
+    el.getAttribute('data-ytid')
+  );
+  updateLbCounter();
+}
+
+function updateLbCounter() {
+  document.getElementById('lb-counter').textContent = (lbIdx + 1) + ' of ' + lbItems.length;
+}
+
+document.addEventListener('keydown', function(e) {
+  if (!document.getElementById('lightbox').classList.contains('open')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') lbNav(-1);
+  if (e.key === 'ArrowRight') lbNav(1);
+});
+
+// ── HERO ROTATOR ──
+var HERO_SLIDES = [];
+
+var ghIdx = 0;
+var ghTimer = null;
+var GH_HOLD = 8000;
+var GH_FADE = 600;
+var ghFront, ghBack;
+
+function ghInit() {
+  var tabsEl = document.getElementById('gh-tabs');
+  ghFront = document.getElementById('gh-bg1');
+  ghBack = document.getElementById('gh-bg2');
+
+  // build tabs
+  var tabsHtml = '';
+  HERO_SLIDES.forEach(function(slide, i) {
+    var num = String(i + 1).padStart(2, '0');
+    tabsHtml += '<div class="gh-tab' + (i === 0 ? ' on' : '') + '" onclick="ghGoTo(' + i + ')">';
+    tabsHtml += '<span class="gh-tab-num">' + num + '</span>';
+    tabsHtml += '<span class="gh-tab-name">' + slide.eyebrow + '</span>';
+    tabsHtml += '</div>';
+  });
+  tabsEl.innerHTML = tabsHtml;
+
+  // set first slide
+  ghSetBg(ghFront, HERO_SLIDES[0].bg);
+  ghFront.style.zIndex = '2';
+  ghBack.style.zIndex = '1';
+  ghFront.style.transition = 'opacity 0.6s ease-in-out';
+  ghBack.style.transition = 'opacity 0.6s ease-in-out';
+  ghApplySlide(0);
+  ghFront.style.opacity = '1';
+  ghFront.style.animation = 'gh-kenburns ' + (GH_HOLD + GH_FADE + 2000) + 'ms linear forwards';
+  // preload next
+  if (HERO_SLIDES.length > 1) new Image().src = HERO_SLIDES[1].bg;
+
+  // start timer
+  ghStartTimer();
+
+  // click-to-view collection
+  document.getElementById('gh-btn').onclick = function() {
+    var coll = HERO_SLIDES[ghIdx].collection;
+    if (coll) filterByCollection(coll);
+    else document.getElementById('collections').scrollIntoView({ behavior: 'smooth' });
+  };
+}
+
+var ghFirstLoad = true;
+function ghApplySlide(idx) {
+  var slide = HERO_SLIDES[idx];
+  var content = document.getElementById('gh-content');
+
+  function apply() {
+    document.getElementById('gh-badge').textContent = slide.badge;
+    document.getElementById('gh-eyebrow').textContent = slide.eyebrow;
+    document.getElementById('gh-hed').innerHTML = slide.hed;
+    document.getElementById('gh-dek').textContent = slide.dek;
+    document.getElementById('gh-date').textContent = slide.date;
+    document.getElementById('gh-btn').textContent = slide.collection ? 'View Collection' : 'Browse Collections';
+    content.classList.remove('fading');
+  }
+
+  if (ghFirstLoad) {
+    ghFirstLoad = false;
+    apply();
+  } else {
+    content.classList.add('fading');
+    setTimeout(apply, 280);
+  }
+
+  // update tabs
+  document.querySelectorAll('.gh-tab').forEach(function(t, i) {
+    t.classList.toggle('on', i === idx);
+  });
+}
+
+function ghSetBg(el, url) {
+  el.style.backgroundImage = 'url("' + url + '")';
+  el.style.backgroundSize = 'cover';
+  el.style.backgroundPosition = 'center';
+}
+
+function ghAdvance() {
+  var nextIdx = (ghIdx + 1) % HERO_SLIDES.length;
+  ghTransition(nextIdx);
+}
+
+function ghTransition(nextIdx) {
+  var slide = HERO_SLIDES[nextIdx];
+
+  // preload
+  var img = new Image();
+  img.onload = function() {
+    ghSetBg(ghBack, slide.bg);
+    ghBack.style.transition = 'none';
+    ghBack.style.opacity = '0';
+    ghBack.style.zIndex = '1';
+    ghBack.style.animation = 'none';
+    void ghBack.offsetWidth;
+    ghBack.style.animation = 'gh-kenburns ' + (GH_HOLD + GH_FADE + 2000) + 'ms linear forwards';
+
+    requestAnimationFrame(function() {
+      requestAnimationFrame(function() {
+        ghBack.style.zIndex = '3';
+        ghBack.style.transition = 'opacity ' + (GH_FADE / 1000) + 's ease-in-out';
+        ghBack.style.opacity = '1';
+
+        ghApplySlide(nextIdx);
+
+        setTimeout(function() {
+          ghFront.style.transition = 'none';
+          ghFront.style.opacity = '0';
+          ghFront.style.zIndex = '1';
+          ghBack.style.zIndex = '2';
+          var tmp = ghFront; ghFront = ghBack; ghBack = tmp;
+          ghIdx = nextIdx;
+        }, GH_FADE);
+      });
+    });
+  };
+  img.onerror = function() {
+    // fallback: use gradient if image missing
+    ghBack.style.backgroundImage = 'linear-gradient(155deg,#1A0508,#7B1D2A,#B88328)';
+    ghBack.style.transition = 'none';
+    ghBack.style.opacity = '0';
+    ghBack.style.zIndex = '1';
+    requestAnimationFrame(function() {
+      requestAnimationFrame(function() {
+        ghBack.style.zIndex = '3';
+        ghBack.style.transition = 'opacity ' + (GH_FADE / 1000) + 's ease-in-out';
+        ghBack.style.opacity = '1';
+        ghApplySlide(nextIdx);
+        setTimeout(function() {
+          ghFront.style.opacity = '0'; ghFront.style.zIndex = '1';
+          ghBack.style.zIndex = '2';
+          var tmp = ghFront; ghFront = ghBack; ghBack = tmp;
+          ghIdx = nextIdx;
+        }, GH_FADE);
+      });
+    });
+  };
+  img.src = slide.bg;
+}
+
+function ghGoTo(idx) {
+  if (idx === ghIdx) return;
+  clearInterval(ghTimer);
+  ghTransition(idx);
+  // restart timer after transition
+  setTimeout(function() { ghStartTimer(); }, GH_FADE + 100);
+}
+
+function ghStartTimer() {
+  clearInterval(ghTimer);
+  ghTimer = setInterval(function() {
+    ghAdvance();
+  }, GH_HOLD);
+}
+
+// ── Netlify Identity redirect ──
+if (window.netlifyIdentity) {
+  window.netlifyIdentity.on("init", function(user) {
+    if (!user) {
+      window.netlifyIdentity.on("login", function() {
+        document.location.href = "/admin/";
+      });
+    }
+  });
+}
+
+// ── TRANSPARENT NAV ON SCROLL ──
+(function() {
+  var nav = document.querySelector('.nav');
+  function update() {
+    if (window.scrollY > 40) {
+      nav.classList.add('nav-scrolled');
+    } else {
+      nav.classList.remove('nav-scrolled');
+    }
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+
+// ── LOAD DATA FROM JSON + INIT ──
+fetch('/gallery-data.json')
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    // Transform collections from JSON schema to render format
+    GALLERY_DATA.collections = (data.collections || []).map(function(c) {
+      return {
+        slug: c.slug,
+        title: c.title,
+        cover: c.cover || 'linear-gradient(160deg,#3B0F18,#7B1D2A,#B88328)',
+        desc: c.description,
+        featured: !!c.featured,
+        isNew: !!c.is_new,
+        hasVideo: !!c.has_video
+      };
+    });
+
+    // Transform items from JSON schema to render format
+    GALLERY_DATA.items = (data.items || []).map(function(item) {
+      // Decap list widget may produce [{slug:"x"}] or ["x"] — normalize
+      var colls = (item.collections || []).map(function(c) {
+        return (typeof c === 'object' && c.slug) ? c.slug : c;
+      });
+      return {
+        type: item.type,
+        date: item.date,
+        title: item.title,
+        category: item.category,
+        season: item.season,
+        collections: colls,
+        src: item.image || 'linear-gradient(160deg,#3B0F18,#7B1D2A,#B88328)',
+        ytId: item.youtube_id || ''
+      };
+    });
+
+    // Transform hero slides from JSON schema
+    HERO_SLIDES = (data.hero_slides || []).map(function(s) {
+      return {
+        bg: s.image,
+        badge: s.badge,
+        eyebrow: s.eyebrow,
+        hed: s.headline,
+        dek: s.description,
+        date: s.date || '',
+        collection: s.collection || ''
+      };
+    });
+
+    // Render everything
+    ghInit();
+    renderCollections();
+    renderFeed();
+  })
+  .catch(function(err) {
+    console.error('Failed to load gallery data:', err);
+  });
+</script>
+<script src="/enhancements.js"></script>
+</body>
 </html>

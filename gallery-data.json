@@ -1,0 +1,448 @@
+{
+  "hero_slides": [
+    {
+      "image": "/images/heroes/hero-06.jpg",
+      "badge": "Featured Collection",
+      "eyebrow": "Holy Week 2026",
+      "headline": "Palm Sunday through Pascha",
+      "description": "The holiest week of the year at Saints Peter and Paul, from the procession with palms to the midnight Paschal service.",
+      "date": "April 2026",
+      "collection": "holy-week-2026"
+    },
+    {
+      "image": "/images/heroes/hero-13.jpg",
+      "badge": "The Cathedral",
+      "eyebrow": "Sacred Space",
+      "headline": "The beauty of Grand Street",
+      "description": "The iconostasis, the dome, the stained glass: a century of faith made visible in wood, paint, and light.",
+      "date": "",
+      "collection": "the-cathedral"
+    },
+    {
+      "image": "/images/heroes/hero-14.jpg",
+      "badge": "Parish Life",
+      "eyebrow": "Community",
+      "headline": "A year together in community",
+      "description": "Coffee hours, parish picnics, the Christmas party, Sunday school: the life we share beyond the liturgy.",
+      "date": "2025",
+      "collection": "parish-life-2025"
+    },
+    {
+      "image": "/images/heroes/hero-12.jpg",
+      "badge": "Video",
+      "eyebrow": "Choir Recordings",
+      "headline": "The choir in full voice",
+      "description": "Video recordings of the choir of Saints Peter and Paul singing the hymns of the Orthodox tradition.",
+      "date": "",
+      "collection": "choir-recordings"
+    }
+  ],
+  "collections": [
+    {
+      "slug": "holy-week-2026",
+      "title": "Holy Week 2026",
+      "cover": "/images/heroes/hero-06.jpg",
+      "description": "From Palm Sunday through Pascha",
+      "featured": true,
+      "is_new": true,
+      "has_video": false
+    },
+    {
+      "slug": "the-cathedral",
+      "title": "The Cathedral",
+      "cover": "/images/heroes/hero-13.jpg",
+      "description": "The beauty of our sacred space",
+      "featured": false,
+      "is_new": false,
+      "has_video": false
+    },
+    {
+      "slug": "parish-life-2025",
+      "title": "Parish Life 2025",
+      "cover": "/images/heroes/hero-14.jpg",
+      "description": "A year together in community",
+      "featured": false,
+      "is_new": false,
+      "has_video": false
+    },
+    {
+      "slug": "choir-recordings",
+      "title": "Choir Recordings",
+      "cover": "/images/heroes/hero-12.jpg",
+      "description": "The choir of Saints Peter and Paul",
+      "featured": false,
+      "is_new": false,
+      "has_video": true
+    },
+    {
+      "slug": "catechesis",
+      "title": "Catechesis Lectures",
+      "cover": "/images/heroes/hero-06.jpg",
+      "description": "Recorded talks on the Orthodox faith",
+      "featured": false,
+      "is_new": false,
+      "has_video": true
+    },
+    {
+      "slug": "cathedral-elevation",
+      "title": "Cathedral Elevation",
+      "cover": "/images/heroes/hero-13.jpg",
+      "description": "A century in the making, 2020",
+      "featured": false,
+      "is_new": false,
+      "has_video": false
+    }
+  ],
+  "items": [
+    {
+      "type": "photo",
+      "date": "2026-04-12",
+      "title": "Palm Sunday procession",
+      "category": "worship",
+      "season": "pascha",
+      "collections": ["holy-week-2026"],
+      "image": "/images/heroes/hero-06.jpg",
+      "youtube_id": ""
+    },
+    {
+      "type": "photo",
+      "date": "2026-04-12",
+      "title": "Children with palms and candles",
+      "category": "community",
+      "season": "pascha",
+      "collections": ["holy-week-2026"],
+      "image": "/images/heroes/hero-14.jpg",
+      "youtube_id": ""
+    },
+    {
+      "type": "video",
+      "date": "2026-04-12",
+      "title": "Palm Sunday: the choir sings",
+      "category": "worship",
+      "season": "pascha",
+      "collections": ["holy-week-2026", "choir-recordings"],
+      "image": "/images/heroes/hero-12.jpg",
+      "youtube_id": "dQw4w9WgXcQ"
+    },
+    {
+      "type": "photo",
+      "date": "2026-04-07",
+      "title": "Bridegroom Matins, Monday evening",
+      "category": "worship",
+      "season": "pascha",
+      "collections": ["holy-week-2026"],
+      "image": "/images/heroes/hero-06.jpg",
+      "youtube_id": ""
+    },
+    {
+      "type": "photo",
+      "date": "2026-03-22",
+      "title": "Veneration of the Cross",
+      "category": "worship",
+      "season": "lent",
+      "collections": [],
+      "image": "/images/heroes/hero-13.jpg",
+      "youtube_id": ""
+    },
+    {
+      "type": "photo",
+      "date": "2026-03-22",
+      "title": "The cross adorned with flowers",
+      "category": "cathedral",
+      "season": "lent",
+      "collections": ["the-cathedral"],
+      "image": "/images/heroes/hero-13.jpg",
+      "youtube_id": ""
+    },
+    {
+      "type": "photo",
+      "date": "2026-03-15",
+      "title": "Lenten supper after Presanctified",
+      "category": "community",
+      "season": "lent",
+      "collections": ["parish-life-2025"],
+      "image": "/images/heroes/hero-14.jpg",
+      "youtube_id": ""
+    },
+    {
+      "type": "video",
+      "date": "2026-03-10",
+      "title": "Introduction to Orthodoxy, week 6",
+      "category": "events",
+      "season": "lent",
+      "collections": ["catechesis"],
+      "image": "/images/heroes/hero-06.jpg",
+      "youtube_id": "dQw4w9WgXcQ"
+    },
+    {
+      "type": "photo",
+      "date": "2026-03-08",
+      "title": "Sunday of St. Gregory Palamas",
+      "category": "worship",
+      "season": "lent",
+      "collections": [],
+      "image": "/images/heroes/hero-13.jpg",
+      "youtube_id": ""
+    },
+    {
+      "type": "photo",
+      "date": "2026-02-22",
+      "title": "Forgiveness Vespers",
+      "category": "worship",
+      "season": "lent",
+      "collections": [],
+      "image": "/images/heroes/hero-06.jpg",
+      "youtube_id": ""
+    },
+    {
+      "type": "photo",
+      "date": "2026-02-15",
+      "title": "Meatfare Sunday, blessing of the hall",
+      "category": "community",
+      "season": "lent",
+      "collections": ["parish-life-2025"],
+      "image": "/images/heroes/hero-14.jpg",
+      "youtube_id": ""
+    },
+    {
+      "type": "video",
+      "date": "2026-02-10",
+      "title": "Introduction to Orthodoxy, week 4",
+      "category": "events",
+      "season": "lent",
+      "collections": ["catechesis"],
+      "image": "/images/heroes/hero-06.jpg",
+      "youtube_id": "dQw4w9WgXcQ"
+    },
+    {
+      "type": "photo",
+      "date": "2026-02-02",
+      "title": "Meeting of the Lord in the Temple",
+      "category": "worship",
+      "season": "theophany",
+      "collections": [],
+      "image": "/images/heroes/hero-13.jpg",
+      "youtube_id": ""
+    },
+    {
+      "type": "photo",
+      "date": "2026-01-19",
+      "title": "The blessing of the waters",
+      "category": "worship",
+      "season": "theophany",
+      "collections": [],
+      "image": "/images/heroes/hero-12.jpg",
+      "youtube_id": ""
+    },
+    {
+      "type": "photo",
+      "date": "2026-01-19",
+      "title": "Theophany: outdoor procession",
+      "category": "community",
+      "season": "theophany",
+      "collections": [],
+      "image": "/images/heroes/hero-14.jpg",
+      "youtube_id": ""
+    },
+    {
+      "type": "photo",
+      "date": "2026-01-07",
+      "title": "Nativity of Christ: the icon",
+      "category": "cathedral",
+      "season": "nativity",
+      "collections": ["the-cathedral"],
+      "image": "/images/heroes/hero-13.jpg",
+      "youtube_id": ""
+    },
+    {
+      "type": "video",
+      "date": "2026-01-06",
+      "title": "Nativity Vespers: the choir",
+      "category": "worship",
+      "season": "nativity",
+      "collections": ["choir-recordings"],
+      "image": "/images/heroes/hero-12.jpg",
+      "youtube_id": "dQw4w9WgXcQ"
+    },
+    {
+      "type": "photo",
+      "date": "2025-12-25",
+      "title": "Christmas Day Liturgy",
+      "category": "worship",
+      "season": "nativity",
+      "collections": ["parish-life-2025"],
+      "image": "/images/heroes/hero-06.jpg",
+      "youtube_id": ""
+    },
+    {
+      "type": "photo",
+      "date": "2025-12-21",
+      "title": "Parish Christmas party",
+      "category": "community",
+      "season": "nativity",
+      "collections": ["parish-life-2025"],
+      "image": "/images/heroes/hero-14.jpg",
+      "youtube_id": ""
+    },
+    {
+      "type": "photo",
+      "date": "2025-12-14",
+      "title": "Sunday school pageant",
+      "category": "community",
+      "season": "nativity",
+      "collections": ["parish-life-2025"],
+      "image": "/images/heroes/hero-14.jpg",
+      "youtube_id": ""
+    },
+    {
+      "type": "photo",
+      "date": "2025-11-21",
+      "title": "Entrance of the Theotokos",
+      "category": "worship",
+      "season": "nativity",
+      "collections": [],
+      "image": "/images/heroes/hero-13.jpg",
+      "youtube_id": ""
+    },
+    {
+      "type": "photo",
+      "date": "2025-11-15",
+      "title": "Fall parish dinner",
+      "category": "community",
+      "season": "pentecost",
+      "collections": ["parish-life-2025"],
+      "image": "/images/heroes/hero-14.jpg",
+      "youtube_id": ""
+    },
+    {
+      "type": "photo",
+      "date": "2025-10-14",
+      "title": "Protection of the Mother of God",
+      "category": "worship",
+      "season": "pentecost",
+      "collections": [],
+      "image": "/images/heroes/hero-13.jpg",
+      "youtube_id": ""
+    },
+    {
+      "type": "photo",
+      "date": "2025-10-05",
+      "title": "Parish picnic at Liberty State Park",
+      "category": "community",
+      "season": "pentecost",
+      "collections": ["parish-life-2025"],
+      "image": "/images/heroes/hero-14.jpg",
+      "youtube_id": ""
+    },
+    {
+      "type": "photo",
+      "date": "2025-09-14",
+      "title": "Elevation of the Holy Cross",
+      "category": "worship",
+      "season": "pentecost",
+      "collections": [],
+      "image": "/images/heroes/hero-13.jpg",
+      "youtube_id": ""
+    },
+    {
+      "type": "video",
+      "date": "2025-09-08",
+      "title": "Nativity of the Theotokos: homily",
+      "category": "worship",
+      "season": "pentecost",
+      "collections": [],
+      "image": "/images/heroes/hero-12.jpg",
+      "youtube_id": "dQw4w9WgXcQ"
+    },
+    {
+      "type": "photo",
+      "date": "2025-08-19",
+      "title": "Transfiguration: blessing of fruit",
+      "category": "worship",
+      "season": "pentecost",
+      "collections": [],
+      "image": "/images/heroes/hero-14.jpg",
+      "youtube_id": ""
+    },
+    {
+      "type": "photo",
+      "date": "2025-08-15",
+      "title": "Dormition of the Theotokos",
+      "category": "worship",
+      "season": "pentecost",
+      "collections": [],
+      "image": "/images/heroes/hero-06.jpg",
+      "youtube_id": ""
+    },
+    {
+      "type": "photo",
+      "date": "2025-06-01",
+      "title": "The iconostasis in afternoon light",
+      "category": "cathedral",
+      "season": "pentecost",
+      "collections": ["the-cathedral"],
+      "image": "/images/heroes/hero-13.jpg",
+      "youtube_id": ""
+    },
+    {
+      "type": "photo",
+      "date": "2025-06-01",
+      "title": "The dome from below",
+      "category": "cathedral",
+      "season": "pentecost",
+      "collections": ["the-cathedral"],
+      "image": "/images/heroes/hero-13.jpg",
+      "youtube_id": ""
+    },
+    {
+      "type": "photo",
+      "date": "2025-06-01",
+      "title": "Stained glass: the Theotokos",
+      "category": "cathedral",
+      "season": "pentecost",
+      "collections": ["the-cathedral"],
+      "image": "/images/heroes/hero-12.jpg",
+      "youtube_id": ""
+    },
+    {
+      "type": "photo",
+      "date": "2020-09-20",
+      "title": "Cathedral elevation ceremony",
+      "category": "events",
+      "season": "pentecost",
+      "collections": ["cathedral-elevation"],
+      "image": "/images/heroes/hero-13.jpg",
+      "youtube_id": ""
+    },
+    {
+      "type": "photo",
+      "date": "2020-09-20",
+      "title": "Bishop Michael presides",
+      "category": "events",
+      "season": "pentecost",
+      "collections": ["cathedral-elevation"],
+      "image": "/images/heroes/hero-06.jpg",
+      "youtube_id": ""
+    },
+    {
+      "type": "photo",
+      "date": "2020-09-20",
+      "title": "The faithful gathered on Grand Street",
+      "category": "events",
+      "season": "pentecost",
+      "collections": ["cathedral-elevation"],
+      "image": "/images/heroes/hero-14.jpg",
+      "youtube_id": ""
+    },
+    {
+      "type": "photo",
+      "date": "1932-06-15",
+      "title": "Founders' Day, 1932",
+      "category": "events",
+      "season": "pentecost",
+      "collections": [],
+      "image": "/images/heroes/hero-13.jpg",
+      "youtube_id": ""
+    }
+  ]
+}
