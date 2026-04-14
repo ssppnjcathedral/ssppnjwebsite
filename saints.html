@@ -582,22 +582,22 @@ footer .btn-outline{color:rgba(246,241,232,.92);border-color:rgba(246,241,232,.5
 </div>
 <div class="chapter-bar" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem">
   <span class="cbar-text bright">Hagiography</span>
-  <div style="display:flex;align-items:center;gap:.75rem">
+  <div style="display:flex;align-items:center;gap:.6rem">
     <button id="btn-prev" onclick="shiftDay(-1)" aria-label="Previous day"
-      style="background:none;border:1px solid rgba(246,241,232,.25);color:rgba(246,241,232,.8);width:28px;height:28px;cursor:pointer;font-size:.85rem;display:flex;align-items:center;justify-content:center;transition:border-color .18s"
-      onmouseover="this.style.borderColor='rgba(246,241,232,.6)'" onmouseout="this.style.borderColor='rgba(246,241,232,.25)'">&#8592;</button>
+      style="background:rgba(246,241,232,.06);border:none;color:rgba(246,241,232,.7);width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:1.1rem;line-height:1;display:flex;align-items:center;justify-content:center;transition:background .2s,color .2s"
+      onmouseover="this.style.background='rgba(246,241,232,.15)';this.style.color='rgba(246,241,232,.95)'" onmouseout="this.style.background='rgba(246,241,232,.06)';this.style.color='rgba(246,241,232,.7)'">&#8249;</button>
     <div style="display:flex;align-items:center;gap:.5rem">
       <span id="nav-date-label" class="cbar-text bright" style="min-width:160px;text-align:center"></span>
       <input type="date" id="date-picker"
         style="background:rgba(246,241,232,.08);border:1px solid rgba(246,241,232,.2);color:rgba(246,241,232,.7);font-family:var(--f-ui);font-size:.6rem;letter-spacing:.1em;padding:.25rem .5rem;cursor:pointer;outline:none;width:34px;opacity:0;position:absolute"
         onchange="jumpToDate(this.value)">
       <button onclick="document.getElementById('date-picker').showPicker?document.getElementById('date-picker').showPicker():document.getElementById('date-picker').click()"
-        style="background:none;border:1px solid rgba(246,241,232,.25);color:rgba(246,241,232,.65);font-family:var(--f-ui);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;padding:.25rem .65rem;cursor:pointer;transition:border-color .18s"
-        onmouseover="this.style.borderColor='rgba(246,241,232,.6)'" onmouseout="this.style.borderColor='rgba(246,241,232,.25)'">Jump to Date</button>
+        style="background:rgba(246,241,232,.07);border:none;color:rgba(246,241,232,.55);font-family:var(--f-ui);font-size:.52rem;letter-spacing:.16em;text-transform:uppercase;padding:.3rem .85rem;border-radius:2rem;cursor:pointer;transition:background .2s,color .2s"
+        onmouseover="this.style.background='rgba(246,241,232,.14)';this.style.color='rgba(246,241,232,.85)'" onmouseout="this.style.background='rgba(246,241,232,.07)';this.style.color='rgba(246,241,232,.55)'">Jump to Date</button>
     </div>
     <button id="btn-next" onclick="shiftDay(1)" aria-label="Next day"
-      style="background:none;border:1px solid rgba(246,241,232,.25);color:rgba(246,241,232,.8);width:28px;height:28px;cursor:pointer;font-size:.85rem;display:flex;align-items:center;justify-content:center;transition:border-color .18s"
-      onmouseover="this.style.borderColor='rgba(246,241,232,.6)'" onmouseout="this.style.borderColor='rgba(246,241,232,.25)'">&#8594;</button>
+      style="background:rgba(246,241,232,.06);border:none;color:rgba(246,241,232,.7);width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:1.1rem;line-height:1;display:flex;align-items:center;justify-content:center;transition:background .2s,color .2s"
+      onmouseover="this.style.background='rgba(246,241,232,.15)';this.style.color='rgba(246,241,232,.95)'" onmouseout="this.style.background='rgba(246,241,232,.06)';this.style.color='rgba(246,241,232,.7)'">&#8250;</button>
   </div>
   <span class="cbar-text">Lives of the Saints · OCA Calendar</span>
 </div>
@@ -855,6 +855,23 @@ async function loadSaints(date) {
     return;
   }
 
+  /* ── Enrich from per-day file if primary excerpt is bad ────── */
+  try {
+    const pExc = saints[0].excerpt || '';
+    const pLif = saints[0].life    || '';
+    if (!pLif && (!pExc || /^home\s*\//i.test(pExc.trim()))) {
+      const r2 = await fetch('/_data/oca-saints-'+dateKey+'.json');
+      if (r2.ok) {
+        const dayFull = await r2.json();
+        if (dayFull && dayFull.saints && dayFull.saints.length) {
+          const match = dayFull.saints[0];
+          if (match.life)    saints[0].life    = match.life;
+          if (match.excerpt) saints[0].excerpt = match.excerpt;
+        }
+      }
+    }
+  } catch(e) { /* per-day enrichment is optional */ }
+
   /* ── Primary saint ──────────────────────────────────────────── */
   const primary   = saints[0];
   const secondary = saints.slice(1);
@@ -864,24 +881,34 @@ async function loadSaints(date) {
   const pLife    = primary.life    || primary.excerpt || '';
   const pUrl     = primary.url     || ocaDayUrl;
 
-  const pImgHtml = pImage
-    ? '<img src="'+pImage+'" alt="'+pName.replace(/"/g,'&quot;')+'" style="width:110px;height:110px;object-fit:cover;flex-shrink:0;border:1px solid rgba(123,29,42,.14)" onerror="this.style.display=\'none\'" loading="lazy">'
-    : '<div style="width:110px;height:110px;flex-shrink:0;background:#d4c9b8;border:1px solid rgba(123,29,42,.12);display:flex;align-items:center;justify-content:center;font-size:1.8rem;color:rgba(123,29,42,.3)">&#10013;</div>';
+  const pImageLg = primary.imageLg || primary.imageSm || pImage;
+  const hasPImage = !!pImageLg;
 
-  const showPLife = pLife && !/^no information available/i.test(pLife.trim()) && !/^home\s*\//i.test(pLife.trim());
+  /* Strip leading "Troparion & Kontakion" header and trailing OCA boilerplate */
+  let cleanLife = pLife.replace(/^Troparion\s*&\s*Kontakion\s*/i,'').trim();
+  const boilerIdx = cleanLife.indexOf('Feasts & Saints');
+  if (boilerIdx > 0) cleanLife = cleanLife.substring(0, boilerIdx).trim();
+  /* Truncate long text to ~800 chars at a sentence boundary */
+  if (cleanLife.length > 800) {
+    const cut = cleanLife.lastIndexOf('.', 800);
+    cleanLife = cleanLife.substring(0, cut > 400 ? cut + 1 : 800) + '&hellip;';
+  }
+  const showPLife = cleanLife && !/^no information available/i.test(cleanLife) && !/^home\s*\//i.test(cleanLife);
   const pExcerptHtml = showPLife
-    ? '<p>'+pLife+'</p>'
+    ? '<p>'+cleanLife+'</p>'
     : '<p style="color:var(--stone);font-style:italic">No extended biography is currently available for this commemoration.</p>';
 
   let out = '<span class="rubric">Primary Commemoration</span>'
     +'<div class="rubric-rule"></div>'
-    +'<div style="display:flex;gap:1.5rem;align-items:flex-start;margin-bottom:1.25rem">'
-    + pImgHtml
-    +'<div><span class="feast-date-badge">'+MS[mo]+' '+d+'</span>'
-    +'<h2 class="saint-name">'+pName+'</h2></div>'
-    +'</div>'
+    +'<div style="display:grid;grid-template-columns:'+(hasPImage ? '1fr 180px' : '1fr')+';gap:1.75rem;align-items:start">'
+    +'<div>'
+    +'<span class="feast-date-badge">'+MS[mo]+' '+d+'</span>'
+    +'<h2 class="saint-name">'+pName+'</h2>'
     +'<div class="saint-story">'+pExcerptHtml+'</div>'
-    +'<a href="'+pUrl+'" target="_blank" rel="noopener" style="display:inline-block;margin-top:1rem;font-family:var(--f-ui);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--maroon);border-bottom:1px solid rgba(123,29,42,.25);padding-bottom:1px;text-decoration:none">Read the Full Life at OCA &rarr;</a>';
+    +'<a href="'+pUrl+'" target="_blank" rel="noopener" style="display:inline-block;margin-top:1rem;font-family:var(--f-ui);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--maroon);border-bottom:1px solid rgba(123,29,42,.25);padding-bottom:1px;text-decoration:none">Learn More at the OCA &rarr;</a>'
+    +'</div>'
+    +(hasPImage ? '<img src="'+pImageLg+'" alt="'+pName.replace(/"/g,'&quot;')+'" loading="lazy" onerror="this.parentNode.style.gridTemplateColumns=\'1fr\';this.style.display=\'none\'" style="width:100%;height:100%;object-fit:cover;border:1px solid rgba(123,29,42,.10)">' : '')
+    +'</div>';
 
   /* ── Secondary saints grid ──────────────────────────────────── */
   if (secondary.length) {
@@ -894,12 +921,12 @@ async function loadSaints(date) {
       const sImage = s.image || '';
       const sUrl   = s.url   || ocaDayUrl;
       const sImgHtml = sImage
-        ? '<img src="'+sImage+'" alt="'+sName.replace(/"/g,'&quot;')+'" style="width:42px;height:42px;object-fit:cover;flex-shrink:0;border:1px solid rgba(123,29,42,.10)" onerror="this.outerHTML=\'<div style=&quot;width:42px;height:42px;flex-shrink:0;background:#d4c9b8;border:1px solid rgba(123,29,42,.10);display:flex;align-items:center;justify-content:center;font-size:.8rem;color:rgba(123,29,42,.3)&quot; loading="lazy">&#10013;</div>\'">'
+        ? '<img src="'+sImage+'" alt="'+sName.replace(/"/g,'&quot;')+'" loading="lazy" style="width:42px;height:42px;object-fit:cover;flex-shrink:0;border:1px solid rgba(123,29,42,.10)" onerror="this.outerHTML=\'<div style=&quot;width:42px;height:42px;flex-shrink:0;background:#d4c9b8;border:1px solid rgba(123,29,42,.10);display:flex;align-items:center;justify-content:center;font-size:.8rem;color:rgba(123,29,42,.3)&quot;>&#10013;</div>\'">'
         : '<div style="width:42px;height:42px;flex-shrink:0;background:#d4c9b8;border:1px solid rgba(123,29,42,.10);display:flex;align-items:center;justify-content:center;font-size:.8rem;color:rgba(123,29,42,.3)">&#10013;</div>';
       out += '<div style="display:flex;gap:.75rem;align-items:flex-start;padding:.75rem;background:rgba(123,29,42,.04);border:1px solid rgba(123,29,42,.08)">'
         + sImgHtml
         +'<div><p style="font-family:var(--f-display);font-weight:400;font-size:.92rem;color:var(--ink);line-height:1.25;margin:0 0 .3rem">'+sName+'</p>'
-        +'<a href="'+sUrl+'" target="_blank" rel="noopener" style="font-family:var(--f-ui);font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);text-decoration:none">Read Life &rarr;</a>'
+        +'<a href="'+sUrl+'" target="_blank" rel="noopener" style="font-family:var(--f-ui);font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);text-decoration:none">Learn More &rarr;</a>'
         +'</div></div>';
     });
 
