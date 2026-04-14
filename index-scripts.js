@@ -196,8 +196,11 @@ function renderParishEvents(events) {
   if (!panel) return;
 
   var typeMap = EVENT_TYPES;
+  var maxShown = 5;
+  var displayEvents = events.slice(0, maxShown);
+  var hasMore = events.length > maxShown;
 
-  var eventsHTML = events.map(function(ev) {
+  var eventsHTML = displayEvents.map(function(ev) {
     var t = typeMap[ev.type] || typeMap.announcement;
     var dateLabel = formatEventDate(ev.date);
     var featuredAttr = ev.featured ? ' pe-featured' : '';
@@ -211,6 +214,10 @@ function renderParishEvents(events) {
       + '<span class="pe-arrow">&#8594;</span>'
       + '</div>';
   }).join('');
+
+  if (hasMore) {
+    eventsHTML += '<a href="/schedule" class="pe-see-all">View Full Schedule &rarr;</a>';
+  }
 
   var calBlock = '<div class="pe-cal-secondary">'
     + '<span class="pe-cal-label">The Liturgical Calendar</span>'
@@ -365,7 +372,10 @@ async function initParishEvents() {
 
     /* Render everything in one shot */
     var typeMap = EVENT_TYPES;
-    var eventsHTML = active.map(function(ev) {
+    var maxShown = 5;
+    var displayActive = active.slice(0, maxShown);
+    var hasMore = active.length > maxShown;
+    var eventsHTML = displayActive.map(function(ev) {
       var t = typeMap[ev.type] || typeMap.announcement;
       var dateLabel = formatEventDate(ev.date);
       var featuredAttr = ev.featured ? ' pe-featured' : '';
@@ -379,6 +389,9 @@ async function initParishEvents() {
         + '<span class="pe-arrow">&#8594;</span>'
         + '</div>';
     }).join('');
+    if (hasMore) {
+      eventsHTML += '<a href="/schedule" class="pe-see-all">View Full Schedule &rarr;</a>';
+    }
 
     var panel = document.getElementById('sunday-panel');
     if (!panel) return;

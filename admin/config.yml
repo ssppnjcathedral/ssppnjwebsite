@@ -14,7 +14,9 @@ collections:
     files:
       - name: "all-events"
         label: "All Events"
-        file: "_data/parish-events.json"
+        file: "parish-events.json"
+        editor:
+          preview: false
         fields:
           - name: events
             label: Events
@@ -112,6 +114,8 @@ collections:
       - name: "all-bulletins"
         label: "All Bulletins"
         file: "bulletins.json"
+        editor:
+          preview: false
         fields:
           - name: bulletins
             label: Bulletins
@@ -248,6 +252,8 @@ collections:
       - name: "all-projects"
         label: "All Giving Projects"
         file: "giving-projects.json"
+        editor:
+          preview: false
         fields:
           - name: projects
             label: Projects
@@ -478,6 +484,8 @@ collections:
       - name: "prayer-list"
         label: "Prayer List"
         file: "prayer-list.json"
+        editor:
+          preview: false
         fields:
           - name: names
             label: Names
@@ -498,6 +506,8 @@ collections:
       - name: "all-articles"
         label: "All Articles"
         file: "news.json"
+        editor:
+          preview: false
         fields:
           - name: articles
             label: Articles
@@ -601,6 +611,8 @@ collections:
       - name: "gallery-data"
         label: "Gallery Data"
         file: "gallery-data.json"
+        editor:
+          preview: false
         fields:
 
           # ── HERO SLIDES ──
@@ -765,40 +777,48 @@ collections:
   # VIDEOS
   # ────────────────────────────────────────────
   - name: "videos"
-    label: "Videos"
-    description: "Manage the video page: featured video, series (playlists), and individual videos."
+    label: "Video Library"
+    description: "Everything on the Videos page. Add new videos, organize them into series, and choose which ones to spotlight in the hero."
     files:
       - name: "video-data"
-        label: "Video Data"
+        label: "Video Page Content"
         file: "video-data.json"
+        editor:
+          preview: false
         fields:
 
           # ── HERO TABS ──
           - name: hero_tabs
-            label: Hero Tabs
-            label_singular: Tab
+            label: "Hero Spotlight (top of page)"
+            label_singular: Spotlight
             widget: list
-            summary: "{{fields.tab_name}} — {{fields.title}}"
-            hint: "Each tab shows a featured video in the hero. Tabs rotate automatically and viewers can click between them."
+            summary: "{{fields.tab_name}}: {{fields.title}}"
+            hint: "The large featured videos at the top of the page. Each one gets its own tab. They rotate automatically every 8 seconds. Recommended: 3-5 spotlights."
             fields:
               - name: tab_name
-                label: Tab Name
+                label: Tab Label
                 widget: string
-                hint: "Short label shown in the bottom tab bar (e.g. 'Inquirer', 'Homilies')."
+                hint: "The name visitors see in the tab bar at the bottom of the hero (e.g. 'Inquirer', 'Homilies', 'Music'). Keep it short."
 
               - name: youtube_id
                 label: YouTube Video ID
                 widget: string
-                hint: "The ID from the YouTube URL (e.g. 'dQw4w9WgXcQ')."
+                hint: "Go to the video on YouTube. Copy the part after 'v=' in the URL. For example, in youtube.com/watch?v=yaSJ0hza6iE the ID is 'yaSJ0hza6iE'."
 
               - name: title
-                label: Title
+                label: Display Title
                 widget: string
-                hint: "Video title shown below the player."
+                hint: "The title shown below the video player in large text (e.g. 'Lord of Spirits'). Does not need to match the YouTube title exactly."
+
+              - name: description
+                label: Short Description
+                widget: text
+                hint: "1-2 sentences describing this video or series. Shown below the title. Keep it brief so it doesn't crowd the hero."
 
               - name: category
-                label: Category
+                label: Category Tag
                 widget: select
+                hint: "Shown as a small label above the title (e.g. 'Featured Inquirer Resource')."
                 options:
                   - { label: "Inquirer Resource", value: "inquirer" }
                   - { label: "Homily", value: "homily" }
@@ -807,112 +827,117 @@ collections:
                   - { label: "Parish Life", value: "parish" }
 
               - name: bg_image
-                label: Background Image
+                label: Hero Background Photo
                 widget: image
                 media_folder: "/images/gallery"
                 public_folder: "/images/gallery"
-                hint: "Background image for the hero when this tab is active."
+                hint: "A wide landscape photo shown behind the video player. The cathedral interior works well. At least 1600px wide recommended."
 
           # ── SERIES ──
           - name: series
-            label: Series
+            label: "Series (playlist cards)"
             label_singular: Series
             widget: list
-            summary: "{{fields.title}}"
-            hint: "Curated playlists that appear as large cards. Each groups related videos."
+            summary: "{{fields.title}} ({{fields.slug}})"
+            hint: "Series appear as large clickable cards below the hero. When a visitor clicks one, the feed filters to show only videos in that series. Think of these like YouTube playlists."
             fields:
               - name: slug
-                label: Slug
+                label: Series ID
                 widget: string
-                hint: "Unique ID, no spaces (e.g. 'lord-of-spirits'). Used to link videos to this series."
+                hint: "A short unique identifier with no spaces. Use lowercase and hyphens (e.g. 'lord-of-spirits', 'parish-homilies'). You will use this same ID when tagging individual videos below."
 
               - name: title
-                label: Title
+                label: Series Name
                 widget: string
+                hint: "The name shown on the card and in the filter banner (e.g. 'Lord of Spirits', 'Sunday Homilies')."
 
               - name: cover
-                label: Cover Image
+                label: Card Cover Photo
                 widget: image
                 media_folder: "/images/gallery"
                 public_folder: "/images/gallery"
-                hint: "Cover photo for the series card."
+                hint: "The background image for the series card. Landscape orientation, at least 800px wide."
 
               - name: description
-                label: Description
-                widget: string
-                hint: "Short description shown on the card."
+                label: Series Description
+                widget: text
+                hint: "Shown when a visitor filters by this series. Explain what the series is about in 1-2 sentences."
 
               - name: featured
-                label: Featured (spans 2 columns)
+                label: "Make this card larger?"
                 widget: boolean
                 default: false
+                hint: "If checked, this card spans two columns in the grid, making it more prominent."
 
               - name: is_new
-                label: Show 'New' badge
+                label: "Show a 'New' badge?"
                 widget: boolean
                 default: false
+                hint: "Adds a gold 'New' badge to the top corner of the card. Turn this off after a few weeks."
 
               - name: video_count
-                label: Video Count Override
+                label: Video Count (override)
                 widget: number
                 required: false
                 default: 0
-                hint: "Leave at 0 to auto-count from videos list."
+                hint: "Usually leave this at 0. The site counts videos automatically. Only set a number here if you want to override the count (e.g. for a series with videos not yet added)."
 
           # ── VIDEOS ──
           - name: videos
-            label: Videos
+            label: "All Videos"
             label_singular: Video
             widget: list
             summary: "{{fields.title}} — {{fields.date}} ({{fields.category}})"
-            hint: "Individual videos. These appear in the chronological feed and can belong to series."
+            hint: "Every video in the library. These appear in the scrollable feed, sorted newest first and grouped by month. To add a new video: click 'Add Video', paste the YouTube ID, fill in the details, and choose a category."
             fields:
               - name: youtube_id
                 label: YouTube Video ID
                 widget: string
-                hint: "The ID from the YouTube URL (e.g. 'dQw4w9WgXcQ')."
+                hint: "Go to the video on YouTube. Copy the part after 'v=' in the URL. For example, in youtube.com/watch?v=yaSJ0hza6iE the ID is 'yaSJ0hza6iE'."
 
               - name: title
-                label: Title
+                label: Video Title
                 widget: string
+                hint: "The title shown on the video card. Can be different from the YouTube title if you want something shorter or clearer."
 
               - name: description
-                label: Description
+                label: Short Description
                 widget: text
-                hint: "Short description of the video content."
+                hint: "1-2 sentences about the video. Shown below the title on each card in the feed."
 
               - name: category
                 label: Category
                 widget: select
+                hint: "Determines which filter tab this video appears under. Choose the best fit."
                 options:
-                  - { label: "Inquirer Resource", value: "inquirer" }
-                  - { label: "Homily", value: "homily" }
-                  - { label: "Music", value: "music" }
-                  - { label: "Educational", value: "educational" }
-                  - { label: "Parish Life", value: "parish" }
+                  - { label: "Inquirer Resource — for people exploring Orthodoxy", value: "inquirer" }
+                  - { label: "Homily — Sunday sermons from Fr. Solomon", value: "homily" }
+                  - { label: "Music — choir recordings and hymns", value: "music" }
+                  - { label: "Educational — lectures on faith and history", value: "educational" }
+                  - { label: "Parish Life — events, gatherings, community", value: "parish" }
 
               - name: series
-                label: Series
+                label: "Part of a Series?"
                 widget: list
                 field:
                   name: slug
-                  label: Series Slug
+                  label: Series ID
                   widget: string
                 required: false
-                hint: "Slugs of series this video belongs to (e.g. 'lord-of-spirits'). Leave empty if none."
+                hint: "If this video belongs to a series, type the Series ID here (e.g. 'lord-of-spirits'). Must match exactly. Leave blank if it is a standalone video."
 
               - name: date
-                label: Date
+                label: Date Posted
                 widget: datetime
                 format: "YYYY-MM-DD"
                 date_format: "YYYY-MM-DD"
                 time_format: false
-                hint: "Date the video was posted or recorded."
+                hint: "When this video was published or recorded. Used to sort videos in the feed (newest first)."
 
               - name: thumbnail
-                label: Custom Thumbnail
+                label: Custom Thumbnail (optional)
                 widget: image
                 media_folder: "/images/gallery"
                 public_folder: "/images/gallery"
                 required: false
-                hint: "Optional custom thumbnail. If blank, the YouTube thumbnail is used automatically."
+                hint: "Leave blank to use the YouTube thumbnail automatically. Only upload a custom image if the YouTube thumbnail does not look good."

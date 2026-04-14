@@ -4,6 +4,7 @@
       "tab_name": "Inquirer",
       "youtube_id": "yaSJ0hza6iE",
       "title": "Lord of Spirits",
+      "description": "Fr. Andrew Stephen Damick and Fr. Stephen De Young explore the spiritual world as understood by the early Church and the Orthodox Tradition.",
       "category": "inquirer",
       "bg_image": "/images/gallery/hero-readings.jpg"
     },
@@ -11,6 +12,7 @@
       "tab_name": "Homilies",
       "youtube_id": "dQw4w9WgXcQ",
       "title": "Sunday Homilies",
+      "description": "Sermons from Fr. Solomon Longo, delivered during the Sunday Divine Liturgy at Saints Peter and Paul Cathedral.",
       "category": "homily",
       "bg_image": "/images/heroes/hero-14.jpg"
     },
@@ -18,6 +20,7 @@
       "tab_name": "Music",
       "youtube_id": "dQw4w9WgXcQ",
       "title": "Orthodox Liturgical Music",
+      "description": "Recordings of Orthodox hymns, troparia, and choral works sung by the choir of Saints Peter and Paul Cathedral.",
       "category": "music",
       "bg_image": "/images/heroes/hero-12.jpg"
     },
@@ -25,6 +28,7 @@
       "tab_name": "Educational",
       "youtube_id": "dQw4w9WgXcQ",
       "title": "Monks and Monasticism",
+      "description": "Understanding the monastic calling in the Orthodox Church and its relationship to wider parish life.",
       "category": "educational",
       "bg_image": "/images/heroes/hero-13.jpg"
     }
