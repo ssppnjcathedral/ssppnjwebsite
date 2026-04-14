@@ -1,0 +1,189 @@
+{
+  "hero_tabs": [
+    {
+      "tab_name": "Inquirer",
+      "youtube_id": "yaSJ0hza6iE",
+      "title": "Lord of Spirits",
+      "category": "inquirer",
+      "bg_image": "/images/heroes/hero-06.jpg"
+    },
+    {
+      "tab_name": "Homilies",
+      "youtube_id": "dQw4w9WgXcQ",
+      "title": "Sunday Homilies",
+      "category": "homily",
+      "bg_image": "/images/heroes/hero-14.jpg"
+    },
+    {
+      "tab_name": "Music",
+      "youtube_id": "dQw4w9WgXcQ",
+      "title": "Orthodox Liturgical Music",
+      "category": "music",
+      "bg_image": "/images/heroes/hero-12.jpg"
+    },
+    {
+      "tab_name": "Educational",
+      "youtube_id": "dQw4w9WgXcQ",
+      "title": "Monks and Monasticism",
+      "category": "educational",
+      "bg_image": "/images/heroes/hero-13.jpg"
+    }
+  ],
+  "series": [
+    {
+      "slug": "lord-of-spirits",
+      "title": "Lord of Spirits",
+      "cover": "/images/heroes/hero-06.jpg",
+      "description": "Fr. Andrew Stephen Damick and Fr. Stephen De Young explore the angelic and spiritual world as understood by the early Church and the Orthodox Tradition.",
+      "featured": true,
+      "is_new": true,
+      "video_count": 3
+    },
+    {
+      "slug": "inquirer-essentials",
+      "title": "Inquirer Essentials",
+      "cover": "/images/heroes/hero-13.jpg",
+      "description": "Foundational teachings for those exploring the Orthodox Faith, from the sign of the cross to the meaning of confession and icons.",
+      "featured": false,
+      "is_new": false,
+      "video_count": 4
+    },
+    {
+      "slug": "parish-homilies",
+      "title": "Sunday Homilies",
+      "cover": "/images/heroes/hero-14.jpg",
+      "description": "Recorded sermons from Fr. Solomon Longo, delivered during the Sunday Divine Liturgy at Saints Peter and Paul Cathedral.",
+      "featured": false,
+      "is_new": false,
+      "video_count": 0
+    },
+    {
+      "slug": "liturgical-music",
+      "title": "Liturgical Music",
+      "cover": "/images/heroes/hero-12.jpg",
+      "description": "Recordings of Orthodox hymns, troparia, and choral works sung by the choir of Saints Peter and Paul Cathedral.",
+      "featured": false,
+      "is_new": false,
+      "video_count": 0
+    }
+  ],
+  "videos": [
+    {
+      "youtube_id": "yaSJ0hza6iE",
+      "title": "Lord of Spirits: The Opened Heavens",
+      "description": "The first episode of Lord of Spirits, exploring the heavenly realm and its relationship to the earthly Church.",
+      "category": "inquirer",
+      "series": ["lord-of-spirits"],
+      "date": "2026-03-15",
+      "thumbnail": ""
+    },
+    {
+      "youtube_id": "DQvVYW_nWvA",
+      "title": "Lord of Spirits: The Fallen",
+      "description": "Exploring the fall of the angelic powers and what the Orthodox tradition teaches about the origin of evil.",
+      "category": "inquirer",
+      "series": ["lord-of-spirits"],
+      "date": "2026-03-08",
+      "thumbnail": ""
+    },
+    {
+      "youtube_id": "jXDuaunGJCg",
+      "title": "Lord of Spirits: The Divine Name",
+      "description": "The significance of the divine name in Scripture and the Orthodox understanding of God's self-revelation.",
+      "category": "inquirer",
+      "series": ["lord-of-spirits"],
+      "date": "2026-03-01",
+      "thumbnail": ""
+    },
+    {
+      "youtube_id": "8-9tAdQkqn8",
+      "title": "Lord of Spirits: The Watchers",
+      "description": "The tradition of the Watchers in Jewish and Christian literature and what the Fathers say about angelic guardianship.",
+      "category": "inquirer",
+      "series": ["lord-of-spirits"],
+      "date": "2026-02-22",
+      "thumbnail": ""
+    },
+    {
+      "youtube_id": "Fj9m1GL4mbg",
+      "title": "Lord of Spirits: Giants in the Land",
+      "description": "The Nephilim, the giants, and how the early Church read Genesis 6 through the lens of the spiritual world.",
+      "category": "inquirer",
+      "series": ["lord-of-spirits"],
+      "date": "2026-02-15",
+      "thumbnail": ""
+    },
+    {
+      "youtube_id": "dQw4w9WgXcQ",
+      "title": "The Symbolic World",
+      "description": "The symbolic and typological language of Orthodox iconography, liturgy, and scripture.",
+      "category": "inquirer",
+      "series": ["lord-of-spirits"],
+      "date": "2025-12-15",
+      "thumbnail": ""
+    },
+    {
+      "youtube_id": "dQw4w9WgXcQ",
+      "title": "Theology of Icons",
+      "description": "An introduction to the theology and meaning of Orthodox iconography.",
+      "category": "inquirer",
+      "series": ["inquirer-essentials"],
+      "date": "2026-02-20",
+      "thumbnail": ""
+    },
+    {
+      "youtube_id": "dQw4w9WgXcQ",
+      "title": "Race and Becoming Orthodox",
+      "description": "Fr. Moses Berry speaks about his experience of conversion and the place of African-American history in the Church.",
+      "category": "inquirer",
+      "series": ["inquirer-essentials"],
+      "date": "2026-02-10",
+      "thumbnail": ""
+    },
+    {
+      "youtube_id": "dQw4w9WgXcQ",
+      "title": "5 Thoughts on Confession",
+      "description": "A practical and theological introduction to the Mystery of Repentance in the Orthodox Church.",
+      "category": "inquirer",
+      "series": ["inquirer-essentials"],
+      "date": "2026-01-28",
+      "thumbnail": ""
+    },
+    {
+      "youtube_id": "dQw4w9WgXcQ",
+      "title": "Making the Sign of the Cross",
+      "description": "An introduction to this foundational gesture of Orthodox Christian prayer and worship.",
+      "category": "inquirer",
+      "series": ["inquirer-essentials"],
+      "date": "2026-01-15",
+      "thumbnail": ""
+    },
+    {
+      "youtube_id": "dQw4w9WgXcQ",
+      "title": "Why Does the Church Use Incense?",
+      "description": "The theological and sensory meaning of incense in Orthodox Christian worship.",
+      "category": "inquirer",
+      "series": ["lord-of-spirits"],
+      "date": "2025-12-20",
+      "thumbnail": ""
+    },
+    {
+      "youtube_id": "dQw4w9WgXcQ",
+      "title": "Monks and Monasticism",
+      "description": "Understanding the monastic calling in the Orthodox Church and its relationship to wider parish life.",
+      "category": "educational",
+      "series": [],
+      "date": "2025-11-18",
+      "thumbnail": ""
+    },
+    {
+      "youtube_id": "dQw4w9WgXcQ",
+      "title": "A History of Christianity",
+      "description": "A documentary overview of Christian history, including the Orthodox tradition through the centuries.",
+      "category": "educational",
+      "series": [],
+      "date": "2025-10-05",
+      "thumbnail": ""
+    }
+  ]
+}

@@ -760,3 +760,159 @@ collections:
                 widget: string
                 required: false
                 hint: "For videos only. The ID from the YouTube URL (e.g. 'dQw4w9WgXcQ' from youtube.com/watch?v=dQw4w9WgXcQ)"
+
+  # ────────────────────────────────────────────
+  # VIDEOS
+  # ────────────────────────────────────────────
+  - name: "videos"
+    label: "Videos"
+    description: "Manage the video page: featured video, series (playlists), and individual videos."
+    files:
+      - name: "video-data"
+        label: "Video Data"
+        file: "video-data.json"
+        fields:
+
+          # ── HERO TABS ──
+          - name: hero_tabs
+            label: Hero Tabs
+            label_singular: Tab
+            widget: list
+            summary: "{{fields.tab_name}} — {{fields.title}}"
+            hint: "Each tab shows a featured video in the hero. Tabs rotate automatically and viewers can click between them."
+            fields:
+              - name: tab_name
+                label: Tab Name
+                widget: string
+                hint: "Short label shown in the bottom tab bar (e.g. 'Inquirer', 'Homilies')."
+
+              - name: youtube_id
+                label: YouTube Video ID
+                widget: string
+                hint: "The ID from the YouTube URL (e.g. 'dQw4w9WgXcQ')."
+
+              - name: title
+                label: Title
+                widget: string
+                hint: "Video title shown below the player."
+
+              - name: category
+                label: Category
+                widget: select
+                options:
+                  - { label: "Inquirer Resource", value: "inquirer" }
+                  - { label: "Homily", value: "homily" }
+                  - { label: "Music", value: "music" }
+                  - { label: "Educational", value: "educational" }
+                  - { label: "Parish Life", value: "parish" }
+
+              - name: bg_image
+                label: Background Image
+                widget: image
+                media_folder: "/images/gallery"
+                public_folder: "/images/gallery"
+                hint: "Background image for the hero when this tab is active."
+
+          # ── SERIES ──
+          - name: series
+            label: Series
+            label_singular: Series
+            widget: list
+            summary: "{{fields.title}}"
+            hint: "Curated playlists that appear as large cards. Each groups related videos."
+            fields:
+              - name: slug
+                label: Slug
+                widget: string
+                hint: "Unique ID, no spaces (e.g. 'lord-of-spirits'). Used to link videos to this series."
+
+              - name: title
+                label: Title
+                widget: string
+
+              - name: cover
+                label: Cover Image
+                widget: image
+                media_folder: "/images/gallery"
+                public_folder: "/images/gallery"
+                hint: "Cover photo for the series card."
+
+              - name: description
+                label: Description
+                widget: string
+                hint: "Short description shown on the card."
+
+              - name: featured
+                label: Featured (spans 2 columns)
+                widget: boolean
+                default: false
+
+              - name: is_new
+                label: Show 'New' badge
+                widget: boolean
+                default: false
+
+              - name: video_count
+                label: Video Count Override
+                widget: number
+                required: false
+                default: 0
+                hint: "Leave at 0 to auto-count from videos list."
+
+          # ── VIDEOS ──
+          - name: videos
+            label: Videos
+            label_singular: Video
+            widget: list
+            summary: "{{fields.title}} — {{fields.date}} ({{fields.category}})"
+            hint: "Individual videos. These appear in the chronological feed and can belong to series."
+            fields:
+              - name: youtube_id
+                label: YouTube Video ID
+                widget: string
+                hint: "The ID from the YouTube URL (e.g. 'dQw4w9WgXcQ')."
+
+              - name: title
+                label: Title
+                widget: string
+
+              - name: description
+                label: Description
+                widget: text
+                hint: "Short description of the video content."
+
+              - name: category
+                label: Category
+                widget: select
+                options:
+                  - { label: "Inquirer Resource", value: "inquirer" }
+                  - { label: "Homily", value: "homily" }
+                  - { label: "Music", value: "music" }
+                  - { label: "Educational", value: "educational" }
+                  - { label: "Parish Life", value: "parish" }
+
+              - name: series
+                label: Series
+                widget: list
+                field:
+                  name: slug
+                  label: Series Slug
+                  widget: string
+                required: false
+                hint: "Slugs of series this video belongs to (e.g. 'lord-of-spirits'). Leave empty if none."
+
+              - name: date
+                label: Date
+                widget: datetime
+                format: "YYYY-MM-DD"
+                date_format: "YYYY-MM-DD"
+                time_format: false
+                hint: "Date the video was posted or recorded."
+
+              - name: thumbnail
+                label: Custom Thumbnail
+                widget: image
+                media_folder: "/images/gallery"
+                public_folder: "/images/gallery"
+                required: false
+                hint: "Optional custom thumbnail. If blank, the YouTube thumbnail is used automatically."
