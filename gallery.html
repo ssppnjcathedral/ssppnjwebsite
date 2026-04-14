@@ -59,7 +59,7 @@ a{color:inherit;text-decoration:none}
 .gh-tab.on .gh-tab-num{color:rgba(232,201,122,.85)}
 .gh-tab-name{font-family:var(--f-ui);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,241,232,.5);transition:color .25s}
 .gh-tab.on .gh-tab-name{color:rgba(246,241,232,.92)}
-.gh-content{position:relative;z-index:7;max-width:1380px;margin:0 auto;width:100%;padding:5rem 6rem 6.5rem}
+.gh-content{position:relative;z-index:7;width:100%;padding:5rem 3rem 6.5rem 1.5rem;text-align:left}
 .gh-content.fading{opacity:0;transition:opacity .25s}
 .gh-content:not(.fading){transition:opacity .35s}
 .gh-badge{display:inline-flex;align-items:center;gap:.55rem;margin-bottom:.75rem}
@@ -177,6 +177,25 @@ a{color:inherit;text-decoration:none}
 .feed-item:hover .fi-play{opacity:1;transform:translate(-50%,-50%) scale(1.08)}
 .fi-play-tri{width:0;height:0;border-left:14px solid #fff;border-top:8px solid transparent;border-bottom:8px solid transparent;margin-left:3px}
 .fi-video-badge{position:absolute;top:8px;right:8px;font-family:var(--f-ui);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;padding:2px 8px;background:rgba(21,8,4,.7);color:rgba(246,241,232,.85);border:1px solid rgba(246,241,232,.2);z-index:3}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeSlideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+@keyframes fadeScaleIn{from{opacity:0;transform:scale(.93)}to{opacity:1;transform:none}}
+@keyframes countPulse{0%{transform:scale(1)}50%{transform:scale(1.3);color:var(--gold)}100%{transform:scale(1)}}
+
+.feed-item{opacity:0;animation:fadeScaleIn .4s ease forwards}
+.feed-item.span-2{animation:fadeSlideUp .5s ease forwards}
+.month-group{opacity:0;animation:fadeSlideUp .45s ease forwards}
+.coll-card{opacity:0;animation:fadeSlideUp .5s ease forwards}
+.feed-container-anim{transition:opacity .2s ease,transform .2s ease}
+.feed-container-anim.fading{opacity:0;transform:translateY(8px)}
+.count-pulse{display:inline-block;animation:countPulse .4s ease}
+.chip{transition:all .2s ease}.chip:active{transform:scale(.93)}
+.ss-btn:active{transform:scale(.93)}
+.coll-card{transition:outline .25s ease,box-shadow .25s ease}
+.coll-card.coll-active{outline:2px solid var(--gold);box-shadow:0 0 0 4px rgba(184,131,40,.15)}
+.active-filter-banner{transition:opacity .3s ease,max-height .35s ease,padding .3s ease,margin .3s ease;opacity:0;max-height:0;overflow:hidden;margin-bottom:0;padding-top:0;padding-bottom:0}
+.active-filter-banner.visible{opacity:1;max-height:80px;padding-top:.85rem;padding-bottom:.85rem;margin-bottom:1.25rem}
 
 /* ── YOUTUBE CTA ── */
 .yt-cta{max-width:1380px;margin:0 auto 3rem;padding:0 4.5rem}
@@ -864,7 +883,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
     <button class="afb-clear" onclick="clearCollectionFilter()">Clear filter</button>
   </div>
 
-  <div id="feed-container">
+  <div id="feed-container" class="feed-container-anim">
     <!-- month groups rendered by JS -->
   </div>
 </div>
@@ -1100,6 +1119,11 @@ function renderCollections() {
     html += '</div></div>';
   });
   grid.innerHTML = html;
+  // Stagger collection card animations
+  var cards = grid.querySelectorAll('.coll-card');
+  cards.forEach(function(card, i) {
+    card.style.animationDelay = (i * 0.1) + 's';
+  });
 }
 
 // ── FILTER STATE ──
@@ -1128,7 +1152,8 @@ function getFilteredItems() {
   });
 }
 
-// ── RENDER FEED ──
+// ── RENDER FEED (with animations) ──
+var feedAnimating = false;
 function renderFeed() {
   var items = getFilteredItems();
 
@@ -1204,9 +1229,36 @@ function renderFeed() {
     html = '<div style="text-align:center;padding:4rem 0"><p style="font-family:var(--f-display);font-style:italic;color:var(--stone);font-size:1.05rem">No items match these filters.</p></div>';
   }
 
-  container.innerHTML = html;
-  document.getElementById('feed-count').textContent = items.length;
-  document.getElementById('total-count').textContent = GALLERY_DATA.items.length;
+  // Animate: fade out old content, swap, fade in new content with stagger
+  function applyNewContent() {
+    container.innerHTML = html;
+
+    // Stagger month groups
+    var groups = container.querySelectorAll('.month-group');
+    groups.forEach(function(g, gi) {
+      g.style.animationDelay = (gi * 0.08) + 's';
+    });
+
+    // Stagger feed items within each group
+    groups.forEach(function(g) {
+      var feedItems = g.querySelectorAll('.feed-item');
+      feedItems.forEach(function(fi, idx) {
+        fi.style.animationDelay = (0.06 + idx * 0.05) + 's';
+      });
+    });
+
+    // Animate count
+    var countEl = document.getElementById('feed-count');
+    countEl.textContent = items.length;
+    countEl.classList.remove('count-pulse');
+    void countEl.offsetWidth;
+    countEl.classList.add('count-pulse');
+
+    document.getElementById('total-count').textContent = GALLERY_DATA.items.length;
+
+    // Remove fading class to reveal
+    container.classList.remove('fading');
+  }
 
   // update collection banner
   var banner = document.getElementById('active-banner');
@@ -1214,8 +1266,31 @@ function renderFeed() {
     var coll = GALLERY_DATA.collections.find(function(c) { return c.slug === currentCollectionFilter; });
     document.getElementById('active-coll-name').textContent = coll ? coll.title : currentCollectionFilter;
     banner.classList.add('visible');
+    // highlight the active collection card
+    document.querySelectorAll('.coll-card').forEach(function(card, i) {
+      var slug = GALLERY_DATA.collections[i] ? GALLERY_DATA.collections[i].slug : '';
+      card.classList.toggle('coll-active', slug === currentCollectionFilter);
+    });
   } else {
     banner.classList.remove('visible');
+    document.querySelectorAll('.coll-card').forEach(function(card) {
+      card.classList.remove('coll-active');
+    });
+  }
+
+  // If container already has content, fade out first, then swap
+  if (container.children.length > 0 && !feedAnimating) {
+    feedAnimating = true;
+    container.classList.add('fading');
+    setTimeout(function() {
+      applyNewContent();
+      feedAnimating = false;
+    }, 200);
+  } else {
+    // First render or already animating — just apply
+    container.classList.add('feed-container-anim');
+    applyNewContent();
+    feedAnimating = false;
   }
 }
 
