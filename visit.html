@@ -25,7 +25,7 @@ a{color:inherit;text-decoration:none}
 .rubric.light{color:rgba(246,241,232,.55)}
 .rubric-rule{display:block;height:1px;background:var(--maroon);margin-bottom:1rem;width:48px}
 .rubric-rule.gold{background:var(--gold)}
-.chapter-bar{background:var(--maroon);padding:.65rem 4rem;display:flex;align-items:center;justify-content:space-between}
+.chapter-bar{background:var(--maroon);padding:.65rem 4rem;display:flex;align-items:center;justify-content:space-between;position:relative;margin-top:-1px}
 .cbar-text{font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:rgba(246,241,232,.60)}
 .cbar-text.bright{color:rgba(246,241,232,.90)}
 .btn{display:inline-block;font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;padding:.85rem 2.2rem;border:1px solid currentColor;cursor:pointer;transition:all .22s;white-space:nowrap}
@@ -79,7 +79,7 @@ footer .btn-outline:hover{background:rgba(246,241,232,.15);color:#fff;border-col
 .nav-drawer-give:hover{background:var(--maroon-deep)}
 
 /* ── VISIT HERO ── */
-.vp-hero{padding-top:60px;background:linear-gradient(to bottom,rgba(59,15,24,.82) 0%,rgba(59,15,24,.68) 60%,rgba(59,15,24,.90) 100%),url('/images/heroes/hero-01.jpg') center 55%/cover no-repeat;background-color:var(--apse);min-height:520px;display:flex;align-items:center;position:relative}
+.vp-hero{padding-top:60px;background:linear-gradient(to bottom,rgba(59,15,24,.82) 0%,rgba(59,15,24,.68) 60%,rgba(59,15,24,.90) 100%),url('/images/heroes/hero-01.jpg') center 55%/cover no-repeat;background-color:var(--apse);min-height:520px;display:flex;align-items:center;position:relative;overflow:hidden}
 .vp-hero-inner{max-width:1380px;margin:0 auto;padding:5rem 6rem 4.5rem;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center}
 .vp-hero-left{}
 .vp-breadcrumb{font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,241,232,.38);margin-bottom:1.5rem;display:block}
@@ -127,14 +127,14 @@ footer .btn-outline:hover{background:rgba(246,241,232,.15);color:#fff;border-col
 .vp-info-body strong{color:rgba(246,241,232,.95);font-weight:500}
 .vp-info-body a{color:rgba(184,131,40,.85);border-bottom:1px solid rgba(184,131,40,.30);transition:color .2s,border-color .2s}
 .vp-info-body a:hover{color:var(--gold);border-color:var(--gold)}
-.vp-where-right{}
-.vp-map-frame{width:100%;aspect-ratio:4/3;border:1px solid rgba(184,131,40,.20);overflow:hidden;display:block}
+.vp-where-right{display:flex;flex-direction:column}
+.vp-map-frame{width:100%;flex:1;min-height:300px;border:1px solid rgba(184,131,40,.20);overflow:hidden;display:block}
 .vp-map-frame iframe{width:100%;height:100%;border:none;display:block;filter:grayscale(15%) contrast(95%)}
 .vp-map-link{display:inline-block;margin-top:1rem;font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(184,131,40,.75);border-bottom:1px solid rgba(184,131,40,.30);padding-bottom:.1rem;transition:color .2s,border-color .2s}
 .vp-map-link:hover{color:var(--gold);border-color:var(--gold)}
 
 /* ── BEGIN HERE ── */
-.vp-explore{background:var(--vellum-mid);padding:0}
+.vp-explore{background:var(--vellum-mid);padding:0;margin-top:-1px}
 .vp-explore-inner{max-width:1380px;margin:0 auto;padding:5.5rem 4.5rem}
 .vp-explore-head{margin-bottom:3rem;display:flex;align-items:flex-end;justify-content:space-between;gap:2rem}
 .vp-explore-title{font-family:var(--f-display);font-weight:300;font-size:clamp(2rem,3.5vw,3rem);color:var(--text);line-height:1.1;margin:.5rem 0}
@@ -143,9 +143,9 @@ footer .btn-outline:hover{background:rgba(246,241,232,.15);color:#fff;border-col
 .vp-path{position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;min-height:380px;cursor:pointer;text-decoration:none}
 .vp-path-bg{position:absolute;inset:0;transition:transform .65s ease;background-size:cover;background-position:center;background-repeat:no-repeat}
 /* Photo backgrounds with gradient overlay - fallback color holds if image not yet uploaded */
-.vp-path-1 .vp-path-bg{background-image:linear-gradient(to bottom,rgba(21,8,4,.12) 0%,rgba(21,8,4,.60) 55%,rgba(21,8,4,.88) 100%),url('/images/heroes/hero-03.jpg');background-color:var(--apse)}
-.vp-path-2 .vp-path-bg{background-image:linear-gradient(to bottom,rgba(21,8,4,.12) 0%,rgba(92,21,32,.55) 55%,rgba(21,8,4,.88) 100%),url('/images/heroes/hero-06.jpg');background-color:var(--maroon)}
-.vp-path-3 .vp-path-bg{background-image:linear-gradient(to bottom,rgba(21,8,4,.12) 0%,rgba(30,53,46,.55) 55%,rgba(21,8,4,.88) 100%),url('/images/heroes/hero-07.jpg');background-color:var(--verdigris)}
+.vp-path-1 .vp-path-bg{background-image:linear-gradient(to bottom,rgba(21,8,4,.45) 0%,rgba(21,8,4,.72) 55%,rgba(21,8,4,.92) 100%),url('/images/heroes/hero-03.jpg');background-color:var(--apse)}
+.vp-path-2 .vp-path-bg{background-image:linear-gradient(to bottom,rgba(21,8,4,.45) 0%,rgba(92,21,32,.72) 55%,rgba(21,8,4,.92) 100%),url('/images/heroes/hero-06.jpg');background-color:var(--maroon)}
+.vp-path-3 .vp-path-bg{background-image:linear-gradient(to bottom,rgba(21,8,4,.45) 0%,rgba(30,53,46,.72) 55%,rgba(21,8,4,.92) 100%),url('/images/heroes/hero-07.jpg');background-color:var(--verdigris)}
 @media(hover:hover){.vp-path:hover .vp-path-bg{transform:scale(1.06)}}
 .vp-path-accent{position:absolute;top:0;left:0;right:0;height:3px}
 .vp-path-1 .vp-path-accent{background:linear-gradient(to right,var(--gold),rgba(184,131,40,.30))}
@@ -313,7 +313,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 .pill-arrow{background:rgba(255,255,255,.06);border:none;color:rgba(246,241,232,.60);cursor:pointer;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:all .18s;flex-shrink:0}
 .pill-arrow:hover:not(:disabled){background:rgba(255,255,255,.14);color:#fff}
 .pill-arrow:disabled{opacity:.22;cursor:default}
-.pill-center{font-family:var(--f-ui);font-size:.56rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.80);padding:.3rem .65rem;display:flex;align-items:center;gap:.4rem;min-width:100px;justify-content:center;cursor:pointer;transition:color .18s}
+.pill-center{font-family:var(--f-ui);font-size:.56rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.80);padding:.3rem .65rem;display:flex;align-items:center;gap:.4rem;min-width:100px;justify-content:center;cursor:pointer;transition:color .18s;background:none;border:none}
 .pill-center:hover{color:#fff}
 /* BOTTOM SHEET */
 .mob-sheet-overlay{display:none;position:fixed;inset:0;background:rgba(21,8,4,.60);z-index:300;opacity:0;transition:opacity .28s}
@@ -958,51 +958,55 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   </div>
 </section>
 
-<!-- 2. YOUR FIRST VISIT -->
-<section class="vp-first" id="visit-practical">
+<!-- BEGIN HERE -->
+<section class="vp-explore">
   <div class="chapter-bar">
-    <span class="cbar-text bright">Your First Visit</span>
-    <span class="cbar-text">What to know before you arrive</span>
+    <span class="cbar-text bright">Begin Here</span>
+    <span class="cbar-text">Three paths into our parish</span>
   </div>
-  <div class="vp-first-inner">
-    <div class="vp-cards">
-
-      <div class="vp-card">
-        <span class="vp-card-num">01</span>
-        <div class="vp-card-icon"></div>
-        <h2 class="vp-card-head">When to come</h2>
-        <div class="vp-card-body">
-          <div class="vp-card-detail"><strong>Vespers</strong> Saturday at 5:00 PM</div>
-          <div class="vp-card-detail"><strong>Divine Liturgy</strong> Sunday at 9:30 AM</div>
-          <div class="vp-card-detail"><strong>Coffee Hour</strong> Follows every Sunday Liturgy</div>
-          <div class="vp-card-detail"><strong>Office</strong> Monday through Friday, 9 AM to 5 PM</div>
-          <p style="margin-top:1.25rem">If it is your first time, Sunday Liturgy is the natural place to start. Vespers on Saturday evening is shorter and quieter -- about 45 to 60 minutes -- and a good introduction if you want to ease in.</p>
-        </div>
+  <div class="vp-explore-inner">
+    <div class="vp-explore-head">
+      <div>
+        <span class="rubric">Explore the Faith</span>
+        <div class="rubric-rule" style="margin:.5rem 0 .75rem"></div>
+        <h2 style="font-family:var(--f-display);font-weight:300;font-size:clamp(1.8rem,3vw,2.6rem);color:var(--text);line-height:1.1;margin:.25rem 0">Where would you like to start?</h2>
       </div>
+      <p class="vp-explore-sub">Each path leads somewhere different. All of them are worth your time.</p>
+    </div>
+    <div class="vp-paths">
 
-      <div class="vp-card">
-        <span class="vp-card-num">02</span>
-        <div class="vp-card-icon"></div>
-        <h2 class="vp-card-head">What happens during the service</h2>
-        <div class="vp-card-body">
-          <p>Divine Liturgy runs about an hour and twenty minutes. Most of it is sung or chanted by the choir in English, with some Greek and Slavonic. You will smell incense and see the clergy process with the Gospel and the holy gifts.</p>
-          <p>You do not need to follow along perfectly. Bulletins are available at the entrance with the day's readings and hymns.</p>
-          <p>Holy Communion is received by Orthodox Christians who have prepared through fasting and confession. If you are not Orthodox, you are welcome to come forward for a blessing at the end of the service -- simply cross your arms over your chest.</p>
+      <a href="/about-orthodoxy" class="vp-path vp-path-1">
+        <div class="vp-path-bg"></div>
+        <div class="vp-path-accent"></div>
+        <div class="vp-path-content">
+          <span class="vp-path-kicker">For the curious</span>
+          <h3 class="vp-path-title">About<br><em>Orthodoxy</em></h3>
+          <p class="vp-path-desc">What is the Orthodox Church? Where does it come from, and how does it differ from what you may have grown up with? Start here if the faith itself is what draws you.</p>
+          <span class="vp-path-cta">Read more</span>
         </div>
-      </div>
+      </a>
 
-      <div class="vp-card">
-        <span class="vp-card-num">03</span>
-        <div class="vp-card-icon"></div>
-        <h2 class="vp-card-head">What to wear and bring</h2>
-        <div class="vp-card-body">
-          <p>Modest, respectful attire. There is no strict dress code, and you will be welcomed regardless of what you wear. That said, this is a formal act of worship, and most parishioners dress accordingly.</p>
-          <div class="vp-card-detail" style="margin-top:1rem"><strong>Women</strong> Traditionally cover their heads inside the church. Visitors are not expected to do so.</div>
-          <div class="vp-card-detail"><strong>Men</strong> Typically remove hats before entering.</div>
-          <div class="vp-card-detail"><strong>Children</strong> Families with children are welcome. We have a small area near the back if you need space.</div>
-          <p style="margin-top:1.25rem">You do not need to bring anything. Just show up.</p>
+      <a href="/our-beliefs" class="vp-path vp-path-2">
+        <div class="vp-path-bg"></div>
+        <div class="vp-path-accent"></div>
+        <div class="vp-path-content">
+          <span class="vp-path-kicker">For the theological</span>
+          <h3 class="vp-path-title">Our<br><em>Beliefs</em></h3>
+          <p class="vp-path-desc">The Nicene Creed, the Holy Trinity, the Theotokos. If you want to understand what Orthodox Christians actually confess, this is the place to begin.</p>
+          <span class="vp-path-cta">Read more</span>
         </div>
-      </div>
+      </a>
+
+      <a href="/our-parish" class="vp-path vp-path-3">
+        <div class="vp-path-bg"></div>
+        <div class="vp-path-accent"></div>
+        <div class="vp-path-content">
+          <span class="vp-path-kicker">For the local</span>
+          <h3 class="vp-path-title">Our<br><em>Parish</em></h3>
+          <p class="vp-path-desc">Founded in 1907, elevated to a cathedral in 2020. The story of Saints Peter and Paul is the story of an immigrant community that put down roots and never left.</p>
+          <span class="vp-path-cta">Read more</span>
+        </div>
+      </a>
 
     </div>
   </div>
@@ -1067,6 +1071,56 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   </div>
 </section>
 
+<!-- YOUR FIRST VISIT -->
+<div class="chapter-bar">
+  <span class="cbar-text bright">Your First Visit</span>
+  <span class="cbar-text">What to know before you arrive</span>
+</div>
+<section class="vp-first" id="visit-practical">
+  <div class="vp-first-inner">
+    <div class="vp-cards">
+
+      <div class="vp-card">
+        <span class="vp-card-num">01</span>
+        <div class="vp-card-icon"></div>
+        <h2 class="vp-card-head">When to come</h2>
+        <div class="vp-card-body">
+          <div class="vp-card-detail"><strong>Vespers</strong> Saturday at 5:00 PM</div>
+          <div class="vp-card-detail"><strong>Divine Liturgy</strong> Sunday at 9:30 AM</div>
+          <div class="vp-card-detail"><strong>Coffee Hour</strong> Follows every Sunday Liturgy</div>
+          <div class="vp-card-detail"><strong>Office</strong> Monday through Friday, 9 AM to 5 PM</div>
+          <p style="margin-top:1.25rem">If it is your first time, Sunday Liturgy is the natural place to start. Vespers on Saturday evening is shorter and quieter -- about 45 to 60 minutes -- and a good introduction if you want to ease in.</p>
+        </div>
+      </div>
+
+      <div class="vp-card">
+        <span class="vp-card-num">02</span>
+        <div class="vp-card-icon"></div>
+        <h2 class="vp-card-head">What happens during the service</h2>
+        <div class="vp-card-body">
+          <p>Divine Liturgy runs about an hour and twenty minutes. Most of it is sung or chanted by the choir in English, with some Greek and Slavonic. You will smell incense and see the clergy process with the Gospel and the holy gifts.</p>
+          <p>You do not need to follow along perfectly. Bulletins are available at the entrance with the day's readings and hymns.</p>
+          <p>Holy Communion is received by Orthodox Christians who have prepared through fasting and confession. If you are not Orthodox, you are welcome to come forward for a blessing at the end of the service -- simply cross your arms over your chest.</p>
+        </div>
+      </div>
+
+      <div class="vp-card">
+        <span class="vp-card-num">03</span>
+        <div class="vp-card-icon"></div>
+        <h2 class="vp-card-head">What to wear and bring</h2>
+        <div class="vp-card-body">
+          <p>Modest, respectful attire. There is no strict dress code, and you will be welcomed regardless of what you wear. That said, this is a formal act of worship, and most parishioners dress accordingly.</p>
+          <div class="vp-card-detail" style="margin-top:1rem"><strong>Women</strong> Traditionally cover their heads inside the church. Visitors are not expected to do so.</div>
+          <div class="vp-card-detail"><strong>Men</strong> Typically remove hats before entering.</div>
+          <div class="vp-card-detail"><strong>Children</strong> Families with children are welcome. We have a small area near the back if you need space.</div>
+          <p style="margin-top:1.25rem">You do not need to bring anything. Just show up.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- PHOTO MOSAIC -->
 <section class="vp-mosaic" aria-label="Parish life photos">
   <div class="vp-mosaic-grid">
@@ -1098,60 +1152,6 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
       </div>
     </div>
 
-  </div>
-</section>
-
-<!-- 4. BEGIN HERE -->
-<section class="vp-explore">
-  <div class="chapter-bar">
-    <span class="cbar-text bright">Begin Here</span>
-    <span class="cbar-text">Three paths into our parish</span>
-  </div>
-  <div class="vp-explore-inner">
-    <div class="vp-explore-head">
-      <div>
-        <span class="rubric">Explore the Faith</span>
-        <div class="rubric-rule" style="margin:.5rem 0 .75rem"></div>
-        <h2 style="font-family:var(--f-display);font-weight:300;font-size:clamp(1.8rem,3vw,2.6rem);color:var(--text);line-height:1.1;margin:.25rem 0">Where would you like to start?</h2>
-      </div>
-      <p class="vp-explore-sub">Each path leads somewhere different. All of them are worth your time.</p>
-    </div>
-    <div class="vp-paths">
-
-      <a href="/about-orthodoxy" class="vp-path vp-path-1">
-        <div class="vp-path-bg"></div>
-        <div class="vp-path-accent"></div>
-        <div class="vp-path-content">
-          <span class="vp-path-kicker">For the curious</span>
-          <h3 class="vp-path-title">About<br><em>Orthodoxy</em></h3>
-          <p class="vp-path-desc">What is the Orthodox Church? Where does it come from, and how does it differ from what you may have grown up with? Start here if the faith itself is what draws you.</p>
-          <span class="vp-path-cta">Read more</span>
-        </div>
-      </a>
-
-      <a href="/our-beliefs" class="vp-path vp-path-2">
-        <div class="vp-path-bg"></div>
-        <div class="vp-path-accent"></div>
-        <div class="vp-path-content">
-          <span class="vp-path-kicker">For the theological</span>
-          <h3 class="vp-path-title">Our<br><em>Beliefs</em></h3>
-          <p class="vp-path-desc">The Nicene Creed, the Holy Trinity, the Theotokos. If you want to understand what Orthodox Christians actually confess, this is the place to begin.</p>
-          <span class="vp-path-cta">Read more</span>
-        </div>
-      </a>
-
-      <a href="/our-parish" class="vp-path vp-path-3">
-        <div class="vp-path-bg"></div>
-        <div class="vp-path-accent"></div>
-        <div class="vp-path-content">
-          <span class="vp-path-kicker">For the local</span>
-          <h3 class="vp-path-title">Our<br><em>Parish</em></h3>
-          <p class="vp-path-desc">Founded in 1907, elevated to a cathedral in 2020. The story of Saints Peter and Paul is the story of an immigrant community that put down roots and never left.</p>
-          <span class="vp-path-cta">Read more</span>
-        </div>
-      </a>
-
-    </div>
   </div>
 </section>
 
@@ -1205,7 +1205,6 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
       <!-- Moment V — spans full width, apse background -->
       <div class="vp-cat-moment">
         <div>
-          <span class="vcm-num">V</span>
           <span class="vcm-era">Today &middot; Saints Peter &amp; Paul Cathedral</span>
           <h3 class="vcm-title">What Catechesis Looks Like Here</h3>
           <p class="vcm-body">While the OCA prescribes no mandatory format for catechesis, Fr. Solomon offers formal catechesis classes throughout the liturgical year for those preparing to enter the Church. A catechumen attends Liturgy regularly, participates in classes alongside others on the same journey, meets with Fr. Solomon for personal instruction, and receives a prayer and fasting rule suited to their life. The sacramental life of the parish opens at the pace their heart requires.</p>

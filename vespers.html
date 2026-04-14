@@ -591,6 +591,16 @@ a{color:inherit;text-decoration:none}
 }
 
 /* ── QUOTE BREAK ── */
+/* Understanding Vespers section */
+.understanding-section{background:var(--vellum);padding:4.5rem 4.5rem 5rem;border-top:var(--rule-faint)}
+.understanding-inner{max-width:960px;margin:0 auto}
+.understanding-intro{font-family:var(--f-body);font-size:1.05rem;line-height:1.8;color:var(--stone);text-align:center;max-width:640px;margin:0 auto 3rem}
+.understanding-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.understanding-card{background:#fff;border-radius:6px;padding:1.75rem 2rem;border-left:3px solid var(--gold)}
+.understanding-card-head{font-family:var(--f-display);font-weight:600;font-size:1.08rem;color:var(--maroon);margin:0 0 .65rem;line-height:1.25}
+.understanding-card p{font-family:var(--f-body);font-size:.94rem;line-height:1.78;color:var(--ink);margin:0}
+.understanding-card em{font-style:italic}
+
 .quote-break{margin:0;padding:4rem 4.5rem;background:var(--vellum);border-top:var(--rule-faint);border-bottom:var(--rule-faint)}
 .qb-inner{max-width:680px;margin:0 auto;padding-left:2rem;border-left:3px solid var(--maroon)}
 .qb-text{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-weight:300;font-size:clamp(1.5rem,3vw,2.2rem);line-height:1.4;color:var(--text);margin-bottom:.75rem}
@@ -716,6 +726,9 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   .lit-main{padding:3.5rem 2rem 5rem;max-width:100%}
   .mob-ctx-card{display:block}
   .chapter-bar{padding:.65rem 1.5rem}
+  .understanding-section{padding:3rem 1.5rem 3.5rem}
+  .understanding-grid{grid-template-columns:1fr;gap:1.5rem}
+  .understanding-card{padding:1.35rem 1.5rem}
   .quote-break{padding:3rem 2rem}
   .lit-cta{padding:3rem 1.5rem}
   footer{padding:3rem 1.5rem 1.5rem}
@@ -1330,6 +1343,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
     <button class="cbar-link" onclick="jumpTo('lord-i-call')">Lord I Call</button>
     <button class="cbar-link" onclick="jumpTo('augmented-litany')">Evening Prayer</button>
     <button class="cbar-link" onclick="jumpTo('dismissal')">Dismissal</button>
+    <button class="cbar-link" onclick="jumpTo('understanding-vespers')">Understanding</button>
   </div>
 </div>
 
@@ -1420,9 +1434,6 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
       <span class="section-tag">The Beginning of Vespers</span>
       <h2 class="section-head">Opening Prayers</h2>
       <span class="section-sub">Blessing, invocation, and the Lord's Prayer</span>
-      <div class="prose drop-cap">
-        <p><strong>Great Vespers</strong> is served every Saturday evening and on the eve of any feast when the Menaion or Pentecostarion appoints Old or New Testament lessons. It begins with the blessing of God and a series of preparatory prayers that gather the faithful out of the noise of the day and into the presence of the holy.</p>
-      </div>
 
       <p class="lit-dir">If the Ninth Hour was not said immediately before, the priest opens with the blessing. Otherwise the reader begins at "Come, let us worship" on the next section.</p>
 
@@ -1453,9 +1464,6 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
       <span class="section-tag">Part One</span>
       <h2 class="section-head">Psalm 103</h2>
       <span class="section-sub">A hymn of creation sung at the door of the evening</span>
-      <div class="prose drop-cap">
-        <p>The service begins properly with the great <strong>creation psalm</strong>, Psalm 103, chanted while the priest silently reads the Prayers of the Lamp before the iconostasis. The psalm sings of the world as God made it: light, water, mountains, creatures, and the turning of day into night. It places the entire evening prayer in the frame of thanksgiving for creation.</p>
-      </div>
 
       <div class="prose">
         <p>Come, let us worship God our King. Come, let us worship and fall down before Christ, our King and our God. Come, let us worship and fall down before Christ Himself, our King and our God.</p>
@@ -1493,27 +1501,34 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
       <span class="section-tag">Part Two</span>
       <h2 class="section-head">The Great Litany</h2>
       <span class="section-sub">Intercession for the peace of the whole world</span>
-      <div class="prose drop-cap">
-        <p>When the reader has finished the psalm, the deacon or priest begins the <strong>Great Litany</strong>, a series of petitions offered for the peace of the world, the Church, civil authorities, travelers, the sick, and all people. The faithful respond to each petition with "Lord, have mercy," the ancient prayer of the Church drawn from the Psalms.</p>
-      </div>
 
       <div class="prose">
         <p><span class="speaker">Deacon (Priest):</span> In peace, let us pray to the Lord.</p>
-        <p><span class="response">R. Lord, have mercy.</span> <em>(after each petition)</em></p>
+        <p><span class="speaker">R.</span> <span class="response">Lord, have mercy.</span></p>
         <p>For the peace from above and for the salvation of our souls, let us pray to the Lord.</p>
+        <p><span class="speaker">R.</span> <span class="response">Lord, have mercy.</span></p>
         <p>For the peace of the whole world, for the welfare of the holy Churches of God, and for the union of all, let us pray to the Lord.</p>
+        <p><span class="speaker">R.</span> <span class="response">Lord, have mercy.</span></p>
         <p>For this holy house and for those who enter it with faith, reverence, and the fear of God, let us pray to the Lord.</p>
+        <p><span class="speaker">R.</span> <span class="response">Lord, have mercy.</span></p>
         <p>For our Metropolitan N., for our Bishop N., for the honorable priesthood, the diaconate in Christ, and for all the clergy and the people, let us pray to the Lord.</p>
+        <p><span class="speaker">R.</span> <span class="response">Lord, have mercy.</span></p>
         <p>For this country, its President, for all civil authorities, and for the armed forces, let us pray to the Lord.</p>
+        <p><span class="speaker">R.</span> <span class="response">Lord, have mercy.</span></p>
         <p>For this city, for every city and countryside, and for the faithful dwelling in them, let us pray to the Lord.</p>
+        <p><span class="speaker">R.</span> <span class="response">Lord, have mercy.</span></p>
         <p>For seasonable weather, for abundance of the fruits of the earth, and for peaceful times, let us pray to the Lord.</p>
+        <p><span class="speaker">R.</span> <span class="response">Lord, have mercy.</span></p>
         <p>For travelers by land, by sea, and by air; for the sick and the suffering; for captives and their salvation, let us pray to the Lord.</p>
+        <p><span class="speaker">R.</span> <span class="response">Lord, have mercy.</span></p>
         <p>That we may be delivered from all affliction, wrath, danger, and necessity, let us pray to the Lord.</p>
+        <p><span class="speaker">R.</span> <span class="response">Lord, have mercy.</span></p>
         <p>Help us, save us, have mercy on us, and keep us, O God, by Thy grace.</p>
+        <p><span class="speaker">R.</span> <span class="response">Lord, have mercy.</span></p>
         <p>Commemorating our most holy, most pure, most blessed and glorious Lady Theotokos and Ever-virgin Mary with all the saints, let us commend ourselves and each other, and all our life unto Christ our God.</p>
-        <p><span class="response">R. To Thee, O Lord.</span></p>
+        <p><span class="speaker">R.</span> <span class="response">To Thee, O Lord.</span></p>
         <p><span class="speaker">Priest:</span> For unto Thee are due all glory, honor, and worship: to the Father and to the Son and to the Holy Spirit, now and ever and unto ages of ages.</p>
-        <p><span class="response">R. Amen.</span></p>
+        <p><span class="speaker">R.</span> <span class="response">Amen.</span></p>
       </div>
 
       <div class="mob-ctx-card">
@@ -1528,9 +1543,6 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
       <span class="section-tag">Part Three</span>
       <h2 class="section-head">The Kathisma</h2>
       <span class="section-sub">Reading from the Psalter</span>
-      <div class="prose drop-cap">
-        <p>At <strong>Great Vespers</strong> on Saturday evenings, the first section of the first kathisma of the Psalter is sung: <em>Blessed is the man who walks not in the counsel of the wicked...</em> This is Psalm 1, which opens the entire Psalter and sets its theme of two ways: the way of blessing and the way of ruin. At Daily Vespers, the appointed kathisma is simply read. At certain great feasts, the kathisma is omitted entirely.</p>
-      </div>
 
       <p class="lit-dir">At Great Vespers, the first section of the first kathisma (Blessed is the man...) is sung by the choir. At Daily Vespers, the appointed kathisma is read. The kathisma is omitted on the eves of great feasts of the Lord, except on Saturday or Sunday evening.</p>
 
@@ -1545,13 +1557,13 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 
       <div class="prose">
         <p><span class="speaker">Deacon (Priest):</span> Again and again in peace, let us pray to the Lord.</p>
-        <p><span class="response">R. Lord, have mercy.</span></p>
+        <p><span class="speaker">R.</span> <span class="response">Lord, have mercy.</span></p>
         <p>Help us, save us, have mercy on us, and keep us, O God, by Thy grace.</p>
-        <p><span class="response">R. Lord, have mercy.</span></p>
+        <p><span class="speaker">R.</span> <span class="response">Lord, have mercy.</span></p>
         <p>Commemorating our most holy, most pure, most blessed and glorious Lady Theotokos and Ever-virgin Mary with all the saints, let us commend ourselves and each other, and all our life unto Christ our God.</p>
-        <p><span class="response">R. To Thee, O Lord.</span></p>
+        <p><span class="speaker">R.</span> <span class="response">To Thee, O Lord.</span></p>
         <p><span class="speaker">Priest:</span> For Thine is the might, and Thine is the Kingdom and the power and the glory, of the Father and of the Son and of the Holy Spirit, now and ever and unto ages of ages.</p>
-        <p><span class="response">R. Amen.</span></p>
+        <p><span class="speaker">R.</span> <span class="response">Amen.</span></p>
       </div>
 
       <div class="mob-ctx-card">
@@ -1566,9 +1578,6 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
       <span class="section-tag">Part Four</span>
       <h2 class="section-head">Lord, I Call<br><em>upon Thee</em></h2>
       <span class="section-sub">The evening psalms and the stichera</span>
-      <div class="prose drop-cap">
-        <p>The choir opens with the verses of Psalm 140 set to music, the ancient evening prayer asking that our prayer rise to God as incense and our lifted hands be as an evening sacrifice. The reader then chants the verses of Psalms 140, 141, 129, and 116, into which the choir inserts the appointed <strong>stichera</strong>, hymns proper to the feast or day. This is the musical and poetic heart of Vespers, where the Church sings its evening theology.</p>
-      </div>
 
       <div class="prose">
         <p><span class="speaker">Choir:</span> Lord, I call upon Thee, hear me! Hear me, O Lord! Lord, I call upon Thee, hear me! Receive the voice of my prayer, when I call upon Thee! Hear me, O Lord!</p>
@@ -1619,9 +1628,6 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
       <span class="section-tag">Part Five</span>
       <h2 class="section-head">The Evening Entrance<br><em>and Gladsome Light</em></h2>
       <span class="section-sub">The oldest evening hymn of the Church</span>
-      <div class="prose drop-cap">
-        <p>At <strong>Great Vespers</strong>, following the last sticheron, there is a solemn entrance through the Holy Doors: the priest and deacon process with candles and incense as the deacon exclaims "Wisdom. Stand upright." The choir then sings the <strong>Gladsome Light</strong>, one of the oldest Christian hymns still in use, greeting Christ as the light of evening, the immortal light of the heavenly Father.</p>
-      </div>
 
       <p class="lit-dir">If it is Great Vespers, the deacon stands before the open Holy Doors and exclaims: Wisdom. Stand upright. If it is Daily Vespers, there is no entrance, and the choir proceeds immediately to Gladsome Light.</p>
 
@@ -1644,9 +1650,6 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
       <span class="section-tag">Part Six</span>
       <h2 class="section-head">The Prokeimenon</h2>
       <span class="section-sub">A psalm verse chanted antiphonally before the readings</span>
-      <div class="prose drop-cap">
-        <p>The <strong>prokeimenon</strong> is a verse from the Psalms chanted antiphonally between the priest or deacon and the choir. A different prokeimenon is appointed for each day of the week, each in its proper tone. On great feasts, a special prokeimenon or one of the Great Prokeimena is substituted. It prepares the faithful to receive the scriptural readings that follow at Great Vespers.</p>
-      </div>
 
       <span class="day-head">Saturday Evening</span>
       <span class="tone-head">Tone 6</span>
@@ -1718,31 +1721,28 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
       <span class="section-tag">Part Seven</span>
       <h2 class="section-head">The Augmented Litany</h2>
       <span class="section-sub">At Great Vespers, following the Prokeimenon</span>
-      <div class="prose drop-cap">
-        <p>At <strong>Great Vespers</strong>, after the prokeimenon and any appointed scriptural lessons, the deacon begins the <strong>Augmented Litany</strong>. It is "augmented" in fervor: the triple response "Lord, have mercy" replaces the single response of the Great Litany, intensifying the communal plea. It includes commemorations of the departed Orthodox faithful, the living members of the parish, and those who serve in the temple.</p>
-      </div>
 
       <p class="lit-dir">At Great Vespers, following the prokeimenon (or during the third lesson when lessons are read), the deacon begins the Augmented Litany. At Daily Vespers this litany is said after the Troparia, before the Dismissal.</p>
 
       <div class="prose">
         <p><span class="speaker">Deacon (Priest):</span> Let us say with all our soul and with all our mind, let us say:</p>
-        <p><span class="response">R. Lord, have mercy.</span></p>
+        <p><span class="speaker">R.</span> <span class="response">Lord, have mercy.</span></p>
         <p>O Lord almighty, the God of our fathers, we pray Thee, hearken and have mercy.</p>
-        <p><span class="response">R. Lord, have mercy.</span></p>
+        <p><span class="speaker">R.</span> <span class="response">Lord, have mercy.</span></p>
         <p>Have mercy on us, O God, according to Thy great goodness, we pray Thee, hearken and have mercy.</p>
-        <p><span class="response">R. Lord, have mercy. <em>(thrice)</em></span></p>
+        <p><span class="speaker">R.</span> <span class="response">Lord, have mercy. <em>(thrice)</em></span></p>
         <p>Again we pray for our Metropolitan N., for our Bishop N., and for all our brethren in Christ.</p>
-        <p><span class="response">R. Lord, have mercy. <em>(thrice)</em></span></p>
+        <p><span class="speaker">R.</span> <span class="response">Lord, have mercy. <em>(thrice)</em></span></p>
         <p>Again we pray for this country, its President, for all civil authorities, and for the armed forces.</p>
-        <p><span class="response">R. Lord, have mercy. <em>(thrice)</em></span></p>
+        <p><span class="speaker">R.</span> <span class="response">Lord, have mercy. <em>(thrice)</em></span></p>
         <p>Again we pray for the blessed and ever-memorable holy Orthodox Patriarchs; and for the blessed and ever-memorable founders of this holy church; and for all our fathers and brethren, the Orthodox departed this life before us, who here and in all the world lie asleep in the Lord.</p>
-        <p><span class="response">R. Lord, have mercy. <em>(thrice)</em></span></p>
+        <p><span class="speaker">R.</span> <span class="response">Lord, have mercy. <em>(thrice)</em></span></p>
         <p>Again we pray for mercy, life, peace, health, salvation, and visitation for the servants of God, the brethren of this holy temple, and for the pardon and remission of their sins.</p>
-        <p><span class="response">R. Lord, have mercy. <em>(thrice)</em></span></p>
+        <p><span class="speaker">R.</span> <span class="response">Lord, have mercy. <em>(thrice)</em></span></p>
         <p>Again we pray for those who bring offerings and do good works in this holy and all-venerable temple; for those who labor and those who sing; and for all the people here present, who await Thy great and rich mercy.</p>
-        <p><span class="response">R. Lord, have mercy. <em>(thrice)</em></span></p>
+        <p><span class="speaker">R.</span> <span class="response">Lord, have mercy. <em>(thrice)</em></span></p>
         <p><span class="speaker">Priest:</span> For Thou art a merciful God and lovest mankind, and unto Thee do we send up glory: to the Father, and to the Son, and to the Holy Spirit, now and ever and unto ages of ages.</p>
-        <p><span class="response">R. Amen.</span></p>
+        <p><span class="speaker">R.</span> <span class="response">Amen.</span></p>
       </div>
 
       <div class="mob-ctx-card">
@@ -1757,9 +1757,6 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
       <span class="section-tag">Part Eight</span>
       <h2 class="section-head">Vouchsafe, O Lord<br><em>and the Evening Litany</em></h2>
       <span class="section-sub">Completing the evening in peace</span>
-      <div class="prose drop-cap">
-        <p>The reader chants <strong>Vouchsafe, O Lord</strong>, a prayer that blesses God and asks to be kept from sin through the night. The deacon or priest then leads the <strong>Evening Litany</strong>, asking for the whole evening to be perfect and holy, for an angel of peace to guard the faithful, and for a Christian ending to life. The congregation responds "Grant this, O Lord" to each petition.</p>
-      </div>
 
       <div class="prose">
         <p><span class="speaker">Reader:</span> Vouchsafe, O Lord, to keep us this night without sin. Blessed art Thou, O Lord, God of our fathers, and praised and glorified is Thy Name forever. Amen.</p>
@@ -1771,27 +1768,32 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 
       <div class="prose">
         <p><span class="speaker">Deacon (Priest):</span> Let us complete our evening prayer unto the Lord.</p>
-        <p><span class="response">R. Lord, have mercy.</span></p>
+        <p><span class="speaker">R.</span> <span class="response">Lord, have mercy.</span></p>
         <p>Help us, save us, have mercy on us, and keep us, O God, by Thy grace.</p>
-        <p><span class="response">R. Lord, have mercy.</span></p>
+        <p><span class="speaker">R.</span> <span class="response">Lord, have mercy.</span></p>
         <p>That the whole evening may be perfect, holy, peaceful, and sinless, let us ask of the Lord.</p>
-        <p><span class="response">R. Grant this, O Lord.</span> <em>(after each petition)</em></p>
+        <p><span class="speaker">R.</span> <span class="response">Grant this, O Lord.</span></p>
         <p>An angel of peace, a faithful guide, a guardian of our souls and bodies, let us ask of the Lord.</p>
+        <p><span class="speaker">R.</span> <span class="response">Grant this, O Lord.</span></p>
         <p>Pardon and remission of our sins and transgressions, let us ask of the Lord.</p>
+        <p><span class="speaker">R.</span> <span class="response">Grant this, O Lord.</span></p>
         <p>All things that are good and profitable for our souls, and peace for the world, let us ask of the Lord.</p>
+        <p><span class="speaker">R.</span> <span class="response">Grant this, O Lord.</span></p>
         <p>That we may complete the remaining time of our life in peace and repentance, let us ask of the Lord.</p>
+        <p><span class="speaker">R.</span> <span class="response">Grant this, O Lord.</span></p>
         <p>A Christian ending to our life, painless, blameless, and peaceful, and a good defense before the dread Judgment Seat of Christ, let us ask.</p>
+        <p><span class="speaker">R.</span> <span class="response">Grant this, O Lord.</span></p>
         <p>Commemorating our most holy, most pure, most blessed and glorious Lady Theotokos and Ever-virgin Mary with all the saints, let us commend ourselves and each other, and all our life unto Christ our God.</p>
-        <p><span class="response">R. To Thee, O Lord.</span></p>
+        <p><span class="speaker">R.</span> <span class="response">To Thee, O Lord.</span></p>
         <p><span class="speaker">Priest:</span> For Thou art a good God and lovest mankind, and unto Thee do we send up glory: to the Father, and to the Son, and to the Holy Spirit, now and ever and unto ages of ages.</p>
-        <p><span class="response">R. Amen.</span></p>
+        <p><span class="speaker">R.</span> <span class="response">Amen.</span></p>
         <p><span class="speaker">Priest:</span> Peace be unto all.</p>
-        <p><span class="response">R. And to thy spirit.</span></p>
+        <p><span class="speaker">R.</span> <span class="response">And to thy spirit.</span></p>
         <p><span class="speaker">Deacon (Priest):</span> Let us bow our heads unto the Lord.</p>
-        <p><span class="response">R. To Thee, O Lord.</span></p>
+        <p><span class="speaker">R.</span> <span class="response">To Thee, O Lord.</span></p>
         <p><span class="speaker">Priest:</span> O Lord our God, Who didst bow the heavens and come down for the salvation of mankind: Look upon Thy servants and Thine inheritance; for unto Thee, the fearful Judge Who yet lovest mankind, have Thy servants bowed their heads and submissively inclined their necks, awaiting not help from men but entreating Thy mercy and looking confidently for Thy salvation. Guard them at all times, both during this present evening and in the approaching night, from every foe, from all adverse powers of the devil and from vain thoughts and from evil imaginations.</p>
         <p>Blessed and glorified be the might of Thy Kingdom: of the Father, and of the Son, and of the Holy Spirit, now and ever and unto ages of ages.</p>
-        <p><span class="response">R. Amen.</span></p>
+        <p><span class="speaker">R.</span> <span class="response">Amen.</span></p>
       </div>
 
       <div class="mob-ctx-card">
@@ -1806,9 +1808,6 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
       <span class="section-tag">Part Nine</span>
       <h2 class="section-head">The Aposticha</h2>
       <span class="section-sub">Stichera with psalm verses sung after the litanies</span>
-      <div class="prose drop-cap">
-        <p>The choir sings the <strong>Aposticha</strong>, a set of stichera (hymnographic verses) interspersed with psalm verses appointed for the day. On Saturday evenings at Great Vespers, the verses are from Psalm 92: "The Lord is King, He is robed in majesty." On other days, when no other verses are appointed, verses from Psalm 122 are used. The Aposticha conclude with "Glory to the Father..." and "Now and ever..."</p>
-      </div>
 
       <p class="lit-dir">The choir sings the appointed stichera of the Aposticha. At Great Vespers on Saturdays, the following psalm verses are used:</p>
 
@@ -1841,9 +1840,6 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
       <span class="section-tag">Part Ten</span>
       <h2 class="section-head">Nunc Dimittis<br><em>and the Troparia</em></h2>
       <span class="section-sub">St. Symeon's canticle and the concluding hymns</span>
-      <div class="prose drop-cap">
-        <p>After the final sticheron of the Aposticha, <strong>St. Symeon's Prayer</strong> is chanted: "Lord, now lettest Thou Thy servant depart in peace." These are the words the righteous elder Simeon spoke when he held the Christ child in the Temple. At Vespers, every evening becomes a moment of holding Christ and then being sent out in peace. The Trisagion and Our Father follow, and then the choir sings the appointed <strong>Troparia</strong>, hymns proper to the feast or the tone of the week.</p>
-      </div>
 
       <p class="lit-dir">After the final sticheron of the Aposticha, St. Symeon's Prayer is read or sung by the choir:</p>
 
@@ -1859,7 +1855,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
         <p>Glory to the Father, and to the Son, and to the Holy Spirit, now and ever and unto ages of ages. Amen.</p>
         <p>Our Father, Who art in heaven, hallowed be Thy Name; Thy Kingdom come; Thy will be done on earth, as it is in heaven. Give us this day our daily bread, and forgive us our trespasses, as we forgive those who trespass against us; and lead us not into temptation, but deliver us from evil.</p>
         <p><span class="speaker">Priest:</span> For Thine is the Kingdom, and the power, and the glory of the Father, and of the Son, and of the Holy Spirit, now and ever and unto ages of ages.</p>
-        <p><span class="response">R. Amen.</span></p>
+        <p><span class="speaker">R.</span> <span class="response">Amen.</span></p>
       </div>
 
       <p class="lit-dir">And the choir sings the appointed Troparia.</p>
@@ -1876,25 +1872,22 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
       <span class="section-tag">Part Eleven</span>
       <h2 class="section-head">The Dismissal</h2>
       <span class="section-sub">The blessing and the sending forth</span>
-      <div class="prose drop-cap">
-        <p>At <strong>Great Vespers</strong>, the Dismissal follows immediately after the Troparia have been sung. At Daily Vespers, the Augmented Litany is said first. The dismissal is a priestly blessing that sends the faithful into the night with the grace of the evening prayer. The priest commemorates Christ, the Theotokos, and the saints of the day, and the choir responds with "Amen."</p>
-      </div>
 
       <div class="prose">
         <p><span class="speaker">Deacon (Priest):</span> Wisdom.</p>
-        <p><span class="response">R. Father, bless.</span></p>
+        <p><span class="speaker">R.</span> <span class="response">Father, bless.</span></p>
         <p><span class="speaker">Priest:</span> Blessed be He Who Is, Christ our God, always, now and ever and unto ages of ages.</p>
-        <p><span class="response">R. Amen. Confirm, O God, the holy Orthodox faith of Orthodox Christians, unto ages of ages.</span></p>
+        <p><span class="speaker">R.</span> <span class="response">Amen. Confirm, O God, the holy Orthodox faith of Orthodox Christians, unto ages of ages.</span></p>
         <p><span class="speaker">Priest:</span> Most holy Theotokos, save us.</p>
-        <p><span class="response">R. More honorable than the Cherubim, and more glorious beyond compare than the Seraphim, without corruption thou gavest birth to God the Word: true Theotokos, we magnify thee.</span></p>
+        <p><span class="speaker">R.</span> <span class="response">More honorable than the Cherubim, and more glorious beyond compare than the Seraphim, without corruption thou gavest birth to God the Word: true Theotokos, we magnify thee.</span></p>
         <p><span class="speaker">Priest:</span> Glory to Thee, O Christ our God and our hope, glory to Thee.</p>
-        <p><span class="response">R. Glory to the Father, and to the Son, and to the Holy Spirit, now and ever and unto ages of ages. Amen. Lord, have mercy. <em>(thrice)</em> Father, bless.</span></p>
+        <p><span class="speaker">R.</span> <span class="response">Glory to the Father, and to the Son, and to the Holy Spirit, now and ever and unto ages of ages. Amen. Lord, have mercy. <em>(thrice)</em> Father, bless.</span></p>
       </div>
 
       <p class="lit-dir">The priest pronounces the appropriate Dismissal, after which the choir responds:</p>
 
       <div class="prose">
-        <p><span class="response">R. Amen.</span></p>
+        <p><span class="speaker">R.</span> <span class="response">Amen.</span></p>
       </div>
 
       <div class="callout-box">
@@ -2140,6 +2133,79 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   </aside>
 
 </div><!-- /liturgy-layout -->
+
+<!-- UNDERSTANDING VESPERS -->
+<section class="understanding-section" id="understanding-vespers">
+  <div class="understanding-inner">
+    <span class="section-tag" style="text-align:center;display:block">For the Inquirer</span>
+    <h2 class="section-head" style="text-align:center">Understanding Vespers</h2>
+    <p class="understanding-intro">The notes below offer a brief explanation of each part of the service for those who are new to Orthodox worship or wish to deepen their understanding.</p>
+
+    <div class="understanding-grid">
+
+      <div class="understanding-card" id="note-opening">
+        <h3 class="understanding-card-head">I. Opening Prayers</h3>
+        <p><strong>Great Vespers</strong> is served every Saturday evening and on the eve of any feast when the Menaion or Pentecostarion appoints Old or New Testament lessons. It begins with the blessing of God and a series of preparatory prayers that gather the faithful out of the noise of the day and into the presence of the holy.</p>
+      </div>
+
+      <div class="understanding-card" id="note-psalm-103">
+        <h3 class="understanding-card-head">II. Psalm 103</h3>
+        <p>The service begins properly with the great <strong>creation psalm</strong>, Psalm 103, chanted while the priest silently reads the Prayers of the Lamp before the iconostasis. The psalm sings of the world as God made it: light, water, mountains, creatures, and the turning of day into night. It places the entire evening prayer in the frame of thanksgiving for creation.</p>
+      </div>
+
+      <div class="understanding-card" id="note-great-litany">
+        <h3 class="understanding-card-head">III. The Great Litany</h3>
+        <p>When the reader has finished the psalm, the deacon or priest begins the <strong>Great Litany</strong>, a series of petitions offered for the peace of the world, the Church, civil authorities, travelers, the sick, and all people. The faithful respond to each petition with "Lord, have mercy," the ancient prayer of the Church drawn from the Psalms.</p>
+      </div>
+
+      <div class="understanding-card" id="note-kathisma">
+        <h3 class="understanding-card-head">IV. The Kathisma</h3>
+        <p>At <strong>Great Vespers</strong> on Saturday evenings, the first section of the first kathisma of the Psalter is sung: <em>Blessed is the man who walks not in the counsel of the wicked...</em> This is Psalm 1, which opens the entire Psalter and sets its theme of two ways: the way of blessing and the way of ruin. At Daily Vespers, the appointed kathisma is simply read. At certain great feasts, the kathisma is omitted entirely.</p>
+      </div>
+
+      <div class="understanding-card" id="note-lord-i-call">
+        <h3 class="understanding-card-head">V. Lord, I Call upon Thee</h3>
+        <p>The choir opens with the verses of Psalm 140 set to music, the ancient evening prayer asking that our prayer rise to God as incense and our lifted hands be as an evening sacrifice. The reader then chants the verses of Psalms 140, 141, 129, and 116, into which the choir inserts the appointed <strong>stichera</strong>, hymns proper to the feast or day. This is the musical and poetic heart of Vespers, where the Church sings its evening theology.</p>
+      </div>
+
+      <div class="understanding-card" id="note-entrance">
+        <h3 class="understanding-card-head">VI. The Evening Entrance and Gladsome Light</h3>
+        <p>At <strong>Great Vespers</strong>, following the last sticheron, there is a solemn entrance through the Holy Doors: the priest and deacon process with candles and incense as the deacon exclaims "Wisdom. Stand upright." The choir then sings the <strong>Gladsome Light</strong>, one of the oldest Christian hymns still in use, greeting Christ as the light of evening, the immortal light of the heavenly Father.</p>
+      </div>
+
+      <div class="understanding-card" id="note-prokeimenon">
+        <h3 class="understanding-card-head">VII. The Prokeimenon</h3>
+        <p>The <strong>prokeimenon</strong> is a verse from the Psalms chanted antiphonally between the priest or deacon and the choir. A different prokeimenon is appointed for each day of the week, each in its proper tone. On great feasts, a special prokeimenon or one of the Great Prokeimena is substituted. It prepares the faithful to receive the scriptural readings that follow at Great Vespers.</p>
+      </div>
+
+      <div class="understanding-card" id="note-augmented-litany">
+        <h3 class="understanding-card-head">VIII. The Augmented Litany</h3>
+        <p>At <strong>Great Vespers</strong>, after the prokeimenon and any appointed scriptural lessons, the deacon begins the <strong>Augmented Litany</strong>. It is "augmented" in fervor: the triple response "Lord, have mercy" replaces the single response of the Great Litany, intensifying the communal plea. It includes commemorations of the departed Orthodox faithful, the living members of the parish, and those who serve in the temple.</p>
+      </div>
+
+      <div class="understanding-card" id="note-evening-litany">
+        <h3 class="understanding-card-head">IX. Vouchsafe, O Lord and the Evening Litany</h3>
+        <p>The reader chants <strong>Vouchsafe, O Lord</strong>, a prayer that blesses God and asks to be kept from sin through the night. The deacon or priest then leads the <strong>Evening Litany</strong>, asking for the whole evening to be perfect and holy, for an angel of peace to guard the faithful, and for a Christian ending to life. The congregation responds "Grant this, O Lord" to each petition.</p>
+      </div>
+
+      <div class="understanding-card" id="note-aposticha">
+        <h3 class="understanding-card-head">X. The Aposticha</h3>
+        <p>The choir sings the <strong>Aposticha</strong>, a set of stichera (hymnographic verses) interspersed with psalm verses appointed for the day. On Saturday evenings at Great Vespers, the verses are from Psalm 92: "The Lord is King, He is robed in majesty." On other days, when no other verses are appointed, verses from Psalm 122 are used. The Aposticha conclude with "Glory to the Father..." and "Now and ever..."</p>
+      </div>
+
+      <div class="understanding-card" id="note-nunc-dimittis">
+        <h3 class="understanding-card-head">XI. Nunc Dimittis and the Troparia</h3>
+        <p>After the final sticheron of the Aposticha, <strong>St. Symeon's Prayer</strong> is chanted: "Lord, now lettest Thou Thy servant depart in peace." These are the words the righteous elder Simeon spoke when he held the Christ child in the Temple. At Vespers, every evening becomes a moment of holding Christ and then being sent out in peace. The Trisagion and Our Father follow, and then the choir sings the appointed <strong>Troparia</strong>, hymns proper to the feast or the tone of the week.</p>
+      </div>
+
+      <div class="understanding-card" id="note-dismissal">
+        <h3 class="understanding-card-head">XII. The Dismissal</h3>
+        <p>At <strong>Great Vespers</strong>, the Dismissal follows immediately after the Troparia have been sung. At Daily Vespers, the Augmented Litany is said first. The dismissal is a priestly blessing that sends the faithful into the night with the grace of the evening prayer. The priest commemorates Christ, the Theotokos, and the saints of the day, and the choir responds with "Amen."</p>
+      </div>
+
+    </div>
+  </div>
+</section>
 
 <!-- QUOTE BREAK -->
 <div class="quote-break">
