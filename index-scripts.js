@@ -249,19 +249,19 @@ function renderSundayIntoSecondary(data, d) {
 
   var m  = String(d.getMonth()+1).padStart(2,'0');
   var dy = String(d.getDate()).padStart(2,'0');
-  var ocaDay = 'https://www.oca.org/saints/lives/'+d.getFullYear()+'/'+m+'/'+dy;
+  var schedLink = '/schedule?date='+d.getFullYear()+'-'+m+'-'+dy;
 
   var html = '<div class="pe-cal-row">'
     + '<span class="pe-cal-badge">This Sunday</span>'
     + '<span class="pe-cal-info">'
-    +   '<a href="'+ocaDay+'" target="_blank" rel="noopener" class="pe-cal-title">'+feast+'</a>'
-    + (saints ? '<a href="/saint-of-the-day" class="pe-cal-saint">'+saints+'</a>' : '')
+    +   '<a href="'+schedLink+'" class="pe-cal-title">'+feast+'</a>'
+    + (saints ? '<a href="'+schedLink+'" class="pe-cal-saint">'+saints+'</a>' : '')
     + (tone   ? '<span class="pe-cal-tone">'+tone+'</span>' : '')
     + '</span>'
     + '</div>'
     + (fastDesc ? '<div class="pe-cal-row pe-cal-row-fast">'
     +   '<span class="pe-cal-badge pe-cal-badge-fast">Fast</span>'
-    +   '<a href="https://www.oca.org/orthodoxy/the-orthodox-faith/worship/fasting" target="_blank" rel="noopener" class="pe-cal-fast">'+fastDesc+'</a>'
+    +   '<a href="'+schedLink+'" class="pe-cal-fast">'+fastDesc+'</a>'
     + '</div>' : '');
 
   el.innerHTML = html;
@@ -356,17 +356,17 @@ async function initParishEvents() {
       var fastDesc = [fast1,fast2].filter(Boolean).join(' \u2014 ');
       var m2  = String(sunday.getMonth()+1).padStart(2,'0');
       var dy2 = String(sunday.getDate()).padStart(2,'0');
-      var ocaDay = 'https://www.oca.org/saints/lives/'+sunday.getFullYear()+'/'+m2+'/'+dy2;
+      var schedLink2 = '/schedule?date='+sunday.getFullYear()+'-'+m2+'-'+dy2;
       calSecondaryHTML = '<div class="pe-cal-row">'
         + '<span class="pe-cal-badge">This Sunday</span>'
         + '<span class="pe-cal-info">'
-        +   '<a href="'+ocaDay+'" target="_blank" rel="noopener" class="pe-cal-title">'+feast+'</a>'
-        + (saints ? '<a href="/saint-of-the-day" class="pe-cal-saint">'+saints+'</a>' : '')
+        +   '<a href="'+schedLink2+'" class="pe-cal-title">'+feast+'</a>'
+        + (saints ? '<a href="'+schedLink2+'" class="pe-cal-saint">'+saints+'</a>' : '')
         + (tone   ? '<span class="pe-cal-tone">'+tone+'</span>' : '')
         + '</span></div>'
         + (fastDesc ? '<div class="pe-cal-row pe-cal-row-fast">'
         +   '<span class="pe-cal-badge pe-cal-badge-fast">Fast</span>'
-        +   '<a href="https://www.oca.org/orthodoxy/the-orthodox-faith/worship/fasting" target="_blank" rel="noopener" class="pe-cal-fast">'+fastDesc+'</a>'
+        +   '<a href="'+schedLink2+'" class="pe-cal-fast">'+fastDesc+'</a>'
         + '</div>' : '');
     }
 

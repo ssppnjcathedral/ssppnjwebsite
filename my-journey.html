@@ -949,6 +949,14 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
     <div class="loading">Loading your journey&hellip;</div>
   </div>
 
+  <!-- READING NOTES -->
+  <div class="section-rule"></div>
+  <div id="reading-notes-section" style="display:none">
+    <span class="section-label">My Reading Notes</span>
+    <div class="section-title">Scripture Highlights &amp; Notes</div>
+    <div id="reading-notes-list"></div>
+  </div>
+
   <!-- PRAYER RULE -->
   <div class="section-rule"></div>
   <div id="rule-section" style="display:none">
@@ -1421,6 +1429,8 @@ function exportBackup() {
       data.journey[page.key] = state;
     }
   });
+  // Include reading notes
+  try { data.readingNotes = JSON.parse(localStorage.getItem('spp_reading_notes') || '{}'); } catch { data.readingNotes = {}; }
   var blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
   var url = URL.createObjectURL(blob);
   var a = document.createElement('a');
@@ -1444,6 +1454,9 @@ function importBackup(e) {
       });
       if (data.prayerRule && Array.isArray(data.prayerRule)) {
         try { localStorage.setItem('spp_my_rule', JSON.stringify(data.prayerRule)); } catch {}
+      }
+      if (data.readingNotes) {
+        try { localStorage.setItem('spp_reading_notes', JSON.stringify(data.readingNotes)); } catch {}
       }
       alert('Backup imported. Your journey has been restored.');
       render();
@@ -1483,7 +1496,50 @@ async function authSendLink() {
 document.addEventListener('DOMContentLoaded', async function() {
   if (typeof loadFromSupabase === 'function') { await loadFromSupabase(); }
   loadManifest();
+  renderReadingNotes();
 });
+
+function renderReadingNotes() {
+  var section = document.getElementById('reading-notes-section');
+  var list = document.getElementById('reading-notes-list');
+  if (!section || !list) return;
+
+  var all = {};
+  try { all = JSON.parse(localStorage.getItem('spp_reading_notes') || '{}'); } catch {}
+
+  var dates = Object.keys(all).filter(function(k) { return all[k] && all[k].length; }).sort().reverse();
+  if (!dates.length) return;
+
+  section.style.display = '';
+  var MONTHS_S = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var html = '';
+
+  dates.forEach(function(dateKey) {
+    var entries = all[dateKey];
+    var d = new Date(dateKey + 'T12:00:00');
+    var dateLabel = MONTHS_S[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
+    html += '<div style="margin-bottom:1.5rem">';
+    html += '<div style="font-family:var(--f-ui);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--maroon);margin-bottom:.5rem">' + dateLabel + '</div>';
+
+    entries.forEach(function(entry) {
+      html += '<div style="padding:.75rem 1rem;margin-bottom:.5rem;background:var(--vellum-mid);border-left:2px solid var(--gold)">';
+      if (entry.text) {
+        html += '<div style="font-family:var(--f-display);font-style:italic;font-size:.92rem;color:var(--stone);line-height:1.45;margin-bottom:.35rem">"' + escHtml(entry.text) + '"</div>';
+      }
+      if (entry.note) {
+        html += '<div style="font-family:var(--f-body);font-size:.88rem;color:var(--ink);line-height:1.55">' + escHtml(entry.note).replace(/\n/g, '<br>') + '</div>';
+      }
+      if (!entry.text && !entry.note) {
+        html += '<div style="font-family:var(--f-body);font-style:italic;font-size:.88rem;color:var(--stone-lt)">Empty note</div>';
+      }
+      html += '</div>';
+    });
+
+    html += '</div>';
+  });
+
+  list.innerHTML = html;
+}
 </script>
 
 <script>

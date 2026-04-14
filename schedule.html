@@ -1291,7 +1291,12 @@ const DAYS_S=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 const ROMAN={1:'I',2:'II',3:'III',4:'IV',5:'V',6:'VI',7:'VII',8:'VIII'};
 
 const today=new Date();
+var _urlDateParam = new URLSearchParams(window.location.search).get('date');
 let cur=new Date(today.getFullYear(),today.getMonth(),1);
+if (_urlDateParam) {
+  var _pd = new Date(_urlDateParam + 'T12:00:00');
+  if (!isNaN(_pd.getTime())) cur = new Date(_pd.getFullYear(), _pd.getMonth(), 1);
+}
 let selectedDate=null;
 let currentView='f';
 let cvSubView='month';
@@ -1880,7 +1885,9 @@ async function buildClassicList(){
     setTimeout(function(){buildClassicList();},300);
   } else {
     buildMiniGrid();
-    setTimeout(function(){selectDateF(new Date(today));},300);
+    var _initDate = _urlDateParam ? new Date(_urlDateParam + 'T12:00:00') : new Date(today);
+    if (isNaN(_initDate.getTime())) _initDate = new Date(today);
+    setTimeout(function(){selectDateF(_initDate);},300);
   }
   // On orientation change, reinitialize if crossing the 768px boundary
   window.addEventListener('resize',function(){

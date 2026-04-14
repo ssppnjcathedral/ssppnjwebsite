@@ -39,6 +39,21 @@ async function syncHighlights(pageKey, highlights) {
 }
 window.syncHighlights = syncHighlights;
 
+// ── READING NOTES SYNC ──
+async function syncReadingNotes(dateKey, notes) {
+  try {
+    var user = await getCurrentUser();
+    if (!user) return;
+    await _supabase.from('journey_progress').upsert({
+      user_id: user.id,
+      page_key: 'reading_' + dateKey,
+      notes: JSON.stringify(notes),
+      updated_at: new Date().toISOString()
+    }, { onConflict: 'user_id,page_key' });
+  } catch (e) { console.warn('Reading notes sync error:', e); }
+}
+window.syncReadingNotes = syncReadingNotes;
+
 // ── PRAYER RULE SYNC ──
 async function syncPrayerRule(prayerIds, ruleName, ruleBegun) {
   try {
