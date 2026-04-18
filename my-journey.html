@@ -2364,7 +2364,62 @@ async function renderJourneyHero() {
     if (!fullName) fullName = firstName || email || 'friend';
 
     if (nameEl) nameEl.textContent = firstName || 'friend';
-    if (subEl) subEl.textContent = 'Every verse you have saved, every saint you have kept close, the rule you pray, the pages you have walked through. They keep.';
+    if (subEl) {
+      // Try to build a dynamic line based on activity since the last major feast
+      var heroSub = 'Every verse you have saved, every saint you have kept close, the rule you pray, the pages you have walked through. They keep.';
+      try {
+        var hNow = new Date();
+        var hYear = hNow.getFullYear();
+        var hTodayKey = hYear + '-' + String(hNow.getMonth()+1).padStart(2,'0') + '-' + String(hNow.getDate()).padStart(2,'0');
+        var hCal = await loadCalendar(hYear);
+        if (hCal && hCal.days) {
+          var lastFeastKey = null, lastFeastName = null;
+          Object.keys(hCal.days).sort().forEach(function(k) {
+            if (k <= hTodayKey && (hCal.days[k].feastLevel || 0) >= 7) {
+              lastFeastKey = k;
+              lastFeastName = hCal.days[k].feast || '';
+            }
+          });
+          if (lastFeastKey) {
+            var steps = 0;
+            try {
+              var hn = JSON.parse(localStorage.getItem('spp_reading_notes') || '{}') || {};
+              Object.keys(hn).forEach(function(k){ if (k >= lastFeastKey && Array.isArray(hn[k])) steps += hn[k].length; });
+            } catch(he) {}
+            for (var hi = 0; hi < localStorage.length; hi++) {
+              var hk = localStorage.key(hi);
+              if (!hk || hk.indexOf('spp_journey_') !== 0) continue;
+              try { var hs = JSON.parse(localStorage.getItem(hk)||'{}'); if (hs.completedAt && hs.completedAt.slice(0,10) >= lastFeastKey) steps++; } catch(he) {}
+            }
+            if (steps > 0) {
+              var FEAST_PHRASES = {
+                'Holy Pascha': 'the Pascha of the Resurrection',
+                'Theophany of Our Lord and Savior Jesus Christ': 'the Theophany',
+                'Nativity of Our Lord': 'the Nativity of Christ',
+                'Meeting of Christ in the Temple': 'the Meeting of the Lord',
+                'Annunciation Most Holy Theotokos': 'the Annunciation',
+                'Transfiguration of Our Lord': 'the Transfiguration',
+                'Dormition of the Most Holy Theotokos': 'the Dormition',
+                'Nativity of the Most Holy Theotokos': 'the Nativity of the Theotokos',
+                'Exaltation of the Holy Cross': 'the Exaltation of the Cross',
+                'Entrance of the Theotokos': 'the Entrance of the Theotokos',
+                'Palm Sunday: Entrance of Our Lord into Jerusalem': 'Palm Sunday'
+              };
+              var ONES = ['','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen'];
+              var TENS = ['','','twenty','thirty','forty','fifty','sixty','seventy','eighty','ninety'];
+              function toWords(n) {
+                if (n < 20) return ONES[n] || String(n);
+                if (n < 100) return TENS[Math.floor(n/10)] + (n%10 ? '-'+ONES[n%10] : '');
+                return String(n);
+              }
+              var phrase = FEAST_PHRASES[lastFeastName] || 'the last Great Feast';
+              heroSub = 'You have walked ' + toWords(steps) + ' step' + (steps === 1 ? '' : 's') + ' along this road since ' + phrase + '. The Church keeps every one.';
+            }
+          }
+        }
+      } catch(he) {}
+      subEl.textContent = heroSub;
+    }
 
     if (strip) strip.style.display = 'flex';
     if (avatar) {
