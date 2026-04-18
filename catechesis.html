@@ -198,6 +198,12 @@ footer .btn-outline:hover{background:rgba(246,241,232,.15);color:#fff;border-col
 .sess-num-row{display:flex;align-items:center;gap:1rem;margin-bottom:.75rem}
 .sess-num-badge{font-family:var(--f-ui);font-size:.65rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--vellum);background:var(--maroon);padding:.22rem .7rem;flex-shrink:0}
 .sess-date{font-family:var(--f-ui);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone)}
+.sess-check{margin-left:auto;width:26px;height:26px;border-radius:50%;border:1.5px solid rgba(184,131,40,.45);background:#fff;color:transparent;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .22s,border-color .22s,color .22s,transform .22s cubic-bezier(.34,1.56,.64,1);flex-shrink:0;padding:0;position:relative}
+.sess-check:hover{border-color:var(--gold);transform:scale(1.08);color:rgba(184,131,40,.35)}
+.sess-check.is-done{background:linear-gradient(145deg,var(--gold) 0%,var(--gold-deep) 100%);border-color:var(--gold-deep);color:var(--verdigris);transform:scale(1.04)}
+.sess-check.is-done:hover{transform:scale(1.08)}
+.sess-check::after{content:attr(data-tooltip);position:absolute;bottom:calc(100% + 6px);right:0;background:var(--apse);color:rgba(246,241,232,.92);font-family:var(--f-ui);font-size:.55rem;letter-spacing:.10em;text-transform:uppercase;white-space:nowrap;padding:.3rem .65rem;pointer-events:none;opacity:0;transition:opacity .15s;border:1px solid rgba(246,241,232,.12);border-radius:4px}
+.sess-check:hover::after{opacity:1}
 .sess-title{font-family:var(--f-display);font-weight:400;font-size:clamp(1.5rem,2.5vw,2.1rem);color:var(--maroon);line-height:1.15;margin-bottom:.3rem}
 .sess-subtitle{font-family:var(--f-display);font-style:italic;font-size:1rem;color:var(--stone);display:block}
 .sess-divider{height:1px;background:var(--maroon);width:36px;margin:.85rem 0 1.25rem}
@@ -753,6 +759,8 @@ footer{background:var(--apse);padding:4rem 4.5rem 2rem}
               <span class="mega-sub">Full text for Great Vespers</span>
               <a href="/prayers" class="mega-link">Daily Prayers</a>
               <span class="mega-sub">The daily prayer rule of the Orthodox Church</span>
+              <a href="/prayer-request" class="mega-link">Submit a Prayer Request</a>
+              <span class="mega-sub">Ask the parish to pray for you or a loved one</span>
             </div>
           </div>
         </div>
@@ -862,7 +870,7 @@ footer{background:var(--apse);padding:4rem 4.5rem 2rem}
         <a href="/liturgy-history" class="dr-link"><span class="dr-link-name">History of the Liturgy</span><span class="dr-link-sub">How the Divine Liturgy developed</span></a>
         <a href="/liturgy-book" class="dr-link"><span class="dr-link-name">Liturgy Book</span><span class="dr-link-sub">Full text for the Divine Liturgy</span></a>
         <a href="/vespers-book" class="dr-link"><span class="dr-link-name">Vespers Book</span><span class="dr-link-sub">Full text for Great Vespers</span></a>
-        <a href="/prayers" class="dr-link"><span class="dr-link-name">Daily Prayers</span><span class="dr-link-sub">The daily prayer rule of the Orthodox Church</span></a>
+        <a href="/prayers" class="dr-link"><span class="dr-link-name">Daily Prayers</span><span class="dr-link-sub">The daily prayer rule of the Orthodox Church</span></a><a href="/prayer-request" class="dr-link"><span class="dr-link-name">Prayer Request</span><span class="dr-link-sub">Ask the parish to pray for you</span></a>
       </div>
     </div>
 
@@ -983,9 +991,10 @@ footer{background:var(--apse);padding:4rem 4.5rem 2rem}
     <!-- SESSION 1 -->
     <div class="session" id="sess-1">
       <div class="sess-header">
-        <div class="sess-num-row">
+        <div class="sess-num-row" data-session-id="sess-1">
           <span class="sess-num-badge">Session 1</span>
           <span class="sess-date">January 7</span>
+          <button class="sess-check" type="button" data-session-id="sess-1" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button>
         </div>
         <h2 class="sess-title">Becoming and Being Orthodox</h2>
         <div class="sess-divider"></div>
@@ -1000,9 +1009,10 @@ footer{background:var(--apse);padding:4rem 4.5rem 2rem}
     <!-- SESSION 2 -->
     <div class="session" id="sess-2">
       <div class="sess-header">
-        <div class="sess-num-row">
+        <div class="sess-num-row" data-session-id="sess-2">
           <span class="sess-num-badge">Session 2</span>
           <span class="sess-date">January 14</span>
+          <button class="sess-check" type="button" data-session-id="sess-2" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button>
         </div>
         <h2 class="sess-title">Christ's Way</h2>
         <span class="sess-subtitle">The Sermon on the Mount &middot; Prayer &middot; Fasting &middot; Almsgiving</span>
@@ -1018,9 +1028,10 @@ footer{background:var(--apse);padding:4rem 4.5rem 2rem}
     <!-- SESSION 3 -->
     <div class="session" id="sess-3">
       <div class="sess-header">
-        <div class="sess-num-row">
+        <div class="sess-num-row" data-session-id="sess-3">
           <span class="sess-num-badge">Session 3</span>
           <span class="sess-date">January 21</span>
+          <button class="sess-check" type="button" data-session-id="sess-3" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button>
         </div>
         <h2 class="sess-title">Union with God and the Nature of the Church</h2>
         <div class="sess-divider"></div>
@@ -1035,9 +1046,10 @@ footer{background:var(--apse);padding:4rem 4.5rem 2rem}
     <!-- SESSION 4 -->
     <div class="session" id="sess-4">
       <div class="sess-header">
-        <div class="sess-num-row">
+        <div class="sess-num-row" data-session-id="sess-4">
           <span class="sess-num-badge">Session 4</span>
           <span class="sess-date">January 28</span>
+          <button class="sess-check" type="button" data-session-id="sess-4" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button>
         </div>
         <h2 class="sess-title">Theology Proper</h2>
         <span class="sess-subtitle">The Father, the Son, and the Holy Spirit</span>
@@ -1053,9 +1065,10 @@ footer{background:var(--apse);padding:4rem 4.5rem 2rem}
     <!-- SESSION 5 -->
     <div class="session" id="sess-5">
       <div class="sess-header">
-        <div class="sess-num-row">
+        <div class="sess-num-row" data-session-id="sess-5">
           <span class="sess-num-badge">Session 5</span>
           <span class="sess-date">February 4</span>
+          <button class="sess-check" type="button" data-session-id="sess-5" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button>
         </div>
         <h2 class="sess-title">Sacraments</h2>
         <span class="sess-subtitle">Conduits and Symbola of God's Presence</span>
@@ -1071,9 +1084,10 @@ footer{background:var(--apse);padding:4rem 4.5rem 2rem}
     <!-- SESSION 6 -->
     <div class="session" id="sess-6">
       <div class="sess-header">
-        <div class="sess-num-row">
+        <div class="sess-num-row" data-session-id="sess-6">
           <span class="sess-num-badge">Session 6</span>
           <span class="sess-date">February 11</span>
+          <button class="sess-check" type="button" data-session-id="sess-6" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button>
         </div>
         <h2 class="sess-title">History of the Church 1</h2>
         <span class="sess-subtitle">Pentecost through the Great Schism</span>
@@ -1089,9 +1103,10 @@ footer{background:var(--apse);padding:4rem 4.5rem 2rem}
     <!-- SESSION 7 -->
     <div class="session" id="sess-7">
       <div class="sess-header">
-        <div class="sess-num-row">
+        <div class="sess-num-row" data-session-id="sess-7">
           <span class="sess-num-badge">Session 7</span>
           <span class="sess-date">February 18</span>
+          <button class="sess-check" type="button" data-session-id="sess-7" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button>
         </div>
         <h2 class="sess-title">History of the Church 2</h2>
         <span class="sess-subtitle">The Second Millennium through the OCA</span>
@@ -1107,9 +1122,10 @@ footer{background:var(--apse);padding:4rem 4.5rem 2rem}
     <!-- SESSION 8 -->
     <div class="session" id="sess-8">
       <div class="sess-header">
-        <div class="sess-num-row">
+        <div class="sess-num-row" data-session-id="sess-8">
           <span class="sess-num-badge">Session 8</span>
           <span class="sess-date">February 25</span>
+          <button class="sess-check" type="button" data-session-id="sess-8" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button>
         </div>
         <h2 class="sess-title">Scripture in Tradition</h2>
         <span class="sess-subtitle">The Source and Authority of our Faith</span>
@@ -1125,9 +1141,10 @@ footer{background:var(--apse);padding:4rem 4.5rem 2rem}
     <!-- SESSION 9 -->
     <div class="session" id="sess-9">
       <div class="sess-header">
-        <div class="sess-num-row">
+        <div class="sess-num-row" data-session-id="sess-9">
           <span class="sess-num-badge">Session 9</span>
           <span class="sess-date">March 4</span>
+          <button class="sess-check" type="button" data-session-id="sess-9" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button>
         </div>
         <h2 class="sess-title">Life, Death, Spirits, and the Spiritual World</h2>
         <div class="sess-divider"></div>
@@ -1142,9 +1159,10 @@ footer{background:var(--apse);padding:4rem 4.5rem 2rem}
     <!-- SESSION 10 -->
     <div class="session" id="sess-10">
       <div class="sess-header">
-        <div class="sess-num-row">
+        <div class="sess-num-row" data-session-id="sess-10">
           <span class="sess-num-badge">Session 10</span>
           <span class="sess-date">March 11</span>
+          <button class="sess-check" type="button" data-session-id="sess-10" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button>
         </div>
         <h2 class="sess-title">All that is Holy</h2>
         <span class="sess-subtitle">Worship &middot; Icons &middot; Saints &middot; Liturgics</span>
@@ -1160,9 +1178,10 @@ footer{background:var(--apse);padding:4rem 4.5rem 2rem}
     <!-- SESSION 11 -->
     <div class="session" id="sess-11">
       <div class="sess-header">
-        <div class="sess-num-row">
+        <div class="sess-num-row" data-session-id="sess-11">
           <span class="sess-num-badge">Session 11</span>
           <span class="sess-date">March 18</span>
+          <button class="sess-check" type="button" data-session-id="sess-11" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button>
         </div>
         <h2 class="sess-title">Church Practices</h2>
         <div class="sess-divider"></div>
@@ -1177,9 +1196,10 @@ footer{background:var(--apse);padding:4rem 4.5rem 2rem}
     <!-- SESSION 12 -->
     <div class="session" id="sess-12">
       <div class="sess-header">
-        <div class="sess-num-row">
+        <div class="sess-num-row" data-session-id="sess-12">
           <span class="sess-num-badge">Session 12</span>
           <span class="sess-date">March 25</span>
+          <button class="sess-check" type="button" data-session-id="sess-12" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button>
         </div>
         <h2 class="sess-title">Family and Work</h2>
         <div class="sess-divider"></div>
@@ -1194,9 +1214,10 @@ footer{background:var(--apse);padding:4rem 4.5rem 2rem}
     <!-- SESSION 13 -->
     <div class="session" id="sess-13">
       <div class="sess-header">
-        <div class="sess-num-row">
+        <div class="sess-num-row" data-session-id="sess-13">
           <span class="sess-num-badge">Session 13</span>
           <span class="sess-date">April 1</span>
+          <button class="sess-check" type="button" data-session-id="sess-13" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button>
         </div>
         <h2 class="sess-title">Church as Divine and Human</h2>
         <span class="sess-subtitle">Perfect and Imperfect</span>
@@ -1358,6 +1379,7 @@ footer{background:var(--apse);padding:4rem 4.5rem 2rem}
       <span class="footer-nav-sub">My Parish</span>
       <a href="/my-journey" class="footer-my-journey">My Journey</a>
       <a href="/my-profile" class="footer-my-journey" style="margin-left:.5rem">My Profile</a>
+      <a href="/prayer-request" class="footer-my-journey" style="margin-left:.5rem">Prayer Request</a>
       <span class="footer-nav-sub">Connect</span>
       <p class="footer-meta" style="line-height:2.2">
         Vespers &middot; Saturdays 5:00 PM<br>
@@ -1885,6 +1907,99 @@ function drToggle(head){
         if (range && isMobile()) jwEnterFullscreen();
       });
     }
+  });
+})();
+</script>
+<script>
+/* ── PER-SESSION PROGRESS (Phase 1) ── */
+(function() {
+  var TOTAL = 13;
+  var CAT_KEY = 'spp_journey_catechesis';
+
+  function readSession(sid) {
+    try { return JSON.parse(localStorage.getItem('spp_journey_session_' + sid) || '{}'); }
+    catch (e) { return {}; }
+  }
+
+  function writeSession(sid, completed) {
+    var state = { completed: !!completed };
+    if (completed) state.completedAt = new Date().toISOString();
+    try { localStorage.setItem('spp_journey_session_' + sid, JSON.stringify(state)); } catch (e) {}
+    if (typeof window.syncCatechesisSession === 'function') {
+      window.syncCatechesisSession(sid, !!completed, state.completedAt || null);
+    }
+  }
+
+  function countDone() {
+    var n = 0;
+    for (var i = 1; i <= TOTAL; i++) {
+      if (readSession('sess-' + i).completed) n++;
+    }
+    return n;
+  }
+
+  /* Auto-derive page-level pill from session sum. */
+  function autoDerivePage() {
+    var done = countDone();
+    var allDone = done === TOTAL;
+    var prev = {};
+    try { prev = JSON.parse(localStorage.getItem(CAT_KEY) || '{}'); } catch (e) {}
+    var next = Object.assign({}, prev);
+    next.completed = allDone;
+    if (allDone && !prev.completed) next.completedAt = new Date().toISOString();
+    if (!allDone) delete next.completedAt;
+    try { localStorage.setItem(CAT_KEY, JSON.stringify(next)); } catch (e) {}
+    if (typeof window.syncJourneyProgress === 'function') {
+      window.syncJourneyProgress('catechesis', next);
+    }
+    var pill = document.getElementById('pill-jw-check');
+    if (pill) {
+      pill.classList.toggle('jw-done', allDone);
+      pill.setAttribute('data-tooltip', allDone ? 'All sessions read' : 'Mark as Read');
+    }
+  }
+
+  function renderCheck(btn) {
+    var sid = btn.getAttribute('data-session-id');
+    var done = !!readSession(sid).completed;
+    btn.classList.toggle('is-done', done);
+    btn.setAttribute('data-tooltip', done ? 'Marked as read' : 'Mark as read');
+  }
+
+  function init() {
+    var buttons = document.querySelectorAll('.sess-check');
+    buttons.forEach(function(btn) {
+      renderCheck(btn);
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var sid = btn.getAttribute('data-session-id');
+        var wasDone = !!readSession(sid).completed;
+        writeSession(sid, !wasDone);
+        renderCheck(btn);
+        autoDerivePage();
+      });
+    });
+    /* Sync aggregate once on load in case an older state is stale. */
+    autoDerivePage();
+  }
+
+  function hydrate() {
+    init();
+    /* Fire-and-forget Supabase hydration; spp-supabase-loaded listener rerenders. */
+    if (typeof window.loadFromSupabase === 'function') {
+      try { window.loadFromSupabase(); } catch (e) {}
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', hydrate);
+  } else {
+    hydrate();
+  }
+
+  window.addEventListener('spp-supabase-loaded', function() {
+    document.querySelectorAll('.sess-check').forEach(renderCheck);
+    autoDerivePage();
   });
 })();
 </script>

@@ -54,6 +54,40 @@ async function syncReadingNotes(dateKey, notes) {
 }
 window.syncReadingNotes = syncReadingNotes;
 
+// ── CATECHESIS SESSION SYNC ──
+// sessionId is "sess-1" through "sess-13". completed is a boolean.
+async function syncCatechesisSession(sessionId, completed, completedAt) {
+  try {
+    var user = await getCurrentUser();
+    if (!user) return;
+    await _supabase.from('catechesis_progress').upsert({
+      user_id: user.id,
+      session_id: sessionId,
+      completed: !!completed,
+      completed_at: completedAt || (completed ? new Date().toISOString() : null),
+      updated_at: new Date().toISOString()
+    }, { onConflict: 'user_id,session_id' });
+  } catch (e) { console.warn('Catechesis session sync error:', e); }
+}
+window.syncCatechesisSession = syncCatechesisSession;
+
+// ── BIBLE STUDY SESSION SYNC ──
+// studyId is e.g. "peter-01", "wisdom-01", "genesis-01". completed is a boolean.
+async function syncBibleStudySession(studyId, completed, completedAt) {
+  try {
+    var user = await getCurrentUser();
+    if (!user) return;
+    await _supabase.from('bible_study_progress').upsert({
+      user_id: user.id,
+      study_id: studyId,
+      completed: !!completed,
+      completed_at: completedAt || (completed ? new Date().toISOString() : null),
+      updated_at: new Date().toISOString()
+    }, { onConflict: 'user_id,study_id' });
+  } catch (e) { console.warn('Bible study session sync error:', e); }
+}
+window.syncBibleStudySession = syncBibleStudySession;
+
 // ── PRAYER RULE SYNC ──
 async function syncPrayerRule(prayerIds, ruleName, ruleBegun) {
   try {
@@ -110,6 +144,48 @@ async function loadFromSupabase() {
       });
     }
 
+    // Load catechesis per-session progress
+    var catResult = await _supabase
+      .from('catechesis_progress')
+      .select('*')
+      .eq('user_id', user.id);
+
+    if (catResult.data) {
+      catResult.data.forEach(function(row) {
+        if (!row.completed) return;
+        var key = 'spp_journey_session_' + row.session_id;
+        var existing = {};
+        try { existing = JSON.parse(localStorage.getItem(key) || '{}'); } catch {}
+        if (!existing.completed) {
+          localStorage.setItem(key, JSON.stringify({
+            completed: true,
+            completedAt: row.completed_at
+          }));
+        }
+      });
+    }
+
+    // Load bible study per-session progress
+    var studyResult = await _supabase
+      .from('bible_study_progress')
+      .select('*')
+      .eq('user_id', user.id);
+
+    if (studyResult.data) {
+      studyResult.data.forEach(function(row) {
+        if (!row.completed) return;
+        var key = 'spp_journey_study_' + row.study_id;
+        var existing = {};
+        try { existing = JSON.parse(localStorage.getItem(key) || '{}'); } catch {}
+        if (!existing.completed) {
+          localStorage.setItem(key, JSON.stringify({
+            completed: true,
+            completedAt: row.completed_at
+          }));
+        }
+      });
+    }
+
     // Load prayer rule
     var ruleResult = await _supabase
       .from('prayer_rules')
@@ -126,6 +202,10 @@ async function loadFromSupabase() {
         if (ruleResult.data.begun_date) localStorage.setItem('spp_rule_begun', ruleResult.data.begun_date);
       }
     }
+
+    /* Notify pages that per-session/progress data has finished hydrating.
+       Catechesis and bible-study pages listen for this to re-render. */
+    try { window.dispatchEvent(new Event('spp-supabase-loaded')); } catch (e) {}
   } catch (e) { console.warn('Load from Supabase error:', e); }
 }
 window.loadFromSupabase = loadFromSupabase;

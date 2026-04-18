@@ -432,6 +432,43 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 /* ARTICLE CARDS */
 .section-group{margin-bottom:2rem;}
 .section-group-head{font-family:var(--f-ui);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--maroon);display:block;padding-bottom:.5rem;border-bottom:1px solid rgba(123,29,42,.15);margin-bottom:.85rem;}
+
+/* LIBRARY ROOM — per-session progress across catechesis and bible study */
+.library-room{margin:3rem 0 0}
+.library-room-head{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;margin-bottom:.35rem}
+.library-room-title{font-family:var(--f-display);font-weight:400;font-size:1.55rem;color:var(--text);line-height:1.15}
+.library-room-title em{font-style:italic;color:var(--maroon)}
+.library-room-progress{font-family:var(--f-display);font-style:italic;font-size:1.05rem;color:var(--stone)}
+.library-room-progress strong{font-style:normal;color:var(--maroon);font-weight:500}
+.library-room-caption{font-family:var(--f-display);font-style:italic;font-size:.96rem;color:var(--stone);margin-bottom:1.5rem}
+.library-room-progress-bar{height:2px;background:rgba(123,29,42,.10);margin:1rem 0 2rem;position:relative;overflow:hidden}
+.library-room-progress-fill{position:absolute;inset:0 auto 0 0;background:linear-gradient(90deg,var(--gold) 0%,var(--gold-deep) 100%);width:0;transition:width 1s cubic-bezier(.22,1,.36,1)}
+
+.lib-group{margin-bottom:2.25rem}
+.lib-group:last-child{margin-bottom:0}
+.lib-group-head{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;padding-bottom:.5rem;border-bottom:1px solid rgba(123,29,42,.15);margin-bottom:.65rem}
+.lib-group-name{font-family:var(--f-ui);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--maroon);font-weight:600}
+.lib-group-count{font-family:var(--f-display);font-style:italic;font-size:.95rem;color:var(--stone)}
+.lib-group-count em{font-style:italic;color:var(--stone)}
+.lib-group-count strong{font-style:normal;color:var(--maroon);font-weight:500}
+.lib-items{display:flex;flex-direction:column}
+.lib-item{display:grid;grid-template-columns:28px 1fr auto;gap:.75rem;align-items:center;padding:.55rem .5rem;border-radius:3px;text-decoration:none;color:inherit;transition:background .18s,transform .18s}
+.lib-item:hover{background:var(--vellum-mid);transform:translateX(3px)}
+.lib-check{width:22px;height:22px;border-radius:50%;border:1.5px solid rgba(184,131,40,.4);background:#fff;flex-shrink:0;display:flex;align-items:center;justify-content:center;position:relative;transition:all .22s cubic-bezier(.34,1.56,.64,1)}
+.lib-item.done .lib-check{background:linear-gradient(145deg,var(--gold) 0%,var(--gold-deep) 100%);border-color:var(--gold-deep);transform:scale(1.06)}
+.lib-item.done .lib-check::after{content:'';width:8px;height:4px;border-left:1.5px solid #fff;border-bottom:1.5px solid #fff;transform:rotate(-45deg) translate(1px,-1px)}
+.lib-item:hover .lib-check{border-color:var(--gold)}
+.lib-title{font-family:var(--f-display);font-size:1.05rem;color:var(--text);line-height:1.3}
+.lib-item.done .lib-title{color:var(--stone)}
+.lib-sub{font-family:var(--f-body);font-size:.82rem;color:var(--stone);margin-top:.1rem}
+.lib-date{font-family:var(--f-body);font-style:italic;font-size:.82rem;color:var(--stone);white-space:nowrap}
+.lib-item.done .lib-date{color:var(--maroon)}
+.lib-empty{font-family:var(--f-display);font-style:italic;font-size:.96rem;color:var(--stone);padding:1rem .5rem;text-align:center}
+@media(max-width:640px){
+  .library-room-head{flex-direction:column;align-items:flex-start;gap:.25rem}
+  .lib-item{grid-template-columns:22px 1fr;gap:.6rem}
+  .lib-date{grid-column:1 / -1;padding-left:2rem;margin-top:.1rem}
+}
 .article-row{display:flex;align-items:flex-start;gap:1rem;padding:1rem 0;border-bottom:var(--rule-hair);}
 .article-row:last-child{border-bottom:none;}
 .article-check{width:24px;height:24px;border-radius:50%;border:1.5px solid rgba(123,29,42,.3);flex-shrink:0;display:flex;align-items:center;justify-content:center;margin-top:.2rem;}
@@ -758,6 +795,8 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
               <span class="mega-sub">Full text for Great Vespers</span>
               <a href="/prayers" class="mega-link">Daily Prayers</a>
               <span class="mega-sub">The daily prayer rule of the Orthodox Church</span>
+              <a href="/prayer-request" class="mega-link">Submit a Prayer Request</a>
+              <span class="mega-sub">Ask the parish to pray for you or a loved one</span>
             </div>
           </div>
         </div>
@@ -866,7 +905,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
         <a href="/liturgy-history" class="dr-link"><span class="dr-link-name">History of the Liturgy</span><span class="dr-link-sub">How the Divine Liturgy developed</span></a>
         <a href="/liturgy-book" class="dr-link"><span class="dr-link-name">Liturgy Book</span><span class="dr-link-sub">Full text for the Divine Liturgy</span></a>
         <a href="/vespers-book" class="dr-link"><span class="dr-link-name">Vespers Book</span><span class="dr-link-sub">Full text for Great Vespers</span></a>
-        <a href="/prayers" class="dr-link"><span class="dr-link-name">Daily Prayers</span><span class="dr-link-sub">The daily prayer rule of the Orthodox Church</span></a>
+        <a href="/prayers" class="dr-link"><span class="dr-link-name">Daily Prayers</span><span class="dr-link-sub">The daily prayer rule of the Orthodox Church</span></a><a href="/prayer-request" class="dr-link"><span class="dr-link-name">Prayer Request</span><span class="dr-link-sub">Ask the parish to pray for you</span></a>
       </div>
     </div>
 
@@ -948,6 +987,20 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   <div id="article-list">
     <div class="loading">Loading your journey&hellip;</div>
   </div>
+
+  <!-- LIBRARY (per-session progress) -->
+  <div class="section-rule"></div>
+  <section class="library-room" id="library-room">
+    <div class="library-room-head">
+      <div>
+        <div class="library-room-title">The <em>Library</em></div>
+        <div class="library-room-caption">Lectures watched, sessions completed, pages kept</div>
+      </div>
+      <div class="library-room-progress" id="library-room-progress">0 <em>of 62</em></div>
+    </div>
+    <div class="library-room-progress-bar"><div class="library-room-progress-fill" id="library-room-progress-fill"></div></div>
+    <div id="library-groups"></div>
+  </section>
 
   <!-- READING NOTES -->
   <div class="section-rule"></div>
@@ -1072,6 +1125,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
       <span class="footer-nav-sub">My Parish</span>
       <a href="/my-journey" class="footer-my-journey">My Journey</a>
       <a href="/my-profile" class="footer-my-journey" style="margin-left:.5rem">My Profile</a>
+      <a href="/prayer-request" class="footer-my-journey" style="margin-left:.5rem">Prayer Request</a>
       <span class="footer-nav-sub">Connect</span>
       <p class="footer-meta" style="line-height:2.2">
         Vespers &middot; Saturdays 5:00 PM<br>
@@ -1497,6 +1551,7 @@ document.addEventListener('DOMContentLoaded', async function() {
   if (typeof loadFromSupabase === 'function') { await loadFromSupabase(); }
   loadManifest();
   renderReadingNotes();
+  renderLibrary();
 });
 
 function renderReadingNotes() {
@@ -1540,6 +1595,121 @@ function renderReadingNotes() {
 
   list.innerHTML = html;
 }
+
+// ── LIBRARY ROOM (per-session progress) ──
+var CATECHESIS_SESSIONS = [
+  { id:'sess-1',  num:1,  title:'Becoming and Being Orthodox', date:'January 7' },
+  { id:'sess-2',  num:2,  title:"Christ's Way", date:'January 14' },
+  { id:'sess-3',  num:3,  title:'Union with God and the Nature of the Church', date:'January 21' },
+  { id:'sess-4',  num:4,  title:'Theology Proper', date:'January 28' },
+  { id:'sess-5',  num:5,  title:'Sacraments', date:'February 4' },
+  { id:'sess-6',  num:6,  title:'History of the Church 1', date:'February 11' },
+  { id:'sess-7',  num:7,  title:'History of the Church 2', date:'February 18' },
+  { id:'sess-8',  num:8,  title:'Scripture in Tradition', date:'February 25' },
+  { id:'sess-9',  num:9,  title:'Life, Death, Spirits, and the Spiritual World', date:'March 4' },
+  { id:'sess-10', num:10, title:'All that is Holy', date:'March 11' },
+  { id:'sess-11', num:11, title:'Church Practices', date:'March 18' },
+  { id:'sess-12', num:12, title:'Family and Work', date:'March 25' },
+  { id:'sess-13', num:13, title:'Church as Divine and Human', date:'April 1' }
+];
+
+var BIBLE_STUDY_BOOKS = [
+  { label:'1 Peter',            slug:'peter',     count:15, bookId:'book-1' },
+  { label:'Wisdom of Solomon',  slug:'wisdom',    count:11, bookId:'book-2' },
+  { label:'Galatians',          slug:'galatians', count:10, bookId:'book-3' },
+  { label:'2 John',             slug:'2john',     count:4,  bookId:'book-4' },
+  { label:'Genesis',            slug:'genesis',   count:9,  bookId:'book-5' }
+];
+
+function getSessionState(storePrefix, id) {
+  try { return JSON.parse(localStorage.getItem(storePrefix + id) || '{}'); }
+  catch(e) { return {}; }
+}
+
+function formatLibDate(iso) {
+  if (!iso) return '';
+  var d = new Date(iso);
+  if (isNaN(d.getTime())) return '';
+  var MS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var dd = String(d.getDate()).padStart(2, '0');
+  return 'Marked ' + MS[d.getMonth()] + ' ' + dd;
+}
+
+function renderLibraryGroup(opts) {
+  var html = '<div class="lib-group">';
+  html += '<div class="lib-group-head">';
+  html += '<span class="lib-group-name">' + escHtml(opts.name) + '</span>';
+  html += '<span class="lib-group-count"><strong>' + opts.done + '</strong> <em>of ' + opts.count + ' sessions</em></span>';
+  html += '</div>';
+  html += '<div class="lib-items">';
+  if (!opts.items.length) {
+    html += '<div class="lib-empty">' + escHtml(opts.emptyMsg || 'Nothing here yet.') + '</div>';
+  } else {
+    opts.items.forEach(function(it) {
+      var cls = 'lib-item' + (it.done ? ' done' : '');
+      html += '<a href="' + it.href + '" class="' + cls + '">';
+      html += '<span class="lib-check"></span>';
+      html += '<div>';
+      html += '<div class="lib-title">' + escHtml(it.title) + '</div>';
+      html += '<div class="lib-sub">' + escHtml(it.sub) + '</div>';
+      html += '</div>';
+      html += '<div class="lib-date">' + (it.done ? escHtml(it.markedLabel || 'Marked') : 'Not yet') + '</div>';
+      html += '</a>';
+    });
+  }
+  html += '</div></div>';
+  return html;
+}
+
+function renderLibrary() {
+  var host = document.getElementById('library-groups');
+  if (!host) return;
+
+  var catechesisItems = CATECHESIS_SESSIONS.map(function(s) {
+    var st = getSessionState('spp_journey_session_', s.id);
+    return {
+      href: '/catechesis#' + s.id,
+      title: s.title,
+      sub: 'Session ' + s.num + ' \u00b7 ' + s.date,
+      done: !!st.completed,
+      markedLabel: formatLibDate(st.completedAt)
+    };
+  });
+
+  var bibleItems = [];
+  BIBLE_STUDY_BOOKS.forEach(function(book) {
+    for (var i = 1; i <= book.count; i++) {
+      var idNum = String(i).padStart(2, '0');
+      var studyId = book.slug + '-' + idNum;
+      var st = getSessionState('spp_journey_study_', studyId);
+      bibleItems.push({
+        href: '/bible-study#' + book.bookId,
+        title: book.label,
+        sub: 'Session ' + i,
+        done: !!st.completed,
+        markedLabel: formatLibDate(st.completedAt)
+      });
+    }
+  });
+
+  var catDone = catechesisItems.filter(function(i){return i.done;}).length;
+  var bsDone  = bibleItems.filter(function(i){return i.done;}).length;
+  var totalDone = catDone + bsDone;
+  var totalCount = catechesisItems.length + bibleItems.length;
+  var pct = totalCount ? Math.round((totalDone / totalCount) * 100) : 0;
+
+  var html = '';
+  html += renderLibraryGroup({ name:'Catechesis Series', count:catechesisItems.length, done:catDone, items:catechesisItems });
+  html += renderLibraryGroup({ name:'Bible Study',       count:bibleItems.length,       done:bsDone,  items:bibleItems });
+
+  host.innerHTML = html;
+  var progressEl = document.getElementById('library-room-progress');
+  if (progressEl) progressEl.innerHTML = '<strong>' + totalDone + '</strong> <em>of ' + totalCount + '</em>';
+  var fillEl = document.getElementById('library-room-progress-fill');
+  if (fillEl) setTimeout(function() { fillEl.style.width = pct + '%'; }, 80);
+}
+
+window.addEventListener('spp-supabase-loaded', renderLibrary);
 </script>
 
 <script>

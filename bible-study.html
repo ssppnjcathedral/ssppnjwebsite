@@ -176,6 +176,17 @@ footer .btn-outline:hover{background:rgba(246,241,232,.15);color:#fff;border-col
 .sess-num{font-family:var(--f-ui);font-size:.62rem;color:var(--stone-lt);width:24px;white-space:nowrap}
 .sess-date{white-space:nowrap;min-width:110px;font-family:var(--f-ui);font-size:.68rem;letter-spacing:.06em;color:var(--stone)}
 .sess-content{color:var(--ink)}
+.study-check-head{width:44px;text-align:center !important;padding-left:.5rem !important}
+.study-check-head-label{font-family:var(--f-ui);font-size:.55rem;letter-spacing:.12em;color:var(--stone)}
+.study-check-cell{width:44px;text-align:center;padding-left:.5rem !important;padding-right:0 !important}
+.study-check{width:22px;height:22px;border-radius:50%;border:1.5px solid rgba(184,131,40,.4);background:#fff;color:transparent;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;transition:background .22s,border-color .22s,color .22s,transform .22s cubic-bezier(.34,1.56,.64,1);padding:0;position:relative;opacity:.55}
+.session-table tbody tr:hover .study-check{opacity:1}
+.study-check:hover{border-color:var(--gold);transform:scale(1.12);color:rgba(184,131,40,.35);opacity:1}
+.study-check.is-done{background:linear-gradient(145deg,var(--gold) 0%,var(--gold-deep) 100%);border-color:var(--gold-deep);color:#fff;opacity:1}
+.session-table tbody tr.study-done{background:rgba(184,131,40,.04)}
+.session-table tbody tr.study-done .sess-content{color:var(--stone)}
+.study-check::after{content:attr(data-tooltip);position:absolute;bottom:calc(100% + 6px);right:0;background:var(--apse);color:rgba(246,241,232,.92);font-family:var(--f-ui);font-size:.55rem;letter-spacing:.10em;text-transform:uppercase;white-space:nowrap;padding:.3rem .65rem;pointer-events:none;opacity:0;transition:opacity .15s;border:1px solid rgba(246,241,232,.12);border-radius:4px;z-index:5}
+.study-check:hover::after{opacity:1}
 .sess-rec a{font-family:var(--f-ui);font-size:.60rem;letter-spacing:.10em;text-transform:uppercase;color:var(--maroon);border-bottom:1px solid rgba(123,29,42,.25);white-space:nowrap}
 .sess-rec a:hover{border-color:var(--maroon)}
 .sess-rec .rec-pass{display:block;font-family:var(--f-ui);font-size:.56rem;letter-spacing:.08em;color:var(--stone);margin-top:.2rem}
@@ -695,6 +706,8 @@ footer{background:var(--apse);padding:4rem 4.5rem 2rem}
               <span class="mega-sub">Full text for Great Vespers</span>
               <a href="/prayers" class="mega-link">Daily Prayers</a>
               <span class="mega-sub">The daily prayer rule of the Orthodox Church</span>
+              <a href="/prayer-request" class="mega-link">Submit a Prayer Request</a>
+              <span class="mega-sub">Ask the parish to pray for you or a loved one</span>
             </div>
           </div>
         </div>
@@ -804,7 +817,7 @@ footer{background:var(--apse);padding:4rem 4.5rem 2rem}
         <a href="/liturgy-history" class="dr-link"><span class="dr-link-name">History of the Liturgy</span><span class="dr-link-sub">How the Divine Liturgy developed</span></a>
         <a href="/liturgy-book" class="dr-link"><span class="dr-link-name">Liturgy Book</span><span class="dr-link-sub">Full text for the Divine Liturgy</span></a>
         <a href="/vespers-book" class="dr-link"><span class="dr-link-name">Vespers Book</span><span class="dr-link-sub">Full text for Great Vespers</span></a>
-        <a href="/prayers" class="dr-link"><span class="dr-link-name">Daily Prayers</span><span class="dr-link-sub">The daily prayer rule of the Orthodox Church</span></a>
+        <a href="/prayers" class="dr-link"><span class="dr-link-name">Daily Prayers</span><span class="dr-link-sub">The daily prayer rule of the Orthodox Church</span></a><a href="/prayer-request" class="dr-link"><span class="dr-link-name">Prayer Request</span><span class="dr-link-sub">Ask the parish to pray for you</span></a>
       </div>
     </div>
 
@@ -945,18 +958,19 @@ footer{background:var(--apse);padding:4rem 4.5rem 2rem}
               <th class="sess-date">Date</th>
               <th>Content</th>
               <th>Recording</th>
+              <th class="study-check-head"><span class="study-check-head-label">Mark</span></th>
             </tr>
           </thead>
           <tbody>
-            <tr><td class="sess-num">1</td><td class="sess-date">Aug 7, 2024</td><td class="sess-content">1 Peter: beginning of study</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
-            <tr><td class="sess-num">2</td><td class="sess-date">Aug 14, 2024</td><td class="sess-content">1 Peter (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
-            <tr><td class="sess-num">3</td><td class="sess-date">Aug 21, 2024</td><td class="sess-content">1 Peter (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
-            <tr><td class="sess-num">4</td><td class="sess-date">Aug 28, 2024</td><td class="sess-content">1 Peter (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
-            <tr><td class="sess-num">5</td><td class="sess-date">Sep 11, 2024</td><td class="sess-content">1 Peter, chapter 2</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
-            <tr><td class="sess-num">6</td><td class="sess-date">Sep 18, 2024</td><td class="sess-content">1 Peter (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
-            <tr><td class="sess-num">7</td><td class="sess-date">Sep 25, 2024</td><td class="sess-content">1 Peter (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
-            <tr><td class="sess-num">8</td><td class="sess-date">Oct 10, 2024</td><td class="sess-content">1 Peter, chapter 3: Marriage</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
-            <tr>
+            <tr data-study-id="peter-01"><td class="sess-num">1</td><td class="sess-date">Aug 7, 2024</td><td class="sess-content">1 Peter: beginning of study</td><td class="sess-rec"><span class="no-rec">No recording</span></td><td class="study-check-cell"><button class="study-check" type="button" data-study-id="peter-01" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button></td></tr>
+            <tr data-study-id="peter-02"><td class="sess-num">2</td><td class="sess-date">Aug 14, 2024</td><td class="sess-content">1 Peter (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td><td class="study-check-cell"><button class="study-check" type="button" data-study-id="peter-02" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button></td></tr>
+            <tr data-study-id="peter-03"><td class="sess-num">3</td><td class="sess-date">Aug 21, 2024</td><td class="sess-content">1 Peter (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td><td class="study-check-cell"><button class="study-check" type="button" data-study-id="peter-03" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button></td></tr>
+            <tr data-study-id="peter-04"><td class="sess-num">4</td><td class="sess-date">Aug 28, 2024</td><td class="sess-content">1 Peter (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td><td class="study-check-cell"><button class="study-check" type="button" data-study-id="peter-04" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button></td></tr>
+            <tr data-study-id="peter-05"><td class="sess-num">5</td><td class="sess-date">Sep 11, 2024</td><td class="sess-content">1 Peter, chapter 2</td><td class="sess-rec"><span class="no-rec">No recording</span></td><td class="study-check-cell"><button class="study-check" type="button" data-study-id="peter-05" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button></td></tr>
+            <tr data-study-id="peter-06"><td class="sess-num">6</td><td class="sess-date">Sep 18, 2024</td><td class="sess-content">1 Peter (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td><td class="study-check-cell"><button class="study-check" type="button" data-study-id="peter-06" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button></td></tr>
+            <tr data-study-id="peter-07"><td class="sess-num">7</td><td class="sess-date">Sep 25, 2024</td><td class="sess-content">1 Peter (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td><td class="study-check-cell"><button class="study-check" type="button" data-study-id="peter-07" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button></td></tr>
+            <tr data-study-id="peter-08"><td class="sess-num">8</td><td class="sess-date">Oct 10, 2024</td><td class="sess-content">1 Peter, chapter 3: Marriage</td><td class="sess-rec"><span class="no-rec">No recording</span></td><td class="study-check-cell"><button class="study-check" type="button" data-study-id="peter-08" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button></td></tr>
+            <tr data-study-id="peter-09">
               <td class="sess-num">9</td>
               <td class="sess-date">Oct 16, 2024</td>
               <td class="sess-content">1 Peter, chapter 3: Marriage</td>
@@ -964,8 +978,8 @@ footer{background:var(--apse);padding:4rem 4.5rem 2rem}
                 <a href="https://us06web.zoom.us/rec/share/W5678p_L8QByNBlGBA-wHLMFVMZyD987AB2sXEjFlmdLE0V1RZe4crFJsE257wfv.k0pBzmONOGGun2v7?startTime=1729123594000" target="_blank">Watch Recording</a>
                 <span class="rec-pass">Passcode: 0T+MEG!1</span>
               </td>
-            </tr>
-            <tr>
+            <td class="study-check-cell"><button class="study-check" type="button" data-study-id="peter-09" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button></td></tr>
+            <tr data-study-id="peter-10">
               <td class="sess-num">10</td>
               <td class="sess-date">Oct 23, 2024</td>
               <td class="sess-content">1 Peter (continued)</td>
@@ -973,8 +987,8 @@ footer{background:var(--apse);padding:4rem 4.5rem 2rem}
                 <a href="https://us06web.zoom.us/rec/play/FBhfrQTPWKYtpeCNGbeEfVBz7PXhHPa2ifw5S45q10DhjLStqrlYss2_L8SgmlhYYBCDmOqRgwhTE5nj.YQ3kdiuR5i70QvYF" target="_blank">Watch Recording</a>
                 <span class="rec-pass">Passcode: 7Z%g@&amp;x*</span>
               </td>
-            </tr>
-            <tr>
+            <td class="study-check-cell"><button class="study-check" type="button" data-study-id="peter-10" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button></td></tr>
+            <tr data-study-id="peter-11">
               <td class="sess-num">11</td>
               <td class="sess-date">Oct 30, 2024</td>
               <td class="sess-content">1 Peter (continued)</td>
@@ -982,8 +996,8 @@ footer{background:var(--apse);padding:4rem 4.5rem 2rem}
                 <a href="https://us06web.zoom.us/rec/share/mrKfv0kea2kKYg5I7aSj5HqH6-6D5AoywR2HK5ZwTehoj7HE6ivsvAzAsOpHH9Om.yjdEWjnhIIQxvKmG?startTime=1730332919000" target="_blank">Watch Recording</a>
                 <span class="rec-pass">Passcode: *!Mc5DPa</span>
               </td>
-            </tr>
-            <tr>
+            <td class="study-check-cell"><button class="study-check" type="button" data-study-id="peter-11" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button></td></tr>
+            <tr data-study-id="peter-12">
               <td class="sess-num">12</td>
               <td class="sess-date">Nov 6, 2024</td>
               <td class="sess-content">1 Peter (continued): Baptism</td>
@@ -991,10 +1005,10 @@ footer{background:var(--apse);padding:4rem 4.5rem 2rem}
                 <a href="https://us06web.zoom.us/rec/share/zZj1BVuthZuCf7YDtOEmuosSgRHqdQcrDkwDB3YtuQyKN9ok-M0jQJQeAXBWNkoa.SJGb7J2BVm3Rm1FO?startTime=1730941474000" target="_blank">Watch Recording</a>
                 <span class="rec-pass">Passcode: y&amp;E.y7$4</span>
               </td>
-            </tr>
-            <tr><td class="sess-num">13</td><td class="sess-date">Nov 13, 2024</td><td class="sess-content">1 Peter (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
-            <tr><td class="sess-num">14</td><td class="sess-date">Nov 20, 2024</td><td class="sess-content">1 Peter (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
-            <tr><td class="sess-num">15</td><td class="sess-date">Dec 9, 2024</td><td class="sess-content">1 Peter: final session</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
+            <td class="study-check-cell"><button class="study-check" type="button" data-study-id="peter-12" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button></td></tr>
+            <tr data-study-id="peter-13"><td class="sess-num">13</td><td class="sess-date">Nov 13, 2024</td><td class="sess-content">1 Peter (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td><td class="study-check-cell"><button class="study-check" type="button" data-study-id="peter-13" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button></td></tr>
+            <tr data-study-id="peter-14"><td class="sess-num">14</td><td class="sess-date">Nov 20, 2024</td><td class="sess-content">1 Peter (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td><td class="study-check-cell"><button class="study-check" type="button" data-study-id="peter-14" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button></td></tr>
+            <tr data-study-id="peter-15"><td class="sess-num">15</td><td class="sess-date">Dec 9, 2024</td><td class="sess-content">1 Peter: final session</td><td class="sess-rec"><span class="no-rec">No recording</span></td><td class="study-check-cell"><button class="study-check" type="button" data-study-id="peter-15" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button></td></tr>
           </tbody>
         </table>
       </div><!-- end book-1 -->
@@ -1022,10 +1036,11 @@ footer{background:var(--apse);padding:4rem 4.5rem 2rem}
               <th class="sess-date">Date</th>
               <th>Content</th>
               <th>Recording</th>
+              <th class="study-check-head"><span class="study-check-head-label">Mark</span></th>
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr data-study-id="wisdom-01">
               <td class="sess-num">1</td>
               <td class="sess-date">Jan 15, 2025</td>
               <td class="sess-content">Wisdom of Solomon: beginning of study</td>
@@ -1033,8 +1048,8 @@ footer{background:var(--apse);padding:4rem 4.5rem 2rem}
                 <a href="https://us06web.zoom.us/rec/share/RvomEGTIktQG9TtKbhU7kfVaol2UYC3OJRjSAREEZ6UPvJjs1IfFGrQUXG--Ajtr.6-oSRssJSR147uCt?startTime=1736989410000" target="_blank">Watch Recording</a>
                 <span class="rec-pass">Passcode: %fpcy14h</span>
               </td>
-            </tr>
-            <tr>
+            <td class="study-check-cell"><button class="study-check" type="button" data-study-id="wisdom-01" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button></td></tr>
+            <tr data-study-id="wisdom-02">
               <td class="sess-num">2</td>
               <td class="sess-date">Jan 22, 2025</td>
               <td class="sess-content">Wisdom of Solomon, chapters 1–2</td>
@@ -1042,8 +1057,8 @@ footer{background:var(--apse);padding:4rem 4.5rem 2rem}
                 <a href="https://us06web.zoom.us/rec/share/tysw84ePtna16dXGNnbONjjj-aQfKxhZWcqgOaBSmthXQRp-fNQerPhSeagaiape.bgAAn9EhrYEb8XXX?startTime=1737594198000" target="_blank">Watch Recording</a>
                 <span class="rec-pass">Passcode: z=0B6=kE</span>
               </td>
-            </tr>
-            <tr>
+            <td class="study-check-cell"><button class="study-check" type="button" data-study-id="wisdom-02" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button></td></tr>
+            <tr data-study-id="wisdom-03">
               <td class="sess-num">3</td>
               <td class="sess-date">Jan 29, 2025</td>
               <td class="sess-content">Wisdom of Solomon, chapters 1–2</td>
@@ -1051,8 +1066,8 @@ footer{background:var(--apse);padding:4rem 4.5rem 2rem}
                 <a href="https://us06web.zoom.us/rec/share/KF7v1RphjybkCoWblAsCnhHCcsmQYcBR3r3GIROnEPO0UiznrDy55crVi9eXFOMg.u-9o3Y78C8yMnlZP?startTime=1738199789000" target="_blank">Watch Recording</a>
                 <span class="rec-pass">Passcode: zj373h=5</span>
               </td>
-            </tr>
-            <tr>
+            <td class="study-check-cell"><button class="study-check" type="button" data-study-id="wisdom-03" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button></td></tr>
+            <tr data-study-id="wisdom-04">
               <td class="sess-num">4</td>
               <td class="sess-date">Feb 5, 2025</td>
               <td class="sess-content">Wisdom of Solomon (continued)</td>
@@ -1060,8 +1075,8 @@ footer{background:var(--apse);padding:4rem 4.5rem 2rem}
                 <a href="https://us06web.zoom.us/rec/share/3qn8oW5O3y6RaBWENWqIuAu9P3iMQlhukGeGG9zCX9a_-u383h9hJiIzyW5LWqR-.Vb_X9i9SfS1oKttd?startTime=1738803826000" target="_blank">Watch Recording</a>
                 <span class="rec-pass">Passcode: *w3?bK#r</span>
               </td>
-            </tr>
-            <tr>
+            <td class="study-check-cell"><button class="study-check" type="button" data-study-id="wisdom-04" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button></td></tr>
+            <tr data-study-id="wisdom-05">
               <td class="sess-num">5</td>
               <td class="sess-date">Feb 12, 2025</td>
               <td class="sess-content">Wisdom of Solomon (continued)</td>
@@ -1069,13 +1084,13 @@ footer{background:var(--apse);padding:4rem 4.5rem 2rem}
                 <a href="https://us06web.zoom.us/rec/share/zYZ7JTBglKgKxJlD1mNVcidstbJhrQsNKfnlkT2C-JCxNfbMEQ5KLFJ-m3WLAGnS.DnGguh5QH5LiZPiz?startTime=1739408677000" target="_blank">Watch Recording</a>
                 <span class="rec-pass">Passcode: @G2wE.5=</span>
               </td>
-            </tr>
-            <tr><td class="sess-num">6</td><td class="sess-date">Feb 19, 2025</td><td class="sess-content">Wisdom of Solomon (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
-            <tr><td class="sess-num">7</td><td class="sess-date">Mar 5, 2025</td><td class="sess-content">Wisdom of Solomon, chapters 10–11</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
-            <tr><td class="sess-num">8</td><td class="sess-date">Mar 12, 2025</td><td class="sess-content">Wisdom of Solomon, chapters 12–14</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
-            <tr><td class="sess-num">9</td><td class="sess-date">Mar 19, 2025</td><td class="sess-content">Wisdom of Solomon (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
-            <tr><td class="sess-num">10</td><td class="sess-date">Mar 26, 2025</td><td class="sess-content">Wisdom of Solomon (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
-            <tr><td class="sess-num">11</td><td class="sess-date">Apr 2, 2025</td><td class="sess-content">Wisdom of Solomon: final session</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
+            <td class="study-check-cell"><button class="study-check" type="button" data-study-id="wisdom-05" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button></td></tr>
+            <tr data-study-id="wisdom-06"><td class="sess-num">6</td><td class="sess-date">Feb 19, 2025</td><td class="sess-content">Wisdom of Solomon (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td><td class="study-check-cell"><button class="study-check" type="button" data-study-id="wisdom-06" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button></td></tr>
+            <tr data-study-id="wisdom-07"><td class="sess-num">7</td><td class="sess-date">Mar 5, 2025</td><td class="sess-content">Wisdom of Solomon, chapters 10–11</td><td class="sess-rec"><span class="no-rec">No recording</span></td><td class="study-check-cell"><button class="study-check" type="button" data-study-id="wisdom-07" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button></td></tr>
+            <tr data-study-id="wisdom-08"><td class="sess-num">8</td><td class="sess-date">Mar 12, 2025</td><td class="sess-content">Wisdom of Solomon, chapters 12–14</td><td class="sess-rec"><span class="no-rec">No recording</span></td><td class="study-check-cell"><button class="study-check" type="button" data-study-id="wisdom-08" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button></td></tr>
+            <tr data-study-id="wisdom-09"><td class="sess-num">9</td><td class="sess-date">Mar 19, 2025</td><td class="sess-content">Wisdom of Solomon (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td><td class="study-check-cell"><button class="study-check" type="button" data-study-id="wisdom-09" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button></td></tr>
+            <tr data-study-id="wisdom-10"><td class="sess-num">10</td><td class="sess-date">Mar 26, 2025</td><td class="sess-content">Wisdom of Solomon (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td><td class="study-check-cell"><button class="study-check" type="button" data-study-id="wisdom-10" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button></td></tr>
+            <tr data-study-id="wisdom-11"><td class="sess-num">11</td><td class="sess-date">Apr 2, 2025</td><td class="sess-content">Wisdom of Solomon: final session</td><td class="sess-rec"><span class="no-rec">No recording</span></td><td class="study-check-cell"><button class="study-check" type="button" data-study-id="wisdom-11" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button></td></tr>
           </tbody>
         </table>
       </div><!-- end book-2 -->
@@ -1102,19 +1117,20 @@ footer{background:var(--apse);padding:4rem 4.5rem 2rem}
               <th class="sess-date">Date</th>
               <th>Content</th>
               <th>Recording</th>
+              <th class="study-check-head"><span class="study-check-head-label">Mark</span></th>
             </tr>
           </thead>
           <tbody>
-            <tr><td class="sess-num">1</td><td class="sess-date">Apr 30, 2025</td><td class="sess-content">Galatians: beginning of study</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
-            <tr><td class="sess-num">2</td><td class="sess-date">May 28, 2025</td><td class="sess-content">Galatians (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
-            <tr><td class="sess-num">3</td><td class="sess-date">May 31, 2025</td><td class="sess-content">Galatians (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
-            <tr><td class="sess-num">4</td><td class="sess-date">Jun 18, 2025</td><td class="sess-content">Galatians (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
-            <tr><td class="sess-num">5</td><td class="sess-date">Jun 25, 2025</td><td class="sess-content">Galatians (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
-            <tr><td class="sess-num">6</td><td class="sess-date">Jul 2, 2025</td><td class="sess-content">Galatians (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
-            <tr><td class="sess-num">7</td><td class="sess-date">Jul 10, 2025</td><td class="sess-content">Galatians, chapter 4</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
-            <tr><td class="sess-num">8</td><td class="sess-date">Jul 17, 2025</td><td class="sess-content">Galatians (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
-            <tr><td class="sess-num">9</td><td class="sess-date">Jul 23, 2025</td><td class="sess-content">Galatians (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
-            <tr><td class="sess-num">10</td><td class="sess-date">Jul 30, 2025</td><td class="sess-content">Galatians (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
+            <tr data-study-id="galatians-01"><td class="sess-num">1</td><td class="sess-date">Apr 30, 2025</td><td class="sess-content">Galatians: beginning of study</td><td class="sess-rec"><span class="no-rec">No recording</span></td><td class="study-check-cell"><button class="study-check" type="button" data-study-id="galatians-01" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button></td></tr>
+            <tr data-study-id="galatians-02"><td class="sess-num">2</td><td class="sess-date">May 28, 2025</td><td class="sess-content">Galatians (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td><td class="study-check-cell"><button class="study-check" type="button" data-study-id="galatians-02" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button></td></tr>
+            <tr data-study-id="galatians-03"><td class="sess-num">3</td><td class="sess-date">May 31, 2025</td><td class="sess-content">Galatians (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td><td class="study-check-cell"><button class="study-check" type="button" data-study-id="galatians-03" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button></td></tr>
+            <tr data-study-id="galatians-04"><td class="sess-num">4</td><td class="sess-date">Jun 18, 2025</td><td class="sess-content">Galatians (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td><td class="study-check-cell"><button class="study-check" type="button" data-study-id="galatians-04" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button></td></tr>
+            <tr data-study-id="galatians-05"><td class="sess-num">5</td><td class="sess-date">Jun 25, 2025</td><td class="sess-content">Galatians (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td><td class="study-check-cell"><button class="study-check" type="button" data-study-id="galatians-05" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button></td></tr>
+            <tr data-study-id="galatians-06"><td class="sess-num">6</td><td class="sess-date">Jul 2, 2025</td><td class="sess-content">Galatians (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td><td class="study-check-cell"><button class="study-check" type="button" data-study-id="galatians-06" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button></td></tr>
+            <tr data-study-id="galatians-07"><td class="sess-num">7</td><td class="sess-date">Jul 10, 2025</td><td class="sess-content">Galatians, chapter 4</td><td class="sess-rec"><span class="no-rec">No recording</span></td><td class="study-check-cell"><button class="study-check" type="button" data-study-id="galatians-07" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button></td></tr>
+            <tr data-study-id="galatians-08"><td class="sess-num">8</td><td class="sess-date">Jul 17, 2025</td><td class="sess-content">Galatians (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td><td class="study-check-cell"><button class="study-check" type="button" data-study-id="galatians-08" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button></td></tr>
+            <tr data-study-id="galatians-09"><td class="sess-num">9</td><td class="sess-date">Jul 23, 2025</td><td class="sess-content">Galatians (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td><td class="study-check-cell"><button class="study-check" type="button" data-study-id="galatians-09" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button></td></tr>
+            <tr data-study-id="galatians-10"><td class="sess-num">10</td><td class="sess-date">Jul 30, 2025</td><td class="sess-content">Galatians (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td><td class="study-check-cell"><button class="study-check" type="button" data-study-id="galatians-10" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button></td></tr>
           </tbody>
         </table>
       </div><!-- end book-3 -->
@@ -1141,13 +1157,14 @@ footer{background:var(--apse);padding:4rem 4.5rem 2rem}
               <th class="sess-date">Date</th>
               <th>Content</th>
               <th>Recording</th>
+              <th class="study-check-head"><span class="study-check-head-label">Mark</span></th>
             </tr>
           </thead>
           <tbody>
-            <tr><td class="sess-num">1</td><td class="sess-date">Aug 6, 2025</td><td class="sess-content">2 John: beginning of study</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
-            <tr><td class="sess-num">2</td><td class="sess-date">Aug 20, 2025</td><td class="sess-content">2 John, all 13 verses</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
-            <tr><td class="sess-num">3</td><td class="sess-date">Aug 27, 2025</td><td class="sess-content">2 John: finishing</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
-            <tr><td class="sess-num">4</td><td class="sess-date">Sep 11, 2025</td><td class="sess-content">2 John (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
+            <tr data-study-id="2john-01"><td class="sess-num">1</td><td class="sess-date">Aug 6, 2025</td><td class="sess-content">2 John: beginning of study</td><td class="sess-rec"><span class="no-rec">No recording</span></td><td class="study-check-cell"><button class="study-check" type="button" data-study-id="2john-01" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button></td></tr>
+            <tr data-study-id="2john-02"><td class="sess-num">2</td><td class="sess-date">Aug 20, 2025</td><td class="sess-content">2 John, all 13 verses</td><td class="sess-rec"><span class="no-rec">No recording</span></td><td class="study-check-cell"><button class="study-check" type="button" data-study-id="2john-02" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button></td></tr>
+            <tr data-study-id="2john-03"><td class="sess-num">3</td><td class="sess-date">Aug 27, 2025</td><td class="sess-content">2 John: finishing</td><td class="sess-rec"><span class="no-rec">No recording</span></td><td class="study-check-cell"><button class="study-check" type="button" data-study-id="2john-03" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button></td></tr>
+            <tr data-study-id="2john-04"><td class="sess-num">4</td><td class="sess-date">Sep 11, 2025</td><td class="sess-content">2 John (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td><td class="study-check-cell"><button class="study-check" type="button" data-study-id="2john-04" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button></td></tr>
           </tbody>
         </table>
       </div><!-- end book-4 -->
@@ -1174,18 +1191,19 @@ footer{background:var(--apse);padding:4rem 4.5rem 2rem}
               <th class="sess-date">Date</th>
               <th>Content</th>
               <th>Recording</th>
+              <th class="study-check-head"><span class="study-check-head-label">Mark</span></th>
             </tr>
           </thead>
           <tbody>
-            <tr><td class="sess-num">1</td><td class="sess-date">Oct 1, 2025</td><td class="sess-content">Genesis: beginning of study</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
-            <tr><td class="sess-num">2</td><td class="sess-date">Oct 8, 2025</td><td class="sess-content">Genesis (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
-            <tr><td class="sess-num">3</td><td class="sess-date">Oct 15, 2025</td><td class="sess-content">Genesis (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
-            <tr><td class="sess-num">4</td><td class="sess-date">Nov 5, 2025</td><td class="sess-content">Genesis, chapters 1–2</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
-            <tr><td class="sess-num">5</td><td class="sess-date">Nov 12, 2025</td><td class="sess-content">Genesis, chapter 2</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
-            <tr><td class="sess-num">6</td><td class="sess-date">Nov 19, 2025</td><td class="sess-content">Genesis (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
-            <tr><td class="sess-num">7</td><td class="sess-date">Dec 3, 2025</td><td class="sess-content">Genesis (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
-            <tr><td class="sess-num">8</td><td class="sess-date">Dec 10, 2025</td><td class="sess-content">Genesis, chapters 4–5</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
-            <tr><td class="sess-num">9</td><td class="sess-date">Dec 17, 2025</td><td class="sess-content">Genesis (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td></tr>
+            <tr data-study-id="genesis-01"><td class="sess-num">1</td><td class="sess-date">Oct 1, 2025</td><td class="sess-content">Genesis: beginning of study</td><td class="sess-rec"><span class="no-rec">No recording</span></td><td class="study-check-cell"><button class="study-check" type="button" data-study-id="genesis-01" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button></td></tr>
+            <tr data-study-id="genesis-02"><td class="sess-num">2</td><td class="sess-date">Oct 8, 2025</td><td class="sess-content">Genesis (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td><td class="study-check-cell"><button class="study-check" type="button" data-study-id="genesis-02" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button></td></tr>
+            <tr data-study-id="genesis-03"><td class="sess-num">3</td><td class="sess-date">Oct 15, 2025</td><td class="sess-content">Genesis (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td><td class="study-check-cell"><button class="study-check" type="button" data-study-id="genesis-03" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button></td></tr>
+            <tr data-study-id="genesis-04"><td class="sess-num">4</td><td class="sess-date">Nov 5, 2025</td><td class="sess-content">Genesis, chapters 1–2</td><td class="sess-rec"><span class="no-rec">No recording</span></td><td class="study-check-cell"><button class="study-check" type="button" data-study-id="genesis-04" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button></td></tr>
+            <tr data-study-id="genesis-05"><td class="sess-num">5</td><td class="sess-date">Nov 12, 2025</td><td class="sess-content">Genesis, chapter 2</td><td class="sess-rec"><span class="no-rec">No recording</span></td><td class="study-check-cell"><button class="study-check" type="button" data-study-id="genesis-05" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button></td></tr>
+            <tr data-study-id="genesis-06"><td class="sess-num">6</td><td class="sess-date">Nov 19, 2025</td><td class="sess-content">Genesis (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td><td class="study-check-cell"><button class="study-check" type="button" data-study-id="genesis-06" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button></td></tr>
+            <tr data-study-id="genesis-07"><td class="sess-num">7</td><td class="sess-date">Dec 3, 2025</td><td class="sess-content">Genesis (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td><td class="study-check-cell"><button class="study-check" type="button" data-study-id="genesis-07" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button></td></tr>
+            <tr data-study-id="genesis-08"><td class="sess-num">8</td><td class="sess-date">Dec 10, 2025</td><td class="sess-content">Genesis, chapters 4–5</td><td class="sess-rec"><span class="no-rec">No recording</span></td><td class="study-check-cell"><button class="study-check" type="button" data-study-id="genesis-08" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button></td></tr>
+            <tr data-study-id="genesis-09"><td class="sess-num">9</td><td class="sess-date">Dec 17, 2025</td><td class="sess-content">Genesis (continued)</td><td class="sess-rec"><span class="no-rec">No recording</span></td><td class="study-check-cell"><button class="study-check" type="button" data-study-id="genesis-09" aria-label="Mark session complete" data-tooltip="Mark as read"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button></td></tr>
           </tbody>
         </table>
       </div><!-- end book-5 -->
@@ -1339,6 +1357,7 @@ footer{background:var(--apse);padding:4rem 4.5rem 2rem}
       <span class="footer-nav-sub">My Parish</span>
       <a href="/my-journey" class="footer-my-journey">My Journey</a>
       <a href="/my-profile" class="footer-my-journey" style="margin-left:.5rem">My Profile</a>
+      <a href="/prayer-request" class="footer-my-journey" style="margin-left:.5rem">Prayer Request</a>
       <span class="footer-nav-sub">Connect</span>
       <p class="footer-meta" style="line-height:2.2">
         Vespers &middot; Saturdays 5:00 PM<br>
@@ -1865,6 +1884,107 @@ function drToggle(head){
         if (range && isMobile()) jwEnterFullscreen();
       });
     }
+  });
+})();
+</script>
+<script>
+/* ── PER-SESSION PROGRESS (Phase 1) ── */
+(function() {
+  var BS_KEY = 'spp_journey_bible-study';
+
+  function readSession(sid) {
+    try { return JSON.parse(localStorage.getItem('spp_journey_study_' + sid) || '{}'); }
+    catch (e) { return {}; }
+  }
+
+  function writeSession(sid, completed) {
+    var state = { completed: !!completed };
+    if (completed) state.completedAt = new Date().toISOString();
+    try { localStorage.setItem('spp_journey_study_' + sid, JSON.stringify(state)); } catch (e) {}
+    if (typeof window.syncBibleStudySession === 'function') {
+      window.syncBibleStudySession(sid, !!completed, state.completedAt || null);
+    }
+  }
+
+  function allIds() {
+    var ids = [];
+    document.querySelectorAll('tr[data-study-id]').forEach(function(tr) {
+      ids.push(tr.getAttribute('data-study-id'));
+    });
+    return ids;
+  }
+
+  function countDone() {
+    var ids = allIds(), n = 0;
+    ids.forEach(function(id) { if (readSession(id).completed) n++; });
+    return { done: n, total: ids.length };
+  }
+
+  function autoDerivePage() {
+    var c = countDone();
+    var allDone = c.total > 0 && c.done === c.total;
+    var prev = {};
+    try { prev = JSON.parse(localStorage.getItem(BS_KEY) || '{}'); } catch (e) {}
+    var next = Object.assign({}, prev);
+    next.completed = allDone;
+    if (allDone && !prev.completed) next.completedAt = new Date().toISOString();
+    if (!allDone) delete next.completedAt;
+    try { localStorage.setItem(BS_KEY, JSON.stringify(next)); } catch (e) {}
+    if (typeof window.syncJourneyProgress === 'function') {
+      window.syncJourneyProgress('bible-study', next);
+    }
+    var pill = document.getElementById('pill-jw-check');
+    if (pill) {
+      pill.classList.toggle('jw-done', allDone);
+      pill.setAttribute('data-tooltip', allDone ? 'All sessions read' : 'Mark as Read');
+    }
+  }
+
+  function renderRow(tr) {
+    var sid = tr.getAttribute('data-study-id');
+    var btn = tr.querySelector('.study-check');
+    var done = !!readSession(sid).completed;
+    tr.classList.toggle('study-done', done);
+    if (btn) {
+      btn.classList.toggle('is-done', done);
+      btn.setAttribute('data-tooltip', done ? 'Marked as read' : 'Mark as read');
+    }
+  }
+
+  function init() {
+    var rows = document.querySelectorAll('tr[data-study-id]');
+    rows.forEach(function(tr) {
+      renderRow(tr);
+      var btn = tr.querySelector('.study-check');
+      if (!btn) return;
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var sid = tr.getAttribute('data-study-id');
+        var wasDone = !!readSession(sid).completed;
+        writeSession(sid, !wasDone);
+        renderRow(tr);
+        autoDerivePage();
+      });
+    });
+    autoDerivePage();
+  }
+
+  function hydrate() {
+    init();
+    if (typeof window.loadFromSupabase === 'function') {
+      try { window.loadFromSupabase(); } catch (e) {}
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', hydrate);
+  } else {
+    hydrate();
+  }
+
+  window.addEventListener('spp-supabase-loaded', function() {
+    document.querySelectorAll('tr[data-study-id]').forEach(renderRow);
+    autoDerivePage();
   });
 })();
 </script>
