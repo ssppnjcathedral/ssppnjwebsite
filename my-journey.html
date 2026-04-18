@@ -567,12 +567,15 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 .j-feed-list{padding:.4rem 0;max-height:460px;overflow-y:auto;position:relative;scrollbar-width:thin;scrollbar-color:rgba(184,131,40,.2) transparent}
 .j-feed-list::-webkit-scrollbar{width:3px}
 .j-feed-list::-webkit-scrollbar-thumb{background:rgba(184,131,40,.25);border-radius:2px}
-.j-feed-list::before{content:'';position:absolute;left:calc(1.6rem + 18px);top:2rem;bottom:2rem;width:1px;background:linear-gradient(180deg,transparent 0%,rgba(184,131,40,.32) 8%,rgba(184,131,40,.32) 92%,transparent 100%);z-index:0;pointer-events:none}
-.j-feed-entry{padding:.85rem 1.6rem;border-bottom:var(--rule-hair);display:grid;grid-template-columns:52px 1fr;gap:.85rem;align-items:start;position:relative;z-index:1}
+.j-feed-entry{padding:.75rem 1.4rem;border-bottom:var(--rule-hair);display:flex;gap:1rem;align-items:flex-start;position:relative}
 .j-feed-entry:last-child{border-bottom:none}
-.j-feed-dot{width:12px;height:12px;border-radius:50%;background:var(--gold);border:2px solid var(--vellum);box-shadow:0 0 0 1px var(--gold);margin:.45rem 0 0 10px;flex-shrink:0;position:relative;z-index:2}
-.j-feed-entry.maroon .j-feed-dot{background:var(--maroon);box-shadow:0 0 0 1px var(--maroon)}
-.j-feed-entry.verdigris .j-feed-dot{background:var(--verdigris);box-shadow:0 0 0 1px var(--verdigris)}
+.j-feed-dot-col{display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:20px;padding-top:.3rem}
+.j-feed-dot{width:11px;height:11px;border-radius:50%;background:var(--gold);border:2px solid #fff;box-shadow:0 0 0 1.5px var(--gold);flex-shrink:0;position:relative;z-index:2}
+.j-feed-entry.maroon .j-feed-dot{background:var(--maroon);box-shadow:0 0 0 1.5px var(--maroon)}
+.j-feed-entry.verdigris .j-feed-dot{background:var(--verdigris);box-shadow:0 0 0 1.5px var(--verdigris)}
+.j-feed-dot-line{flex:1;width:1.5px;background:rgba(184,131,40,.35);min-height:16px;margin-top:4px}
+.j-feed-entry:last-child .j-feed-dot-line{display:none}
+.j-feed-content{flex:1;min-width:0}
 .j-feed-date{font-family:var(--f-body);font-size:.8rem;color:var(--stone);margin-bottom:.25rem;display:block;font-style:italic;letter-spacing:.01em}
 .j-feed-text{font-family:var(--f-body);font-size:.95rem;color:var(--ink);line-height:1.5}
 .j-feed-text em{font-style:italic;color:var(--maroon)}
@@ -1344,24 +1347,42 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 
   <div class="rooms">
 
-    <!-- LIBRARY (per-session progress) -->
-    <article class="room scroll-reveal" id="library-room">
+    <!-- PRAYER RULE -->
+    <article class="room scroll-reveal" id="rule-section" style="display:none">
       <div class="room-head">
         <div class="room-sigil">
-          <svg viewBox="0 0 24 24"><path d="M4 4v16h6V4H4zm6 0v16h4V4h-4zm4 0v16h6V4h-6z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 3v18M6 9h12M7.5 9c0 2.5 1.8 4.5 4.5 4.5s4.5-2 4.5-4.5M8 21h8" stroke-linecap="round"/></svg>
         </div>
         <div>
-          <div class="room-title">The <em>Library</em></div>
-          <div class="room-caption">Lectures watched, sessions completed, pages kept</div>
+          <div class="room-title">Prayer <em>Rule</em></div>
+          <div class="room-caption">Your rule of prayer, fasts observed, tones learned</div>
         </div>
         <div class="room-progress">
-          <div class="room-progress-num" id="library-room-progress">0 <em>of 62</em></div>
-          <div class="room-progress-bar"><div class="room-progress-fill" id="library-room-progress-fill" style="width:0%"></div></div>
-          <div class="room-progress-label">sessions walked</div>
+          <div class="room-progress-num"><span id="rule-head-count">&ndash;</span> <em>prayers</em></div>
+          <div class="room-progress-bar"><div class="room-progress-fill" style="width:75%"></div></div>
+          <div class="room-progress-label">in your rule</div>
         </div>
       </div>
       <div class="room-body">
-        <div id="library-groups"></div>
+        <div class="kliros-cols">
+          <div>
+            <div class="kliros-col-head">My Rule of Prayer</div>
+            <div class="kliros-col-sub" id="rule-begun-date">Your rule of prayer</div>
+            <div id="rule-list"></div>
+          </div>
+          <div>
+            <div class="kliros-col-head">Fasts Observed</div>
+            <div class="kliros-col-sub">From the calendar, this year</div>
+            <div class="fast-stat">
+              <span class="fast-num" id="kliros-fast-num">&ndash;</span>
+              <span class="fast-desc">fast days kept<br>since January 1</span>
+            </div>
+            <ul class="fast-list" id="kliros-fast-list"></ul>
+          </div>
+        </div>
+        <div style="padding:1rem 1.8rem;border-top:var(--rule-hair)">
+          <a href="/prayers" class="action-btn primary" style="display:inline-block;text-decoration:none;">Pray &rarr;</a>
+        </div>
       </div>
     </article>
 
@@ -1415,42 +1436,24 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
       </div>
     </article>
 
-    <!-- PRAYER RULE -->
-    <article class="room scroll-reveal" id="rule-section" style="display:none">
+    <!-- LIBRARY (per-session progress) -->
+    <article class="room scroll-reveal" id="library-room">
       <div class="room-head">
         <div class="room-sigil">
-          <svg viewBox="0 0 24 24"><path d="M12 3v18M6 9h12M7.5 9c0 2.5 1.8 4.5 4.5 4.5s4.5-2 4.5-4.5M8 21h8" stroke-linecap="round"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M4 4v16h6V4H4zm6 0v16h4V4h-4zm4 0v16h6V4h-6z"/></svg>
         </div>
         <div>
-          <div class="room-title">Prayer <em>Rule</em></div>
-          <div class="room-caption">Your rule of prayer, fasts observed, tones learned</div>
+          <div class="room-title">The <em>Library</em></div>
+          <div class="room-caption">Lectures watched, sessions completed, pages kept</div>
         </div>
         <div class="room-progress">
-          <div class="room-progress-num"><span id="rule-head-count">&ndash;</span> <em>prayers</em></div>
-          <div class="room-progress-bar"><div class="room-progress-fill" style="width:75%"></div></div>
-          <div class="room-progress-label">in your rule</div>
+          <div class="room-progress-num" id="library-room-progress">0 <em>of 62</em></div>
+          <div class="room-progress-bar"><div class="room-progress-fill" id="library-room-progress-fill" style="width:0%"></div></div>
+          <div class="room-progress-label">sessions walked</div>
         </div>
       </div>
       <div class="room-body">
-        <div class="kliros-cols">
-          <div>
-            <div class="kliros-col-head">My Rule of Prayer</div>
-            <div class="kliros-col-sub" id="rule-begun-date">Your rule of prayer</div>
-            <div id="rule-list"></div>
-          </div>
-          <div>
-            <div class="kliros-col-head">Fasts Observed</div>
-            <div class="kliros-col-sub">From the calendar, this year</div>
-            <div class="fast-stat">
-              <span class="fast-num" id="kliros-fast-num">&ndash;</span>
-              <span class="fast-desc">fast days kept<br>since January 1</span>
-            </div>
-            <ul class="fast-list" id="kliros-fast-list"></ul>
-          </div>
-        </div>
-        <div style="padding:1rem 1.8rem;border-top:var(--rule-hair)">
-          <a href="/prayers" class="action-btn primary" style="display:inline-block;text-decoration:none;">Pray &rarr;</a>
-        </div>
+        <div id="library-groups"></div>
       </div>
     </article>
 
@@ -3234,8 +3237,8 @@ function renderRecentPath() {
   events.forEach(function(ev) {
     var dateStr = MONTHS_LONG[ev.date.getMonth()] + ' ' + ev.date.getDate() + ' \u00b7 ' + DAYS[ev.date.getDay()];
     html += '<div class="j-feed-entry' + (ev.cls ? ' ' + ev.cls : '') + '">';
-    html += '<div class="j-feed-dot"></div>';
-    html += '<div><span class="j-feed-date">' + dateStr + '</span><div class="j-feed-text">' + ev.text + '</div></div>';
+    html += '<div class="j-feed-dot-col"><div class="j-feed-dot"></div><div class="j-feed-dot-line"></div></div>';
+    html += '<div class="j-feed-content"><span class="j-feed-date">' + dateStr + '</span><div class="j-feed-text">' + ev.text + '</div></div>';
     html += '</div>';
   });
   listEl.innerHTML = html;
