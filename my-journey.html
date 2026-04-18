@@ -1837,22 +1837,30 @@ function generateSummary() {
   html += '<div class="section">';
   html += '<div class="section-head"><span class="section-eyebrow">Your Notes</span><div class="section-title">Saved verses &amp; reflections</div>';
   html += '<div class="section-kicker">Every verse you marked this year, with the note you left beside it.</div></div>';
-  if (!savedVerses.length) {
+  // Filter out empty saves
+  var realVerses = savedVerses.filter(function(item){
+    var t = (item.entry.text || '').trim();
+    var n = (item.entry.note || '').trim();
+    return t || n;
+  });
+  if (!realVerses.length) {
     html += '<div class="empty">No verses saved yet.</div>';
   } else {
     var lastMonth = null;
-    savedVerses.forEach(function(item){
+    realVerses.forEach(function(item){
       var d = new Date(item.dateKey + 'T12:00:00');
       var mLabel = MONTHS_LONG[d.getMonth()] + ' ' + d.getFullYear();
       if (mLabel !== lastMonth) {
         html += '<div class="month-head">' + mLabel + '</div>';
         lastMonth = mLabel;
       }
+      var cleanedText = cleanVerseTextForReport(item.entry.text, item.entry.ref);
+      var cleanedNote = decodeEntities(item.entry.note || '');
       html += '<div class="verse-entry">';
       html += '<div class="verse-date">' + MONTHS_SHORT[d.getMonth()] + ' ' + d.getDate() + '</div>';
-      if (item.entry.text) html += '<div class="verse-text">' + escHtml(item.entry.text) + '</div>';
-      if (item.entry.citation) html += '<div class="verse-cite">' + escHtml(item.entry.citation) + '</div>';
-      if (item.entry.note) html += '<div class="verse-note">' + escHtml(item.entry.note).replace(/\n/g, '<br>') + '</div>';
+      if (cleanedText) html += '<div class="verse-text">' + escHtml(cleanedText) + '</div>';
+      if (item.entry.citation) html += '<div class="verse-cite">' + escHtml(decodeEntities(item.entry.citation)) + '</div>';
+      if (cleanedNote) html += '<div class="verse-note">' + escHtml(cleanedNote).replace(/\n/g, '<br>') + '</div>';
       html += '</div>';
     });
   }
@@ -1875,7 +1883,7 @@ function generateSummary() {
           if (m >= 1 && m <= 12) feastLabel = MONTHS_SHORT[m-1] + ' ' + dd;
         }
       }
-      html += '<div class="saint-row"><span class="saint-name">' + escHtml(s.name) + '</span>';
+      html += '<div class="saint-row"><span class="saint-name">' + escHtml(decodeEntities(s.name)) + '</span>';
       if (feastLabel) html += '<span class="saint-feast">' + feastLabel + '</span>';
       html += '</div>';
     });
@@ -1954,6 +1962,27 @@ function generateSummary() {
   setTimeout(function() { try { win.print(); } catch(e){} }, 800);
   var overlay = document.getElementById('summary-modal-overlay');
   if (overlay) overlay.style.display = 'none';
+}
+
+function decodeEntities(s) {
+  if (!s) return '';
+  var t = document.createElement('textarea');
+  t.innerHTML = String(s);
+  return t.value;
+}
+
+function cleanVerseTextForReport(text, ref) {
+  if (!text) return '';
+  var t = decodeEntities(text).replace(/^\s+/, '');
+  var parts = (ref || '').split('-');
+  var v = parts.length >= 3 ? parts[parts.length - 1] : '';
+  if (v && /^\d+$/.test(v)) {
+    var re = new RegExp('^' + v + '(?=[A-Za-z\\u00C0-\\u024F])');
+    t = t.replace(re, '');
+  } else {
+    t = t.replace(/^\d+(?=[A-Z])/, '');
+  }
+  return t.trim();
 }
 
 function formatShortDate(iso) {
