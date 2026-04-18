@@ -106,6 +106,66 @@ async function syncBibleStudySession(studyId, completed, completedAt) {
 }
 window.syncBibleStudySession = syncBibleStudySession;
 
+// ── SAINT BOOKMARKS ──
+// localStorage 'spp_saint_bookmarks' is a dict: { [slug]: { slug, name, feastDate, image, ocaUrl, addedAt } }
+// Supabase table 'saint_bookmarks' is the server-side source of truth.
+async function syncSaintBookmark(bookmark) {
+  try {
+    var user = await getCurrentUser();
+    if (!user) return;
+    await _supabase.from('saint_bookmarks').upsert({
+      user_id: user.id,
+      saint_slug: bookmark.slug,
+      saint_name: bookmark.name,
+      feast_date: bookmark.feastDate || null,
+      image_url: bookmark.image || null,
+      oca_url: bookmark.ocaUrl || null
+    }, { onConflict: 'user_id,saint_slug' });
+  } catch (e) { console.warn('Saint bookmark sync error:', e); }
+}
+window.syncSaintBookmark = syncSaintBookmark;
+
+async function deleteSaintBookmark(slug) {
+  try {
+    var user = await getCurrentUser();
+    if (!user) return;
+    await _supabase.from('saint_bookmarks')
+      .delete()
+      .eq('user_id', user.id)
+      .eq('saint_slug', slug);
+  } catch (e) { console.warn('Saint bookmark delete error:', e); }
+}
+window.deleteSaintBookmark = deleteSaintBookmark;
+
+// ── SAINT BOOKMARK HELPERS (work without sign-in too) ──
+function _saintsReadAll(){
+  try { return JSON.parse(localStorage.getItem('spp_saint_bookmarks') || '{}') || {}; }
+  catch(e) { return {}; }
+}
+function _saintsWriteAll(dict){
+  try { localStorage.setItem('spp_saint_bookmarks', JSON.stringify(dict)); } catch(e){}
+}
+window.SaintBookmarks = {
+  getAll: function(){ return _saintsReadAll(); },
+  has: function(slug){ return !!_saintsReadAll()[slug]; },
+  add: function(b){
+    if (!b || !b.slug || !b.name) return;
+    var all = _saintsReadAll();
+    if (!all[b.slug]) b.addedAt = new Date().toISOString();
+    else b.addedAt = all[b.slug].addedAt;
+    all[b.slug] = b;
+    _saintsWriteAll(all);
+    if (typeof syncSaintBookmark === 'function') syncSaintBookmark(b);
+    return b;
+  },
+  remove: function(slug){
+    var all = _saintsReadAll();
+    delete all[slug];
+    _saintsWriteAll(all);
+    if (typeof deleteSaintBookmark === 'function') deleteSaintBookmark(slug);
+  }
+};
+
 // ── PRAYER RULE SYNC ──
 async function syncPrayerRule(prayerIds, ruleName, ruleBegun) {
   try {
@@ -134,13 +194,15 @@ async function loadFromSupabase() {
       _supabase.from('catechesis_progress').select('*').eq('user_id', user.id),
       _supabase.from('bible_study_progress').select('*').eq('user_id', user.id),
       _supabase.from('prayer_rules').select('*').eq('user_id', user.id).single(),
-      _supabase.from('reading_notes').select('*').eq('user_id', user.id).order('date', { ascending: false })
+      _supabase.from('reading_notes').select('*').eq('user_id', user.id).order('date', { ascending: false }),
+      _supabase.from('saint_bookmarks').select('*').eq('user_id', user.id).order('added_at', { ascending: false })
     ]);
     var journeyResult = results[0];
     var catResult     = results[1];
     var studyResult   = results[2];
     var ruleResult    = results[3];
     var notesResult   = results[4];
+    var saintsResult  = results[5];
 
     if (journeyResult.data) {
       journeyResult.data.forEach(function(row) {
@@ -241,6 +303,22 @@ async function loadFromSupabase() {
         }
       });
       try { localStorage.setItem('spp_reading_notes', JSON.stringify(localDict)); } catch(e) {}
+    }
+
+    if (saintsResult && saintsResult.data && saintsResult.data.length) {
+      var localSaints = {};
+      try { localSaints = JSON.parse(localStorage.getItem('spp_saint_bookmarks') || '{}') || {}; } catch(e){}
+      saintsResult.data.forEach(function(row){
+        localSaints[row.saint_slug] = {
+          slug: row.saint_slug,
+          name: row.saint_name,
+          feastDate: row.feast_date || '',
+          image: row.image_url || '',
+          ocaUrl: row.oca_url || '',
+          addedAt: row.added_at || new Date().toISOString()
+        };
+      });
+      try { localStorage.setItem('spp_saint_bookmarks', JSON.stringify(localSaints)); } catch(e){}
     }
 
     /* Notify pages that per-session/progress data has finished hydrating.

@@ -46,6 +46,17 @@
 .cbar-text{font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:rgba(246,241,232,.60)}
 .cbar-text.bright{color:rgba(246,241,232,.90)}
 .saints-wrap{max-width:1380px;margin:0 auto;padding:4rem 4.5rem;display:grid;grid-template-columns:1fr 300px;gap:5rem}
+.keep-saint-btn{display:inline-flex;align-items:center;gap:.45rem;padding:.55rem 1rem;background:transparent;border:1px solid rgba(184,131,40,.45);color:var(--maroon);font-family:var(--f-ui);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;transition:all .2s;border-radius:2px}
+.keep-saint-btn:hover{background:var(--maroon);border-color:var(--maroon);color:var(--vellum)}
+.keep-saint-btn.is-kept{background:rgba(184,131,40,.14);border-color:rgba(184,131,40,.55);color:var(--gold-deep,#8A6018)}
+.keep-saint-btn.is-kept svg{fill:currentColor;stroke-width:1.4}
+.keep-saint-btn.is-kept:hover{background:var(--maroon);color:var(--vellum);border-color:var(--maroon)}
+.keep-saint-btn.is-kept:hover svg{fill:currentColor}
+.keep-saint-btn svg{flex-shrink:0}
+.keep-saint-ico{position:absolute;top:.55rem;right:.55rem;width:28px;height:28px;display:flex;align-items:center;justify-content:center;background:rgba(246,241,232,.8);border:1px solid rgba(184,131,40,.25);color:var(--stone);cursor:pointer;transition:all .2s;border-radius:999px}
+.keep-saint-ico:hover{background:var(--maroon);border-color:var(--maroon);color:var(--vellum)}
+.keep-saint-ico.is-kept{background:var(--gold);border-color:var(--gold);color:var(--vellum)}
+.keep-saint-ico.is-kept svg{fill:currentColor}
 .saint-entry{margin-bottom:4rem;padding-bottom:4rem;border-bottom:2px solid var(--maroon)}
 .saint-entry:last-child{border-bottom:none}
 .saint-name{font-family:var(--f-display);font-weight:400;font-size:clamp(1.8rem,3vw,2.5rem);color:var(--text);margin:.5rem 0 .25rem;line-height:1.1}
@@ -901,6 +912,11 @@ async function loadSaints(date) {
     ? '<p>'+cleanLife+'</p>'
     : '<p style="color:var(--stone);font-style:italic">No extended biography is currently available for this commemoration.</p>';
 
+  const pSlug = primary.slug || saintSlug(pName);
+  const feastDateKey = String(mo).padStart(2,'0')+'-'+String(d).padStart(2,'0');
+  const pThumb = primary.imageSm || primary.image || pImageLg || '';
+  const pKept = window.SaintBookmarks && window.SaintBookmarks.has(pSlug);
+
   let out = '<span class="rubric">Primary Commemoration</span>'
     +'<div class="rubric-rule"></div>'
     +'<div style="display:grid;grid-template-columns:'+(hasPImage ? '1fr 180px' : '1fr')+';gap:1.75rem;align-items:start">'
@@ -908,7 +924,13 @@ async function loadSaints(date) {
     +'<span class="feast-date-badge">'+MS[mo]+' '+d+'</span>'
     +'<h2 class="saint-name">'+pName+'</h2>'
     +'<div class="saint-story">'+pExcerptHtml+'</div>'
-    +'<a href="'+pUrl+'" target="_blank" rel="noopener" style="display:inline-block;margin-top:1rem;font-family:var(--f-ui);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--maroon);border-bottom:1px solid rgba(123,29,42,.25);padding-bottom:1px;text-decoration:none">Learn More at the OCA &rarr;</a>'
+    +'<div style="display:flex;gap:1rem;align-items:center;margin-top:1rem;flex-wrap:wrap">'
+    +'<a href="'+pUrl+'" target="_blank" rel="noopener" style="font-family:var(--f-ui);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--maroon);border-bottom:1px solid rgba(123,29,42,.25);padding-bottom:1px;text-decoration:none">Learn More at the OCA &rarr;</a>'
+    +'<button class="keep-saint-btn'+(pKept?' is-kept':'')+'" type="button" data-slug="'+escAttr(pSlug)+'" data-name="'+escAttr(pName)+'" data-feast="'+feastDateKey+'" data-image="'+escAttr(pThumb)+'" data-oca-url="'+escAttr(pUrl)+'" onclick="toggleKeepSaint(this)">'
+    +'<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>'
+    +'<span class="keep-saint-label">'+(pKept?'Saved &middot; Remove':'Keep this saint')+'</span>'
+    +'</button>'
+    +'</div>'
     +'</div>'
     +(hasPImage ? '<img src="'+pImageLg+'" alt="'+pName.replace(/"/g,'&quot;')+'" loading="lazy" onerror="this.parentNode.style.gridTemplateColumns=\'1fr\';this.style.display=\'none\'" style="width:100%;height:100%;object-fit:cover;border:1px solid rgba(123,29,42,.10)">' : '')
     +'</div>';
@@ -923,14 +945,20 @@ async function loadSaints(date) {
       const sName  = s.name  || 'Holy Saint';
       const sImage = s.image || '';
       const sUrl   = s.url   || ocaDayUrl;
+      const sSlug  = s.slug  || saintSlug(sName);
+      const sKept  = window.SaintBookmarks && window.SaintBookmarks.has(sSlug);
       const sImgHtml = sImage
         ? '<img src="'+sImage+'" alt="'+sName.replace(/"/g,'&quot;')+'" loading="lazy" style="width:42px;height:42px;object-fit:cover;flex-shrink:0;border:1px solid rgba(123,29,42,.10)" onerror="this.outerHTML=\'<div style=&quot;width:42px;height:42px;flex-shrink:0;background:#d4c9b8;border:1px solid rgba(123,29,42,.10);display:flex;align-items:center;justify-content:center;font-size:.8rem;color:rgba(123,29,42,.3)&quot;>&#10013;</div>\'">'
         : '<div style="width:42px;height:42px;flex-shrink:0;background:#d4c9b8;border:1px solid rgba(123,29,42,.10);display:flex;align-items:center;justify-content:center;font-size:.8rem;color:rgba(123,29,42,.3)">&#10013;</div>';
-      out += '<div style="display:flex;gap:.75rem;align-items:flex-start;padding:.75rem;background:rgba(123,29,42,.04);border:1px solid rgba(123,29,42,.08)">'
+      out += '<div style="position:relative;display:flex;gap:.75rem;align-items:flex-start;padding:.75rem;background:rgba(123,29,42,.04);border:1px solid rgba(123,29,42,.08)">'
         + sImgHtml
-        +'<div><p style="font-family:var(--f-display);font-weight:400;font-size:.92rem;color:var(--ink);line-height:1.25;margin:0 0 .3rem">'+sName+'</p>'
+        +'<div style="flex:1;min-width:0"><p style="font-family:var(--f-display);font-weight:400;font-size:.92rem;color:var(--ink);line-height:1.25;margin:0 0 .3rem;padding-right:1.5rem">'+sName+'</p>'
         +'<a href="'+sUrl+'" target="_blank" rel="noopener" style="font-family:var(--f-ui);font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);text-decoration:none">Learn More &rarr;</a>'
-        +'</div></div>';
+        +'</div>'
+        +'<button class="keep-saint-ico'+(sKept?' is-kept':'')+'" type="button" title="Keep this saint" data-slug="'+escAttr(sSlug)+'" data-name="'+escAttr(sName)+'" data-feast="'+feastDateKey+'" data-image="'+escAttr(sImage)+'" data-oca-url="'+escAttr(sUrl)+'" onclick="toggleKeepSaint(this)">'
+        +'<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>'
+        +'</button>'
+        +'</div>';
     });
 
     out += '</div></div>';
@@ -939,9 +967,54 @@ async function loadSaints(date) {
   document.getElementById('saints-container').innerHTML = out;
 }
 
+/* ── Keep Saint helpers ───────────────────────────────────────────── */
+function escAttr(s){ return String(s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function saintSlug(name){
+  return String(name||'').toLowerCase()
+    .replace(/&/g,'and')
+    .replace(/[^a-z0-9]+/g,'-')
+    .replace(/^-|-$/g,'') || 'unknown-saint';
+}
+function toggleKeepSaint(btn){
+  if (!window.SaintBookmarks) return;
+  var slug = btn.dataset.slug;
+  var name = btn.dataset.name;
+  if (!slug || !name) return;
+  if (window.SaintBookmarks.has(slug)) {
+    window.SaintBookmarks.remove(slug);
+    btn.classList.remove('is-kept');
+    var lbl = btn.querySelector('.keep-saint-label');
+    if (lbl) lbl.innerHTML = 'Keep this saint';
+    saintToast('Removed from your Icon Corner');
+  } else {
+    window.SaintBookmarks.add({
+      slug: slug,
+      name: name,
+      feastDate: btn.dataset.feast || '',
+      image: btn.dataset.image || '',
+      ocaUrl: btn.dataset.ocaUrl || ''
+    });
+    btn.classList.add('is-kept');
+    var lbl2 = btn.querySelector('.keep-saint-label');
+    if (lbl2) lbl2.innerHTML = 'Saved &middot; Remove';
+    saintToast('Added to your Icon Corner');
+  }
+}
+function saintToast(msg){
+  var t = document.createElement('div');
+  t.textContent = msg;
+  t.style.cssText = 'position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);background:var(--apse);color:var(--vellum);padding:.75rem 1.25rem;font-family:var(--f-ui);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;z-index:999;opacity:0;transition:opacity .22s ease';
+  document.body.appendChild(t);
+  requestAnimationFrame(function(){ t.style.opacity = '1'; });
+  setTimeout(function(){ t.style.opacity = '0'; setTimeout(function(){ if (t.parentNode) t.parentNode.removeChild(t); }, 300); }, 1600);
+}
+
 /* ── Init ────────────────────────────────────────────────────────── */
-activeDate = parseDateParam();
-loadSaints(activeDate);
+(async function(){
+  if (typeof loadFromSupabase === 'function') { try { await loadFromSupabase(); } catch(e){} }
+  activeDate = parseDateParam();
+  loadSaints(activeDate);
+})();
 </script>
 
 <!-- Hero Image Rotator -->
@@ -1225,6 +1298,7 @@ function drToggle(head){
 })();
 </script>
 
+<script src="/companion-sync.js"></script>
 <script src="/enhancements.js"></script>
 
 <script>

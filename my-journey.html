@@ -1014,6 +1014,18 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
     </div>
   </div>
 
+  <!-- ICON CORNER -->
+  <div class="section-rule"></div>
+  <div id="icon-corner-section" style="display:none">
+    <span class="section-label">Icon Corner</span>
+    <div class="section-title">Saints you are keeping</div>
+    <div id="icon-corner-grid"></div>
+    <div id="icon-corner-footer" style="display:none;margin-top:1rem;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap">
+      <span id="icon-corner-count" style="font-family:var(--f-display);font-style:italic;font-size:.95rem;color:var(--stone)"></span>
+      <a href="/saints" style="font-family:var(--f-ui);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--maroon);border-bottom:1px solid rgba(123,29,42,.25);padding-bottom:.15rem">Keep another saint &rarr;</a>
+    </div>
+  </div>
+
   <!-- PRAYER RULE -->
   <div class="section-rule"></div>
   <div id="rule-section" style="display:none">
@@ -1554,6 +1566,7 @@ document.addEventListener('DOMContentLoaded', async function() {
   loadManifest();
   renderReadingNotes();
   renderLibrary();
+  renderIconCorner();
 });
 
 function renderReadingNotes() {
@@ -1620,6 +1633,86 @@ function renderReadingNotes() {
       countEl.textContent = flat.length + ' saved note' + (flat.length === 1 ? '' : 's');
     }
   }
+}
+
+// ── ICON CORNER ──
+function renderIconCorner() {
+  var section = document.getElementById('icon-corner-section');
+  var grid = document.getElementById('icon-corner-grid');
+  var footer = document.getElementById('icon-corner-footer');
+  var countEl = document.getElementById('icon-corner-count');
+  if (!section || !grid) return;
+
+  var dict = {};
+  try { dict = JSON.parse(localStorage.getItem('spp_saint_bookmarks') || '{}') || {}; } catch {}
+  var list = Object.keys(dict).map(function(k){ return dict[k]; }).filter(Boolean);
+  if (!list.length) return;
+
+  section.style.display = '';
+  list.sort(function(a,b){
+    var at = a.addedAt || '';
+    var bt = b.addedAt || '';
+    return bt < at ? -1 : bt > at ? 1 : 0;
+  });
+
+  var MONTHS_LONG = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var today = new Date();
+  var todayMD = (today.getMonth()+1) * 100 + today.getDate();
+
+  var html = '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1rem">';
+  list.forEach(function(s){
+    var dateAdded = s.addedAt ? new Date(s.addedAt).toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' }) : '';
+    var feastLabel = '';
+    if (s.feastDate) {
+      var fp = s.feastDate.split('-');
+      if (fp.length === 2) {
+        var m = parseInt(fp[0],10), d = parseInt(fp[1],10);
+        if (m >= 1 && m <= 12 && d >= 1 && d <= 31) {
+          feastLabel = MONTHS_LONG[m-1].slice(0,3) + ' ' + d;
+        }
+      }
+    }
+    var imgHtml = s.image
+      ? '<img src="' + escHtml(s.image) + '" alt="' + escHtml(s.name) + '" loading="lazy" style="width:100%;height:100%;object-fit:cover;filter:sepia(.12) saturate(.95)" onerror="this.parentNode.innerHTML=&quot;<div style=\'width:100%;height:100%;background:var(--vellum-mid);display:flex;align-items:center;justify-content:center;color:rgba(123,29,42,.3);font-size:2rem\'>&#10013;</div>&quot;">'
+      : '<div style="width:100%;height:100%;background:var(--vellum-mid);display:flex;align-items:center;justify-content:center;color:rgba(123,29,42,.3);font-size:2rem">&#10013;</div>';
+    var href = s.ocaUrl || '/saints';
+    html += '<div style="background:#fff;border:1px solid rgba(184,131,40,.18);box-shadow:0 8px 22px -12px rgba(28,20,16,.1);overflow:hidden;display:flex;flex-direction:column">';
+    html += '<a href="' + escHtml(href) + '" ' + (s.ocaUrl ? 'target="_blank" rel="noopener" ' : '') + 'style="display:block;aspect-ratio:3/4;overflow:hidden;border-bottom:1px solid rgba(123,29,42,.08);position:relative">' + imgHtml;
+    if (feastLabel) {
+      html += '<span style="position:absolute;top:.45rem;right:.45rem;background:rgba(59,15,24,.88);color:var(--gold-lt);font-family:var(--f-display);font-style:italic;font-size:.72rem;padding:.2rem .55rem;letter-spacing:.02em">' + feastLabel + '</span>';
+    }
+    html += '</a>';
+    html += '<div style="padding:.75rem .85rem;flex:1;display:flex;flex-direction:column">';
+    html += '<div style="font-family:var(--f-display);font-weight:400;font-size:1rem;color:var(--ink);line-height:1.3;margin-bottom:.35rem">' + escHtml(s.name) + '</div>';
+    if (dateAdded) {
+      html += '<div style="font-family:var(--f-display);font-style:italic;font-size:.8rem;color:var(--stone);margin-top:auto">Kept ' + dateAdded + '</div>';
+    }
+    html += '<button type="button" onclick="removeIconCornerSaint(\'' + escAttr(s.slug) + '\')" style="margin-top:.5rem;align-self:flex-start;background:transparent;border:none;font-family:var(--f-ui);font-size:.52rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone-lt);cursor:pointer;padding:0;transition:color .2s" onmouseover="this.style.color=\'var(--maroon)\'" onmouseout="this.style.color=\'var(--stone-lt)\'">Remove</button>';
+    html += '</div></div>';
+  });
+  html += '</div>';
+  grid.innerHTML = html;
+
+  if (footer && countEl) {
+    footer.style.display = 'flex';
+    countEl.textContent = list.length + ' saint' + (list.length === 1 ? '' : 's') + ' on your shelf';
+  }
+}
+
+function removeIconCornerSaint(slug) {
+  if (!window.SaintBookmarks) return;
+  window.SaintBookmarks.remove(slug);
+  renderIconCorner();
+  // Hide section entirely if nothing left
+  var dict = {};
+  try { dict = JSON.parse(localStorage.getItem('spp_saint_bookmarks') || '{}') || {}; } catch {}
+  if (!Object.keys(dict).length) {
+    document.getElementById('icon-corner-section').style.display = 'none';
+  }
+}
+
+function escAttr(s){
+  return String(s||'').replace(/&/g,'&amp;').replace(/'/g,'&#39;').replace(/"/g,'&quot;');
 }
 
 // ── LIBRARY ROOM (per-session progress) ──
