@@ -1217,7 +1217,10 @@ async function loadReadings(){
         var chapter = parts[1] || '0', verse = parts[2] || '0';
         var ref = bookSlug + '-' + chapter + '-' + verse;
         var citation = bookName ? (bookName + ' ' + chapter + ':' + verse) : (citationBase + ' v.' + verse);
-        var text = (span.textContent || '').trim();
+        // Clone and strip the leading verse-number superscript before capturing text
+        var clone = span.cloneNode(true);
+        clone.querySelectorAll('.verse-num').forEach(function(n){ n.remove(); });
+        var text = (clone.textContent || '').trim();
         return { ref: ref, citation: citation, source: source, text: text };
       }
     });

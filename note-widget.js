@@ -136,6 +136,7 @@
     var meta = ctx.resolveVerseMeta(span);
     if (!meta || !meta.ref || !meta.text) return;
 
+    if (!meta.text || !meta.text.trim()) return;
     var existing = findEntry(dateKey, meta.ref);
     var pop = document.createElement('div');
     pop.className = 'nw-pop';

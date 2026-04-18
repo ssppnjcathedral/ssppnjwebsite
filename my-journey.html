@@ -1010,6 +1010,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
     <div id="reading-notes-list"></div>
     <div id="reading-notes-footer" style="display:none;margin-top:1rem;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap">
       <span id="reading-notes-count" style="font-family:var(--f-display);font-style:italic;font-size:.95rem;color:var(--stone)"></span>
+      <a href="/my-journey-notes" style="font-family:var(--f-ui);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--maroon);border-bottom:1px solid rgba(123,29,42,.25);padding-bottom:.15rem;transition:letter-spacing .25s ease,color .2s">See all notes &rarr;</a>
     </div>
   </div>
 
@@ -1612,11 +1613,11 @@ function renderReadingNotes() {
   list.innerHTML = html;
 
   if (footer && countEl) {
+    footer.style.display = 'flex';
     if (flat.length > 3) {
-      footer.style.display = 'flex';
       countEl.textContent = 'Showing 3 of ' + flat.length + ' saved notes';
     } else {
-      footer.style.display = 'none';
+      countEl.textContent = flat.length + ' saved note' + (flat.length === 1 ? '' : 's');
     }
   }
 }

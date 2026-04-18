@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="theme-color" content="#7B1D2A"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Notes &middot; Saints Peter &amp; Paul Orthodox Cathedral</title>
+<meta name="robots" content="noindex, nofollow"/>
+<link rel="canonical" href="https://www.peterandpaulcathedral.com/my-journey-notes"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --vellum:#F6F1E8;--vellum-mid:#EDE7DC;--vellum-deep:#E2D9C6;
+  --ink:#2C1F16;--text:#1E1510;
+  --maroon:#7B1D2A;--maroon-deep:#5C1520;
+  --gold:#B88328;--gold-lt:#E8C97A;--gold-deep:#8A6018;
+  --verdigris:#3D6B5E;--stone:#7A6648;--stone-lt:#A89078;
+  --apse:#3B0F18;
+  --f-display:'Cormorant Garamond',Georgia,serif;
+  --f-body:'EB Garamond',Georgia,serif;
+  --f-ui:'Cinzel',Georgia,serif;
+  --rule-faint:1px solid rgba(123,29,42,.14);
+  --rule-hair:1px solid rgba(123,29,42,.07);
+  --shadow:0 12px 40px rgba(28,20,16,.08);
+  --shadow-hi:0 24px 64px rgba(28,20,16,.14);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--vellum);color:var(--text);font-family:var(--f-body);font-size:18px;line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+
+/* ── NAV ── */
+.nav{background:var(--vellum);border-bottom:var(--rule-faint)}
+.nav-inner{max-width:1380px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:64px;padding:0 3rem}
+.nav-logo-name{font-family:var(--f-display);font-weight:500;font-size:1.15rem;color:var(--text);display:block}
+.nav-logo-sub{font-family:var(--f-ui);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone)}
+.nav-back{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--stone);transition:color .2s}
+.nav-back:hover{color:var(--maroon)}
+@media(max-width:700px){.nav-inner{padding:0 1.25rem;height:58px}}
+
+/* ── HERO ── */
+.hero{
+  background:linear-gradient(120deg,rgba(59,15,24,.94) 0%,rgba(59,15,24,.72) 50%,rgba(123,29,42,.48) 100%),
+    url('/images/heroes/hero-06.jpg') center 40%/cover no-repeat;
+  background-color:var(--apse);
+  padding:3.5rem 4.5rem 3.5rem;
+  position:relative;overflow:hidden;
+}
+.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent 0%,var(--gold) 30%,var(--gold-lt) 50%,var(--gold) 70%,transparent 100%);opacity:.7}
+.hero-inner{max-width:1380px;margin:0 auto;position:relative;z-index:2}
+.breadcrumb{font-family:var(--f-ui);font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(232,201,122,.75);margin-bottom:1.1rem}
+.breadcrumb a{color:rgba(232,201,122,.65);border-bottom:1px dotted rgba(232,201,122,.4)}
+.breadcrumb a:hover{color:var(--gold-lt)}
+.hero-title{font-family:var(--f-display);font-weight:300;font-size:clamp(2.4rem,5vw,4rem);color:#fff;line-height:1;margin-bottom:.8rem}
+.hero-title em{font-style:italic;color:var(--gold-lt)}
+.hero-sub{font-family:var(--f-display);font-style:italic;font-size:clamp(1rem,1.4vw,1.25rem);color:rgba(246,241,232,.84);max-width:640px;line-height:1.5}
+
+/* ── CONTROLS BAR ── */
+.controls{background:rgba(237,231,220,.96);border-bottom:var(--rule-faint);padding:1.4rem 4.5rem;position:sticky;top:0;z-index:40;backdrop-filter:blur(8px)}
+.controls-inner{max-width:1380px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center}
+.search-wrap{position:relative;max-width:520px;flex:1}
+.search-input{width:100%;padding:.75rem 1rem .75rem 2.8rem;background:#fff;border:1px solid rgba(184,131,40,.28);font-family:var(--f-body);font-size:.98rem;color:var(--ink);transition:border-color .2s,box-shadow .2s;border-radius:2px}
+.search-input::placeholder{color:var(--stone-lt);font-style:italic}
+.search-input:focus{outline:none;border-color:var(--maroon);box-shadow:0 0 0 3px rgba(123,29,42,.1)}
+.search-icon{position:absolute;left:1rem;top:50%;transform:translateY(-50%);width:18px;height:18px;color:var(--stone);pointer-events:none}
+.view-toggle{display:flex;gap:.3rem;background:#fff;border:1px solid rgba(184,131,40,.22);padding:.3rem;border-radius:2px}
+.view-btn{padding:.5rem .85rem;background:transparent;border:none;font-family:var(--f-ui);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--stone);cursor:pointer;border-radius:2px;transition:all .2s}
+.view-btn.active{background:var(--maroon);color:var(--vellum)}
+
+.filters{background:var(--vellum);border-bottom:var(--rule-faint);padding:1.1rem 4.5rem}
+.filters-inner{max-width:1380px;margin:0 auto}
+.filter-row{display:flex;align-items:center;gap:.6rem;margin-bottom:.65rem;flex-wrap:wrap}
+.filter-row:last-child{margin-bottom:0}
+.filter-label{font-family:var(--f-ui);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);font-weight:600;min-width:80px}
+.chip{display:inline-flex;align-items:center;gap:.4rem;padding:.4rem .85rem;background:transparent;border:1px solid rgba(184,131,40,.26);color:var(--ink);font-family:var(--f-body);font-size:.86rem;cursor:pointer;border-radius:999px;transition:all .2s;letter-spacing:.01em}
+.chip:hover{border-color:var(--maroon);color:var(--maroon)}
+.chip.active{background:var(--maroon);border-color:var(--maroon);color:var(--vellum)}
+.chip-count{font-size:.72rem;opacity:.65;font-style:italic}
+.chip.active .chip-count{opacity:.8}
+
+/* ── ARCHIVE LIST ── */
+.archive{max-width:960px;margin:0 auto;padding:3rem 3rem 5rem}
+.archive-meta{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:2rem;padding-bottom:1rem;border-bottom:var(--rule-faint)}
+.archive-count{font-family:var(--f-display);font-style:italic;font-size:1.1rem;color:var(--stone)}
+.archive-count strong{font-style:normal;color:var(--maroon);font-weight:500}
+.archive-sort{display:flex;align-items:center;gap:.5rem;font-family:var(--f-body);font-size:.9rem;color:var(--stone)}
+
+/* Group heading (month or book or source) */
+.group-head{display:flex;align-items:baseline;gap:1rem;margin:2.5rem 0 1.2rem;padding-top:.5rem}
+.group-head:first-child{margin-top:0}
+.group-name{font-family:var(--f-display);font-weight:400;font-size:1.5rem;color:var(--text)}
+.group-name em{font-style:italic}
+.group-rule{flex:1;height:1px;background:linear-gradient(90deg,var(--gold) 0%,transparent 100%)}
+.group-count{font-family:var(--f-body);font-style:italic;font-size:.92rem;color:var(--stone)}
+
+/* Entry card */
+.entry{background:#fff;border:var(--rule-faint);box-shadow:var(--shadow);margin-bottom:1rem;transition:box-shadow .3s ease,transform .3s ease;overflow:hidden;position:relative;opacity:0;transform:translateY(14px);animation:entryIn .6s cubic-bezier(.2,.7,.2,1) both}
+.entry:hover{box-shadow:var(--shadow-hi);transform:translateY(-2px)}
+@keyframes entryIn{to{opacity:1;transform:translateY(0)}}
+.entry:nth-child(1){animation-delay:.02s}.entry:nth-child(2){animation-delay:.08s}.entry:nth-child(3){animation-delay:.14s}
+.entry:nth-child(4){animation-delay:.20s}.entry:nth-child(5){animation-delay:.26s}.entry:nth-child(6){animation-delay:.32s}
+.entry:nth-child(7){animation-delay:.38s}.entry:nth-child(8){animation-delay:.44s}.entry:nth-child(9){animation-delay:.50s}
+
+.entry-head{display:grid;grid-template-columns:96px 1fr auto;gap:1.4rem;padding:1.25rem 1.6rem;cursor:pointer;user-select:none;align-items:start;border-left:2px solid var(--gold);transition:background .2s}
+.entry-head:hover{background:linear-gradient(90deg,rgba(184,131,40,.05) 0%,transparent 80%)}
+.entry-date{font-family:var(--f-body);font-size:.8rem;color:var(--maroon);font-weight:500;letter-spacing:.02em;padding-top:.2rem}
+.entry-date span{display:block;font-family:var(--f-display);font-style:italic;font-size:1.15rem;color:var(--stone);font-weight:400;margin-top:.1rem}
+.entry-main{min-width:0}
+.entry-verse{font-family:var(--f-display);font-style:italic;font-size:1.1rem;color:var(--text);line-height:1.45;margin-bottom:.4rem}
+.entry-verse::before{content:'"';color:var(--gold);font-size:1.4rem;margin-right:.1rem;vertical-align:-.15rem}
+.entry-verse::after{content:'"';color:var(--gold);font-size:1.4rem;margin-left:.1rem;vertical-align:-.15rem}
+.entry-meta{display:flex;gap:.9rem;flex-wrap:wrap;align-items:center;font-family:var(--f-body);font-size:.84rem;color:var(--stone)}
+.entry-meta .cite{color:var(--maroon);border-bottom:1px dotted rgba(123,29,42,.3);transition:color .2s,border-color .2s}
+.entry-meta .cite:hover{color:var(--maroon-deep);border-bottom-color:var(--maroon)}
+.entry-source{display:inline-flex;align-items:center;gap:.35rem;font-style:italic;color:var(--stone-lt)}
+.entry-source::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--stone-lt)}
+.entry-chevron{width:24px;height:24px;display:flex;align-items:center;justify-content:center;color:var(--stone);transition:transform .3s ease,color .2s}
+.entry.open .entry-chevron{transform:rotate(180deg);color:var(--maroon)}
+.entry-chevron svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.6}
+
+/* Expanded body */
+.entry-body{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.2,.7,.2,1)}
+.entry.open .entry-body{max-height:1200px;transition:max-height .6s cubic-bezier(.2,.7,.2,1)}
+.entry-body-inner{padding:0 1.6rem 1.4rem 8.2rem;border-top:var(--rule-hair);padding-top:1.1rem;margin-top:0}
+.entry-note{font-family:var(--f-body);font-size:.98rem;color:var(--ink);line-height:1.6;margin-bottom:1rem;white-space:pre-wrap}
+.entry-note:empty{display:none}
+.entry-actions{display:flex;gap:.4rem;flex-wrap:wrap;padding-top:.8rem;border-top:var(--rule-hair)}
+.entry-action{display:inline-flex;align-items:center;gap:.45rem;padding:.5rem .9rem;background:var(--vellum);border:1px solid rgba(184,131,40,.22);font-family:var(--f-ui);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);cursor:pointer;transition:all .2s;border-radius:2px}
+.entry-action:hover{background:var(--maroon);border-color:var(--maroon);color:var(--vellum)}
+.entry-action.danger:hover{background:var(--maroon-deep);border-color:var(--maroon-deep)}
+.entry-action svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:1.6}
+
+/* Edit state */
+.entry-editing .entry-note{display:none}
+.entry-edit{display:none;margin-bottom:1rem}
+.entry-editing .entry-edit{display:block}
+.entry-edit textarea{width:100%;min-height:120px;padding:.9rem 1rem;background:var(--vellum);border:1px solid rgba(184,131,40,.3);font-family:var(--f-body);font-size:.98rem;line-height:1.55;color:var(--ink);resize:vertical;border-radius:2px}
+.entry-edit textarea:focus{outline:none;border-color:var(--maroon);box-shadow:0 0 0 3px rgba(123,29,42,.1)}
+.entry-edit-actions{display:flex;gap:.5rem;margin-top:.7rem}
+.edit-save{padding:.55rem 1.2rem;background:var(--maroon);color:var(--vellum);border:none;font-family:var(--f-ui);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;transition:background .2s}
+.edit-save:hover{background:var(--maroon-deep)}
+.edit-cancel{padding:.55rem 1.2rem;background:transparent;color:var(--stone);border:1px solid rgba(123,29,42,.18);font-family:var(--f-ui);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;cursor:pointer}
+
+/* Empty state */
+.empty{text-align:center;padding:4rem 2rem;color:var(--stone);font-family:var(--f-display);font-style:italic;font-size:1.15rem}
+.empty a{color:var(--maroon);border-bottom:1px dotted rgba(123,29,42,.4)}
+
+/* Floating actions */
+.floating-actions{position:fixed;bottom:1.5rem;right:1.5rem;display:flex;gap:.6rem;z-index:60}
+.fab{padding:.75rem 1.2rem;background:var(--apse);color:var(--vellum);font-family:var(--f-ui);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;display:flex;align-items:center;gap:.6rem;cursor:pointer;border:1px solid rgba(232,201,122,.28);box-shadow:0 8px 28px rgba(28,20,16,.25);transition:all .25s}
+.fab:hover{background:var(--maroon);border-color:var(--gold)}
+.fab svg{width:15px;height:15px;fill:none;stroke:var(--gold-lt);stroke-width:1.6}
+
+/* Toast */
+.nw-toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);background:var(--apse);color:var(--vellum);padding:.75rem 1.25rem;font-family:var(--f-ui);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;z-index:999;opacity:0;transition:opacity .22s ease;pointer-events:none}
+.nw-toast.nw-show{opacity:1}
+
+/* Footer */
+footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:4.5rem 4.5rem 2.5rem}
+.footer-logo-img{height:44px;width:auto;display:block;margin-bottom:1.75rem;filter:brightness(0) invert(1);opacity:.85}
+.footer-nav-sub{font-family:var(--f-ui);font-size:.72rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(184,131,40,.55);display:block;margin:1.25rem 0 .5rem;padding-bottom:.35rem;border-bottom:1px solid rgba(246,241,232,.04)}
+.footer-my-journey{display:inline-block;margin-top:.5rem;padding:.42rem 1rem;border:1px solid rgba(246,241,232,.55);color:rgba(246,241,232,.9);font-family:var(--f-ui);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;transition:border-color .2s,color .2s}
+.footer-my-journey:hover{border-color:rgba(246,241,232,1);color:rgba(246,241,232,1)}
+.footer-bottom{max-width:1380px;margin:2rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(246,241,232,.12);display:flex;justify-content:space-between}
+.footer-copy,.footer-addr{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.60)}
+.footer-cols{max-width:1380px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:5rem;margin-bottom:3.5rem}
+.footer-col-head{font-family:var(--f-ui);font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(246,241,232,.82);display:block;margin-bottom:1.2rem;padding-bottom:.5rem;border-bottom:1px solid rgba(246,241,232,.06)}
+.footer-meta{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.72);line-height:2.3}
+.footer-meta a{color:rgba(184,131,40,.85);transition:color .2s}
+.footer-meta a:hover{color:var(--gold)}
+.footer-socials{display:flex;gap:1.5rem;margin-top:1.5rem}
+.footer-socials a{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,241,232,.65);transition:color .2s}
+.footer-socials a:hover{color:var(--gold)}
+.footer-nav{list-style:none;display:flex;flex-direction:column}
+.footer-nav li{padding:.38rem 0;border-bottom:1px solid rgba(246,241,232,.10)}
+.footer-nav li:last-child{border-bottom:none}
+.footer-nav a{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,232,.85);transition:color .2s}
+.footer-nav a:hover{color:rgba(246,241,232,.95)}
+@media(max-width:1100px){.footer-cols{grid-template-columns:1fr 1fr;gap:3rem}}
+@media(max-width:768px){.footer-cols{grid-template-columns:1fr;gap:2.5rem}footer{padding:4rem 1.5rem 2rem}.footer-bottom{flex-direction:column;gap:.75rem;text-align:center}}
+
+.screen-only{}
+.print-only{display:none}
+.print-cover{display:none}
+
+/* ── PRINT ── keepsake diary, not a dashboard dump ── */
+@media print{
+  @page{margin:.9in .85in}
+  html,body{background:#fff !important;color:#000}
+  body{font-family:var(--f-body);font-size:11pt;line-height:1.55;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+
+  .nav,.hero,.controls,.filters,.floating-actions,.nw-toast,footer,.screen-only,.archive-meta,.entry-chevron,.entry-actions,.entry-edit{display:none !important}
+
+  .print-only{display:block}
+
+  /* Cover page */
+  .print-cover{display:block;text-align:center;padding-top:1.5in;padding-bottom:2in;page-break-after:always;break-after:page}
+  .print-cover-eyebrow{font-family:var(--f-ui);font-size:9pt;letter-spacing:.22em;text-transform:uppercase;color:#555;margin-bottom:1rem}
+  .print-cover-title{font-family:var(--f-display);font-weight:300;font-size:44pt;line-height:1;color:#000;margin-bottom:.8rem}
+  .print-cover-title em{font-style:italic}
+  .print-cover-rule{width:80px;height:1px;background:#000;margin:1.2rem auto}
+  .print-cover-sub{font-family:var(--f-display);font-style:italic;font-size:14pt;color:#333;max-width:460px;margin:0 auto 2rem;line-height:1.5}
+  .print-cover-meta{font-family:var(--f-ui);font-size:8pt;letter-spacing:.18em;text-transform:uppercase;color:#666;margin-top:3rem}
+  .print-cover-meta strong{font-weight:500;color:#111}
+
+  .archive{padding:0;max-width:none}
+  #archive-list{max-width:5.5in;margin:0 auto}
+
+  /* Month / group headings read as chapter openers */
+  .group-head{display:block;text-align:center;margin:2.4rem 0 1.4rem;padding:0;page-break-before:auto;page-break-after:avoid;break-after:avoid}
+  .group-head:first-child{margin-top:0}
+  .group-name{font-family:var(--f-display);font-weight:400;font-style:italic;font-size:18pt;color:#000;display:block;margin-bottom:.4rem}
+  .group-name em{font-style:italic}
+  .group-rule{display:none}
+  .group-count{font-family:var(--f-ui);font-size:7.5pt;letter-spacing:.22em;text-transform:uppercase;color:#888;font-style:normal}
+
+  /* Entries: no boxes, no shadows. Thin rule between. */
+  .entry{box-shadow:none !important;border:none;background:transparent;margin:0 0 1.6rem;padding:0;opacity:1 !important;transform:none !important;animation:none !important;page-break-inside:avoid;break-inside:avoid;position:relative}
+  .entry + .entry::before{content:'';display:block;width:40px;height:1px;background:#bbb;margin:0 auto 1.6rem}
+
+  .entry-head{display:block;padding:0;cursor:default;border-left:none;background:none !important;user-select:auto}
+  .entry-head:hover{background:none !important}
+
+  .entry-date{font-family:var(--f-ui);font-size:8pt;letter-spacing:.18em;text-transform:uppercase;color:#555;margin-bottom:.5rem;padding-top:0}
+  .entry-date span{display:inline;font-family:var(--f-ui);font-style:normal;font-size:8pt;color:#555;margin:0 0 0 .5em;letter-spacing:.18em}
+  .entry-date span::before{content:'· '}
+
+  .entry-main{min-width:0}
+  .entry-verse{font-family:var(--f-display);font-style:italic;font-size:14pt;line-height:1.5;color:#000;margin-bottom:.55rem;max-width:none}
+  .entry-verse::before{content:'\201C';color:#888;font-size:1.2em;margin-right:.05em;vertical-align:-.08em}
+  .entry-verse::after{content:'\201D';color:#888;font-size:1.2em;margin-left:.05em;vertical-align:-.08em}
+
+  .entry-meta{display:block;font-family:var(--f-ui);font-size:8pt;letter-spacing:.18em;text-transform:uppercase;color:#333;margin-bottom:.6rem}
+  .entry-meta .cite{color:#000;border-bottom:none;font-weight:500}
+  .entry-meta .entry-source{color:#777;font-style:normal;margin-left:.8em;display:inline-flex}
+  .entry-meta .entry-source::before{content:'·';background:none;width:auto;height:auto;border-radius:0;margin-right:.55em;color:#aaa}
+
+  .entry-body{max-height:none !important;overflow:visible !important}
+  .entry-body-inner{padding:0;border-top:none;margin:0}
+  .entry-note{font-family:var(--f-body);font-size:11pt;line-height:1.6;color:#222;margin:0;padding:0 0 0 1rem;border-left:1px solid #ccc;white-space:pre-wrap;font-style:normal}
+
+  .entry:not(.has-note) .entry-body{display:none !important}
+}
+
+/* Responsive */
+@media(max-width:900px){
+  .hero{padding:2.5rem 1.5rem}
+  .controls,.filters{padding:1rem 1.5rem}
+  .controls-inner{grid-template-columns:1fr;gap:.8rem}
+  .archive{padding:2rem 1.2rem 4rem}
+  .entry-head{grid-template-columns:80px 1fr;gap:1rem;padding:1.1rem 1.2rem}
+  .entry-chevron{grid-column:2;justify-self:end;margin-top:-1.4rem}
+  .entry-body-inner{padding:1rem 1.2rem 1.4rem}
+  .filter-label{min-width:auto}
+  .floating-actions{bottom:1rem;right:1rem}
+  .fab{padding:.6rem 1rem;font-size:.56rem}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/">
+      <span class="nav-logo-name">Saints Peter &amp; Paul</span>
+      <span class="nav-logo-sub">Orthodox Cathedral</span>
+    </a>
+    <a href="/my-journey" class="nav-back">&larr; Back to My Journey</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <p class="breadcrumb"><a href="/my-journey">My Journey</a> &middot; Your Notes</p>
+    <h1 class="hero-title">Your <em>Notes</em></h1>
+    <p class="hero-sub">Every verse you have saved, every note you have written. The archive remembers what you meant to return to.</p>
+  </div>
+</section>
+
+<section class="controls">
+  <div class="controls-inner">
+    <div class="search-wrap">
+      <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+      <input type="search" class="search-input" id="search-input" placeholder="Search your notes, verses, or citations&hellip;">
+    </div>
+    <div class="view-toggle" id="view-toggle">
+      <button class="view-btn active" data-view="date">By Date</button>
+      <button class="view-btn" data-view="book">By Book</button>
+      <button class="view-btn" data-view="source">By Source</button>
+    </div>
+  </div>
+</section>
+
+<section class="filters">
+  <div class="filters-inner">
+    <div class="filter-row" id="filter-book-row">
+      <span class="filter-label">Book</span>
+      <!-- chips injected -->
+    </div>
+    <div class="filter-row" id="filter-source-row">
+      <span class="filter-label">Source</span>
+      <!-- chips injected -->
+    </div>
+    <div class="filter-row" id="filter-when-row">
+      <span class="filter-label">When</span>
+      <button class="chip active" data-when="all">All time</button>
+      <button class="chip" data-when="year">This year</button>
+      <button class="chip" data-when="month">This month</button>
+      <button class="chip" data-when="week">This week</button>
+    </div>
+  </div>
+</section>
+
+<div class="print-cover print-only">
+  <p class="print-cover-eyebrow">Saints Peter &amp; Paul Orthodox Cathedral</p>
+  <h1 class="print-cover-title">Your <em>Notes</em></h1>
+  <div class="print-cover-rule"></div>
+  <p class="print-cover-sub">Every verse you have saved, every note you have written. The archive remembers what you meant to return to.</p>
+  <p class="print-cover-meta"><strong id="print-cover-count">0</strong> saved notes &middot; generated <span id="print-cover-date"></span></p>
+</div>
+
+<section class="archive">
+  <div class="archive-meta">
+    <div class="archive-count" id="archive-count"><strong>0</strong> saved notes</div>
+    <div class="archive-sort" id="archive-sort-label">most recent first</div>
+  </div>
+  <div id="archive-list">
+    <div class="empty" id="archive-empty" style="display:none">No saved notes match these filters.</div>
+  </div>
+</section>
+
+<div class="floating-actions">
+  <button class="fab" onclick="printArchive()">
+    <svg viewBox="0 0 24 24"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" stroke-linecap="round" stroke-linejoin="round"/><rect x="6" y="14" width="12" height="8"/></svg>
+    Print archive
+  </button>
+</div>
+
+<footer>
+  <div class="footer-cols">
+    <div>
+      <img src="/images/logo/logo-2026.svg" alt="Saints Peter &amp; Paul Orthodox Cathedral" class="footer-logo-img" onerror="this.style.display='none'">
+      <p class="footer-meta">
+        Diocese of New York &amp; New Jersey<br>
+        <a href="https://nynjoca.org" target="_blank" rel="noopener">nynjoca.org</a><br>
+        Orthodox Church in America<br>
+        <a href="https://oca.org" target="_blank" rel="noopener">oca.org</a>
+      </p>
+      <div class="footer-socials">
+        <a href="#" target="_blank" rel="noopener">Facebook</a>
+        <a href="#" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.youtube.com/@SSPPJC" target="_blank" rel="noopener">YouTube</a>
+      </div>
+    </div>
+    <div>
+      <span class="footer-col-head">About Us</span>
+      <ul class="footer-nav">
+        <li><a href="/our-parish">Our Parish</a></li>
+        <li><a href="/church-history">Church History</a></li>
+        <li><a href="/our-beliefs">Our Beliefs</a></li>
+        <li><a href="/administration">Administration</a></li>
+        <li><a href="/council">Parish Council</a></li>
+        <li><a href="/bylaws">Bylaws</a></li>
+        <li><a href="/rectors">Our Rectors</a></li>
+      </ul>
+      <span class="footer-nav-sub">Inquirers</span>
+      <ul class="footer-nav">
+        <li><a href="/about-orthodoxy">About Orthodoxy</a></li>
+        <li><a href="/catechesis">Catechesis Series</a></li>
+        <li><a href="/catechesis-history">Catechesis History</a></li>
+        <li><a href="/bible-study">Bible Study</a></li>
+        <li><a href="/fasting">Fasting</a></li>
+        <li><a href="/visit">Visitor Guide</a></li>
+        <li><a href="/contact-us">Contact Us</a></li>
+      </ul>
+    </div>
+    <div>
+      <span class="footer-col-head">Worship</span>
+      <ul class="footer-nav">
+        <li><a href="/divine-liturgy">About the Divine Liturgy</a></li>
+        <li><a href="/vespers">About Vespers</a></li>
+        <li><a href="/liturgy-book">Liturgy Book</a></li>
+        <li><a href="/vespers-book">Vespers Book</a></li>
+        <li><a href="/liturgy-history">History of the Liturgy</a></li>
+      </ul>
+      <span class="footer-nav-sub">Daily</span>
+      <ul class="footer-nav">
+        <li><a href="/readings">Daily Readings</a></li>
+        <li><a href="/saints">Saints of the Day</a></li>
+        <li><a href="/prologue">The Prologue</a></li>
+        <li><a href="/prayers">Daily Prayers</a></li>
+      </ul>
+    </div>
+    <div>
+      <span class="footer-col-head">Parish Life</span>
+      <ul class="footer-nav">
+        <li><a href="/news">News &amp; Announcements</a></li>
+        <li><a href="/bulletins">Parish Bulletins</a></li>
+        <li><a href="/gallery">Gallery</a></li>
+        <li><a href="/videos">Videos</a></li>
+        <li><a href="/cemeteries">Cemeteries</a></li>
+        <li><a href="/give">Give &amp; Support</a></li>
+      </ul>
+      <span class="footer-nav-sub">My Parish</span>
+      <a href="/my-journey" class="footer-my-journey">My Journey</a>
+      <a href="/my-profile" class="footer-my-journey" style="margin-left:.5rem">My Profile</a>
+      <a href="/prayer-request" class="footer-my-journey" style="margin-left:.5rem">Prayer Request</a>
+      <span class="footer-nav-sub">Connect</span>
+      <p class="footer-meta" style="line-height:2.2">
+        Vespers &middot; Saturdays 5:00 PM<br>
+        Divine Liturgy &middot; Sundays 9:30 AM
+      </p>
+      <p class="footer-meta" style="margin-top:.75rem">
+        <a href="https://maps.google.com/?q=109+Grand+Street+Jersey+City+NJ+07302" target="_blank" rel="noopener">109 Grand Street &middot; Jersey City, NJ</a><br>
+        <a href="tel:+12014341986">(201) 434-1986</a><br>
+        <a href="mailto:ssppnj@gmail.com">ssppnj@gmail.com</a>
+      </p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">&copy; Saints Peter &amp; Paul Orthodox Cathedral. All Rights Reserved.</p>
+    <p class="footer-addr">
+      <a href="https://maps.google.com/?q=109+Grand+Street+Jersey+City+NJ+07302" target="_blank" rel="noopener" style="color:inherit;border-bottom:1px solid rgba(246,241,232,.25)">109 Grand Street &middot; Jersey City, NJ 07302</a><br>
+      (201) 434-1986 &middot; <a href="mailto:ssppnj@gmail.com" style="color:inherit">ssppnj@gmail.com</a>
+    </p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="/supabase-client.js"></script>
+<script src="/auth.js"></script>
+<script src="/companion-sync.js"></script>
+
+<script>
+// ── DATA MODEL ──
+// Source of truth is localStorage['spp_reading_notes'] (dict keyed by date).
+// loadFromSupabase() hydrates that key on sign-in. All writes go to localStorage
+// first then sync through syncReadingNote/deleteReadingNote.
+
+var MONTHS_LONG = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+var MONTHS_SHORT = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+var DAYS_SHORT = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+
+var SOURCE_LABELS = {
+  'gospel':'Sunday Gospel',
+  'matins_gospel':'Matins Gospel',
+  'epistle':'Epistle',
+  'ot':'Old Testament',
+  '6th_hour':'Sixth Hour',
+  'vespers':'Vespers',
+  'prologue':'Prologue',
+  'bulletin':'Parish Bulletin',
+  'bible_study':'Bible Study'
+};
+
+var state = {
+  entries: [],           // flat array of { dateKey, ref, text, note, citation, source, book, created_at, updated_at }
+  search: '',
+  view: 'date',
+  filterBook: 'all',
+  filterSource: 'all',
+  filterWhen: 'all'
+};
+
+function readAll(){
+  try { return JSON.parse(localStorage.getItem('spp_reading_notes') || '{}') || {}; }
+  catch(e) { return {}; }
+}
+function writeAll(dict){
+  try { localStorage.setItem('spp_reading_notes', JSON.stringify(dict)); } catch(e) {}
+}
+
+function flatten(){
+  var dict = readAll();
+  var list = [];
+  Object.keys(dict).forEach(function(dateKey){
+    var arr = dict[dateKey];
+    if (!Array.isArray(arr)) return;
+    arr.forEach(function(e){
+      var book = bookFromCitation(e.citation) || bookFromRef(e.ref);
+      list.push({
+        dateKey: dateKey,
+        ref: e.ref || '',
+        text: e.text || '',
+        note: e.note || '',
+        citation: e.citation || '',
+        source: e.source || '',
+        book: book,
+        created_at: e.created_at || '',
+        updated_at: e.updated_at || ''
+      });
+    });
+  });
+  list.sort(function(a,b){
+    var at = a.updated_at || a.created_at || a.dateKey;
+    var bt = b.updated_at || b.created_at || b.dateKey;
+    return bt < at ? -1 : bt > at ? 1 : 0;
+  });
+  return list;
+}
+
+function bookFromCitation(cit){
+  if (!cit) return '';
+  var m = cit.match(/^([1-3]?\s*[A-Za-z][A-Za-z\.]*(?:\s+[A-Za-z][A-Za-z\.]*)*)\s+\d/);
+  return m ? m[1].trim() : '';
+}
+function bookFromRef(ref){
+  if (!ref) return '';
+  var parts = ref.split('-');
+  if (parts.length < 2) return '';
+  var slug = parts.slice(0, parts.length - 2).join('-');
+  return slug.replace(/-/g,' ').replace(/\b\w/g, function(c){ return c.toUpperCase(); });
+}
+function escHtml(s){
+  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function cleanVerseText(text, ref){
+  // Strip a leading verse-number digit run that was captured from the
+  // <sup class="verse-num"> (older saves). Use ref's verse number when available.
+  if (!text) return '';
+  var t = text.replace(/^\s+/, '');
+  var parts = (ref || '').split('-');
+  var v = parts.length >= 3 ? parts[parts.length - 1] : '';
+  if (v && /^\d+$/.test(v)) {
+    var re = new RegExp('^' + v + '(?=[A-Z\\u00C0-\\u024F])');
+    t = t.replace(re, '');
+  } else {
+    t = t.replace(/^\d+(?=[A-Z])/, '');
+  }
+  return t.trim();
+}
+function toast(msg){
+  var t = document.createElement('div');
+  t.className = 'nw-toast';
+  t.textContent = msg;
+  document.body.appendChild(t);
+  requestAnimationFrame(function(){ t.classList.add('nw-show'); });
+  setTimeout(function(){ t.classList.remove('nw-show'); setTimeout(function(){ if (t.parentNode) t.parentNode.removeChild(t); }, 300); }, 1600);
+}
+
+// ── FILTERING ──
+function applyFilters(list){
+  var q = state.search.trim().toLowerCase();
+  var now = new Date();
+  var startOfWeek = new Date(now); startOfWeek.setDate(now.getDate() - now.getDay()); startOfWeek.setHours(0,0,0,0);
+  var startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+  var startOfYear = new Date(now.getFullYear(), 0, 1);
+
+  return list.filter(function(e){
+    if (state.filterBook !== 'all' && (e.book||'').toLowerCase() !== state.filterBook.toLowerCase()) return false;
+    if (state.filterSource !== 'all' && (e.source||'') !== state.filterSource) return false;
+    if (state.filterWhen !== 'all') {
+      var d = new Date(e.dateKey + 'T12:00:00');
+      if (state.filterWhen === 'week' && d < startOfWeek) return false;
+      if (state.filterWhen === 'month' && d < startOfMonth) return false;
+      if (state.filterWhen === 'year' && d < startOfYear) return false;
+    }
+    if (q) {
+      var hay = (e.text + ' ' + e.note + ' ' + e.citation + ' ' + e.book).toLowerCase();
+      if (hay.indexOf(q) === -1) return false;
+    }
+    return true;
+  });
+}
+
+// ── RENDERING ──
+function render(){
+  state.entries = flatten();
+  renderFilterChips();
+  var filtered = applyFilters(state.entries);
+  document.getElementById('archive-count').innerHTML = '<strong>' + filtered.length + '</strong> saved note' + (filtered.length === 1 ? '' : 's');
+  var empty = document.getElementById('archive-empty');
+  var list = document.getElementById('archive-list');
+  if (!filtered.length) {
+    list.innerHTML = '';
+    if (state.entries.length === 0) {
+      list.innerHTML = '<div class="empty">You have not saved any verses yet. Start on <a href="/readings">today\'s readings</a>, click any verse, and choose Save.</div>';
+    } else {
+      list.innerHTML = '<div class="empty">No saved notes match these filters.</div>';
+    }
+    return;
+  }
+  var groups = groupEntries(filtered, state.view);
+  var html = '';
+  groups.forEach(function(g){
+    html += '<div class="group-head"><h2 class="group-name">' + escHtml(g.label) + '</h2><div class="group-rule"></div><div class="group-count">' + g.items.length + ' note' + (g.items.length === 1 ? '' : 's') + '</div></div>';
+    g.items.forEach(function(e){ html += entryHtml(e); });
+  });
+  list.innerHTML = html;
+}
+
+function groupEntries(list, view){
+  var buckets = {};
+  list.forEach(function(e){
+    var key, label, sort;
+    if (view === 'book') {
+      key = (e.book || 'Unknown').toLowerCase();
+      label = e.book || 'Unknown';
+      sort = label.toLowerCase();
+    } else if (view === 'source') {
+      key = e.source || 'other';
+      label = SOURCE_LABELS[e.source] || 'Other';
+      sort = label.toLowerCase();
+    } else {
+      var d = new Date(e.dateKey + 'T12:00:00');
+      key = d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0');
+      label = MONTHS_LONG[d.getMonth()] + ' ' + d.getFullYear();
+      sort = '9999' + key;
+    }
+    if (!buckets[key]) buckets[key] = { key:key, label:label, sort:sort, items:[] };
+    buckets[key].items.push(e);
+  });
+  var arr = Object.keys(buckets).map(function(k){ return buckets[k]; });
+  if (view === 'date') {
+    arr.sort(function(a,b){ return a.key < b.key ? 1 : a.key > b.key ? -1 : 0; });
+  } else {
+    arr.sort(function(a,b){ return a.sort < b.sort ? -1 : a.sort > b.sort ? 1 : 0; });
+  }
+  return arr;
+}
+
+function entryHtml(e){
+  var d = new Date(e.dateKey + 'T12:00:00');
+  var dateLabel = MONTHS_SHORT[d.getMonth()] + ' ' + String(d.getDate()).padStart(2,'0');
+  var dayLabel = DAYS_SHORT[d.getDay()];
+  var sourceLabel = SOURCE_LABELS[e.source] || (e.source ? e.source.replace(/_/g,' ') : '');
+  var jumpUrl = '/readings?date=' + e.dateKey;
+  var hasNote = !!(e.note && e.note.trim());
+
+  var h = '<article class="entry' + (hasNote ? ' open has-note' : '') + '" data-ref="' + escHtml(e.ref) + '" data-date="' + escHtml(e.dateKey) + '">';
+  h += '<div class="entry-head" onclick="toggle(this)">';
+  h += '<div class="entry-date">' + dateLabel + '<span>' + dayLabel + '</span></div>';
+  h += '<div class="entry-main">';
+  h += '<div class="entry-verse">' + escHtml(cleanVerseText(e.text, e.ref)) + '</div>';
+  h += '<div class="entry-meta">';
+  if (e.citation) h += '<a href="' + jumpUrl + '" class="cite" onclick="event.stopPropagation()">' + escHtml(e.citation) + '</a>';
+  if (sourceLabel) h += '<span class="entry-source">' + escHtml(sourceLabel) + '</span>';
+  if (!hasNote) h += '<span class="entry-source screen-only" style="color:var(--stone-lt)">No note yet</span>';
+  h += '</div></div>';
+  h += '<div class="entry-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9" stroke-linecap="round" stroke-linejoin="round"/></svg></div>';
+  h += '</div>';
+  h += '<div class="entry-body"><div class="entry-body-inner">';
+  h += '<div class="entry-note">' + escHtml(e.note) + '</div>';
+  h += '<div class="entry-edit"><textarea placeholder="Write a reflection on this verse."></textarea><div class="entry-edit-actions"><button class="edit-save" onclick="saveEdit(this)">Save note</button><button class="edit-cancel" onclick="cancelEdit(this)">Cancel</button></div></div>';
+  h += '<div class="entry-actions">';
+  h += '<a class="entry-action" href="' + jumpUrl + '"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8" stroke-linecap="round" stroke-linejoin="round"/></svg>Jump to source</a>';
+  h += '<button class="entry-action" onclick="startEdit(this)"><svg viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16v4z" stroke-linejoin="round"/></svg>' + (hasNote ? 'Edit note' : 'Add note') + '</button>';
+  h += '<button class="entry-action" onclick="copyEntry(this)"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="1"/><path d="M4 4h12v4" stroke-linecap="round"/></svg>Copy</button>';
+  h += '<button class="entry-action danger" onclick="deleteEntry(this)"><svg viewBox="0 0 24 24"><path d="M5 7h14M10 7V4h4v3M7 7l1 13h8l1-13" stroke-linecap="round" stroke-linejoin="round"/></svg>Delete</button>';
+  h += '</div></div></div></article>';
+  return h;
+}
+
+function renderFilterChips(){
+  // Book counts from full entries (not filtered), so user sees all options
+  var books = {};
+  var sources = {};
+  state.entries.forEach(function(e){
+    if (e.book) books[e.book] = (books[e.book] || 0) + 1;
+    if (e.source) sources[e.source] = (sources[e.source] || 0) + 1;
+  });
+
+  var bookRow = document.getElementById('filter-book-row');
+  var sourceRow = document.getElementById('filter-source-row');
+  // Keep the label, replace chips
+  clearChips(bookRow);
+  clearChips(sourceRow);
+
+  bookRow.appendChild(makeChip('all', 'All', state.entries.length, state.filterBook === 'all', function(){ state.filterBook = 'all'; render(); }));
+  Object.keys(books).sort().forEach(function(b){
+    bookRow.appendChild(makeChip('book-' + b, b, books[b], state.filterBook === b, function(){ state.filterBook = b; render(); }));
+  });
+
+  sourceRow.appendChild(makeChip('all', 'All', state.entries.length, state.filterSource === 'all', function(){ state.filterSource = 'all'; render(); }));
+  Object.keys(sources).sort().forEach(function(s){
+    var label = SOURCE_LABELS[s] || s.replace(/_/g,' ');
+    sourceRow.appendChild(makeChip('source-' + s, label, sources[s], state.filterSource === s, function(){ state.filterSource = s; render(); }));
+  });
+}
+function clearChips(row){
+  var chips = row.querySelectorAll('.chip');
+  chips.forEach(function(c){ row.removeChild(c); });
+}
+function makeChip(id, label, count, active, onClick){
+  var b = document.createElement('button');
+  b.className = 'chip' + (active ? ' active' : '');
+  b.type = 'button';
+  b.innerHTML = escHtml(label) + ' <span class="chip-count">' + count + '</span>';
+  b.addEventListener('click', onClick);
+  return b;
+}
+
+// ── INTERACTIONS ──
+function toggle(head){ head.closest('.entry').classList.toggle('open'); }
+
+function startEdit(btn){
+  var body = btn.closest('.entry-body-inner');
+  body.classList.add('entry-editing');
+  var ta = body.querySelector('textarea');
+  var note = body.querySelector('.entry-note');
+  if (ta) { ta.value = note ? note.textContent : ''; ta.focus(); }
+}
+function cancelEdit(btn){ btn.closest('.entry-body-inner').classList.remove('entry-editing'); }
+function saveEdit(btn){
+  var article = btn.closest('.entry');
+  var body = btn.closest('.entry-body-inner');
+  var ta = body.querySelector('textarea');
+  var dateKey = article.dataset.date;
+  var ref = article.dataset.ref;
+  var dict = readAll();
+  if (!Array.isArray(dict[dateKey])) return;
+  for (var i=0; i<dict[dateKey].length; i++) {
+    if (dict[dateKey][i].ref === ref) {
+      dict[dateKey][i].note = ta.value.trim();
+      dict[dateKey][i].updated_at = new Date().toISOString();
+      writeAll(dict);
+      if (typeof syncReadingNote === 'function') syncReadingNote(dateKey, dict[dateKey][i]);
+      toast('Note saved');
+      break;
+    }
+  }
+  body.classList.remove('entry-editing');
+  render();
+}
+
+function copyEntry(btn){
+  var article = btn.closest('.entry');
+  var verse = article.querySelector('.entry-verse').textContent.trim();
+  var cite = article.querySelector('.cite');
+  var note = article.querySelector('.entry-note').textContent.trim();
+  var text = '"' + verse + '"';
+  if (cite) text += ' — ' + cite.textContent.trim();
+  if (note) text += '\n\n' + note;
+  try {
+    navigator.clipboard.writeText(text);
+    toast('Copied to clipboard');
+  } catch(e) { toast('Could not copy'); }
+}
+
+function deleteEntry(btn){
+  var article = btn.closest('.entry');
+  var dateKey = article.dataset.date;
+  var ref = article.dataset.ref;
+  if (!confirm('Remove this saved verse from your archive?')) return;
+  var dict = readAll();
+  if (Array.isArray(dict[dateKey])) {
+    dict[dateKey] = dict[dateKey].filter(function(e){ return e.ref !== ref; });
+    if (!dict[dateKey].length) delete dict[dateKey];
+    writeAll(dict);
+  }
+  if (typeof deleteReadingNote === 'function') deleteReadingNote(dateKey, ref);
+  toast('Removed');
+  render();
+}
+
+// ── INIT ──
+document.getElementById('search-input').addEventListener('input', function(e){
+  state.search = e.target.value;
+  render();
+});
+document.getElementById('view-toggle').addEventListener('click', function(e){
+  var btn = e.target.closest('.view-btn');
+  if (!btn) return;
+  document.querySelectorAll('.view-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  state.view = btn.dataset.view;
+  render();
+});
+document.getElementById('filter-when-row').addEventListener('click', function(e){
+  var btn = e.target.closest('.chip');
+  if (!btn) return;
+  document.querySelectorAll('#filter-when-row .chip').forEach(function(c){ c.classList.remove('active'); });
+  btn.classList.add('active');
+  state.filterWhen = btn.dataset.when;
+  render();
+});
+
+window.printArchive = function(){
+  var countEl = document.getElementById('print-cover-count');
+  var dateEl = document.getElementById('print-cover-date');
+  if (countEl) countEl.textContent = state.entries.length;
+  if (dateEl) {
+    var now = new Date();
+    dateEl.textContent = MONTHS_LONG[now.getMonth()] + ' ' + now.getDate() + ', ' + now.getFullYear();
+  }
+  window.print();
+};
+
+document.addEventListener('DOMContentLoaded', async function(){
+  if (typeof loadFromSupabase === 'function') { try { await loadFromSupabase(); } catch(e){} }
+  render();
+});
+</script>
+
+</body>
+</html>
