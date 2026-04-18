@@ -110,11 +110,17 @@ async function loadFromSupabase() {
     var user = await getCurrentUser();
     if (!user) return;
 
-    // Load journey progress
-    var journeyResult = await _supabase
-      .from('journey_progress')
-      .select('*')
-      .eq('user_id', user.id);
+    /* Fire all four table reads in parallel — sequential awaits make this 4x slower. */
+    var results = await Promise.all([
+      _supabase.from('journey_progress').select('*').eq('user_id', user.id),
+      _supabase.from('catechesis_progress').select('*').eq('user_id', user.id),
+      _supabase.from('bible_study_progress').select('*').eq('user_id', user.id),
+      _supabase.from('prayer_rules').select('*').eq('user_id', user.id).single()
+    ]);
+    var journeyResult = results[0];
+    var catResult     = results[1];
+    var studyResult   = results[2];
+    var ruleResult    = results[3];
 
     if (journeyResult.data) {
       journeyResult.data.forEach(function(row) {
@@ -144,12 +150,6 @@ async function loadFromSupabase() {
       });
     }
 
-    // Load catechesis per-session progress
-    var catResult = await _supabase
-      .from('catechesis_progress')
-      .select('*')
-      .eq('user_id', user.id);
-
     if (catResult.data) {
       catResult.data.forEach(function(row) {
         if (!row.completed) return;
@@ -165,12 +165,6 @@ async function loadFromSupabase() {
       });
     }
 
-    // Load bible study per-session progress
-    var studyResult = await _supabase
-      .from('bible_study_progress')
-      .select('*')
-      .eq('user_id', user.id);
-
     if (studyResult.data) {
       studyResult.data.forEach(function(row) {
         if (!row.completed) return;
@@ -185,13 +179,6 @@ async function loadFromSupabase() {
         }
       });
     }
-
-    // Load prayer rule
-    var ruleResult = await _supabase
-      .from('prayer_rules')
-      .select('*')
-      .eq('user_id', user.id)
-      .single();
 
     if (ruleResult.data && ruleResult.data.prayer_ids) {
       var localRule = [];
