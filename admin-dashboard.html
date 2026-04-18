@@ -3872,7 +3872,7 @@ async function doSaveList(rollbackFn) {
     showToast('Saved. Site will update in about 30 seconds.');
   } catch(e) {
     showToast('Save failed. Check your token and try again.');
-    sessionStorage.removeItem('gh_token');
+    localStorage.removeItem('gh_token');
     if (rollbackFn) rollbackFn();
     renderPrayerList();
   }
@@ -3880,7 +3880,7 @@ async function doSaveList(rollbackFn) {
 
 // ── GITHUB API ──
 function ensureGhToken(callback) {
-  if (sessionStorage.getItem('gh_token')) {
+  if (localStorage.getItem('gh_token')) {
     callback();
     return;
   }
@@ -3891,7 +3891,7 @@ function ensureGhToken(callback) {
 function saveGhToken() {
   var token = document.getElementById('gh-token-input').value.trim();
   if (!token) return;
-  sessionStorage.setItem('gh_token', token);
+  localStorage.setItem('gh_token', token);
   document.getElementById('gh-modal').classList.remove('open');
   document.getElementById('gh-token-input').value = '';
   if (ghPendingCallback) {
@@ -3901,7 +3901,7 @@ function saveGhToken() {
 }
 
 async function writeJsonFile(path, content) {
-  var token = sessionStorage.getItem('gh_token');
+  var token = localStorage.getItem('gh_token');
   var owner = 'ssppnjcathedral';
   var repo = 'ssppnjwebsite';
   var branch = 'main';
@@ -4105,7 +4105,7 @@ async function doSaveEvents(msg, rollbackFn) {
     renderEvents();
   } catch(e) {
     showToast('Save failed. Check your token and try again.');
-    sessionStorage.removeItem('gh_token');
+    localStorage.removeItem('gh_token');
     if (rollbackFn) rollbackFn();
   }
 }
