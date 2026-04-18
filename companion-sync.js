@@ -39,20 +39,38 @@ async function syncHighlights(pageKey, highlights) {
 }
 window.syncHighlights = syncHighlights;
 
-// ── READING NOTES SYNC ──
-async function syncReadingNotes(dateKey, notes) {
+// ── READING NOTES SYNC (row-level against reading_notes table) ──
+// Upserts one verse. Called by note-widget.js after each save/edit.
+async function syncReadingNote(dateKey, entry) {
   try {
     var user = await getCurrentUser();
     if (!user) return;
-    await _supabase.from('journey_progress').upsert({
+    await _supabase.from('reading_notes').upsert({
       user_id: user.id,
-      page_key: 'reading_' + dateKey,
-      notes: JSON.stringify(notes),
+      date: dateKey,
+      verse_ref: entry.ref,
+      verse_text: entry.text || '',
+      citation: entry.citation || null,
+      source: entry.source || null,
+      note_text: entry.note || null,
       updated_at: new Date().toISOString()
-    }, { onConflict: 'user_id,page_key' });
-  } catch (e) { console.warn('Reading notes sync error:', e); }
+    }, { onConflict: 'user_id,date,verse_ref' });
+  } catch (e) { console.warn('Reading note sync error:', e); }
 }
-window.syncReadingNotes = syncReadingNotes;
+window.syncReadingNote = syncReadingNote;
+
+async function deleteReadingNote(dateKey, ref) {
+  try {
+    var user = await getCurrentUser();
+    if (!user) return;
+    await _supabase.from('reading_notes')
+      .delete()
+      .eq('user_id', user.id)
+      .eq('date', dateKey)
+      .eq('verse_ref', ref);
+  } catch (e) { console.warn('Reading note delete error:', e); }
+}
+window.deleteReadingNote = deleteReadingNote;
 
 // ── CATECHESIS SESSION SYNC ──
 // sessionId is "sess-1" through "sess-13". completed is a boolean.
@@ -110,17 +128,19 @@ async function loadFromSupabase() {
     var user = await getCurrentUser();
     if (!user) return;
 
-    /* Fire all four table reads in parallel — sequential awaits make this 4x slower. */
+    /* Fire all table reads in parallel — sequential awaits make this much slower. */
     var results = await Promise.all([
       _supabase.from('journey_progress').select('*').eq('user_id', user.id),
       _supabase.from('catechesis_progress').select('*').eq('user_id', user.id),
       _supabase.from('bible_study_progress').select('*').eq('user_id', user.id),
-      _supabase.from('prayer_rules').select('*').eq('user_id', user.id).single()
+      _supabase.from('prayer_rules').select('*').eq('user_id', user.id).single(),
+      _supabase.from('reading_notes').select('*').eq('user_id', user.id).order('date', { ascending: false })
     ]);
     var journeyResult = results[0];
     var catResult     = results[1];
     var studyResult   = results[2];
     var ruleResult    = results[3];
+    var notesResult   = results[4];
 
     if (journeyResult.data) {
       journeyResult.data.forEach(function(row) {
@@ -188,6 +208,39 @@ async function loadFromSupabase() {
         if (ruleResult.data.rule_name) localStorage.setItem('spp_rule_name', ruleResult.data.rule_name);
         if (ruleResult.data.begun_date) localStorage.setItem('spp_rule_begun', ruleResult.data.begun_date);
       }
+    }
+
+    if (notesResult && notesResult.data && notesResult.data.length) {
+      /* Merge Supabase rows into localStorage 'spp_reading_notes' dict.
+         Supabase is source of truth for entries the server has; local
+         entries not yet synced remain untouched. */
+      var localDict = {};
+      try { localDict = JSON.parse(localStorage.getItem('spp_reading_notes') || '{}') || {}; } catch(e) {}
+      notesResult.data.forEach(function(row) {
+        var dk = row.date;
+        if (!Array.isArray(localDict[dk])) localDict[dk] = [];
+        var found = false;
+        for (var i=0; i<localDict[dk].length; i++) {
+          if (localDict[dk][i].ref === row.verse_ref) {
+            localDict[dk][i] = {
+              ref: row.verse_ref, text: row.verse_text,
+              citation: row.citation || '', source: row.source || '',
+              note: row.note_text || '',
+              created_at: row.created_at, updated_at: row.updated_at
+            };
+            found = true; break;
+          }
+        }
+        if (!found) {
+          localDict[dk].push({
+            ref: row.verse_ref, text: row.verse_text,
+            citation: row.citation || '', source: row.source || '',
+            note: row.note_text || '',
+            created_at: row.created_at, updated_at: row.updated_at
+          });
+        }
+      });
+      try { localStorage.setItem('spp_reading_notes', JSON.stringify(localDict)); } catch(e) {}
     }
 
     /* Notify pages that per-session/progress data has finished hydrating.

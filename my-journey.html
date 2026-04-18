@@ -1002,12 +1002,15 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
     <div id="library-groups"></div>
   </section>
 
-  <!-- READING NOTES -->
+  <!-- YOUR NOTES -->
   <div class="section-rule"></div>
   <div id="reading-notes-section" style="display:none">
-    <span class="section-label">My Reading Notes</span>
-    <div class="section-title">Scripture Highlights &amp; Notes</div>
+    <span class="section-label">Your Notes</span>
+    <div class="section-title">Saved verses &amp; reflections</div>
     <div id="reading-notes-list"></div>
+    <div id="reading-notes-footer" style="display:none;margin-top:1rem;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap">
+      <span id="reading-notes-count" style="font-family:var(--f-display);font-style:italic;font-size:.95rem;color:var(--stone)"></span>
+    </div>
   </div>
 
   <!-- PRAYER RULE -->
@@ -1555,43 +1558,67 @@ document.addEventListener('DOMContentLoaded', async function() {
 function renderReadingNotes() {
   var section = document.getElementById('reading-notes-section');
   var list = document.getElementById('reading-notes-list');
+  var footer = document.getElementById('reading-notes-footer');
+  var countEl = document.getElementById('reading-notes-count');
   if (!section || !list) return;
 
   var all = {};
   try { all = JSON.parse(localStorage.getItem('spp_reading_notes') || '{}'); } catch {}
 
-  var dates = Object.keys(all).filter(function(k) { return all[k] && all[k].length; }).sort().reverse();
-  if (!dates.length) return;
+  // Flatten into a chronological list, most recent first.
+  var flat = [];
+  Object.keys(all).forEach(function(dateKey) {
+    if (!Array.isArray(all[dateKey])) return;
+    all[dateKey].forEach(function(entry) { flat.push({ dateKey: dateKey, entry: entry }); });
+  });
+  if (!flat.length) return;
+
+  flat.sort(function(a, b) {
+    var at = a.entry.updated_at || a.entry.created_at || a.dateKey;
+    var bt = b.entry.updated_at || b.entry.created_at || b.dateKey;
+    return bt < at ? -1 : bt > at ? 1 : 0;
+  });
 
   section.style.display = '';
   var MONTHS_S = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var DAYS_S = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  var shown = flat.slice(0, 3);
   var html = '';
 
-  dates.forEach(function(dateKey) {
-    var entries = all[dateKey];
-    var d = new Date(dateKey + 'T12:00:00');
-    var dateLabel = MONTHS_S[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
-    html += '<div style="margin-bottom:1.5rem">';
-    html += '<div style="font-family:var(--f-ui);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--maroon);margin-bottom:.5rem">' + dateLabel + '</div>';
-
-    entries.forEach(function(entry) {
-      html += '<div style="padding:.75rem 1rem;margin-bottom:.5rem;background:var(--vellum-mid);border-left:2px solid var(--gold)">';
-      if (entry.text) {
-        html += '<div style="font-family:var(--f-display);font-style:italic;font-size:.92rem;color:var(--stone);line-height:1.45;margin-bottom:.35rem">"' + escHtml(entry.text) + '"</div>';
-      }
-      if (entry.note) {
-        html += '<div style="font-family:var(--f-body);font-size:.88rem;color:var(--ink);line-height:1.55">' + escHtml(entry.note).replace(/\n/g, '<br>') + '</div>';
-      }
-      if (!entry.text && !entry.note) {
-        html += '<div style="font-family:var(--f-body);font-style:italic;font-size:.88rem;color:var(--stone-lt)">Empty note</div>';
-      }
-      html += '</div>';
-    });
-
-    html += '</div>';
+  shown.forEach(function(item) {
+    var entry = item.entry;
+    var d = new Date(item.dateKey + 'T12:00:00');
+    var dateLabel = MONTHS_S[d.getMonth()] + ' ' + d.getDate();
+    var dayLabel = DAYS_S[d.getDay()];
+    html += '<div style="display:grid;grid-template-columns:80px 1fr;gap:1rem;padding:.9rem 1rem;margin-bottom:.6rem;background:linear-gradient(90deg,rgba(184,131,40,.08),transparent 35%);border-left:2px solid var(--gold)">';
+    html += '<div><div style="font-family:var(--f-display);font-weight:500;font-size:1.05rem;color:var(--apse);line-height:1">' + dateLabel + '</div>';
+    html += '<div style="font-family:var(--f-display);font-style:italic;font-size:.82rem;color:var(--stone);margin-top:.15rem">' + dayLabel + '</div></div>';
+    html += '<div>';
+    if (entry.text) {
+      html += '<div style="font-family:var(--f-display);font-style:italic;font-size:1rem;color:var(--ink);line-height:1.5;margin-bottom:.35rem"><span style="color:var(--gold);font-size:1.3em;line-height:0;vertical-align:-.1em;margin-right:.1em">&ldquo;</span>' + escHtml(entry.text) + '<span style="color:var(--gold);font-size:1.3em;line-height:0;vertical-align:-.1em;margin-left:.1em">&rdquo;</span></div>';
+    }
+    if (entry.citation) {
+      html += '<div style="font-family:var(--f-ui);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--maroon);margin-bottom:.45rem">' + escHtml(entry.citation) + '</div>';
+    }
+    if (entry.note) {
+      html += '<div style="font-family:var(--f-body);font-size:.92rem;color:var(--ink);line-height:1.6;padding-top:.5rem;border-top:1px solid rgba(123,29,42,.12)">' + escHtml(entry.note).replace(/\n/g, '<br>') + '</div>';
+    }
+    if (!entry.text && !entry.note) {
+      html += '<div style="font-family:var(--f-body);font-style:italic;font-size:.88rem;color:var(--stone-lt)">Empty note</div>';
+    }
+    html += '</div></div>';
   });
 
   list.innerHTML = html;
+
+  if (footer && countEl) {
+    if (flat.length > 3) {
+      footer.style.display = 'flex';
+      countEl.textContent = 'Showing 3 of ' + flat.length + ' saved notes';
+    } else {
+      footer.style.display = 'none';
+    }
+  }
 }
 
 // ── LIBRARY ROOM (per-session progress) ──

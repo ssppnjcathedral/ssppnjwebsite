@@ -1165,7 +1165,11 @@ async function loadReadings(){
     const bodyHTML=verseHTML
       ? `<div class="verse-text" data-ridx="${i}">${verseHTML}</div>`
       : `<div class="no-text-note">The full text of ${ref?`<em>${ref}</em>`:'this reading'} is not included in the digital calendar. You can find it on <a href="https://www.oca.org/readings" target="_blank" rel="noopener" style="color:var(--maroon)">oca.org</a> or in a Bible under the reference above.</div>`;
-    html+=`<div class="reading-section" id="reading-${i}">
+    const bookMatch = ref.match(/^([1-3]?\s*[A-Za-z][A-Za-z\.]*(?:\s+[A-Za-z][A-Za-z\.]*)*)/);
+    const bookName = bookMatch ? bookMatch[1].trim() : '';
+    const bookSlug = bookName.toLowerCase().replace(/\./g,'').replace(/\s+/g,'-');
+    const srcKey = (r.source||'').toLowerCase().replace(/\s+/g,'_');
+    html+=`<div class="reading-section" id="reading-${i}" data-book="${bookName}" data-book-slug="${bookSlug}" data-source="${srcKey}" data-citation="${ref}">
       <button class="reading-toggle" aria-expanded="false">
         <div class="reading-header">
           <span class="reading-source-pill">${lbl}</span>
@@ -1194,6 +1198,30 @@ async function loadReadings(){
 
   /* Restore highlights after DOM is built */
   jwRestoreHighlights();
+
+  /* Attach save-a-verse widget */
+  if (window.NoteWidget) {
+    var todayKey = `${y}-${String(m).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    window.NoteWidget.attach({
+      root: document.getElementById('readings-main'),
+      date: todayKey,
+      resolveVerseMeta: function(span){
+        var section = span.closest('.reading-section');
+        if (!section) return null;
+        var bookSlug = section.dataset.bookSlug || 'reading';
+        var bookName = section.dataset.book || '';
+        var source = section.dataset.source || '';
+        var citationBase = section.dataset.citation || '';
+        var vid = span.dataset.vid || '';
+        var parts = vid.split('-');
+        var chapter = parts[1] || '0', verse = parts[2] || '0';
+        var ref = bookSlug + '-' + chapter + '-' + verse;
+        var citation = bookName ? (bookName + ' ' + chapter + ':' + verse) : (citationBase + ' v.' + verse);
+        var text = (span.textContent || '').trim();
+        return { ref: ref, citation: citation, source: source, text: text };
+      }
+    });
+  }
 }
 
 loadReadings();
@@ -1591,6 +1619,7 @@ loadReadings();
 
 <script>window.HERO_IMAGES=[{url:'/images/heroes/hero-06.jpg'},{url:'/images/heroes/hero-14.jpg'},{url:'/images/heroes/hero-09.jpg'},{url:'/images/heroes/hero-04.jpg'},{url:'/images/heroes/hero-12.jpg'}];</script>
 <script src="/companion-sync.js"></script>
+<script src="/note-widget.js"></script>
 <script src="/hero-rotator.js"></script>
 </body>
 </html>
