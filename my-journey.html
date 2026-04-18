@@ -18,7 +18,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 
-:root{--vellum:#F6F1E8;--vellum-mid:#EDE7DC;--text:#1E1510;--ink:#2C1F16;--maroon:#7B1D2A;--maroon-deep:#5C1520;--gold:#B88328;--gold-lt:#E8C97A;--verdigris:#3D6B5E;--stone:#7A6648;--apse:#3B0F18;--f-display:\'Cormorant Garamond\',Georgia,serif;--f-body:\'EB Garamond\',Georgia,serif;--f-ui:\'Cinzel\',Georgia,serif;--rule:1px solid var(--maroon);--rule-faint:1px solid rgba(123,29,42,0.14);--rule-hair:1px solid rgba(123,29,42,0.07)}
+:root{--vellum:#F6F1E8;--vellum-mid:#EDE7DC;--text:#1E1510;--ink:#2C1F16;--maroon:#7B1D2A;--maroon-deep:#5C1520;--gold:#B88328;--gold-lt:#E8C97A;--gold-deep:#8A6018;--verdigris:#3D6B5E;--stone:#7A6648;--stone-lt:#A89078;--apse:#3B0F18;--f-display:\'Cormorant Garamond\',Georgia,serif;--f-body:\'EB Garamond\',Georgia,serif;--f-ui:\'Cinzel\',Georgia,serif;--rule:1px solid var(--maroon);--rule-faint:1px solid rgba(123,29,42,0.14);--rule-hair:1px solid rgba(123,29,42,0.07);--shadow:0 12px 40px rgba(28,20,16,.08);--shadow-hi:0 24px 64px rgba(28,20,16,.14)}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{background:var(--vellum);color:var(--text);font-family:var(--f-body);font-size:21px;line-height:1.75;overflow-x:hidden;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}
 .rubric{display:block;font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.20em;text-transform:uppercase;color:var(--stone);margin-bottom:.5rem}
 .rubric.light{color:rgba(246,241,232,.55)}
@@ -478,20 +478,31 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 .j-sidebar{position:sticky;top:130px;display:flex;flex-direction:column;gap:1.4rem}
 @media(max-width:1100px){.j-page-grid{grid-template-columns:1fr;gap:3rem;padding:2.5rem 1.5rem 4rem}.j-sidebar{position:static}}
 
-/* ── ROOM HEADERS REVAMP ── */
-.room-head-pro{display:grid;grid-template-columns:62px 1fr auto;gap:1.4rem;align-items:center;padding:1.25rem 1.5rem;background:var(--vellum-mid);border-bottom:1px solid rgba(123,29,42,.08);border-left:3px solid var(--gold)}
-.room-sigil{width:54px;height:54px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;border:1px solid rgba(184,131,40,.28);transition:all .35s ease}
-.room-sigil svg{width:26px;height:26px;fill:none;stroke:var(--maroon);stroke-width:1.5}
-.scroll-reveal:hover .room-sigil{background:linear-gradient(145deg,rgba(184,131,40,.18) 0%,rgba(184,131,40,.08) 100%);border-color:var(--gold);transform:rotate(6deg) scale(1.05)}
-.room-head-text{min-width:0}
-.room-head-title{font-family:var(--f-display);font-weight:500;font-size:1.35rem;color:var(--text);line-height:1.1;margin-bottom:.15rem}
-.room-head-title em{font-style:italic;color:var(--maroon)}
-.room-head-caption{font-family:var(--f-display);font-style:italic;font-size:.92rem;color:var(--stone);line-height:1.3}
-.room-head-progress{text-align:right;min-width:100px}
-.room-head-num{font-family:var(--f-display);font-weight:500;font-size:1.2rem;color:var(--maroon);line-height:1}
-.room-head-num em{font-style:italic;color:var(--stone);font-weight:400}
-.room-head-pct{font-family:var(--f-ui);font-size:.55rem;letter-spacing:.16em;text-transform:uppercase;color:var(--stone);margin-top:.2rem}
-@media(max-width:640px){.room-head-pro{grid-template-columns:46px 1fr;padding:1rem 1.1rem}.room-head-progress{display:none}.room-sigil{width:46px;height:46px}.room-sigil svg{width:22px;height:22px}}
+/* ── ROOMS ── */
+.j-section-intro{margin:2.5rem 0 1.5rem}
+.j-section-eyebrow{font-family:var(--f-ui);font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--stone);margin-bottom:.5rem}
+.j-section-title{font-family:var(--f-display);font-weight:400;font-size:clamp(1.6rem,2.5vw,2.2rem);color:var(--text);line-height:1.15;margin-bottom:.4rem}
+.j-section-title em{font-style:italic}
+.j-section-kicker{font-family:var(--f-display);font-style:italic;font-size:1rem;color:var(--stone);line-height:1.5}
+.rooms{display:grid;grid-template-columns:1fr;gap:1.2rem;margin-bottom:4rem}
+.room{background:#fff;border:var(--rule-faint);box-shadow:var(--shadow);transition:box-shadow .3s ease,transform .3s ease;overflow:hidden;position:relative}
+.room:hover{box-shadow:var(--shadow-hi)}
+.room-head{display:grid;grid-template-columns:72px 1fr auto;align-items:center;gap:1.4rem;padding:1.5rem 1.8rem;background:var(--vellum);border-bottom:var(--rule-hair);transition:background .2s}
+.room-head:hover{background:var(--vellum-mid)}
+.room-sigil{width:62px;height:62px;border-radius:50%;background:var(--vellum-mid);display:flex;align-items:center;justify-content:center;border:1px solid rgba(184,131,40,.24);position:relative;transition:all .35s ease}
+.room-sigil svg{width:30px;height:30px;fill:none;stroke:var(--maroon);stroke-width:1.4}
+.room:hover .room-sigil{background:linear-gradient(145deg,rgba(184,131,40,.18) 0%,rgba(184,131,40,.08) 100%);border-color:var(--gold);transform:rotate(6deg) scale(1.05)}
+.room-title{font-family:var(--f-display);font-weight:500;font-size:1.55rem;color:var(--text);line-height:1.1;margin-bottom:.2rem}
+.room-title em{font-style:italic}
+.room-caption{font-family:var(--f-display);font-style:italic;font-size:.96rem;color:var(--stone);line-height:1.3}
+.room-progress{display:flex;flex-direction:column;align-items:flex-end;gap:.35rem;min-width:140px}
+.room-progress-num{font-family:var(--f-display);font-weight:400;font-size:1.4rem;color:var(--maroon);line-height:1}
+.room-progress-num em{font-style:italic;color:var(--stone)}
+.room-progress-label{font-family:var(--f-ui);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--stone)}
+.room-progress-bar{width:140px;height:3px;background:var(--vellum-mid);border-radius:2px;overflow:hidden}
+.room-progress-fill{height:100%;background:linear-gradient(90deg,var(--gold) 0%,var(--gold-lt) 100%);border-radius:2px;transition:width .5s ease}
+.room-body{padding:0;background:#fff}
+@media(max-width:640px){.room-head{grid-template-columns:54px 1fr;padding:1rem 1.1rem}.room-progress{display:none}.room-sigil{width:46px;height:46px}.room-sigil svg{width:22px;height:22px}}
 
 /* ── SIDEBAR CARDS ── */
 .j-keepsake{background:var(--vellum-mid);border:1px solid rgba(184,131,40,.28);padding:1.5rem;text-align:center;background-image:repeating-linear-gradient(45deg,transparent 0,transparent 10px,rgba(184,131,40,.03) 10px,rgba(184,131,40,.03) 20px);transition:transform .4s ease,box-shadow .4s ease}
@@ -1246,52 +1257,109 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
     <div class="loading">Loading your journey&hellip;</div>
   </div>
 
-  <!-- LIBRARY (per-session progress) -->
-  <div class="section-rule"></div>
-  <section class="library-room scroll-reveal" id="library-room">
-    <div class="library-room-head">
-      <div>
-        <div class="library-room-title">The <em>Library</em></div>
-        <div class="library-room-caption">Lectures watched, sessions completed, pages kept</div>
+  <div class="j-section-intro">
+    <div class="j-section-eyebrow">Four Rooms of Your Journey</div>
+    <h2 class="j-section-title">A record of <em>what you have walked through</em>.</h2>
+    <p class="j-section-kicker">Each room keeps the work you have done. Open one to see what you have saved, read, sung, and kept in mind.</p>
+  </div>
+
+  <div class="rooms">
+
+    <!-- LIBRARY (per-session progress) -->
+    <article class="room scroll-reveal" id="library-room">
+      <div class="room-head">
+        <div class="room-sigil">
+          <svg viewBox="0 0 24 24"><path d="M4 4v16h6V4H4zm6 0v16h4V4h-4zm4 0v16h6V4h-6z"/></svg>
+        </div>
+        <div>
+          <div class="room-title">The <em>Library</em></div>
+          <div class="room-caption">Lectures watched, sessions completed, pages kept</div>
+        </div>
+        <div class="room-progress">
+          <div class="room-progress-num" id="library-room-progress">0 <em>of 62</em></div>
+          <div class="room-progress-bar"><div class="room-progress-fill" id="library-room-progress-fill" style="width:0%"></div></div>
+          <div class="room-progress-label">sessions walked</div>
+        </div>
       </div>
-      <div class="library-room-progress" id="library-room-progress">0 <em>of 62</em></div>
-    </div>
-    <div class="library-room-progress-bar"><div class="library-room-progress-fill" id="library-room-progress-fill"></div></div>
-    <div id="library-groups"></div>
-  </section>
+      <div class="room-body">
+        <div id="library-groups"></div>
+      </div>
+    </article>
 
-  <!-- YOUR NOTES -->
-  <div class="section-rule"></div>
-  <div id="reading-notes-section" class="scroll-reveal" style="display:none">
-    <span class="section-label">Your Notes</span>
-    <div class="section-title">Saved verses &amp; reflections</div>
-    <div id="reading-notes-list"></div>
-    <div id="reading-notes-footer" style="display:none;margin-top:1rem;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap">
-      <span id="reading-notes-count" style="font-family:var(--f-display);font-style:italic;font-size:.95rem;color:var(--stone)"></span>
-      <a href="/my-journey-notes" style="font-family:var(--f-ui);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--maroon);border-bottom:1px solid rgba(123,29,42,.25);padding-bottom:.15rem;transition:letter-spacing .25s ease,color .2s">See all notes &rarr;</a>
-    </div>
-  </div>
+    <!-- YOUR NOTES -->
+    <article class="room scroll-reveal" id="reading-notes-section" style="display:none">
+      <div class="room-head">
+        <div class="room-sigil">
+          <svg viewBox="0 0 24 24"><path d="M5 3v18l7-4 7 4V3H5zm2 2h10v13.2l-5-2.85L7 18.2V5z"/></svg>
+        </div>
+        <div>
+          <div class="room-title">Your <em>Notes</em></div>
+          <div class="room-caption">Verses you have saved, notes you have written</div>
+        </div>
+        <div class="room-progress">
+          <div class="room-progress-num"><span id="reading-notes-head-count">&ndash;</span> <em>saved</em></div>
+          <div class="room-progress-bar"><div class="room-progress-fill" style="width:100%"></div></div>
+          <div class="room-progress-label">notes kept</div>
+        </div>
+      </div>
+      <div class="room-body">
+        <div id="reading-notes-list"></div>
+        <div id="reading-notes-footer" style="display:none;margin-top:0;padding:1rem 1.8rem;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap;border-top:var(--rule-hair);background:var(--vellum)">
+          <span id="reading-notes-count" style="font-family:var(--f-display);font-style:italic;font-size:.88rem;color:var(--stone)"></span>
+          <a href="/my-journey-notes" style="font-family:var(--f-ui);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--maroon);font-weight:500;transition:letter-spacing .3s ease,color .2s ease">See all notes &rarr;</a>
+        </div>
+      </div>
+    </article>
 
-  <!-- ICON CORNER -->
-  <div class="section-rule"></div>
-  <div id="icon-corner-section" class="scroll-reveal" style="display:none">
-    <span class="section-label">Icon Corner</span>
-    <div class="section-title">Saints you are keeping</div>
-    <div id="icon-corner-grid"></div>
-    <div id="icon-corner-footer" style="display:none;margin-top:1rem;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap">
-      <span id="icon-corner-count" style="font-family:var(--f-display);font-style:italic;font-size:.95rem;color:var(--stone)"></span>
-      <a href="/saints" style="font-family:var(--f-ui);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--maroon);border-bottom:1px solid rgba(123,29,42,.25);padding-bottom:.15rem">Keep another saint &rarr;</a>
-    </div>
-  </div>
+    <!-- ICON CORNER -->
+    <article class="room scroll-reveal" id="icon-corner-section" style="display:none">
+      <div class="room-head">
+        <div class="room-sigil">
+          <svg viewBox="0 0 24 24"><path d="M12 2L4 6v6c0 4.5 3.2 8.6 8 10 4.8-1.4 8-5.5 8-10V6l-8-4zm0 2.2l6 3v4.8c0 3.6-2.5 6.9-6 8-3.5-1.1-6-4.4-6-8V7.2l6-3z"/><path d="M12 8v6M9 11h6" stroke-linecap="round"/></svg>
+        </div>
+        <div>
+          <div class="room-title">The <em>Icon Corner</em></div>
+          <div class="room-caption">Saints you have kept close, feasts you will mark</div>
+        </div>
+        <div class="room-progress">
+          <div class="room-progress-num"><span id="icon-corner-head-count">&ndash;</span> <em>saints</em></div>
+          <div class="room-progress-bar"><div class="room-progress-fill" id="icon-corner-head-fill" style="width:50%"></div></div>
+          <div class="room-progress-label">saints kept</div>
+        </div>
+      </div>
+      <div class="room-body">
+        <div id="icon-corner-grid"></div>
+        <div id="icon-corner-footer" style="display:none;margin-top:0;padding:1rem 1.8rem;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap;border-top:var(--rule-hair);background:var(--vellum)">
+          <span id="icon-corner-count" style="font-family:var(--f-display);font-style:italic;font-size:.88rem;color:var(--stone)"></span>
+          <a href="/saints" style="font-family:var(--f-ui);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--maroon);font-weight:500">Keep another saint &rarr;</a>
+        </div>
+      </div>
+    </article>
 
-  <!-- PRAYER RULE -->
-  <div class="section-rule"></div>
-  <div id="rule-section" class="scroll-reveal" style="display:none">
-    <span class="section-label">My Rule of Prayer</span>
-    <div class="section-title">Prayer Rule</div>
-    <div id="rule-list"></div>
-    <a href="/prayers" class="action-btn primary" style="display:inline-block;margin-top:.25rem;text-decoration:none;">Pray &rarr;</a>
-    <div class="section-rule"></div>
+    <!-- PRAYER RULE -->
+    <article class="room scroll-reveal" id="rule-section" style="display:none">
+      <div class="room-head">
+        <div class="room-sigil">
+          <svg viewBox="0 0 24 24"><path d="M12 3v18M6 9h12M7.5 9c0 2.5 1.8 4.5 4.5 4.5s4.5-2 4.5-4.5M8 21h8" stroke-linecap="round"/></svg>
+        </div>
+        <div>
+          <div class="room-title">Prayer <em>Rule</em></div>
+          <div class="room-caption">Your rule of prayer, fasts observed, tones learned</div>
+        </div>
+        <div class="room-progress">
+          <div class="room-progress-num"><span id="rule-head-count">&ndash;</span> <em>prayers</em></div>
+          <div class="room-progress-bar"><div class="room-progress-fill" style="width:75%"></div></div>
+          <div class="room-progress-label">in your rule</div>
+        </div>
+      </div>
+      <div class="room-body">
+        <div id="rule-list"></div>
+        <div style="padding:1rem 1.8rem;border-top:var(--rule-hair)">
+          <a href="/prayers" class="action-btn primary" style="display:inline-block;text-decoration:none;">Pray &rarr;</a>
+        </div>
+      </div>
+    </article>
+
   </div>
 
   <!-- ACTIONS -->
@@ -1684,6 +1752,8 @@ function renderRule() {
   html += '</div>';
 
   ruleList.innerHTML = html;
+  var ruleHeadCount = document.getElementById('rule-head-count');
+  if (ruleHeadCount) ruleHeadCount.textContent = rule.length;
 }
 
 // ── SUMMARY PRINT ──
@@ -2336,6 +2406,9 @@ function renderReadingNotes() {
 
   list.innerHTML = html;
 
+  var headCount = document.getElementById('reading-notes-head-count');
+  if (headCount) headCount.textContent = flat.length;
+
   if (footer && countEl) {
     footer.style.display = 'flex';
     if (flat.length > 3) {
@@ -2824,6 +2897,9 @@ function renderIconCorner() {
   });
   html += '</div>';
   grid.innerHTML = html;
+
+  var headCount = document.getElementById('icon-corner-head-count');
+  if (headCount) headCount.textContent = list.length;
 
   if (footer && countEl) {
     footer.style.display = 'flex';
