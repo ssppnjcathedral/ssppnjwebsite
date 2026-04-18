@@ -2153,6 +2153,74 @@ body {
   align-self: center;
 }
 .pr2-ack-btn:hover { background: var(--maroon); color: var(--vellum); border-color: var(--maroon); }
+
+/* Aging indicator */
+.pr2-aging { border-left: 3px solid var(--gold); }
+.pr2-aging-old { border-left: 3px solid var(--maroon); }
+.pr2-age-badge {
+  font-family: var(--f-data); font-size: .6rem; font-weight: 600;
+  padding: .12rem .45rem; border-radius: 100px; white-space: nowrap;
+  display: inline-block; margin-left: .35rem; vertical-align: middle;
+}
+.pr2-age-warn { background: rgba(245,158,11,.12); color: #7a5a1a; }
+.pr2-age-urgent { background: rgba(123,29,42,.1); color: var(--maroon); }
+
+/* Bulk acknowledge bar */
+.pr2-bulk-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: .5rem .75rem; margin-bottom: .65rem;
+  background: rgba(255,255,255,.6); border: var(--rule-faint);
+}
+.pr2-bulk-left { display: flex; align-items: center; gap: .65rem; }
+.pr2-bulk-cb-wrap {
+  display: flex; align-items: center; gap: .35rem;
+  font-family: var(--f-data); font-size: .72rem; color: var(--stone);
+  cursor: pointer; user-select: none;
+}
+.pr2-bulk-cb {
+  width: 15px; height: 15px; accent-color: var(--maroon); cursor: pointer;
+}
+.pr2-bulk-count {
+  font-family: var(--f-data); font-size: .68rem; color: var(--stone);
+}
+.pr2-bulk-ack {
+  font-family: var(--f-data); font-size: .68rem; font-weight: 600;
+  color: var(--vellum); background: var(--maroon); border: none;
+  padding: .35rem .85rem; border-radius: 4px; cursor: pointer;
+  transition: background .15s, transform .1s; white-space: nowrap;
+}
+.pr2-bulk-ack:hover { background: var(--maroon-deep); }
+.pr2-bulk-ack:active { transform: scale(.96); }
+.pr2-bulk-ack:disabled { opacity: .4; cursor: default; transform: none; }
+
+/* Card checkbox for bulk select */
+.pr2-card-cb {
+  width: 15px; height: 15px; accent-color: var(--maroon);
+  flex-shrink: 0; cursor: pointer; margin-top: .2rem;
+}
+
+/* Quick-add button on request cards */
+.pr2-quick-add {
+  font-family: var(--f-data); font-size: .6rem; font-weight: 500;
+  color: var(--verdigris); background: none; border: 1px solid rgba(61,107,94,.25);
+  padding: .2rem .5rem; border-radius: 3px; cursor: pointer;
+  white-space: nowrap; transition: all .15s; margin-top: .3rem;
+  display: inline-block;
+}
+.pr2-quick-add:hover { background: var(--verdigris); color: var(--vellum); border-color: var(--verdigris); }
+
+/* Intercession list sections */
+.pl-section-head {
+  font-family: var(--f-ui); font-size: max(.48rem, 9px);
+  letter-spacing: .18em; text-transform: uppercase;
+  color: var(--stone); padding: .55rem 0 .3rem;
+  border-bottom: 1px solid rgba(123,29,42,.08);
+  margin-bottom: .15rem; margin-top: .75rem;
+}
+.pl-section-head:first-child { margin-top: 0; }
+.pl-departed-entry span { color: var(--stone); }
+.pl-departed-entry span::before { color: rgba(123,29,42,.3); }
+
 .pr2-card-acked { opacity: .8; }
 .pr2-acked-btn {
   width: 30px; height: 30px;
@@ -2627,6 +2695,7 @@ body {
       <div class="prayer-cols">
         <div>
           <span class="prayer-col-head">New Requests</span>
+          <div id="prayer-bulk-bar" style="display:none"></div>
           <div id="prayer-requests"></div>
         </div>
         <div>
@@ -2642,10 +2711,14 @@ body {
         </div>
         <div>
           <span class="prayer-col-head">Published Intercession List</span>
-          <div id="prayer-list-entries" style="max-height:420px;overflow-y:auto;padding-right:.25rem"></div>
+          <div id="prayer-list-entries" style="max-height:480px;overflow-y:auto;padding-right:.25rem"></div>
           <div class="pl-add-row" style="margin-top:.75rem">
             <input id="pl-new-name" placeholder="Add a name..." onkeydown="if(event.key==='Enter')addNameToList()">
-            <button onclick="addNameToList()" data-tip="Add this name to the published intercession list on the website">Add</button>
+            <button onclick="addNameToList()" data-tip="Add this name to the living intercession list">Add</button>
+          </div>
+          <div class="pl-add-row" style="margin-top:.35rem">
+            <input id="pl-new-departed" placeholder="Add departed name..." onkeydown="if(event.key==='Enter')addDepartedToList()">
+            <button onclick="addDepartedToList()" data-tip="Add to the departed section (prefixed 'Newly departed')" style="background:var(--stone);border-color:var(--stone)">Add Departed</button>
           </div>
           <div class="pl-note">Changes publish immediately to the site.</div>
         </div>
@@ -3468,6 +3541,27 @@ function bindFlockControls() {
 }
 
 // ── PRAYER REQUESTS ──
+var bulkSelectedIds = [];
+
+function getAgeDays(dateStr) {
+  if (!dateStr) return 0;
+  var then = new Date(dateStr);
+  var now = new Date();
+  return Math.floor((now - then) / 86400000);
+}
+
+function ageClass(days) {
+  if (days >= 14) return 'pr2-aging-old';
+  if (days >= 7) return 'pr2-aging';
+  return '';
+}
+
+function ageBadge(days) {
+  if (days >= 14) return '<span class="pr2-age-badge pr2-age-urgent">' + days + 'd</span>';
+  if (days >= 7) return '<span class="pr2-age-badge pr2-age-warn">' + days + 'd</span>';
+  return '';
+}
+
 function renderPrayerRequests(requests) {
   var active = requests.filter(function(r) { return !r.acknowledged && !r.dismissed; });
   var acknowledged = requests.filter(function(r) { return r.acknowledged && !r.dismissed; });
@@ -3476,26 +3570,95 @@ function renderPrayerRequests(requests) {
   var activeContainer = document.getElementById('prayer-requests');
   var archiveContainer = document.getElementById('prayer-archived');
   var historyWrap = document.getElementById('prayer-history-wrap');
+  var bulkBar = document.getElementById('prayer-bulk-bar');
+
+  // Clean up bulk selection (remove IDs no longer in active)
+  var activeIds = active.map(function(r) { return String(r.id); });
+  bulkSelectedIds = bulkSelectedIds.filter(function(id) { return activeIds.indexOf(id) !== -1; });
+
+  // Bulk bar
+  if (active.length > 1) {
+    bulkBar.style.display = '';
+    bulkBar.innerHTML = '<div class="pr2-bulk-bar">' +
+      '<div class="pr2-bulk-left">' +
+        '<label class="pr2-bulk-cb-wrap"><input type="checkbox" class="pr2-bulk-cb" id="bulk-select-all" ' +
+          (bulkSelectedIds.length === active.length ? 'checked' : '') +
+          '> Select all</label>' +
+        '<span class="pr2-bulk-count" id="bulk-count">' +
+          (bulkSelectedIds.length > 0 ? bulkSelectedIds.length + ' selected' : '') +
+        '</span>' +
+      '</div>' +
+      '<button class="pr2-bulk-ack" id="bulk-ack-btn" ' +
+        (bulkSelectedIds.length === 0 ? 'disabled' : '') +
+        '>Acknowledge ' + (bulkSelectedIds.length > 0 ? '(' + bulkSelectedIds.length + ')' : '') + '</button>' +
+    '</div>';
+    document.getElementById('bulk-select-all').addEventListener('change', function(e) {
+      if (e.target.checked) {
+        bulkSelectedIds = active.map(function(r) { return String(r.id); });
+      } else {
+        bulkSelectedIds = [];
+      }
+      renderPrayerRequests(allPrayerRequests);
+    });
+    document.getElementById('bulk-ack-btn').addEventListener('click', function() {
+      if (bulkSelectedIds.length > 0) bulkAcknowledge();
+    });
+  } else {
+    bulkBar.style.display = 'none';
+    bulkBar.innerHTML = '';
+  }
 
   // New requests
   if (active.length === 0) {
     activeContainer.innerHTML = '<div class="p-empty" style="font-style:italic;color:var(--stone);padding:.75rem 0;font-size:.9rem">No pending requests.</div>';
   } else {
     activeContainer.innerHTML = active.map(function(r) {
-      return '<div class="pr2-card" id="pr-' + r.id + '">' +
+      var days = getAgeDays(r.created_at || r.submitted_at);
+      var aging = ageClass(days);
+      var badge = ageBadge(days);
+      var checked = bulkSelectedIds.indexOf(String(r.id)) !== -1;
+      var name = r.name || 'A parishioner';
+      return '<div class="pr2-card ' + aging + '" id="pr-' + r.id + '">' +
+        (active.length > 1 ? '<input type="checkbox" class="pr2-card-cb" data-bulk-id="' + r.id + '" ' + (checked ? 'checked' : '') + '>' : '') +
         '<div class="pr2-icon pr2-icon-cross">&#x2020;</div>' +
         '<div class="pr2-body">' +
-          '<div class="pr2-name">' + escHtml(r.name || 'A parishioner') + '</div>' +
+          '<div class="pr2-name">' + escHtml(name) + badge + '</div>' +
           '<div class="pr2-text">' + escHtml(r.intention || r.request_text || '') + '</div>' +
           '<div class="pr2-submitted">Submitted ' + fmtDateShort(r.created_at || r.submitted_at) + '</div>' +
+          '<button class="pr2-quick-add" data-quick-name="' + escHtml(name) + '" data-tip="Add this name to the published intercession list">+ Add to list</button>' +
         '</div>' +
         '<button class="pr2-ack-btn" data-ack="' + r.id + '" data-tip="Mark as acknowledged">Acknowledge</button>' +
       '</div>';
     }).join('');
+
     activeContainer.querySelectorAll('[data-ack]').forEach(function(btn) {
       btn.addEventListener('click', function(e) {
         e.stopPropagation();
         acknowledgeRequest(btn.getAttribute('data-ack'));
+      });
+    });
+    activeContainer.querySelectorAll('.pr2-card-cb').forEach(function(cb) {
+      cb.addEventListener('change', function() {
+        var id = cb.getAttribute('data-bulk-id');
+        if (cb.checked) {
+          if (bulkSelectedIds.indexOf(id) === -1) bulkSelectedIds.push(id);
+        } else {
+          bulkSelectedIds = bulkSelectedIds.filter(function(x) { return x !== id; });
+        }
+        renderPrayerRequests(allPrayerRequests);
+      });
+    });
+    activeContainer.querySelectorAll('.pr2-quick-add').forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var name = btn.getAttribute('data-quick-name');
+        if (name && name !== 'A parishioner') {
+          addToList(name);
+          showToast(name + ' added to intercession list.');
+          btn.textContent = 'Added';
+          btn.disabled = true;
+          btn.style.opacity = '.5';
+        }
       });
     });
   }
@@ -3539,11 +3702,34 @@ async function acknowledgeRequest(id) {
     ackPayload.acknowledged_by = currentUser.id;
   }
   await _supabase.from('prayer_requests').update(ackPayload).eq('id', id);
-  var req = allPrayerRequests.find(function(r) { return r.id === id; });
+  var req = allPrayerRequests.find(function(r) { return String(r.id) === String(id); });
   if (req) { req.acknowledged = true; req.acknowledged_at = now; }
+  bulkSelectedIds = bulkSelectedIds.filter(function(x) { return x !== String(id); });
   renderPrayerRequests(allPrayerRequests);
   renderAttentionStrip(allPrayerRequests);
   showToast('Request acknowledged.');
+}
+
+async function bulkAcknowledge() {
+  if (bulkSelectedIds.length === 0) return;
+  var now = new Date().toISOString();
+  var ackPayload = { acknowledged: true, acknowledged_at: now };
+  if (currentUser && currentUser.id && currentUser.id !== 'dev-user') {
+    ackPayload.acknowledged_by = currentUser.id;
+  }
+  var ids = bulkSelectedIds.map(function(id) { return parseInt(id) || id; });
+  await _supabase.from('prayer_requests').update(ackPayload).in('id', ids);
+  var count = bulkSelectedIds.length;
+  allPrayerRequests.forEach(function(r) {
+    if (bulkSelectedIds.indexOf(String(r.id)) !== -1) {
+      r.acknowledged = true;
+      r.acknowledged_at = now;
+    }
+  });
+  bulkSelectedIds = [];
+  renderPrayerRequests(allPrayerRequests);
+  renderAttentionStrip(allPrayerRequests);
+  showToast(count + ' requests acknowledged.');
 }
 
 async function dismissRequest(id) {
@@ -3591,17 +3777,54 @@ async function loadPrayerList() {
   renderPrayerList();
 }
 
+function isDepartedName(name) {
+  var lower = (typeof name === 'string' ? name : (name.name || '')).toLowerCase();
+  return lower.indexOf('departed') !== -1 || lower.indexOf('repose') !== -1 ||
+         lower.indexOf('memory') !== -1 || lower.indexOf('reposed') !== -1;
+}
+
 function renderPrayerList() {
   var container = document.getElementById('prayer-list-entries');
   if (!prayerListData.names || prayerListData.names.length === 0) {
     container.innerHTML = '<div class="p-empty">No names on the list.</div>';
     return;
   }
-  container.innerHTML = prayerListData.names.map(function(entry, i) {
-    // Decap may save as objects {name:"..."} or plain strings depending on widget config
+
+  var living = [];
+  var departed = [];
+  prayerListData.names.forEach(function(entry, i) {
     var name = typeof entry === 'string' ? entry : (entry.name || '');
-    return '<div class="pl-entry"><span>' + escHtml(name) + '</span><button data-rm="' + i + '" data-tip="Remove this name from the intercession list">&times;</button></div>';
-  }).join('');
+    var item = { name: name, index: i };
+    if (isDepartedName(name)) {
+      departed.push(item);
+    } else {
+      living.push(item);
+    }
+  });
+
+  var html = '';
+
+  // Living section
+  html += '<div class="pl-section-head">For the Living</div>';
+  if (living.length === 0) {
+    html += '<div class="p-empty" style="padding:.4rem 0;font-size:.88rem">No living names.</div>';
+  } else {
+    html += living.map(function(item) {
+      return '<div class="pl-entry"><span>' + escHtml(item.name) + '</span><button data-rm="' + item.index + '" data-tip="Remove this name from the intercession list">&times;</button></div>';
+    }).join('');
+  }
+
+  // Departed section
+  html += '<div class="pl-section-head">For the Departed</div>';
+  if (departed.length === 0) {
+    html += '<div class="p-empty" style="padding:.4rem 0;font-size:.88rem">No departed names.</div>';
+  } else {
+    html += departed.map(function(item) {
+      return '<div class="pl-entry pl-departed-entry"><span>' + escHtml(item.name) + '</span><button data-rm="' + item.index + '" data-tip="Remove this name from the intercession list">&times;</button></div>';
+    }).join('');
+  }
+
+  container.innerHTML = html;
   container.querySelectorAll('[data-rm]').forEach(function(btn) {
     btn.addEventListener('click', function() {
       removeFromList(parseInt(btn.getAttribute('data-rm')));
@@ -3621,6 +3844,17 @@ function addNameToList() {
   var name = input.value.trim();
   if (!name) return;
   prayerListData.names.push(name);
+  input.value = '';
+  renderPrayerList();
+  ensureGhToken(function() { doSaveList(function() { prayerListData.names.pop(); }); });
+}
+
+function addDepartedToList() {
+  var input = document.getElementById('pl-new-departed');
+  var name = input.value.trim();
+  if (!name) return;
+  var fullName = 'Newly departed ' + name;
+  prayerListData.names.push(fullName);
   input.value = '';
   renderPrayerList();
   ensureGhToken(function() { doSaveList(function() { prayerListData.names.pop(); }); });
