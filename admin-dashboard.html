@@ -3592,6 +3592,9 @@ function renderFlockCards() {
       '</div>' +
       '<div class="drawer-actions">' +
         '<button class="btn btn-primary btn-sm" onclick="event.stopPropagation();openRecord(\'' + p.id + '\')">View Full Record</button>' +
+        (p.user_id
+          ? '<button class="btn btn-sm" style="margin-left:.5rem" data-uid="' + escHtml(p.user_id) + '" data-name="' + escHtml(firstName + ' ' + lastName) + '" onclick="event.stopPropagation();openJourneyNoteModal(this.dataset.uid, this.dataset.name)">Leave a journey note</button>'
+          : '') +
       '</div>';
 
     var rowHtml =
@@ -5008,8 +5011,168 @@ document.addEventListener('click', function(e) {
   });
 })();
 
+// ── JOURNEY NOTE COMPOSER (Fr. Solomon → parishioner) ──
+var JOURNEY_NOTE_TEMPLATES = [
+  { label: 'Catechesis check-in', body: 'You are well into the Catechesis series. Before our next session I would like to sit with you about chrismation. Call the parish office any afternoon.' },
+  { label: 'Missed you Sunday', body: 'I noticed you were not at Liturgy this Sunday. I hope all is well. Please call the parish office if there is anything I can pray with you about.' },
+  { label: 'Encouragement', body: 'Keep going. The fact that you are returning, week after week, is itself the prayer. The Church holds you.' },
+  { label: 'Happy name day', body: 'Many years on your name day. May your patron saint pray for you and your household.' },
+  { label: 'After confession', body: 'It was a grace to hear your confession. Carry the words I gave you into the week. Call any time you need.' }
+];
+
+var _jnTargetUserId = null;
+var _jnExisting = null;
+
+async function openJourneyNoteModal(userId, displayName) {
+  _jnTargetUserId = userId;
+  _jnExisting = null;
+  var modal = document.getElementById('jn-modal');
+  document.getElementById('jn-modal-name').textContent = displayName || 'Parishioner';
+  document.getElementById('jn-text').value = '';
+  document.getElementById('jn-status').textContent = 'Loading...';
+  modal.classList.add('open');
+
+  try {
+    var r = await _supabase.from('journey_notes').select('*').eq('user_id', userId).maybeSingle();
+    if (r.data) {
+      _jnExisting = r.data;
+      document.getElementById('jn-text').value = r.data.note_text || '';
+      var w = r.data.written_at ? new Date(r.data.written_at) : null;
+      var read = r.data.read_at ? new Date(r.data.read_at) : null;
+      var statusBits = [];
+      if (w) statusBits.push('Left ' + w.toLocaleDateString('en-US', { month:'short', day:'numeric' }));
+      statusBits.push(read ? 'Read ' + read.toLocaleDateString('en-US', { month:'short', day:'numeric' }) : 'Unread');
+      if (r.data.kept_by_parishioner) statusBits.push('Kept');
+      document.getElementById('jn-status').textContent = statusBits.join(' \u00B7 ');
+    } else {
+      document.getElementById('jn-status').textContent = 'No note yet';
+    }
+  } catch (e) {
+    document.getElementById('jn-status').textContent = 'Error loading';
+  }
+  setTimeout(function(){ document.getElementById('jn-text').focus(); }, 80);
+}
+
+function closeJourneyNoteModal(ev) {
+  if (ev && ev.target && ev.target.id !== 'jn-modal') return;
+  document.getElementById('jn-modal').classList.remove('open');
+  _jnTargetUserId = null; _jnExisting = null;
+}
+
+function jnApplyTemplate(idx) {
+  var tpl = JOURNEY_NOTE_TEMPLATES[idx];
+  if (!tpl) return;
+  var ta = document.getElementById('jn-text');
+  ta.value = tpl.body;
+  ta.focus();
+}
+
+async function saveJourneyNote() {
+  var text = (document.getElementById('jn-text').value || '').trim();
+  var btn = document.getElementById('jn-save');
+  if (!text || !_jnTargetUserId) return;
+  btn.disabled = true; btn.textContent = 'Saving...';
+  try {
+    var user = await getCurrentUser();
+    var writtenBy = (user && user.email) || 'Fr. Solomon';
+    var r = await _supabase.from('journey_notes').upsert({
+      user_id: _jnTargetUserId,
+      note_text: text,
+      written_by: writtenBy,
+      written_at: new Date().toISOString(),
+      read_at: null,
+      kept_by_parishioner: false
+    }, { onConflict: 'user_id' });
+    if (r.error) throw r.error;
+    btn.disabled = false; btn.textContent = 'Save & send';
+    closeJourneyNoteModal();
+    showToast('Note saved');
+  } catch (e) {
+    btn.disabled = false; btn.textContent = 'Save & send';
+    alert('Could not save note: ' + (e.message || e));
+    console.error(e);
+  }
+}
+
+async function archiveJourneyNote() {
+  if (!_jnExisting || !_jnTargetUserId) return;
+  if (!confirm('Archive this note? It will be moved to history and the parishioner will no longer see it.')) return;
+  try {
+    await _supabase.from('journey_note_history').insert({
+      user_id: _jnTargetUserId,
+      note_text: _jnExisting.note_text,
+      written_by: _jnExisting.written_by,
+      written_at: _jnExisting.written_at
+    });
+    var r = await _supabase.from('journey_notes').delete().eq('user_id', _jnTargetUserId);
+    if (r.error) throw r.error;
+    closeJourneyNoteModal();
+    showToast('Archived');
+  } catch (e) {
+    alert('Could not archive: ' + (e.message || e));
+  }
+}
+
 // ── INIT ──
 initAuth();
+</script>
+
+<!-- ── JOURNEY NOTE COMPOSER MODAL ── -->
+<style>
+.jn-modal{position:fixed;inset:0;background:rgba(21,8,4,.78);z-index:600;display:none;align-items:center;justify-content:center;padding:1.5rem}
+.jn-modal.open{display:flex;animation:jnFade .2s ease}
+@keyframes jnFade{from{opacity:0}to{opacity:1}}
+.jn-card{background:var(--vellum);max-width:560px;width:100%;border:1px solid rgba(184,131,40,.22);box-shadow:0 32px 80px -16px rgba(0,0,0,.5);padding:1.75rem 2rem;animation:jnSlide .26s cubic-bezier(.22,.68,0,1.1)}
+@keyframes jnSlide{from{transform:translateY(14px);opacity:0}to{transform:translateY(0);opacity:1}}
+.jn-head-row{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;margin-bottom:.25rem}
+.jn-head{font-family:var(--f-display);font-weight:300;font-size:1.55rem;color:var(--apse)}
+.jn-head em{font-style:italic;color:var(--maroon)}
+.jn-status{font-family:var(--f-ui);font-size:.55rem;letter-spacing:.16em;text-transform:uppercase;color:var(--stone)}
+.jn-sub{font-family:var(--f-display);font-style:italic;font-size:.95rem;color:var(--stone);margin-bottom:1.25rem}
+.jn-templates{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.75rem}
+.jn-tpl-btn{font-family:var(--f-ui);font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;padding:.4rem .7rem;background:transparent;border:1px solid rgba(184,131,40,.4);color:var(--stone);cursor:pointer;border-radius:999px;transition:all .15s}
+.jn-tpl-btn:hover{background:var(--maroon);border-color:var(--maroon);color:var(--vellum)}
+.jn-textarea{width:100%;min-height:160px;padding:.85rem 1rem;background:#fff;border:1px solid rgba(184,131,40,.3);font-family:var(--f-body);font-size:1rem;color:var(--ink);outline:none;resize:vertical;line-height:1.6}
+.jn-textarea:focus{border-color:var(--maroon);box-shadow:0 0 0 3px rgba(123,29,42,.1)}
+.jn-actions{display:flex;justify-content:space-between;align-items:center;gap:.75rem;margin-top:1.1rem}
+.jn-actions-right{display:flex;gap:.55rem}
+.jn-btn{padding:.55rem 1.1rem;font-family:var(--f-ui);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;border:1px solid rgba(123,29,42,.22);background:transparent;color:var(--apse);transition:all .18s;border-radius:2px}
+.jn-btn:hover{background:var(--maroon);border-color:var(--maroon);color:var(--vellum)}
+.jn-btn.primary{background:var(--maroon);border-color:var(--maroon);color:var(--vellum)}
+.jn-btn.primary:hover{background:var(--maroon-deep)}
+.jn-btn.danger:hover{background:var(--maroon-deep);border-color:var(--maroon-deep)}
+</style>
+<div class="jn-modal" id="jn-modal" onclick="closeJourneyNoteModal(event)">
+  <div class="jn-card" onclick="event.stopPropagation()">
+    <div class="jn-head-row">
+      <div class="jn-head">A note for <em id="jn-modal-name">parishioner</em></div>
+      <div class="jn-status" id="jn-status"></div>
+    </div>
+    <div class="jn-sub">Warm and specific. They see this on their My Journey page.</div>
+    <div class="jn-templates" id="jn-templates"></div>
+    <textarea class="jn-textarea" id="jn-text" placeholder="Write a short note&hellip;"></textarea>
+    <div class="jn-actions">
+      <button class="jn-btn danger" onclick="archiveJourneyNote()">Archive current</button>
+      <div class="jn-actions-right">
+        <button class="jn-btn" onclick="closeJourneyNoteModal()">Cancel</button>
+        <button class="jn-btn primary" id="jn-save" onclick="saveJourneyNote()">Save &amp; send</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var row = document.getElementById('jn-templates');
+  if (!row) return;
+  JOURNEY_NOTE_TEMPLATES.forEach(function(tpl, i){
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'jn-tpl-btn';
+    b.textContent = tpl.label;
+    b.onclick = function(){ jnApplyTemplate(i); };
+    row.appendChild(b);
+  });
+})();
 </script>
 
 <!-- ── HISTORY DRAWER ── -->
