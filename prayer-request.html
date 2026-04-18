@@ -138,18 +138,147 @@ footer .btn-outline:hover{background:rgba(246,241,232,.15);color:#fff;border-col
 
 /* ── PRAYER REQUEST PAGE ── */
 .prayer-body{max-width:600px;margin:0 auto;padding:4rem 2rem 5rem}
-.pastoral-note{font-family:var(--f-body);font-size:1.05rem;color:var(--ink);line-height:1.75;margin-bottom:2.5rem;padding-bottom:2rem;border-bottom:var(--rule-hair)}
-.form-group{margin-bottom:1.5rem}
-.form-label{font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.5rem}
-.form-input,.form-textarea{width:100%;background:transparent;border:1px solid rgba(123,29,42,.25);color:var(--text);font-family:var(--f-body);font-size:1rem;padding:.75rem 1rem;outline:none;transition:border-color .2s;border-radius:0}
-.form-input:focus,.form-textarea:focus{border-color:var(--maroon)}
-.form-input::placeholder,.form-textarea::placeholder{color:rgba(30,21,16,.35)}
-.form-textarea{min-height:140px;resize:vertical;line-height:1.7}
-.form-submit{font-family:var(--f-ui);font-size:.74rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--vellum);background:var(--maroon);border:1px solid var(--maroon);padding:.9rem 3rem;cursor:pointer;transition:background .2s}
-.form-submit:hover{background:var(--maroon-deep)}
-.form-toggle{font-family:var(--f-ui);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;padding:.55rem 1.25rem;border:1px solid var(--maroon);cursor:pointer;transition:all .18s}
+.pastoral-note{
+  font-family:var(--f-body);font-size:1.05rem;color:var(--ink);line-height:1.75;
+  margin-bottom:2.5rem;padding-bottom:2rem;border-bottom:var(--rule-hair);
+  opacity:0;transform:translateY(16px);animation:prFadeUp .6s .2s ease forwards;
+}
+@keyframes prFadeUp {
+  to { opacity:1; transform:translateY(0); }
+}
+@keyframes prFadeIn {
+  from { opacity:0; transform:translateY(12px); }
+  to { opacity:1; transform:translateY(0); }
+}
+@keyframes prSuccessIn {
+  0% { opacity:0; transform:scale(.95) translateY(20px); }
+  100% { opacity:1; transform:scale(1) translateY(0); }
+}
+@keyframes prCrossFloat {
+  0%,100% { transform:translateY(0); }
+  50% { transform:translateY(-6px); }
+}
+@keyframes prShake {
+  0%,100% { transform:translateX(0); }
+  20%,60% { transform:translateX(-4px); }
+  40%,80% { transform:translateX(4px); }
+}
+@keyframes prPulse {
+  0% { box-shadow:0 0 0 0 rgba(123,29,42,.3); }
+  70% { box-shadow:0 0 0 10px rgba(123,29,42,0); }
+  100% { box-shadow:0 0 0 0 rgba(123,29,42,0); }
+}
+
+/* Form groups with staggered entrance */
+#prayer-form-section .form-group {
+  opacity:0; transform:translateY(16px);
+  animation:prFadeUp .5s ease forwards;
+}
+#prayer-form-section .form-group:nth-child(1) { animation-delay:.3s; }
+#prayer-form-section .form-group:nth-child(2) { animation-delay:.4s; }
+#prayer-form-section .form-group:nth-child(3) { animation-delay:.5s; }
+#prayer-form-section .pr-submit-wrap {
+  opacity:0; transform:translateY(16px);
+  animation:prFadeUp .5s .6s ease forwards;
+}
+
+.form-group{margin-bottom:1.75rem}
+.form-label{
+  font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.5rem;
+  transition:color .2s;
+}
+.form-group:focus-within .form-label { color:var(--maroon); }
+.form-input,.form-textarea{
+  width:100%;background:#fff;
+  border:1px solid rgba(123,29,42,.18);color:var(--text);
+  font-family:var(--f-body);font-size:1.05rem;padding:.85rem 1.1rem;
+  outline:none;transition:border-color .25s,box-shadow .25s,background .25s;
+  border-radius:0;
+}
+.form-input:focus,.form-textarea:focus{
+  border-color:var(--maroon);
+  box-shadow:0 0 0 3px rgba(123,29,42,.06);
+  background:rgba(255,255,255,1);
+}
+.form-input::placeholder,.form-textarea::placeholder{color:rgba(30,21,16,.3);transition:opacity .2s}
+.form-input:focus::placeholder,.form-textarea:focus::placeholder{opacity:.5}
+.form-textarea{min-height:160px;resize:vertical;line-height:1.7}
+
+/* Character count */
+.pr-char-count{
+  font-family:var(--f-ui);font-size:.6rem;letter-spacing:.06em;
+  color:var(--stone-lt,rgba(122,102,72,.5));text-align:right;
+  margin-top:.3rem;transition:color .2s;
+}
+.pr-char-count.near-limit{color:var(--gold)}
+.pr-char-count.at-limit{color:var(--maroon)}
+
+/* Toggle buttons */
+.form-toggle-group{display:flex;gap:0;margin-top:.35rem;border:1px solid rgba(123,29,42,.25);display:inline-flex}
+.form-toggle{
+  font-family:var(--f-ui);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;
+  padding:.65rem 1.5rem;border:none;cursor:pointer;
+  transition:all .25s cubic-bezier(.22,.68,0,1);
+  position:relative;overflow:hidden;
+}
 .form-toggle.active{background:var(--maroon);color:var(--vellum)}
 .form-toggle:not(.active){background:transparent;color:var(--maroon)}
+.form-toggle:not(.active):hover{background:rgba(123,29,42,.05)}
+.form-toggle::after{
+  content:'';position:absolute;inset:0;background:rgba(255,255,255,.15);
+  transform:scaleX(0);transform-origin:left;transition:transform .25s ease;
+}
+.form-toggle:active::after{transform:scaleX(1)}
+
+/* Submit button */
+.form-submit{
+  font-family:var(--f-ui);font-size:.74rem;font-weight:600;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--vellum);background:var(--maroon);
+  border:1px solid var(--maroon);padding:1rem 3.5rem;cursor:pointer;
+  transition:all .25s cubic-bezier(.22,.68,0,1);position:relative;overflow:hidden;
+  width:100%;
+}
+.form-submit:hover{
+  background:var(--maroon-deep);transform:translateY(-1px);
+  box-shadow:0 4px 16px rgba(123,29,42,.2);
+}
+.form-submit:active{transform:translateY(0) scale(.98);transition-duration:.08s}
+.form-submit:disabled{opacity:.6;cursor:not-allowed;transform:none;box-shadow:none}
+.form-submit.submitting{animation:prPulse 1.2s ease infinite}
+
+/* Error shake */
+.form-input.error,.form-textarea.error{
+  border-color:var(--maroon);animation:prShake .4s ease;
+}
+
+/* Success state */
+.pr-success{
+  text-align:center;padding:3rem 0;
+  animation:prSuccessIn .6s cubic-bezier(.22,.68,0,1) forwards;
+}
+.pr-success-cross{
+  font-size:2.2rem;opacity:.25;margin-bottom:1.25rem;display:block;
+  animation:prCrossFloat 3s ease-in-out infinite;
+}
+.pr-success h3{
+  font-family:var(--f-display);font-weight:400;font-size:1.65rem;color:var(--text);
+  margin-bottom:.65rem;
+}
+.pr-success p{
+  font-family:var(--f-display);font-style:italic;font-size:1.05rem;
+  color:var(--stone);line-height:1.55;margin-bottom:2.25rem;max-width:420px;margin-left:auto;margin-right:auto;
+}
+.pr-success-actions{display:flex;flex-direction:column;align-items:center;gap:.65rem}
+.btn-pr{
+  font-family:var(--f-ui);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;
+  padding:.65rem 1.75rem;transition:all .22s cubic-bezier(.22,.68,0,1);
+  display:inline-block;text-align:center;min-width:220px;
+}
+.btn-pr-primary{background:var(--maroon);color:var(--vellum);border:1px solid var(--maroon)}
+.btn-pr-primary:hover{background:var(--maroon-deep);transform:translateY(-1px);box-shadow:0 4px 12px rgba(123,29,42,.18)}
+.btn-pr-ghost{background:transparent;color:var(--maroon);border:1px solid rgba(123,29,42,.25)}
+.btn-pr-ghost:hover{border-color:var(--maroon);background:rgba(123,29,42,.04)}
 
 /* ── CTA BAND ── */
 .pg-cta-band{background:var(--apse);padding:2.5rem 3rem}
@@ -518,11 +647,12 @@ footer .btn-outline:hover{background:rgba(246,241,232,.15);color:#fff;border-col
     </div>
     <div class="form-group">
       <label class="form-label" for="pr-intention">Prayer Intention</label>
-      <textarea class="form-textarea" id="pr-intention" placeholder="Share your prayer intention here." required></textarea>
+      <textarea class="form-textarea" id="pr-intention" placeholder="Share your prayer intention here." required oninput="updateCharCount()"></textarea>
+      <div class="pr-char-count" id="pr-char-count"></div>
     </div>
     <div class="form-group">
       <label class="form-label">This request is for</label>
-      <div style="display:flex;gap:.5rem;margin-top:.25rem">
+      <div class="form-toggle-group">
         <button type="button" id="pr-living-btn" class="form-toggle active" onclick="setPrayerType('living')">The Living</button>
         <button type="button" id="pr-departed-btn" class="form-toggle" onclick="setPrayerType('departed')">The Departed</button>
       </div>
@@ -531,18 +661,22 @@ footer .btn-outline:hover{background:rgba(246,241,232,.15);color:#fff;border-col
     <div style="position:absolute;left:-9999px" aria-hidden="true">
       <input type="text" id="pr-hp" name="website" tabindex="-1" autocomplete="off"/>
     </div>
-    <button type="button" class="form-submit" id="pr-submit" onclick="submitPrayerRequest()">Submit Request</button>
-    <p id="pr-status" style="font-family:var(--f-body);font-style:italic;font-size:.92rem;color:var(--stone);margin-top:.75rem;line-height:1.5"></p>
+    <div class="pr-submit-wrap">
+      <button type="button" class="form-submit" id="pr-submit" onclick="submitPrayerRequest()">Submit Request</button>
+      <p id="pr-status" style="font-family:var(--f-body);font-size:.88rem;color:var(--stone);margin-top:.85rem;line-height:1.5;text-align:center"></p>
+    </div>
   </div>
 
   <!-- SUCCESS MESSAGE -->
-  <div id="prayer-form-success" style="display:none;text-align:center;padding:3rem 0">
-    <div style="font-size:1.8rem;opacity:.3;margin-bottom:1rem">&#x2720;</div>
-    <h3 style="font-family:var(--f-display);font-weight:400;font-size:1.6rem;color:var(--text);margin-bottom:.5rem">Your request has been received.</h3>
-    <p style="font-family:var(--f-display);font-style:italic;font-size:1.05rem;color:var(--stone);line-height:1.55;margin-bottom:2rem">May God grant you peace. Fr. Solomon will review your request and include it in the parish intercessions as appropriate.</p>
-    <div style="display:flex;flex-direction:column;align-items:center;gap:.75rem">
-      <a href="/prayer-request" style="font-family:var(--f-ui);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--vellum);background:var(--maroon);padding:.55rem 1.25rem;transition:all .18s">Submit Another Request</a>
-      <a href="/contact-us" style="font-family:var(--f-ui);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--maroon);border:1px solid rgba(123,29,42,.28);padding:.55rem 1.25rem;transition:all .18s">Back to Contact Us</a>
+  <div id="prayer-form-success" style="display:none">
+    <div class="pr-success">
+      <span class="pr-success-cross">&#x2720;</span>
+      <h3>Your request has been received.</h3>
+      <p>May God grant you peace. Fr. Solomon will review your request and include it in the parish intercessions as appropriate.</p>
+      <div class="pr-success-actions">
+        <a href="/prayer-request" class="btn-pr btn-pr-primary">Submit Another Request</a>
+        <a href="/contact-us" class="btn-pr btn-pr-ghost">Back to Contact Us</a>
+      </div>
     </div>
   </div>
 
@@ -550,6 +684,7 @@ footer .btn-outline:hover{background:rgba(246,241,232,.15);color:#fff;border-col
 
 <script>
 var prType = 'living';
+var PR_MAX_CHARS = 500;
 
 function setPrayerType(type) {
   prType = type;
@@ -564,23 +699,47 @@ function setPrayerType(type) {
   }
 }
 
+function updateCharCount() {
+  var textarea = document.getElementById('pr-intention');
+  var counter = document.getElementById('pr-char-count');
+  var len = textarea.value.length;
+  counter.textContent = len + ' / ' + PR_MAX_CHARS;
+  counter.classList.remove('near-limit', 'at-limit');
+  if (len >= PR_MAX_CHARS) {
+    counter.classList.add('at-limit');
+    textarea.value = textarea.value.substring(0, PR_MAX_CHARS);
+  } else if (len >= PR_MAX_CHARS * 0.8) {
+    counter.classList.add('near-limit');
+  }
+}
+
 async function submitPrayerRequest() {
   // Honeypot check
   if (document.getElementById('pr-hp').value) return;
 
-  var name = document.getElementById('pr-name').value.trim() || 'Anonymous';
-  var intention = document.getElementById('pr-intention').value.trim();
+  var nameInput = document.getElementById('pr-name');
+  var intentionInput = document.getElementById('pr-intention');
+  var name = nameInput.value.trim() || 'Anonymous';
+  var intention = intentionInput.value.trim();
   var status = document.getElementById('pr-status');
   var btn = document.getElementById('pr-submit');
+
+  // Clear previous errors
+  nameInput.classList.remove('error');
+  intentionInput.classList.remove('error');
 
   if (!intention) {
     status.textContent = 'Please share your prayer intention.';
     status.style.color = 'var(--maroon)';
+    intentionInput.classList.add('error');
+    intentionInput.focus();
+    setTimeout(function() { intentionInput.classList.remove('error'); }, 600);
     return;
   }
 
   btn.disabled = true;
   btn.textContent = 'Submitting...';
+  btn.classList.add('submitting');
   status.textContent = '';
 
   // Prefix departed names
@@ -598,15 +757,28 @@ async function submitPrayerRequest() {
     });
     if (error) throw error;
 
-    document.getElementById('prayer-form-section').style.display = 'none';
-    document.getElementById('prayer-form-success').style.display = '';
+    // Smooth transition out
+    var formSection = document.getElementById('prayer-form-section');
+    formSection.style.transition = 'opacity .35s ease, transform .35s ease';
+    formSection.style.opacity = '0';
+    formSection.style.transform = 'translateY(-12px)';
+    setTimeout(function() {
+      formSection.style.display = 'none';
+      document.getElementById('prayer-form-success').style.display = '';
+    }, 350);
   } catch(e) {
     status.textContent = 'Something went wrong. Please try again or call the parish office.';
     status.style.color = 'var(--maroon)';
     btn.disabled = false;
     btn.textContent = 'Submit Request';
+    btn.classList.remove('submitting');
   }
 }
+
+// Init char count
+document.addEventListener('DOMContentLoaded', function() {
+  updateCharCount();
+});
 </script>
 
 <!-- ═══════════════════════════════════════════
