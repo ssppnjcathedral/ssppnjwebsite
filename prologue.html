@@ -96,6 +96,12 @@ a{color:inherit;text-decoration:none}
 
 /* Individual saint entry */
 .saint-entry{margin-bottom:2rem;padding-bottom:2rem;border-bottom:var(--rule-hair)}
+.prol-keep-btn{display:inline-flex;align-items:center;gap:.4rem;padding:.38rem .7rem;background:transparent;border:1px solid rgba(184,131,40,.35);color:var(--stone);font-family:var(--f-ui);font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;transition:all .2s;border-radius:2px;flex-shrink:0}
+.prol-keep-btn:hover{background:var(--maroon);border-color:var(--maroon);color:var(--vellum)}
+.prol-keep-btn.is-kept{background:rgba(184,131,40,.14);border-color:rgba(184,131,40,.55);color:var(--gold-deep,#8A6018)}
+.prol-keep-btn.is-kept svg{fill:currentColor;stroke-width:1.4}
+.prol-keep-btn.is-kept:hover{background:var(--maroon);border-color:var(--maroon);color:var(--vellum)}
+.prol-keep-btn.is-kept:hover svg{fill:currentColor}
 .saint-entry:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
 .saint-num-row{display:flex;align-items:baseline;gap:.75rem;margin-bottom:.6rem}
 .saint-number{font-family:var(--f-ui);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--maroon);flex-shrink:0;border:1px solid rgba(123,29,42,.3);width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:.62rem}
@@ -1048,14 +1054,24 @@ function renderDay(entry, dateLabel) {
 
   /* ── SAINTS ── */
   if (entry.saints && entry.saints.length) {
+    const feastKey = String(currentMonth).padStart(2,'0') + '-' + String(currentDay).padStart(2,'0');
     html += `<div class="prologue-section" id="sec-saints">
       <span class="section-label">Lives of Saints</span>`;
     entry.saints.forEach(s => {
+      const slug = s.slug || saintSlug(s.name);
+      const kept = window.SaintBookmarks && window.SaintBookmarks.has(slug);
+      const attrs = `data-slug="${escSaintAttr(slug)}" data-name="${escSaintAttr(s.name)}" data-feast="${feastKey}"`;
       html += `
         <div class="saint-entry">
-          <div class="saint-num-row">
-            <span class="saint-number">${s.number}</span>
-            <span class="saint-name">${s.name}</span>
+          <div class="saint-num-row" style="display:flex;align-items:baseline;gap:.85rem;justify-content:space-between">
+            <div style="display:flex;align-items:baseline;gap:.85rem;min-width:0;flex:1">
+              <span class="saint-number">${s.number}</span>
+              <span class="saint-name">${s.name}</span>
+            </div>
+            <button type="button" class="prol-keep-btn${kept ? ' is-kept' : ''}" title="Keep this saint" ${attrs} onclick="togglePrologueSaint(this)">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+              <span class="prol-keep-label">${kept ? 'Saved' : 'Keep'}</span>
+            </button>
           </div>
           <p class="saint-text">${s.text || ''}</p>
         </div>`;
@@ -1147,6 +1163,43 @@ function wrapParagraphs(text) {
   return text.split(/\n\n+/).map(p => `<p>${p.trim()}</p>`).join('');
 }
 
+function saintSlug(name){
+  return String(name||'').toLowerCase()
+    .replace(/&/g,'and')
+    .replace(/[^a-z0-9]+/g,'-')
+    .replace(/^-|-$/g,'') || 'unknown-saint';
+}
+function escSaintAttr(s){ return String(s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function togglePrologueSaint(btn){
+  if (!window.SaintBookmarks) return;
+  var slug = btn.dataset.slug, name = btn.dataset.name;
+  if (!slug || !name) return;
+  var lbl = btn.querySelector('.prol-keep-label');
+  if (window.SaintBookmarks.has(slug)) {
+    window.SaintBookmarks.remove(slug);
+    btn.classList.remove('is-kept');
+    if (lbl) lbl.textContent = 'Keep';
+    prologueToast('Removed from your Icon Corner');
+  } else {
+    window.SaintBookmarks.add({
+      slug: slug, name: name,
+      feastDate: btn.dataset.feast || '',
+      image: '', ocaUrl: ''
+    });
+    btn.classList.add('is-kept');
+    if (lbl) lbl.textContent = 'Saved';
+    prologueToast('Added to your Icon Corner');
+  }
+}
+function prologueToast(msg){
+  var t = document.createElement('div');
+  t.textContent = msg;
+  t.style.cssText = 'position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);background:var(--apse);color:var(--vellum);padding:.75rem 1.25rem;font-family:var(--f-ui);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;z-index:999;opacity:0;transition:opacity .22s ease';
+  document.body.appendChild(t);
+  requestAnimationFrame(function(){ t.style.opacity = '1'; });
+  setTimeout(function(){ t.style.opacity = '0'; setTimeout(function(){ if (t.parentNode) t.parentNode.removeChild(t); }, 300); }, 1600);
+}
+
 function showError(dateLabel) {
   document.getElementById('cbar-date').textContent = dateLabel;
   document.getElementById('hero-meta').textContent = dateLabel;
@@ -1220,7 +1273,10 @@ window.addEventListener('popstate', () => {
 });
 
 /* ── BOOT ── */
-boot();
+(async function(){
+  if (typeof loadFromSupabase === 'function') { try { await loadFromSupabase(); } catch(e){} }
+  boot();
+})();
 </script>
 
 <script>
