@@ -112,6 +112,40 @@
 .form-submit:hover{background:var(--maroon-deep)}
 .form-note{font-family:var(--f-body);font-style:italic;font-size:.88rem;color:var(--stone);margin-top:.75rem;line-height:1.6}
 
+/* PRAYER FORM POLISH — scoped to #prayer-form-section */
+@keyframes prFadeUp { to { opacity:1; transform:translateY(0); } }
+@keyframes prSuccessIn { 0% { opacity:0; transform:scale(.95) translateY(20px); } 100% { opacity:1; transform:scale(1) translateY(0); } }
+@keyframes prShake { 0%,100% { transform:translateX(0); } 20%,60% { transform:translateX(-4px); } 40%,80% { transform:translateX(4px); } }
+@keyframes prPulse { 0% { box-shadow:0 0 0 0 rgba(123,29,42,.3); } 70% { box-shadow:0 0 0 10px rgba(123,29,42,0); } 100% { box-shadow:0 0 0 0 rgba(123,29,42,0); } }
+#prayer-form-section .form-group{opacity:0;transform:translateY(16px);animation:prFadeUp .5s ease forwards}
+#prayer-form-section .form-group:nth-of-type(2){animation-delay:.2s}
+#prayer-form-section .form-group:nth-of-type(3){animation-delay:.3s}
+#prayer-form-section .form-group:nth-of-type(4){animation-delay:.4s}
+#prayer-form-section .pr-submit-wrap{opacity:0;transform:translateY(16px);animation:prFadeUp .5s .5s ease forwards}
+#prayer-form-section .form-group:focus-within .form-label{color:var(--maroon);transition:color .2s}
+#prayer-form-section .form-input,#prayer-form-section .form-textarea{transition:border-color .25s,box-shadow .25s,background .25s}
+#prayer-form-section .form-input:focus,#prayer-form-section .form-textarea:focus{border-color:var(--maroon);box-shadow:0 0 0 3px rgba(123,29,42,.06)}
+#prayer-form-section .form-input.error,#prayer-form-section .form-textarea.error{border-color:var(--maroon);animation:prShake .4s ease}
+#prayer-form-section .pr-char-count{font-family:var(--f-ui);font-size:.6rem;letter-spacing:.06em;color:rgba(122,102,72,.5);text-align:right;margin-top:.3rem;transition:color .2s}
+#prayer-form-section .pr-char-count.near-limit{color:var(--gold)}
+#prayer-form-section .pr-char-count.at-limit{color:var(--maroon)}
+#prayer-form-section .form-toggle-group{display:inline-flex;gap:0;margin-top:.35rem;border:1px solid rgba(123,29,42,.25)}
+#prayer-form-section .form-toggle{font-family:var(--f-ui);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;padding:.65rem 1.5rem;border:none;cursor:pointer;transition:all .25s cubic-bezier(.22,.68,0,1);position:relative;overflow:hidden}
+#prayer-form-section .form-toggle.active{background:var(--maroon);color:var(--vellum)}
+#prayer-form-section .form-toggle:not(.active){background:transparent;color:var(--maroon)}
+#prayer-form-section .form-toggle:not(.active):hover{background:rgba(123,29,42,.05)}
+#prayer-form-section .form-submit{transition:all .25s cubic-bezier(.22,.68,0,1);position:relative;overflow:hidden}
+#prayer-form-section .form-submit:hover{background:var(--maroon-deep);transform:translateY(-1px);box-shadow:0 4px 16px rgba(123,29,42,.2)}
+#prayer-form-section .form-submit:active{transform:translateY(0) scale(.98);transition-duration:.08s}
+#prayer-form-section .form-submit:disabled{opacity:.6;cursor:not-allowed;transform:none;box-shadow:none}
+#prayer-form-section .form-submit.submitting{animation:prPulse 1.2s ease infinite}
+#prayer-form-success .pr-success{animation:prSuccessIn .6s cubic-bezier(.22,.68,0,1) forwards}
+#prayer-form-success .btn-pr{font-family:var(--f-ui);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;padding:.65rem 1.75rem;display:inline-block;text-align:center;min-width:220px;cursor:pointer;transition:all .22s cubic-bezier(.22,.68,0,1)}
+#prayer-form-success .btn-pr-primary{background:var(--maroon);color:var(--vellum);border:1px solid var(--maroon)}
+#prayer-form-success .btn-pr-primary:hover{background:var(--maroon-deep);transform:translateY(-1px);box-shadow:0 4px 12px rgba(123,29,42,.18)}
+#prayer-form-success .btn-pr-ghost{background:transparent;color:var(--maroon);border:1px solid rgba(123,29,42,.25)}
+#prayer-form-success .btn-pr-ghost:hover{border-color:var(--maroon);background:rgba(123,29,42,.04)}
+
 /* MAP + INFO */
 .contact-info-section{}
 .map-frame{width:100%;height:300px;border:var(--rule-faint);margin-bottom:2.5rem;overflow:hidden}
@@ -559,6 +593,8 @@ footer .btn-outline:hover{background:rgba(246,241,232,.15);color:#fff;border-col
               <span class="mega-sub">Full text for Great Vespers</span>
               <a href="/prayers" class="mega-link">Daily Prayers</a>
               <span class="mega-sub">The daily prayer rule of the Orthodox Church</span>
+              <a href="/prayer-request" class="mega-link">Submit a Prayer Request</a>
+              <span class="mega-sub">Ask the parish to pray for you or a loved one</span>
             </div>
           </div>
         </div>
@@ -668,7 +704,7 @@ footer .btn-outline:hover{background:rgba(246,241,232,.15);color:#fff;border-col
         <a href="/liturgy-history" class="dr-link"><span class="dr-link-name">History of the Liturgy</span><span class="dr-link-sub">How the Divine Liturgy developed</span></a>
         <a href="/liturgy-book" class="dr-link"><span class="dr-link-name">Liturgy Book</span><span class="dr-link-sub">Full text for the Divine Liturgy</span></a>
         <a href="/vespers-book" class="dr-link"><span class="dr-link-name">Vespers Book</span><span class="dr-link-sub">Full text for Great Vespers</span></a>
-        <a href="/prayers" class="dr-link"><span class="dr-link-name">Daily Prayers</span><span class="dr-link-sub">The daily prayer rule of the Orthodox Church</span></a>
+        <a href="/prayers" class="dr-link"><span class="dr-link-name">Daily Prayers</span><span class="dr-link-sub">The daily prayer rule of the Orthodox Church</span></a><a href="/prayer-request" class="dr-link"><span class="dr-link-name">Prayer Request</span><span class="dr-link-sub">Ask the parish to pray for you</span></a>
       </div>
     </div>
 
@@ -871,27 +907,34 @@ footer .btn-outline:hover{background:rgba(246,241,232,.15);color:#fff;border-col
     </div>
     <div class="form-group">
       <label class="form-label" for="pr-intention">How can we pray for you?</label>
-      <textarea class="form-textarea" id="pr-intention" placeholder="Share your prayer intention here." style="min-height:110px" required></textarea>
+      <textarea class="form-textarea" id="pr-intention" placeholder="Share your prayer intention here." style="min-height:110px" required oninput="updateCharCount()"></textarea>
+      <div class="pr-char-count" id="pr-char-count"></div>
     </div>
     <div class="form-group">
       <label class="form-label">This request is for</label>
-      <div style="display:flex;gap:.5rem;margin-top:.25rem">
-        <button type="button" id="pr-living-btn" class="form-toggle active" onclick="setPrayerType('living')" style="font-family:var(--f-ui);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;padding:.55rem 1.25rem;border:1px solid var(--maroon);cursor:pointer;transition:all .18s;background:var(--maroon);color:var(--vellum)">The Living</button>
-        <button type="button" id="pr-departed-btn" class="form-toggle" onclick="setPrayerType('departed')" style="font-family:var(--f-ui);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;padding:.55rem 1.25rem;border:1px solid var(--maroon);cursor:pointer;transition:all .18s;background:transparent;color:var(--maroon)">The Departed</button>
+      <div class="form-toggle-group">
+        <button type="button" id="pr-living-btn" class="form-toggle active" onclick="setPrayerType('living')">The Living</button>
+        <button type="button" id="pr-departed-btn" class="form-toggle" onclick="setPrayerType('departed')">The Departed</button>
       </div>
     </div>
     <!-- Honeypot -->
     <div style="position:absolute;left:-9999px" aria-hidden="true">
       <input type="text" id="pr-hp" name="website" tabindex="-1" autocomplete="off"/>
     </div>
-    <button type="button" class="form-submit" id="pr-submit" onclick="submitPrayerRequest()" style="width:auto;padding:.9rem 3rem">Submit Request</button>
-    <p id="pr-status" style="font-family:var(--f-body);font-style:italic;font-size:.92rem;color:var(--stone);margin-top:.75rem;line-height:1.5"></p>
+    <div class="pr-submit-wrap">
+      <button type="button" class="form-submit" id="pr-submit" onclick="submitPrayerRequest()" style="width:auto;padding:.9rem 3rem">Submit Request</button>
+      <p id="pr-status" style="font-family:var(--f-body);font-size:.88rem;color:var(--stone);margin-top:.85rem;line-height:1.5"></p>
+    </div>
   </div>
-  <div id="prayer-form-success" style="display:none;text-align:center;padding:2rem 0">
-    <div style="font-size:1.8rem;opacity:.3;margin-bottom:1rem">&#x2720;</div>
-    <h3 style="font-family:var(--f-display);font-weight:400;font-size:1.6rem;color:var(--text);margin-bottom:.5rem">Your request has been received.</h3>
-    <p style="font-family:var(--f-display);font-style:italic;font-size:1.05rem;color:var(--stone);line-height:1.55">May God grant you peace. Fr. Solomon will review your request and include it in the parish intercessions as appropriate.</p>
-    <a href="/contact-us" style="display:inline-block;margin-top:1.5rem;font-family:var(--f-ui);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--maroon);border:1px solid rgba(123,29,42,.28);padding:.55rem 1.25rem;transition:all .18s">&larr; Back to Contact</a>
+  <div id="prayer-form-success" style="display:none">
+    <div class="pr-success" style="text-align:center;padding:2rem 0">
+      <h3 style="font-family:var(--f-display);font-weight:400;font-size:1.65rem;color:var(--text);margin-bottom:.65rem">Your request has been received.</h3>
+      <p style="font-family:var(--f-display);font-style:italic;font-size:1.05rem;color:var(--stone);line-height:1.55;margin:0 auto 2rem;max-width:420px">May God grant you peace. Fr. Solomon will review your request and include it in the parish intercessions as appropriate.</p>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:.65rem">
+        <button type="button" class="btn-pr btn-pr-primary" onclick="resetPrayerForm()">Submit Another Request</button>
+        <a href="#top" class="btn-pr btn-pr-ghost" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">Back to Contact</a>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -899,44 +942,84 @@ footer .btn-outline:hover{background:rgba(246,241,232,.15);color:#fff;border-col
 <script src="/supabase-client.js"></script>
 <script>
 var prType = 'living';
+var PR_MAX_CHARS = 500;
 
 function setPrayerType(type) {
   prType = type;
   var livingBtn = document.getElementById('pr-living-btn');
   var departedBtn = document.getElementById('pr-departed-btn');
   if (type === 'living') {
-    livingBtn.style.background = 'var(--maroon)';
-    livingBtn.style.color = 'var(--vellum)';
-    departedBtn.style.background = 'transparent';
-    departedBtn.style.color = 'var(--maroon)';
+    livingBtn.classList.add('active');
+    departedBtn.classList.remove('active');
   } else {
-    departedBtn.style.background = 'var(--maroon)';
-    departedBtn.style.color = 'var(--vellum)';
-    livingBtn.style.background = 'transparent';
-    livingBtn.style.color = 'var(--maroon)';
+    departedBtn.classList.add('active');
+    livingBtn.classList.remove('active');
   }
 }
 
+function updateCharCount() {
+  var textarea = document.getElementById('pr-intention');
+  var counter = document.getElementById('pr-char-count');
+  var len = textarea.value.length;
+  counter.textContent = len + ' / ' + PR_MAX_CHARS;
+  counter.classList.remove('near-limit', 'at-limit');
+  if (len >= PR_MAX_CHARS) {
+    counter.classList.add('at-limit');
+    textarea.value = textarea.value.substring(0, PR_MAX_CHARS);
+  } else if (len >= PR_MAX_CHARS * 0.8) {
+    counter.classList.add('near-limit');
+  }
+}
+
+function resetPrayerForm() {
+  document.getElementById('pr-name').value = '';
+  document.getElementById('pr-intention').value = '';
+  document.getElementById('pr-status').textContent = '';
+  setPrayerType('living');
+  updateCharCount();
+  var btn = document.getElementById('pr-submit');
+  btn.disabled = false;
+  btn.textContent = 'Submit Request';
+  btn.classList.remove('submitting');
+  document.getElementById('prayer-form-success').style.display = 'none';
+  var formEl = document.getElementById('prayer-form-section');
+  formEl.style.display = '';
+  formEl.style.opacity = '0';
+  formEl.style.transform = 'translateY(12px)';
+  requestAnimationFrame(function() {
+    formEl.style.transition = 'opacity .35s ease, transform .35s ease';
+    formEl.style.opacity = '1';
+    formEl.style.transform = 'translateY(0)';
+  });
+}
+
 async function submitPrayerRequest() {
-  // Honeypot check
   if (document.getElementById('pr-hp').value) return;
 
-  var name = document.getElementById('pr-name').value.trim() || 'Anonymous';
-  var intention = document.getElementById('pr-intention').value.trim();
+  var nameInput = document.getElementById('pr-name');
+  var intentionInput = document.getElementById('pr-intention');
+  var name = nameInput.value.trim() || 'Anonymous';
+  var intention = intentionInput.value.trim();
   var status = document.getElementById('pr-status');
   var btn = document.getElementById('pr-submit');
+
+  nameInput.classList.remove('error');
+  intentionInput.classList.remove('error');
 
   if (!intention) {
     status.textContent = 'Please share your prayer intention.';
     status.style.color = 'var(--maroon)';
+    intentionInput.classList.add('error');
+    intentionInput.focus();
+    setTimeout(function() { intentionInput.classList.remove('error'); }, 600);
     return;
   }
 
   btn.disabled = true;
   btn.textContent = 'Submitting...';
+  btn.classList.add('submitting');
   status.textContent = '';
 
-  // Prefix departed names
   if (prType === 'departed' && name !== 'Anonymous') {
     name = 'Newly departed ' + name;
   }
@@ -951,15 +1034,26 @@ async function submitPrayerRequest() {
     });
     if (error) throw error;
 
-    document.getElementById('prayer-form-section').style.display = 'none';
-    document.getElementById('prayer-form-success').style.display = '';
+    var formSection = document.getElementById('prayer-form-section');
+    formSection.style.transition = 'opacity .35s ease, transform .35s ease';
+    formSection.style.opacity = '0';
+    formSection.style.transform = 'translateY(-12px)';
+    setTimeout(function() {
+      formSection.style.display = 'none';
+      document.getElementById('prayer-form-success').style.display = '';
+    }, 350);
   } catch(e) {
     status.textContent = 'Something went wrong. Please try again or call the parish office.';
     status.style.color = 'var(--maroon)';
     btn.disabled = false;
     btn.textContent = 'Submit Request';
+    btn.classList.remove('submitting');
   }
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+  updateCharCount();
+});
 </script>
 
 <!-- ═══════════════════════════════════════════
@@ -1051,6 +1145,7 @@ async function submitPrayerRequest() {
       <span class="footer-nav-sub">My Parish</span>
       <a href="/my-journey" class="footer-my-journey">My Journey</a>
       <a href="/my-profile" class="footer-my-journey" style="margin-left:.5rem">My Profile</a>
+      <a href="/prayer-request" class="footer-my-journey" style="margin-left:.5rem">Prayer Request</a>
       <span class="footer-nav-sub">Connect</span>
       <p class="footer-meta" style="line-height:2.2">
         Vespers &middot; Saturdays 5:00 PM<br>

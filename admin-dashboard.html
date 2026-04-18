@@ -2457,6 +2457,70 @@ body {
   100% { opacity: 0; transform: scale(.92); max-height: 0; margin-bottom: 0; padding: 0; overflow: hidden; }
 }
 
+/* Acknowledge slide-fade to archive */
+.pr2-card.acking {
+  animation: prAckOut .4s cubic-bezier(.22,.68,0,1) forwards;
+}
+@keyframes prAckOut {
+  0%   { opacity: 1; transform: translateX(0) scale(1); max-height: 200px; margin-bottom: .5rem; }
+  100% { opacity: 0; transform: translateX(24px) scale(.97); max-height: 0; margin-bottom: 0; padding: 0; overflow: hidden; }
+}
+
+/* Card entrance stagger */
+@keyframes prEntryUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.pr2-card-enter {
+  animation: prEntryUp .35s cubic-bezier(.22,.68,0,1) forwards;
+  animation-delay: calc(var(--i, 0) * 40ms);
+  opacity: 0;
+}
+
+/* Hover lift on stable cards (skip while animating) */
+.pr2-card {
+  transition: transform .18s cubic-bezier(.22,.68,0,1), box-shadow .18s, border-color .18s;
+}
+.pr2-card:not(.acking):not(.dismissing):hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(28,20,16,.06);
+  border-color: rgba(123,29,42,.15);
+}
+
+/* Softer button easing + press state */
+.pr2-ack-btn {
+  transition: background .2s cubic-bezier(.22,.68,0,1),
+              color .2s cubic-bezier(.22,.68,0,1),
+              border-color .2s cubic-bezier(.22,.68,0,1),
+              transform .12s cubic-bezier(.22,.68,0,1);
+}
+.pr2-ack-btn:active { transform: scale(.96); }
+.pr2-acked-btn {
+  transition: background .2s cubic-bezier(.22,.68,0,1),
+              border-color .2s cubic-bezier(.22,.68,0,1),
+              transform .12s cubic-bezier(.22,.68,0,1);
+}
+.pr2-acked-btn:active { transform: scale(.94); }
+
+/* "Just submitted" dot (<1hr) */
+.pr2-fresh-dot {
+  display: inline-block;
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--verdigris);
+  margin-right: .45rem;
+  vertical-align: baseline;
+  position: relative;
+  top: -1px;
+  box-shadow: 0 0 0 0 rgba(61,107,94,.5);
+  animation: prFreshPulse 2.2s infinite;
+}
+@keyframes prFreshPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(61,107,94,.5); }
+  70%  { box-shadow: 0 0 0 6px rgba(61,107,94,0); }
+  100% { box-shadow: 0 0 0 0 rgba(61,107,94,0); }
+}
+
 @media (max-width: 600px) {
   .hd-drawer { width: 100%; max-width: 100%; }
 }
@@ -2581,7 +2645,7 @@ body {
       <div class="mega-panel" id="mega-inquirers"><div class="mega-photo"><div class="mega-photo-bg" style="background-image:url('/images/nav/nav-inquirers.jpg')"></div><div class="mega-photo-overlay"></div><div class="mega-photo-content"><span class="mega-photo-label">Inquirers</span><p class="mega-photo-quote">Exploring the ancient Faith?</p></div></div><div class="mega-content"><div class="mega-inner" style="grid-template-columns:repeat(2,1fr)"><div class="mega-col"><span class="mega-col-head">Learning the Faith</span><a href="/about-orthodoxy" class="mega-link">About Orthodoxy</a><span class="mega-sub">The ancient Christian faith</span><a href="/catechesis" class="mega-link">Catechesis Series</a><span class="mega-sub">Recorded talks and study materials</span></div><div class="mega-col"><span class="mega-col-head">Come Visit</span><a href="/visit" class="mega-link">Visitor Guide</a><span class="mega-sub">Everything you need before you arrive</span><a href="/contact-us" class="mega-link">Contact Us</a><span class="mega-sub">Reach Fr. Solomon</span></div></div></div></div>
       <div class="mega-panel" id="mega-calendar"><div class="mega-photo"><div class="mega-photo-bg" style="background-image:url('/images/nav/nav-calendar.jpg')"></div><div class="mega-photo-overlay"></div><div class="mega-photo-content"><span class="mega-photo-label">Calendar</span><p class="mega-photo-quote">The rhythm of the Church's year.</p></div></div><div class="mega-content"><div class="mega-inner" style="grid-template-columns:repeat(2,1fr)"><div class="mega-col"><span class="mega-col-head">Services</span><a href="/divine-liturgy" class="mega-link">Divine Liturgy</a><span class="mega-sub">Every Sunday &middot; 9:30 AM</span><a href="/vespers" class="mega-link">Great Vespers</a><span class="mega-sub">Every Saturday &middot; 5:00 PM</span></div><div class="mega-col"><span class="mega-col-head">Daily</span><a href="/readings" class="mega-link">Daily Readings</a><span class="mega-sub">Scripture appointed for each day</span><a href="/saints" class="mega-link">Saints of the Day</a><span class="mega-sub">Lives of those commemorated today</span></div></div></div></div>
       <div class="mega-panel" id="mega-parish"><div class="mega-photo"><div class="mega-photo-bg" style="background-image:url('/images/nav/nav-parish-life.jpg')"></div><div class="mega-photo-overlay"></div><div class="mega-photo-content"><span class="mega-photo-label">Parish Life</span><p class="mega-photo-quote">A family that shares a life.</p></div></div><div class="mega-content"><div class="mega-inner" style="grid-template-columns:repeat(2,1fr)"><div class="mega-col"><span class="mega-col-head">News &amp; Publications</span><a href="/news" class="mega-link">News &amp; Announcements</a><span class="mega-sub">What's happening at the parish</span><a href="/bulletins" class="mega-link">Parish Bulletins</a><span class="mega-sub">Weekly reflections from Fr. Solomon</span></div><div class="mega-col"><span class="mega-col-head">Community</span><a href="/gallery" class="mega-link">Gallery</a><span class="mega-sub">Photos from parish life</span><a href="/give" class="mega-link">Give &amp; Support</a><span class="mega-sub">Projects and stewardship</span></div></div></div></div>
-      <div class="mega-panel" id="mega-worship"><div class="mega-photo"><div class="mega-photo-bg" style="background-image:url('/images/nav/nav-worship.jpg')"></div><div class="mega-photo-overlay"></div><div class="mega-photo-content"><span class="mega-photo-label">Worship</span><p class="mega-photo-quote">The living tradition of the Church.</p></div></div><div class="mega-content"><div class="mega-inner" style="grid-template-columns:repeat(2,1fr)"><div class="mega-col"><span class="mega-col-head">Service Guides</span><a href="/divine-liturgy" class="mega-link">About the Divine Liturgy</a><span class="mega-sub">History, structure, and meaning</span></div><div class="mega-col"><span class="mega-col-head">Follow Along</span><a href="/liturgy-book" class="mega-link">Liturgy Book</a><span class="mega-sub">Full text for the Divine Liturgy</span><a href="/prayers" class="mega-link">Daily Prayers</a><span class="mega-sub">The daily prayer rule</span></div></div></div></div>
+      <div class="mega-panel" id="mega-worship"><div class="mega-photo"><div class="mega-photo-bg" style="background-image:url('/images/nav/nav-worship.jpg')"></div><div class="mega-photo-overlay"></div><div class="mega-photo-content"><span class="mega-photo-label">Worship</span><p class="mega-photo-quote">The living tradition of the Church.</p></div></div><div class="mega-content"><div class="mega-inner" style="grid-template-columns:repeat(2,1fr)"><div class="mega-col"><span class="mega-col-head">Service Guides</span><a href="/divine-liturgy" class="mega-link">About the Divine Liturgy</a><span class="mega-sub">History, structure, and meaning</span></div><div class="mega-col"><span class="mega-col-head">Follow Along</span><a href="/liturgy-book" class="mega-link">Liturgy Book</a><span class="mega-sub">Full text for the Divine Liturgy</span><a href="/prayers" class="mega-link">Daily Prayers</a><span class="mega-sub">The daily prayer rule</span><a href="/prayer-request" class="mega-link">Submit a Prayer Request</a><span class="mega-sub">Ask the parish to pray for you or a loved one</span></div></div></div></div>
     </div>
     <div class="nav-my-parish" id="nav-my-parish">
       <button class="nav-my-parish-btn" onclick="toggleMyParish(event)" aria-label="My Parish"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="8" r="3.5"/><path d="M4 20c0-3.5 3.6-6 8-6s8 2.5 8 6"/></svg></button>
@@ -2605,7 +2669,7 @@ body {
     <div class="dr-section"><div class="dr-section-head" onclick="drToggle(this)"><span class="dr-section-name">Inquirers</span><span class="dr-section-toggle">+</span></div><div class="dr-section-links"><a href="/about-orthodoxy" class="dr-link"><span class="dr-link-name">About Orthodoxy</span></a><a href="/catechesis" class="dr-link"><span class="dr-link-name">Catechesis</span></a><a href="/visit" class="dr-link"><span class="dr-link-name">Visitor Guide</span></a></div></div>
     <div class="dr-section"><div class="dr-section-head" onclick="drToggle(this)"><span class="dr-section-name">Calendar</span><span class="dr-section-toggle">+</span></div><div class="dr-section-links"><a href="/schedule" class="dr-link"><span class="dr-link-name">Full Calendar</span></a><a href="/saints" class="dr-link"><span class="dr-link-name">Saints of the Day</span></a></div></div>
     <div class="dr-section"><div class="dr-section-head" onclick="drToggle(this)"><span class="dr-section-name">Parish Life</span><span class="dr-section-toggle">+</span></div><div class="dr-section-links"><a href="/news" class="dr-link"><span class="dr-link-name">News</span></a><a href="/bulletins" class="dr-link"><span class="dr-link-name">Bulletins</span></a></div></div>
-    <div class="dr-section"><div class="dr-section-head" onclick="drToggle(this)"><span class="dr-section-name">Worship</span><span class="dr-section-toggle">+</span></div><div class="dr-section-links"><a href="/liturgy-book" class="dr-link"><span class="dr-link-name">Liturgy Book</span></a><a href="/prayers" class="dr-link"><span class="dr-link-name">Daily Prayers</span></a></div></div>
+    <div class="dr-section"><div class="dr-section-head" onclick="drToggle(this)"><span class="dr-section-name">Worship</span><span class="dr-section-toggle">+</span></div><div class="dr-section-links"><a href="/liturgy-book" class="dr-link"><span class="dr-link-name">Liturgy Book</span></a><a href="/prayers" class="dr-link"><span class="dr-link-name">Daily Prayers</span></a><a href="/prayer-request" class="dr-link"><span class="dr-link-name">Prayer Request</span></a></div></div>
   </div>
   <a href="https://tithe.ly/give?c=5004259" target="_blank" class="nav-drawer-give">Give Online</a>
 </div>
@@ -3562,6 +3626,23 @@ function ageBadge(days) {
   return '';
 }
 
+function getAgeMinutes(dateStr) {
+  if (!dateStr) return Infinity;
+  var diff = Date.now() - new Date(dateStr).getTime();
+  return Math.floor(diff / 60000);
+}
+
+function updateBulkBarState(activeLen) {
+  var selectAll = document.getElementById('bulk-select-all');
+  var count = document.getElementById('bulk-count');
+  var ackBtn = document.getElementById('bulk-ack-btn');
+  if (!ackBtn) return;
+  if (selectAll) selectAll.checked = activeLen > 0 && bulkSelectedIds.length === activeLen;
+  if (count) count.textContent = bulkSelectedIds.length > 0 ? bulkSelectedIds.length + ' selected' : '';
+  ackBtn.disabled = bulkSelectedIds.length === 0;
+  ackBtn.textContent = 'Acknowledge' + (bulkSelectedIds.length > 0 ? ' (' + bulkSelectedIds.length + ')' : '');
+}
+
 function renderPrayerRequests(requests) {
   var active = requests.filter(function(r) { return !r.acknowledged && !r.dismissed; });
   var acknowledged = requests.filter(function(r) { return r.acknowledged && !r.dismissed; });
@@ -3598,7 +3679,10 @@ function renderPrayerRequests(requests) {
       } else {
         bulkSelectedIds = [];
       }
-      renderPrayerRequests(allPrayerRequests);
+      activeContainer.querySelectorAll('.pr2-card-cb').forEach(function(cb) {
+        cb.checked = e.target.checked;
+      });
+      updateBulkBarState(active.length);
     });
     document.getElementById('bulk-ack-btn').addEventListener('click', function() {
       if (bulkSelectedIds.length > 0) bulkAcknowledge();
@@ -3612,17 +3696,19 @@ function renderPrayerRequests(requests) {
   if (active.length === 0) {
     activeContainer.innerHTML = '<div class="p-empty" style="font-style:italic;color:var(--stone);padding:.75rem 0;font-size:.9rem">No pending requests.</div>';
   } else {
-    activeContainer.innerHTML = active.map(function(r) {
+    activeContainer.innerHTML = active.map(function(r, i) {
       var days = getAgeDays(r.created_at || r.submitted_at);
+      var mins = getAgeMinutes(r.created_at || r.submitted_at);
       var aging = ageClass(days);
       var badge = ageBadge(days);
       var checked = bulkSelectedIds.indexOf(String(r.id)) !== -1;
       var name = r.name || 'A parishioner';
-      return '<div class="pr2-card ' + aging + '" id="pr-' + r.id + '">' +
+      var freshDot = mins < 60 ? '<span class="pr2-fresh-dot" title="Just submitted"></span>' : '';
+      return '<div class="pr2-card pr2-card-enter ' + aging + '" id="pr-' + r.id + '" style="--i:' + i + '">' +
         (active.length > 1 ? '<input type="checkbox" class="pr2-card-cb" data-bulk-id="' + r.id + '" ' + (checked ? 'checked' : '') + '>' : '') +
         '<div class="pr2-icon pr2-icon-cross">&#x2020;</div>' +
         '<div class="pr2-body">' +
-          '<div class="pr2-name">' + escHtml(name) + badge + '</div>' +
+          '<div class="pr2-name">' + freshDot + escHtml(name) + badge + '</div>' +
           '<div class="pr2-text">' + escHtml(r.intention || r.request_text || '') + '</div>' +
           '<div class="pr2-submitted">Submitted ' + fmtDateShort(r.created_at || r.submitted_at) + '</div>' +
           '<button class="pr2-quick-add" data-quick-name="' + escHtml(name) + '" data-tip="Add this name to the published intercession list">+ Add to list</button>' +
@@ -3645,7 +3731,7 @@ function renderPrayerRequests(requests) {
         } else {
           bulkSelectedIds = bulkSelectedIds.filter(function(x) { return x !== id; });
         }
-        renderPrayerRequests(allPrayerRequests);
+        updateBulkBarState(active.length);
       });
     });
     activeContainer.querySelectorAll('.pr2-quick-add').forEach(function(btn) {
@@ -3667,8 +3753,8 @@ function renderPrayerRequests(requests) {
   if (acknowledged.length === 0) {
     archiveContainer.innerHTML = '<div class="p-empty" style="font-style:italic;color:var(--stone);padding:.75rem 0;font-size:.9rem">None yet.</div>';
   } else {
-    archiveContainer.innerHTML = acknowledged.map(function(r) {
-      return '<div class="pr2-card pr2-card-acked">' +
+    archiveContainer.innerHTML = acknowledged.map(function(r, i) {
+      return '<div class="pr2-card pr2-card-enter pr2-card-acked" style="--i:' + i + '">' +
         '<div class="pr2-icon pr2-icon-check">&#x2713;</div>' +
         '<div class="pr2-body">' +
           '<div class="pr2-name">' + escHtml(r.name || 'A parishioner') + '</div>' +
@@ -3696,13 +3782,28 @@ function renderPrayerRequests(requests) {
 }
 
 async function acknowledgeRequest(id) {
+  var cardEl = document.getElementById('pr-' + id);
+  if (cardEl) cardEl.classList.add('acking');
+
   var now = new Date().toISOString();
   var ackPayload = { acknowledged: true, acknowledged_at: now };
   if (currentUser && currentUser.id && currentUser.id !== 'dev-user') {
     ackPayload.acknowledged_by = currentUser.id;
   }
-  await _supabase.from('prayer_requests').update(ackPayload).eq('id', id);
   var req = allPrayerRequests.find(function(r) { return String(r.id) === String(id); });
+
+  var animPromise = new Promise(function(resolve) { setTimeout(resolve, 400); });
+  var dbPromise = _supabase.from('prayer_requests').update(ackPayload).eq('id', id);
+  var results = await Promise.all([animPromise, dbPromise]);
+  var res = results[1];
+
+  if (res && res.error) {
+    if (cardEl) cardEl.classList.remove('acking');
+    showToast('Could not acknowledge: ' + res.error.message);
+    console.error('acknowledgeRequest failed:', res.error);
+    return;
+  }
+
   if (req) { req.acknowledged = true; req.acknowledged_at = now; }
   bulkSelectedIds = bulkSelectedIds.filter(function(x) { return x !== String(id); });
   renderPrayerRequests(allPrayerRequests);
@@ -3718,7 +3819,12 @@ async function bulkAcknowledge() {
     ackPayload.acknowledged_by = currentUser.id;
   }
   var ids = bulkSelectedIds.map(function(id) { return parseInt(id) || id; });
-  await _supabase.from('prayer_requests').update(ackPayload).in('id', ids);
+  var res = await _supabase.from('prayer_requests').update(ackPayload).in('id', ids);
+  if (res && res.error) {
+    showToast('Could not acknowledge: ' + res.error.message);
+    console.error('bulkAcknowledge failed:', res.error);
+    return;
+  }
   var count = bulkSelectedIds.length;
   allPrayerRequests.forEach(function(r) {
     if (bulkSelectedIds.indexOf(String(r.id)) !== -1) {
@@ -3733,7 +3839,6 @@ async function bulkAcknowledge() {
 }
 
 async function dismissRequest(id) {
-  // Animate the card out
   var cards = document.querySelectorAll('.pr2-card-acked');
   cards.forEach(function(card) {
     var btn = card.querySelector('[data-dismiss]');
@@ -3743,15 +3848,27 @@ async function dismissRequest(id) {
   });
 
   var now = new Date().toISOString();
-  await _supabase.from('prayer_requests').update({ dismissed: true, dismissed_at: now }).eq('id', id);
   var req = allPrayerRequests.find(function(r) { return String(r.id) === String(id); });
+  var prev = req ? { dismissed: req.dismissed, dismissed_at: req.dismissed_at } : null;
+
+  var res = await _supabase.from('prayer_requests').update({ dismissed: true, dismissed_at: now }).eq('id', id);
+  if (res && res.error) {
+    cards.forEach(function(card) {
+      var btn = card.querySelector('[data-dismiss]');
+      if (btn && btn.getAttribute('data-dismiss') === String(id)) {
+        card.classList.remove('dismissing');
+      }
+    });
+    showToast('Could not dismiss: ' + res.error.message);
+    console.error('dismissRequest failed:', res.error);
+    return;
+  }
+
   if (req) { req.dismissed = true; req.dismissed_at = now; }
 
-  // Wait for animation then re-render
   setTimeout(function() {
     renderPrayerRequests(allPrayerRequests);
     renderAttentionStrip(allPrayerRequests);
-    // Pulse the history count
     var countEl = document.getElementById('hd-trigger-count');
     if (countEl) {
       countEl.classList.remove('pulse');
