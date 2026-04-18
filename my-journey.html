@@ -536,6 +536,20 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 .icon-remove:hover{color:var(--maroon)}
 @media(max-width:640px){.icon-grid{grid-template-columns:repeat(2,1fr)}}
 
+/* ── KLIROS (Prayer Rule + Fasts) ── */
+.kliros-cols{padding:1.6rem 1.8rem;display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.kliros-col-head{font-family:var(--f-ui);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--maroon);font-weight:600;margin-bottom:.35rem}
+.kliros-col-sub{font-family:var(--f-display);font-style:italic;font-size:.9rem;color:var(--stone);margin-bottom:1.1rem;padding-bottom:.75rem;border-bottom:var(--rule-hair)}
+.fast-stat{display:flex;align-items:baseline;gap:.5rem;margin-bottom:.9rem}
+.fast-num{font-family:var(--f-display);font-weight:300;font-style:italic;font-size:2.6rem;color:var(--verdigris);line-height:1}
+.fast-desc{font-family:var(--f-display);font-style:italic;font-size:1rem;color:var(--stone);line-height:1.3}
+.fast-list{list-style:none;padding:0;margin:0}
+.fast-list li{font-family:var(--f-body);font-size:.95rem;color:var(--ink);padding:.45rem 0;border-bottom:var(--rule-hair);display:flex;justify-content:space-between}
+.fast-list li:last-child{border-bottom:none}
+.fast-list li span{font-family:var(--f-body);font-style:italic;color:var(--stone)}
+.rule-grid{display:grid;grid-template-columns:1fr;gap:0}
+@media(max-width:640px){.kliros-cols{grid-template-columns:1fr;gap:1.5rem}}
+
 /* ── SIDEBAR CARDS ── */
 .j-keepsake{background:var(--vellum-mid);border:1px solid rgba(184,131,40,.28);padding:1.5rem;text-align:center;background-image:repeating-linear-gradient(45deg,transparent 0,transparent 10px,rgba(184,131,40,.03) 10px,rgba(184,131,40,.03) 20px);transition:transform .4s ease,box-shadow .4s ease}
 .j-keepsake:hover{transform:translateY(-3px);box-shadow:0 14px 36px rgba(28,20,16,.1)}
@@ -763,12 +777,14 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 .jn-saved-msg{font-family:var(--f-body);font-style:italic;font-size:.85rem;color:var(--verdigris);opacity:0;transition:opacity .3s}
 .jn-saved-msg.jn-show{opacity:1}
 
-/* PRAYER RULE GRID */
-.rule-grid{display:grid;grid-template-columns:1fr 1fr;gap:.15rem 1.5rem;margin:.75rem 0 1.25rem;}
-.rule-cat-label{font-family:var(--f-ui);font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;color:var(--maroon);display:block;padding-bottom:.35rem;border-bottom:1px solid rgba(123,29,42,.15);margin-bottom:.5rem;grid-column:1/-1;}
-.rule-item{display:flex;align-items:center;gap:.55rem;padding:.3rem 0;}
-.rule-item-check{width:18px;height:18px;border-radius:50%;background:var(--maroon);color:white;font-size:.62rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.rule-item-title{font-family:var(--f-display);font-size:1.05rem;color:var(--apse);line-height:1.2;}
+/* PRAYER RULE LIST */
+.rule-grid{display:grid;grid-template-columns:1fr;gap:0}
+.rule-cat-label{font-family:var(--f-ui);font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;color:var(--maroon);display:block;padding:.6rem 0 .35rem;border-bottom:var(--rule-hair);margin-bottom:.25rem}
+.rule-item{display:flex;align-items:baseline;gap:.6rem;padding:.5rem 0;border-bottom:var(--rule-hair)}
+.rule-item:last-child{border-bottom:none}
+.rule-item-check{display:none}
+.rule-name,.rule-item-title{font-family:var(--f-display);font-size:1.05rem;color:var(--text);flex:1;line-height:1.2}
+.rule-cat{font-family:var(--f-body);font-size:.78rem;color:var(--stone-lt);font-style:italic;letter-spacing:.01em}
 
 /* LOADING */
 .loading{font-family:var(--f-display);font-style:italic;color:var(--stone);text-align:center;padding:3rem;}
@@ -782,7 +798,6 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   .action-btn{text-align:center;width:100%;white-space:normal;}
   .article-grid{grid-template-columns:1fr;}
   .jn-add{opacity:.5}
-  .rule-grid{grid-template-columns:1fr;}
 }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
@@ -1385,7 +1400,22 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
         </div>
       </div>
       <div class="room-body">
-        <div id="rule-list"></div>
+        <div class="kliros-cols">
+          <div>
+            <div class="kliros-col-head">My Rule of Prayer</div>
+            <div class="kliros-col-sub" id="rule-begun-date">Your rule of prayer</div>
+            <div id="rule-list"></div>
+          </div>
+          <div>
+            <div class="kliros-col-head">Fasts Observed</div>
+            <div class="kliros-col-sub">From the calendar, this year</div>
+            <div class="fast-stat">
+              <span class="fast-num" id="kliros-fast-num">&ndash;</span>
+              <span class="fast-desc">fast days kept<br>since January 1</span>
+            </div>
+            <ul class="fast-list" id="kliros-fast-list"></ul>
+          </div>
+        </div>
         <div style="padding:1rem 1.8rem;border-top:var(--rule-hair)">
           <a href="/prayers" class="action-btn primary" style="display:inline-block;text-decoration:none;">Pray &rarr;</a>
         </div>
@@ -1776,8 +1806,8 @@ function renderRule() {
     html += '<span class="rule-cat-label">' + group.label + '</span>';
     group.prayers.forEach(function(p) {
       html += '<div class="rule-item">';
-      html += '<div class="rule-item-check">&#10003;</div>';
-      html += '<span class="rule-item-title">' + escHtml(p.title) + '</span>';
+      html += '<span class="rule-name">' + escHtml(p.title) + '</span>';
+      html += '<span class="rule-cat">' + escHtml(group.label) + '</span>';
       html += '</div>';
     });
   });
@@ -1786,6 +1816,75 @@ function renderRule() {
   ruleList.innerHTML = html;
   var ruleHeadCount = document.getElementById('rule-head-count');
   if (ruleHeadCount) ruleHeadCount.textContent = rule.length;
+
+  // Populate begun date if stored
+  var begunDate = document.getElementById('rule-begun-date');
+  if (begunDate) {
+    var stored = null;
+    try { stored = localStorage.getItem('spp_rule_begun'); } catch {}
+    if (stored) {
+      var bd = new Date(stored + 'T12:00:00');
+      var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+      begunDate.textContent = 'Begun ' + months[bd.getMonth()] + ' ' + bd.getDate() + ', ' + bd.getFullYear();
+    } else {
+      begunDate.textContent = rule.length + ' prayer' + (rule.length === 1 ? '' : 's') + ' in your rule';
+    }
+  }
+}
+
+// ── KLIROS FASTS (async: walks calendar to count fast days) ──
+async function renderKlirosFasts() {
+  var fastNumEl = document.getElementById('kliros-fast-num');
+  var fastListEl = document.getElementById('kliros-fast-list');
+  if (!fastNumEl || !fastListEl) return;
+
+  var today = new Date();
+  var year = today.getFullYear();
+  var todayKey = year + '-' + String(today.getMonth()+1).padStart(2,'0') + '-' + String(today.getDate()).padStart(2,'0');
+
+  var cal = await loadCalendar(year);
+  if (!cal || !cal.days) return;
+
+  // Count fast days year-to-date (any fast value that isn't 'No Fast')
+  var count = 0;
+  Object.keys(cal.days).forEach(function(k) {
+    if (k <= todayKey && cal.days[k].fast && cal.days[k].fast !== 'No Fast') count++;
+  });
+  fastNumEl.textContent = count;
+
+  // Identify named fast periods (not generic 'Fast' which is Wed/Fri)
+  var named = {};
+  var namedOrder = [];
+  Object.keys(cal.days).sort().forEach(function(k) {
+    var f = cal.days[k].fast || '';
+    if (!f || f === 'No Fast' || f === 'Fast') return;
+    if (!named[f]) { named[f] = { start: k, end: k }; namedOrder.push(f); }
+    else named[f].end = k;
+  });
+
+  var html = '';
+  // Show in reverse chronological order (most recent first up to today, then upcoming)
+  var past = [], upcoming = [];
+  namedOrder.forEach(function(name) {
+    if (named[name].end < todayKey) past.push(name);
+    else upcoming.push(name);
+  });
+  past.reverse();
+  var listItems = past.concat(upcoming);
+
+  // Determine status for each
+  listItems.forEach(function(name) {
+    var period = named[name];
+    var status;
+    if (period.end < todayKey) status = 'completed';
+    else if (period.start <= todayKey) status = 'in progress';
+    else status = 'upcoming';
+    html += '<li>' + escHtml(name) + ' <span>' + status + '</span></li>';
+  });
+
+  // Always add Wednesday and Friday as weekly
+  html += '<li>Wednesday and Friday <span>weekly</span></li>';
+  fastListEl.innerHTML = html;
 }
 
 // ── SUMMARY PRINT ──
@@ -2208,6 +2307,7 @@ document.addEventListener('DOMContentLoaded', async function() {
   renderIconCorner();
   renderLivingStrip();
   renderPastoralNote();
+  renderKlirosFasts();
   initSectionNav();
   initScrollReveal();
   renderJourneyHero();
