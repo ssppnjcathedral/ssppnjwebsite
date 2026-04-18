@@ -947,85 +947,150 @@ body {
 }
 .pr-archive-link:hover { color: var(--maroon); }
 
-/* ── CURRENT PRAYER LIST ── */
-.pl-entry {
+/* ── INTERCESSION LIST ── */
+.pl-live-note {
+  font-family: var(--f-body);
+  font-style: italic;
+  font-size: .82rem;
+  color: rgba(122,102,72,.8);
+  line-height: 1.45;
+  margin: -.25rem 0 .6rem;
+}
+.pl-section {
+  margin-bottom: 1.15rem;
+}
+.pl-section:last-child { margin-bottom: 0; }
+.pl-section-head {
+  font-family: var(--f-ui);
+  font-size: max(.56rem, 10.5px);
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--maroon);
+  padding: 0 0 .45rem;
+  margin: 0 0 .2rem;
+  border-bottom: 1px solid rgba(123,29,42,.12);
   display: flex;
   align-items: baseline;
-  justify-content: space-between;
-  padding: .45rem 0;
-  border-bottom: 1px solid rgba(123,29,42,.06);
   gap: .5rem;
 }
-.pl-entry:last-child { border-bottom: none; }
+.pl-section-head-count {
+  font-family: var(--f-data);
+  font-size: .68rem;
+  color: rgba(122,102,72,.55);
+  font-weight: 400;
+  letter-spacing: .04em;
+  margin-left: auto;
+}
+.pl-section-empty {
+  font-family: var(--f-body);
+  font-style: italic;
+  font-size: .88rem;
+  color: rgba(122,102,72,.55);
+  padding: .4rem 0 .3rem;
+}
+.pl-entry {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: .32rem .1rem;
+  gap: .5rem;
+  border-radius: 2px;
+  transition: background .15s;
+}
+.pl-entry:hover { background: rgba(123,29,42,.03); }
 .pl-entry span {
   font-family: var(--f-body);
   font-style: italic;
   font-size: 1rem;
   color: var(--ink);
-  line-height: 1.4;
+  line-height: 1.35;
   flex: 1;
 }
-.pl-entry span::before {
-  content: '✦';
-  font-style: normal;
-  font-size: .5rem;
-  color: var(--maroon);
-  opacity: .5;
-  margin-right: .55rem;
-  vertical-align: middle;
-  position: relative;
-  top: -.05em;
-}
+.pl-entry span::before { content: none; }
+.pl-departed-entry span { color: var(--stone); }
 .pl-entry button {
   background: none;
   border: none;
-  color: transparent;
+  color: rgba(122,102,72,.3);
   cursor: pointer;
-  font-size: .85rem;
+  font-size: 1rem;
   line-height: 1;
   padding: 0 .2rem;
-  transition: color .15s;
+  opacity: 1;
+  transition: color .15s, transform .12s;
   flex-shrink: 0;
 }
-.pl-entry:hover button { color: rgba(123,29,42,.35); }
-.pl-entry button:hover { color: var(--maroon) !important; }
+.pl-entry:hover button { color: rgba(123,29,42,.5); }
+.pl-entry button:hover { color: var(--maroon) !important; transform: scale(1.15); }
+
+/* Unified add-row */
+.pl-add-wrap {
+  margin-top: 1rem;
+  padding-top: .9rem;
+  border-top: 1px solid rgba(123,29,42,.1);
+}
+.pl-add-toggle {
+  display: inline-flex;
+  margin-bottom: .55rem;
+  border: 1px solid rgba(123,29,42,.22);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.pl-add-toggle-btn {
+  font-family: var(--f-ui);
+  font-size: .58rem;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  padding: .38rem .95rem;
+  border: none;
+  background: transparent;
+  color: var(--maroon);
+  cursor: pointer;
+  transition: background .2s cubic-bezier(.22,.68,0,1), color .2s;
+}
+.pl-add-toggle-btn.active {
+  background: var(--maroon);
+  color: var(--vellum);
+}
+.pl-add-toggle-btn:not(.active):hover { background: rgba(123,29,42,.06); }
 .pl-add-row {
   display: flex;
-  gap: .5rem;
-  margin-top: .5rem;
+  gap: .45rem;
 }
 .pl-add-row input {
   flex: 1;
   font-family: var(--f-body);
   font-size: .97rem;
-  padding: .4rem .65rem;
-  border: var(--rule-faint);
-  border-radius: 4px;
+  padding: .5rem .7rem;
+  border: 1px solid rgba(123,29,42,.2);
+  border-radius: 3px;
   background: #fff;
   outline: none;
+  transition: border-color .2s, box-shadow .2s;
 }
-.pl-add-row input:focus { border-color: var(--maroon); }
+.pl-add-row input:focus {
+  border-color: var(--maroon);
+  box-shadow: 0 0 0 3px rgba(123,29,42,.06);
+}
 .pl-add-row button {
   font-family: var(--f-ui);
-  font-size: .42rem;
-  letter-spacing: .08em;
+  font-size: .6rem;
+  font-weight: 600;
+  letter-spacing: .14em;
   text-transform: uppercase;
-  padding: .4rem .85rem;
+  padding: 0 1.1rem;
   background: var(--maroon);
   color: var(--vellum);
   border: none;
-  border-radius: 4px;
+  border-radius: 3px;
   cursor: pointer;
+  white-space: nowrap;
+  transition: background .2s cubic-bezier(.22,.68,0,1), transform .12s;
 }
 .pl-add-row button:hover { background: var(--maroon-deep); }
-.pl-note {
-  font-family: var(--f-ui);
-  font-size: .45rem;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-  color: var(--stone);
-  margin-top: .75rem;
-}
+.pl-add-row button:active { transform: scale(.97); }
 
 /* ── PARISH LIFE SECTION ── */
 .pl-bulletin-card {
@@ -2209,17 +2274,7 @@ body {
 }
 .pr2-quick-add:hover { background: var(--verdigris); color: var(--vellum); border-color: var(--verdigris); }
 
-/* Intercession list sections */
-.pl-section-head {
-  font-family: var(--f-ui); font-size: max(.48rem, 9px);
-  letter-spacing: .18em; text-transform: uppercase;
-  color: var(--stone); padding: .55rem 0 .3rem;
-  border-bottom: 1px solid rgba(123,29,42,.08);
-  margin-bottom: .15rem; margin-top: .75rem;
-}
-.pl-section-head:first-child { margin-top: 0; }
-.pl-departed-entry span { color: var(--stone); }
-.pl-departed-entry span::before { color: rgba(123,29,42,.3); }
+/* (intercession list styles consolidated above) */
 
 .pr2-card-acked { opacity: .8; }
 .pr2-acked-btn {
@@ -2775,16 +2830,18 @@ body {
         </div>
         <div>
           <span class="prayer-col-head">Published Intercession List</span>
-          <div id="prayer-list-entries" style="max-height:480px;overflow-y:auto;padding-right:.25rem"></div>
-          <div class="pl-add-row" style="margin-top:.75rem">
-            <input id="pl-new-name" placeholder="Add a name..." onkeydown="if(event.key==='Enter')addNameToList()">
-            <button onclick="addNameToList()" data-tip="Add this name to the living intercession list">Add</button>
+          <p class="pl-live-note">Names appear on the parish site within about 30 seconds of saving.</p>
+          <div id="prayer-list-entries" style="max-height:440px;overflow-y:auto;padding-right:.25rem"></div>
+          <div class="pl-add-wrap">
+            <div class="pl-add-toggle" role="group" aria-label="Add name to">
+              <button type="button" class="pl-add-toggle-btn active" id="pl-toggle-living" onclick="setPlAddType('living')">Living</button>
+              <button type="button" class="pl-add-toggle-btn" id="pl-toggle-departed" onclick="setPlAddType('departed')">Departed</button>
+            </div>
+            <div class="pl-add-row">
+              <input id="pl-new-name" placeholder="Add a name..." onkeydown="if(event.key==='Enter')addEntryToList()">
+              <button type="button" onclick="addEntryToList()" data-tip="Add this name to the intercession list">Add</button>
+            </div>
           </div>
-          <div class="pl-add-row" style="margin-top:.35rem">
-            <input id="pl-new-departed" placeholder="Add departed name..." onkeydown="if(event.key==='Enter')addDepartedToList()">
-            <button onclick="addDepartedToList()" data-tip="Add to the departed section (prefixed 'Newly departed')" style="background:var(--stone);border-color:var(--stone)">Add Departed</button>
-          </div>
-          <div class="pl-note">Changes publish immediately to the site.</div>
         </div>
       </div>
     </div>
@@ -3919,28 +3976,25 @@ function renderPrayerList() {
     }
   });
 
-  var html = '';
-
-  // Living section
-  html += '<div class="pl-section-head">For the Living</div>';
-  if (living.length === 0) {
-    html += '<div class="p-empty" style="padding:.4rem 0;font-size:.88rem">No living names.</div>';
-  } else {
-    html += living.map(function(item) {
-      return '<div class="pl-entry"><span>' + escHtml(item.name) + '</span><button data-rm="' + item.index + '" data-tip="Remove this name from the intercession list">&times;</button></div>';
-    }).join('');
+  function sectionHtml(label, items, departedClass) {
+    var body;
+    if (items.length === 0) {
+      body = '<div class="pl-section-empty">No names yet.</div>';
+    } else {
+      body = items.map(function(item) {
+        return '<div class="pl-entry' + (departedClass ? ' pl-departed-entry' : '') + '">' +
+          '<span>' + escHtml(item.name) + '</span>' +
+          '<button data-rm="' + item.index + '" data-tip="Remove this name">&times;</button>' +
+        '</div>';
+      }).join('');
+    }
+    return '<div class="pl-section">' +
+      '<div class="pl-section-head">' + label + '<span class="pl-section-head-count">' + items.length + '</span></div>' +
+      body +
+    '</div>';
   }
 
-  // Departed section
-  html += '<div class="pl-section-head">For the Departed</div>';
-  if (departed.length === 0) {
-    html += '<div class="p-empty" style="padding:.4rem 0;font-size:.88rem">No departed names.</div>';
-  } else {
-    html += departed.map(function(item) {
-      return '<div class="pl-entry pl-departed-entry"><span>' + escHtml(item.name) + '</span><button data-rm="' + item.index + '" data-tip="Remove this name from the intercession list">&times;</button></div>';
-    }).join('');
-  }
-
+  var html = sectionHtml('For the Living', living, false) + sectionHtml('For the Departed', departed, true);
   container.innerHTML = html;
   container.querySelectorAll('[data-rm]').forEach(function(btn) {
     btn.addEventListener('click', function() {
@@ -3956,21 +4010,29 @@ function addToList(name) {
   ensureGhToken(function() { doSaveList(function() { prayerListData.names.pop(); }); });
 }
 
-function addNameToList() {
+var plAddType = 'living';
+
+function setPlAddType(type) {
+  plAddType = type;
+  var livingBtn = document.getElementById('pl-toggle-living');
+  var departedBtn = document.getElementById('pl-toggle-departed');
+  if (type === 'departed') {
+    departedBtn.classList.add('active');
+    livingBtn.classList.remove('active');
+    document.getElementById('pl-new-name').placeholder = 'Add departed name...';
+  } else {
+    livingBtn.classList.add('active');
+    departedBtn.classList.remove('active');
+    document.getElementById('pl-new-name').placeholder = 'Add a name...';
+  }
+  document.getElementById('pl-new-name').focus();
+}
+
+function addEntryToList() {
   var input = document.getElementById('pl-new-name');
   var name = input.value.trim();
   if (!name) return;
-  prayerListData.names.push(name);
-  input.value = '';
-  renderPrayerList();
-  ensureGhToken(function() { doSaveList(function() { prayerListData.names.pop(); }); });
-}
-
-function addDepartedToList() {
-  var input = document.getElementById('pl-new-departed');
-  var name = input.value.trim();
-  if (!name) return;
-  var fullName = 'Newly departed ' + name;
+  var fullName = plAddType === 'departed' ? 'Newly departed ' + name : name;
   prayerListData.names.push(fullName);
   input.value = '';
   renderPrayerList();
