@@ -1089,12 +1089,14 @@ function renderDay(entry, dateLabel) {
     const quoteText = citeMatch ? citeMatch[1].trim() : scripture;
     const citeRef   = citeMatch ? citeMatch[2].trim() : '';
 
+    const homRef = `prologue-homily-${String(currentMonth).padStart(2,'0')}-${String(currentDay).padStart(2,'0')}`;
+    const homCitation = citeRef || `Prologue homily · ${MONTH_NAMES[currentMonth-1]} ${currentDay}`;
     html += `
       <div class="prologue-section" id="sec-homily">
         <span class="section-label">Homily</span>
         ${scripture ? `
         <div class="homily-scripture">
-          <p class="homily-scripture-ref">${quoteText}${citeRef ? `<cite>${citeRef}</cite>` : ''}</p>
+          <p class="homily-scripture-ref"><span class="nw-scripture" data-ref="${homRef}" data-citation="${homCitation.replace(/"/g,'&quot;')}">${quoteText}</span>${citeRef ? `<cite>${citeRef}</cite>` : ''}</p>
         </div>` : ''}
         <div class="prologue-prose">${wrapParagraphs(entry.homily.text)}</div>
         <p class="prologue-doxology">To You glory and thanks always. Amen.</p>
@@ -1113,6 +1115,25 @@ function renderDay(entry, dateLabel) {
   /* Sync date picker selects */
   document.getElementById('pick-month').value = String(currentMonth);
   populateDaySelect(currentMonth, currentDay);
+
+  /* Attach save-a-verse widget to the homily scripture */
+  if (window.NoteWidget) {
+    const t = new Date();
+    const todayKey = `${t.getFullYear()}-${String(t.getMonth()+1).padStart(2,'0')}-${String(t.getDate()).padStart(2,'0')}`;
+    window.NoteWidget.attach({
+      root: document.getElementById('prologue-main'),
+      date: todayKey,
+      selector: '.nw-scripture',
+      resolveVerseMeta: function(span){
+        return {
+          ref: span.dataset.ref,
+          citation: span.dataset.citation || '',
+          source: 'prologue',
+          text: (span.textContent || '').trim()
+        };
+      }
+    });
+  }
 
   /* Scroll to top of content */
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1259,6 +1280,8 @@ function drToggle(head){
 })();
 </script>
 
+<script src="/companion-sync.js"></script>
+<script src="/note-widget.js"></script>
 <script src="/enhancements.js"></script>
 
 

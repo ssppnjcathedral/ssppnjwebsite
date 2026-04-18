@@ -951,7 +951,32 @@ function renderPage3(date){
 
 function renderPage4(){
   var quotes=_bulletinData.patristic_quotes||[];
-  document.getElementById('p4-quotes').innerHTML=quotes.map(function(q){return'<div class="patristic-q"><span class="patristic-text">'+(q.quote||'')+'</span><span class="patristic-attr">\u2013'+(q.attribution||'')+'</span></div>'}).join('');
+  var bDate=_currentDate||'';
+  document.getElementById('p4-quotes').innerHTML=quotes.map(function(q,i){
+    var attr=(q.attribution||'').replace(/"/g,'&quot;');
+    var ref='bulletin-'+bDate+'-q'+i;
+    return'<div class="patristic-q"><span class="patristic-text nw-patristic" data-ref="'+ref+'" data-citation="'+attr+'" data-bdate="'+bDate+'">'+(q.quote||'')+'</span><span class="patristic-attr">\u2013'+(q.attribution||'')+'</span></div>';
+  }).join('');
+  attachBulletinWidget();
+}
+
+function attachBulletinWidget(){
+  if (!window.NoteWidget) return;
+  var t=new Date();
+  var todayKey=t.getFullYear()+'-'+String(t.getMonth()+1).padStart(2,'0')+'-'+String(t.getDate()).padStart(2,'0');
+  window.NoteWidget.attach({
+    root: document.getElementById('p4-quotes'),
+    date: todayKey,
+    selector: '.nw-patristic',
+    resolveVerseMeta: function(span){
+      return {
+        ref: span.dataset.ref,
+        citation: span.dataset.citation || '',
+        source: 'bulletin',
+        text: (span.textContent || '').trim()
+      };
+    }
+  });
 }
 
 function handleConnect(e){e.preventDefault();var form=e.target;fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(new FormData(form)).toString()}).then(function(){form.innerHTML='<p style="font-family:var(--f-display);font-style:italic;font-size:11pt;color:var(--b-maroon);padding:.15in 0">Thank you. Fr. Solomon will be in touch.</p>'}).catch(function(){alert('Something went wrong. Please speak with Fr. Solomon directly.')})}
@@ -1111,6 +1136,11 @@ document.addEventListener('click', function() {
 });
 </script>
 <script>window.HERO_IMAGES=[{url:'/images/heroes/hero-01.jpg'},{url:'/images/heroes/hero-03.jpg'},{url:'/images/heroes/hero-12.jpg'},{url:'/images/heroes/hero-10.jpg'}];</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="/supabase-client.js"></script>
+<script src="/auth.js"></script>
+<script src="/companion-sync.js"></script>
+<script src="/note-widget.js"></script>
 <script src="/hero-rotator.js"></script>
 </body>
 </html>
