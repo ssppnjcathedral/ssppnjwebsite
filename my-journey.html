@@ -429,6 +429,30 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 .section-title{font-family:var(--f-display);font-weight:300;font-size:1.7rem;color:var(--apse);margin-bottom:1.5rem;}
 .section-rule{height:1px;background:rgba(123,29,42,.12);margin:2.5rem 0;}
 
+/* ── LIVING STRIP ── */
+.living-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:2rem 0 2.5rem}
+.ls-tile{background:#fff;border:1px solid rgba(123,29,42,.12);border-left:3px solid var(--gold);padding:1.1rem 1.25rem;display:flex;flex-direction:column;gap:.35rem;box-shadow:0 8px 22px -14px rgba(28,20,16,.12);transition:transform .25s ease,box-shadow .25s ease;position:relative;overflow:hidden;min-height:132px}
+.ls-tile:hover{transform:translateY(-2px);box-shadow:0 14px 32px -18px rgba(28,20,16,.2)}
+.ls-tile.maroon{border-left-color:var(--maroon)}
+.ls-tile.verdigris{border-left-color:var(--verdigris)}
+.ls-eyebrow{font-family:var(--f-ui);font-size:.55rem;letter-spacing:.22em;text-transform:uppercase;color:var(--stone);display:flex;align-items:center;gap:.5rem;font-weight:600}
+.ls-eyebrow .ls-dot{width:6px;height:6px;border-radius:50%;background:var(--verdigris);box-shadow:0 0 0 0 rgba(61,107,94,.55);animation:lsPulse 2.2s ease-in-out infinite}
+.ls-tile.maroon .ls-dot{background:var(--maroon);box-shadow:0 0 0 0 rgba(123,29,42,.45)}
+@keyframes lsPulse{0%,100%{box-shadow:0 0 0 0 rgba(61,107,94,.45)}50%{box-shadow:0 0 0 6px rgba(61,107,94,0)}}
+.ls-title{font-family:var(--f-display);font-style:italic;font-size:1.45rem;color:var(--apse);line-height:1.15}
+.ls-title-plain{font-style:normal;color:var(--ink)}
+.ls-tile.verdigris .ls-title{color:var(--verdigris)}
+.ls-meta{font-family:var(--f-body);font-size:.88rem;color:var(--stone);line-height:1.4}
+.ls-meta strong{color:var(--maroon);font-weight:500;font-style:italic;font-family:var(--f-display);font-size:1.1rem}
+.ls-tile.verdigris .ls-meta strong{color:var(--verdigris)}
+.ls-sub{font-family:var(--f-display);font-style:italic;font-size:.9rem;color:var(--stone);line-height:1.35;margin-top:.25rem}
+.ls-progress{height:3px;background:rgba(184,131,40,.18);margin-top:.5rem;overflow:hidden;border-radius:2px}
+.ls-progress-fill{height:100%;background:linear-gradient(90deg,var(--gold) 0%,var(--gold-lt,#E8C97A) 100%);width:0%;transition:width .9s cubic-bezier(.22,1,.36,1)}
+.ls-cta{margin-top:auto;padding-top:.5rem;font-family:var(--f-ui);font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--maroon);border-bottom:1px solid rgba(123,29,42,.25);align-self:flex-start;padding-bottom:.1rem;transition:color .2s}
+.ls-cta:hover{color:var(--maroon-deep,#5C1520)}
+@media(max-width:1100px){.living-strip{grid-template-columns:1fr 1fr}}
+@media(max-width:700px){.living-strip{grid-template-columns:1fr;gap:.75rem}.ls-tile{min-height:0}}
+
 /* ARTICLE CARDS */
 .section-group{margin-bottom:2rem;}
 .section-group-head{font-family:var(--f-ui);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--maroon);display:block;padding-bottom:.5rem;border-bottom:1px solid rgba(123,29,42,.15);margin-bottom:.85rem;}
@@ -965,6 +989,33 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 
 <!-- MAIN -->
 <div class="journey-outer">
+
+  <!-- LIVING STRIP -->
+  <div class="living-strip" id="living-strip" style="display:none">
+    <!-- Tile 1: Next Great Feast -->
+    <div class="ls-tile maroon" id="ls-feast">
+      <span class="ls-eyebrow"><span class="ls-dot"></span>Next Great Feast</span>
+      <div class="ls-title" id="ls-feast-title">&hellip;</div>
+      <div class="ls-meta" id="ls-feast-meta"></div>
+      <div class="ls-progress" id="ls-feast-progress" style="display:none"><div class="ls-progress-fill" id="ls-feast-progress-fill"></div></div>
+      <div class="ls-sub" id="ls-feast-sub"></div>
+    </div>
+    <!-- Tile 2: Patron Saint -->
+    <div class="ls-tile" id="ls-patron">
+      <span class="ls-eyebrow">Your Patron Saint</span>
+      <div class="ls-title" id="ls-patron-title">&hellip;</div>
+      <div class="ls-meta" id="ls-patron-meta"></div>
+      <div class="ls-sub" id="ls-patron-sub"></div>
+      <a href="/my-profile" class="ls-cta" id="ls-patron-cta" style="display:none">Set your patron saint &rarr;</a>
+    </div>
+    <!-- Tile 3: Today's Discipline -->
+    <div class="ls-tile verdigris" id="ls-fast">
+      <span class="ls-eyebrow"><span class="ls-dot"></span>Today's Discipline</span>
+      <div class="ls-title" id="ls-fast-title">&hellip;</div>
+      <div class="ls-meta" id="ls-fast-meta"></div>
+      <div class="ls-sub" id="ls-fast-sub"></div>
+    </div>
+  </div>
 
   <!-- PROGRESS -->
   <div class="progress-section" id="progress-section">
@@ -1567,6 +1618,7 @@ document.addEventListener('DOMContentLoaded', async function() {
   renderReadingNotes();
   renderLibrary();
   renderIconCorner();
+  renderLivingStrip();
 });
 
 function renderReadingNotes() {
@@ -1633,6 +1685,165 @@ function renderReadingNotes() {
       countEl.textContent = flat.length + ' saved note' + (flat.length === 1 ? '' : 's');
     }
   }
+}
+
+// ── LIVING STRIP ──
+var _calCache = null;
+async function loadCalendar(year) {
+  if (_calCache && _calCache.year === year) return _calCache;
+  try {
+    var r = await fetch('/_data/calendar-' + year + '.json');
+    if (!r.ok) throw 0;
+    _calCache = await r.json();
+    return _calCache;
+  } catch (e) { return null; }
+}
+
+async function renderLivingStrip() {
+  var strip = document.getElementById('living-strip');
+  if (!strip) return;
+  strip.style.display = 'grid';
+
+  var today = new Date();
+  var y = today.getFullYear();
+  var todayKey = y + '-' + String(today.getMonth()+1).padStart(2,'0') + '-' + String(today.getDate()).padStart(2,'0');
+
+  var cal = await loadCalendar(y);
+
+  // ── Tile 1: Next Great Feast ──
+  var feastTitle = document.getElementById('ls-feast-title');
+  var feastMeta = document.getElementById('ls-feast-meta');
+  var feastSub = document.getElementById('ls-feast-sub');
+  var feastProgress = document.getElementById('ls-feast-progress');
+  var feastFill = document.getElementById('ls-feast-progress-fill');
+  if (cal && cal.days) {
+    var nextFeast = null, nextFeastKey = null;
+    var allKeys = Object.keys(cal.days).sort();
+    for (var i = 0; i < allKeys.length; i++) {
+      var k = allKeys[i];
+      if (k < todayKey) continue;
+      if ((cal.days[k].feastLevel || 0) >= 7) {
+        nextFeast = cal.days[k];
+        nextFeastKey = k;
+        break;
+      }
+    }
+    // Also check next year if nothing found this year
+    if (!nextFeast) {
+      var nextCal = await loadCalendar(y + 1);
+      if (nextCal && nextCal.days) {
+        var nkeys = Object.keys(nextCal.days).sort();
+        for (var j = 0; j < nkeys.length; j++) {
+          if ((nextCal.days[nkeys[j]].feastLevel || 0) >= 7) {
+            nextFeast = nextCal.days[nkeys[j]];
+            nextFeastKey = nkeys[j];
+            break;
+          }
+        }
+      }
+    }
+    if (nextFeast && nextFeastKey) {
+      var fd = new Date(nextFeastKey + 'T12:00:00');
+      var days = Math.round((fd - today) / 86400000);
+      var feastName = (nextFeast.feast || '').split(';')[0].trim() || nextFeast.feast || 'Feast';
+      feastTitle.textContent = feastName;
+      feastMeta.innerHTML = '<strong>' + days + '</strong> day' + (days === 1 ? '' : 's') + ' &middot; ' + formatFeastDate(fd);
+      feastSub.textContent = nextFeast.feastDesc || '';
+    } else {
+      feastTitle.textContent = 'No great feast found';
+      feastMeta.textContent = '';
+    }
+  } else {
+    feastTitle.textContent = 'Calendar unavailable';
+    feastMeta.textContent = '';
+  }
+
+  // ── Tile 2: Patron Saint ──
+  var patronTitle = document.getElementById('ls-patron-title');
+  var patronMeta = document.getElementById('ls-patron-meta');
+  var patronSub = document.getElementById('ls-patron-sub');
+  var patronCta = document.getElementById('ls-patron-cta');
+  var patron = await loadPatronSaint();
+  if (patron && patron.name) {
+    patronTitle.textContent = patron.name;
+    patronTitle.classList.remove('ls-title-plain');
+    if (patron.nameDay) {
+      var ndays = daysUntilMonthDay(patron.nameDay, today);
+      patronMeta.innerHTML = 'Name day &middot; ' + escHtml(patron.nameDay) + (ndays !== null ? ' &middot; <strong>' + ndays + '</strong> day' + (ndays === 1 ? '' : 's') : '');
+    } else {
+      patronMeta.textContent = '';
+    }
+    patronSub.textContent = patron.description || '';
+    patronCta.style.display = 'none';
+  } else {
+    patronTitle.textContent = 'Not yet chosen';
+    patronTitle.classList.add('ls-title-plain');
+    patronMeta.innerHTML = '<span style="font-family:var(--f-display);font-style:italic;color:var(--stone)">Add your patron saint to your profile to see them here.</span>';
+    patronSub.textContent = '';
+    patronCta.style.display = 'inline-block';
+  }
+
+  // ── Tile 3: Today's Discipline ──
+  var fastTitle = document.getElementById('ls-fast-title');
+  var fastMeta = document.getElementById('ls-fast-meta');
+  var fastSub = document.getElementById('ls-fast-sub');
+  if (cal && cal.days && cal.days[todayKey]) {
+    var dayData = cal.days[todayKey];
+    var fastLabel = dayData.fast || 'Fast Free';
+    var fastEx = dayData.fastException || '';
+    fastTitle.textContent = fastLabel;
+    fastMeta.innerHTML = fastEx ? escHtml(fastEx) : '';
+    fastSub.textContent = dayData.feast || '';
+  } else {
+    fastTitle.textContent = 'No data';
+  }
+}
+
+async function loadPatronSaint() {
+  // Prefer parishioners profile fields (nameday_saint + nameday_date)
+  try {
+    if (typeof _supabase !== 'undefined' && typeof getCurrentUser === 'function') {
+      var user = await getCurrentUser();
+      if (user) {
+        var r = await _supabase.from('parishioners').select('nameday_saint,nameday_date').eq('user_id', user.id).single();
+        if (r && r.data && r.data.nameday_saint) {
+          return { name: r.data.nameday_saint, nameDay: r.data.nameday_date || '', description: '' };
+        }
+      }
+    }
+  } catch (e) {}
+  return null;
+}
+
+function daysUntilMonthDay(str, today) {
+  // Accepts "Dec 6", "December 6", "12/6", "12-06"
+  var m = null, d = null;
+  var s = (str || '').trim();
+  var match = s.match(/^(\d{1,2})[\/\-](\d{1,2})$/);
+  if (match) { m = parseInt(match[1], 10); d = parseInt(match[2], 10); }
+  else {
+    var monthNames = ['january','february','march','april','may','june','july','august','september','october','november','december'];
+    var parts = s.toLowerCase().split(/\s+/);
+    if (parts.length >= 2) {
+      for (var i = 0; i < monthNames.length; i++) {
+        if (monthNames[i].indexOf(parts[0]) === 0) { m = i + 1; break; }
+      }
+      d = parseInt((parts[1] || '').replace(/\D/g,''), 10);
+    }
+  }
+  if (!m || !d) return null;
+  var y = today.getFullYear();
+  var target = new Date(y, m - 1, d);
+  target.setHours(12,0,0,0);
+  var t0 = new Date(today);
+  t0.setHours(0,0,0,0);
+  if (target < t0) { target.setFullYear(y + 1); }
+  return Math.round((target - t0) / 86400000);
+}
+
+function formatFeastDate(d) {
+  var monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  return monthNames[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
 }
 
 // ── ICON CORNER ──
