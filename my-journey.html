@@ -524,10 +524,16 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 .margin-note{font-family:var(--f-body);font-size:.98rem;color:var(--ink);line-height:1.55;padding-top:.5rem;border-top:var(--rule-hair)}
 
 /* ── ICON GRID (Icon Corner room body — horizontal scroll) ── */
-.icon-grid{padding:1.2rem 1.8rem 1.4rem;display:flex;gap:1rem;overflow-x:auto;scrollbar-width:thin;scrollbar-color:rgba(184,131,40,.3) transparent;-webkit-overflow-scrolling:touch}
-.icon-grid::-webkit-scrollbar{height:4px}
-.icon-grid::-webkit-scrollbar-track{background:transparent}
-.icon-grid::-webkit-scrollbar-thumb{background:rgba(184,131,40,.3);border-radius:2px}
+.icon-scroll-wrap{position:relative}
+.icon-scroll-btn{position:absolute;top:50%;transform:translateY(-50%);z-index:4;width:36px;height:36px;border-radius:50%;background:rgba(246,241,232,.95);border:1px solid rgba(184,131,40,.35);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;box-shadow:0 2px 10px rgba(28,20,16,.12)}
+.icon-scroll-btn:hover{background:var(--maroon);border-color:var(--maroon)}
+.icon-scroll-btn svg{width:14px;height:14px;fill:none;stroke:var(--maroon);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:stroke .2s}
+.icon-scroll-btn:hover svg{stroke:#fff}
+.icon-scroll-btn.prev{left:.6rem}
+.icon-scroll-btn.next{right:.6rem}
+.icon-scroll-btn:disabled{opacity:.3;pointer-events:none}
+.icon-grid{padding:1.2rem 1.8rem 1.4rem;display:flex;gap:1rem;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;scroll-behavior:smooth}
+.icon-grid::-webkit-scrollbar{display:none}
 .icon-card{flex:0 0 140px;text-align:center;cursor:pointer;transition:transform .25s;display:flex;flex-direction:column}
 .icon-card:hover{transform:translateY(-3px)}
 .icon-photo{height:180px;background:var(--vellum-mid);border:1px solid rgba(184,131,40,.26);overflow:hidden;margin-bottom:.55rem;position:relative;flex-shrink:0}
@@ -551,6 +557,30 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 .fast-list li span{font-family:var(--f-body);font-style:italic;color:var(--stone)}
 .rule-grid{display:grid;grid-template-columns:1fr;gap:0}
 @media(max-width:640px){.kliros-cols{grid-template-columns:1fr;gap:1.5rem}}
+
+/* ── RECENT PATH FEED ── */
+.j-feed{background:#fff;border:var(--rule-faint);box-shadow:var(--shadow)}
+.j-feed-head{padding:1.4rem 1.6rem .9rem;border-bottom:var(--rule-hair)}
+.j-feed-title{font-family:var(--f-display);font-weight:500;font-size:1.25rem;color:var(--text);margin-bottom:.15rem}
+.j-feed-title em{font-style:italic}
+.j-feed-sub{font-family:var(--f-display);font-style:italic;font-size:.88rem;color:var(--stone)}
+.j-feed-list{padding:.4rem 0;max-height:460px;overflow-y:auto;position:relative;scrollbar-width:thin;scrollbar-color:rgba(184,131,40,.2) transparent}
+.j-feed-list::-webkit-scrollbar{width:3px}
+.j-feed-list::-webkit-scrollbar-thumb{background:rgba(184,131,40,.25);border-radius:2px}
+.j-feed-list::before{content:'';position:absolute;left:calc(1.6rem + 18px);top:2rem;bottom:2rem;width:1px;background:linear-gradient(180deg,transparent 0%,rgba(184,131,40,.32) 8%,rgba(184,131,40,.32) 92%,transparent 100%);z-index:0;pointer-events:none}
+.j-feed-entry{padding:.85rem 1.6rem;border-bottom:var(--rule-hair);display:grid;grid-template-columns:52px 1fr;gap:.85rem;align-items:start;position:relative;z-index:1}
+.j-feed-entry:last-child{border-bottom:none}
+.j-feed-dot{width:12px;height:12px;border-radius:50%;background:var(--gold);border:2px solid var(--vellum);box-shadow:0 0 0 1px var(--gold);margin:.45rem 0 0 10px;flex-shrink:0;position:relative;z-index:2}
+.j-feed-entry.maroon .j-feed-dot{background:var(--maroon);box-shadow:0 0 0 1px var(--maroon)}
+.j-feed-entry.verdigris .j-feed-dot{background:var(--verdigris);box-shadow:0 0 0 1px var(--verdigris)}
+.j-feed-date{font-family:var(--f-body);font-size:.8rem;color:var(--stone);margin-bottom:.25rem;display:block;font-style:italic;letter-spacing:.01em}
+.j-feed-text{font-family:var(--f-body);font-size:.95rem;color:var(--ink);line-height:1.5}
+.j-feed-text em{font-style:italic;color:var(--maroon)}
+.j-feed-text strong{font-family:var(--f-display);font-weight:500;color:var(--text)}
+.j-feed-footer{padding:.9rem 1.6rem;border-top:var(--rule-hair);background:var(--vellum)}
+.j-feed-footer a{font-family:var(--f-ui);font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;color:var(--maroon);font-weight:500}
+.j-feed-empty{padding:1.5rem 1.6rem;font-family:var(--f-display);font-style:italic;font-size:.96rem;color:var(--stone)}
+@keyframes dotPop{0%{transform:scale(0);opacity:0}60%{transform:scale(1.3);opacity:1}100%{transform:scale(1);opacity:1}}
 
 /* ── SIDEBAR CARDS ── */
 .j-keepsake{background:var(--vellum-mid);border:1px solid rgba(184,131,40,.28);padding:1.5rem;text-align:center;background-image:repeating-linear-gradient(45deg,transparent 0,transparent 10px,rgba(184,131,40,.03) 10px,rgba(184,131,40,.03) 20px);transition:transform .4s ease,box-shadow .4s ease}
@@ -1442,6 +1472,17 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 
   <aside class="j-sidebar">
 
+    <div class="j-feed" id="j-feed" style="display:none">
+      <div class="j-feed-head">
+        <div class="j-feed-title">Your <em>recent path</em></div>
+        <div class="j-feed-sub">The last thirty days, in order.</div>
+      </div>
+      <div class="j-feed-list" id="j-feed-list"></div>
+      <div class="j-feed-footer">
+        <a href="/my-journey-notes">See the full path &rarr;</a>
+      </div>
+    </div>
+
     <div class="j-keepsake">
       <div class="j-keepsake-label">&mdash; A Keepsake &mdash;</div>
       <div class="j-keepsake-title">Print <em>your journey</em></div>
@@ -2312,6 +2353,7 @@ document.addEventListener('DOMContentLoaded', async function() {
   renderReadingNotes();
   renderLibrary();
   renderIconCorner();
+  renderRecentPath();
   renderLivingStrip();
   renderPastoralNote();
   renderKlirosFasts();
@@ -3058,7 +3100,7 @@ function renderIconCorner() {
   var today = new Date();
   var todayMD = (today.getMonth()+1) * 100 + today.getDate();
 
-  var html = '<div class="icon-grid">';
+  var html = '<div class="icon-scroll-wrap"><button type="button" class="icon-scroll-btn prev" aria-label="Scroll left" onclick="iconScroll(this,-1)"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button><button type="button" class="icon-scroll-btn next" aria-label="Scroll right" onclick="iconScroll(this,1)"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></button><div class="icon-grid" id="icon-scroll-grid">';
   list.forEach(function(s){
     var dateAdded = s.addedAt ? new Date(s.addedAt).toLocaleDateString('en-US', { month:'short', day:'numeric' }) : '';
     var feastLabel = '';
@@ -3091,7 +3133,7 @@ function renderIconCorner() {
     html += '<button type="button" class="icon-remove" onclick="removeIconCornerSaint(\'' + escAttr(s.slug) + '\')">Remove</button>';
     html += '</div>';
   });
-  html += '</div>';
+  html += '</div></div>';
   grid.innerHTML = html;
 
   var headCount = document.getElementById('icon-corner-head-count');
@@ -3113,6 +3155,91 @@ function removeIconCornerSaint(slug) {
   if (!Object.keys(dict).length) {
     document.getElementById('icon-corner-section').style.display = 'none';
   }
+}
+
+function iconScroll(btn, dir) {
+  var grid = document.getElementById('icon-scroll-grid');
+  if (!grid) return;
+  grid.scrollBy({ left: dir * 160, behavior: 'smooth' });
+}
+
+function renderRecentPath() {
+  var feedEl = document.getElementById('j-feed');
+  var listEl = document.getElementById('j-feed-list');
+  if (!feedEl || !listEl) return;
+
+  var MONTHS_LONG = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var DAYS = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  var thirtyAgo = new Date(); thirtyAgo.setDate(thirtyAgo.getDate() - 30);
+  var events = [];
+
+  // Notes saved
+  try {
+    var notes = JSON.parse(localStorage.getItem('spp_reading_notes') || '{}') || {};
+    Object.keys(notes).forEach(function(dk) {
+      var d = new Date(dk + 'T12:00:00');
+      if (d < thirtyAgo || !Array.isArray(notes[dk])) return;
+      notes[dk].forEach(function(e) {
+        var label = e.text ? '\u201C' + e.text.slice(0, 60) + (e.text.length > 60 ? '\u2026' : '') + '\u201D' : 'A note';
+        var src = e.citation ? ' from <strong>' + escHtml(e.citation) + '</strong>' : '';
+        events.push({ date: d, cls: '', text: 'Highlighted <em>' + escHtml(label) + '</em>' + src + '.' });
+      });
+    });
+  } catch(e) {}
+
+  // Sessions completed (catechesis + bible study)
+  for (var i = 0; i < localStorage.length; i++) {
+    var k = localStorage.key(i);
+    if (!k) continue;
+    if (k.indexOf('spp_journey_session_') === 0 || k.indexOf('spp_journey_study_') === 0) {
+      try {
+        var st = JSON.parse(localStorage.getItem(k) || '{}');
+        if (!st.completed || !st.completedAt) continue;
+        var cd = new Date(st.completedAt);
+        if (cd < thirtyAgo) continue;
+        var label2 = k.indexOf('spp_journey_session_') === 0 ? 'Catechesis session' : 'Bible study session';
+        events.push({ date: cd, cls: 'maroon', text: 'Marked <strong>' + label2 + '</strong> complete.' });
+      } catch(e2) {}
+    } else if (k.indexOf('spp_journey_') === 0) {
+      try {
+        var ps = JSON.parse(localStorage.getItem(k) || '{}');
+        if (!ps.completed || !ps.completedAt) continue;
+        var pd = new Date(ps.completedAt);
+        if (pd < thirtyAgo) continue;
+        var pageKey = k.replace('spp_journey_', '');
+        events.push({ date: pd, cls: 'maroon', text: 'Finished reading <strong>' + escHtml(pageKey.replace(/-/g,' ')) + '</strong>.' });
+      } catch(e3) {}
+    }
+  }
+
+  // Saints bookmarked
+  try {
+    var saints = JSON.parse(localStorage.getItem('spp_saint_bookmarks') || '{}') || {};
+    Object.keys(saints).forEach(function(slug) {
+      var s = saints[slug];
+      if (!s || !s.addedAt) return;
+      var sd = new Date(s.addedAt);
+      if (sd < thirtyAgo) return;
+      events.push({ date: sd, cls: 'verdigris', text: 'Added <strong>' + escHtml(decodeHtml(s.name || slug)) + '</strong> to your icon corner.' });
+    });
+  } catch(e) {}
+
+  if (!events.length) {
+    feedEl.style.display = 'none';
+    return;
+  }
+
+  events.sort(function(a,b){ return b.date - a.date; });
+  var html = '';
+  events.forEach(function(ev) {
+    var dateStr = MONTHS_LONG[ev.date.getMonth()] + ' ' + ev.date.getDate() + ' \u00b7 ' + DAYS[ev.date.getDay()];
+    html += '<div class="j-feed-entry' + (ev.cls ? ' ' + ev.cls : '') + '">';
+    html += '<div class="j-feed-dot"></div>';
+    html += '<div><span class="j-feed-date">' + dateStr + '</span><div class="j-feed-text">' + ev.text + '</div></div>';
+    html += '</div>';
+  });
+  listEl.innerHTML = html;
+  feedEl.style.display = 'block';
 }
 
 function escAttr(s){
