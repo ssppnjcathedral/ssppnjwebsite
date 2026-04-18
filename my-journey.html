@@ -454,9 +454,16 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 @keyframes streakBreathe{0%,100%{box-shadow:0 0 0 0 rgba(232,201,122,.55),0 0 12px var(--gold-lt)}50%{box-shadow:0 0 0 6px rgba(232,201,122,0),0 0 18px var(--gold-lt)}}
 @media(max-width:900px){.j-hero{padding:4rem 1.5rem 2.5rem}.j-profile-strip{gap:1rem}}
 
+/* ── COMPASS STRIP (hero bottom) ── */
+.j-compass{border-top:1px solid rgba(232,201,122,.2);margin-top:1.4rem;padding:1rem 0 0;display:none;align-items:center;gap:1.2rem;flex-wrap:wrap;animation:fadeUpHero .9s cubic-bezier(.2,.7,.2,1) both;animation-delay:.8s}
+.j-compass-eyebrow{font-family:var(--f-ui);font-size:.5rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(246,241,232,.45);flex-shrink:0}
+.j-compass-title{font-family:var(--f-display);font-style:italic;font-size:1rem;color:rgba(246,241,232,.82);flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.j-compass-cta{font-family:var(--f-ui);font-size:.5rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-lt);border:1px solid rgba(232,201,122,.35);padding:.35rem .9rem;white-space:nowrap;text-decoration:none;flex-shrink:0;transition:background .2s,border-color .2s}
+.j-compass-cta:hover{background:rgba(232,201,122,.12);border-color:var(--gold-lt)}
+
 /* ── STATS RAIL ── */
 .j-stats{background:var(--vellum-mid);border-bottom:var(--rule-faint);padding:1.4rem 4.5rem}
-.j-stats-inner{max-width:1380px;margin:0 auto;display:grid;grid-template-columns:repeat(6,1fr);gap:0}
+.j-stats-inner{max-width:1380px;margin:0 auto;display:grid;grid-template-columns:repeat(6,1fr) auto;gap:0}
 .j-stat-cell{padding:.4rem 1.2rem;border-right:1px solid rgba(123,29,42,.07);text-align:left;opacity:0;transform:translateY(8px);transition:opacity .6s ease,transform .6s ease}
 .j-stat-cell:last-child{border-right:none}
 .j-stats.in .j-stat-cell{opacity:1;transform:translateY(0)}
@@ -466,11 +473,22 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 .j-stats.in .j-stat-cell:nth-child(4){transition-delay:.32s}
 .j-stats.in .j-stat-cell:nth-child(5){transition-delay:.40s}
 .j-stats.in .j-stat-cell:nth-child(6){transition-delay:.48s}
+.j-stats.in .j-stat-cell:nth-child(7){transition-delay:.56s}
 .j-stat-num{font-family:var(--f-display);font-weight:400;font-style:italic;font-size:1.7rem;color:var(--maroon);line-height:1;display:inline-block;margin-bottom:.25rem;transition:color .3s ease}
 .j-stat-cell:hover .j-stat-num{color:var(--gold-deep)}
 .j-stat-label{font-family:var(--f-ui);font-size:.58rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);display:block}
-@media(max-width:1100px){.j-stats-inner{grid-template-columns:repeat(3,1fr);gap:.4rem}.j-stat-cell{border-right:none;border-bottom:1px solid rgba(123,29,42,.07);padding:.6rem 1rem}}
-@media(max-width:640px){.j-stats{padding:1rem 1.5rem}.j-stats-inner{grid-template-columns:repeat(2,1fr)}}
+.j-stat-cell.j-stat-progress{cursor:pointer;background:rgba(123,29,42,.04);border-left:2px solid rgba(184,131,40,.3)}
+.j-stat-cell.j-stat-progress:hover .j-stat-num{color:var(--maroon)}
+.j-drawer-chevron{display:inline-block;transition:transform .35s ease;font-style:normal;margin-left:.3rem;font-size:.65rem}
+.j-drawer-chevron.open{transform:rotate(180deg)}
+
+/* ── PROGRESS DRAWER ── */
+.j-progress-drawer{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.22,1,.36,1)}
+.j-progress-drawer.open{max-height:2000px}
+.j-progress-drawer-inner{padding:2rem 4.5rem 1.5rem;background:var(--vellum);border-bottom:var(--rule-faint)}
+.j-progress-drawer-inner .section-group-head{font-family:var(--f-ui);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--maroon);display:block;padding-bottom:.5rem;border-bottom:1px solid rgba(123,29,42,.15);margin-bottom:.85rem}
+@media(max-width:1100px){.j-stats-inner{grid-template-columns:repeat(3,1fr) auto;gap:.4rem}.j-stat-cell{border-right:none;border-bottom:1px solid rgba(123,29,42,.07);padding:.6rem 1rem}}
+@media(max-width:640px){.j-stats{padding:1rem 1.5rem}.j-stats-inner{grid-template-columns:repeat(2,1fr)}.j-progress-drawer-inner{padding:1.5rem 1.5rem 1rem}}
 
 /* ── PAGE GRID (main + sidebar) ── */
 .j-page-grid{max-width:1380px;margin:0 auto;padding:3.5rem 4.5rem 5rem;display:grid;grid-template-columns:1fr 340px;gap:4rem;align-items:start}
@@ -538,8 +556,9 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 .icon-card:hover{transform:translateY(-3px)}
 .icon-photo{height:180px;background:var(--vellum-mid);border:1px solid rgba(184,131,40,.26);overflow:hidden;margin-bottom:.55rem;position:relative;flex-shrink:0}
 .icon-photo img{width:100%;height:100%;object-fit:cover;display:block;filter:sepia(.12) saturate(.95)}
-.icon-feast{position:absolute;top:.4rem;right:.4rem;background:rgba(59,15,24,.88);color:var(--gold-lt);font-family:var(--f-body);font-size:.68rem;padding:.18rem .45rem;border-radius:2px;letter-spacing:.02em;font-style:italic}
-.icon-name{font-family:var(--f-display);font-weight:500;font-size:.9rem;color:var(--text);line-height:1.2;margin-bottom:.15rem}
+.icon-feast{position:absolute;top:.5rem;right:.5rem;background:rgba(59,15,24,.88);color:var(--gold-lt);font-family:var(--f-body);font-size:.72rem;padding:.22rem .55rem;border-radius:2px;letter-spacing:.02em;font-style:italic}
+.icon-name{font-family:var(--f-display);font-weight:500;font-size:1rem;color:var(--text);line-height:1.1;margin-bottom:.15rem}
+.icon-name em{font-style:italic}
 .icon-date{font-family:var(--f-body);font-size:.72rem;color:var(--stone);letter-spacing:.01em}
 .icon-remove{background:transparent;border:none;font-family:var(--f-ui);font-size:.5rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone-lt);cursor:pointer;padding:.25rem 0 0;transition:color .2s;margin-top:auto}
 .icon-remove:hover{color:var(--maroon)}
@@ -1215,6 +1234,11 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
         <span class="j-streak-text" id="j-streak-text">&mdash;</span>
       </div>
     </div>
+    <div class="j-compass" id="j-compass">
+      <span class="j-compass-eyebrow">Your next step</span>
+      <span class="j-compass-title" id="j-compass-title"></span>
+      <a class="j-compass-cta" id="j-compass-cta" href="#">Continue &rarr;</a>
+    </div>
   </div>
 </div>
 
@@ -1227,8 +1251,17 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
     <div class="j-stat-cell"><span class="j-stat-num" id="stat-saints" data-target="0">0</span><span class="j-stat-label">Saints Remembered</span></div>
     <div class="j-stat-cell"><span class="j-stat-num" id="stat-prayers" data-target="0">0</span><span class="j-stat-label">Prayers in Rule</span></div>
     <div class="j-stat-cell"><span class="j-stat-num" id="stat-days" data-target="0">0</span><span class="j-stat-label">Days of Presence</span></div>
+    <div class="j-stat-cell j-stat-progress" id="stat-progress-cell" onclick="toggleProgressDrawer()" style="display:none">
+      <span class="j-stat-num" id="stat-progress-pct">0%</span>
+      <span class="j-stat-label">Complete <span class="j-drawer-chevron" id="j-drawer-chevron">&#8964;</span></span>
+    </div>
   </div>
 </section>
+
+<!-- ── PROGRESS DRAWER ── -->
+<div class="j-progress-drawer" id="j-progress-drawer">
+  <div class="j-progress-drawer-inner" id="j-progress-drawer-inner"></div>
+</div>
 
 
 <!-- ── LIVING STRIP ── -->
@@ -1317,27 +1350,14 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   <!-- FR. SOLOMON'S NOTE -->
   <div id="pastoral-note-container"></div>
 
-  <!-- PROGRESS -->
-  <div class="progress-section" id="progress-section">
-    <div class="progress-bar-head">
-      <div class="milestone-text" id="milestone-text">Begin exploring.</div>
-      <div class="progress-sub" id="progress-sub">0 of 11 articles read</div>
-    </div>
-    <div class="progress-bar-track">
-      <div class="progress-bar-fill" id="progress-bar-fill"></div>
-    </div>
+  <!-- legacy elements kept for JS compatibility, hidden -->
+  <div id="progress-section" style="display:none">
+    <div id="milestone-text"></div>
+    <div id="progress-sub"></div>
+    <div class="progress-bar-track"><div class="progress-bar-fill" id="progress-bar-fill"></div></div>
   </div>
-
-  <!-- NEXT SUGGESTION -->
-  <div class="next-suggestion" id="next-suggestion" style="display:none">
-    <span class="next-label">Where to Go Next</span>
-    <div class="next-text" id="next-text"></div>
-  </div>
-
-  <!-- ARTICLE LIST -->
-  <div id="article-list">
-    <div class="loading">Loading your journey&hellip;</div>
-  </div>
+  <div id="next-suggestion" style="display:none"><div id="next-text"></div></div>
+  <div id="article-list" style="display:none"></div>
 
   <div class="j-section-intro">
     <div class="j-section-eyebrow">Four Rooms of Your Journey</div>
@@ -1705,67 +1725,82 @@ function render() {
   var completed = allPages.filter(function(p) { return getPageState(p.key).completed; }).length;
   var pct = total > 0 ? Math.round((completed / total) * 100) : 0;
 
-  // Progress bar
-  document.getElementById('progress-bar-fill').style.width = pct + '%';
-  document.getElementById('progress-sub').textContent = pct + '% · ' + completed + ' of ' + total + ' articles read';
-
-  // Milestone
-  var milestones = MANIFEST.milestones || [];
-  var milestone = milestones[0];
-  for (var i = 0; i < milestones.length; i++) {
-    if (pct >= milestones[i].pct) milestone = milestones[i];
-  }
-  document.getElementById('milestone-text').textContent = milestone.label;
-
-  // Next suggestion
+  // Compass strip: next unread article
   var nextPage = allPages.find(function(p) { return !getPageState(p.key).completed; });
-  if (nextPage) {
-    document.getElementById('next-suggestion').style.display = 'block';
-    document.getElementById('next-text').innerHTML = 'Continue with <a href="' + nextPage.url + '">' + nextPage.title + '</a> &rarr;';
+  var compassEl = document.getElementById('j-compass');
+  if (nextPage && compassEl) {
+    document.getElementById('j-compass-title').textContent = nextPage.title;
+    var ctaEl = document.getElementById('j-compass-cta');
+    if (ctaEl) ctaEl.href = nextPage.url;
+    compassEl.style.display = 'flex';
   }
 
-  // Article list
-  var html = '';
-  MANIFEST.sections.forEach(function(section) {
-    html += '<div class="section-group">';
-    html += '<span class="section-group-head">' + section.label + '</span>';
-    html += '<div class="article-grid">';
-    section.pages.forEach(function(page) {
-      var state = getPageState(page.key);
-      var isDone = !!state.completed;
-      var hasNote = state.notes && state.notes.trim();
-      var metaClass = isDone ? 'article-grid-meta is-done' : 'article-grid-meta';
-      var metaContent = isDone && state.completedAt
-        ? formatDate(new Date(state.completedAt))
-        : '<a href="' + page.url + '" class="article-read-link">Read &rarr;</a>';
-      html += '<div class="article-grid-item" data-page-key="' + page.key + '">';
-      html += '<div class="article-check' + (isDone ? ' done' : '') + '">' + (isDone ? '&#10003;' : '') + '</div>';
-      html += '<a href="' + page.url + '" class="article-grid-title">' + page.title + '</a>';
-      html += '<div class="' + metaClass + '">' + metaContent + '</div>';
-      if (hasNote) {
-        html += '<div class="jn-card" onclick="jnToggleExpand(this)">';
-        html += '<div class="jn-text">' + escHtml(state.notes) + '</div>';
-        html += '<div class="jn-actions">';
-        html += '<button class="jn-edit-btn" onclick="event.stopPropagation();jnEdit(\'' + page.key + '\',this)">Edit</button>';
-        html += '<button class="jn-expand-btn" onclick="event.stopPropagation();jnToggleExpand(this.closest(\'.jn-card\'))">More</button>';
-        html += '</div></div>';
-      } else {
-        html += '<button class="jn-add" onclick="event.stopPropagation();jnEdit(\'' + page.key + '\',this)">+ Add a note</button>';
-      }
-      html += '</div>';
+  // Stats rail progress trigger
+  var pctCell = document.getElementById('stat-progress-cell');
+  var pctEl = document.getElementById('stat-progress-pct');
+  if (pctEl) pctEl.textContent = pct + '%';
+  if (pctCell) pctCell.style.display = '';
+
+  // Progress drawer article checklist
+  var drawerEl = document.getElementById('j-progress-drawer-inner');
+  if (drawerEl) {
+    var html = '';
+    MANIFEST.sections.forEach(function(section) {
+      html += '<div class="section-group">';
+      html += '<span class="section-group-head">' + section.label + '</span>';
+      html += '<div class="article-grid">';
+      section.pages.forEach(function(page) {
+        var state = getPageState(page.key);
+        var isDone = !!state.completed;
+        var hasNote = state.notes && state.notes.trim();
+        var metaClass = isDone ? 'article-grid-meta is-done' : 'article-grid-meta';
+        var metaContent = isDone && state.completedAt
+          ? formatDate(new Date(state.completedAt))
+          : '<a href="' + page.url + '" class="article-read-link">Read &rarr;</a>';
+        html += '<div class="article-grid-item" data-page-key="' + page.key + '">';
+        html += '<div class="article-check' + (isDone ? ' done' : '') + '">' + (isDone ? '&#10003;' : '') + '</div>';
+        html += '<a href="' + page.url + '" class="article-grid-title">' + page.title + '</a>';
+        html += '<div class="' + metaClass + '">' + metaContent + '</div>';
+        if (hasNote) {
+          html += '<div class="jn-card" onclick="jnToggleExpand(this)">';
+          html += '<div class="jn-text">' + escHtml(state.notes) + '</div>';
+          html += '<div class="jn-actions">';
+          html += '<button class="jn-edit-btn" onclick="event.stopPropagation();jnEdit(\'' + page.key + '\',this)">Edit</button>';
+          html += '<button class="jn-expand-btn" onclick="event.stopPropagation();jnToggleExpand(this.closest(\'.jn-card\'))">More</button>';
+          html += '</div></div>';
+        } else {
+          html += '<button class="jn-add" onclick="event.stopPropagation();jnEdit(\'' + page.key + '\',this)">+ Add a note</button>';
+        }
+        html += '</div>';
+      });
+      html += '</div></div>';
     });
-    html += '</div>';
-    html += '</div>';
-  });
-
-  if (completed === 0) {
-    html = '<div class="empty-state"><div class="empty-state-title">The Faith awaits.</div><div class="empty-state-body">Read any article and mark it complete. Progress will appear here.</div><a href="/about-orthodoxy" style="font-family:var(--f-ui);font-size:.54rem;letter-spacing:.14em;text-transform:uppercase;padding:.75rem 1.4rem;background:var(--maroon);color:var(--vellum);display:inline-block;">Start with About Orthodoxy &rarr;</a></div>';
+    if (completed === 0) {
+      html = '<div class="empty-state"><div class="empty-state-title">The Faith awaits.</div><div class="empty-state-body">Read any article and mark it complete. Progress will appear here.</div><a href="/about-orthodoxy" style="font-family:var(--f-ui);font-size:.54rem;letter-spacing:.14em;text-transform:uppercase;padding:.75rem 1.4rem;background:var(--maroon);color:var(--vellum);display:inline-block;">Start with About Orthodoxy &rarr;</a></div>';
+    }
+    drawerEl.innerHTML = html;
+    // Auto-expand for new visitors (fewer than 4 articles done)
+    if (completed < 4) {
+      var drawer = document.getElementById('j-progress-drawer');
+      var chevron = document.getElementById('j-drawer-chevron');
+      if (drawer) drawer.classList.add('open');
+      if (chevron) chevron.classList.add('open');
+    }
   }
 
-  document.getElementById('article-list').innerHTML = html;
+  // Keep legacy article-list hidden but populated for note-editing to work
+  document.getElementById('article-list').innerHTML = '';
 
   // Render prayer rule
   renderRule();
+}
+
+function toggleProgressDrawer() {
+  var drawer = document.getElementById('j-progress-drawer');
+  var chevron = document.getElementById('j-drawer-chevron');
+  if (!drawer) return;
+  drawer.classList.toggle('open');
+  if (chevron) chevron.classList.toggle('open');
 }
 
 // ── NOTE CARD FUNCTIONS ──
@@ -3103,6 +3138,28 @@ function renderIconCorner() {
   var today = new Date();
   var todayMD = (today.getMonth()+1) * 100 + today.getDate();
 
+  function formatIconName(raw) {
+    var words = raw.split(' ');
+    if (!words[0] || (words[0] !== 'St.' && words[0] !== 'St')) return escHtml(raw);
+    if (words.length === 2) return 'St. <em>' + escHtml(words[1]) + '</em>';
+    return escHtml(words[0] + ' ' + words[1]) + ' <em>' + escHtml(words.slice(2).join(' ')) + '</em>';
+  }
+
+  var nextFeastDays = Infinity;
+  list.forEach(function(s) {
+    if (!s.feastDate) return;
+    var fp = s.feastDate.split('-');
+    if (fp.length !== 2) return;
+    var m = parseInt(fp[0],10), d = parseInt(fp[1],10);
+    if (m < 1 || m > 12 || d < 1 || d > 31) return;
+    var feastMD = m * 100 + d;
+    var fDate = feastMD >= todayMD
+      ? new Date(today.getFullYear(), m-1, d)
+      : new Date(today.getFullYear()+1, m-1, d);
+    var days = Math.ceil((fDate - today) / 86400000);
+    if (days < nextFeastDays) nextFeastDays = days;
+  });
+
   var html = '<div class="icon-scroll-wrap"><button type="button" class="icon-scroll-btn prev" aria-label="Scroll left" onclick="iconScroll(this,-1)"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button><button type="button" class="icon-scroll-btn next" aria-label="Scroll right" onclick="iconScroll(this,1)"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></button><div class="icon-grid" id="icon-scroll-grid">';
   list.forEach(function(s){
     var dateAdded = s.addedAt ? new Date(s.addedAt).toLocaleDateString('en-US', { month:'short', day:'numeric' }) : '';
@@ -3112,7 +3169,7 @@ function renderIconCorner() {
       if (fp.length === 2) {
         var m = parseInt(fp[0],10), d = parseInt(fp[1],10);
         if (m >= 1 && m <= 12 && d >= 1 && d <= 31) {
-          feastLabel = MONTHS_LONG[m-1].slice(0,3) + ' ' + d;
+          feastLabel = MONTHS_LONG[m-1].slice(0,3) + ' ' + String(d).padStart(2,'0');
         }
       }
     }
@@ -3128,7 +3185,7 @@ function renderIconCorner() {
       html += '<div class="icon-feast">' + feastLabel + '</div>';
     }
     html += '</div>';
-    html += '<div class="icon-name">' + escHtml(safeName) + '</div>';
+    html += '<div class="icon-name">' + formatIconName(safeName) + '</div>';
     html += '</a>';
     if (dateAdded) {
       html += '<div class="icon-date">Added ' + dateAdded + '</div>';
@@ -3141,6 +3198,13 @@ function renderIconCorner() {
 
   var headCount = document.getElementById('icon-corner-head-count');
   if (headCount) headCount.textContent = list.length;
+
+  var progressLabel = section.querySelector('.room-progress-label');
+  if (progressLabel && nextFeastDays !== Infinity) {
+    progressLabel.textContent = nextFeastDays === 0 ? 'Feast day today' :
+      nextFeastDays === 1 ? 'Next feast tomorrow' :
+      'Next feast in ' + nextFeastDays + ' days';
+  }
 
   if (footer && countEl) {
     footer.style.display = 'flex';
