@@ -2230,40 +2230,6 @@ body {
 .pr2-age-warn { background: rgba(245,158,11,.12); color: #7a5a1a; }
 .pr2-age-urgent { background: rgba(123,29,42,.1); color: var(--maroon); }
 
-/* Bulk acknowledge bar */
-.pr2-bulk-bar {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: .5rem .75rem; margin-bottom: .65rem;
-  background: rgba(255,255,255,.6); border: var(--rule-faint);
-}
-.pr2-bulk-left { display: flex; align-items: center; gap: .65rem; }
-.pr2-bulk-cb-wrap {
-  display: flex; align-items: center; gap: .35rem;
-  font-family: var(--f-data); font-size: .72rem; color: var(--stone);
-  cursor: pointer; user-select: none;
-}
-.pr2-bulk-cb {
-  width: 15px; height: 15px; accent-color: var(--maroon); cursor: pointer;
-}
-.pr2-bulk-count {
-  font-family: var(--f-data); font-size: .68rem; color: var(--stone);
-}
-.pr2-bulk-ack {
-  font-family: var(--f-data); font-size: .68rem; font-weight: 600;
-  color: var(--vellum); background: var(--maroon); border: none;
-  padding: .35rem .85rem; border-radius: 4px; cursor: pointer;
-  transition: background .15s, transform .1s; white-space: nowrap;
-}
-.pr2-bulk-ack:hover { background: var(--maroon-deep); }
-.pr2-bulk-ack:active { transform: scale(.96); }
-.pr2-bulk-ack:disabled { opacity: .4; cursor: default; transform: none; }
-
-/* Card checkbox for bulk select */
-.pr2-card-cb {
-  width: 15px; height: 15px; accent-color: var(--maroon);
-  flex-shrink: 0; cursor: pointer; margin-top: .2rem;
-}
-
 /* Quick-add button on request cards */
 .pr2-quick-add {
   font-family: var(--f-data); font-size: .6rem; font-weight: 500;
@@ -2814,7 +2780,6 @@ body {
       <div class="prayer-cols">
         <div>
           <span class="prayer-col-head">New Requests</span>
-          <div id="prayer-bulk-bar" style="display:none"></div>
           <div id="prayer-requests"></div>
         </div>
         <div>
@@ -3662,8 +3627,6 @@ function bindFlockControls() {
 }
 
 // ── PRAYER REQUESTS ──
-var bulkSelectedIds = [];
-
 function getAgeDays(dateStr) {
   if (!dateStr) return 0;
   var then = new Date(dateStr);
@@ -3689,17 +3652,6 @@ function getAgeMinutes(dateStr) {
   return Math.floor(diff / 60000);
 }
 
-function updateBulkBarState(activeLen) {
-  var selectAll = document.getElementById('bulk-select-all');
-  var count = document.getElementById('bulk-count');
-  var ackBtn = document.getElementById('bulk-ack-btn');
-  if (!ackBtn) return;
-  if (selectAll) selectAll.checked = activeLen > 0 && bulkSelectedIds.length === activeLen;
-  if (count) count.textContent = bulkSelectedIds.length > 0 ? bulkSelectedIds.length + ' selected' : '';
-  ackBtn.disabled = bulkSelectedIds.length === 0;
-  ackBtn.textContent = 'Acknowledge' + (bulkSelectedIds.length > 0 ? ' (' + bulkSelectedIds.length + ')' : '');
-}
-
 function renderPrayerRequests(requests) {
   var active = requests.filter(function(r) { return !r.acknowledged && !r.dismissed; });
   var acknowledged = requests.filter(function(r) { return r.acknowledged && !r.dismissed; });
@@ -3708,46 +3660,6 @@ function renderPrayerRequests(requests) {
   var activeContainer = document.getElementById('prayer-requests');
   var archiveContainer = document.getElementById('prayer-archived');
   var historyWrap = document.getElementById('prayer-history-wrap');
-  var bulkBar = document.getElementById('prayer-bulk-bar');
-
-  // Clean up bulk selection (remove IDs no longer in active)
-  var activeIds = active.map(function(r) { return String(r.id); });
-  bulkSelectedIds = bulkSelectedIds.filter(function(id) { return activeIds.indexOf(id) !== -1; });
-
-  // Bulk bar
-  if (active.length > 1) {
-    bulkBar.style.display = '';
-    bulkBar.innerHTML = '<div class="pr2-bulk-bar">' +
-      '<div class="pr2-bulk-left">' +
-        '<label class="pr2-bulk-cb-wrap"><input type="checkbox" class="pr2-bulk-cb" id="bulk-select-all" ' +
-          (bulkSelectedIds.length === active.length ? 'checked' : '') +
-          '> Select all</label>' +
-        '<span class="pr2-bulk-count" id="bulk-count">' +
-          (bulkSelectedIds.length > 0 ? bulkSelectedIds.length + ' selected' : '') +
-        '</span>' +
-      '</div>' +
-      '<button class="pr2-bulk-ack" id="bulk-ack-btn" ' +
-        (bulkSelectedIds.length === 0 ? 'disabled' : '') +
-        '>Acknowledge ' + (bulkSelectedIds.length > 0 ? '(' + bulkSelectedIds.length + ')' : '') + '</button>' +
-    '</div>';
-    document.getElementById('bulk-select-all').addEventListener('change', function(e) {
-      if (e.target.checked) {
-        bulkSelectedIds = active.map(function(r) { return String(r.id); });
-      } else {
-        bulkSelectedIds = [];
-      }
-      activeContainer.querySelectorAll('.pr2-card-cb').forEach(function(cb) {
-        cb.checked = e.target.checked;
-      });
-      updateBulkBarState(active.length);
-    });
-    document.getElementById('bulk-ack-btn').addEventListener('click', function() {
-      if (bulkSelectedIds.length > 0) bulkAcknowledge();
-    });
-  } else {
-    bulkBar.style.display = 'none';
-    bulkBar.innerHTML = '';
-  }
 
   // New requests
   if (active.length === 0) {
@@ -3758,11 +3670,9 @@ function renderPrayerRequests(requests) {
       var mins = getAgeMinutes(r.created_at || r.submitted_at);
       var aging = ageClass(days);
       var badge = ageBadge(days);
-      var checked = bulkSelectedIds.indexOf(String(r.id)) !== -1;
       var name = r.name || 'A parishioner';
       var freshDot = mins < 60 ? '<span class="pr2-fresh-dot" title="Just submitted"></span>' : '';
       return '<div class="pr2-card pr2-card-enter ' + aging + '" id="pr-' + r.id + '" style="--i:' + i + '">' +
-        (active.length > 1 ? '<input type="checkbox" class="pr2-card-cb" data-bulk-id="' + r.id + '" ' + (checked ? 'checked' : '') + '>' : '') +
         '<div class="pr2-icon pr2-icon-cross">&#x2020;</div>' +
         '<div class="pr2-body">' +
           '<div class="pr2-name">' + freshDot + escHtml(name) + badge + '</div>' +
@@ -3778,17 +3688,6 @@ function renderPrayerRequests(requests) {
       btn.addEventListener('click', function(e) {
         e.stopPropagation();
         acknowledgeRequest(btn.getAttribute('data-ack'));
-      });
-    });
-    activeContainer.querySelectorAll('.pr2-card-cb').forEach(function(cb) {
-      cb.addEventListener('change', function() {
-        var id = cb.getAttribute('data-bulk-id');
-        if (cb.checked) {
-          if (bulkSelectedIds.indexOf(id) === -1) bulkSelectedIds.push(id);
-        } else {
-          bulkSelectedIds = bulkSelectedIds.filter(function(x) { return x !== id; });
-        }
-        updateBulkBarState(active.length);
       });
     });
     activeContainer.querySelectorAll('.pr2-quick-add').forEach(function(btn) {
@@ -3862,37 +3761,9 @@ async function acknowledgeRequest(id) {
   }
 
   if (req) { req.acknowledged = true; req.acknowledged_at = now; }
-  bulkSelectedIds = bulkSelectedIds.filter(function(x) { return x !== String(id); });
   renderPrayerRequests(allPrayerRequests);
   renderAttentionStrip(allPrayerRequests);
   showToast('Request acknowledged.');
-}
-
-async function bulkAcknowledge() {
-  if (bulkSelectedIds.length === 0) return;
-  var now = new Date().toISOString();
-  var ackPayload = { acknowledged: true, acknowledged_at: now };
-  if (currentUser && currentUser.id && currentUser.id !== 'dev-user') {
-    ackPayload.acknowledged_by = currentUser.id;
-  }
-  var ids = bulkSelectedIds.map(function(id) { return parseInt(id) || id; });
-  var res = await _supabase.from('prayer_requests').update(ackPayload).in('id', ids);
-  if (res && res.error) {
-    showToast('Could not acknowledge: ' + res.error.message);
-    console.error('bulkAcknowledge failed:', res.error);
-    return;
-  }
-  var count = bulkSelectedIds.length;
-  allPrayerRequests.forEach(function(r) {
-    if (bulkSelectedIds.indexOf(String(r.id)) !== -1) {
-      r.acknowledged = true;
-      r.acknowledged_at = now;
-    }
-  });
-  bulkSelectedIds = [];
-  renderPrayerRequests(allPrayerRequests);
-  renderAttentionStrip(allPrayerRequests);
-  showToast(count + ' requests acknowledged.');
 }
 
 async function dismissRequest(id) {
