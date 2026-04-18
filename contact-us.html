@@ -856,6 +856,113 @@ footer .btn-outline:hover{background:rgba(246,241,232,.15);color:#fff;border-col
 </div>
 
 <!-- ═══════════════════════════════════════════
+     PRAYER REQUEST — inline form
+     ═══════════════════════════════════════════ -->
+<div style="max-width:680px;margin:0 auto;padding:4rem 4.5rem 4.5rem">
+  <div id="prayer-form-section">
+    <span class="rubric">Prayer Request</span>
+    <div class="rubric-rule"></div>
+    <h2 style="font-family:var(--f-display);font-weight:400;font-size:1.85rem;color:var(--text);margin:.5rem 0 .35rem">Submit a Prayer Request</h2>
+    <p style="font-family:var(--f-display);font-style:italic;font-size:1rem;color:var(--stone);margin-bottom:2rem;line-height:1.55">We hold every request before the altar during the Liturgy. You may include your name or remain anonymous.</p>
+
+    <div class="form-group">
+      <label class="form-label" for="pr-name">Your Name (optional)</label>
+      <input class="form-input" type="text" id="pr-name" placeholder="Leave blank to remain anonymous"/>
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="pr-intention">How can we pray for you?</label>
+      <textarea class="form-textarea" id="pr-intention" placeholder="Share your prayer intention here." style="min-height:110px" required></textarea>
+    </div>
+    <div class="form-group">
+      <label class="form-label">This request is for</label>
+      <div style="display:flex;gap:.5rem;margin-top:.25rem">
+        <button type="button" id="pr-living-btn" class="form-toggle active" onclick="setPrayerType('living')" style="font-family:var(--f-ui);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;padding:.55rem 1.25rem;border:1px solid var(--maroon);cursor:pointer;transition:all .18s;background:var(--maroon);color:var(--vellum)">The Living</button>
+        <button type="button" id="pr-departed-btn" class="form-toggle" onclick="setPrayerType('departed')" style="font-family:var(--f-ui);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;padding:.55rem 1.25rem;border:1px solid var(--maroon);cursor:pointer;transition:all .18s;background:transparent;color:var(--maroon)">The Departed</button>
+      </div>
+    </div>
+    <!-- Honeypot -->
+    <div style="position:absolute;left:-9999px" aria-hidden="true">
+      <input type="text" id="pr-hp" name="website" tabindex="-1" autocomplete="off"/>
+    </div>
+    <button type="button" class="form-submit" id="pr-submit" onclick="submitPrayerRequest()" style="width:auto;padding:.9rem 3rem">Submit Request</button>
+    <p id="pr-status" style="font-family:var(--f-body);font-style:italic;font-size:.92rem;color:var(--stone);margin-top:.75rem;line-height:1.5"></p>
+  </div>
+  <div id="prayer-form-success" style="display:none;text-align:center;padding:2rem 0">
+    <div style="font-size:1.8rem;opacity:.3;margin-bottom:1rem">&#x2720;</div>
+    <h3 style="font-family:var(--f-display);font-weight:400;font-size:1.6rem;color:var(--text);margin-bottom:.5rem">Your request has been received.</h3>
+    <p style="font-family:var(--f-display);font-style:italic;font-size:1.05rem;color:var(--stone);line-height:1.55">May God grant you peace. Fr. Solomon will review your request and include it in the parish intercessions as appropriate.</p>
+    <a href="/contact-us" style="display:inline-block;margin-top:1.5rem;font-family:var(--f-ui);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--maroon);border:1px solid rgba(123,29,42,.28);padding:.55rem 1.25rem;transition:all .18s">&larr; Back to Contact</a>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="/supabase-client.js"></script>
+<script>
+var prType = 'living';
+
+function setPrayerType(type) {
+  prType = type;
+  var livingBtn = document.getElementById('pr-living-btn');
+  var departedBtn = document.getElementById('pr-departed-btn');
+  if (type === 'living') {
+    livingBtn.style.background = 'var(--maroon)';
+    livingBtn.style.color = 'var(--vellum)';
+    departedBtn.style.background = 'transparent';
+    departedBtn.style.color = 'var(--maroon)';
+  } else {
+    departedBtn.style.background = 'var(--maroon)';
+    departedBtn.style.color = 'var(--vellum)';
+    livingBtn.style.background = 'transparent';
+    livingBtn.style.color = 'var(--maroon)';
+  }
+}
+
+async function submitPrayerRequest() {
+  // Honeypot check
+  if (document.getElementById('pr-hp').value) return;
+
+  var name = document.getElementById('pr-name').value.trim() || 'Anonymous';
+  var intention = document.getElementById('pr-intention').value.trim();
+  var status = document.getElementById('pr-status');
+  var btn = document.getElementById('pr-submit');
+
+  if (!intention) {
+    status.textContent = 'Please share your prayer intention.';
+    status.style.color = 'var(--maroon)';
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Submitting...';
+  status.textContent = '';
+
+  // Prefix departed names
+  if (prType === 'departed' && name !== 'Anonymous') {
+    name = 'Newly departed ' + name;
+  }
+
+  try {
+    if (!_supabase) throw new Error('Connection unavailable');
+    var { error } = await _supabase.from('prayer_requests').insert({
+      name: name,
+      intention: intention,
+      acknowledged: false,
+      dismissed: false
+    });
+    if (error) throw error;
+
+    document.getElementById('prayer-form-section').style.display = 'none';
+    document.getElementById('prayer-form-success').style.display = '';
+  } catch(e) {
+    status.textContent = 'Something went wrong. Please try again or call the parish office.';
+    status.style.color = 'var(--maroon)';
+    btn.disabled = false;
+    btn.textContent = 'Submit Request';
+  }
+}
+</script>
+
+<!-- ═══════════════════════════════════════════
      FOOTER — standard version (all pages except index)
      ═══════════════════════════════════════════ -->
 <!-- MY PROFILE CTA -->
