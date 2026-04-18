@@ -2401,6 +2401,10 @@ body {
         <div>
           <span class="prayer-col-head">Acknowledged</span>
           <div id="prayer-archived"></div>
+          <div id="prayer-history-wrap" style="margin-top:1.25rem;display:none">
+            <button id="prayer-history-toggle" class="pr-archive-link" onclick="togglePrayerHistory()" style="margin-bottom:.65rem">Show History</button>
+            <div id="prayer-history" style="display:none"></div>
+          </div>
         </div>
         <div>
           <span class="prayer-col-head">Published Intercession List</span>
@@ -3231,10 +3235,14 @@ function bindFlockControls() {
 
 // ── PRAYER REQUESTS ──
 function renderPrayerRequests(requests) {
-  var active = requests.filter(function(r) { return !r.acknowledged; });
-  var archived = requests.filter(function(r) { return r.acknowledged; });
+  var active = requests.filter(function(r) { return !r.acknowledged && !r.dismissed; });
+  var acknowledged = requests.filter(function(r) { return r.acknowledged && !r.dismissed; });
+  var history = requests.filter(function(r) { return r.dismissed; })
+    .sort(function(a, b) { return new Date(b.dismissed_at || 0) - new Date(a.dismissed_at || 0); });
   var activeContainer = document.getElementById('prayer-requests');
   var archiveContainer = document.getElementById('prayer-archived');
+  var historyWrap = document.getElementById('prayer-history-wrap');
+  var historyContainer = document.getElementById('prayer-history');
 
   // New requests
   if (active.length === 0) {
@@ -3260,10 +3268,10 @@ function renderPrayerRequests(requests) {
   }
 
   // Acknowledged
-  if (archived.length === 0) {
+  if (acknowledged.length === 0) {
     archiveContainer.innerHTML = '<div class="p-empty" style="font-style:italic;color:var(--stone);padding:.75rem 0;font-size:.9rem">None yet.</div>';
   } else {
-    archiveContainer.innerHTML = archived.slice(0, 6).map(function(r) {
+    archiveContainer.innerHTML = acknowledged.map(function(r) {
       return '<div class="pr2-card pr2-card-acked">' +
         '<div class="pr2-icon pr2-icon-check">&#x2713;</div>' +
         '<div class="pr2-body">' +
@@ -3271,7 +3279,7 @@ function renderPrayerRequests(requests) {
           '<div class="pr2-text">' + escHtml(r.intention || r.request_text || '') + '</div>' +
           '<div class="pr2-acked-date">Acknowledged ' + fmtDateShort(r.acknowledged_at) + '</div>' +
         '</div>' +
-        '<button class="pr2-acked-btn" data-dismiss="' + r.id + '" data-tip="Dismiss — remove from this list">&#x2713;</button>' +
+        '<button class="pr2-acked-btn" data-dismiss="' + r.id + '" data-tip="Dismiss — move to history">&#x2713;</button>' +
       '</div>';
     }).join('');
     archiveContainer.querySelectorAll('[data-dismiss]').forEach(function(btn) {
@@ -3280,6 +3288,23 @@ function renderPrayerRequests(requests) {
         dismissRequest(btn.getAttribute('data-dismiss'));
       });
     });
+  }
+
+  // History (dismissed)
+  if (history.length > 0) {
+    historyWrap.style.display = '';
+    historyContainer.innerHTML = history.map(function(r) {
+      return '<div class="pr2-card pr2-card-acked" style="opacity:.55">' +
+        '<div class="pr2-icon pr2-icon-check" style="opacity:.5">&#x2713;</div>' +
+        '<div class="pr2-body">' +
+          '<div class="pr2-name">' + escHtml(r.name || 'A parishioner') + '</div>' +
+          '<div class="pr2-text">' + escHtml(r.intention || r.request_text || '') + '</div>' +
+          '<div class="pr2-acked-date">Dismissed ' + fmtDateShort(r.dismissed_at) + '</div>' +
+        '</div>' +
+      '</div>';
+    }).join('');
+  } else {
+    historyWrap.style.display = 'none';
   }
 }
 
@@ -3298,11 +3323,25 @@ async function acknowledgeRequest(id) {
 }
 
 async function dismissRequest(id) {
-  await _supabase.from('prayer_requests').delete().eq('id', id);
-  allPrayerRequests = allPrayerRequests.filter(function(r) { return String(r.id) !== String(id); });
+  var now = new Date().toISOString();
+  await _supabase.from('prayer_requests').update({ dismissed: true, dismissed_at: now }).eq('id', id);
+  var req = allPrayerRequests.find(function(r) { return String(r.id) === String(id); });
+  if (req) { req.dismissed = true; req.dismissed_at = now; }
   renderPrayerRequests(allPrayerRequests);
   renderAttentionStrip(allPrayerRequests);
-  showToast('Request dismissed.');
+  showToast('Request moved to history.');
+}
+
+function togglePrayerHistory() {
+  var container = document.getElementById('prayer-history');
+  var btn = document.getElementById('prayer-history-toggle');
+  if (container.style.display === 'none') {
+    container.style.display = '';
+    btn.textContent = 'Hide History';
+  } else {
+    container.style.display = 'none';
+    btn.textContent = 'Show History';
+  }
 }
 
 // ── PRAYER LIST ──
