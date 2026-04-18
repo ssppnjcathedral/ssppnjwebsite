@@ -429,6 +429,34 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 .section-title{font-family:var(--f-display);font-weight:300;font-size:1.7rem;color:var(--apse);margin-bottom:1.5rem;}
 .section-rule{height:1px;background:rgba(123,29,42,.12);margin:2.5rem 0;}
 
+/* ── STICKY SECTION NAV ── */
+.js-section-nav{position:sticky;top:60px;z-index:90;background:rgba(246,241,232,.94);backdrop-filter:blur(12px) saturate(1.1);-webkit-backdrop-filter:blur(12px) saturate(1.1);border-bottom:1px solid rgba(123,29,42,.10);border-top:1px solid rgba(123,29,42,.05);transition:box-shadow .25s ease,background .25s ease}
+.js-section-nav.stuck{box-shadow:0 6px 20px -10px rgba(28,20,16,.18);background:rgba(246,241,232,.98)}
+.js-nav-inner{max-width:900px;margin:0 auto;padding:.7rem 2rem;display:flex;align-items:center;gap:1.25rem;overflow-x:auto;scrollbar-width:none}
+.js-nav-inner::-webkit-scrollbar{display:none}
+.js-nav-label{display:flex;align-items:center;gap:.5rem;font-family:var(--f-ui);font-size:.55rem;letter-spacing:.22em;text-transform:uppercase;color:var(--stone);font-weight:600;flex-shrink:0}
+.js-nav-label .js-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 0 rgba(184,131,40,.5);animation:jsDotPulse 2.4s ease-in-out infinite}
+@keyframes jsDotPulse{0%,100%{box-shadow:0 0 0 0 rgba(184,131,40,.5)}50%{box-shadow:0 0 0 6px rgba(184,131,40,0)}}
+.js-nav-links{display:flex;gap:.25rem;align-items:center;flex:1}
+.js-nav-link{position:relative;padding:.45rem .65rem;font-family:var(--f-ui);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);cursor:pointer;background:none;border:none;display:inline-flex;align-items:baseline;gap:.4rem;transition:color .2s;white-space:nowrap}
+.js-nav-link:hover{color:var(--maroon)}
+.js-nav-link.active{color:var(--maroon)}
+.js-nav-link::after{content:'';position:absolute;bottom:-.7rem;left:.65rem;right:.65rem;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:center;transition:transform .28s cubic-bezier(.22,1,.36,1)}
+.js-nav-link.active::after{transform:scaleX(1)}
+.js-nav-count{font-family:var(--f-display);font-style:italic;font-size:.78rem;color:var(--stone-lt);text-transform:none;letter-spacing:0;font-weight:400}
+.js-nav-link.active .js-nav-count{color:var(--maroon)}
+.js-nav-progress{margin-left:auto;display:flex;align-items:center;gap:.5rem;flex-shrink:0}
+.js-nav-progress-track{width:90px;height:3px;background:rgba(123,29,42,.12);border-radius:2px;overflow:hidden}
+.js-nav-progress-fill{height:100%;background:linear-gradient(90deg,var(--gold) 0%,var(--gold-lt,#E8C97A) 100%);width:0%;transition:width .35s ease}
+.js-nav-progress-label{font-family:var(--f-display);font-style:italic;font-size:.78rem;color:var(--stone)}
+@media(max-width:700px){.js-nav-inner{padding:.65rem 1rem;gap:.85rem}.js-nav-label{display:none}.js-nav-progress{display:none}}
+@media (prefers-reduced-motion: reduce){.js-nav-link::after{transition:none}.js-nav-label .js-dot{animation:none}}
+
+/* Reveal-on-scroll */
+.scroll-reveal{opacity:0;transform:translateY(18px);transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1)}
+.scroll-reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){.scroll-reveal{opacity:1;transform:none;transition:none}}
+
 /* ── FR. SOLOMON'S NOTE ── */
 .pastoral-note{position:relative;background:linear-gradient(135deg,#F9F4E9 0%,#F3EADA 100%);border:1px solid rgba(184,131,40,.28);border-left:3px solid var(--gold);padding:1.5rem 1.75rem;margin:2rem 0 2rem;box-shadow:0 12px 32px -16px rgba(28,20,16,.18);display:grid;grid-template-columns:68px 1fr;gap:1.25rem;overflow:hidden}
 .pastoral-note::before{content:'';position:absolute;top:0;right:0;width:36px;height:36px;background:linear-gradient(225deg,#EDE2CC 0%,#EDE2CC 50%,rgba(237,226,204,0) 50%);pointer-events:none}
@@ -993,6 +1021,24 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 </div>
 
 
+<!-- ── STICKY SECTION NAV ── -->
+<nav class="js-section-nav" id="js-section-nav">
+  <div class="js-nav-inner">
+    <span class="js-nav-label"><span class="js-dot"></span>On this page</span>
+    <div class="js-nav-links" id="js-nav-links">
+      <button type="button" class="js-nav-link" data-target="library-room">Library <span class="js-nav-count" id="js-count-library"></span></button>
+      <button type="button" class="js-nav-link" data-target="reading-notes-section">Notes <span class="js-nav-count" id="js-count-notes"></span></button>
+      <button type="button" class="js-nav-link" data-target="icon-corner-section">Saints <span class="js-nav-count" id="js-count-saints"></span></button>
+      <button type="button" class="js-nav-link" data-target="rule-section">Prayer Rule <span class="js-nav-count" id="js-count-rule"></span></button>
+    </div>
+    <div class="js-nav-progress">
+      <div class="js-nav-progress-track"><div class="js-nav-progress-fill" id="js-nav-progress-fill"></div></div>
+      <span class="js-nav-progress-label" id="js-nav-progress-label">0%</span>
+    </div>
+  </div>
+</nav>
+<div id="js-stuck-sentinel" style="position:absolute;top:140px;height:1px;width:1px"></div>
+
 <!-- ── AUTH LOGIN PROMPT ── -->
 <div id="auth-login-prompt" style="display:none;background:rgba(246,241,232,.6);border-bottom:1px solid rgba(184,131,40,.2);padding:.9rem 2rem;">
   <div style="max-width:900px;margin:0 auto;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;">
@@ -1083,7 +1129,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 
   <!-- LIBRARY (per-session progress) -->
   <div class="section-rule"></div>
-  <section class="library-room" id="library-room">
+  <section class="library-room scroll-reveal" id="library-room">
     <div class="library-room-head">
       <div>
         <div class="library-room-title">The <em>Library</em></div>
@@ -1097,7 +1143,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 
   <!-- YOUR NOTES -->
   <div class="section-rule"></div>
-  <div id="reading-notes-section" style="display:none">
+  <div id="reading-notes-section" class="scroll-reveal" style="display:none">
     <span class="section-label">Your Notes</span>
     <div class="section-title">Saved verses &amp; reflections</div>
     <div id="reading-notes-list"></div>
@@ -1109,7 +1155,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 
   <!-- ICON CORNER -->
   <div class="section-rule"></div>
-  <div id="icon-corner-section" style="display:none">
+  <div id="icon-corner-section" class="scroll-reveal" style="display:none">
     <span class="section-label">Icon Corner</span>
     <div class="section-title">Saints you are keeping</div>
     <div id="icon-corner-grid"></div>
@@ -1121,7 +1167,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 
   <!-- PRAYER RULE -->
   <div class="section-rule"></div>
-  <div id="rule-section" style="display:none">
+  <div id="rule-section" class="scroll-reveal" style="display:none">
     <span class="section-label">My Rule of Prayer</span>
     <div class="section-title">Prayer Rule</div>
     <div id="rule-list"></div>
@@ -1675,6 +1721,8 @@ document.addEventListener('DOMContentLoaded', async function() {
   renderIconCorner();
   renderLivingStrip();
   renderPastoralNote();
+  initSectionNav();
+  initScrollReveal();
 });
 
 function renderReadingNotes() {
@@ -1741,6 +1789,128 @@ function renderReadingNotes() {
       countEl.textContent = flat.length + ' saved note' + (flat.length === 1 ? '' : 's');
     }
   }
+}
+
+// ── STICKY SECTION NAV ──
+function initSectionNav() {
+  var nav = document.getElementById('js-section-nav');
+  var sentinel = document.getElementById('js-stuck-sentinel');
+  if (!nav) return;
+
+  // Stuck-state via IntersectionObserver on the sentinel
+  if ('IntersectionObserver' in window && sentinel) {
+    var io = new IntersectionObserver(function(entries) {
+      nav.classList.toggle('stuck', !entries[0].isIntersecting);
+    }, { rootMargin: '-60px 0px 0px 0px', threshold: 0 });
+    io.observe(sentinel);
+  }
+
+  // Smooth-scroll on link click (offset by 60px nav + 50px sticky)
+  var OFFSET = 120;
+  nav.querySelectorAll('.js-nav-link').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var t = document.getElementById(btn.dataset.target);
+      if (!t || t.style.display === 'none') return;
+      var top = t.getBoundingClientRect().top + window.pageYOffset - OFFSET;
+      window.scrollTo({ top: top, behavior: 'smooth' });
+    });
+  });
+
+  // Active state tracking via 140px sight line
+  var SIGHT_LINE = 160;
+  function updateActive() {
+    var sections = nav.querySelectorAll('.js-nav-link');
+    var activeId = null;
+    sections.forEach(function(btn) {
+      var t = document.getElementById(btn.dataset.target);
+      if (!t || t.style.display === 'none') {
+        btn.style.display = 'none';
+        return;
+      }
+      btn.style.display = '';
+      var rect = t.getBoundingClientRect();
+      if (rect.top <= SIGHT_LINE) activeId = btn.dataset.target;
+    });
+    sections.forEach(function(btn) {
+      btn.classList.toggle('active', btn.dataset.target === activeId);
+    });
+    updateScrollProgress();
+  }
+  function updateScrollProgress() {
+    var fill = document.getElementById('js-nav-progress-fill');
+    var label = document.getElementById('js-nav-progress-label');
+    if (!fill || !label) return;
+    var docH = document.documentElement.scrollHeight - window.innerHeight;
+    var pct = docH > 0 ? Math.round((window.scrollY / docH) * 100) : 0;
+    pct = Math.max(0, Math.min(100, pct));
+    fill.style.width = pct + '%';
+    label.textContent = pct + '%';
+  }
+  var ticking = false;
+  window.addEventListener('scroll', function() {
+    if (!ticking) {
+      requestAnimationFrame(function() { updateActive(); ticking = false; });
+      ticking = true;
+    }
+  }, { passive: true });
+  updateActive();
+
+  // Refresh counts
+  refreshSectionNavCounts();
+}
+
+function refreshSectionNavCounts() {
+  // Library: read from progress label like "23 of 65"
+  var libProg = document.getElementById('library-room-progress');
+  var elL = document.getElementById('js-count-library');
+  if (libProg && elL) {
+    var num = (libProg.textContent || '').match(/^(\d+)/);
+    if (num) elL.textContent = num[1];
+  }
+  // Notes
+  var elN = document.getElementById('js-count-notes');
+  if (elN) {
+    try {
+      var dict = JSON.parse(localStorage.getItem('spp_reading_notes') || '{}') || {};
+      var n = 0;
+      Object.keys(dict).forEach(function(k){ if (Array.isArray(dict[k])) n += dict[k].length; });
+      elN.textContent = n || '';
+    } catch(e) {}
+  }
+  // Saints
+  var elS = document.getElementById('js-count-saints');
+  if (elS) {
+    try {
+      var s = JSON.parse(localStorage.getItem('spp_saint_bookmarks') || '{}') || {};
+      var sn = Object.keys(s).length;
+      elS.textContent = sn || '';
+    } catch(e) {}
+  }
+  // Prayer Rule
+  var elR = document.getElementById('js-count-rule');
+  if (elR) {
+    try {
+      var r = JSON.parse(localStorage.getItem('spp_my_rule') || '[]') || [];
+      elR.textContent = r.length || '';
+    } catch(e) {}
+  }
+}
+
+// ── REVEAL ON SCROLL ──
+function initScrollReveal() {
+  if (!('IntersectionObserver' in window)) {
+    document.querySelectorAll('.scroll-reveal').forEach(function(el){ el.classList.add('in'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+  document.querySelectorAll('.scroll-reveal').forEach(function(el){ io.observe(el); });
 }
 
 // ── FR. SOLOMON'S NOTE ──
