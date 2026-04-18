@@ -1910,7 +1910,16 @@ body {
 .add-panel-footer button,
 .gh-modal-inner p,
 .gh-modal-inner button,
-#admin-toast {
+#admin-toast,
+.hd-back,
+.hd-count,
+.hd-range,
+.hd-chip,
+.hd-row-text,
+.hd-row-date,
+.hd-detail-stamp,
+.hd-trigger-pill,
+.hd-back-top {
   font-family: var(--f-data);
 }
 /* Readable minimum sizes for labels and small text */
@@ -2162,6 +2171,228 @@ body {
   background: rgba(61,107,94,.08);
   border-color: var(--verdigris);
 }
+
+/* ── HISTORY DRAWER ── */
+.hd-overlay {
+  position: fixed; inset: 0; background: rgba(21,8,4,.45);
+  z-index: 900; opacity: 0; pointer-events: none;
+  transition: opacity .3s ease;
+}
+.hd-overlay.open { opacity: 1; pointer-events: all; }
+.hd-drawer {
+  position: fixed; top: 0; right: 0; bottom: 0;
+  width: 400px; max-width: 92vw;
+  background: var(--vellum);
+  z-index: 910;
+  transform: translateX(100%);
+  transition: transform .35s cubic-bezier(.22,.68,0,1.05);
+  display: flex; flex-direction: column;
+  box-shadow: -8px 0 40px rgba(28,20,16,.15);
+}
+.hd-drawer.open { transform: translateX(0); }
+.hd-drawer-accent {
+  height: 3px; flex-shrink: 0;
+  background: var(--gold);
+  transition: background .4s;
+}
+.hd-header {
+  padding: 1.25rem 1.5rem 1rem;
+  border-bottom: var(--rule-faint);
+  flex-shrink: 0;
+}
+.hd-header-top {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: .85rem;
+}
+.hd-back {
+  font-family: var(--f-data); font-size: 13px; color: var(--stone);
+  background: none; border: none; cursor: pointer; display: flex;
+  align-items: center; gap: .35rem; transition: color .15s; padding: 0;
+}
+.hd-back:hover { color: var(--maroon); }
+.hd-close {
+  width: 28px; height: 28px; border-radius: 4px; display: flex;
+  align-items: center; justify-content: center;
+  background: none; border: 1px solid rgba(123,29,42,.12);
+  color: var(--stone); cursor: pointer; font-size: .85rem;
+  transition: all .15s;
+}
+.hd-close:hover { border-color: var(--maroon); color: var(--maroon); }
+.hd-title-row {
+  display: flex; align-items: baseline; justify-content: space-between;
+  margin-bottom: .15rem;
+}
+.hd-title {
+  font-family: var(--f-display); font-weight: 400; font-size: 1.3rem;
+  color: var(--ink);
+}
+.hd-count {
+  font-family: var(--f-data); font-size: .72rem; color: var(--stone);
+}
+.hd-range {
+  font-family: var(--f-data); font-size: .7rem; color: var(--stone-lt);
+  margin-bottom: .85rem;
+}
+.hd-search {
+  width: 100%; font-family: var(--f-body); font-size: .92rem;
+  padding: .5rem .85rem; border: 1px solid rgba(123,29,42,.15);
+  background: #fff; color: var(--ink); outline: none;
+  transition: border-color .18s; margin-bottom: .65rem;
+}
+.hd-search:focus { border-color: var(--maroon); }
+.hd-search::placeholder { color: var(--stone-lt); }
+.hd-chips {
+  display: flex; gap: .4rem; flex-wrap: wrap;
+}
+.hd-chip {
+  font-family: var(--f-data); font-size: .68rem; font-weight: 500;
+  padding: .28rem .7rem; border-radius: 100px; cursor: pointer;
+  border: 1px solid rgba(123,29,42,.15); background: transparent;
+  color: var(--stone); transition: all .15s; white-space: nowrap;
+}
+.hd-chip:hover { border-color: var(--maroon); color: var(--maroon); }
+.hd-chip.active {
+  background: var(--maroon); color: var(--vellum);
+  border-color: var(--maroon);
+}
+
+/* Scrollable body */
+.hd-body {
+  flex: 1; overflow-y: auto; position: relative;
+}
+.hd-body::after {
+  content: ''; position: sticky; bottom: 0; left: 0; right: 0;
+  height: 40px; display: block; pointer-events: none;
+  background: linear-gradient(transparent, var(--vellum));
+}
+.hd-back-top {
+  position: sticky; bottom: 12px; left: 50%; transform: translateX(-50%);
+  font-family: var(--f-data); font-size: .68rem; color: var(--stone);
+  background: rgba(246,241,232,.95); border: 1px solid rgba(123,29,42,.12);
+  padding: .3rem .8rem; border-radius: 100px; cursor: pointer;
+  opacity: 0; pointer-events: none; transition: opacity .2s;
+  z-index: 5; display: none;
+}
+.hd-back-top.visible { opacity: 1; pointer-events: all; display: block; }
+
+/* Date group headers */
+.hd-date-group {
+  position: sticky; top: 0; z-index: 3;
+  font-family: var(--f-data); font-size: .65rem; font-weight: 600;
+  letter-spacing: .06em; text-transform: uppercase;
+  color: var(--stone); padding: .55rem 1.5rem .35rem;
+  background: var(--vellum);
+  border-bottom: 1px solid rgba(123,29,42,.06);
+}
+
+/* Compact rows */
+.hd-row {
+  display: flex; align-items: center; gap: .85rem;
+  padding: .7rem 1.5rem; border-bottom: 1px solid rgba(123,29,42,.04);
+  cursor: pointer; transition: background .12s, box-shadow .12s;
+  animation: hdRowIn .3s ease backwards;
+}
+.hd-row:nth-child(odd) { background: rgba(255,255,255,.4); }
+.hd-row:nth-child(even) { background: transparent; }
+.hd-row:hover {
+  background: rgba(255,255,255,.8);
+  box-shadow: 0 1px 6px rgba(28,20,16,.06);
+}
+.hd-row:hover .hd-row-name { color: var(--maroon); }
+@keyframes hdRowIn {
+  from { opacity: 0; transform: translateX(8px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+.hd-row-name {
+  font-family: var(--f-display); font-weight: 500; font-size: .98rem;
+  color: var(--ink); white-space: nowrap; flex-shrink: 0;
+  transition: color .15s; min-width: 0;
+}
+.hd-row-text {
+  font-family: var(--f-data); font-size: .78rem; color: var(--stone);
+  flex: 1; min-width: 0; white-space: nowrap; overflow: hidden;
+  text-overflow: ellipsis;
+}
+.hd-row-date {
+  font-family: var(--f-data); font-size: .68rem; color: var(--stone-lt);
+  flex-shrink: 0; white-space: nowrap;
+}
+
+/* Expanded detail */
+.hd-row-detail {
+  max-height: 0; overflow: hidden; opacity: 0;
+  transition: max-height .3s ease, opacity .2s, padding .3s;
+  padding: 0 1.5rem; background: rgba(255,255,255,.6);
+  border-bottom: 1px solid rgba(123,29,42,.06);
+}
+.hd-row-detail.open {
+  max-height: 200px; opacity: 1;
+  padding: .75rem 1.5rem 1rem;
+}
+.hd-detail-full {
+  font-family: var(--f-body); font-size: .9rem; color: var(--ink);
+  line-height: 1.5; margin-bottom: .5rem;
+}
+.hd-detail-dates {
+  display: flex; gap: 1.25rem; flex-wrap: wrap;
+}
+.hd-detail-stamp {
+  font-family: var(--f-data); font-size: .65rem; color: var(--stone);
+}
+.hd-detail-stamp strong {
+  font-weight: 600; color: var(--ink); display: block; font-size: .6rem;
+  letter-spacing: .04em; text-transform: uppercase; margin-bottom: .1rem;
+}
+
+/* Empty & no-match states */
+.hd-empty {
+  text-align: center; padding: 3rem 1.5rem;
+  font-family: var(--f-body); font-style: italic;
+  font-size: .95rem; color: var(--stone);
+}
+.hd-empty-icon {
+  font-size: 1.5rem; opacity: .35; margin-bottom: .5rem; display: block;
+}
+
+/* History pill trigger */
+.hd-trigger-pill {
+  display: inline-flex; align-items: center; gap: .4rem;
+  font-family: var(--f-data); font-size: .72rem; font-weight: 500;
+  color: var(--stone); padding: .3rem .8rem; border-radius: 100px;
+  border: 1px solid rgba(123,29,42,.12); background: transparent;
+  cursor: pointer; transition: all .18s; margin-top: .75rem;
+}
+.hd-trigger-pill:hover {
+  border-color: var(--maroon); color: var(--maroon);
+}
+.hd-trigger-count {
+  font-family: var(--f-data); font-size: .62rem; font-weight: 600;
+  background: rgba(123,29,42,.08); color: var(--maroon);
+  padding: .1rem .4rem; border-radius: 100px; min-width: 18px;
+  text-align: center; transition: transform .2s;
+}
+.hd-trigger-count.pulse {
+  animation: hdPulse .4s ease;
+}
+@keyframes hdPulse {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
+
+/* Dismiss animation on acknowledged cards */
+.pr2-card.dismissing {
+  animation: prDismiss .35s ease forwards;
+}
+@keyframes prDismiss {
+  0%   { opacity: .8; transform: scale(1); max-height: 120px; margin-bottom: .5rem; }
+  100% { opacity: 0; transform: scale(.92); max-height: 0; margin-bottom: 0; padding: 0; overflow: hidden; }
+}
+
+@media (max-width: 600px) {
+  .hd-drawer { width: 100%; max-width: 100%; }
+}
+
 .pl-intercession-empty {
   font-family: var(--f-body);
   font-style: italic;
@@ -2401,9 +2632,12 @@ body {
         <div>
           <span class="prayer-col-head">Acknowledged</span>
           <div id="prayer-archived"></div>
-          <div id="prayer-history-wrap" style="margin-top:1.25rem;display:none">
-            <button id="prayer-history-toggle" class="pr-archive-link" onclick="togglePrayerHistory()" style="margin-bottom:.65rem">Show History</button>
-            <div id="prayer-history" style="display:none"></div>
+          <div id="prayer-history-wrap" style="display:none">
+            <button class="hd-trigger-pill" onclick="openHistoryDrawer()">
+              <span style="font-size:.8rem;opacity:.5">&#x29D6;</span>
+              <span>Past requests</span>
+              <span class="hd-trigger-count" id="hd-trigger-count">0</span>
+            </button>
           </div>
         </div>
         <div>
@@ -3242,7 +3476,6 @@ function renderPrayerRequests(requests) {
   var activeContainer = document.getElementById('prayer-requests');
   var archiveContainer = document.getElementById('prayer-archived');
   var historyWrap = document.getElementById('prayer-history-wrap');
-  var historyContainer = document.getElementById('prayer-history');
 
   // New requests
   if (active.length === 0) {
@@ -3290,19 +3523,10 @@ function renderPrayerRequests(requests) {
     });
   }
 
-  // History (dismissed)
+  // History pill
   if (history.length > 0) {
     historyWrap.style.display = '';
-    historyContainer.innerHTML = history.map(function(r) {
-      return '<div class="pr2-card pr2-card-acked" style="opacity:.55">' +
-        '<div class="pr2-icon pr2-icon-check" style="opacity:.5">&#x2713;</div>' +
-        '<div class="pr2-body">' +
-          '<div class="pr2-name">' + escHtml(r.name || 'A parishioner') + '</div>' +
-          '<div class="pr2-text">' + escHtml(r.intention || r.request_text || '') + '</div>' +
-          '<div class="pr2-acked-date">Dismissed ' + fmtDateShort(r.dismissed_at) + '</div>' +
-        '</div>' +
-      '</div>';
-    }).join('');
+    document.getElementById('hd-trigger-count').textContent = history.length;
   } else {
     historyWrap.style.display = 'none';
   }
@@ -3323,25 +3547,34 @@ async function acknowledgeRequest(id) {
 }
 
 async function dismissRequest(id) {
+  // Animate the card out
+  var cards = document.querySelectorAll('.pr2-card-acked');
+  cards.forEach(function(card) {
+    var btn = card.querySelector('[data-dismiss]');
+    if (btn && btn.getAttribute('data-dismiss') === String(id)) {
+      card.classList.add('dismissing');
+    }
+  });
+
   var now = new Date().toISOString();
   await _supabase.from('prayer_requests').update({ dismissed: true, dismissed_at: now }).eq('id', id);
   var req = allPrayerRequests.find(function(r) { return String(r.id) === String(id); });
   if (req) { req.dismissed = true; req.dismissed_at = now; }
-  renderPrayerRequests(allPrayerRequests);
-  renderAttentionStrip(allPrayerRequests);
-  showToast('Request moved to history.');
-}
 
-function togglePrayerHistory() {
-  var container = document.getElementById('prayer-history');
-  var btn = document.getElementById('prayer-history-toggle');
-  if (container.style.display === 'none') {
-    container.style.display = '';
-    btn.textContent = 'Hide History';
-  } else {
-    container.style.display = 'none';
-    btn.textContent = 'Show History';
-  }
+  // Wait for animation then re-render
+  setTimeout(function() {
+    renderPrayerRequests(allPrayerRequests);
+    renderAttentionStrip(allPrayerRequests);
+    // Pulse the history count
+    var countEl = document.getElementById('hd-trigger-count');
+    if (countEl) {
+      countEl.classList.remove('pulse');
+      void countEl.offsetHeight;
+      countEl.classList.add('pulse');
+    }
+  }, 350);
+
+  showToast('Request moved to history.');
 }
 
 // ── PRAYER LIST ──
@@ -4493,6 +4726,239 @@ document.addEventListener('click', function(e) {
 
 // ── INIT ──
 initAuth();
+</script>
+
+<!-- ── HISTORY DRAWER ── -->
+<div class="hd-overlay" id="hd-overlay" onclick="closeHistoryDrawer()"></div>
+<div class="hd-drawer" id="hd-drawer">
+  <div class="hd-drawer-accent" id="hd-accent"></div>
+  <div class="hd-header">
+    <div class="hd-header-top">
+      <button class="hd-back" onclick="closeHistoryDrawer()">&#8249; Back</button>
+      <button class="hd-close" onclick="closeHistoryDrawer()">&times;</button>
+    </div>
+    <div class="hd-title-row">
+      <span class="hd-title">Prayer History</span>
+      <span class="hd-count" id="hd-count"></span>
+    </div>
+    <div class="hd-range" id="hd-range"></div>
+    <input type="text" class="hd-search" id="hd-search" placeholder="Search by name or request..." oninput="filterHistory()">
+    <div class="hd-chips" id="hd-chips">
+      <button class="hd-chip active" data-range="all" onclick="setHistoryChip('all')">All</button>
+      <button class="hd-chip" data-range="week" onclick="setHistoryChip('week')">This Week</button>
+      <button class="hd-chip" data-range="month" onclick="setHistoryChip('month')">This Month</button>
+      <button class="hd-chip" data-range="older" onclick="setHistoryChip('older')">Older</button>
+    </div>
+  </div>
+  <div class="hd-body" id="hd-body">
+    <div id="hd-list"></div>
+    <button class="hd-back-top" id="hd-back-top" onclick="document.getElementById('hd-body').scrollTo({top:0,behavior:'smooth'})">Back to top</button>
+  </div>
+</div>
+
+<script>
+// ── HISTORY DRAWER LOGIC ──
+var hdActiveRange = 'all';
+var hdExpandedId = null;
+
+function getSeasonalColor() {
+  // Liturgical season accent for the drawer top border
+  var now = new Date();
+  var m = now.getMonth(); // 0-indexed
+  var d = now.getDate();
+  var y = now.getFullYear();
+  // Approximate Orthodox liturgical seasons (fixed dates, varies by year)
+  // Great Lent: ~48 days before Pascha. Pascha 2026 = Apr 12
+  // Bright Week: Pascha through following Saturday
+  // Advent/Nativity fast: Nov 15 - Dec 24
+  var pascha2026 = new Date(2026, 3, 12); // Apr 12, 2026
+  var lentStart = new Date(pascha2026); lentStart.setDate(lentStart.getDate() - 48);
+  var brightEnd = new Date(pascha2026); brightEnd.setDate(brightEnd.getDate() + 6);
+  var pentecost = new Date(pascha2026); pentecost.setDate(pentecost.getDate() + 49);
+
+  if (now >= lentStart && now < pascha2026) return '#3B0F18'; // deep apse purple-maroon for Lent
+  if (now >= pascha2026 && now <= brightEnd) return '#B88328'; // gold for Pascha/Bright Week
+  if (now >= brightEnd && now <= pentecost) return '#3D6B5E'; // verdigris for Paschal season
+  if (m === 11 && d >= 15 || m === 10 && d >= 15) return '#3B0F18'; // Nativity fast
+  if (m === 11 && d >= 25 || m === 0 && d <= 7) return '#B88328'; // Nativity through Theophany
+  return '#B88328'; // default gold
+}
+
+function openHistoryDrawer() {
+  var dismissed = allPrayerRequests.filter(function(r) { return r.dismissed; });
+  if (!dismissed.length) return;
+
+  // Set seasonal accent
+  document.getElementById('hd-accent').style.background = getSeasonalColor();
+
+  document.getElementById('hd-overlay').classList.add('open');
+  document.getElementById('hd-drawer').classList.add('open');
+  document.getElementById('hd-search').value = '';
+  hdActiveRange = 'all';
+  hdExpandedId = null;
+  document.querySelectorAll('.hd-chip').forEach(function(c) {
+    c.classList.toggle('active', c.getAttribute('data-range') === 'all');
+  });
+  renderHistoryDrawer();
+  // Auto-focus search
+  setTimeout(function() { document.getElementById('hd-search').focus(); }, 350);
+  // Escape key
+  document.addEventListener('keydown', hdEscHandler);
+}
+
+function closeHistoryDrawer() {
+  document.getElementById('hd-overlay').classList.remove('open');
+  document.getElementById('hd-drawer').classList.remove('open');
+  document.removeEventListener('keydown', hdEscHandler);
+  hdExpandedId = null;
+}
+
+function hdEscHandler(e) {
+  if (e.key === 'Escape') closeHistoryDrawer();
+}
+
+function setHistoryChip(range) {
+  hdActiveRange = range;
+  document.querySelectorAll('.hd-chip').forEach(function(c) {
+    c.classList.toggle('active', c.getAttribute('data-range') === range);
+  });
+  renderHistoryDrawer();
+}
+
+function filterHistory() {
+  renderHistoryDrawer();
+}
+
+function getFilteredHistory() {
+  var dismissed = allPrayerRequests.filter(function(r) { return r.dismissed; })
+    .sort(function(a, b) { return new Date(b.dismissed_at || 0) - new Date(a.dismissed_at || 0); });
+
+  // Time range filter
+  var now = new Date();
+  if (hdActiveRange === 'week') {
+    var weekAgo = new Date(); weekAgo.setDate(weekAgo.getDate() - 7);
+    dismissed = dismissed.filter(function(r) { return new Date(r.dismissed_at) >= weekAgo; });
+  } else if (hdActiveRange === 'month') {
+    var monthAgo = new Date(); monthAgo.setDate(monthAgo.getDate() - 30);
+    dismissed = dismissed.filter(function(r) { return new Date(r.dismissed_at) >= monthAgo; });
+  } else if (hdActiveRange === 'older') {
+    var monthAgo2 = new Date(); monthAgo2.setDate(monthAgo2.getDate() - 30);
+    dismissed = dismissed.filter(function(r) { return new Date(r.dismissed_at) < monthAgo2; });
+  }
+
+  // Search filter
+  var q = (document.getElementById('hd-search').value || '').toLowerCase().trim();
+  if (q) {
+    dismissed = dismissed.filter(function(r) {
+      var name = (r.name || '').toLowerCase();
+      var text = (r.intention || r.request_text || '').toLowerCase();
+      return name.indexOf(q) !== -1 || text.indexOf(q) !== -1;
+    });
+  }
+
+  return dismissed;
+}
+
+function renderHistoryDrawer() {
+  var items = getFilteredHistory();
+  var allDismissed = allPrayerRequests.filter(function(r) { return r.dismissed; });
+  var list = document.getElementById('hd-list');
+  var countEl = document.getElementById('hd-count');
+  var rangeEl = document.getElementById('hd-range');
+  var body = document.getElementById('hd-body');
+
+  countEl.textContent = items.length + ' of ' + allDismissed.length;
+
+  // Date range
+  if (allDismissed.length > 0) {
+    var sorted = allDismissed.slice().sort(function(a, b) { return new Date(a.dismissed_at || 0) - new Date(b.dismissed_at || 0); });
+    var earliest = fmtDateShort(sorted[0].dismissed_at);
+    var latest = fmtDateShort(sorted[sorted.length - 1].dismissed_at);
+    rangeEl.textContent = earliest + ' \u2013 ' + latest;
+  } else {
+    rangeEl.textContent = '';
+  }
+
+  // No match state
+  var q = (document.getElementById('hd-search').value || '').trim();
+  if (items.length === 0 && q) {
+    list.innerHTML = '<div class="hd-empty"><span class="hd-empty-icon">\u2020</span>No requests matching \u201C' + escHtml(q) + '\u201D</div>';
+    return;
+  }
+  if (items.length === 0) {
+    list.innerHTML = '<div class="hd-empty"><span class="hd-empty-icon">\u2020</span>No dismissed requests yet.</div>';
+    return;
+  }
+
+  // Group by date
+  var groups = {};
+  items.forEach(function(r) {
+    var dateKey = r.dismissed_at ? new Date(r.dismissed_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : 'Unknown';
+    if (!groups[dateKey]) groups[dateKey] = [];
+    groups[dateKey].push(r);
+  });
+
+  var html = '';
+  var rowIdx = 0;
+  Object.keys(groups).forEach(function(dateKey) {
+    html += '<div class="hd-date-group">' + escHtml(dateKey) + '</div>';
+    groups[dateKey].forEach(function(r) {
+      var textPreview = (r.intention || r.request_text || '').substring(0, 60);
+      if ((r.intention || r.request_text || '').length > 60) textPreview += '\u2026';
+      var delay = Math.min(rowIdx * 30, 300);
+      html += '<div class="hd-row" style="animation-delay:' + delay + 'ms" data-hd-id="' + r.id + '" onclick="toggleHistoryDetail(\'' + r.id + '\')">' +
+        '<span class="hd-row-name">' + escHtml(r.name || 'Anonymous') + '</span>' +
+        '<span class="hd-row-text">' + escHtml(textPreview) + '</span>' +
+        '<span class="hd-row-date">' + fmtDateShort(r.dismissed_at) + '</span>' +
+      '</div>' +
+      '<div class="hd-row-detail" id="hd-detail-' + r.id + '">' +
+        '<div class="hd-detail-full">' + escHtml(r.intention || r.request_text || '') + '</div>' +
+        '<div class="hd-detail-dates">' +
+          '<div class="hd-detail-stamp"><strong>Submitted</strong>' + fmtDateShort(r.created_at || r.submitted_at) + '</div>' +
+          '<div class="hd-detail-stamp"><strong>Acknowledged</strong>' + fmtDateShort(r.acknowledged_at) + '</div>' +
+          '<div class="hd-detail-stamp"><strong>Dismissed</strong>' + fmtDateShort(r.dismissed_at) + '</div>' +
+        '</div>' +
+      '</div>';
+      rowIdx++;
+    });
+  });
+
+  list.innerHTML = html;
+
+  // Restore expanded state if still visible
+  if (hdExpandedId) {
+    var det = document.getElementById('hd-detail-' + hdExpandedId);
+    if (det) det.classList.add('open');
+  }
+
+  // Back-to-top visibility
+  var backTop = document.getElementById('hd-back-top');
+  body.onscroll = function() {
+    if (body.scrollTop > 400) {
+      backTop.classList.add('visible');
+    } else {
+      backTop.classList.remove('visible');
+    }
+  };
+}
+
+function toggleHistoryDetail(id) {
+  var idStr = String(id);
+  // Close previous
+  if (hdExpandedId && hdExpandedId !== idStr) {
+    var prev = document.getElementById('hd-detail-' + hdExpandedId);
+    if (prev) prev.classList.remove('open');
+  }
+  var det = document.getElementById('hd-detail-' + idStr);
+  if (!det) return;
+  if (det.classList.contains('open')) {
+    det.classList.remove('open');
+    hdExpandedId = null;
+  } else {
+    det.classList.add('open');
+    hdExpandedId = idStr;
+  }
+}
 </script>
 </body>
 </html>
