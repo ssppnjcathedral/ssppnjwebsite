@@ -581,7 +581,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 .margin-act:hover svg{stroke:var(--vellum)}
 .margin-date{font-family:var(--f-body);font-size:.8rem;color:var(--maroon);font-weight:500;padding-top:.2rem;letter-spacing:.02em}
 .margin-date span{display:block;font-family:var(--f-display);font-style:italic;font-size:1.15rem;color:var(--stone);font-weight:400;margin-top:.1rem}
-.margin-verse{font-family:var(--f-display);font-style:italic;font-size:1.1rem;color:var(--text);line-height:1.45;margin-bottom:.45rem}
+.margin-verse{font-family:var(--f-body);font-style:italic;font-size:1.05rem;color:var(--text);line-height:1.6;margin-bottom:.45rem}
 .margin-verse::before{content:'\201C';color:var(--gold);font-size:1.4rem;margin-right:.1rem;vertical-align:-.15rem}
 .margin-verse::after{content:'\201D';color:var(--gold);font-size:1.4rem;margin-left:.1rem;vertical-align:-.15rem}
 .margin-cite{font-family:var(--f-body);font-size:.82rem;color:var(--stone);margin-bottom:.55rem;letter-spacing:.01em}
@@ -818,12 +818,17 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 
 .lib-group{border-top:var(--rule-hair);padding:1.6rem 1.8rem}
 .lib-group:first-child{border-top:none}
-.lib-group-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:1.1rem;padding-bottom:.75rem;border-bottom:var(--rule-hair)}
+.lib-group-head{display:flex;justify-content:space-between;align-items:center;padding-bottom:.75rem;cursor:pointer;user-select:none;transition:opacity .15s}
+.lib-group-head:hover{opacity:.78}
+.lib-group-toggle{font-size:.85rem;color:rgba(184,131,40,.7);width:18px;text-align:center;flex-shrink:0;transition:transform .25s}
+.lib-group-head.open .lib-group-toggle{transform:rotate(180deg)}
+.lib-items{border-top:var(--rule-hair);padding-top:.5rem;margin-top:.75rem;display:none}
+.lib-items.open{display:grid;grid-template-columns:1fr;gap:.2rem}
 .lib-group-name{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--maroon);font-weight:600}
 .lib-group-count{font-family:var(--f-display);font-style:italic;font-size:.98rem;color:var(--stone)}
 .lib-group-count em{font-style:italic;color:var(--stone)}
 .lib-group-count strong{font-style:normal;color:var(--maroon);font-weight:500}
-.lib-items{display:grid;grid-template-columns:1fr;gap:.2rem}
+.lib-items{grid-template-columns:1fr;gap:.2rem}
 .lib-item{display:grid;grid-template-columns:28px 1fr auto;align-items:center;gap:1rem;padding:.75rem .5rem;border-bottom:var(--rule-hair);text-decoration:none;color:inherit;transition:background .15s}
 .lib-item:last-child{border-bottom:none}
 .lib-item:hover{background:var(--vellum)}
@@ -3728,16 +3733,18 @@ function formatLibDate(iso) {
 function renderLibraryGroup(opts) {
   var LIMIT = 5;
   var expanded = !!(window._libExpanded && window._libExpanded[opts.key]);
+  var sectionOpen = !!(window._libSectionOpen && window._libSectionOpen[opts.key]);
   var items = opts.items;
   var visible = expanded ? items : items.slice(0, LIMIT);
   var overflow = items.length > LIMIT;
 
   var html = '<div class="lib-group">';
-  html += '<div class="lib-group-head">';
-  html += '<span class="lib-group-name">' + escHtml(opts.name) + '</span>';
-  html += '<span class="lib-group-count"><strong>' + opts.done + '</strong> <em>of ' + opts.count + ' sessions</em></span>';
+  html += '<div class="lib-group-head' + (sectionOpen ? ' open' : '') + '" onclick="toggleLibSection(\'' + escAttr(opts.key) + '\')">';
+  html += '<div><span class="lib-group-name">' + escHtml(opts.name) + '</span>';
+  html += '<div><span class="lib-group-count"><strong>' + opts.done + '</strong> <em>of ' + opts.count + ' sessions</em></span></div></div>';
+  html += '<span class="lib-group-toggle">&#8964;</span>';
   html += '</div>';
-  html += '<div class="lib-items">';
+  html += '<div class="lib-items' + (sectionOpen ? ' open' : '') + '" id="lib-items-' + opts.key + '">';
   if (!items.length) {
     html += '<div class="lib-empty">' + escHtml(opts.emptyMsg || 'Nothing here yet.') + '</div>';
   } else {
@@ -3894,6 +3901,11 @@ function scrollToActiveRoomHead() {
   window.scrollTo({ top: top, behavior: 'smooth' });
 }
 
+function toggleLibSection(key) {
+  window._libSectionOpen = window._libSectionOpen || {};
+  window._libSectionOpen[key] = !window._libSectionOpen[key];
+  renderLibrary();
+}
 function expandLibGroup(key) {
   window._libExpanded = window._libExpanded || {};
   window._libExpanded[key] = true;
