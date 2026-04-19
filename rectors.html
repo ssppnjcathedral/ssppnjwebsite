@@ -56,7 +56,9 @@
 .mega-cta-btn:hover{background:var(--maroon);color:var(--vellum)}
 .nav-give{font-family:var(--f-ui);font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;color:var(--vellum);background:var(--maroon);padding:.5rem 1.1rem;transition:background .2s;white-space:nowrap;margin-left:1rem}
 .nav-give:hover{background:var(--maroon-deep)}
-.nav-my-parish{position:relative;margin-right:.35rem}
+.nav-prayer{font-family:var(--f-ui);font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);background:transparent;border:1px solid rgba(123,29,42,.35);padding:calc(.5rem - 1px) 1.1rem;transition:background .2s,color .2s;white-space:nowrap;margin-left:.6rem}
+.nav-prayer:hover{background:var(--maroon);color:var(--vellum)}
+.nav-my-parish{position:relative;margin-left:1rem}
 .nav-my-parish-btn{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:none;border:1px solid rgba(123,29,42,.35);cursor:pointer;color:#7B1D2A;transition:all .2s;padding:0;flex-shrink:0}
 .nav-my-parish-btn:hover{background:#7B1D2A;color:#F6F1E8;border-color:#7B1D2A}
 .nav-my-parish-panel{position:absolute;top:calc(100% + 6px);right:0;width:230px;background:#F6F1E8;border:1px solid rgba(123,29,42,.15);box-shadow:0 8px 32px rgba(28,20,16,.12);opacity:0;pointer-events:none;transform:translateY(-6px);transition:opacity .18s,transform .18s;z-index:500}
@@ -98,7 +100,9 @@
 .dr-link-sub{font-family:var(--f-body);font-style:italic;font-size:.95rem;color:rgba(232,201,122,.55);display:block;margin-top:.08rem;line-height:1.25}
 .nav-drawer-give{margin:1.25rem 1.75rem;display:block;text-align:center;font-family:var(--f-ui);font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;padding:.85rem;background:var(--maroon);color:var(--vellum);transition:background .2s}
 .nav-drawer-give:hover{background:var(--maroon-deep)}
-@media(max-width:1100px){.nav-links{display:none}.nav-hamburger{display:flex}.nav-give{display:none}.nav-my-parish{display:none}}
+.nav-drawer-prayer{margin:1.25rem 1.75rem 0;display:block;text-align:center;font-family:var(--f-ui);font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;padding:.85rem;background:transparent;color:rgba(246,241,232,.85);border:1px solid rgba(246,241,232,.35);transition:background .2s,border-color .2s}
+.nav-drawer-prayer:hover{background:rgba(246,241,232,.08);border-color:rgba(246,241,232,.65)}
+@media(max-width:1100px){.nav-links{display:none}.nav-hamburger{display:flex}.nav-give{display:none}.nav-prayer{display:none}.nav-my-parish{display:none}}
 
 /* ── HERO ── */
 .rh-hero{padding-top:60px;background:var(--apse);min-height:480px;display:flex;align-items:flex-end;position:relative;overflow:hidden}
@@ -524,6 +528,8 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
         <div class="mega-content"><div class="mega-inner" style="grid-template-columns:repeat(2,1fr)"><div class="mega-col"><span class="mega-col-head">Service Guides</span><a href="/divine-liturgy" class="mega-link">About the Divine Liturgy</a><span class="mega-sub">History, structure, and meaning</span><a href="/vespers" class="mega-link">About Vespers</a><span class="mega-sub">The ancient evening prayer of the Church</span><a href="/liturgy-history" class="mega-link">History of the Liturgy</a><span class="mega-sub">How the Divine Liturgy developed over the centuries</span></div><div class="mega-col"><span class="mega-col-head">Follow Along</span><a href="/liturgy-book" class="mega-link">Liturgy Book</a><span class="mega-sub">Full text for the Divine Liturgy</span><a href="/vespers-book" class="mega-link">Vespers Book</a><span class="mega-sub">Full text for Great Vespers</span><a href="/prayers" class="mega-link">Daily Prayers</a><span class="mega-sub">The daily prayer rule of the Orthodox Church</span><a href="/prayer-request" class="mega-link">Submit a Prayer Request</a><span class="mega-sub">Ask the parish to pray for you or a loved one</span></div></div></div>
       </div>
     </div>
+    <a href="/prayer-request" class="nav-prayer">Prayer Request</a>
+    <a href="/give" class="nav-give">Give</a>
     <div class="nav-my-parish" id="nav-my-parish">
       <button class="nav-my-parish-btn" onclick="toggleMyParish(event)" aria-label="My Parish"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="8" r="3.5"/><path d="M4 20c0-3.5 3.6-6 8-6s8 2.5 8 6"/></svg></button>
       <div class="nav-my-parish-panel" id="nav-mp-panel">
@@ -531,7 +537,6 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
         <a href="/my-journey" class="nav-mp-link"><span class="nav-mp-link-name">Explore</span><span class="nav-mp-link-sub">The ancient Orthodox Faith</span></a>
       </div>
     </div>
-    <a href="/give" class="nav-give">Give</a>
     <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" onclick="openDrawer()"><span></span><span></span><span></span></button>
   </div>
 </nav>
@@ -549,7 +554,8 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
     <div class="dr-section"><div class="dr-section-head" onclick="drToggle(this)"><span class="dr-section-name">Parish Life</span><span class="dr-section-toggle">+</span></div><div class="dr-section-links"><a href="/news" class="dr-link"><span class="dr-link-name">News &amp; Announcements</span><span class="dr-link-sub">What's happening at the parish</span></a><a href="/bulletins" class="dr-link"><span class="dr-link-name">Parish Bulletins</span><span class="dr-link-sub">Weekly reflections from Fr. Solomon</span></a><a href="/gallery" class="dr-link"><span class="dr-link-name">Gallery</span><span class="dr-link-sub">Photos from parish life and worship</span></a></div></div>
     <div class="dr-section"><div class="dr-section-head" onclick="drToggle(this)"><span class="dr-section-name">My Profile</span><span class="dr-section-toggle">+</span></div><div class="dr-section-links"><a href="/my-profile" class="dr-link"><span class="dr-link-name">My Profile</span><span class="dr-link-sub">Manage your parish profile today</span></a><a href="/my-journey" class="dr-link"><span class="dr-link-name">Explore</span><span class="dr-link-sub">The ancient Orthodox Faith</span></a></div></div>
   </div>
-  <a href="https://tithe.ly/give?c=5004259" target="_blank" class="nav-drawer-give">Give Online</a>
+  <a href="/prayer-request" class="nav-drawer-prayer">Prayer Request</a>
+<a href="https://tithe.ly/give?c=5004259" target="_blank" class="nav-drawer-give">Give Online</a>
 </div>
 <!-- ═══ NAV END ═══ -->
 

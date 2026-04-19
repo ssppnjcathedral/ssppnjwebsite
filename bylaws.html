@@ -46,6 +46,8 @@ a{color:inherit;text-decoration:none}
 .nav-drop a:hover,.nav-drop .nav-active{color:var(--maroon)}
 .nav-give{font-family:var(--f-ui);font-size:.80rem;letter-spacing:.14em;text-transform:uppercase;color:var(--vellum);background:var(--maroon);padding:.5rem 1.1rem;transition:background .2s}
 .nav-give:hover{background:var(--maroon-deep)}
+.nav-prayer{font-family:var(--f-ui);font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);background:transparent;border:1px solid rgba(123,29,42,.35);padding:calc(.5rem - 1px) 1.1rem;transition:background .2s,color .2s;white-space:nowrap;margin-left:.6rem}
+.nav-prayer:hover{background:var(--maroon);color:var(--vellum)}
 .nav-hamburger{display:none;flex-direction:column;justify-content:space-between;width:28px;height:20px;cursor:pointer;padding:0;background:none;border:none;z-index:400}
 .nav-hamburger span{display:block;width:100%;height:2px;background:var(--maroon);transition:all .28s ease;transform-origin:center}
 .nav-hamburger.open span:nth-child(1){transform:translateY(9px) rotate(45deg)}
@@ -66,6 +68,8 @@ a{color:inherit;text-decoration:none}
 .nav-drawer-links .drawer-section{font-family:var(--f-ui);font-size:.80rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(184,131,40,.55);padding:.85rem 1.75rem .35rem;display:block}
 .nav-drawer-give{margin:1.25rem 1.75rem;display:block;text-align:center;font-family:var(--f-ui);font-size:.80rem;letter-spacing:.16em;text-transform:uppercase;padding:.85rem;background:var(--maroon);color:var(--vellum);transition:background .2s}
 .nav-drawer-give:hover{background:var(--maroon-deep)}
+.nav-drawer-prayer{margin:1.25rem 1.75rem 0;display:block;text-align:center;font-family:var(--f-ui);font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;padding:.85rem;background:transparent;color:rgba(246,241,232,.85);border:1px solid rgba(246,241,232,.35);transition:background .2s,border-color .2s}
+.nav-drawer-prayer:hover{background:rgba(246,241,232,.08);border-color:rgba(246,241,232,.65)}
 
 /* ── PAGE HERO ── */
 .page-hero{padding-top:60px;background:linear-gradient(to right,rgba(59,15,24,.90) 0%,rgba(59,15,24,.68) 55%,rgba(59,15,24,.42) 100%),url('/images/heroes/administration.webp') center 55%/cover no-repeat;background-color:var(--apse);min-height:340px;display:flex;align-items:center;position:relative;overflow:hidden}
@@ -148,7 +152,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   .footer-cols{grid-template-columns:1fr 1fr;gap:3rem}
 }
 @media(max-width:1024px){
-  .nav-links{display:none}.nav-hamburger{display:flex}.nav-give{display:none}
+  .nav-links{display:none}.nav-hamburger{display:flex}.nav-give{display:none}.nav-prayer{display:none}
   .page-hero-inner{padding:3.5rem 1.5rem 3rem}
   .bylaws-wrap{padding:3rem 1.5rem}
   .chapter-bar{padding:.65rem 1.5rem}
@@ -298,7 +302,8 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
     <span class="drawer-section">Contact</span>
     <a href="/contact-us">Contact Us</a>
   </div>
-  <a href="https://tithe.ly/give?c=5004259" target="_blank" class="nav-drawer-give">Give Online</a>
+  <a href="/prayer-request" class="nav-drawer-prayer">Prayer Request</a>
+<a href="https://tithe.ly/give?c=5004259" target="_blank" class="nav-drawer-give">Give Online</a>
 </div>
 
 <!-- HERO -->
