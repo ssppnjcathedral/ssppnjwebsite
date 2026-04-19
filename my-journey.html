@@ -2609,20 +2609,35 @@ async function authSendLink() {
 }
 
 // ── INIT ──
-document.addEventListener('DOMContentLoaded', async function() {
-  if (typeof loadFromSupabase === 'function') { await loadFromSupabase(); }
+document.addEventListener('DOMContentLoaded', function() {
+  // Render localStorage content immediately — no network needed
   loadManifest();
   renderReadingNotes();
   renderLibrary();
   renderIconCorner();
   renderRecentPath();
-  renderLivingStrip();
-  renderPastoralNote();
-  renderKlirosFasts();
   initSectionNav();
   initScrollReveal();
-  renderJourneyHero();
   initStatsRail();
+
+  // Start async renders — they manage their own awaits in parallel
+  renderLivingStrip();
+  renderKlirosFasts();
+  renderPastoralNote();
+  renderJourneyHero();
+
+  // Sync from Supabase in background; re-render data sections after
+  if (typeof loadFromSupabase === 'function') {
+    loadFromSupabase().then(function() {
+      renderReadingNotes();
+      renderLibrary();
+      renderIconCorner();
+      renderRecentPath();
+      initStatsRail();
+      // Re-run hero in case session wasn't ready on first attempt
+      renderJourneyHero();
+    }).catch(function() {});
+  }
 });
 
 var _ONES = ['','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen'];
@@ -3282,16 +3297,17 @@ function pastoralToast(msg) {
 }
 
 // ── LIVING STRIP ──
-var _calCache = null;
-async function loadCalendar(year) {
-  if (_calCache && _calCache.year === year) return _calCache;
-  try {
-    var r = await fetch('/_data/calendar-' + year + '.json');
-    if (!r.ok) throw 0;
-    _calCache = await r.json();
-    return _calCache;
-  } catch (e) { return null; }
+var _calPromises = {};
+function loadCalendar(year) {
+  if (_calPromises[year]) return _calPromises[year];
+  _calPromises[year] = fetch('/calendar-' + year + '.json')
+    .then(function(r) { return r.ok ? r.json() : null; })
+    .then(function(data) { return data ? { year: year, days: data } : null; })
+    .catch(function() { return null; });
+  return _calPromises[year];
 }
+// Prefetch current year calendar immediately
+loadCalendar(new Date().getFullYear());
 
 async function renderLivingStrip() {
   var strip = document.getElementById('living-strip');
