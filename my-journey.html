@@ -527,11 +527,10 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 .room-collapse::after{content:'';position:absolute;bottom:0;left:0;right:0;height:90px;background:linear-gradient(to top,#fff 0%,rgba(255,255,255,0) 100%);pointer-events:none;transition:opacity .3s}
 .room-collapse.expanded{max-height:4000px}
 .room-collapse.expanded::after{opacity:0;pointer-events:none}
-.room-expand-row{display:flex;align-items:center;gap:1rem;padding:.9rem 1.8rem;border-top:var(--rule-hair);background:linear-gradient(180deg,var(--vellum) 0%,#fff 100%)}
-.room-expand-row::before,.room-expand-row::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(123,29,42,.15),transparent)}
-.room-expand-btn{font-family:var(--f-ui);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--maroon);background:none;border:none;cursor:pointer;padding:.3rem .8rem;font-weight:500;transition:color .18s,background .18s;display:flex;align-items:center;gap:.45rem;white-space:nowrap;border-radius:999px}
-.room-expand-btn:hover{color:var(--maroon);background:rgba(123,29,42,.06)}
-.room-expand-btn svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;transition:transform .3s}
+.room-expand-row{display:flex;align-items:center;justify-content:center;padding:.85rem 1.8rem;border-top:var(--rule-hair);background:var(--vellum)}
+.room-expand-btn{font-family:var(--f-ui);font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--stone);background:rgba(123,29,42,.05);border:1px solid rgba(123,29,42,.14);cursor:pointer;padding:.38rem 1.1rem;font-weight:500;transition:color .2s,background .2s,border-color .2s;display:inline-flex;align-items:center;gap:.5rem;white-space:nowrap;border-radius:999px}
+.room-expand-btn:hover{color:var(--maroon);background:rgba(123,29,42,.09);border-color:rgba(123,29,42,.28)}
+.room-expand-btn svg{width:11px;height:11px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;transition:transform .3s}
 .expanded ~ .room-expand-row .room-expand-btn svg,.room-expand-btn.is-expanded svg{transform:rotate(180deg)}
 /* Library show-more per group */
 .lib-show-more{display:block;width:100%;padding:.7rem .5rem;text-align:left;font-family:var(--f-ui);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--maroon);background:transparent;border:none;border-top:var(--rule-hair);cursor:pointer;transition:color .18s;font-weight:500;margin-top:.2rem}
