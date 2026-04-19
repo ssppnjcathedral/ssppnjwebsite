@@ -706,7 +706,8 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 .ls-tile:hover{transform:translateY(-2px);box-shadow:0 14px 32px -18px rgba(28,20,16,.2)}
 .ls-tile.maroon{border-left-color:var(--maroon)}
 .ls-tile.verdigris{border-left-color:var(--verdigris)}
-.ls-eyebrow{font-family:var(--f-ui);font-size:.55rem;letter-spacing:.22em;text-transform:uppercase;color:var(--stone);display:flex;align-items:center;gap:.5rem;font-weight:600}
+.ls-eyebrow{font-family:var(--f-ui);font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--stone);display:flex;align-items:center;gap:.5rem;font-weight:600;margin-bottom:.65rem}
+.ls-eyebrow::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(184,131,40,.35) 0%,transparent 100%)}
 .ls-eyebrow .ls-dot{width:6px;height:6px;border-radius:50%;background:var(--verdigris);box-shadow:0 0 0 0 rgba(61,107,94,.55);animation:lsPulse 2.2s ease-in-out infinite}
 .ls-tile.maroon .ls-dot{background:var(--maroon);box-shadow:0 0 0 0 rgba(123,29,42,.45)}
 @keyframes lsPulse{0%,100%{box-shadow:0 0 0 0 rgba(61,107,94,.45)}50%{box-shadow:0 0 0 6px rgba(61,107,94,0)}}
@@ -2437,6 +2438,14 @@ document.addEventListener('DOMContentLoaded', async function() {
   initStatsRail();
 });
 
+var _ONES = ['','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen'];
+var _TENS = ['','','twenty','thirty','forty','fifty','sixty','seventy','eighty','ninety'];
+function toWords(n) {
+  if (n < 20) return _ONES[n] || String(n);
+  if (n < 100) return _TENS[Math.floor(n/10)] + (n%10 ? '-'+_ONES[n%10] : '');
+  return String(n);
+}
+
 async function renderJourneyHero() {
   try {
     var nameEl = document.getElementById('j-hero-name');
@@ -2528,13 +2537,6 @@ async function renderJourneyHero() {
                 'Entrance of the Theotokos': 'the Entrance of the Theotokos',
                 'Palm Sunday: Entrance of Our Lord into Jerusalem': 'Palm Sunday'
               };
-              var ONES = ['','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen'];
-              var TENS = ['','','twenty','thirty','forty','fifty','sixty','seventy','eighty','ninety'];
-              function toWords(n) {
-                if (n < 20) return ONES[n] || String(n);
-                if (n < 100) return TENS[Math.floor(n/10)] + (n%10 ? '-'+ONES[n%10] : '');
-                return String(n);
-              }
               var phrase = FEAST_PHRASES[lastFeastName] || 'the last Great Feast';
               heroSub = 'You have walked ' + toWords(steps) + ' step' + (steps === 1 ? '' : 's') + ' along this road since ' + phrase + '. The Church keeps every one.';
             }
@@ -2553,13 +2555,13 @@ async function renderJourneyHero() {
     }
     if (nameLine) nameLine.textContent = fullName;
     if (joinedLine) {
+      var joinedStr = 'Signed in with parish account';
       if (joined && !isNaN(joined.getTime())) {
-        joinedLine.textContent = 'Joined ' + monthNames[joined.getMonth()] + ' ' + joined.getDate() + ', ' + joined.getFullYear();
-      } else {
-        joinedLine.textContent = 'Signed in with parish account';
+        joinedStr += ' \u00B7 Joined ' + monthNames[joined.getMonth()] + ' ' + joined.getDate() + ', ' + joined.getFullYear();
       }
+      joinedLine.textContent = joinedStr;
     }
-    // Streak: count distinct days of activity from reading_notes + journey_progress last 30 days
+    // Streak: count distinct active days last 30 days
     var activeDays = 0;
     try {
       var dict = JSON.parse(localStorage.getItem('spp_reading_notes') || '{}') || {};
@@ -2569,16 +2571,21 @@ async function renderJourneyHero() {
         var d = new Date(k + 'T12:00:00');
         if (d >= thirtyAgo) seen[k] = true;
       });
+      for (var si = 0; si < localStorage.length; si++) {
+        var sk = localStorage.key(si);
+        if (!sk || sk.indexOf('spp_journey_') !== 0) continue;
+        try { var ss = JSON.parse(localStorage.getItem(sk)||'{}'); if (ss.completedAt) seen[ss.completedAt.slice(0,10)] = true; } catch(se) {}
+      }
       activeDays = Object.keys(seen).length;
     } catch (e) {}
     if (streak && streakTxt) {
       var weeks = Math.max(1, Math.round(activeDays / 2));
       if (activeDays >= 4) {
         streak.style.display = 'flex';
-        streakTxt.textContent = weeks + (weeks === 1 ? ' week' : ' weeks') + ' of presence';
+        streakTxt.textContent = toWords(weeks) + (weeks === 1 ? ' week' : ' weeks') + ' of presence';
       } else if (activeDays > 0) {
         streak.style.display = 'flex';
-        streakTxt.textContent = activeDays + (activeDays === 1 ? ' day' : ' days') + ' this month';
+        streakTxt.textContent = toWords(activeDays) + (activeDays === 1 ? ' day' : ' days') + ' this month';
       }
     }
   } catch (e) { console.warn('Journey hero render error:', e); }
@@ -2690,12 +2697,21 @@ function renderReadingNotes() {
   var shown = flat.slice(0, 3);
   var html = '<div class="margin-items">';
 
-  shown.forEach(function(item) {
+  shown.forEach(function(item, idx) {
     var entry = item.entry;
     var d = new Date(item.dateKey + 'T12:00:00');
     var dateLabel = MONTHS_S[d.getMonth()] + ' ' + d.getDate();
     var dayLabel = DAYS_S[d.getDay()];
-    html += '<div class="margin-entry">';
+    var copyText = (entry.text || '') + (entry.citation ? ' \u2014 ' + entry.citation : '');
+    html += '<div class="margin-entry" data-dk="' + escAttr(item.dateKey) + '" data-idx="' + idx + '">';
+    html += '<div class="margin-actions">';
+    if (copyText) {
+      html += '<button class="margin-act" title="Copy" onclick="marginCopy(this)" data-copy="' + escAttr(copyText) + '">';
+      html += '<svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="1"/><path d="M4 4h12v4" stroke-linecap="round"/></svg></button>';
+    }
+    html += '<button class="margin-act danger" title="Delete" onclick="marginDelete(this)">';
+    html += '<svg viewBox="0 0 24 24"><path d="M5 7h14M10 7V4h4v3M7 7l1 13h8l1-13" stroke-linecap="round" stroke-linejoin="round"/></svg></button>';
+    html += '</div>';
     html += '<div class="margin-date">' + dateLabel + '<span>' + dayLabel + '</span></div>';
     html += '<div>';
     if (entry.text) {
@@ -2727,6 +2743,49 @@ function renderReadingNotes() {
       countEl.textContent = flat.length + ' saved note' + (flat.length === 1 ? '' : 's');
     }
   }
+}
+
+// ── MARGIN NOTE ACTIONS ──
+function marginCopy(btn) {
+  var text = btn.dataset.copy || '';
+  if (!text) return;
+  navigator.clipboard.writeText(text).catch(function() {
+    var ta = document.createElement('textarea');
+    ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select(); document.execCommand('copy');
+    document.body.removeChild(ta);
+  });
+  var orig = btn.innerHTML;
+  btn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  setTimeout(function() { btn.innerHTML = orig; }, 1400);
+}
+
+function marginDelete(btn) {
+  var entry = btn.closest('.margin-entry');
+  if (!entry) return;
+  var dk = entry.dataset.dk;
+  var idx = parseInt(entry.dataset.idx, 10);
+  try {
+    var all = JSON.parse(localStorage.getItem('spp_reading_notes') || '{}');
+    var flat = [];
+    Object.keys(all).forEach(function(k) {
+      if (Array.isArray(all[k])) all[k].forEach(function(e, i) { flat.push({ dk: k, i: i }); });
+    });
+    flat.sort(function(a, b) {
+      var ae = all[a.dk][a.i], be = all[b.dk][b.i];
+      var at = ae.updated_at || ae.created_at || a.dk, bt = be.updated_at || be.created_at || b.dk;
+      return bt < at ? -1 : bt > at ? 1 : 0;
+    });
+    var target = flat[idx];
+    if (target) {
+      all[target.dk].splice(target.i, 1);
+      if (!all[target.dk].length) delete all[target.dk];
+      localStorage.setItem('spp_reading_notes', JSON.stringify(all));
+    }
+  } catch (e) {}
+  entry.style.transition = 'opacity .25s,transform .25s';
+  entry.style.opacity = '0'; entry.style.transform = 'translateX(-8px)';
+  setTimeout(function() { renderReadingNotes(); }, 280);
 }
 
 // ── STICKY SECTION NAV ──
@@ -3097,7 +3156,12 @@ async function renderLivingStrip() {
     var fastEx = dayData.fastException || '';
     fastTitle.textContent = fastLabel;
     fastMeta.innerHTML = fastEx ? escHtml(fastEx) : '';
-    fastSub.textContent = dayData.feast || '';
+    // Count fast days year-to-date for sub line
+    var fastCount = 0;
+    Object.keys(cal.days).forEach(function(k) {
+      if (k <= todayKey && cal.days[k].fast && cal.days[k].fast !== 'No Fast') fastCount++;
+    });
+    fastSub.textContent = fastCount + ' fast day' + (fastCount === 1 ? '' : 's') + ' kept since January 1';
   } else {
     fastTitle.textContent = 'No data';
   }
