@@ -522,6 +522,20 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 .room-body{padding:0;background:#fff}
 @media(max-width:640px){.room-head{grid-template-columns:54px 1fr;padding:1rem 1.1rem}.room-progress{display:none}.room-sigil{width:46px;height:46px}.room-sigil svg{width:22px;height:22px}}
 
+/* ── ROOM COLLAPSE / EXPAND ── */
+.room-collapse{position:relative;overflow:hidden;max-height:var(--rc-h,420px);transition:max-height .5s cubic-bezier(.22,1,.36,1)}
+.room-collapse::after{content:'';position:absolute;bottom:0;left:0;right:0;height:90px;background:linear-gradient(to top,#fff 0%,rgba(255,255,255,0) 100%);pointer-events:none;transition:opacity .3s}
+.room-collapse.expanded{max-height:4000px}
+.room-collapse.expanded::after{opacity:0;pointer-events:none}
+.room-expand-row{display:flex;align-items:center;justify-content:center;padding:.85rem 1.8rem;border-top:var(--rule-hair);background:#fff}
+.room-expand-btn{font-family:var(--f-ui);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--maroon);background:none;border:none;cursor:pointer;padding:.1rem 0;font-weight:500;transition:color .18s;display:flex;align-items:center;gap:.5rem}
+.room-expand-btn:hover{color:var(--gold-deep)}
+.room-expand-btn svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:transform .3s}
+.expanded ~ .room-expand-row .room-expand-btn svg,.room-expand-btn.is-expanded svg{transform:rotate(180deg)}
+/* Library show-more per group */
+.lib-show-more{display:block;width:100%;padding:.8rem 1.8rem;text-align:left;font-family:var(--f-ui);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--maroon);background:var(--vellum-mid);border:none;border-top:var(--rule-hair);cursor:pointer;transition:background .18s,color .18s;font-weight:500}
+.lib-show-more:hover{background:rgba(123,29,42,.06)}
+
 /* ── MARGIN ENTRIES (Notes room body) ── */
 .margin-items{padding:1.6rem 1.8rem;display:grid;grid-template-columns:1fr;gap:1.1rem}
 .margin-entry{position:relative;display:grid;grid-template-columns:90px 1fr;gap:1.4rem;padding:1.1rem 1.2rem 1.1rem 1.1rem;border-left:2px solid var(--gold);background:linear-gradient(90deg,rgba(184,131,40,.05) 0%,transparent 25%)}
@@ -1435,21 +1449,29 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
         </div>
       </div>
       <div class="room-body">
-        <div class="kliros-cols">
-          <div>
-            <div class="kliros-col-head">My Rule of Prayer</div>
-            <div class="kliros-col-sub" id="rule-begun-date">Your rule of prayer</div>
-            <div id="rule-list"></div>
-          </div>
-          <div>
-            <div class="kliros-col-head">Fasts Observed</div>
-            <div class="kliros-col-sub">From the calendar, this year</div>
-            <div class="fast-stat">
-              <span class="fast-num" id="kliros-fast-num">&ndash;</span>
-              <span class="fast-desc">fast days kept<br>since January 1</span>
+        <div class="room-collapse" id="rule-collapse" style="--rc-h:380px">
+          <div class="kliros-cols">
+            <div>
+              <div class="kliros-col-head">My Rule of Prayer</div>
+              <div class="kliros-col-sub" id="rule-begun-date">Your rule of prayer</div>
+              <div id="rule-list"></div>
             </div>
-            <ul class="fast-list" id="kliros-fast-list"></ul>
+            <div>
+              <div class="kliros-col-head">Fasts Observed</div>
+              <div class="kliros-col-sub">From the calendar, this year</div>
+              <div class="fast-stat">
+                <span class="fast-num" id="kliros-fast-num">&ndash;</span>
+                <span class="fast-desc">fast days kept<br>since January 1</span>
+              </div>
+              <ul class="fast-list" id="kliros-fast-list"></ul>
+            </div>
           </div>
+        </div>
+        <div class="room-expand-row" id="rule-expand-row">
+          <button class="room-expand-btn" id="rule-expand-btn" onclick="toggleRuleExpand()">
+            Show full rule
+            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
         </div>
         <div style="padding:1rem 1.8rem;border-top:var(--rule-hair)">
           <a href="/prayers" class="action-btn primary" style="display:inline-block;text-decoration:none;">Pray &rarr;</a>
@@ -2012,6 +2034,16 @@ function renderRule() {
   ruleList.innerHTML = html;
   var ruleHeadCount = document.getElementById('rule-head-count');
   if (ruleHeadCount) ruleHeadCount.textContent = rule.length;
+
+  // Show/hide rule expand button based on whether content overflows clamp
+  requestAnimationFrame(function() {
+    var col = document.getElementById('rule-collapse');
+    var row = document.getElementById('rule-expand-row');
+    if (col && row) {
+      var CLAMP = 380;
+      row.style.display = col.scrollHeight > CLAMP ? '' : 'none';
+    }
+  });
 
   // Populate begun date if stored
   var begunDate = document.getElementById('rule-begun-date');
@@ -2772,7 +2804,9 @@ function renderReadingNotes() {
   section.style.display = '';
   var MONTHS_S = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   var DAYS_S = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-  var shown = flat.slice(0, 3);
+  var PREVIEW = 3;
+  var showAll = !!window._notesShowAll;
+  var shown = showAll ? flat : flat.slice(0, PREVIEW);
   var html = '<div class="margin-items">';
 
   shown.forEach(function(item, idx) {
@@ -2815,8 +2849,17 @@ function renderReadingNotes() {
 
   if (footer && countEl) {
     footer.style.display = 'flex';
-    if (flat.length > 3) {
-      countEl.textContent = 'Showing 3 of ' + flat.length + ' saved notes';
+    var remaining = flat.length - PREVIEW;
+    if (!showAll && flat.length > PREVIEW) {
+      countEl.innerHTML = 'Showing ' + PREVIEW + ' of ' + flat.length + ' saved notes &nbsp;&middot;&nbsp; '
+        + '<button class="room-expand-btn" style="display:inline-flex;font-size:.6rem" onclick="window._notesShowAll=true;renderReadingNotes()">'
+        + 'Show ' + remaining + ' more'
+        + '<svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></button>';
+    } else if (showAll && flat.length > PREVIEW) {
+      countEl.innerHTML = flat.length + ' saved note' + (flat.length === 1 ? '' : 's') + ' &nbsp;&middot;&nbsp; '
+        + '<button class="room-expand-btn" style="display:inline-flex;font-size:.6rem" onclick="window._notesShowAll=false;renderReadingNotes()">'
+        + 'Show fewer'
+        + '<svg viewBox="0 0 24 24" style="transform:rotate(180deg)"><polyline points="6 9 12 15 18 9"/></svg></button>';
     } else {
       countEl.textContent = flat.length + ' saved note' + (flat.length === 1 ? '' : 's');
     }
@@ -3189,7 +3232,8 @@ async function renderLivingStrip() {
       var feastName = (nextFeast.feast || '').split(';')[0].trim() || nextFeast.feast || 'Feast';
       feastTitle.textContent = feastName;
       feastMeta.innerHTML = '<strong>' + days + '</strong> day' + (days === 1 ? '' : 's') + ' &middot; ' + formatFeastDate(fd);
-      feastSub.textContent = nextFeast.feastDesc || '';
+      var _feastLabels = {8:'Great Feast of the Lord',7:'Great Feast of the Theotokos',6:'Great Feast',5:'Vigil feast',4:'Polyeleos feast'};
+      feastSub.textContent = _feastLabels[nextFeast.feastLevel] || '';
     } else {
       feastTitle.textContent = 'No great feast found';
       feastMeta.textContent = '';
@@ -3567,16 +3611,22 @@ function formatLibDate(iso) {
 }
 
 function renderLibraryGroup(opts) {
+  var LIMIT = 5;
+  var expanded = !!(window._libExpanded && window._libExpanded[opts.key]);
+  var items = opts.items;
+  var visible = expanded ? items : items.slice(0, LIMIT);
+  var overflow = items.length > LIMIT;
+
   var html = '<div class="lib-group">';
   html += '<div class="lib-group-head">';
   html += '<span class="lib-group-name">' + escHtml(opts.name) + '</span>';
   html += '<span class="lib-group-count"><strong>' + opts.done + '</strong> <em>of ' + opts.count + ' sessions</em></span>';
   html += '</div>';
   html += '<div class="lib-items">';
-  if (!opts.items.length) {
+  if (!items.length) {
     html += '<div class="lib-empty">' + escHtml(opts.emptyMsg || 'Nothing here yet.') + '</div>';
   } else {
-    opts.items.forEach(function(it) {
+    visible.forEach(function(it) {
       var cls = 'lib-item' + (it.done ? ' done' : '');
       html += '<a href="' + it.href + '" class="' + cls + '">';
       html += '<span class="lib-check"></span>';
@@ -3587,6 +3637,13 @@ function renderLibraryGroup(opts) {
       html += '<div class="lib-date">' + (it.done ? escHtml(it.markedLabel || 'Marked') : 'Not yet') + '</div>';
       html += '</a>';
     });
+    if (overflow && !expanded) {
+      html += '<button class="lib-show-more" onclick="expandLibGroup(\'' + escAttr(opts.key) + '\')">'
+        + 'Show ' + (items.length - LIMIT) + ' more sessions &darr;</button>';
+    } else if (overflow && expanded) {
+      html += '<button class="lib-show-more" onclick="collapseLibGroup(\'' + escAttr(opts.key) + '\')">'
+        + 'Show fewer &uarr;</button>';
+    }
   }
   html += '</div></div>';
   return html;
@@ -3630,8 +3687,8 @@ function renderLibrary() {
   var pct = totalCount ? Math.round((totalDone / totalCount) * 100) : 0;
 
   var html = '';
-  html += renderLibraryGroup({ name:'Catechesis Series', count:catechesisItems.length, done:catDone, items:catechesisItems });
-  html += renderLibraryGroup({ name:'Bible Study',       count:bibleItems.length,       done:bsDone,  items:bibleItems });
+  html += renderLibraryGroup({ key:'catechesis', name:'Catechesis Series', count:catechesisItems.length, done:catDone, items:catechesisItems });
+  html += renderLibraryGroup({ key:'bible',      name:'Bible Study',       count:bibleItems.length,       done:bsDone,  items:bibleItems });
 
   host.innerHTML = html;
   var progressEl = document.getElementById('library-room-progress');
@@ -3641,6 +3698,28 @@ function renderLibrary() {
 }
 
 window.addEventListener('spp-supabase-loaded', renderLibrary);
+
+function expandLibGroup(key) {
+  window._libExpanded = window._libExpanded || {};
+  window._libExpanded[key] = true;
+  renderLibrary();
+}
+function collapseLibGroup(key) {
+  window._libExpanded = window._libExpanded || {};
+  window._libExpanded[key] = false;
+  renderLibrary();
+}
+
+function toggleRuleExpand() {
+  var col = document.getElementById('rule-collapse');
+  var btn = document.getElementById('rule-expand-btn');
+  if (!col) return;
+  var isExpanded = col.classList.toggle('expanded');
+  if (btn) {
+    btn.classList.toggle('is-expanded', isExpanded);
+    btn.childNodes[0].textContent = isExpanded ? 'Show less ' : 'Show full rule ';
+  }
+}
 </script>
 
 <script>
