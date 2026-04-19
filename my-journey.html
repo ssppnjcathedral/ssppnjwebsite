@@ -1397,8 +1397,8 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
     <span class="js-nav-label"><span class="js-dot"></span>On this page</span>
     <div class="js-nav-links" id="js-nav-links">
       <button type="button" class="js-nav-link" data-target="rule-section">Prayer Rule <span class="js-nav-count" id="js-count-rule"></span></button>
-      <button type="button" class="js-nav-link" data-target="reading-notes-section">Notes <span class="js-nav-count" id="js-count-notes"></span></button>
       <button type="button" class="js-nav-link" data-target="icon-corner-section">Saints <span class="js-nav-count" id="js-count-saints"></span></button>
+      <button type="button" class="js-nav-link" data-target="reading-notes-section">Notes <span class="js-nav-count" id="js-count-notes"></span></button>
       <button type="button" class="js-nav-link" data-target="library-room">Library <span class="js-nav-count" id="js-count-library"></span></button>
       <div class="js-nav-ink" id="js-nav-ink"></div>
     </div>
@@ -1526,32 +1526,6 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
       </div>
     </article>
 
-    <!-- YOUR NOTES -->
-    <article class="room scroll-reveal" id="reading-notes-section">
-      <div class="room-head">
-        <div class="room-sigil">
-          <svg viewBox="0 0 24 24"><path d="M5 3v18l7-4 7 4V3H5zm2 2h10v13.2l-5-2.85L7 18.2V5z"/></svg>
-        </div>
-        <div>
-          <div class="room-title">Your <em>Notes</em></div>
-          <div class="room-caption">Verses you have saved, notes you have written</div>
-          <div class="room-last-act" id="notes-last-act"></div>
-        </div>
-        <div class="room-progress">
-          <div class="room-progress-num"><span id="reading-notes-head-count">&ndash;</span> <em>saved</em></div>
-          <div class="room-progress-bar"><div class="room-progress-fill" style="width:100%"></div></div>
-          <div class="room-progress-label">notes kept</div>
-        </div>
-      </div>
-      <div class="room-body">
-        <div id="reading-notes-list"></div>
-        <div id="reading-notes-footer" style="display:none;margin-top:0;padding:1rem 1.8rem;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap;border-top:var(--rule-hair);background:var(--vellum)">
-          <span id="reading-notes-count" style="font-family:var(--f-display);font-style:italic;font-size:.88rem;color:var(--stone)"></span>
-          <a href="/my-journey-notes" style="font-family:var(--f-ui);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--maroon);font-weight:500;transition:letter-spacing .3s ease,color .2s ease">See all notes &rarr;</a>
-        </div>
-      </div>
-    </article>
-
     <!-- ICON CORNER -->
     <article class="room scroll-reveal" id="icon-corner-section">
       <div class="room-head">
@@ -1574,6 +1548,32 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
         <div id="icon-corner-footer" style="display:none;margin-top:0;padding:1rem 1.8rem;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap;border-top:var(--rule-hair);background:var(--vellum)">
           <span id="icon-corner-count" style="font-family:var(--f-display);font-style:italic;font-size:.88rem;color:var(--stone)"></span>
           <a href="/saints" style="font-family:var(--f-ui);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--maroon);font-weight:500">Keep another saint &rarr;</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- YOUR NOTES -->
+    <article class="room scroll-reveal" id="reading-notes-section">
+      <div class="room-head">
+        <div class="room-sigil">
+          <svg viewBox="0 0 24 24"><path d="M5 3v18l7-4 7 4V3H5zm2 2h10v13.2l-5-2.85L7 18.2V5z"/></svg>
+        </div>
+        <div>
+          <div class="room-title">Your <em>Notes</em></div>
+          <div class="room-caption">Verses you have saved, notes you have written</div>
+          <div class="room-last-act" id="notes-last-act"></div>
+        </div>
+        <div class="room-progress">
+          <div class="room-progress-num"><span id="reading-notes-head-count">&ndash;</span> <em>saved</em></div>
+          <div class="room-progress-bar"><div class="room-progress-fill" style="width:100%"></div></div>
+          <div class="room-progress-label">notes kept</div>
+        </div>
+      </div>
+      <div class="room-body">
+        <div id="reading-notes-list"></div>
+        <div id="reading-notes-footer" style="display:none;margin-top:0;padding:1rem 1.8rem;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap;border-top:var(--rule-hair);background:var(--vellum)">
+          <span id="reading-notes-count" style="font-family:var(--f-display);font-style:italic;font-size:.88rem;color:var(--stone)"></span>
+          <a href="/my-journey-notes" style="font-family:var(--f-ui);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--maroon);font-weight:500;transition:letter-spacing .3s ease,color .2s ease">See all notes &rarr;</a>
         </div>
       </div>
     </article>
