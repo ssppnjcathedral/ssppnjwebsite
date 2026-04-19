@@ -3915,6 +3915,15 @@ function toggleNotesRoom() {
   if (chevron) chevron.style.transform = open ? 'rotate(180deg)' : '';
 }
 
+function toggleRuleRoom() {
+  var body = document.getElementById('rule-room-body');
+  var chevron = document.getElementById('rule-room-chevron');
+  if (!body) return;
+  var open = body.style.display === 'none';
+  body.style.display = open ? '' : 'none';
+  if (chevron) chevron.style.transform = open ? 'rotate(180deg)' : '';
+}
+
 function toggleLibSection(key) {
   window._libSectionOpen = window._libSectionOpen || {};
   window._libSectionOpen[key] = !window._libSectionOpen[key];

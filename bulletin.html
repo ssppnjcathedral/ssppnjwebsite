@@ -831,6 +831,28 @@ async function fetchPassage(ref){var n=normalizeRef(ref);if(!n||!canFetch(n))ret
 function renderVerseHtml(verses,skipFirst){return verses.map(function(v,i){var num=(i===0&&skipFirst)?'':'<sup class="v-num">'+v.verse+'</sup>';return num+v.text.trim()}).join(' ')}
 async function loadScriptureTexts(primary){for(var i=0;i<primary.length;i++){var r=primary[i];var slot=document.getElementById('rslot-'+i);if(!slot)continue;var verses=await fetchPassage(r.display||r.short);if(verses&&verses.length){slot.innerHTML='<div class="reading-cols"><p class="rdrop">'+renderVerseHtml(verses,true)+'</p></div>'}else{slot.innerHTML='<p class="reading-placeholder">Text not available for this reading via API.</p>'}}requestAnimationFrame(function(){requestAnimationFrame(function(){computePage2Images()})})}
 
+async function loadTropariaFromSaints(dateStr,cal,tropEl){
+  try{
+    var r=await fetch('/_data/oca-saints-'+dateStr+'.json');
+    if(!r.ok)throw new Error('not found');
+    var data=await r.json();
+    var saints=(data.saints||[]).filter(function(s){return s.troparion&&s.troparion.trim();});
+    if(!saints.length)throw new Error('no troparia');
+    var primary=saints[0];
+    var trop=primary.troparion.replace(/ \/ /g,'<br>');
+    var html='<p class="trop-source-name" style="font-size:7.5pt;font-family:var(--f-ui,\'Cinzel\',serif);letter-spacing:.07em;text-transform:uppercase;color:var(--b-maroon,#7B1D2A);margin-bottom:.1in">'+primary.name+'</p>';
+    html+='<p>'+trop+'</p>';
+    if(primary.kontakion&&primary.kontakion.trim()){
+      var kont=primary.kontakion.replace(/ \/ /g,'<br>');
+      html+='<p style="margin-top:.12in"><em style="font-size:8.5pt;font-family:var(--f-ui,\'Cinzel\',serif);letter-spacing:.05em;text-transform:uppercase">Kontakion</em><br>'+kont+'</p>';
+    }
+    tropEl.innerHTML=html;
+    requestAnimationFrame(function(){requestAnimationFrame(function(){computePage2Images()})});
+  }catch(e){
+    tropEl.innerHTML='<p style="font-size:9pt;font-style:italic;color:var(--b-stone)">Tone '+(cal.tone||'')+'</p>';
+  }
+}
+
 async function initBulletin(){
   var params=new URLSearchParams(window.location.search),reqDate=params.get('date');
   if(reqDate){var mm=/^(\d{2})-(\d{2})-(\d{4})$/.exec(reqDate);if(mm)reqDate=mm[3]+'-'+mm[1]+'-'+mm[2]}
@@ -921,7 +943,7 @@ function renderPage2(cal){
     if(tropRail)tropRail.style.display='';
     var tropEl=document.getElementById('p2-troparia');
     if(_bulletinData.troparia_text)tropEl.innerHTML=simpleMarkdown(_bulletinData.troparia_text);
-    else tropEl.innerHTML='<p style="font-size:9pt;font-style:italic;color:var(--b-stone)">Tone '+(cal.tone||'')+'</p>';
+    else loadTropariaFromSaints(_currentDate,cal,tropEl);
   }
   if(_bulletinData.saint_icon_image){document.getElementById('p2-icon-1').src=_bulletinData.saint_icon_image;document.getElementById('p2-icon-1-cap').textContent=_bulletinData.saint_icon_caption||'';document.getElementById('p2-icon-wrap-1').dataset.hasImage='true'}
   if(_bulletinData.show_second_image&&_bulletinData.second_image){document.getElementById('p2-icon-2').src=_bulletinData.second_image;document.getElementById('p2-icon-2-cap').textContent=_bulletinData.second_image_caption||'';var w2=document.getElementById('p2-icon-wrap-2');w2.dataset.hasImage='true';w2.dataset.requested='true'}

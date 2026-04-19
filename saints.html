@@ -42,26 +42,73 @@
 .page-title em{font-style:italic}
 .breadcrumb{font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:1.5rem}
 .breadcrumb a{color:rgba(232,201,122,.70)}
-.chapter-bar{background:var(--maroon);padding:.65rem 4rem;display:flex;align-items:center;justify-content:space-between}
-.cbar-text{font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:rgba(246,241,232,.60)}
-.cbar-text.bright{color:rgba(246,241,232,.90)}
+.chapter-bar{background:var(--maroon);padding:0 4rem;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;min-height:52px;position:sticky;top:60px;z-index:150;box-shadow:0 2px 12px rgba(44,31,22,.25)}
+.cbar-text{font-family:var(--f-ui);font-size:.62rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(246,241,232,.42);display:flex;align-items:center}
+.cbar-text.bright{color:rgba(246,241,232,.82)}
+.cbar-center{display:flex;align-items:center;gap:.35rem}
+.cbar-arrow{background:transparent;border:1px solid rgba(246,241,232,.18);color:rgba(246,241,232,.65);width:34px;height:34px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;line-height:1;transition:background .2s,border-color .2s,color .2s,transform .15s;flex-shrink:0}
+.cbar-arrow:hover{background:rgba(246,241,232,.12);border-color:rgba(246,241,232,.45);color:#fff;transform:scale(1.08)}
+.cbar-arrow:active{transform:scale(.96)}
+.cbar-arrow:disabled{opacity:.28;cursor:default;transform:none}
+.cbar-date{font-family:var(--f-ui);font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:#fff;min-width:140px;text-align:center;font-weight:500;padding:0 .5rem}
+.cbar-btn{background:transparent;border:1px solid rgba(246,241,232,.22);color:rgba(246,241,232,.72);font-family:var(--f-ui);font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;padding:0 1rem;height:34px;display:inline-flex;align-items:center;border-radius:100px;cursor:pointer;transition:background .2s,border-color .2s,color .2s,transform .15s}
+.cbar-btn:hover{background:rgba(246,241,232,.12);border-color:rgba(246,241,232,.5);color:#fff;transform:translateY(-1px)}
+.cbar-btn:active{transform:translateY(0)}
+.cbar-today{background:rgba(246,241,232,.08);border:1px solid rgba(246,241,232,.2);color:rgba(246,241,232,.78)}
 .saints-wrap{max-width:1380px;margin:0 auto;padding:4rem 4.5rem;display:grid;grid-template-columns:1fr 300px;gap:5rem}
-.keep-saint-btn{display:inline-flex;align-items:center;gap:.45rem;padding:.55rem 1rem;background:transparent;border:1px solid rgba(184,131,40,.45);color:var(--maroon);font-family:var(--f-ui);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;transition:all .2s;border-radius:2px}
-.keep-saint-btn:hover{background:var(--maroon);border-color:var(--maroon);color:var(--vellum)}
-.keep-saint-btn.is-kept{background:rgba(184,131,40,.14);border-color:rgba(184,131,40,.55);color:var(--gold-deep,#8A6018)}
+.keep-saint-btn{display:inline-flex;align-items:center;gap:.5rem;padding:.6rem 1.25rem;background:var(--maroon);border:1px solid var(--maroon);color:rgba(246,241,232,.92);font-family:var(--f-ui);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;border-radius:100px;transition:background .25s,border-color .25s,color .25s,box-shadow .25s,transform .18s;box-shadow:0 2px 8px rgba(123,29,42,.18)}
+.keep-saint-btn:hover{background:var(--apse);border-color:var(--apse);box-shadow:0 4px 16px rgba(59,15,24,.28);transform:translateY(-1px)}
+.keep-saint-btn:active{transform:translateY(0);box-shadow:0 1px 4px rgba(123,29,42,.2)}
+.keep-saint-btn.is-kept{background:rgba(184,131,40,.15);border-color:var(--gold);color:var(--gold-deep,#8A6018);box-shadow:none}
 .keep-saint-btn.is-kept svg{fill:currentColor;stroke-width:1.4}
-.keep-saint-btn.is-kept:hover{background:var(--maroon);color:var(--vellum);border-color:var(--maroon)}
-.keep-saint-btn.is-kept:hover svg{fill:currentColor}
-.keep-saint-btn svg{flex-shrink:0}
+.keep-saint-btn.is-kept:hover{background:var(--maroon);border-color:var(--maroon);color:rgba(246,241,232,.92);box-shadow:0 4px 16px rgba(59,15,24,.28);transform:translateY(-1px)}
+.keep-saint-btn.is-kept:hover svg{fill:none}
+.keep-saint-btn svg{flex-shrink:0;transition:fill .2s}
+.trop-btn{position:relative;display:inline-flex;align-items:center;gap:.5rem;padding:.6rem 1.25rem;background:transparent;border:1px solid rgba(123,29,42,.3);color:var(--stone);font-family:var(--f-ui);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;border-radius:100px;transition:background .25s,border-color .25s,color .25s,box-shadow .25s,transform .18s;overflow:hidden}
+.trop-btn::before{content:'';position:absolute;inset:0;background:var(--maroon);opacity:0;transition:opacity .25s;border-radius:inherit}
+.trop-btn:hover{border-color:var(--maroon);color:var(--maroon);transform:translateY(-1px);box-shadow:0 3px 12px rgba(123,29,42,.12)}
+.trop-btn:active{transform:translateY(0)}
+.trop-btn.open{background:var(--maroon);border-color:var(--maroon);color:rgba(246,241,232,.92);box-shadow:0 2px 8px rgba(123,29,42,.2)}
+.trop-btn.open:hover{background:var(--apse);border-color:var(--apse);color:rgba(246,241,232,.92);transform:translateY(-1px)}
+.trop-panel{display:none;margin-top:1.1rem;padding:1.1rem 1.25rem;background:rgba(123,29,42,.045);border-left:3px solid var(--maroon);font-family:var(--f-body);font-size:.93rem;line-height:1.72;color:var(--ink)}
+.trop-panel.open{display:block}
+.trop-panel p{margin-bottom:.75em}
+.trop-panel p:last-child{margin-bottom:0}
+.trop-panel .trop-label{font-family:var(--f-ui);font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.45rem}
+.sec-saint-card{position:relative;display:flex;gap:.9rem;align-items:flex-start;padding:1rem 1.1rem;background:#fff;border:1px solid rgba(123,29,42,.12);border-left:3px solid var(--gold);box-shadow:0 2px 8px rgba(44,31,22,.07);transition:transform .22s,box-shadow .22s}
+.sec-saint-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(44,31,22,.13)}
+.sec-saint-icon{width:48px;height:48px;object-fit:cover;flex-shrink:0;border-radius:50%;border:none;outline:2px solid var(--gold);outline-offset:2px}
+.sec-saint-icon-placeholder{width:48px;height:48px;flex-shrink:0;background:#d4c9b8;border-radius:50%;outline:2px solid rgba(184,131,40,.35);outline-offset:2px;display:flex;align-items:center;justify-content:center;font-size:.85rem;color:rgba(123,29,42,.35)}
+.sec-saint-name{font-family:var(--f-display);font-weight:400;font-size:1.05rem;color:var(--ink);line-height:1.28;margin:0 0 .3rem;padding-right:1.75rem}
+.sec-saint-card-actions{display:flex;align-items:center;gap:.6rem;flex-wrap:nowrap;margin-top:auto;padding-top:.6rem;border-top:1px solid rgba(123,29,42,.1)}
+.sec-trop-btn{display:inline-flex;align-items:center;gap:.35rem;margin-top:0;padding:.32rem .75rem;background:transparent;border:1px solid rgba(123,29,42,.28);color:var(--stone);font-family:var(--f-ui);font-size:.52rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;border-radius:100px;transition:background .22s,border-color .22s,color .22s,transform .15s,box-shadow .22s}
+.sec-trop-btn:hover{border-color:var(--maroon);color:var(--maroon);transform:translateY(-1px);box-shadow:0 3px 10px rgba(123,29,42,.1)}
+.sec-trop-btn:active{transform:translateY(0);box-shadow:none}
+/* Troparion popup */
+.trop-popup{position:fixed;inset:0;z-index:1200;display:flex;align-items:center;justify-content:center;background:rgba(44,31,22,.5);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:opacity .28s}
+.trop-popup.open{opacity:1;pointer-events:all}
+.trop-popup-inner{background:var(--vellum);border:1px solid rgba(123,29,42,.14);max-width:500px;width:90%;padding:2.25rem 2.5rem 2rem;position:relative;transform:translateY(14px) scale(.97);transition:transform .32s cubic-bezier(.22,1,.36,1);box-shadow:0 24px 64px rgba(44,31,22,.28)}
+.trop-popup.open .trop-popup-inner{transform:translateY(0) scale(1)}
+.trop-popup-saint{font-family:var(--f-ui);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--maroon);margin-bottom:1.25rem;display:block}
+.trop-popup-label{font-family:var(--f-ui);font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:.4rem}
+.trop-popup-label+p{margin-top:0}
+.trop-popup-text{font-family:var(--f-body);font-size:.97rem;line-height:1.75;color:var(--ink);margin-bottom:1.1rem}
+.trop-popup-close{position:absolute;top:1rem;right:1.1rem;background:none;border:none;font-size:1.3rem;color:var(--stone);cursor:pointer;line-height:1;padding:.25rem .4rem;transition:color .18s,transform .18s}
+.trop-popup-close:hover{color:var(--maroon);transform:scale(1.15)}
+@media(max-width:680px){
+  .trop-popup{align-items:flex-end}
+  .trop-popup-inner{max-width:100%;width:100%;border-radius:1rem 1rem 0 0;padding:2rem 1.5rem 3rem;transform:translateY(100%)}
+  .trop-popup.open .trop-popup-inner{transform:translateY(0)}
+}
 .keep-saint-ico{position:absolute;top:.55rem;right:.55rem;width:28px;height:28px;display:flex;align-items:center;justify-content:center;background:rgba(246,241,232,.8);border:1px solid rgba(184,131,40,.25);color:var(--stone);cursor:pointer;transition:all .2s;border-radius:999px}
 .keep-saint-ico:hover{background:var(--maroon);border-color:var(--maroon);color:var(--vellum)}
 .keep-saint-ico.is-kept{background:var(--gold);border-color:var(--gold);color:var(--vellum)}
 .keep-saint-ico.is-kept svg{fill:currentColor}
 .saint-entry{margin-bottom:4rem;padding-bottom:4rem;border-bottom:2px solid var(--maroon)}
 .saint-entry:last-child{border-bottom:none}
-.saint-name{font-family:var(--f-display);font-weight:400;font-size:clamp(1.8rem,3vw,2.5rem);color:var(--text);margin:.5rem 0 .25rem;line-height:1.1}
+.saint-name{font-family:var(--f-display);font-weight:500;font-size:clamp(2.1rem,3.8vw,3.2rem);color:var(--ink);margin:.5rem 0 .25rem;line-height:1.05}
 .saint-type{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.20em;text-transform:uppercase;color:var(--maroon);display:block;margin-bottom:1rem}
-.saint-story{font-family:var(--f-body);font-size:1rem;line-height:1.82;color:var(--ink);text-align:justify;hyphens:auto;max-width:60ch}
+.saint-story{font-family:var(--f-body);font-size:1rem;line-height:1.82;color:var(--ink);text-align:justify;hyphens:auto}
 .saint-story p{margin-bottom:1.1em}
 .saint-story p::first-letter{font-family:var(--f-display);font-style:italic;font-weight:300;font-size:3.5em;line-height:.78;float:left;margin-right:.07em;margin-top:.07em;color:var(--maroon)}
 .saint-story p+p::first-letter{font-size:1em;float:none;margin:0;color:inherit;font-style:normal}
@@ -104,7 +151,29 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 .footer-bottom{max-width:1380px;margin:2rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(246,241,232,.12);display:flex;justify-content:space-between}
 .footer-copy,.footer-addr{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.10em;text-transform:uppercase;color:rgba(246,241,232,.60)}
 @media(max-width:1024px){.saints-wrap{grid-template-columns:1fr}.side-col{border-left:none;border-top:var(--rule-faint);padding-left:0;padding-top:2.5rem;margin-top:2.5rem}}
-@media(max-width:768px){.nav-links{display:none}.nav-hamburger{display:flex}.nav-give{display:none}.page-hero-inner{padding:3.5rem 1.5rem 3rem}.saints-wrap{padding:3rem 1.5rem}.chapter-bar{padding:.65rem 1.5rem}}
+@media(max-width:768px){
+  .nav-links{display:none}.nav-hamburger{display:flex}.nav-give{display:none}
+  .page-hero-inner{padding:3.5rem 1.5rem 3rem}
+  /* Chapter bar — single compact row */
+  .chapter-bar{padding:0 1rem;grid-template-columns:1fr;justify-items:center}
+  .cbar-text:first-child,.cbar-text:last-child{display:none}
+  .cbar-center{gap:.3rem}
+  .cbar-date{font-size:.56rem;letter-spacing:.1em;white-space:nowrap;min-width:auto;padding:0 .25rem}
+  .cbar-arrow{width:30px;height:30px;font-size:.9rem}
+  .cbar-btn{padding:.38rem .7rem;font-size:.5rem;letter-spacing:.12em}
+  .cbar-jump-label{display:none}
+  /* Main layout — stack sidebar below */
+  .saints-wrap{padding:2rem 1.25rem;grid-template-columns:1fr;gap:2rem}
+  .side-col{border-left:none;padding-left:0;border-top:1px solid rgba(123,29,42,.15);padding-top:1.5rem}
+  /* Primary saint buttons — wrap on small screens */
+  .saint-name{font-size:clamp(1.5rem,6vw,2rem)}
+  /* Secondary saints grid — single column */
+  #saints-container [style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr !important}
+  /* Action row wrap */
+  #saints-container [style*="display:flex;gap:1rem"]{flex-wrap:wrap;gap:.6rem}
+  .keep-saint-btn{font-size:.54rem;padding:.52rem 1rem}
+  .trop-btn{font-size:.54rem;padding:.52rem 1rem}
+}
 
 /* ── MOBILE NAV DRAWER ── */
 
@@ -593,26 +662,28 @@ footer .btn-outline{color:rgba(246,241,232,.92);border-color:rgba(246,241,232,.5
     <p id="sotd-date" style="font-family:var(--f-display);font-style:italic;font-size:1.1rem;color:rgba(255,255,255,.65);margin-top:.5rem">Loading today's saints…</p>
   </div>
 </div>
-<div class="chapter-bar" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem">
+<div class="chapter-bar">
   <span class="cbar-text bright">Hagiography</span>
-  <div style="display:flex;align-items:center;gap:.6rem">
-    <button id="btn-prev" onclick="shiftDay(-1)" aria-label="Previous day"
-      style="background:rgba(246,241,232,.06);border:none;color:rgba(246,241,232,.7);width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:1.1rem;line-height:1;display:flex;align-items:center;justify-content:center;transition:background .2s,color .2s"
-      onmouseover="this.style.background='rgba(246,241,232,.15)';this.style.color='rgba(246,241,232,.95)'" onmouseout="this.style.background='rgba(246,241,232,.06)';this.style.color='rgba(246,241,232,.7)'">&#8249;</button>
-    <div style="display:flex;align-items:center;gap:.5rem">
-      <span id="nav-date-label" class="cbar-text bright" style="min-width:160px;text-align:center"></span>
-      <input type="date" id="date-picker"
-        style="background:rgba(246,241,232,.08);border:1px solid rgba(246,241,232,.2);color:rgba(246,241,232,.7);font-family:var(--f-ui);font-size:.6rem;letter-spacing:.1em;padding:.25rem .5rem;cursor:pointer;outline:none;width:34px;opacity:0;position:absolute"
-        onchange="jumpToDate(this.value)">
-      <button onclick="document.getElementById('date-picker').showPicker?document.getElementById('date-picker').showPicker():document.getElementById('date-picker').click()"
-        style="background:rgba(246,241,232,.07);border:none;color:rgba(246,241,232,.55);font-family:var(--f-ui);font-size:.52rem;letter-spacing:.16em;text-transform:uppercase;padding:.3rem .85rem;border-radius:2rem;cursor:pointer;transition:background .2s,color .2s"
-        onmouseover="this.style.background='rgba(246,241,232,.14)';this.style.color='rgba(246,241,232,.85)'" onmouseout="this.style.background='rgba(246,241,232,.07)';this.style.color='rgba(246,241,232,.55)'">Jump to Date</button>
-    </div>
-    <button id="btn-next" onclick="shiftDay(1)" aria-label="Next day"
-      style="background:rgba(246,241,232,.06);border:none;color:rgba(246,241,232,.7);width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:1.1rem;line-height:1;display:flex;align-items:center;justify-content:center;transition:background .2s,color .2s"
-      onmouseover="this.style.background='rgba(246,241,232,.15)';this.style.color='rgba(246,241,232,.95)'" onmouseout="this.style.background='rgba(246,241,232,.06)';this.style.color='rgba(246,241,232,.7)'">&#8250;</button>
+  <div class="cbar-center">
+    <button id="btn-prev" class="cbar-arrow" onclick="shiftDay(-1)" aria-label="Previous day">&#8249;</button>
+    <span id="nav-date-label" class="cbar-date"></span>
+    <button class="cbar-btn cbar-today" onclick="activeDate=new Date();pushDate(activeDate);loadSaints(activeDate)">Today</button>
+    <button id="btn-next" class="cbar-arrow" onclick="shiftDay(1)" aria-label="Next day">&#8250;</button>
+    <input type="date" id="date-picker" style="opacity:0;position:absolute;width:0;height:0;pointer-events:none" onchange="jumpToDate(this.value)">
+    <button class="cbar-btn" onclick="document.getElementById('date-picker').showPicker?document.getElementById('date-picker').showPicker():document.getElementById('date-picker').click()"><span class="cbar-jump-label">Jump to </span>Date</button>
   </div>
-  <span class="cbar-text">Lives of the Saints · OCA Calendar</span>
+  <span class="cbar-text" style="text-align:right">Lives of the Saints &middot; OCA Calendar</span>
+</div>
+
+<div id="trop-popup" class="trop-popup" onclick="closeTropPopup(event)">
+  <div class="trop-popup-inner">
+    <button class="trop-popup-close" onclick="closeTropPopup()" aria-label="Close">&times;</button>
+    <span id="trop-popup-saint" class="trop-popup-saint"></span>
+    <span class="trop-popup-label">Troparion</span>
+    <p id="trop-popup-trop" class="trop-popup-text"></p>
+    <span id="trop-popup-kont-label" class="trop-popup-label">Kontakion</span>
+    <p id="trop-popup-kont" class="trop-popup-text" style="margin-bottom:0"></p>
+  </div>
 </div>
 
 <div class="saints-wrap">
@@ -869,19 +940,22 @@ async function loadSaints(date) {
     return;
   }
 
-  /* ── Enrich from per-day file if primary excerpt is bad ────── */
+  /* ── Enrich from per-day file: life text + troparion for all saints ── */
+  let tropMap = {};
   try {
-    const pExc = saints[0].excerpt || '';
-    const pLif = saints[0].life    || '';
-    if (!pLif && (!pExc || /^home\s*\//i.test(pExc.trim()))) {
-      const r2 = await fetch('/_data/oca-saints-'+dateKey+'.json');
-      if (r2.ok) {
-        const dayFull = await r2.json();
-        if (dayFull && dayFull.saints && dayFull.saints.length) {
-          const match = dayFull.saints[0];
-          if (match.life)    saints[0].life    = match.life;
-          if (match.excerpt) saints[0].excerpt = match.excerpt;
+    const r2 = await fetch('/_data/oca-saints-'+dateKey+'.json');
+    if (r2.ok) {
+      const dayFull = await r2.json();
+      if (dayFull && dayFull.saints && dayFull.saints.length) {
+        const primary0 = dayFull.saints[0];
+        if (saints.length) {
+          if (primary0.life)    saints[0].life    = primary0.life;
+          if (primary0.excerpt) saints[0].excerpt = primary0.excerpt;
         }
+        dayFull.saints.forEach(function(s) {
+          const key = s.slug || saintSlug(s.name || '');
+          tropMap[key] = { troparion: s.troparion || '', kontakion: s.kontakion || '', name: s.name || '' };
+        });
       }
     }
   } catch(e) { /* per-day enrichment is optional */ }
@@ -902,14 +976,10 @@ async function loadSaints(date) {
   let cleanLife = pLife.replace(/^Troparion\s*&\s*Kontakion\s*/i,'').trim();
   const boilerIdx = cleanLife.indexOf('Feasts & Saints');
   if (boilerIdx > 0) cleanLife = cleanLife.substring(0, boilerIdx).trim();
-  /* Truncate long text to ~800 chars at a sentence boundary */
-  if (cleanLife.length > 800) {
-    const cut = cleanLife.lastIndexOf('.', 800);
-    cleanLife = cleanLife.substring(0, cut > 400 ? cut + 1 : 800) + '&hellip;';
-  }
   const showPLife = cleanLife && !/^no information available/i.test(cleanLife) && !/^home\s*\//i.test(cleanLife);
   const pExcerptHtml = showPLife
-    ? '<p>'+cleanLife+'</p>'
+    ? '<div id="p-life-wrap"><p id="p-life-text" style="display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden">'+cleanLife+'</p>'
+      +'<button id="p-life-toggle" onclick="togglePrimaryLife()" style="margin-top:.6rem;background:none;border:none;padding:0;font-family:var(--f-ui);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--maroon);cursor:pointer;transition:opacity .2s;opacity:.75" onmouseover="this.style.opacity=\'1\'" onmouseout="this.style.opacity=\'.75\'">Show more &darr;</button></div>'
     : '<p style="color:var(--stone);font-style:italic">No extended biography is currently available for this commemoration.</p>';
 
   const pSlug = primary.slug || saintSlug(pName);
@@ -917,23 +987,32 @@ async function loadSaints(date) {
   const pThumb = primary.imageSm || primary.image || pImageLg || '';
   const pKept = window.SaintBookmarks && window.SaintBookmarks.has(pSlug);
 
+  const pTrop = tropMap[pSlug] || {};
+  const pTropText = pTrop.troparion ? pTrop.troparion.replace(/ \/ /g, '<br>') : '';
+  const pKontText = pTrop.kontakion ? pTrop.kontakion.replace(/ \/ /g, '<br>') : '';
+  const pTropHtml = pTropText
+    ? '<div class="trop-panel" id="trop-primary"><span class="trop-label">Troparion</span><p>'+pTropText+'</p>'+(pKontText?'<span class="trop-label" style="margin-top:.65rem">Kontakion</span><p>'+pKontText+'</p>':'')+'</div>'
+    : '';
+
   let out = '<span class="rubric">Primary Commemoration</span>'
     +'<div class="rubric-rule"></div>'
-    +'<div style="display:grid;grid-template-columns:'+(hasPImage ? '1fr 180px' : '1fr')+';gap:1.75rem;align-items:start">'
+    +'<div style="display:flex;gap:1rem;align-items:flex-start;margin-bottom:1.1rem">'
+    +(hasPImage ? '<img src="'+pImageLg+'" alt="'+pName.replace(/"/g,'&quot;')+'" loading="lazy" onerror="this.style.display=\'none\'" style="width:114px;object-fit:cover;flex-shrink:0;align-self:stretch;border:1px solid rgba(123,29,42,.10)">' : '')
     +'<div>'
     +'<span class="feast-date-badge">'+MS[mo]+' '+d+'</span>'
-    +'<h2 class="saint-name">'+pName+'</h2>'
+    +'<h2 class="saint-name" style="margin-top:.3rem">'+pName+'</h2>'
+    +'</div>'
+    +'</div>'
     +'<div class="saint-story">'+pExcerptHtml+'</div>'
     +'<div style="display:flex;gap:1rem;align-items:center;margin-top:1rem;flex-wrap:wrap">'
-    +'<a href="'+pUrl+'" target="_blank" rel="noopener" style="font-family:var(--f-ui);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--maroon);border-bottom:1px solid rgba(123,29,42,.25);padding-bottom:1px;text-decoration:none">Learn More at the OCA &rarr;</a>'
+    +'<a href="'+pUrl+'" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:.4rem;font-family:var(--f-ui);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);text-decoration:none;transition:color .2s,transform .18s;padding:.6rem 0" onmouseover="this.style.color=\'var(--maroon)\';this.style.transform=\'translateX(2px)\'" onmouseout="this.style.color=\'\';this.style.transform=\'\'">OCA &rarr;</a>'
+    +(pTropHtml ? '<button class="trop-btn" type="button" onclick="toggleTrop(\'trop-primary\',this)">Troparion</button>' : '')
     +'<button class="keep-saint-btn'+(pKept?' is-kept':'')+'" type="button" data-slug="'+escAttr(pSlug)+'" data-name="'+escAttr(pName)+'" data-feast="'+feastDateKey+'" data-image="'+escAttr(pThumb)+'" data-oca-url="'+escAttr(pUrl)+'" onclick="toggleKeepSaint(this)">'
     +'<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>'
     +'<span class="keep-saint-label">'+(pKept?'Saved &middot; Remove':'Keep this saint')+'</span>'
     +'</button>'
     +'</div>'
-    +'</div>'
-    +(hasPImage ? '<img src="'+pImageLg+'" alt="'+pName.replace(/"/g,'&quot;')+'" loading="lazy" onerror="this.parentNode.style.gridTemplateColumns=\'1fr\';this.style.display=\'none\'" style="width:100%;height:100%;object-fit:cover;border:1px solid rgba(123,29,42,.10)">' : '')
-    +'</div>';
+    +pTropHtml;
 
   /* ── Secondary saints grid ──────────────────────────────────── */
   if (secondary.length) {
@@ -941,19 +1020,28 @@ async function loadSaints(date) {
       +'<span style="font-family:var(--f-ui);font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:1.25rem">Also Commemorated Today</span>'
       +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem">';
 
-    secondary.forEach(function(s){
+    secondary.forEach(function(s, si){
       const sName  = s.name  || 'Holy Saint';
       const sImage = s.image || '';
       const sUrl   = s.url   || ocaDayUrl;
       const sSlug  = s.slug  || saintSlug(sName);
       const sKept  = window.SaintBookmarks && window.SaintBookmarks.has(sSlug);
+      const sTrop  = tropMap[sSlug] || {};
+      const sTropText = sTrop.troparion ? sTrop.troparion.replace(/ \/ /g, '<br>') : '';
+      const sKontText = sTrop.kontakion ? sTrop.kontakion.replace(/ \/ /g, '<br>') : '';
+      const sTropId = 'trop-sec-'+si;
       const sImgHtml = sImage
-        ? '<img src="'+sImage+'" alt="'+sName.replace(/"/g,'&quot;')+'" loading="lazy" style="width:42px;height:42px;object-fit:cover;flex-shrink:0;border:1px solid rgba(123,29,42,.10)" onerror="this.outerHTML=\'<div style=&quot;width:42px;height:42px;flex-shrink:0;background:#d4c9b8;border:1px solid rgba(123,29,42,.10);display:flex;align-items:center;justify-content:center;font-size:.8rem;color:rgba(123,29,42,.3)&quot;>&#10013;</div>\'">'
-        : '<div style="width:42px;height:42px;flex-shrink:0;background:#d4c9b8;border:1px solid rgba(123,29,42,.10);display:flex;align-items:center;justify-content:center;font-size:.8rem;color:rgba(123,29,42,.3)">&#10013;</div>';
-      out += '<div style="position:relative;display:flex;gap:.75rem;align-items:flex-start;padding:.75rem;background:rgba(123,29,42,.04);border:1px solid rgba(123,29,42,.08)">'
+        ? '<img src="'+sImage+'" alt="'+sName.replace(/"/g,'&quot;')+'" loading="lazy" class="sec-saint-icon" onerror="this.outerHTML=\'<div class=&quot;sec-saint-icon-placeholder&quot;>&#10013;</div>\'">'
+        : '<div class="sec-saint-icon-placeholder">&#10013;</div>';
+      out += '<div class="sec-saint-card">'
         + sImgHtml
-        +'<div style="flex:1;min-width:0"><p style="font-family:var(--f-display);font-weight:400;font-size:.92rem;color:var(--ink);line-height:1.25;margin:0 0 .3rem;padding-right:1.5rem">'+sName+'</p>'
-        +'<a href="'+sUrl+'" target="_blank" rel="noopener" style="font-family:var(--f-ui);font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);text-decoration:none">Learn More &rarr;</a>'
+        +'<div style="flex:1;min-width:0;display:flex;flex-direction:column">'
+        +'<p class="sec-saint-name">'+sName+'</p>'
+        +(function(){var ex=s.excerpt||'';ex=ex.replace(/^home\s*\/[^.]*\./i,'').trim();ex=ex.slice(0,520);return ex?'<p style="font-family:var(--f-body);font-size:.82rem;line-height:1.55;color:rgba(44,31,22,.72);margin:.3rem 0 0;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden">'+ex+'</p>':''})()
+        +'<div class="sec-saint-card-actions">'
+        +'<a href="'+sUrl+'" target="_blank" rel="noopener" style="font-family:var(--f-ui);font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;color:var(--maroon);text-decoration:none;transition:color .18s;opacity:.75" onmouseover="this.style.opacity=\'1\'" onmouseout="this.style.opacity=\'.75\'">Learn More &rarr;</a>'
+        +(sTropText ? '<button class="sec-trop-btn" type="button" data-saint="'+escAttr(sName)+'" data-trop="'+escAttr(sTrop.troparion||'')+'" data-kont="'+escAttr(sTrop.kontakion||'')+'" onclick="openTropPopup(this)">Troparion &amp; Kontakion</button>' : '')
+        +'</div>'
         +'</div>'
         +'<button class="keep-saint-ico'+(sKept?' is-kept':'')+'" type="button" title="Keep this saint" data-slug="'+escAttr(sSlug)+'" data-name="'+escAttr(sName)+'" data-feast="'+feastDateKey+'" data-image="'+escAttr(sImage)+'" data-oca-url="'+escAttr(sUrl)+'" onclick="toggleKeepSaint(this)">'
         +'<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>'
@@ -966,6 +1054,57 @@ async function loadSaints(date) {
 
   document.getElementById('saints-container').innerHTML = out;
 }
+
+/* ── Primary life expand/collapse ────────────────────────────────── */
+function togglePrimaryLife() {
+  const el = document.getElementById('p-life-text');
+  const btn = document.getElementById('p-life-toggle');
+  if (!el || !btn) return;
+  const expanded = el.style.webkitLineClamp === 'unset';
+  el.style.webkitLineClamp = expanded ? '5' : 'unset';
+  el.style.webkitBoxOrient = expanded ? 'vertical' : '';
+  el.style.overflow = expanded ? 'hidden' : 'visible';
+  el.style.display = expanded ? '-webkit-box' : 'block';
+  btn.innerHTML = expanded ? 'Show more &darr;' : 'Show less &uarr;';
+}
+
+/* ── Troparion inline toggle (primary saint) ──────────────────────── */
+function toggleTrop(id, btn) {
+  const panel = document.getElementById(id);
+  if (!panel) return;
+  const open = panel.classList.toggle('open');
+  if (btn) {
+    btn.classList.toggle('open', open);
+    btn.textContent = open ? 'Hide Troparion' : 'Troparion';
+  }
+}
+
+/* ── Troparion popup (secondary saints) ───────────────────────────── */
+function openTropPopup(btn) {
+  const saint = btn.dataset.saint || '';
+  const trop  = (btn.dataset.trop  || '').replace(/ \/ /g, '\n');
+  const kont  = (btn.dataset.kont  || '').replace(/ \/ /g, '\n');
+  document.getElementById('trop-popup-saint').textContent = saint;
+  document.getElementById('trop-popup-trop').innerHTML = trop.split('\n').map(function(l){return l.trim()}).filter(Boolean).map(function(l){return '<span>'+l+'</span>'}).join('<br>');
+  const kontEl = document.getElementById('trop-popup-kont');
+  const kontLabel = document.getElementById('trop-popup-kont-label');
+  if (kont.trim()) {
+    kontEl.innerHTML = kont.split('\n').map(function(l){return l.trim()}).filter(Boolean).map(function(l){return '<span>'+l+'</span>'}).join('<br>');
+    kontEl.style.display = '';
+    kontLabel.style.display = '';
+  } else {
+    kontEl.style.display = 'none';
+    kontLabel.style.display = 'none';
+  }
+  document.getElementById('trop-popup').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeTropPopup(e) {
+  if (e && e.target !== document.getElementById('trop-popup')) return;
+  document.getElementById('trop-popup').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeTropPopup(); });
 
 /* ── Keep Saint helpers ───────────────────────────────────────────── */
 function escAttr(s){ return String(s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
