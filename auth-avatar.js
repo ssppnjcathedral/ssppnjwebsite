@@ -321,7 +321,7 @@
 
       /* Panel body */
       '.nav-mp-body{padding:0;overflow:hidden}' +
-      '.nav-mp-logged-out{padding:1.4rem 1.1rem 0}' +
+      '.nav-mp-logged-out{padding:1.4rem 1.1rem 1.4rem}' +
 
       /* Logged out: pitch */
       '.nav-mp-pitch-head{font-family:var(--f-display,"Cormorant Garamond",serif);font-size:1.15rem;font-weight:600;color:var(--ink,#2C1F16);margin:0 0 .5rem;line-height:1.2}' +
