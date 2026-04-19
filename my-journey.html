@@ -3307,7 +3307,6 @@ function loadCalendar(year) {
   if (_calPromises[year]) return _calPromises[year];
   _calPromises[year] = fetch('/_data/calendar-' + year + '.json')
     .then(function(r) { return r.ok ? r.json() : null; })
-    .then(function(data) { return data ? { year: year, days: data } : null; })
     .catch(function() { return null; });
   return _calPromises[year];
 }
