@@ -2674,6 +2674,11 @@ async function renderJourneyHero() {
 
     if (typeof _supabase === 'undefined' || typeof getCurrentUser !== 'function') return;
     var user = await getCurrentUser();
+    // Session may not be restored yet on first load — retry once after a short wait
+    if (!user) {
+      await new Promise(function(r) { setTimeout(r, 1200); });
+      user = await getCurrentUser();
+    }
     if (!user) {
       if (nameWrap) nameWrap.style.display = 'none';
       if (subEl) subEl.textContent = 'Sign in below to see your saved verses, kept saints, and all the pages you have walked through.';
@@ -3300,7 +3305,7 @@ function pastoralToast(msg) {
 var _calPromises = {};
 function loadCalendar(year) {
   if (_calPromises[year]) return _calPromises[year];
-  _calPromises[year] = fetch('/calendar-' + year + '.json')
+  _calPromises[year] = fetch('/_data/calendar-' + year + '.json')
     .then(function(r) { return r.ok ? r.json() : null; })
     .then(function(data) { return data ? { year: year, days: data } : null; })
     .catch(function() { return null; });
