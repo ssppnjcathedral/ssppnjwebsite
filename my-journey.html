@@ -750,33 +750,33 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 .pn-modal-actions{display:flex;gap:.75rem;justify-content:flex-end;margin-top:1.25rem}
 
 /* ── LIVING STRIP ── */
-.living-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:2rem 0 2.5rem}
-.ls-tile{background:#fff;border:var(--rule-faint);border-left:3px solid var(--gold);padding:1.4rem 1.6rem;display:flex;flex-direction:column;gap:.35rem;box-shadow:var(--shadow);transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;position:relative;overflow:hidden;min-height:140px}
-.ls-tile:hover{transform:translateY(-3px);box-shadow:var(--shadow-hi);border-left-color:var(--maroon)}
-.ls-tile.maroon{border-left-color:var(--maroon)}
-.ls-tile.verdigris{border-left-color:var(--verdigris)}
-.ls-eyebrow{font-family:var(--f-ui);font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--stone);display:flex;align-items:center;gap:.5rem;font-weight:600;margin-bottom:.65rem}
-.ls-eyebrow::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(184,131,40,.35) 0%,transparent 100%)}
-.ls-eyebrow .ls-dot{width:6px;height:6px;border-radius:50%;background:var(--verdigris);box-shadow:0 0 0 0 rgba(61,107,94,.55);animation:lsPulse 2.2s ease-in-out infinite}
-.ls-tile.maroon .ls-dot{background:var(--maroon);box-shadow:0 0 0 0 rgba(123,29,42,.45)}
-@keyframes lsPulse{0%,100%{box-shadow:0 0 0 0 rgba(61,107,94,.45)}50%{box-shadow:0 0 0 6px rgba(61,107,94,0)}}
-.ls-title{font-family:var(--f-display);font-style:italic;font-size:clamp(1.5rem,2.2vw,1.9rem);color:var(--text);line-height:1.05;margin-bottom:.35rem;letter-spacing:-.005em}
-.ls-title-plain{font-style:normal;color:var(--ink)}
-.ls-tile.verdigris .ls-title{color:var(--verdigris)}
-.ls-meta{font-family:var(--f-body);font-size:.88rem;color:var(--stone);line-height:1.4}
-.ls-meta strong{color:var(--maroon);font-weight:500;font-style:italic;font-family:var(--f-display);font-size:1.25rem;vertical-align:-.05em;margin-right:.12rem;letter-spacing:-.01em}
-.ls-tile.verdigris .ls-meta strong{color:var(--verdigris)}
-.ls-sub{font-family:var(--f-display);font-style:italic;font-size:.9rem;color:var(--stone);line-height:1.35;margin-top:.25rem}
-.ls-progress{height:3px;background:rgba(184,131,40,.18);margin-top:.5rem;overflow:hidden;border-radius:2px}
-.ls-progress-fill{height:100%;background:linear-gradient(90deg,var(--gold) 0%,var(--gold-lt,#E8C97A) 100%);width:0%;transition:width .9s cubic-bezier(.22,1,.36,1)}
+.living{background:linear-gradient(180deg,var(--vellum-mid) 0%,var(--vellum) 100%);padding:2.4rem 4.5rem 2.2rem;border-bottom:var(--rule-faint);border-top:var(--rule-hair);position:relative;overflow:hidden;margin:2rem 0 2.5rem}
+.living::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent 0%,rgba(184,131,40,.35) 30%,rgba(184,131,40,.35) 70%,transparent 100%)}
+.living-inner{max-width:1380px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;align-items:stretch}
+.living-tile{background:#fff;border:var(--rule-faint);border-left:3px solid var(--gold);padding:1.4rem 1.6rem;display:flex;flex-direction:column;gap:.35rem;box-shadow:var(--shadow);transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;position:relative;overflow:hidden}
+.living-tile:hover{transform:translateY(-3px);box-shadow:var(--shadow-hi);border-left-color:var(--maroon)}
+.living-tile.maroon{border-left-color:var(--maroon);background:linear-gradient(135deg,#fff 0%,rgba(246,241,232,.6) 100%)}
+.living-tile.verdigris{border-left-color:var(--verdigris)}
+.living-eyebrow{font-family:var(--f-ui);font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--stone);font-weight:600;display:flex;align-items:center;gap:.5rem;margin-bottom:.65rem}
+.living-eyebrow::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(184,131,40,.35) 0%,transparent 100%)}
+.living-title{font-family:var(--f-display);font-weight:400;font-size:clamp(1.5rem,2.2vw,1.9rem);color:var(--text);line-height:1.05;margin-bottom:.35rem;letter-spacing:-.005em}
+.living-title em{font-style:italic;color:var(--maroon)}
+.living-tile.verdigris .living-title{color:var(--verdigris)}
+.living-meta{font-family:var(--f-body);font-size:.95rem;color:var(--stone);line-height:1.35}
+.living-meta strong{font-family:var(--f-display);font-style:italic;font-weight:500;color:var(--maroon);font-size:1.25rem;vertical-align:-.05em;margin-right:.12rem;letter-spacing:-.01em}
+.living-tile.verdigris .living-meta strong{color:var(--verdigris)}
+.living-bar{height:3px;background:var(--vellum-deep,rgba(184,131,40,.18));border-radius:2px;overflow:hidden;margin-top:.9rem}
+.living-bar-fill{height:100%;background:linear-gradient(90deg,var(--gold) 0%,var(--gold-lt,#E8C97A) 100%);border-radius:2px;width:0;transition:width 1.6s cubic-bezier(.2,.7,.2,1) .4s}
+.living-sub{font-family:var(--f-body);font-style:italic;font-size:.82rem;color:var(--stone-lt,var(--stone));line-height:1.35;margin-top:.45rem}
+.patron-content{display:flex;align-items:center;gap:.9rem}
+.patron-icon{width:56px;height:66px;flex-shrink:0;background:var(--vellum-mid);border:1px solid rgba(184,131,40,.3);overflow:hidden;position:relative;box-shadow:inset 0 0 0 2px rgba(255,255,255,.4)}
+.patron-icon img{width:100%;height:100%;object-fit:cover;filter:sepia(.15) saturate(.92)}
+.patron-icon::after{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(180deg,transparent 60%,rgba(59,15,24,.18) 100%)}
+.fast-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--verdigris);margin-right:.35rem;vertical-align:.05em;box-shadow:0 0 8px rgba(61,107,94,.55)}
 .ls-cta{margin-top:auto;padding-top:.5rem;font-family:var(--f-ui);font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--maroon);border-bottom:1px solid rgba(123,29,42,.25);align-self:flex-start;padding-bottom:.1rem;transition:color .2s}
 .ls-cta:hover{color:var(--maroon-deep,#5C1520)}
-.ls-patron-row{display:flex;align-items:center;gap:.8rem;flex:1}
-.ls-patron-icon{width:48px;height:58px;flex-shrink:0;background:var(--vellum-mid);border:1px solid rgba(184,131,40,.3);overflow:hidden;position:relative;box-shadow:inset 0 0 0 2px rgba(255,255,255,.35)}
-.ls-patron-icon img{width:100%;height:100%;object-fit:cover;filter:sepia(.15) saturate(.92)}
-.ls-patron-icon::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(59,15,24,.18) 100%)}
-@media(max-width:1100px){.living-strip{grid-template-columns:1fr 1fr}}
-@media(max-width:700px){.living-strip{grid-template-columns:1fr;gap:.75rem;padding:0 1.5rem}.ls-tile{min-height:0}}
+@media(max-width:1100px){.living-inner{grid-template-columns:1fr 1fr}}
+@media(max-width:700px){.living{padding:1.8rem 1.5rem 1.6rem}.living-inner{grid-template-columns:1fr;gap:.75rem}}
 
 /* ── ENTRY POINTS PREVIEW ── */
 .j-entry-preview{background:var(--vellum);padding:3.5rem 4.5rem;border-top:var(--rule-faint)}
@@ -1360,36 +1360,40 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 
 
 <!-- ── LIVING STRIP ── -->
-<div class="living-strip" id="living-strip" style="display:none">
-  <!-- Tile 1: Next Great Feast -->
-  <div class="ls-tile maroon" id="ls-feast">
-    <span class="ls-eyebrow"><span class="ls-dot"></span>Next Great Feast</span>
-    <div class="ls-title" id="ls-feast-title">&hellip;</div>
-    <div class="ls-meta" id="ls-feast-meta"></div>
-    <div class="ls-progress" id="ls-feast-progress" style="display:none"><div class="ls-progress-fill" id="ls-feast-progress-fill"></div></div>
-    <div class="ls-sub" id="ls-feast-sub"></div>
-  </div>
-  <!-- Tile 2: Patron Saint -->
-  <div class="ls-tile" id="ls-patron">
-    <span class="ls-eyebrow">Your Patron Saint</span>
-    <div class="ls-patron-row">
-      <div class="ls-patron-icon" id="ls-patron-icon" style="display:none">
-        <img id="ls-patron-img" src="" alt="" onerror="this.parentElement.style.display='none'">
-      </div>
-      <div class="ls-title" id="ls-patron-title">&hellip;</div>
+<section class="living" id="living-strip" style="display:none">
+  <div class="living-inner">
+    <!-- Tile 1: Next Great Feast -->
+    <div class="living-tile maroon" id="ls-feast">
+      <div class="living-eyebrow">Next Great Feast</div>
+      <div class="living-title" id="ls-feast-title">&hellip;</div>
+      <div class="living-meta" id="ls-feast-meta"></div>
+      <div class="living-bar" id="ls-feast-progress"><div class="living-bar-fill" id="ls-feast-progress-fill"></div></div>
+      <div class="living-sub" id="ls-feast-sub"></div>
     </div>
-    <div class="ls-meta" id="ls-patron-meta"></div>
-    <div class="ls-sub" id="ls-patron-sub"></div>
-    <a href="/my-profile" class="ls-cta" id="ls-patron-cta" style="display:none">Set your patron saint &rarr;</a>
+    <!-- Tile 2: Patron Saint -->
+    <div class="living-tile" id="ls-patron">
+      <div class="living-eyebrow">Your Patron Saint</div>
+      <div class="patron-content">
+        <div class="patron-icon" id="ls-patron-icon" style="display:none">
+          <img id="ls-patron-img" src="" alt="" onerror="this.parentElement.style.display='none'">
+        </div>
+        <div>
+          <div class="living-title" id="ls-patron-title">&hellip;</div>
+          <div class="living-meta" id="ls-patron-meta"></div>
+          <div class="living-sub" id="ls-patron-sub"></div>
+        </div>
+      </div>
+      <a href="/my-profile" class="ls-cta" id="ls-patron-cta" style="display:none">Set your patron saint &rarr;</a>
+    </div>
+    <!-- Tile 3: Today's Discipline -->
+    <div class="living-tile verdigris" id="ls-fast">
+      <div class="living-eyebrow">Today's Discipline</div>
+      <div class="living-title" id="ls-fast-title">&hellip;</div>
+      <div class="living-meta" id="ls-fast-meta"></div>
+      <div class="living-sub" id="ls-fast-sub"></div>
+    </div>
   </div>
-  <!-- Tile 3: Today's Discipline -->
-  <div class="ls-tile verdigris" id="ls-fast">
-    <span class="ls-eyebrow"><span class="ls-dot"></span>Today's Discipline</span>
-    <div class="ls-title" id="ls-fast-title">&hellip;</div>
-    <div class="ls-meta" id="ls-fast-meta"></div>
-    <div class="ls-sub" id="ls-fast-sub"></div>
-  </div>
-</div>
+</section>
 
 <!-- ── STICKY SECTION NAV ── -->
 <nav class="js-section-nav" id="js-section-nav">
@@ -3282,7 +3286,7 @@ async function loadCalendar(year) {
 async function renderLivingStrip() {
   var strip = document.getElementById('living-strip');
   if (!strip) return;
-  strip.style.display = 'grid';
+  strip.style.display = 'block';
 
   var today = new Date();
   var y = today.getFullYear();
@@ -3326,10 +3330,14 @@ async function renderLivingStrip() {
       var fd = new Date(nextFeastKey + 'T12:00:00');
       var days = Math.round((fd - today) / 86400000);
       var feastName = (nextFeast.feast || '').split(';')[0].trim() || nextFeast.feast || 'Feast';
-      feastTitle.textContent = feastName;
+      feastTitle.innerHTML = '<em>' + escHtml(feastName) + '</em>';
       feastMeta.innerHTML = '<strong>' + days + '</strong> day' + (days === 1 ? '' : 's') + ' &middot; ' + formatFeastDate(fd);
       var _feastLabels = {8:'Great Feast of the Lord',7:'Great Feast of the Theotokos',6:'Great Feast',5:'Vigil feast',4:'Polyeleos feast'};
       feastSub.textContent = _feastLabels[nextFeast.feastLevel] || '';
+      if (feastFill) {
+        var pct = Math.round(Math.max(5, Math.min(98, (1 - days / 365) * 100)));
+        setTimeout(function(){ feastFill.style.width = pct + '%'; }, 400);
+      }
     } else {
       feastTitle.textContent = 'No great feast found';
       feastMeta.textContent = '';
@@ -3347,7 +3355,6 @@ async function renderLivingStrip() {
   var patron = await loadPatronSaint();
   if (patron && patron.name) {
     patronTitle.textContent = patron.name;
-    patronTitle.classList.remove('ls-title-plain');
     var patronIconWrap = document.getElementById('ls-patron-icon');
     var patronImgEl = document.getElementById('ls-patron-img');
     if (patron.image && patronIconWrap && patronImgEl) {
@@ -3365,7 +3372,6 @@ async function renderLivingStrip() {
     patronCta.style.display = 'none';
   } else {
     patronTitle.textContent = 'Not yet chosen';
-    patronTitle.classList.add('ls-title-plain');
     patronMeta.innerHTML = '<span style="font-family:var(--f-display);font-style:italic;color:var(--stone)">Add your patron saint to your profile to see them here.</span>';
     patronSub.textContent = '';
     patronCta.style.display = 'inline-block';
@@ -3379,7 +3385,7 @@ async function renderLivingStrip() {
     var dayData = cal.days[todayKey];
     var fastLabel = dayData.fast || 'Fast Free';
     var fastEx = dayData.fastException || '';
-    fastTitle.textContent = fastLabel;
+    fastTitle.innerHTML = '<span class="fast-dot"></span>' + escHtml(fastLabel);
     fastMeta.innerHTML = fastEx ? escHtml(fastEx) : '';
     // Count fast days year-to-date for sub line
     var fastCount = 0;
