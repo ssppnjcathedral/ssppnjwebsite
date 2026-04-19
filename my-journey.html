@@ -536,6 +536,40 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 .lib-show-more{display:block;width:100%;padding:.8rem 1.8rem;text-align:left;font-family:var(--f-ui);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--maroon);background:var(--vellum-mid);border:none;border-top:var(--rule-hair);cursor:pointer;transition:background .18s,color .18s;font-weight:500}
 .lib-show-more:hover{background:rgba(123,29,42,.06)}
 
+/* ── ROOM LAST-ACTIVITY LINE ── */
+.room-last-act{font-family:var(--f-ui);font-size:.54rem;letter-spacing:.13em;text-transform:uppercase;color:var(--stone);opacity:.6;margin-top:.3rem;line-height:1}
+
+/* ── READING WIDTH CAP ── */
+.margin-verse,.margin-note{max-width:62ch}
+
+/* ── EMPTY ROOM STATE ── */
+.room-empty{padding:2.6rem 2rem;display:flex;flex-direction:column;align-items:center;text-align:center;gap:.85rem}
+.room-empty-icon{width:50px;height:50px;border-radius:50%;border:1.5px dashed rgba(123,29,42,.2);display:flex;align-items:center;justify-content:center;opacity:.5}
+.room-empty-icon svg{width:20px;height:20px;fill:none;stroke:var(--stone);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.room-empty-msg{font-family:var(--f-display);font-style:italic;font-size:1rem;color:var(--stone);line-height:1.45;max-width:28ch}
+.room-empty-cta{font-family:var(--f-ui);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--maroon);text-decoration:none;padding:.4rem .95rem;border:1px solid rgba(123,29,42,.22);transition:background .18s,border-color .18s}
+.room-empty-cta:hover{background:rgba(123,29,42,.05);border-color:rgba(123,29,42,.4)}
+
+/* ── BACK-TO-TOP BUTTON ── */
+#back-to-top{position:fixed;bottom:2rem;right:2rem;width:46px;height:46px;border-radius:50%;background:var(--maroon);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(10px);transition:opacity .28s,transform .28s;z-index:200;box-shadow:0 4px 18px rgba(59,15,24,.3);pointer-events:none}
+#back-to-top.visible{opacity:1;transform:translateY(0);pointer-events:auto}
+#back-to-top:hover{background:var(--apse)}
+#back-to-top svg{width:17px;height:17px;fill:none;stroke:#fff;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+
+/* ── TOAST ── */
+#spp-toast{position:fixed;bottom:4rem;left:50%;transform:translateX(-50%) translateY(14px);background:var(--apse);color:var(--vellum);font-family:var(--f-ui);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;padding:.6rem 1.3rem;border-radius:100px;opacity:0;transition:opacity .22s,transform .22s;pointer-events:none;z-index:500;white-space:nowrap;box-shadow:0 4px 20px rgba(28,20,16,.3)}
+#spp-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ── ROOM MINI-HEADER ── */
+#room-mini-head{position:sticky;top:108px;z-index:88;padding:.45rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;background:rgba(246,241,232,.96);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid rgba(123,29,42,.07);opacity:0;pointer-events:none;transition:opacity .22s;max-height:0;overflow:hidden}
+#room-mini-head.visible{opacity:1;pointer-events:auto;max-height:44px}
+.rmh-name{font-family:var(--f-ui);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--maroon);font-weight:600}
+.rmh-count{font-family:var(--f-display);font-style:italic;font-size:.9rem;color:var(--stone)}
+.rmh-back{font-family:var(--f-ui);font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);background:none;border:none;cursor:pointer;padding:0;display:flex;align-items:center;gap:.35rem;transition:color .18s}
+.rmh-back:hover{color:var(--maroon)}
+.rmh-back svg{width:11px;height:11px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+@media(max-width:640px){#room-mini-head{padding:.4rem 1.1rem;top:108px}.rmh-count{display:none}}
+
 /* ── MARGIN ENTRIES (Notes room body) ── */
 .margin-items{padding:1.6rem 1.8rem;display:grid;grid-template-columns:1fr;gap:1.1rem}
 .margin-entry{position:relative;display:grid;grid-template-columns:90px 1fr;gap:1.4rem;padding:1.1rem 1.2rem 1.1rem 1.1rem;border-left:2px solid var(--gold);background:linear-gradient(90deg,rgba(184,131,40,.05) 0%,transparent 25%)}
@@ -656,11 +690,11 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 .js-nav-label .js-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 0 rgba(184,131,40,.5);animation:jsDotPulse 2.4s ease-in-out infinite}
 @keyframes jsDotPulse{0%,100%{box-shadow:0 0 0 0 rgba(184,131,40,.5)}50%{box-shadow:0 0 0 6px rgba(184,131,40,0)}}
 .js-nav-links{display:flex;gap:.25rem;align-items:center;flex:1}
+.js-nav-links{position:relative}
 .js-nav-link{position:relative;padding:.45rem .65rem;font-family:var(--f-ui);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);cursor:pointer;background:none;border:none;display:inline-flex;align-items:baseline;gap:.4rem;transition:color .2s;white-space:nowrap}
 .js-nav-link:hover{color:var(--maroon)}
 .js-nav-link.active{color:var(--maroon)}
-.js-nav-link::after{content:'';position:absolute;bottom:-.7rem;left:.65rem;right:.65rem;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:center;transition:transform .28s cubic-bezier(.22,1,.36,1)}
-.js-nav-link.active::after{transform:scaleX(1)}
+.js-nav-ink{position:absolute;bottom:-.7rem;left:0;width:0;height:2px;background:var(--gold);opacity:0;transition:left .32s cubic-bezier(.22,1,.36,1),width .32s cubic-bezier(.22,1,.36,1),opacity .2s;pointer-events:none;will-change:left,width}
 .js-nav-count{font-family:var(--f-display);font-style:italic;font-size:.78rem;color:var(--stone-lt);text-transform:none;letter-spacing:0;font-weight:400}
 .js-nav-link.active .js-nav-count{color:var(--maroon)}
 .js-nav-progress{margin-left:auto;display:flex;align-items:center;gap:.5rem;flex-shrink:0}
@@ -1361,10 +1395,11 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   <div class="js-nav-inner">
     <span class="js-nav-label"><span class="js-dot"></span>On this page</span>
     <div class="js-nav-links" id="js-nav-links">
-      <button type="button" class="js-nav-link" data-target="library-room">Library <span class="js-nav-count" id="js-count-library"></span></button>
+      <button type="button" class="js-nav-link" data-target="rule-section">Prayer Rule <span class="js-nav-count" id="js-count-rule"></span></button>
       <button type="button" class="js-nav-link" data-target="reading-notes-section">Notes <span class="js-nav-count" id="js-count-notes"></span></button>
       <button type="button" class="js-nav-link" data-target="icon-corner-section">Saints <span class="js-nav-count" id="js-count-saints"></span></button>
-      <button type="button" class="js-nav-link" data-target="rule-section">Prayer Rule <span class="js-nav-count" id="js-count-rule"></span></button>
+      <button type="button" class="js-nav-link" data-target="library-room">Library <span class="js-nav-count" id="js-count-library"></span></button>
+      <div class="js-nav-ink" id="js-nav-ink"></div>
     </div>
     <div class="js-nav-progress">
       <div class="js-nav-progress-track"><div class="js-nav-progress-fill" id="js-nav-progress-fill"></div></div>
@@ -1373,6 +1408,16 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   </div>
 </nav>
 <div id="js-stuck-sentinel" style="position:absolute;top:140px;height:1px;width:1px"></div>
+<div id="room-mini-head" aria-hidden="true">
+  <div style="display:flex;align-items:center;gap:.8rem">
+    <span class="rmh-name" id="rmh-name"></span>
+    <span class="rmh-count" id="rmh-count"></span>
+  </div>
+  <button class="rmh-back" onclick="scrollToActiveRoomHead()">
+    <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    Back to top of room
+  </button>
+</div>
 
 <!-- ── AUTH LOGIN PROMPT ── -->
 <div id="auth-login-prompt" style="display:none;background:rgba(246,241,232,.6);border-bottom:1px solid rgba(184,131,40,.2);padding:.9rem 2rem;">
@@ -1433,7 +1478,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   <div class="rooms">
 
     <!-- PRAYER RULE -->
-    <article class="room scroll-reveal" id="rule-section" style="display:none">
+    <article class="room scroll-reveal" id="rule-section">
       <div class="room-head">
         <div class="room-sigil">
           <svg viewBox="0 0 24 24"><path d="M12 3v18M6 9h12M7.5 9c0 2.5 1.8 4.5 4.5 4.5s4.5-2 4.5-4.5M8 21h8" stroke-linecap="round"/></svg>
@@ -1441,6 +1486,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
         <div>
           <div class="room-title">Prayer <em>Rule</em></div>
           <div class="room-caption">Your rule of prayer, fasts observed, tones learned</div>
+          <div class="room-last-act" id="rule-last-act"></div>
         </div>
         <div class="room-progress">
           <div class="room-progress-num"><span id="rule-head-count">&ndash;</span> <em>prayers</em></div>
@@ -1480,7 +1526,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
     </article>
 
     <!-- YOUR NOTES -->
-    <article class="room scroll-reveal" id="reading-notes-section" style="display:none">
+    <article class="room scroll-reveal" id="reading-notes-section">
       <div class="room-head">
         <div class="room-sigil">
           <svg viewBox="0 0 24 24"><path d="M5 3v18l7-4 7 4V3H5zm2 2h10v13.2l-5-2.85L7 18.2V5z"/></svg>
@@ -1488,6 +1534,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
         <div>
           <div class="room-title">Your <em>Notes</em></div>
           <div class="room-caption">Verses you have saved, notes you have written</div>
+          <div class="room-last-act" id="notes-last-act"></div>
         </div>
         <div class="room-progress">
           <div class="room-progress-num"><span id="reading-notes-head-count">&ndash;</span> <em>saved</em></div>
@@ -1505,7 +1552,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
     </article>
 
     <!-- ICON CORNER -->
-    <article class="room scroll-reveal" id="icon-corner-section" style="display:none">
+    <article class="room scroll-reveal" id="icon-corner-section">
       <div class="room-head">
         <div class="room-sigil">
           <svg viewBox="0 0 24 24"><path d="M12 2L4 6v6c0 4.5 3.2 8.6 8 10 4.8-1.4 8-5.5 8-10V6l-8-4zm0 2.2l6 3v4.8c0 3.6-2.5 6.9-6 8-3.5-1.1-6-4.4-6-8V7.2l6-3z"/><path d="M12 8v6M9 11h6" stroke-linecap="round"/></svg>
@@ -1513,6 +1560,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
         <div>
           <div class="room-title">The <em>Icon Corner</em></div>
           <div class="room-caption">Saints you have kept close, feasts you will mark</div>
+          <div class="room-last-act" id="saints-last-act"></div>
         </div>
         <div class="room-progress">
           <div class="room-progress-num"><span id="icon-corner-head-count">&ndash;</span> <em>saints</em></div>
@@ -1538,6 +1586,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
         <div>
           <div class="room-title">The <em>Library</em></div>
           <div class="room-caption">Lectures watched, sessions completed, pages kept</div>
+          <div class="room-last-act" id="library-last-act"></div>
         </div>
         <div class="room-progress">
           <div class="room-progress-num" id="library-room-progress">0 <em>of 62</em></div>
@@ -1716,6 +1765,11 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
     </div>
   </div>
 </div>
+
+<button id="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+<div id="spp-toast" role="status" aria-live="polite"></div>
 
 <footer>
   <div class="footer-cols">
@@ -1994,12 +2048,16 @@ function renderRule() {
   var ruleList = document.getElementById('rule-list');
   if (!ruleSection || !ruleList) return;
 
+  var ruleLastAct = document.getElementById('rule-last-act');
   if (rule.length === 0) {
-    ruleSection.style.display = 'none';
+    ruleList.innerHTML = '<div class="room-empty">'
+      + '<div class="room-empty-icon"><svg viewBox="0 0 24 24"><path d="M12 3v18M6 9h12M7.5 9c0 2.5 1.8 4.5 4.5 4.5s4.5-2 4.5-4.5M8 21h8" stroke-linecap="round"/></svg></div>'
+      + '<p class="room-empty-msg">You have not set up a rule of prayer yet.</p>'
+      + '<a href="/prayers" class="room-empty-cta">Set up my rule &rarr;</a>'
+      + '</div>';
+    if (ruleLastAct) ruleLastAct.textContent = '';
     return;
   }
-
-  ruleSection.style.display = 'block';
 
   // Group by category
   var lookup = {};
@@ -2047,15 +2105,22 @@ function renderRule() {
 
   // Populate begun date if stored
   var begunDate = document.getElementById('rule-begun-date');
+  var stored = null;
+  try { stored = localStorage.getItem('spp_rule_begun'); } catch {}
   if (begunDate) {
-    var stored = null;
-    try { stored = localStorage.getItem('spp_rule_begun'); } catch {}
     if (stored) {
       var bd = new Date(stored + 'T12:00:00');
       var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
       begunDate.textContent = 'Begun ' + months[bd.getMonth()] + ' ' + bd.getDate() + ', ' + bd.getFullYear();
     } else {
       begunDate.textContent = rule.length + ' prayer' + (rule.length === 1 ? '' : 's') + ' in your rule';
+    }
+  }
+  if (ruleLastAct) {
+    if (stored) {
+      var rbd = new Date(stored + 'T12:00:00');
+      var rmos = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      ruleLastAct.textContent = 'Begun ' + rmos[rbd.getMonth()] + ' ' + rbd.getDate();
     }
   }
 }
@@ -2793,7 +2858,16 @@ function renderReadingNotes() {
     if (!Array.isArray(all[dateKey])) return;
     all[dateKey].forEach(function(entry) { flat.push({ dateKey: dateKey, entry: entry }); });
   });
-  if (!flat.length) return;
+  var notesLastAct = document.getElementById('notes-last-act');
+  if (!flat.length) {
+    list.innerHTML = '<div class="room-empty">'
+      + '<div class="room-empty-icon"><svg viewBox="0 0 24 24"><path d="M5 3v18l7-4 7 4V3H5zm2 2h10v13.2l-5-2.85L7 18.2V5z"/></svg></div>'
+      + '<p class="room-empty-msg">No notes saved yet. Save a verse on the readings page to see it here.</p>'
+      + '<a href="/readings" class="room-empty-cta">Go to readings &rarr;</a>'
+      + '</div>';
+    if (notesLastAct) notesLastAct.textContent = '';
+    return;
+  }
 
   flat.sort(function(a, b) {
     var at = a.entry.updated_at || a.entry.created_at || a.dateKey;
@@ -2801,8 +2875,12 @@ function renderReadingNotes() {
     return bt < at ? -1 : bt > at ? 1 : 0;
   });
 
-  section.style.display = '';
   var MONTHS_S = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  if (notesLastAct && flat.length) {
+    var recentNote = flat[0];
+    var rnd = new Date(recentNote.dateKey + 'T12:00:00');
+    notesLastAct.textContent = 'Last saved ' + MONTHS_S[rnd.getMonth()] + ' ' + rnd.getDate();
+  }
   var DAYS_S = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
   var PREVIEW = 3;
   var showAll = !!window._notesShowAll;
@@ -2870,11 +2948,14 @@ function renderReadingNotes() {
 function marginCopy(btn) {
   var text = btn.dataset.copy || '';
   if (!text) return;
-  navigator.clipboard.writeText(text).catch(function() {
+  navigator.clipboard.writeText(text).then(function() {
+    showToast('Copied to clipboard');
+  }).catch(function() {
     var ta = document.createElement('textarea');
     ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
     document.body.appendChild(ta); ta.select(); document.execCommand('copy');
     document.body.removeChild(ta);
+    showToast('Copied to clipboard');
   });
   var orig = btn.innerHTML;
   btn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg>';
@@ -2906,6 +2987,7 @@ function marginDelete(btn) {
   } catch (e) {}
   entry.style.transition = 'opacity .25s,transform .25s';
   entry.style.opacity = '0'; entry.style.transform = 'translateX(-8px)';
+  showToast('Note removed');
   setTimeout(function() { renderReadingNotes(); }, 280);
 }
 
@@ -2936,23 +3018,36 @@ function initSectionNav() {
 
   // Active state tracking via 140px sight line
   var SIGHT_LINE = 160;
+  var ink = document.getElementById('js-nav-ink');
   function updateActive() {
     var sections = nav.querySelectorAll('.js-nav-link');
     var activeId = null;
     sections.forEach(function(btn) {
-      var t = document.getElementById(btn.dataset.target);
-      if (!t || t.style.display === 'none') {
-        btn.style.display = 'none';
-        return;
-      }
       btn.style.display = '';
-      var rect = t.getBoundingClientRect();
-      if (rect.top <= SIGHT_LINE) activeId = btn.dataset.target;
+      var rect = document.getElementById(btn.dataset.target) ? document.getElementById(btn.dataset.target).getBoundingClientRect() : null;
+      if (rect && rect.top <= SIGHT_LINE) activeId = btn.dataset.target;
     });
+    var activeBtn = null;
     sections.forEach(function(btn) {
-      btn.classList.toggle('active', btn.dataset.target === activeId);
+      var isActive = btn.dataset.target === activeId;
+      btn.classList.toggle('active', isActive);
+      if (isActive) activeBtn = btn;
     });
+    // Slide ink bar to active button
+    if (ink) {
+      if (activeBtn) {
+        var linksRect = document.getElementById('js-nav-links').getBoundingClientRect();
+        var btnRect = activeBtn.getBoundingClientRect();
+        var pad = parseFloat(getComputedStyle(activeBtn).paddingLeft) || 0;
+        ink.style.left = (btnRect.left - linksRect.left + pad) + 'px';
+        ink.style.width = (btnRect.width - pad * 2) + 'px';
+        ink.style.opacity = '1';
+      } else {
+        ink.style.opacity = '0';
+      }
+    }
     updateScrollProgress();
+    updateMiniHeader(activeId);
   }
   function updateScrollProgress() {
     var fill = document.getElementById('js-nav-progress-fill');
@@ -3383,14 +3478,27 @@ function renderIconCorner() {
   var dict = {};
   try { dict = JSON.parse(localStorage.getItem('spp_saint_bookmarks') || '{}') || {}; } catch {}
   var list = Object.keys(dict).map(function(k){ return dict[k]; }).filter(Boolean);
-  if (!list.length) return;
+  var saintsLastAct = document.getElementById('saints-last-act');
+  if (!list.length) {
+    grid.innerHTML = '<div class="room-empty">'
+      + '<div class="room-empty-icon"><svg viewBox="0 0 24 24"><path d="M12 2L4 6v6c0 4.5 3.2 8.6 8 10 4.8-1.4 8-5.5 8-10V6l-8-4z"/><path d="M12 8v6M9 11h6" stroke-linecap="round"/></svg></div>'
+      + '<p class="room-empty-msg">No saints kept yet. Browse the saints calendar and bookmark one.</p>'
+      + '<a href="/saints" class="room-empty-cta">Browse saints &rarr;</a>'
+      + '</div>';
+    if (saintsLastAct) saintsLastAct.textContent = '';
+    return;
+  }
 
-  section.style.display = '';
   list.sort(function(a,b){
     var at = a.addedAt || '';
     var bt = b.addedAt || '';
     return bt < at ? -1 : bt > at ? 1 : 0;
   });
+  if (saintsLastAct && list[0] && list[0].addedAt) {
+    var _sd = new Date(list[0].addedAt);
+    var _smos = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    saintsLastAct.textContent = 'Last added ' + _smos[_sd.getMonth()] + ' ' + _sd.getDate();
+  }
 
   var MONTHS_LONG = ['January','February','March','April','May','June','July','August','September','October','November','December'];
   var today = new Date();
@@ -3695,9 +3803,89 @@ function renderLibrary() {
   if (progressEl) progressEl.innerHTML = '<strong>' + totalDone + '</strong> <em>of ' + totalCount + '</em>';
   var fillEl = document.getElementById('library-room-progress-fill');
   if (fillEl) setTimeout(function() { fillEl.style.width = pct + '%'; }, 80);
+
+  var libLastAct = document.getElementById('library-last-act');
+  if (libLastAct && totalDone > 0) {
+    var allCompleted = catechesisItems.concat(bibleItems).filter(function(i){return i.done && i.markedLabel;});
+    allCompleted.sort(function(a,b){ return (b.markedLabel||'') < (a.markedLabel||'') ? -1 : 1; });
+    if (allCompleted.length) libLastAct.textContent = allCompleted[0].markedLabel;
+  }
 }
 
 window.addEventListener('spp-supabase-loaded', renderLibrary);
+
+// ── TOAST ──
+var _toastTimer = null;
+function showToast(msg) {
+  var t = document.getElementById('spp-toast');
+  if (!t) return;
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(_toastTimer);
+  _toastTimer = setTimeout(function() { t.classList.remove('show'); }, 2200);
+}
+
+// ── BACK-TO-TOP ──
+(function() {
+  var btn = document.getElementById('back-to-top');
+  if (!btn) return;
+  var ticking = false;
+  window.addEventListener('scroll', function() {
+    if (!ticking) {
+      requestAnimationFrame(function() {
+        btn.classList.toggle('visible', window.scrollY > 420);
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+})();
+
+// ── ROOM MINI-HEADER ──
+var _activeMiniRoomId = null;
+var _ROOM_LABELS = {
+  'rule-section':          { name: 'Prayer Rule', countId: 'js-count-rule' },
+  'reading-notes-section': { name: 'Notes',       countId: 'js-count-notes' },
+  'icon-corner-section':   { name: 'Icon Corner', countId: 'js-count-saints' },
+  'library-room':          { name: 'Library',     countId: 'js-count-library' }
+};
+function updateMiniHeader(activeId) {
+  var bar = document.getElementById('room-mini-head');
+  var nameEl = document.getElementById('rmh-name');
+  var countEl = document.getElementById('rmh-count');
+  if (!bar) return;
+  if (!activeId || !_ROOM_LABELS[activeId]) {
+    bar.classList.remove('visible');
+    _activeMiniRoomId = null;
+    return;
+  }
+  var roomEl = document.getElementById(activeId);
+  if (!roomEl) { bar.classList.remove('visible'); return; }
+  var roomHead = roomEl.querySelector('.room-head');
+  if (!roomHead) { bar.classList.remove('visible'); return; }
+  // Only show mini-header when room head has scrolled above viewport
+  var headRect = roomHead.getBoundingClientRect();
+  if (headRect.bottom > 110) {
+    bar.classList.remove('visible');
+    _activeMiniRoomId = null;
+    return;
+  }
+  _activeMiniRoomId = activeId;
+  var meta = _ROOM_LABELS[activeId];
+  if (nameEl) nameEl.textContent = meta.name;
+  if (countEl) {
+    var cEl = document.getElementById(meta.countId);
+    countEl.textContent = cEl ? cEl.textContent : '';
+  }
+  bar.classList.add('visible');
+}
+function scrollToActiveRoomHead() {
+  if (!_activeMiniRoomId) return;
+  var roomEl = document.getElementById(_activeMiniRoomId);
+  if (!roomEl) return;
+  var top = roomEl.getBoundingClientRect().top + window.pageYOffset - 130;
+  window.scrollTo({ top: top, behavior: 'smooth' });
+}
 
 function expandLibGroup(key) {
   window._libExpanded = window._libExpanded || {};
