@@ -1333,14 +1333,14 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
     <h1 class="j-hero-welcome">Welcome back<span id="j-hero-name-wrap">, <em id="j-hero-name">friend</em></span>.</h1>
     <p class="j-hero-sub" id="j-hero-sub">A record of what you have walked through. Saved verses, kept saints, the rule you pray, and every page you have read carries forward here.</p>
     <div class="j-profile-strip" id="j-profile-strip" style="display:none">
-      <div class="j-profile-avatar" id="j-profile-avatar">FR</div>
+      <div class="j-profile-avatar" id="j-profile-avatar" aria-hidden="true"></div>
       <div class="j-profile-meta">
-        <div class="j-profile-name" id="j-profile-name">&mdash;</div>
-        <div class="j-profile-joined" id="j-profile-joined">Signed in with parish account</div>
+        <div class="j-profile-name" id="j-profile-name"></div>
+        <div class="j-profile-joined" id="j-profile-joined"></div>
       </div>
       <div class="j-profile-streak" id="j-profile-streak" style="display:none">
         <span class="j-streak-dot"></span>
-        <span class="j-streak-text" id="j-streak-text">&mdash;</span>
+        <span class="j-streak-text" id="j-streak-text"></span>
       </div>
     </div>
     <div class="j-compass" id="j-compass">
@@ -2670,6 +2670,9 @@ async function renderJourneyHero() {
     var fullName = '';
     var joined = user.created_at ? new Date(user.created_at) : null;
 
+    // Show strip immediately so avatar and pill are visible while data loads
+    if (strip) strip.style.display = 'flex';
+
     try {
       var r = await _supabase.from('parishioners').select('first_name,last_name,created_at').eq('user_id', user.id).maybeSingle();
       if (r && r.data) {
@@ -2733,7 +2736,6 @@ async function renderJourneyHero() {
       subEl.textContent = heroSub;
     }
 
-    if (strip) strip.style.display = 'flex';
     if (avatar) {
       var initials = (firstName.charAt(0) || email.charAt(0) || 'R').toUpperCase();
       var parts = fullName.split(/\s+/);
