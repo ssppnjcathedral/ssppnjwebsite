@@ -411,12 +411,6 @@
       "reflection_body": "TEST TEST STEST SETSETSTE STESET SET SETSTE STESETE",
       "show_epistle": true,
       "saint_icon_caption": "Test"
-    },
-    {
-      "show_second_image": false,
-      "show_epistle": true,
-      "show_gospel": true,
-      "show_troparia": true
     }
   ]
 }
