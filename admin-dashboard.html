@@ -3207,9 +3207,12 @@ async function handleLogin() {
   if (_passwordMode) {
     var password = document.getElementById('login-password').value;
     if (!password) return;
+    statusEl.textContent = 'Signing in...';
     var result = await signInWithPassword(email, password);
     if (result.error) {
       statusEl.textContent = 'Error: ' + result.error;
+    } else {
+      await initAuth();
     }
     return;
   }
