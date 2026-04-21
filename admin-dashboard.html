@@ -3149,20 +3149,17 @@ function showToast(msg) {
   t._timer = setTimeout(function() { t.classList.remove('toast-show'); }, 3000);
 }
 
-// ── AUTH GATE ──
+// ── AUTH GATE (AUTH TEMPORARILY UNWIRED FOR TESTING — reinstate before launch) ──
 async function initAuth() {
-  // DEV BYPASS — localhost only, never fires on the live site
-  if (window.location.hostname === 'localhost' &&
-      new URLSearchParams(window.location.search).get('dev') === '1') {
-    currentUser = { id: 'dev-user', email: 'dev@localhost' };
-    document.getElementById('login-screen').style.display = 'none';
-    document.getElementById('dashboard-wrap').style.display = '';
-    document.getElementById('dash-user-email').textContent = 'dev@localhost';
-    setGreeting();
-    loadDashboard();
-    return;
-  }
+  currentUser = { id: 'dev-user', email: 'dev@localhost' };
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('dashboard-wrap').style.display = '';
+  document.getElementById('dash-user-email').textContent = 'dev@localhost';
+  setGreeting();
+  loadDashboard();
+  return;
 
+  /* AUTH GATE — restore this block when done testing
   var user = await getCurrentUser();
   if (!user) {
     document.getElementById('login-screen').style.display = '';
@@ -3183,6 +3180,7 @@ async function initAuth() {
 
   currentUser = user;
   document.getElementById('login-screen').style.display = 'none';
+  */
   document.getElementById('dashboard-wrap').style.display = '';
   document.getElementById('dash-user-email').textContent = user.email;
   setGreeting();
