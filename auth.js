@@ -34,6 +34,15 @@
   }
   window.sendMagicLink = sendMagicLink;
 
+  // ── SIGN IN WITH PASSWORD ──
+  async function signInWithPassword(email, password) {
+    try {
+      var result = await _supabase.auth.signInWithPassword({ email: email, password: password });
+      return result.error ? { error: result.error.message } : { success: true };
+    } catch (e) { return { error: e.message }; }
+  }
+  window.signInWithPassword = signInWithPassword;
+
   // ── SIGN OUT ──
   async function signOut() {
     try {
