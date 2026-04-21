@@ -388,6 +388,35 @@
       "reflection_body": "AGFDWDF GDFSGS DFGDSSFGfdgssdfg sdfgdsfgd fgs dfgs df  gdfs",
       "show_epistle": true,
       "saint_icon_caption": "At Whoever"
+    },
+    {
+      "reflection_title": "TEST TEST",
+      "special_announcements": [
+        {
+          "title": "Test",
+          "body": "TESdsga dfsag gdfs. gsfdgsddgs dgf sdfgg fsdg sdf"
+        },
+        {
+          "title": "Test",
+          "body": "adgs f sgfsd  fgsd gsfg fsdg fds"
+        }
+      ],
+      "show_troparia": true,
+      "featured_image": "/images/bulletins/merkarios.png",
+      "show_gospel": true,
+      "date": "2026-04-26",
+      "featured_image_caption": "Test",
+      "show_second_image": false,
+      "saint_icon_image": "/images/bulletins/1ma90__06022-3.png",
+      "reflection_body": "TEST TEST STEST SETSETSTE STESET SET SETSTE STESETE",
+      "show_epistle": true,
+      "saint_icon_caption": "Test"
+    },
+    {
+      "show_second_image": false,
+      "show_epistle": true,
+      "show_gospel": true,
+      "show_troparia": true
     }
   ]
 }
