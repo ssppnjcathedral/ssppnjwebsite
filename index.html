@@ -368,6 +368,16 @@ img{display:block;max-width:100%}
 .mega-link:hover{color:var(--maroon);padding-left:.4rem}
 .mega-sub{display:block;font-family:var(--f-body);font-style:italic;font-size:.95rem;color:var(--stone);margin-bottom:.2rem;line-height:1.3}
 .mega-info-line{font-family:var(--f-body);font-size:.95rem;color:var(--ink);line-height:1.7;margin:0}
+.mega-preview-card{border:1px solid rgba(123,29,42,.11);background:rgba(123,29,42,.03);border-radius:2px;overflow:hidden;transition:background .18s;margin-top:.55rem}
+.mega-preview-card+.mega-preview-card{margin-top:.5rem}
+.mega-preview-link{display:flex;gap:.65rem;padding:.65rem;text-decoration:none;align-items:flex-start}
+.mega-preview-thumb{width:54px;height:54px;flex-shrink:0;background-size:cover;background-position:center;background-color:rgba(123,29,42,.08)}
+.mega-preview-body{display:flex;flex-direction:column;gap:.15rem;min-width:0}
+.mega-preview-eyebrow{font-family:var(--f-ui);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--maroon)}
+.mega-preview-title{font-family:var(--f-body);font-size:.88rem;color:var(--ink);line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.mega-preview-date{font-family:var(--f-ui);font-size:.62rem;letter-spacing:.05em;color:var(--stone);margin-top:.08rem}
+.mega-preview-card:hover{background:rgba(123,29,42,.07)}
+.mega-preview-card:hover .mega-preview-title{color:var(--maroon)}
 .mega-info-line strong{font-weight:500;color:var(--text)}
 .mega-section-gap{margin-top:1.25rem;padding-top:1rem;border-top:var(--rule-hair);display:block}
 .mega-cta{margin-top:1.5rem;padding-top:1.25rem;border-top:var(--rule-faint)}
@@ -1235,10 +1245,26 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
           <div class="mega-inner" style="grid-template-columns:repeat(2,1fr)">
             <div class="mega-col">
               <span class="mega-col-head">News &amp; Publications</span>
-              <a href="/news" class="mega-link">News &amp; Announcements</a>
-              <span class="mega-sub">What's happening at the parish</span>
-              <a href="/bulletins" class="mega-link">Parish Bulletins</a>
-              <span class="mega-sub">Weekly reflections from Fr. Solomon</span>
+              <div class="mega-preview-card" id="mega-news-card">
+                <a href="/news" class="mega-preview-link">
+                  <div class="mega-preview-thumb" id="mega-news-thumb"></div>
+                  <div class="mega-preview-body">
+                    <span class="mega-preview-eyebrow">Latest News</span>
+                    <span class="mega-preview-title" id="mega-news-title">News &amp; Announcements</span>
+                    <span class="mega-preview-date" id="mega-news-date"></span>
+                  </div>
+                </a>
+              </div>
+              <div class="mega-preview-card" id="mega-bulletin-card">
+                <a href="/bulletins" class="mega-preview-link">
+                  <div class="mega-preview-thumb" id="mega-bulletin-thumb"></div>
+                  <div class="mega-preview-body">
+                    <span class="mega-preview-eyebrow">Latest Bulletin</span>
+                    <span class="mega-preview-title" id="mega-bulletin-title">Parish Bulletins</span>
+                    <span class="mega-preview-date" id="mega-bulletin-date"></span>
+                  </div>
+                </a>
+              </div>
             </div>
             <div class="mega-col">
               <span class="mega-col-head">Community</span>
@@ -1995,6 +2021,7 @@ function drResetPhoto(){
   var activePanel = null;
   var activeTab = null;
   var calInited = false;
+  var parishInited = false;
 
   function showPanel(tab){
     var id = tab.getAttribute('data-mega');
@@ -2007,6 +2034,7 @@ function drResetPhoto(){
     tab.classList.add('tab-active');
     activeTab = tab;
     if(id === 'mega-calendar' && !calInited){ calInited = true; initMegaCalWeek(); }
+    if(id === 'mega-parish' && !parishInited){ parishInited = true; initMegaParish(); }
   }
 
   function hideAll(){
@@ -2073,6 +2101,32 @@ async function initMegaCalWeek(){
     });
   }
   container.innerHTML = html;
+}
+
+async function initMegaParish(){
+  function fmt(d){ if(!d) return ''; var dt=new Date(d+'T00:00:00'); return dt.toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'}); }
+  try {
+    var r = await fetch('/news.json');
+    var d = await r.json();
+    var items = (d.articles || d).slice().sort(function(a,b){ return new Date(b.date)-new Date(a.date); });
+    var n = items[0];
+    if(n){
+      var t=document.getElementById('mega-news-title'); if(t) t.textContent=n.title;
+      var dt=document.getElementById('mega-news-date'); if(dt) dt.textContent=fmt(n.date);
+      var th=document.getElementById('mega-news-thumb'); if(th&&n.image) th.style.backgroundImage='url('+n.image+')';
+    }
+  } catch(e){}
+  try {
+    var r = await fetch('/bulletins.json');
+    var d = await r.json();
+    var items = (d.bulletins || d).slice().sort(function(a,b){ return new Date(b.date)-new Date(a.date); });
+    var n = items[0];
+    if(n){
+      var t=document.getElementById('mega-bulletin-title'); if(t) t.textContent=n.reflection_title;
+      var dt=document.getElementById('mega-bulletin-date'); if(dt) dt.textContent=fmt(n.date);
+      var th=document.getElementById('mega-bulletin-thumb'); if(th&&n.featured_image) th.style.backgroundImage='url('+n.featured_image+')';
+    }
+  } catch(e){}
 }
 </script>
 
