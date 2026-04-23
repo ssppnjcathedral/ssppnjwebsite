@@ -43,6 +43,26 @@
   }
   window.signInWithPassword = signInWithPassword;
 
+  // ── SIGN UP WITH PASSWORD ──
+  async function signUpWithPassword(email, password) {
+    try {
+      var result = await _supabase.auth.signUp({ email: email, password: password });
+      return result.error ? { error: result.error.message } : { success: true };
+    } catch (e) { return { error: e.message }; }
+  }
+  window.signUpWithPassword = signUpWithPassword;
+
+  // ── SEND PASSWORD RESET EMAIL ──
+  async function resetPasswordForEmail(email) {
+    try {
+      var result = await _supabase.auth.resetPasswordForEmail(email, {
+        redirectTo: window.location.origin + '/my-profile'
+      });
+      return result.error ? { error: result.error.message } : { success: true };
+    } catch (e) { return { error: e.message }; }
+  }
+  window.resetPasswordForEmail = resetPasswordForEmail;
+
   // ── SIGN OUT ──
   async function signOut() {
     try {

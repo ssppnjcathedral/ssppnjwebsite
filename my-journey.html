@@ -719,10 +719,9 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
   <div class="auth-prompt-inner">
     <p>Create a profile to save your progress across devices.</p>
     <div style="display:flex;gap:.5rem;flex-shrink:0">
-      <input type="email" id="auth-email-input" placeholder="your@email.com">
-      <button onclick="authSendLink()">Send Me a Link</button>
+      <button onclick="openProfileModal()">Create Profile</button>
+      <button onclick="openAuthModal()" style="background:none;border:1px solid currentColor;opacity:.7">Sign In</button>
     </div>
-    <span id="auth-sent-msg" style="font-family:var(--f-body);font-size:.85rem;color:var(--verdigris);display:none">Check your email for a sign-in link.</span>
   </div>
 </div>
 <div id="auth-user-info" style="display:none" class="auth-user-info">
@@ -1436,13 +1435,6 @@ function generateSummary(){
   closeSummaryModal();
 }
 
-// ── AUTH ──
-async function authSendLink(){
-  var email=document.getElementById('auth-email-input').value.trim();if(!email)return;
-  var btn=event.target;btn.textContent='Sending...';btn.disabled=true;
-  if(typeof sendMagicLink==='function'){var result=await sendMagicLink(email,window.location.href);if(result&&result.success){document.getElementById('auth-sent-msg').style.display='inline';btn.style.display='none';return}}
-  btn.textContent='Send Me a Link';btn.disabled=false;alert('Could not send link. Please check your email and try again.');
-}
 async function signOut(){if(typeof _supabase!=='undefined')try{await _supabase.auth.signOut();}catch(e){}window.location.reload()}
 
 // ── NAV ──

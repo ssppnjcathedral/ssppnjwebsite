@@ -26,14 +26,6 @@
       '<path d="M1 5l25 17L51 5" stroke="var(--gold,#B88328)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>' +
     '</svg>';
 
-  function makeConfirmHTML(idPrefix) {
-    return '<div class="auth-modal-confirm" id="' + idPrefix + '-confirm">' +
-      '<div class="auth-modal-envelope">' + ENVELOPE_SVG + '</div>' +
-      '<p class="auth-modal-confirm-msg">Check your inbox</p>' +
-      '<p class="auth-modal-confirm-sub" id="' + idPrefix + '-confirm-sub"></p>' +
-    '</div>';
-  }
-
   function injectModal() {
     // ── Sign In modal ──
     if (!document.getElementById('auth-modal')) {
@@ -43,15 +35,42 @@
       modal.innerHTML =
         '<div class="auth-modal-card">' +
           '<button class="auth-modal-close" onclick="closeAuthModal()" aria-label="Close">&times;</button>' +
+
+          // Sign-in state (default)
           '<div class="auth-modal-form" id="auth-modal-form">' +
             '<h3 class="auth-modal-heading">Welcome back</h3>' +
-            '<p class="auth-modal-sub">Enter your email and we\'ll send you a sign-in link — no password needed.</p>' +
-            '<input type="email" id="auth-modal-email" class="auth-modal-input" placeholder="your@email.com">' +
-            '<button class="auth-modal-btn" id="auth-modal-send-btn" onclick="modalSendLink(\'auth\')">Get my sign-in link</button>' +
+            '<input type="email" id="auth-modal-email" class="auth-modal-input" placeholder="your@email.com" autocomplete="email">' +
+            '<input type="password" id="auth-modal-password" class="auth-modal-input" placeholder="Password" autocomplete="current-password">' +
+            '<button class="auth-modal-btn" id="auth-modal-send-btn" onclick="modalSignIn()">Sign In</button>' +
+            '<button class="auth-modal-link-btn" onclick="showAuthForgot()">Forgot your password?</button>' +
           '</div>' +
-          makeConfirmHTML('auth-modal') +
+
+          // Forgot password state
+          '<div class="auth-modal-form" id="auth-modal-forgot" style="display:none">' +
+            '<h3 class="auth-modal-heading">Reset your password</h3>' +
+            '<p class="auth-modal-sub">Enter your email and we\'ll send a reset link.</p>' +
+            '<input type="email" id="auth-modal-forgot-email" class="auth-modal-input" placeholder="your@email.com" autocomplete="email">' +
+            '<button class="auth-modal-btn" id="auth-modal-reset-btn" onclick="modalForgotPassword()">Send reset link</button>' +
+            '<button class="auth-modal-link-btn" onclick="showAuthSignin()">Back to sign in</button>' +
+          '</div>' +
+
+          // Confirmation (forgot password only)
+          '<div class="auth-modal-confirm" id="auth-modal-confirm">' +
+            '<div class="auth-modal-envelope">' + ENVELOPE_SVG + '</div>' +
+            '<p class="auth-modal-confirm-msg">Check your inbox</p>' +
+            '<p class="auth-modal-confirm-sub" id="auth-modal-confirm-sub"></p>' +
+          '</div>' +
         '</div>';
       modal.addEventListener('click', function(e) { if (e.target === modal) closeAuthModal(); });
+
+      // Enter key on password field submits sign-in
+      modal.addEventListener('keydown', function(e) {
+        if (e.key !== 'Enter') return;
+        var forgot = document.getElementById('auth-modal-forgot');
+        if (forgot && forgot.style.display !== 'none') { modalForgotPassword(); }
+        else { modalSignIn(); }
+      });
+
       document.body.appendChild(modal);
     }
 
@@ -65,32 +84,50 @@
           '<button class="auth-modal-close" onclick="closeProfileModal()" aria-label="Close">&times;</button>' +
           '<div class="auth-modal-form" id="profile-modal-form">' +
             '<h3 class="auth-modal-heading">Create your parish profile</h3>' +
-            '<p class="auth-modal-sub">Your profile lets you save notes and highlights as you explore the Faith, track the pages you\'ve read, and gives Fr. Solomon a way to know your family and walk alongside you on your journey. You\'ll also be added to the parish newsletter.</p>' +
-            '<input type="email" id="profile-modal-email" class="auth-modal-input" placeholder="your@email.com">' +
-            '<button class="auth-modal-btn" id="profile-modal-send-btn" onclick="modalSendLink(\'profile\')">Create my profile</button>' +
+            '<p class="auth-modal-sub">Your profile lets you save notes and highlights as you explore the Faith, track the pages you\'ve read, and gives Fr. Solomon a way to know your family and walk alongside you on your journey.</p>' +
+            '<input type="email" id="profile-modal-email" class="auth-modal-input" placeholder="your@email.com" autocomplete="email">' +
+            '<input type="password" id="profile-modal-password" class="auth-modal-input" placeholder="Choose a password" autocomplete="new-password">' +
+            '<input type="password" id="profile-modal-password2" class="auth-modal-input" placeholder="Confirm password" autocomplete="new-password">' +
+            '<button class="auth-modal-btn" id="profile-modal-send-btn" onclick="modalSignUp()">Create my profile</button>' +
+            '<button class="auth-modal-link-btn" onclick="closeProfileModal();openAuthModal()">Already have an account? Sign in</button>' +
           '</div>' +
-          makeConfirmHTML('profile-modal') +
         '</div>';
       pmodal.addEventListener('click', function(e) { if (e.target === pmodal) closeProfileModal(); });
+      pmodal.addEventListener('keydown', function(e) { if (e.key === 'Enter') modalSignUp(); });
       document.body.appendChild(pmodal);
     }
   }
 
-  function resetModal(prefix, btnLabel) {
-    var form = document.getElementById(prefix + '-form');
-    var confirm = document.getElementById(prefix + '-confirm');
-    var input = document.getElementById(prefix + '-email');
-    var btn = document.getElementById(prefix + '-send-btn');
-    if (form) { form.style.opacity = '1'; form.style.display = 'flex'; }
+  function resetAuthModal() {
+    var form = document.getElementById('auth-modal-form');
+    var forgot = document.getElementById('auth-modal-forgot');
+    var confirm = document.getElementById('auth-modal-confirm');
+    var emailEl = document.getElementById('auth-modal-email');
+    var passEl = document.getElementById('auth-modal-password');
+    var btn = document.getElementById('auth-modal-send-btn');
+    if (form) { form.style.display = 'flex'; form.style.opacity = '1'; }
+    if (forgot) forgot.style.display = 'none';
     if (confirm) confirm.classList.remove('visible');
-    if (input) input.value = '';
-    if (btn) { btn.textContent = btnLabel; btn.disabled = false; }
+    if (emailEl) emailEl.value = '';
+    if (passEl) passEl.value = '';
+    if (btn) { btn.textContent = 'Sign In'; btn.disabled = false; }
+  }
+
+  function resetProfileModal() {
+    var emailEl = document.getElementById('profile-modal-email');
+    var passEl = document.getElementById('profile-modal-password');
+    var pass2El = document.getElementById('profile-modal-password2');
+    var btn = document.getElementById('profile-modal-send-btn');
+    if (emailEl) emailEl.value = '';
+    if (passEl) passEl.value = '';
+    if (pass2El) pass2El.value = '';
+    if (btn) { btn.textContent = 'Create my profile'; btn.disabled = false; }
   }
 
   window.openAuthModal = function() {
     var modal = document.getElementById('auth-modal');
     if (!modal) return;
-    resetModal('auth-modal', 'Get my sign-in link');
+    resetAuthModal();
     modal.classList.add('open');
     setTimeout(function() { var i = document.getElementById('auth-modal-email'); if (i) i.focus(); }, 80);
   };
@@ -103,7 +140,7 @@
   window.openProfileModal = function() {
     var modal = document.getElementById('profile-modal');
     if (!modal) return;
-    resetModal('profile-modal', 'Create my profile');
+    resetProfileModal();
     modal.classList.add('open');
     setTimeout(function() { var i = document.getElementById('profile-modal-email'); if (i) i.focus(); }, 80);
   };
@@ -113,32 +150,79 @@
     if (modal) modal.classList.remove('open');
   };
 
-  window.modalSendLink = async function(prefix) {
-    var inputId = prefix + '-modal-email';
-    var btnId = prefix + '-modal-send-btn';
-    var input = document.getElementById(inputId);
-    var btn = document.getElementById(btnId);
-    var email = input ? input.value.trim() : '';
-    if (!email) { if (input) input.focus(); return; }
-    if (btn) { btn.textContent = 'Sending...'; btn.disabled = true; }
-    var result = await sendMagicLink(email, window.location.href);
+  window.showAuthForgot = function() {
+    var signin = document.getElementById('auth-modal-form');
+    var forgot = document.getElementById('auth-modal-forgot');
+    if (signin) signin.style.display = 'none';
+    if (forgot) { forgot.style.display = 'flex'; }
+    setTimeout(function() { var i = document.getElementById('auth-modal-forgot-email'); if (i) i.focus(); }, 60);
+  };
+
+  window.showAuthSignin = function() {
+    var signin = document.getElementById('auth-modal-form');
+    var forgot = document.getElementById('auth-modal-forgot');
+    var confirm = document.getElementById('auth-modal-confirm');
+    if (signin) { signin.style.display = 'flex'; signin.style.opacity = '1'; }
+    if (forgot) forgot.style.display = 'none';
+    if (confirm) confirm.classList.remove('visible');
+    setTimeout(function() { var i = document.getElementById('auth-modal-email'); if (i) i.focus(); }, 60);
+  };
+
+  window.modalSignIn = async function() {
+    var email = (document.getElementById('auth-modal-email') || {}).value || '';
+    var password = (document.getElementById('auth-modal-password') || {}).value || '';
+    var btn = document.getElementById('auth-modal-send-btn');
+    email = email.trim();
+    if (!email) { var i = document.getElementById('auth-modal-email'); if (i) i.focus(); return; }
+    if (!password) { var p = document.getElementById('auth-modal-password'); if (p) p.focus(); return; }
+    if (btn) { btn.textContent = 'Signing in...'; btn.disabled = true; }
+    var result = await signInWithPassword(email, password);
     if (result.success) {
-      var form = document.getElementById(prefix + '-modal-form');
-      var confirm = document.getElementById(prefix + '-modal-confirm');
-      var sub = document.getElementById(prefix + '-modal-confirm-sub');
-      if (sub) sub.textContent = 'We sent a link to ' + email + '. Tap it to continue — you can close this.';
-      if (form) {
-        form.style.transition = 'opacity .22s';
-        form.style.opacity = '0';
-        setTimeout(function() {
-          form.style.display = 'none';
-          if (confirm) confirm.classList.add('visible');
-        }, 220);
-      }
+      closeAuthModal();
     } else {
-      var origLabel = prefix === 'auth' ? 'Get my sign-in link' : 'Create my profile';
-      if (btn) { btn.textContent = origLabel; btn.disabled = false; }
-      alert('Could not send link: ' + (result.error || 'Unknown error'));
+      if (btn) { btn.textContent = 'Sign In'; btn.disabled = false; }
+      alert(result.error || 'Sign in failed. Check your email and password.');
+    }
+  };
+
+  window.modalSignUp = async function() {
+    var email = (document.getElementById('profile-modal-email') || {}).value || '';
+    var pass = (document.getElementById('profile-modal-password') || {}).value || '';
+    var pass2 = (document.getElementById('profile-modal-password2') || {}).value || '';
+    var btn = document.getElementById('profile-modal-send-btn');
+    email = email.trim();
+    if (!email) { var i = document.getElementById('profile-modal-email'); if (i) i.focus(); return; }
+    if (!pass) { var p = document.getElementById('profile-modal-password'); if (p) p.focus(); return; }
+    if (pass.length < 8) { alert('Please choose a password of at least 8 characters.'); return; }
+    if (pass !== pass2) { alert('Passwords do not match.'); return; }
+    if (btn) { btn.textContent = 'Creating...'; btn.disabled = true; }
+    var result = await signUpWithPassword(email, pass);
+    if (result.success) {
+      closeProfileModal();
+      window.location.href = '/my-profile';
+    } else {
+      if (btn) { btn.textContent = 'Create my profile'; btn.disabled = false; }
+      alert(result.error || 'Could not create account. Please try again.');
+    }
+  };
+
+  window.modalForgotPassword = async function() {
+    var email = (document.getElementById('auth-modal-forgot-email') || {}).value || '';
+    var btn = document.getElementById('auth-modal-reset-btn');
+    email = email.trim();
+    if (!email) { var i = document.getElementById('auth-modal-forgot-email'); if (i) i.focus(); return; }
+    if (btn) { btn.textContent = 'Sending...'; btn.disabled = true; }
+    var result = await resetPasswordForEmail(email);
+    if (result.success) {
+      var forgot = document.getElementById('auth-modal-forgot');
+      var confirm = document.getElementById('auth-modal-confirm');
+      var sub = document.getElementById('auth-modal-confirm-sub');
+      if (sub) sub.textContent = 'We sent a reset link to ' + email + '. Check your inbox.';
+      if (forgot) forgot.style.display = 'none';
+      if (confirm) confirm.classList.add('visible');
+    } else {
+      if (btn) { btn.textContent = 'Send reset link'; btn.disabled = false; }
+      alert(result.error || 'Could not send reset link. Please try again.');
     }
   };
 
@@ -384,6 +468,8 @@
       '.auth-modal-btn{padding:.75rem;background:var(--maroon,#7B1D2A);color:var(--vellum,#F6F1E8);border:none;font-family:var(--f-ui,"Cinzel",serif);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;transition:background .18s}' +
       '.auth-modal-btn:hover:not(:disabled){background:var(--gold,#B88328)}' +
       '.auth-modal-btn:disabled{opacity:.55;cursor:default}' +
+      '.auth-modal-link-btn{background:none;border:none;font-family:var(--f-body,"EB Garamond",serif);font-size:.88rem;color:var(--stone,#7A6648);cursor:pointer;padding:.15rem 0;text-decoration:underline;text-underline-offset:2px;transition:color .18s;text-align:center}' +
+      '.auth-modal-link-btn:hover{color:var(--maroon,#7B1D2A)}' +
 
       /* Confirmation screen */
       '.auth-modal-confirm{display:none;flex-direction:column;align-items:center;text-align:center;padding:.75rem 0 .25rem}' +

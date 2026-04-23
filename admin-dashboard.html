@@ -2704,16 +2704,13 @@ body {
     <div style="font-family:var(--f-ui);font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--maroon);margin-bottom:.5rem">Parish Administration</div>
     <div style="font-family:var(--f-display);font-style:italic;font-size:1.15rem;color:var(--stone);margin-bottom:2rem">Sign in with your parish email</div>
     <input type="email" id="login-email" class="login-input" placeholder="Enter your email" onkeydown="if(event.key==='Enter')handleLogin()">
-    <div id="login-password-wrap" style="display:none">
+    <div id="login-password-wrap">
       <input type="password" id="login-password" class="login-input" placeholder="Password" style="margin-top:.5rem" onkeydown="if(event.key==='Enter')handleLogin()">
     </div>
     <div id="login-action">
-      <button class="login-btn" onclick="handleLogin()" id="login-btn-main">Send Sign-in Link</button>
+      <button class="login-btn" onclick="handleLogin()" id="login-btn-main">Sign In</button>
     </div>
     <div id="login-status" class="login-sent"></div>
-    <div style="margin-top:1rem;text-align:center">
-      <button onclick="togglePasswordMode()" id="login-mode-toggle" style="background:none;border:none;color:var(--stone);font-family:var(--f-ui);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;text-decoration:underline">Use password instead</button>
-    </div>
   </div>
 </div>
 
@@ -3189,39 +3186,18 @@ async function initAuth() {
   loadDashboard();
 }
 
-var _passwordMode = false;
-function togglePasswordMode() {
-  _passwordMode = !_passwordMode;
-  document.getElementById('login-password-wrap').style.display = _passwordMode ? '' : 'none';
-  document.getElementById('login-btn-main').textContent = _passwordMode ? 'Sign In' : 'Send Sign-in Link';
-  document.getElementById('login-mode-toggle').textContent = _passwordMode ? 'Use magic link instead' : 'Use password instead';
-  document.getElementById('login-status').textContent = '';
-}
-
 async function handleLogin() {
   var email = document.getElementById('login-email').value.trim();
   if (!email) return;
-  var actionEl = document.getElementById('login-action');
+  var password = document.getElementById('login-password').value;
   var statusEl = document.getElementById('login-status');
-
-  if (_passwordMode) {
-    var password = document.getElementById('login-password').value;
-    if (!password) return;
-    statusEl.textContent = 'Signing in...';
-    var result = await signInWithPassword(email, password);
-    if (result.error) {
-      statusEl.textContent = 'Error: ' + result.error;
-    } else {
-      await initAuth();
-    }
-    return;
-  }
-
-  var result = await sendMagicLink(email, window.location.href);
+  if (!password) { statusEl.textContent = 'Please enter your password.'; return; }
+  statusEl.textContent = 'Signing in...';
+  var result = await signInWithPassword(email, password);
   if (result.error) {
-    actionEl.innerHTML = '<div class="login-sent">Error: ' + escHtml(result.error) + '</div>';
+    statusEl.textContent = 'Error: ' + result.error;
   } else {
-    actionEl.innerHTML = '<div class="login-sent">A sign-in link has been sent to ' + escHtml(email) + '. Check your inbox.</div>';
+    await initAuth();
   }
 }
 

@@ -1173,45 +1173,56 @@ function editProfile(tab) {
 }
 
 
-async function authSendLink(e) {
-  try {
-    var emailInput = document.getElementById('auth-email-input');
-    // If there are multiple inputs with same ID (static + JS-rendered), grab the visible one
-    var allInputs = document.querySelectorAll('#auth-email-input');
-    var email = '';
-    allInputs.forEach(function(inp) {
-      if (inp.offsetParent !== null && inp.value.trim()) email = inp.value.trim();
+// ── PASSWORD RESET DETECTION ──
+// When Supabase redirects back here after a password reset email, the URL
+// contains a recovery token in the hash. Detect it and show a set-password form.
+(function() {
+  var hash = window.location.hash;
+  if (hash && hash.indexOf('type=recovery') !== -1) {
+    document.addEventListener('DOMContentLoaded', function() {
+      var overlay = document.createElement('div');
+      overlay.id = 'pw-reset-overlay';
+      overlay.style.cssText = 'position:fixed;inset:0;background:rgba(21,8,4,.75);z-index:9999;display:flex;align-items:center;justify-content:center;padding:1.5rem';
+      overlay.innerHTML =
+        '<div style="background:var(--vellum,#F6F1E8);max-width:400px;width:100%;padding:2.5rem 2rem;box-shadow:0 24px 80px rgba(21,8,4,.4)">' +
+          '<h3 style="font-family:var(--f-display);font-size:1.55rem;font-weight:600;color:var(--ink);margin:0 0 1.2rem;line-height:1.2">Set a new password</h3>' +
+          '<input type="password" id="pw-reset-input" placeholder="New password (8+ characters)" autocomplete="new-password" style="width:100%;padding:.7rem .85rem;border:1px solid rgba(123,29,42,.2);background:#fff;font-family:var(--f-body);font-size:1rem;color:var(--ink);outline:none;box-sizing:border-box;margin-bottom:.75rem">' +
+          '<input type="password" id="pw-reset-input2" placeholder="Confirm new password" autocomplete="new-password" style="width:100%;padding:.7rem .85rem;border:1px solid rgba(123,29,42,.2);background:#fff;font-family:var(--f-body);font-size:1rem;color:var(--ink);outline:none;box-sizing:border-box;margin-bottom:.75rem">' +
+          '<button id="pw-reset-btn" onclick="submitPasswordReset()" style="width:100%;padding:.75rem;background:var(--maroon,#7B1D2A);color:var(--vellum,#F6F1E8);border:none;font-family:var(--f-ui);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;cursor:pointer">Set Password</button>' +
+          '<div id="pw-reset-msg" style="margin-top:.75rem;font-family:var(--f-body);font-size:.88rem;color:var(--stone);display:none"></div>' +
+        '</div>';
+      document.body.appendChild(overlay);
     });
-    if (!email && emailInput) email = emailInput.value.trim();
-    if (!email) { alert('Please enter your email address.'); return; }
-
-    var btn = e && e.target ? e.target : document.querySelector('[onclick*="authSendLink"]');
-    if (btn.tagName !== 'BUTTON') btn = btn.closest('button') || btn;
-    btn.textContent = 'Sending...';
-    btn.disabled = true;
-
-    if (typeof sendMagicLink !== 'function') {
-      alert('Auth system not loaded. Please refresh and try again.');
-      btn.textContent = 'Send Me a Link';
-      btn.disabled = false;
-      return;
-    }
-
-    var result = await sendMagicLink(email, window.location.href);
-    if (result.success) {
-      var msg = document.getElementById('auth-sent-msg');
-      if (msg) { msg.style.display = 'inline-block'; }
-      btn.style.display = 'none';
-    } else {
-      btn.textContent = 'Send Me a Link';
-      btn.disabled = false;
-      alert('Could not send link: ' + (result.error || 'Unknown error'));
-    }
-  } catch(err) {
-    alert('Error: ' + err.message);
-    console.error('authSendLink error:', err);
   }
-}
+})();
+
+window.submitPasswordReset = async function() {
+  var pass = (document.getElementById('pw-reset-input') || {}).value || '';
+  var pass2 = (document.getElementById('pw-reset-input2') || {}).value || '';
+  var btn = document.getElementById('pw-reset-btn');
+  var msg = document.getElementById('pw-reset-msg');
+  if (pass.length < 8) { if (msg) { msg.style.display = 'block'; msg.textContent = 'Please choose a password of at least 8 characters.'; } return; }
+  if (pass !== pass2) { if (msg) { msg.style.display = 'block'; msg.textContent = 'Passwords do not match.'; } return; }
+  if (btn) { btn.textContent = 'Saving...'; btn.disabled = true; }
+  try {
+    var result = await _supabase.auth.updateUser({ password: pass });
+    if (result.error) {
+      if (btn) { btn.textContent = 'Set Password'; btn.disabled = false; }
+      if (msg) { msg.style.display = 'block'; msg.textContent = result.error.message; }
+    } else {
+      var overlay = document.getElementById('pw-reset-overlay');
+      if (overlay) overlay.innerHTML = '<div style="background:var(--vellum,#F6F1E8);max-width:400px;width:100%;padding:2.5rem 2rem;text-align:center"><p style="font-family:var(--f-display);font-size:1.25rem;color:var(--ink)">Password updated. You\'re signed in.</p></div>';
+      setTimeout(function() {
+        var ov = document.getElementById('pw-reset-overlay');
+        if (ov) ov.remove();
+        window.history.replaceState(null, '', window.location.pathname);
+      }, 2000);
+    }
+  } catch(e) {
+    if (btn) { btn.textContent = 'Set Password'; btn.disabled = false; }
+    if (msg) { msg.style.display = 'block'; msg.textContent = e.message; }
+  }
+};
 
 // Restore saved profile on load
 document.addEventListener('DOMContentLoaded', function() {
