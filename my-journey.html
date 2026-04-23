@@ -1301,22 +1301,27 @@ function renderFeed(){
   var feedEl=document.getElementById('j-feed');var listEl=document.getElementById('j-feed-list');if(!feedEl||!listEl)return;
   var MONTHS_L=['January','February','March','April','May','June','July','August','September','October','November','December'];
   var DAYS=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-  var thirtyAgo=new Date();thirtyAgo.setDate(thirtyAgo.getDate()-30);
   var events=[];
-  try{var notes=JSON.parse(localStorage.getItem('spp_reading_notes')||'{}')||{};Object.keys(notes).forEach(function(dk){var d=new Date(dk+'T12:00:00');if(d<thirtyAgo||!Array.isArray(notes[dk]))return;notes[dk].forEach(function(e){var label=e.text?'\u201C'+e.text.slice(0,55)+(e.text.length>55?'\u2026':'')+'\u201D':'A note';var src=e.citation?' from <strong>'+escHtml(e.citation)+'</strong>':'';events.push({date:d,cls:'',text:'Highlighted <em>'+escHtml(label)+'</em>'+src+'.'})})});}catch(e){}
-  for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);if(!k)continue;if(k.indexOf('spp_journey_session_')===0||k.indexOf('spp_journey_study_')===0){try{var st=JSON.parse(localStorage.getItem(k)||'{}');if(!st.completed||!st.completedAt)continue;var cd=new Date(st.completedAt);if(cd<thirtyAgo)continue;events.push({date:cd,cls:'maroon',text:'Marked a <strong>'+(k.indexOf('spp_journey_session_')===0?'catechesis session':'bible study session')+'</strong> complete.'});}catch(e2){}}}
-  try{var saints=JSON.parse(localStorage.getItem('spp_saint_bookmarks')||'{}')||{};Object.keys(saints).forEach(function(slug){var s=saints[slug];if(!s||!s.addedAt)return;var sd=new Date(s.addedAt);if(sd<thirtyAgo)return;events.push({date:sd,cls:'verdigris',text:'Added <strong>'+escHtml(decodeHtml(s.name||slug))+'</strong> to your saints.'})});}catch(e){}
+  try{events=JSON.parse(localStorage.getItem('spp_activity_log')||'[]')||[];}catch(e){}
   if(!events.length){feedEl.style.display='none';return}
-  events.sort(function(a,b){return b.date-a.date});
+  var clsMap={article:'maroon',session:'maroon',study:'maroon',saint:'verdigris',note:''};
   var html='';
   events.slice(0,8).forEach(function(ev,i){
-    var dateStr=MONTHS_L[ev.date.getMonth()]+' '+ev.date.getDate()+' \u00b7 '+DAYS[ev.date.getDay()];
-    html+='<div class="fe'+(ev.cls?' '+ev.cls:'')+'" style="transition-delay:'+(i*70)+'ms"><div class="fe-dot"></div><div><span class="fe-date">'+dateStr+'</span><div class="fe-text">'+ev.text+'</div></div></div>';
+    var d=new Date(ev.created_at);
+    var dateStr=MONTHS_L[d.getMonth()]+' '+d.getDate()+' · '+DAYS[d.getDay()];
+    var cls=clsMap[ev.kind]||'';
+    var text='';
+    if(ev.kind==='article')text='Completed <strong>'+escHtml(ev.label||ev.ref||'an article')+'</strong>.';
+    else if(ev.kind==='session')text='Completed a <strong>catechesis session</strong>.';
+    else if(ev.kind==='study')text='Completed a <strong>bible study session</strong>.';
+    else if(ev.kind==='saint')text='Added <strong>'+escHtml(ev.label||ev.ref||'a saint')+'</strong> to your saints.';
+    else if(ev.kind==='note')text='Saved a reading note'+(ev.label?' from <strong>'+escHtml(ev.label)+'</strong>':'')+'.';
+    else text=escHtml(ev.label||ev.kind);
+    html+='<div class="fe'+(cls?' '+cls:'')+'" style="transition-delay:'+(i*70)+'ms"><div class="fe-dot"></div><div><span class="fe-date">'+dateStr+'</span><div class="fe-text">'+text+'</div></div></div>';
   });
   listEl.innerHTML=html;feedEl.style.display='block';
   requestAnimationFrame(function(){listEl.querySelectorAll('.fe').forEach(function(el){setTimeout(function(){el.classList.add('in')},50)})});
 }
-
 // ── RENDER HERO ──
 async function renderHero(){
   try{
