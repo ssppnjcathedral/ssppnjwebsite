@@ -394,8 +394,8 @@
     s.textContent =
       /* Hide hardcoded panel links — panel is fully rebuilt by JS */
       '.nav-mp-link{display:none!important}' +
-      /* Widen panel for pitch text */
-      '#nav-mp-panel{width:270px!important}' +
+      /* Pull panel out of nav stacking context (backdrop-filter z-index bug in Safari) */
+      '#nav-mp-panel{position:fixed!important;width:270px!important;z-index:1500!important}' +
 
       /* Nav button avatar */
       '.nav-avatar-initials{font-family:var(--f-ui,"Cinzel",serif);font-size:.5rem;letter-spacing:.06em;line-height:1;font-weight:500}' +
@@ -540,6 +540,25 @@
       panel._authClickBound = true;
     }
   }
+
+  // Override toggleMyParish to position panel via fixed coords, escaping the
+  // nav's backdrop-filter stacking context which clips the panel in Safari.
+  window.toggleMyParish = function(e) {
+    e.stopPropagation();
+    var panel = document.getElementById('nav-mp-panel');
+    if (!panel) return;
+    var isOpen = panel.classList.contains('open');
+    if (!isOpen) {
+      var btn = document.querySelector('.nav-my-parish-btn');
+      if (btn) {
+        var r = btn.getBoundingClientRect();
+        panel.style.top = (r.bottom + 6) + 'px';
+        panel.style.right = (window.innerWidth - r.right) + 'px';
+        panel.style.left = 'auto';
+      }
+    }
+    panel.classList.toggle('open');
+  };
 
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
