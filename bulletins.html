@@ -90,17 +90,47 @@
 .cbar-text.bright{color:rgba(246,241,232,.90)}
 .bulletins-wrap{max-width:1380px;margin:0 auto;padding:4rem 4.5rem 5rem;display:grid;grid-template-columns:1fr 300px;gap:5rem}
 
+/* FEATURED BULLETIN CARD */
+.featured-bull{margin-bottom:3rem}
+.featured-bull-card{background:var(--apse);padding:3rem 3.5rem 3rem;position:relative;overflow:hidden}
+.featured-bull-card::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 85% 50%,rgba(184,131,40,.07) 0%,transparent 65%);pointer-events:none}
+.featured-bull-kicker{font-family:var(--f-ui);font-size:.65rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(232,201,122,.65);display:block;margin-bottom:.6rem}
+.featured-bull-rule{width:40px;height:1px;background:rgba(184,131,40,.5);margin-bottom:1.25rem}
+.featured-bull-title{font-family:var(--f-display);font-weight:300;font-size:clamp(1.6rem,3.5vw,2.4rem);color:rgba(246,241,232,.95);line-height:1.15;margin-bottom:.6rem;max-width:680px}
+.featured-bull-date{font-family:var(--f-ui);font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(246,241,232,.38);display:block;margin-bottom:1rem}
+.featured-bull-excerpt{font-family:var(--f-display);font-style:italic;font-size:1.05rem;color:rgba(246,241,232,.55);line-height:1.7;max-width:580px;margin-bottom:1.5rem}
+.featured-bull-btn{display:inline-block;font-family:var(--f-ui);font-size:.65rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:rgba(232,201,122,.9);border:1px solid rgba(184,131,40,.45);padding:.55rem 1.35rem;transition:all .2s}
+.featured-bull-btn:hover{background:rgba(184,131,40,.15);border-color:rgba(232,201,122,.7);color:rgba(232,201,122,1)}
+
+/* YEAR TABS */
+.year-tabs-bar{display:flex;align-items:center;gap:1.25rem;margin-bottom:2rem;padding-bottom:1.25rem;border-bottom:var(--rule-faint);flex-wrap:wrap}
+.year-tabs-label{font-family:var(--f-ui);font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);white-space:nowrap}
+.year-tabs-pills{display:flex;gap:.45rem;flex-wrap:wrap}
+.year-tab{font-family:var(--f-ui);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;padding:.38rem .85rem;border:1px solid rgba(123,29,42,.22);color:var(--stone);cursor:pointer;transition:all .18s;background:none}
+.year-tab:hover{border-color:var(--maroon);color:var(--maroon)}
+.year-tab.active{background:var(--maroon);border-color:var(--maroon);color:var(--vellum)}
+
+/* YEAR CONTENT */
+.year-content{display:none}
+.year-content.active{display:block}
+.year-content-count{font-family:var(--f-display);font-style:italic;font-size:.9rem;color:var(--stone);margin-bottom:1.5rem}
+
 /* BULLETIN LIST */
-.year-group{margin-bottom:3rem}
-.year-label{font-family:var(--f-display);font-weight:300;font-size:2.5rem;color:rgba(123,29,42,.15);border-bottom:2px solid var(--maroon);padding-bottom:.25rem;margin-bottom:1.5rem;line-height:1}
 .bulletin-list{list-style:none}
-.bulletin-row{display:grid;grid-template-columns:140px 1fr auto;align-items:baseline;gap:1rem;padding:1rem 0;border-bottom:var(--rule-hair);transition:background .15s}
+.bulletin-row{display:grid;grid-template-columns:150px 1fr auto;align-items:baseline;gap:1rem;padding:1rem 0;border-bottom:var(--rule-hair);transition:all .15s}
 .bulletin-row:hover{background:var(--vellum-mid);padding-left:.5rem;margin-left:-.5rem}
 .bulletin-date{font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--stone)}
 .bulletin-title{font-family:var(--f-display);font-size:1.05rem;color:var(--text);line-height:1.3}
 .bulletin-title em{font-style:italic;color:var(--maroon)}
 .bulletin-dl{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--maroon);border-bottom:1px solid rgba(123,29,42,.28);padding-bottom:.1rem;white-space:nowrap}
 .bulletin-dl:hover{border-color:var(--maroon)}
+
+@media(max-width:768px){
+  .featured-bull-card{padding:2rem 1.5rem 2.25rem}
+  .featured-bull-title{font-size:1.5rem}
+  .bulletin-row{grid-template-columns:1fr;gap:.2rem}
+  .bulletin-dl{justify-self:start}
+}
 
 /* SIDE */
 .side-col{border-left:var(--rule-faint);padding-left:2.5rem}
@@ -858,8 +888,7 @@ function drToggle(head){
 <script src="/enhancements.js"></script>
 <script>
 /* ══════════════════════════════════════════════════════
-   BULLETIN ARCHIVE — dynamic load from bulletins.json
-   Replaces hardcoded list; groups by year; links to /bulletin?date=
+   BULLETIN ARCHIVE — featured latest + year-tab archive
 ══════════════════════════════════════════════════════ */
 (function(){
   var MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
@@ -870,6 +899,42 @@ function drToggle(head){
   function fmtDate(dateStr){
     var d = new Date(dateStr + 'T12:00:00');
     return MONTHS[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
+  }
+
+  function getExcerpt(body, len){
+    var txt = (body || '').replace(/\n+/g,' ').trim();
+    if(txt.length <= len) return txt;
+    return txt.slice(0, len).replace(/\s\S+$/, '') + '…';
+  }
+
+  function renderFeatured(b){
+    var excerpt = getExcerpt(b.reflection_body, 185);
+    return '<div class="featured-bull scroll-hidden">'+
+      '<div class="featured-bull-card">'+
+        '<span class="featured-bull-kicker">Latest Bulletin</span>'+
+        '<div class="featured-bull-rule"></div>'+
+        '<h2 class="featured-bull-title">'+(b.reflection_title || b.date)+'</h2>'+
+        '<span class="featured-bull-date">'+fmtDate(b.date)+'</span>'+
+        (excerpt ? '<p class="featured-bull-excerpt">'+excerpt+'</p>' : '')+
+        '<a href="/bulletin?date='+b.date+'" class="featured-bull-btn">Read Bulletin &rarr;</a>'+
+      '</div>'+
+    '</div>';
+  }
+
+  function renderYearRows(bulletins){
+    return bulletins.map(function(b){
+      return '<li class="bulletin-row scroll-hidden">'+
+        '<span class="bulletin-date">'+fmtDate(b.date)+'</span>'+
+        '<span class="bulletin-title">'+(b.reflection_title || b.date)+'</span>'+
+        '<a href="/bulletin?date='+b.date+'" class="bulletin-dl">View &rarr;</a>'+
+      '</li>';
+    }).join('');
+  }
+
+  function revealRows(container){
+    container.querySelectorAll('.bulletin-row.scroll-hidden').forEach(function(el, i){
+      setTimeout(function(){ el.classList.add('visible'); }, i * 45);
+    });
   }
 
   fetch('/bulletins.json')
@@ -889,27 +954,57 @@ function drToggle(head){
         if(!byYear[yr]) byYear[yr] = [];
         byYear[yr].push(b);
       });
-
       var years = Object.keys(byYear).sort(function(a,b){ return b - a; });
-      var html = '';
 
-      years.forEach(function(yr){
-        html += '<div class="year-group"><div class="year-label">'+yr+'</div><ul class="bulletin-list">';
-        byYear[yr].forEach(function(b){
-          var displayTitle = b.reflection_title || b.date;
-          html += '<li class="bulletin-row">'+
-            '<span class="bulletin-date">'+fmtDate(b.date)+'</span>'+
-            '<span class="bulletin-title">'+displayTitle+'</span>'+
-            '<a href="/bulletin?date='+b.date+'" class="bulletin-dl">View &rarr;</a>'+
-          '</li>';
-        });
-        html += '</ul></div>';
+      var html = renderFeatured(bulletins[0]);
+
+      /* Year tabs: only show when there are multiple years */
+      if(years.length > 1){
+        var pillsHtml = years.map(function(yr, i){
+          return '<button class="year-tab'+(i===0?' active':'')+'" data-year="'+yr+'">'+yr+'</button>';
+        }).join('');
+        html += '<div class="year-tabs-bar"><span class="year-tabs-label">Browse by Year</span><div class="year-tabs-pills" id="year-tabs-pills">'+pillsHtml+'</div></div>';
+      }
+
+      /* Year content sections */
+      years.forEach(function(yr, i){
+        var count = byYear[yr].length;
+        html += '<div class="year-content'+(i===0?' active':'')+'" id="year-content-'+yr+'">'+
+          '<p class="year-content-count">'+count+' bulletin'+(count===1?'':'s')+' in '+yr+'</p>'+
+          '<ul class="bulletin-list">'+renderYearRows(byYear[yr])+'</ul>'+
+        '</div>';
       });
 
       loading.style.display = 'none';
       listEl.innerHTML = html;
       listEl.style.display = 'block';
       footer.style.display = 'block';
+
+      /* Reveal featured card */
+      var featCard = listEl.querySelector('.featured-bull.scroll-hidden');
+      if(featCard){ setTimeout(function(){ featCard.classList.add('visible'); }, 80); }
+
+      /* Reveal initial year rows */
+      var firstContent = document.getElementById('year-content-'+years[0]);
+      if(firstContent){ setTimeout(function(){ revealRows(firstContent); }, 200); }
+
+      /* Tab switching */
+      var pillsEl = document.getElementById('year-tabs-pills');
+      if(pillsEl){
+        pillsEl.addEventListener('click', function(e){
+          var btn = e.target;
+          if(!btn.classList.contains('year-tab')) return;
+          var yr = btn.getAttribute('data-year');
+          document.querySelectorAll('.year-tab').forEach(function(t){ t.classList.remove('active'); });
+          document.querySelectorAll('.year-content').forEach(function(c){ c.classList.remove('active'); });
+          btn.classList.add('active');
+          var content = document.getElementById('year-content-'+yr);
+          if(content){
+            content.classList.add('active');
+            revealRows(content);
+          }
+        });
+      }
     })
     .catch(function(){
       loading.textContent = 'Bulletins unavailable. Please check back soon.';
@@ -936,7 +1031,7 @@ document.addEventListener('click', function() {
   if (!('IntersectionObserver' in window)) return;
 
   function observeAll(root) {
-    root.querySelectorAll('.year-label, .bulletin-row, .side-section, .year-group').forEach(function(el){
+    root.querySelectorAll('.bulletin-row, .side-section').forEach(function(el){
       if (!el.classList.contains('scroll-hidden') && !el.classList.contains('visible')) {
         el.classList.add('scroll-hidden');
         io.observe(el);
