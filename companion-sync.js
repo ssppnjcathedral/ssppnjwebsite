@@ -20,10 +20,6 @@ async function syncJourneyProgress(pageKey, state) {
       notes: notesValue,
       updated_at: new Date().toISOString()
     }, { onConflict: 'user_id,page_key' });
-    if (state.completed) {
-      var title = pageKey.replace(/-/g,' ').replace(/\b\w/g,function(c){return c.toUpperCase();});
-      logActivity('article', pageKey, title, 'journey');
-    }
   } catch (e) { console.warn('Journey sync error:', e); }
 }
 window.syncJourneyProgress = syncJourneyProgress;
@@ -59,7 +55,6 @@ async function syncReadingNote(dateKey, entry) {
       note_text: entry.note || null,
       updated_at: new Date().toISOString()
     }, { onConflict: 'user_id,date,verse_ref' });
-    logActivity('note', dateKey, entry.citation || entry.source || null, entry.source || null);
   } catch (e) { console.warn('Reading note sync error:', e); }
 }
 window.syncReadingNote = syncReadingNote;
@@ -90,7 +85,6 @@ async function syncCatechesisSession(sessionId, completed, completedAt) {
       completed_at: completedAt || (completed ? new Date().toISOString() : null),
       updated_at: new Date().toISOString()
     }, { onConflict: 'user_id,session_id' });
-    if (completed) logActivity('session', sessionId, null, 'catechesis');
   } catch (e) { console.warn('Catechesis session sync error:', e); }
 }
 window.syncCatechesisSession = syncCatechesisSession;
@@ -108,7 +102,6 @@ async function syncBibleStudySession(studyId, completed, completedAt) {
       completed_at: completedAt || (completed ? new Date().toISOString() : null),
       updated_at: new Date().toISOString()
     }, { onConflict: 'user_id,study_id' });
-    if (completed) logActivity('study', studyId, null, 'bible-study');
   } catch (e) { console.warn('Bible study session sync error:', e); }
 }
 window.syncBibleStudySession = syncBibleStudySession;
@@ -128,7 +121,6 @@ async function syncSaintBookmark(bookmark) {
       image_url: bookmark.image || null,
       oca_url: bookmark.ocaUrl || null
     }, { onConflict: 'user_id,saint_slug' });
-    logActivity('saint', bookmark.slug, bookmark.name || null, 'saints');
   } catch (e) { console.warn('Saint bookmark sync error:', e); }
 }
 window.syncSaintBookmark = syncSaintBookmark;
@@ -190,38 +182,6 @@ async function syncPrayerRule(prayerIds, ruleName, ruleBegun) {
 }
 window.syncPrayerRule = syncPrayerRule;
 
-// ── ACTIVITY LOG ──
-// Inserts one event row. Deduplicates client-side so repeated syncs don't flood the log:
-//   notes: one entry per day (session-level in-memory guard)
-//   others: skipped if same kind+ref already present in cached log
-var _activityDeduped = {};
-async function logActivity(kind, ref, label, source) {
-  var dedupKey = kind + ':' + (ref || '');
-  if (kind === 'note') {
-    dedupKey = 'note:' + new Date().toISOString().slice(0,10);
-  } else {
-    var cached = [];
-    try { cached = JSON.parse(localStorage.getItem('spp_activity_log') || '[]'); } catch(e){}
-    if (cached.some(function(e){ return e.kind === kind && e.ref === ref; })) {
-      _activityDeduped[dedupKey] = true;
-    }
-  }
-  if (_activityDeduped[dedupKey]) return;
-  _activityDeduped[dedupKey] = true;
-  try {
-    var user = await getCurrentUser();
-    if (!user) return;
-    await _supabase.from('activity_log').insert({
-      user_id: user.id,
-      kind: kind,
-      ref: ref || null,
-      label: label || null,
-      source: source || null
-    });
-  } catch(e) { console.warn('Activity log error:', e); }
-}
-window.logActivity = logActivity;
-
 // ── LOAD FROM SUPABASE (on login / page load) ──
 async function loadFromSupabase() {
   try {
@@ -229,23 +189,20 @@ async function loadFromSupabase() {
     if (!user) return;
 
     /* Fire all table reads in parallel — sequential awaits make this much slower. */
-    var thirtyDaysAgo = new Date(Date.now() - 30*24*60*60*1000).toISOString();
     var results = await Promise.all([
       _supabase.from('journey_progress').select('*').eq('user_id', user.id),
       _supabase.from('catechesis_progress').select('*').eq('user_id', user.id),
       _supabase.from('bible_study_progress').select('*').eq('user_id', user.id),
       _supabase.from('prayer_rules').select('*').eq('user_id', user.id).single(),
       _supabase.from('reading_notes').select('*').eq('user_id', user.id).order('date', { ascending: false }),
-      _supabase.from('saint_bookmarks').select('*').eq('user_id', user.id).order('added_at', { ascending: false }),
-      _supabase.from('activity_log').select('*').eq('user_id', user.id).gte('created_at', thirtyDaysAgo).order('created_at', { ascending: false }).limit(30)
+      _supabase.from('saint_bookmarks').select('*').eq('user_id', user.id).order('added_at', { ascending: false })
     ]);
-    var journeyResult   = results[0];
-    var catResult       = results[1];
-    var studyResult     = results[2];
-    var ruleResult      = results[3];
-    var notesResult     = results[4];
-    var saintsResult    = results[5];
-    var activityResult  = results[6];
+    var journeyResult = results[0];
+    var catResult     = results[1];
+    var studyResult   = results[2];
+    var ruleResult    = results[3];
+    var notesResult   = results[4];
+    var saintsResult  = results[5];
 
     if (journeyResult.data) {
       journeyResult.data.forEach(function(row) {
@@ -362,10 +319,6 @@ async function loadFromSupabase() {
         };
       });
       try { localStorage.setItem('spp_saint_bookmarks', JSON.stringify(localSaints)); } catch(e){}
-    }
-
-    if (activityResult && activityResult.data && activityResult.data.length) {
-      try { localStorage.setItem('spp_activity_log', JSON.stringify(activityResult.data)); } catch(e){}
     }
 
     /* Notify pages that per-session/progress data has finished hydrating.
