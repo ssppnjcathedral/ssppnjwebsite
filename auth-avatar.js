@@ -526,11 +526,32 @@
     updateAvatar();
     bindPanelClick();
     removeLegacyMyParish();
+    overrideToggle();
     if (_supabase && _supabase.auth) {
       _supabase.auth.onAuthStateChange(function() {
         setTimeout(updateAvatar, 100);
       });
     }
+  }
+
+  // Must run inside init() — inline body scripts redefine toggleMyParish after
+  // auth-avatar.js loads, so any top-level override gets clobbered.
+  function overrideToggle() {
+    window.toggleMyParish = function(e) {
+      e.stopPropagation();
+      var panel = document.getElementById('nav-mp-panel');
+      if (!panel) return;
+      if (!panel.classList.contains('open')) {
+        var btn = document.querySelector('.nav-my-parish-btn');
+        if (btn) {
+          var r = btn.getBoundingClientRect();
+          panel.style.top = (r.bottom + 6) + 'px';
+          panel.style.right = (window.innerWidth - r.right) + 'px';
+          panel.style.left = 'auto';
+        }
+      }
+      panel.classList.toggle('open');
+    };
   }
 
   function bindPanelClick() {
@@ -540,25 +561,6 @@
       panel._authClickBound = true;
     }
   }
-
-  // Override toggleMyParish to position panel via fixed coords, escaping the
-  // nav's backdrop-filter stacking context which clips the panel in Safari.
-  window.toggleMyParish = function(e) {
-    e.stopPropagation();
-    var panel = document.getElementById('nav-mp-panel');
-    if (!panel) return;
-    var isOpen = panel.classList.contains('open');
-    if (!isOpen) {
-      var btn = document.querySelector('.nav-my-parish-btn');
-      if (btn) {
-        var r = btn.getBoundingClientRect();
-        panel.style.top = (r.bottom + 6) + 'px';
-        panel.style.right = (window.innerWidth - r.right) + 'px';
-        panel.style.left = 'auto';
-      }
-    }
-    panel.classList.toggle('open');
-  };
 
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
