@@ -520,23 +520,65 @@
   window.__reloadAuth = updateAvatar;
 
   // ── Init ──
-  // Reads the Supabase session from localStorage synchronously so the avatar
-  // button updates instantly — before the async getSession() call resolves.
+  // Reads the Supabase session from localStorage synchronously. Updates the
+  // button AND pre-populates the panel so it has visible content before the
+  // async getSession() call resolves (which can lag 5+ s due to lock contention).
   function applyAvatarSync() {
     try {
       var ref = (SUPABASE_URL || '').match(/\/\/([^.]+)\./);
       if (!ref) return;
       var stored = localStorage.getItem('sb-' + ref[1] + '-auth-token');
-      if (!stored) return;
-      var data = JSON.parse(stored);
+      var panel = document.getElementById('nav-mp-panel');
+
+      var data = stored ? JSON.parse(stored) : null;
       var user = data && data.user;
-      if (!user || !user.email) return;
-      var btn = document.querySelector('.nav-my-parish-btn');
-      if (btn && !btn.classList.contains('nav-avatar-active')) {
-        var initials = getInitials(getProfile(), user.email);
-        btn.innerHTML = '<span class="nav-avatar-initials">' + initials + '</span>';
-        btn.classList.add('nav-avatar-active');
-        btn.title = 'Signed in as ' + user.email;
+      var profile = getProfile();
+
+      if (user && user.email) {
+        // ── Logged-in: update button ──
+        var initials = getInitials(profile, user.email);
+        var btn = document.querySelector('.nav-my-parish-btn');
+        if (btn && !btn.classList.contains('nav-avatar-active')) {
+          btn.innerHTML = '<span class="nav-avatar-initials">' + initials + '</span>';
+          btn.classList.add('nav-avatar-active');
+          btn.title = 'Signed in as ' + user.email;
+        }
+        // ── Logged-in: pre-populate panel ──
+        if (panel) {
+          var firstName = profile && profile.firstName ? profile.firstName : null;
+          var body = document.createElement('div');
+          body.className = 'nav-mp-body';
+          body.innerHTML =
+            '<div class="nav-mp-header">' +
+              '<span class="nav-mp-avatar">' + initials + '</span>' +
+              '<div class="nav-mp-header-text">' +
+                '<span class="nav-mp-welcome">Welcome' + (firstName ? ', ' + firstName : '') + '.</span>' +
+                '<span class="nav-mp-email">' + user.email + '</span>' +
+              '</div>' +
+            '</div>' +
+            '<div class="nav-mp-feature-list">' +
+              '<a href="/my-journey" class="nav-mp-feature"><span class="nav-mp-feature-name">My Journey</span><span class="nav-mp-feature-sub">Explore the Faith at your own pace</span></a>' +
+              '<a href="/my-profile" class="nav-mp-feature"><span class="nav-mp-feature-name">My Profile</span><span class="nav-mp-feature-sub">Help Fr. Solomon know your family</span></a>' +
+            '</div>' +
+            '<div class="nav-mp-footer"><button class="nav-mp-signout" onclick="signOut()">Sign Out</button></div>';
+          panel.innerHTML = '';
+          panel.appendChild(body);
+        }
+      } else {
+        // ── Logged-out: pre-populate panel with sign-in pitch ──
+        if (panel) {
+          var body2 = document.createElement('div');
+          body2.className = 'nav-mp-body';
+          body2.innerHTML =
+            '<div class="nav-mp-logged-out">' +
+              '<p class="nav-mp-pitch-head">Your journey, saved.</p>' +
+              '<p class="nav-mp-pitch-body">Create a profile or sign in to pick up where you left off.</p>' +
+              '<button class="nav-mp-signin-btn" onclick="openProfileModal()">Create Profile</button>' +
+              '<button class="nav-mp-signin-alt" onclick="openAuthModal()">Sign In</button>' +
+            '</div>';
+          panel.innerHTML = '';
+          panel.appendChild(body2);
+        }
       }
     } catch(e) {}
   }
