@@ -520,9 +520,31 @@
   window.__reloadAuth = updateAvatar;
 
   // ── Init ──
+  // Reads the Supabase session from localStorage synchronously so the avatar
+  // button updates instantly — before the async getSession() call resolves.
+  function applyAvatarSync() {
+    try {
+      var ref = (SUPABASE_URL || '').match(/\/\/([^.]+)\./);
+      if (!ref) return;
+      var stored = localStorage.getItem('sb-' + ref[1] + '-auth-token');
+      if (!stored) return;
+      var data = JSON.parse(stored);
+      var user = data && data.user;
+      if (!user || !user.email) return;
+      var btn = document.querySelector('.nav-my-parish-btn');
+      if (btn && !btn.classList.contains('nav-avatar-active')) {
+        var initials = getInitials(getProfile(), user.email);
+        btn.innerHTML = '<span class="nav-avatar-initials">' + initials + '</span>';
+        btn.classList.add('nav-avatar-active');
+        btn.title = 'Signed in as ' + user.email;
+      }
+    } catch(e) {}
+  }
+
   function init() {
     injectStyles();
     injectModal();
+    applyAvatarSync();
     updateAvatar();
     bindPanelClick();
     removeLegacyMyParish();
