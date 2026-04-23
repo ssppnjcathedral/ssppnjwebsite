@@ -547,8 +547,8 @@
     applyAvatarSync();
     updateAvatar();
     bindPanelClick();
+    bindPanelPosition();
     removeLegacyMyParish();
-    overrideToggle();
     if (_supabase && _supabase.auth) {
       _supabase.auth.onAuthStateChange(function() {
         setTimeout(updateAvatar, 100);
@@ -556,24 +556,28 @@
     }
   }
 
-  // Must run inside init() — inline body scripts redefine toggleMyParish after
-  // auth-avatar.js loads, so any top-level override gets clobbered.
-  function overrideToggle() {
-    window.toggleMyParish = function(e) {
-      e.stopPropagation();
-      var panel = document.getElementById('nav-mp-panel');
-      if (!panel) return;
-      if (!panel.classList.contains('open')) {
-        var btn = document.querySelector('.nav-my-parish-btn');
-        if (btn) {
-          var r = btn.getBoundingClientRect();
-          panel.style.top = (r.bottom + 6) + 'px';
-          panel.style.right = (window.innerWidth - r.right) + 'px';
-          panel.style.left = 'auto';
+  // Watch for .open being added to the panel and immediately snap it into
+  // position. MutationObserver fires before the browser repaints, so the
+  // panel is never visible at the wrong location.
+  function bindPanelPosition() {
+    var panel = document.getElementById('nav-mp-panel');
+    if (!panel || panel._positioningBound) return;
+    panel._positioningBound = true;
+    var observer = new MutationObserver(function(mutations) {
+      for (var i = 0; i < mutations.length; i++) {
+        if (mutations[i].attributeName === 'class' && panel.classList.contains('open')) {
+          var btn = document.querySelector('.nav-my-parish-btn');
+          if (btn) {
+            var r = btn.getBoundingClientRect();
+            panel.style.top = (r.bottom + 6) + 'px';
+            panel.style.right = (window.innerWidth - r.right) + 'px';
+            panel.style.left = 'auto';
+          }
+          break;
         }
       }
-      panel.classList.toggle('open');
-    };
+    });
+    observer.observe(panel, { attributes: true, attributeFilter: ['class'] });
   }
 
   function bindPanelClick() {
