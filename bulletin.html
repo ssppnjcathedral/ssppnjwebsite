@@ -25,7 +25,7 @@
 .bull-bar{background:var(--vellum);padding:.75rem 3rem;position:relative;display:flex;align-items:center;justify-content:space-between;margin-left:-2rem;margin-right:-2rem;width:calc(100% + 4rem);position:sticky;top:60px;z-index:150;border-bottom:2px solid var(--maroon)}.bull-bar-label{font-family:var(--f-display);font-style:normal;font-weight:700;font-size:1.05rem;color:var(--maroon)}.bull-bar-right{display:flex;align-items:center;gap:1.25rem}
 .bull-bar-center{display:flex;align-items:center;gap:.75rem;position:absolute;left:50%;transform:translateX(-50%)}
 
-.bull-nav-btn{font-family:var(--f-ui);font-size:.74rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--maroon);background:none;border:none;cursor:pointer;padding:.3rem .5rem;transition:color .2s}.bull-nav-btn:hover:not(:disabled){color:var(--maroon-deep)}.bull-nav-btn:disabled{opacity:.25;cursor:default}.bull-print-btn{font-family:var(--f-ui);font-size:.74rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--vellum);background:var(--maroon);border:none;padding:.55rem 1.4rem;cursor:pointer;transition:background .2s}.bull-print-btn:hover{background:var(--maroon-deep)}
+.bull-nav-btn{font-family:var(--f-ui);font-size:.74rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--maroon);background:none;border:none;cursor:pointer;padding:.3rem .5rem;transition:color .2s}.bull-nav-btn:hover:not(:disabled){color:var(--maroon-deep)}.bull-nav-btn:disabled{opacity:.25;cursor:default}.bull-back-btn{font-family:var(--f-ui);font-size:.74rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);border:1px solid rgba(123,29,42,.35);padding:.45rem 1.1rem;transition:all .2s}.bull-back-btn:hover{background:var(--maroon);color:var(--vellum)}.bull-print-btn{font-family:var(--f-ui);font-size:.74rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--vellum);background:var(--maroon);border:none;padding:.55rem 1.4rem;cursor:pointer;transition:background .2s}.bull-print-btn:hover{background:var(--maroon-deep)}
 .bull-wrap{background:#8e877e;padding:2rem 1rem 3rem;min-height:calc(100vh - 120px)}.bull-loading{display:flex;align-items:center;justify-content:center;min-height:60vh;font-family:var(--f-display);font-style:italic;font-size:1.2rem;color:rgba(246,241,232,.6)}
 .screen-only{}.print-only{display:none}
 .connect-form-screen{background:rgba(123,29,42,.04);border:.75pt solid rgba(123,29,42,.22);padding:.15in .18in;margin-bottom:.1in}.connect-form-screen label{display:block;font-size:8.5pt;color:var(--b-stone);margin-bottom:1.5pt;margin-top:.12in;font-family:var(--f-body)}.connect-form-screen label:first-of-type{margin-top:0}.connect-form-screen input,.connect-form-screen textarea{width:100%;background:none;border:none;border-bottom:.75pt solid var(--b-ink);font-family:var(--f-body);font-size:10pt;color:var(--b-ink);outline:none;padding:3pt 0 4pt;display:block}.connect-form-screen textarea{resize:vertical;min-height:54pt}.connect-form-submit{font-family:var(--f-ui);font-size:7.5pt;letter-spacing:.14em;text-transform:uppercase;background:var(--b-maroon);color:#fff;border:none;padding:7pt 16pt;cursor:pointer;margin-top:.14in;display:inline-block}
@@ -40,6 +40,7 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);margin-l
   .btn-txt-full{display:none}
   .btn-txt-short{display:inline!important}
   .bull-cal-btn{padding:.3rem .5rem;font-size:.65rem}
+  .bull-back-btn{padding:.35rem .65rem;font-size:.65rem;white-space:nowrap}
   .bull-print-btn{padding:.4rem .75rem;font-size:.65rem;white-space:nowrap}
   .bull-nav-btn{padding:.3rem .35rem;font-size:.85rem}
   .bull-bar-right{gap:.4rem}
@@ -637,6 +638,7 @@ body{background:#8e877e;padding:2rem;font-family:var(--f-body)}
     <button class="bull-nav-btn" id="btn-next" onclick="goNext()" disabled><span class="btn-txt">Next </span>&#8594;</button>
   </div>
   <div class="bull-bar-right">
+    <a href="/bulletins" class="bull-back-btn screen-only"><span class="btn-txt-full">&#8592; All Bulletins</span><span class="btn-txt-short" style="display:none">&#8592; Back</span></a>
     <button class="bull-print-btn" onclick="printBulletin()"><span class="btn-txt-full">Print / Save as PDF</span><span class="btn-txt-short" style="display:none">Print</span></button>
   </div>
 </div>
