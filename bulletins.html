@@ -63,8 +63,8 @@
 .bulletin-row.scroll-hidden.visible:nth-child(5){transition-delay:.25s}
 .bulletin-row.scroll-hidden.visible:nth-child(n+6){transition-delay:.30s}
 
-/* Bulletin row hover — gold accent slide */
-@media(hover:hover){.bulletin-row:hover{transform:translateX(4px);box-shadow:-4px 0 0 var(--gold)}}
+/* Bulletin row hover */
+@media(hover:hover){.bulletin-row:hover{transform:none;box-shadow:none}}
 
 /* Sidebar sections — staggered from right */
 .side-section.scroll-hidden{transform:translateX(16px)}
@@ -118,7 +118,7 @@
 /* BULLETIN LIST */
 .bulletin-list{list-style:none}
 .bulletin-row{display:grid;grid-template-columns:150px 1fr auto;align-items:baseline;gap:1rem;padding:1rem 0;border-bottom:var(--rule-hair);transition:all .15s}
-.bulletin-row:hover{background:var(--vellum-mid);padding-left:.5rem;margin-left:-.5rem}
+.bulletin-row:hover{background:var(--vellum-mid)}
 .bulletin-date{font-family:var(--f-ui);font-size:.72rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--stone)}
 .bulletin-title{font-family:var(--f-display);font-size:1.05rem;color:var(--text);line-height:1.3}
 .bulletin-title em{font-style:italic;color:var(--maroon)}
