@@ -261,9 +261,12 @@
 
 
   // ── Main update ──
-  async function updateAvatar() {
-    var user = null;
-    try { user = await getCurrentUser(); } catch(e) {}
+  // Accepts an optional user arg so onAuthStateChange can pass the session
+  // user directly, avoiding a second getSession() call that races for the lock.
+  async function updateAvatar(user) {
+    if (user === undefined) {
+      try { user = await getCurrentUser(); } catch(e) { user = null; }
+    }
     var profile = getProfile();
     var initials = user ? getInitials(profile, user.email) : null;
 
@@ -592,8 +595,9 @@
     bindPanelPosition();
     removeLegacyMyParish();
     if (_supabase && _supabase.auth) {
-      _supabase.auth.onAuthStateChange(function() {
-        setTimeout(updateAvatar, 100);
+      _supabase.auth.onAuthStateChange(function(event, session) {
+        var user = session ? session.user : null;
+        setTimeout(function() { updateAvatar(user); }, 100);
       });
     }
   }

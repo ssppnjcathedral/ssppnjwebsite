@@ -88,7 +88,9 @@
       });
       for (var i = 0; i < keys.length; i++) {
         var pageKey = keys[i].replace('spp_journey_', '');
-        var state = JSON.parse(localStorage.getItem(keys[i]) || '{}');
+        var raw = localStorage.getItem(keys[i]);
+        var state;
+        try { state = JSON.parse(raw || '{}'); } catch(e) { continue; }
         if (state.completed || (state.notes && state.notes.trim())) {
           var hlData = [];
           try { hlData = JSON.parse(localStorage.getItem('spp_highlights_' + pageKey) || '[]'); } catch {}
@@ -102,7 +104,9 @@
           }, { onConflict: 'user_id,page_key' });
         }
       }
-      var rule = JSON.parse(localStorage.getItem('spp_my_rule') || '[]');
+      var ruleRaw = localStorage.getItem('spp_my_rule');
+      var rule;
+      try { rule = JSON.parse(ruleRaw || '[]'); } catch(e) { rule = []; }
       var ruleName = localStorage.getItem('spp_rule_name') || null;
       var ruleBegun = localStorage.getItem('spp_rule_begun') || null;
       if (rule.length > 0) {
