@@ -444,6 +444,33 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
 @media(max-width:1100px){.page{grid-template-columns:1fr;gap:2rem}.sidebar{position:static}.legend{grid-template-columns:1fr}}
 @media(max-width:780px){.nav-inner{padding:0 1.2rem}.hero{padding:calc(64px + 3rem) 1.4rem 1.5rem}.ribbon-wrap,.fr-note-wrap{padding-left:1.4rem;padding-right:1.4rem}.page{padding:2rem 1.4rem 3rem}.legend{padding:3rem 1.4rem 4rem}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001s !important;transition-duration:.001s !important}}
+
+/* TOUR */
+.tour-ov{position:fixed;inset:0;background:rgba(21,8,4,.82);z-index:600;display:flex;align-items:center;justify-content:center;padding:1.5rem;opacity:0;pointer-events:none;transition:opacity .28s}
+.tour-ov.open{opacity:1;pointer-events:all}
+.tour-box{background:var(--vellum);max-width:520px;width:100%;padding:2.5rem 2.5rem 1.75rem;position:relative;border-top:3px solid var(--maroon)}
+.tour-skip{position:absolute;top:1rem;right:1.25rem;font-family:var(--f-ui);font-size:.5rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);cursor:pointer;border:none;background:none;padding:.25rem .4rem;transition:color .15s}
+.tour-skip:hover{color:var(--maroon)}
+.tour-dots{display:flex;gap:.45rem;margin-bottom:1.75rem}
+.tour-dot{width:6px;height:6px;border-radius:50%;background:rgba(123,29,42,.18);transition:background .22s;cursor:pointer}
+.tour-dot.active{background:var(--maroon)}
+.tour-dot.done{background:rgba(123,29,42,.38)}
+.tour-icon{width:34px;height:34px;background:rgba(123,29,42,.07);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--maroon);margin-bottom:.9rem}
+.tour-icon svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.tour-slide{display:none}
+.tour-slide.active{display:block}
+.tour-eyebrow{font-family:var(--f-ui);font-size:.5rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-deep);display:block;margin-bottom:.35rem}
+.tour-title{font-family:var(--f-display);font-weight:400;font-size:1.85rem;color:var(--apse);line-height:1.2;margin-bottom:.7rem}
+.tour-title em{font-style:italic;color:var(--maroon)}
+.tour-body{font-family:var(--f-body);font-size:1.05rem;color:var(--text);line-height:1.7}
+.tour-nav{display:flex;align-items:center;justify-content:space-between;margin-top:1.75rem;padding-top:1.25rem;border-top:1px solid rgba(123,29,42,.1)}
+.tour-btn{font-family:var(--f-ui);font-size:.5rem;letter-spacing:.14em;text-transform:uppercase;padding:.6rem 1.25rem;cursor:pointer;border:none;background:none;transition:all .18s}
+.tour-btn-next{background:var(--maroon);color:var(--vellum)}
+.tour-btn-next:hover{background:var(--maroon-deep)}
+.tour-btn-prev{border:1px solid rgba(59,15,24,.22);color:var(--stone)}
+.tour-btn-prev:hover{border-color:var(--maroon);color:var(--maroon)}
+.tour-btn-prev[disabled]{opacity:0;cursor:default;pointer-events:none}
+@media(max-width:580px){.tour-box{padding:1.75rem 1.5rem 1.5rem}.tour-title{font-size:1.5rem}}
 </style>
 </head>
 <body>
@@ -975,6 +1002,83 @@ footer{background:var(--apse);border-top:1px solid rgba(184,131,40,.14);padding:
     <span class="footer-addr">109 Grand Street &middot; Jersey City, NJ &middot; (201) 434-1986</span>
   </div>
 </footer>
+
+<!-- TOUR OVERLAY -->
+<div class="tour-ov" id="tour-ov">
+  <div class="tour-box">
+    <button class="tour-skip" onclick="dismissTour()">Skip</button>
+    <div class="tour-dots" id="tour-dots"></div>
+
+    <div class="tour-slide active" data-slide="0">
+      <div class="tour-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="3" x2="12" y2="21"/><line x1="3" y1="9" x2="21" y2="9"/></svg></div>
+      <span class="tour-eyebrow">My Journey</span>
+      <div class="tour-title">A personal record of <em>your faith</em></div>
+      <p class="tour-body">This is your own corner of the cathedral site. Everything you save, complete, and keep finds its way here. Take a moment to see what each part does.</p>
+    </div>
+
+    <div class="tour-slide" data-slide="1">
+      <div class="tour-icon"><svg viewBox="0 0 24 24"><line x1="6" y1="20" x2="6" y2="14"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="18" y1="20" x2="18" y2="10"/></svg></div>
+      <span class="tour-eyebrow">Stats Ribbon</span>
+      <div class="tour-title">Your <em>progress</em> at a glance</div>
+      <p class="tour-body">The ribbon across the top tracks six things: verses saved, articles read, catechesis and bible study sessions completed, saints kept close, prayers in your rule, and the days you have shown up.</p>
+    </div>
+
+    <div class="tour-slide" data-slide="2">
+      <div class="tour-icon"><svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="15" y2="18"/></svg></div>
+      <span class="tour-eyebrow">Notes Tab</span>
+      <div class="tour-title">Verses you have <em>saved and written about</em></div>
+      <p class="tour-body">When you highlight scripture on any reading page, those verses appear here. You can add your own notes to each one. Browse them by date or open the full archive.</p>
+    </div>
+
+    <div class="tour-slide" data-slide="3">
+      <div class="tour-icon"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></div>
+      <span class="tour-eyebrow">Library Tab</span>
+      <div class="tour-title">Sessions <em>walked through</em></div>
+      <p class="tour-body">Track your progress through 13 catechesis sessions and 49 bible study sessions. Tap any row to mark it complete. The circle fills in as you go. Return here anytime to see how far you have come.</p>
+    </div>
+
+    <div class="tour-slide" data-slide="4">
+      <div class="tour-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 10-16 0"/></svg></div>
+      <span class="tour-eyebrow">Saints Tab</span>
+      <div class="tour-title">Saints you have <em>kept close</em></div>
+      <p class="tour-body">From the saints calendar, you can bookmark any saint. They gather here on your shelf. See their feast days and visit their lives whenever you like.</p>
+    </div>
+
+    <div class="tour-slide" data-slide="5">
+      <div class="tour-icon"><svg viewBox="0 0 24 24"><path d="M12 2v6M12 16v6M4.93 4.93l4.24 4.24M14.83 14.83l4.24 4.24M2 12h6M16 12h6M4.93 19.07l4.24-4.24M14.83 9.17l4.24-4.24"/></svg></div>
+      <span class="tour-eyebrow">Prayer Rule Tab</span>
+      <div class="tour-title">Your daily <em>rule of prayer</em></div>
+      <p class="tour-body">Set up your personal rule from the prayers page. What you choose appears here, alongside the named fasts from the liturgical calendar for the year.</p>
+    </div>
+
+    <div class="tour-slide" data-slide="6">
+      <div class="tour-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+      <span class="tour-eyebrow">Activity Feed</span>
+      <div class="tour-title">A timeline of <em>your presence</em></div>
+      <p class="tour-body">The sidebar shows the last 30 days of your activity across the site: every verse saved, session completed, and saint added. A quiet record of your showing up.</p>
+    </div>
+
+    <div class="tour-slide" data-slide="7">
+      <div class="tour-icon"><svg viewBox="0 0 24 24"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg></div>
+      <span class="tour-eyebrow">Keepsake &amp; Tools</span>
+      <div class="tour-title">Print, export, <em>and share</em></div>
+      <p class="tour-body">You can print a summary of your whole journey to share with Fr. Solomon. You can also export a backup of your data or import one from another device. You are all set to begin.</p>
+    </div>
+
+    <div class="tour-slide" data-slide="8">
+      <div class="tour-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/><polyline points="16 3 18 5 22 1"/></svg></div>
+      <span class="tour-eyebrow">Create an Account</span>
+      <div class="tour-title">Keep your journey <em>on every device</em></div>
+      <p class="tour-body">Sign in to save your progress to the cloud. Your notes, saints, sessions, and prayer rule will follow you wherever you are. You will also receive the parish newsletter and occasional updates from Fr. Solomon directly to your inbox.</p>
+      <a href="/my-profile" style="display:inline-block;margin-top:1.1rem;font-family:var(--f-ui);font-size:.5rem;letter-spacing:.14em;text-transform:uppercase;color:var(--vellum);background:var(--maroon);padding:.55rem 1.2rem;text-decoration:none;transition:background .18s" onmouseover="this.style.background='var(--maroon-deep)'" onmouseout="this.style.background='var(--maroon)'">Create a Free Account</a>
+    </div>
+
+    <div class="tour-nav">
+      <button class="tour-btn tour-btn-prev" id="tour-prev" onclick="tourPrev()" disabled>Previous</button>
+      <button class="tour-btn tour-btn-next" id="tour-next" onclick="tourNext()">Next</button>
+    </div>
+  </div>
+</div>
 
 <!-- MODALS -->
 <div class="pn-modal" id="pn-reply-modal" onclick="closePastoralModal(event)">
@@ -1557,6 +1661,41 @@ function renderAll(){
   renderFeed();
   initStatsRibbon();
 }
+
+// ── JOURNEY TOUR ──
+(function(){
+  var TOTAL=9;var cur=0;
+  function buildDots(){
+    var c=document.getElementById('tour-dots');if(!c)return;
+    var h='';for(var i=0;i<TOTAL;i++)h+='<div class="tour-dot'+(i===0?' active':'')+'" onclick="tourGoTo('+i+')"></div>';
+    c.innerHTML=h;
+  }
+  function syncUI(){
+    document.querySelectorAll('.tour-slide').forEach(function(s,i){s.classList.toggle('active',i===cur)});
+    document.querySelectorAll('.tour-dot').forEach(function(d,i){d.classList.toggle('active',i===cur);d.classList.toggle('done',i<cur)});
+    var prev=document.getElementById('tour-prev');var next=document.getElementById('tour-next');
+    if(prev)prev.disabled=(cur===0);
+    if(next)next.textContent=(cur===TOTAL-1?'Begin':'Next');
+  }
+  window.tourNext=function(){if(cur<TOTAL-1){cur++;syncUI();}else{dismissTour();}};
+  window.tourPrev=function(){if(cur>0){cur--;syncUI();}};
+  window.tourGoTo=function(i){cur=i;syncUI();};
+  window.dismissTour=function(){
+    try{localStorage.setItem('spp_journey_tour_seen','1');}catch(e){}
+    var ov=document.getElementById('tour-ov');
+    if(ov){ov.classList.remove('open');setTimeout(function(){ov.style.display='none';},300);}
+  };
+  document.addEventListener('DOMContentLoaded',function(){
+    var seen=false;try{seen=!!localStorage.getItem('spp_journey_tour_seen');}catch(e){}
+    if(seen)return;
+    buildDots();
+    var ov=document.getElementById('tour-ov');
+    if(ov)setTimeout(function(){ov.classList.add('open');},500);
+  });
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'){var ov=document.getElementById('tour-ov');if(ov&&ov.classList.contains('open'))dismissTour();}
+  });
+})();
 
 document.addEventListener('DOMContentLoaded',function(){
   renderAll();
