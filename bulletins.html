@@ -93,6 +93,7 @@
 /* FEATURED BULLETIN CARD */
 .featured-bull{margin-bottom:3rem}
 .featured-bull-card{background:var(--apse);padding:3rem 3.5rem 3rem;position:relative;overflow:hidden}
+.featured-bull-card::before{content:'';position:absolute;inset:0;background-image:url('/images/heroes/bulletin-bg.jpg');background-size:cover;background-position:center;opacity:.06;pointer-events:none}
 .featured-bull-card::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 85% 50%,rgba(184,131,40,.07) 0%,transparent 65%);pointer-events:none}
 .featured-bull-kicker{font-family:var(--f-ui);font-size:.65rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(232,201,122,.65);display:block;margin-bottom:.6rem}
 .featured-bull-rule{width:40px;height:1px;background:rgba(184,131,40,.5);margin-bottom:1.25rem}
@@ -694,8 +695,8 @@ footer .btn-outline{color:rgba(246,241,232,.92);border-color:rgba(246,241,232,.5
   <aside class="side-col">
     <div class="side-section">
       <span class="side-head">Subscribe to Bulletins</span>
-      <p style="font-family:var(--f-display);font-style:italic;font-size:.95rem;color:var(--ink);line-height:1.65;margin-bottom:1.25rem">Receive the parish bulletin by email each week. Contact the office to be added to the list.</p>
-      <a href="/contact-us" class="btn btn-maroon" style="display:inline-block;font-size:.48rem">Contact the Office</a>
+      <p style="font-family:var(--f-display);font-style:italic;font-size:.95rem;color:var(--ink);line-height:1.65;margin-bottom:1.25rem">Receive the parish bulletin by email each week.</p>
+      <a href="/contact-us" class="btn btn-maroon" style="display:inline-block;font-size:.48rem">Contact Us</a>
     </div>
     <div class="side-section">
       <span class="side-head">More from the Parish</span>
